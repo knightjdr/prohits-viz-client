@@ -1,0 +1,77 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Link style with no style for :visited should match snapshot 1`] = `
+.c0 {
+  -webkit-text-decoration: none;
+  text-decoration: none;
+  white-space: nowrap;
+}
+
+.c0:link {
+  color: #2468e5;
+}
+
+.c0:visited {
+  color: #2468e5;
+}
+
+.c0:hover,
+.c0:active {
+  color: #23527c;
+  -webkit-text-decoration: underline;
+  text-decoration: underline;
+}
+
+.c0:focus {
+  outline: auto;
+  outline-color: #4D90FE;
+  outline-offset: 2px;
+  outline-style: dashed;
+  outline-width: 2px;
+}
+
+<div>
+  <a
+    class="c0"
+    href="/"
+  />
+</div>
+`;
+
+exports[`Link style with style for :visited should match snapshot 1`] = `
+.c0 {
+  -webkit-text-decoration: none;
+  text-decoration: none;
+  white-space: nowrap;
+}
+
+.c0:link {
+  color: #2468e5;
+}
+
+.c0:visited {
+  color: #1E6C60;
+}
+
+.c0:hover,
+.c0:active {
+  color: #23527c;
+  -webkit-text-decoration: underline;
+  text-decoration: underline;
+}
+
+.c0:focus {
+  outline: auto;
+  outline-color: #4D90FE;
+  outline-offset: 2px;
+  outline-style: dashed;
+  outline-width: 2px;
+}
+
+<div>
+  <a
+    class="c0"
+    href="/"
+  />
+</div>
+`;

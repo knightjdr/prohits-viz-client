@@ -1,0 +1,23 @@
+.getting-started {
+  align-items: center;
+  display: flex;
+  flex-direction: column;
+  padding: 40px 20px;
+}
+.getting-started > h3 {
+  color: var(--accentPrimary2);
+  font-family: var(--fontStackSecondary);
+  font-size: 1.2em;
+  margin-bottom: 10px;
+  position: relative;
+  text-transform: uppercase;
+}
+.getting-started > h3:before{
+  content: "";
+  position: absolute;
+  width: 50%;
+  height: 1px;
+  bottom: -1px;
+  left: 25%;
+  border-bottom: 2px solid var(--accentPrimary2);
+}

@@ -1,0 +1,10 @@
+.app {
+  background-color: #fff;
+  box-sizing: border-box;
+  color: var(--fontDark);
+  font-family: var(--fontStackPrimary);
+  height: calc(100vh - 40px);
+  line-height: 1.4em;
+  margin-top: 40px;
+}
+  

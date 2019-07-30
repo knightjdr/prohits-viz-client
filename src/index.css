@@ -1,0 +1,16 @@
+body {
+  margin: 0;
+  padding: 0;
+  --accentPrimary2: #763626;
+  --fontDark: #333;
+  --fontStackPrimary: Lato, sans-serif;
+  --fontStackSecondary: Raleway, sans-serif;
+}
+
+noscript {
+  align-items: center;
+  display: flex;
+  height: 100vh;
+  justify-content: center;
+  width: 100vw;
+}
