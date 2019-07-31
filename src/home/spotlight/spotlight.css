@@ -1,0 +1,64 @@
+.carousel__details {
+  margin-left: 10px;
+  max-width: 700px;
+  width: auto;
+}
+.carousel__details h4 {
+  font-size: 1.1em;
+}
+.carousel__item {
+  align-items: center;
+  background-color: white;
+  background-image: url(./assets/cubes.png);
+  border-radius: 3px;
+  display: flex;
+  flex-direction: row;
+  padding: 15px 20px;
+  z-index: 2;
+}
+.carousel__item img {
+  border: 4px solid var(--colorPrimary3);
+  border-radius: 3px;
+  height: auto;
+  max-width: 332px;
+}
+.carousel__links a {
+  margin: 5px 10px;
+}
+.spotlight {
+  align-items: center;
+  background: linear-gradient(50deg,#3f748f,#717598,#97778f,#aa7f81,#c0907c,#e2a777,#f8c46f,#ffe669);
+  display: flex;
+  flex-direction: column;
+  min-height: 376px;
+  overflow: hidden;
+  padding: 60px 20px 80px 20px;
+  position: relative;
+}
+.spotlight::before {
+  content: url(assets/spotlight.svg);
+  opacity: 0.7;
+  position: absolute;
+  right: 0;
+  top: 0;
+  width: 360px;
+}
+section.spotlight h3 {
+  margin-bottom: 40px;
+}
+@media (max-width: 1449px) {
+  .spotlight::before {
+    display: none;
+  }
+}
+@media (max-width: 799px) {
+  .carousel__item {
+    flex-direction: column;
+    padding: 40px 20px;
+  }
+}
+@media (max-width: 499px) {
+  .carousel__item img {
+    max-width: calc(100vw - 100px);
+  }
+}

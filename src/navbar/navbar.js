@@ -11,7 +11,6 @@ const links = ['analysis', 'visualization', 'news', 'help'];
 const Navbar = ({
   route,
   smallScreen,
-  theme,
 }) => {
   const iconColor = route === 'home' ? '#eee' : '#AC867C';
   return (
@@ -36,15 +35,15 @@ const Navbar = ({
             gradientUnits="userSpaceOnUse"
             x1="75.4634"
             y1="184.9697"
-            x2="75.4634" 
+            x2="75.4634"
             y2="-15.0835"
             gradientTransform="matrix(0.8634 -0.5044 0.6326 1.0828 -55.1724 54.1383)"
           >
-            <stop offset="0.386" style={{stopColor: iconColor }} />
-            <stop offset="1" style={{stopColor: iconColor, stopOpacity: 0 }}/>
+            <stop offset="0.386" style={{ stopColor: iconColor }} />
+            <stop offset="1" style={{ stopColor: iconColor, stopOpacity: 0 }} />
           </linearGradient>
-          <polygon fill="url(#SVGID_1_)" points="101.026,231.381 0,0 152.898,201.226 "/>
-          <circle fill={iconColor} cx="128.036" cy="218.163" r="30"/>
+          <polygon fill="url(#SVGID_1_)" points="101.026,231.381 0,0 152.898,201.226 " />
+          <circle fill={iconColor} cx="128.036" cy="218.163" r="30" />
           <linearGradient
             id="SVGID_2_"
             gradientUnits="userSpaceOnUse"
@@ -54,10 +53,10 @@ const Navbar = ({
             y2="-23.4688"
             gradientTransform="matrix(0.8686 0.4955 -0.6214 1.0892 153.9728 -22.0796)"
           >
-            <stop offset="0.386" style={{stopColor: iconColor }} />
-            <stop offset="1" style={{stopColor: iconColor, stopOpacity: 0 }}/>
+            <stop offset="0.386" style={{ stopColor: iconColor }} />
+            <stop offset="1" style={{ stopColor: iconColor, stopOpacity: 0 }} />
           </linearGradient>
-          <polygon fill="url(#SVGID_2_)" points="102.204,203.182 252.072,0 154.256,233.027 "/>
+          <polygon fill="url(#SVGID_2_)" points="102.204,203.182 252.072,0 154.256,233.027" />
         </svg>
       </Link>
       <div className="nav__right">
@@ -68,7 +67,7 @@ const Navbar = ({
         }
       </div>
     </Nav>
-  )
+  );
 };
 
 Navbar.defaultProps = {

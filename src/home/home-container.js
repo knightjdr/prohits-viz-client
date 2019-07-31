@@ -11,17 +11,19 @@ const HomeContainer = () => {
   const homeContentLoaded = useSelector(state => stateSelectorProp(state, 'home', 'isLoaded'));
 
   useEffect(() => {
-    const fetchContent = async() => {
+    const fetchContent = async () => {
       const response = await fetch('/home');
       if (!response.error) {
         dispatch(fillHome(response.data));
       }
-    }
+    };
     if (!homeContentLoaded) {
       fetchContent();
     }
-  }, [dispatch, homeContentLoaded])
-  return (<Home />)
+  }, [dispatch, homeContentLoaded]);
+  return (
+    <Home />
+  );
 };
 
 

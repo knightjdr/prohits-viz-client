@@ -14,6 +14,12 @@ const Button = styled.button`
   transition-property: all;
   transition-timing-function: ${props => props.theme.timingFunction};
 
+  ${props => (props.shadow
+    && css`& {
+      box-shadow: 0px 8px 15px rgba(0, 0, 0, 0.1);
+    }`
+  )};
+
   ${props => (props.kind === 'default'
     && css`& {
       background-color: rgba(0, 0, 0, 0.2);

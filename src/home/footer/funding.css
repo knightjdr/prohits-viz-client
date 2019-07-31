@@ -1,0 +1,28 @@
+.funding {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  padding: 10px 20px;
+}
+.funding > small {
+  margin-top: 10px;
+}
+.funding__inner {
+  align-items: center;
+  display: flex;
+  flex-direction: column;
+  padding: 20px 20px 0px 20px;
+}
+.funding__links {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  margin-top: 10px;
+  max-width: 1200px;
+}
+.funding__link {
+  margin: 10px 10px;
+}
+.funding__link {
+  margin-left: 4px;
+}

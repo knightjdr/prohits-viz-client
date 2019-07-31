@@ -4,6 +4,8 @@
   "private": true,
   "dependencies": {
     "@fortawesome/fontawesome-svg-core": "^1.2.20",
+    "@fortawesome/free-brands-svg-icons": "^5.10.0",
+    "@fortawesome/pro-duotone-svg-icons": "^5.10.0",
     "@fortawesome/pro-light-svg-icons": "^5.10.0",
     "@fortawesome/pro-regular-svg-icons": "^5.10.0",
     "@fortawesome/pro-solid-svg-icons": "^5.10.0",
@@ -45,6 +47,11 @@
   "devDependencies": {
     "@testing-library/jest-dom": "^4.0.0",
     "@testing-library/react": "^8.0.7",
+    "eslint": "^5.16.0",
+    "eslint-config-airbnb": "^17.1.1",
+    "eslint-plugin-import": "^2.18.2",
+    "eslint-plugin-jsx-a11y": "^6.2.3",
+    "eslint-plugin-react": "^7.14.3",
     "jest-styled-components": "^6.3.3",
     "simulant": "^0.2.2"
   }

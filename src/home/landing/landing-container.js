@@ -7,7 +7,6 @@ import { stateSelectorProp } from '../../state/selector/general';
 const LandingContainer = () => {
   const news = useSelector(state => stateSelectorProp(state, 'home', 'news'));
 
-  console.log(news);
   const article = news[0] ?
     {
       headline: news[0].headline,

@@ -2,7 +2,7 @@ import styled from 'styled-components';
 
 const Nav = styled.nav`
   align-items: center;
-  background-color: ${props => props.route === 'home' ? props.theme.colorSecondary1 : props.theme.colorPrimary1};
+  background-color: ${props => (props.route === 'home' ? props.theme.colorSecondary1 : props.theme.colorPrimary1)};
   box-shadow: 0 2px 5px 0 rgba(0, 0, 0, 0.3);
   box-sizing: border-box;
   color: ${props => props.theme.fontLight};
@@ -13,7 +13,7 @@ const Nav = styled.nav`
   position: fixed;
   text-transform: uppercase;
   top: 0;
-  width: 100vw;
+  width: 100%;
   z-index: 5;
 
   .nav__icon {
@@ -27,7 +27,7 @@ const Nav = styled.nav`
   }
   .nav__icon:focus,
   .nav__icon:hover {
-    background-color: ${props => props.route === 'home' ? 'rgba(42, 49, 50, 0.6)' : 'rgba(245, 245, 245, 0.9)'};
+    background-color: ${props => (props.route === 'home' ? 'rgba(42, 49, 50, 0.6)' : 'rgba(245, 245, 245, 0.9)')};
   }
 
   .nav__right {

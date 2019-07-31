@@ -5,3 +5,20 @@
   perspective: 1px;
   text-align: center;
 }
+.home h3 {
+  color: var(--accentPrimary2);
+  font-family: var(--fontStackSecondary);
+  font-size: 1.3em;
+  margin-bottom: 20px;
+  position: relative;
+  text-transform: uppercase;
+}
+.home h3:before{
+  content: "";
+  position: absolute;
+  width: 50%;
+  height: 1px;
+  bottom: -1px;
+  left: 25%;
+  border-bottom: 2px solid var(--accentPrimary2);
+}
