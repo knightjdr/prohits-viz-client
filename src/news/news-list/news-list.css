@@ -8,6 +8,10 @@
   margin-bottom: 30px;
   text-transform: uppercase;
 }
+.news__list h1 svg {
+  color: var(--accentPrimary1);
+  margin-right: 10px;
+}
 .news__list-inner {
   max-width: calc(100% - 40px);
   width: 950px;

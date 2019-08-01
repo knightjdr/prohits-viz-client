@@ -1,5 +1,7 @@
 import PropTypes from 'prop-types';
 import React from 'react';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faNewspaper } from '@fortawesome/pro-duotone-svg-icons';
 
 import Loading from '../../components/loading/loading';
 import NewsListItem from './news-list-item';
@@ -23,7 +25,10 @@ const NewList = ({
     content = (
       <div className="news__list">
         <div className="news__list-inner">
-          <h1>News</h1>
+          <h1>
+            <FontAwesomeIcon icon={faNewspaper} size="lg" />
+            News
+          </h1>
           {
             articles.map(article => (
               <NewsListItem
