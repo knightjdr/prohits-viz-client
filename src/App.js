@@ -2,6 +2,7 @@ import React, { Fragment, Suspense } from 'react';
 import { ThemeProvider } from 'styled-components';
 import { useRoutes } from 'hookrouter';
 
+import CookieNotification from './components/cookie-notification/cookie-notification-container';
 import Navbar from './navbar/navbar-container';
 import Loading from './routes/loading';
 import NotFoundPage from './routes/not-found';
@@ -24,6 +25,7 @@ function App() {
               { routeResult || <NotFoundPage /> }
             </Suspense>
           </main>
+          <CookieNotification />
         </Fragment>
       </ThemeProvider>
     </Store>

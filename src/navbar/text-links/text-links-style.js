@@ -42,7 +42,7 @@ const UL = styled.ul`
     background-color: ${props => props.theme.accentPrimary1}; 
   }
   .nav__link_active a {
-    color: ${props => props.theme.fontDark}; 
+    color: #1A1A1A; 
   }
   .nav__link_active a:after {
     background: ${props => props.theme.fontDark};

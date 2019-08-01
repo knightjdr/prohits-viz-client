@@ -1,0 +1,19 @@
+.news__list-item {
+  margin: 25px 0;
+}
+.news__list-item:not(:last-of-type) {
+  border-bottom: 1px solid rgb(232, 232, 232);
+  padding-bottom: 20px;
+}
+.news__list-item h2 {
+  font-size: 1.1em;
+  font-weight: 700;
+  text-transform: uppercase;
+}
+.news__list-item p {
+  margin-top: 10px;
+}
+.news__list-item p,
+.news__list-item > time {
+  opacity: 0.9;
+}
