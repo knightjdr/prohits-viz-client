@@ -8,6 +8,7 @@ body {
   --fontDark: #333;
   --fontStackPrimary: Lato, sans-serif;
   --fontStackSecondary: Raleway, sans-serif;
+  --timingFunction: cubic-bezier(.17, .67, .16, .99);
 }
 
 noscript {

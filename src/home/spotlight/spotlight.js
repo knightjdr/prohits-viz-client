@@ -1,6 +1,7 @@
 import PropTypes from 'prop-types';
 import React from 'react';
 
+import Carousel from '../../components/carousel/carousel-container';
 import Link from '../../components/link/text/link';
 
 import './spotlight.css';
@@ -12,35 +13,44 @@ const Spotlight = ({
     ? (
       <section className="spotlight">
         <h3>Spotlight</h3>
-        <div className="carousel__item">
-          <img
-            alt={`${manuscripts[0].authorLastName} highlight`}
-            height={332}
-            src={`./images/${manuscripts[0].image}`}
-          />
-          <div className="carousel__details">
-            <h4>{manuscripts[0].title}</h4>
-            <p>
-              { `${manuscripts[0].authorLastName} and colleagues used the ${manuscripts[0].tool}
-                tool at ProHits-viz to ${manuscripts[0].description}.`
-              }
-            </p>
-            <div className="carousel__links">
-              <Link
-                href={`https://www.ncbi.nlm.nih.gov/pubmed/${manuscripts[0].pubmed}`}
-                outline={false}
+        <Carousel>
+          {
+            manuscripts.map(manuscript => (
+              <div
+                className="carousel__item"
+                key={manuscript.title}
               >
-                Pubmed
-              </Link>
-              <Link
-                href={manuscripts[0].url}
-                outline={false}
-              >
-                Publisher
-              </Link>
-            </div>
-          </div>
-        </div>
+                <img
+                  alt={`${manuscript.authorLastName} highlight`}
+                  height={332}
+                  src={`./images/${manuscript.image}`}
+                />
+                <div className="carousel__details">
+                  <h4>{manuscript.title}</h4>
+                  <p>
+                    { `${manuscript.authorLastName} and colleagues used the ${manuscript.tool}
+                      tool at ProHits-viz to ${manuscript.description}.`
+                    }
+                  </p>
+                  <div className="carousel__links">
+                    <Link
+                      href={`https://www.ncbi.nlm.nih.gov/pubmed/${manuscript.pubmed}`}
+                      outline={false}
+                    >
+                      Pubmed
+                    </Link>
+                    <Link
+                      href={manuscript.url}
+                      outline={false}
+                    >
+                      Publisher
+                    </Link>
+                  </div>
+                </div>
+              </div>
+            ))
+          }
+        </Carousel>
       </section>
     )
     : null
