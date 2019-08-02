@@ -4,24 +4,25 @@ import React from 'react';
 import convertIsoDate from '../../utils/convert-iso-date';
 import Link from '../../components/link/text/link';
 
-import './news-list-item.css';
+import './list-item.css';
 
-const NewsListItem = ({
+const ListItem = ({
   article,
 }) => (
-  <div className="news__list-item">
+  <div className="list__item">
     <h2>{article.headline}</h2>
     <time>{convertIsoDate(article.dbDate)}</time>
     <p>{article.summary}</p>
     <Link
       href={`/news/${article.headline.replace(/\s/g, '-')}`}
+      outline={false}
     >
-      more
+      read more
     </Link>
   </div>
 );
 
-NewsListItem.propTypes = {
+ListItem.propTypes = {
   article: PropTypes.shape({
     dbDate: PropTypes.string,
     headline: PropTypes.string,
@@ -29,4 +30,4 @@ NewsListItem.propTypes = {
   }).isRequired,
 };
 
-export default NewsListItem;
+export default ListItem;

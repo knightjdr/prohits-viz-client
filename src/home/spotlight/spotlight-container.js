@@ -8,7 +8,7 @@ const SpotlightContainer = () => {
   const manuscripts = useSelector(state => stateSelectorProp(state, 'home', 'spotlight'));
 
   return (
-    <Spotlight manuscripts={manuscripts}/>
+    <Spotlight manuscripts={manuscripts} />
   )
 };
 

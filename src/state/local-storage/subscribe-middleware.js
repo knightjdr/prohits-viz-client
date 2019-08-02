@@ -1,31 +1,17 @@
-import subsetObject from '../../utils/subset-object';
+import { saveActions, saveActionKey } from './save-actions';
+import { setLocalStorage } from '../../components/local-storage/local-storage';
 
-// Task actions
-/* import {
-  ADD_TASK,
-  UPDATING_TASK_STATUS,
-  UPDATE_ERROR,
-  UPDATE_STATUS,
-} from '../set/task-actions'; */
-
-/* const saveActions = [
-  ADD_TASK,
-  UPDATING_TASK_STATUS,
-  UPDATE_ERROR,
-  UPDATE_STATUS,
-]; */
-const saveActions = [];
-const saveKeys = ['tasks'];
-
-const localStorageMiddleware = ({ getState }) => (
+// Middleware to save a store value to local storage whenever an action is called.
+const subscribeMiddleware = ({ getState }) => (
   next => (action) => {
     const result = next(action);
     if (saveActions.includes(result.type)) {
-      const toSave = subsetObject(getState(), saveKeys);
-      localStorage.setItem('reduxState', JSON.stringify(toSave));
+      const key = saveActionKey[result.type];
+      const value = getState()[key];
+      setLocalStorage(key, JSON.stringify(value));
     }
     return result;
   }
 );
 
-export default localStorageMiddleware;
+export default subscribeMiddleware;

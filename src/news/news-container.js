@@ -1,13 +1,13 @@
 import React from 'react';
 import { useRoutes } from 'hookrouter';
 
-import NewsList from './news-list/news-list-container';
-// import NewsItem from './news-item/news-item-container';
+import List from './list/list-container';
+import Article from './article/article-container';
 import NotFoundPage from '../routes/not-found';
 
 const routes = {
-  '/': () => <NewsList />,
-  // '/:id': ({ id }) => <NewsItem id={id} />,
+  '/': () => <List />,
+  '/:id': props => Article(props),
 };
 
 const NewsContainer = () => {

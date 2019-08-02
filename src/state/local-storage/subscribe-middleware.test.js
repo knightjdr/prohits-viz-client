@@ -1,9 +1,21 @@
 import subscribeMiddleware from './subscribe-middleware';
-import { UPDATING_TASK_STATUS } from '../set/task-actions';
+import * as localStorage from '../../components/local-storage/local-storage';
+
+jest.mock('../../components/local-storage/local-storage', () => ({
+  setLocalStorage: jest.fn(),
+}));
+jest.mock('./save-actions', () => ({
+  saveActions: ['SAVE_ACTION'],
+  saveActionKey: {
+    SAVE_ACTION: 'value',
+  },
+}));
 
 const getState = () => ({
+  value: {
+    test: true,
+  },
   other: {},
-  tasks: { list: ['a', 'b'] },
 });
 const next = action => ({
   type: action.type,
@@ -13,21 +25,18 @@ describe('Subscribe middleware', () => {
   let middleware;
 
   beforeAll(() => {
-    const obj = {};
-    localStorage.setItem('reduxState', JSON.stringify(obj));
     middleware = subscribeMiddleware({ getState })(next);
   });
 
   it('should not update store when action type is not a save type', () => {
+    localStorage.setLocalStorage.mockClear();
     middleware({ type: 'TEST_ACTION' });
-    expect(JSON.parse(localStorage.getItem('reduxState'))).toEqual({});
+    expect(localStorage.setLocalStorage).not.toHaveBeenCalled();
   });
 
   it('should update store when action type is a save type', () => {
-    middleware({ type: UPDATING_TASK_STATUS });
-    const expectedState = {
-      tasks: getState().tasks,
-    };
-    expect(JSON.parse(localStorage.getItem('reduxState'))).toEqual(expectedState);
+    localStorage.setLocalStorage.mockClear();
+    middleware({ consent: true, type: 'SAVE_ACTION' });
+    expect(localStorage.setLocalStorage).toHaveBeenCalledWith('value', JSON.stringify({ test: true }));
   });
 });

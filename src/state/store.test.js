@@ -2,8 +2,7 @@ import * as moduleToMock from 'redux';
 
 import { addDevTools } from './store';
 
-// mock createStore
-moduleToMock.createStore = () => ('');
+moduleToMock.createStore = () => ({});
 jest.setMock('redux', moduleToMock);
 
 describe('Store in dev env', () => {

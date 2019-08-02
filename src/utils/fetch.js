@@ -2,7 +2,7 @@ import axios from 'axios';
 
 const fetch = async (route, method = 'GET', data = {}) => {
   try {
-    const url = `${process.env.REACT_APP_API_ROOT}${route}`;
+    const url = `${process.env.REACT_APP_API}${route}`;
     const options = {
       method,
       url,

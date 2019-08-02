@@ -52,6 +52,10 @@ exports[`Navbar text links should match snapshot 1`] = `
   width: 100%;
 }
 
+.c0 .nav__link_active a {
+  color: #1A1A1A;
+}
+
 <div>
   <ul
     class="c0"

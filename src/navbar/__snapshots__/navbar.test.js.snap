@@ -17,7 +17,7 @@ exports[`Navbar normal screen size should match snapshot 1`] = `
   position: fixed;
   text-transform: uppercase;
   top: 0;
-  width: 100vw;
+  width: 100%;
   z-index: 5;
 }
 
@@ -106,6 +106,10 @@ exports[`Navbar normal screen size should match snapshot 1`] = `
   width: 100%;
 }
 
+.c1 .nav__link_active a {
+  color: #1A1A1A;
+}
+
 <div>
   <nav
     class="c0"
@@ -175,7 +179,7 @@ exports[`Navbar normal screen size should match snapshot 1`] = `
         </lineargradient>
         <polygon
           fill="url(#SVGID_2_)"
-          points="102.204,203.182 252.072,0 154.256,233.027 "
+          points="102.204,203.182 252.072,0 154.256,233.027"
         />
       </svg>
     </a>
@@ -325,7 +329,7 @@ exports[`Navbar small screen size should match snapshot 1`] = `
   position: fixed;
   text-transform: uppercase;
   top: 0;
-  width: 100vw;
+  width: 100%;
   z-index: 5;
 }
 
@@ -432,7 +436,7 @@ exports[`Navbar small screen size should match snapshot 1`] = `
         </lineargradient>
         <polygon
           fill="url(#SVGID_2_)"
-          points="102.204,203.182 252.072,0 154.256,233.027 "
+          points="102.204,203.182 252.072,0 154.256,233.027"
         />
       </svg>
     </a>
