@@ -9,6 +9,7 @@ body {
   --fontDark: #333;
   --fontStackPrimary: Lato, sans-serif;
   --fontStackSecondary: Raleway, sans-serif;
+  --fontStackSystem: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol";
   --timingFunction: cubic-bezier(.17, .67, .16, .99);
 }
 

@@ -13,7 +13,7 @@ const UL = styled.ul`
   & li {
     align-items: center;
     display: flex;
-    padding: 0 5px;
+    padding: 0 8px;
   }
   & a {
     color: ${props => props.theme.fontLight};

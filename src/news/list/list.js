@@ -42,7 +42,8 @@ const List = ({
           <Link
             className="list__rss"
             href={`${process.env.REACT_APP_URI}/rss.xml`}
-            kind="default"
+            kind="primary"
+            shadow
           >
             <FontAwesomeIcon icon={faRssSquare} />
           </Link>

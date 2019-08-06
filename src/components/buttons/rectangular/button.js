@@ -7,6 +7,7 @@ const Button = styled.button`
   border-style: solid;
   border-width: 2px;
   box-sizing: border-box;
+  font-family: ${props => props.theme.fontStackSystem};
   font-size: inherit;
   padding: 0.2em 0.5em;
   transform-origin: center;
@@ -16,7 +17,7 @@ const Button = styled.button`
 
   ${props => (props.shadow
     && css`& {
-      box-shadow: 0px 8px 15px rgba(0, 0, 0, 0.1);
+      box-shadow: 0 2px 5px 0 rgba(0, 0, 0, 0.26);
     }`
   )};
 

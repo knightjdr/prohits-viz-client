@@ -10,6 +10,7 @@ const theme = {
   fontLight: '#F2F2F2', // rgb(245, 245, 245)
   fontStackPrimary: 'Lato, sans-serif',
   fontStackSecondary: 'Raleway, sans-serif',
+  fontStackSystem: '-apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol"',
   success: '#43a047', // rgb(67, 160, 72)
   timingFunction: 'cubic-bezier(.17, .67, .16, .99)',
   warning: '#f44336', // rgb(244, 67, 54)
