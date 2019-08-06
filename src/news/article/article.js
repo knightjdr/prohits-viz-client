@@ -2,7 +2,7 @@ import PropTypes from 'prop-types';
 import React from 'react';
 
 import convertIsoDate from '../../utils/convert-iso-date';
-import Loading from '../../components/loading/loading';
+import Loading from '../../components/loading/page/loading';
 
 import './article.css';
 

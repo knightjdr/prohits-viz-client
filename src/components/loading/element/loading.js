@@ -2,30 +2,38 @@ import PropTypes from 'prop-types';
 import React from 'react';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faExclamationTriangle } from '@fortawesome/pro-duotone-svg-icons';
+import { faSpinner } from '@fortawesome/pro-solid-svg-icons';
 
-import Dots from '../feedback/dots/dots';
 import StyledLoading from './loading-style';
 
 const Loading = ({
   error,
   isLoading,
   message,
+  ...props
 }) => {
   let content;
   if (error) {
     content = (
-      <span>
-        <span className="loading__icon">
+      <span className="loading">
+        <span className="loading__icon loading__error">
           <FontAwesomeIcon icon={faExclamationTriangle} size="lg" />
         </span>
         <span>{message}</span>
       </span>
     );
   } else if (isLoading) {
-    content = <Dots />;
+    content = (
+      <span className="loading">
+        <span className="loading__icon">
+          <FontAwesomeIcon icon={faSpinner} size="lg" pulse spin />
+        </span>
+        <span>{message}</span>
+      </span>
+    );
   }
   return (
-    <StyledLoading>
+    <StyledLoading {...props}>
       {content}
     </StyledLoading>
   );
@@ -34,7 +42,7 @@ const Loading = ({
 Loading.defaultProps = {
   error: false,
   isLoading: false,
-  message: 'There was an error',
+  message: '',
 };
 
 Loading.propTypes = {

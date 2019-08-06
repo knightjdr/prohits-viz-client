@@ -6,7 +6,7 @@ import { faRssSquare } from '@fortawesome/pro-solid-svg-icons';
 
 import Link from '../../components/link/button/link';
 import ListItem from './list-item';
-import Loading from '../../components/loading/loading';
+import Loading from '../../components/loading/page/loading';
 
 import './list.css';
 
