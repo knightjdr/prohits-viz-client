@@ -4,13 +4,13 @@ import styled, { css } from 'styled-components';
 const Button = styled.button`
   align-items: center;
   border: none;
-  box-sizing: content-box;
+  box-sizing: border-box;
   color: ${props => props.theme.colorPrimary1};
   display: flex;
-  font-size: 1.5em;
+  font-size: 1.3em;
   justify-content: center;
-  min-height: 30px;
-  min-width: 30px;
+  min-height: 34px;
+  min-width: 34px;
   padding: 2px;
   position: relative;
   transition-duration: 0.3s;

@@ -3,9 +3,14 @@ import React, { Fragment } from 'react';
 import { faBars } from '@fortawesome/pro-solid-svg-icons';
 
 import IconButton from '../../../components/buttons/icon/button';
+import Info from './panels/info/info-container';
 import Tabs from './tabs/tabs-container';
 
 import './side-panel.css';
+
+const Panel = {
+  info: <Info />,
+};
 
 const visibilityConfig = (isOpen) => {
   if (isOpen) {
@@ -19,6 +24,7 @@ const visibilityConfig = (isOpen) => {
 };
 
 const SidePanel = ({
+  activeTab,
   isOpen,
   togglePanel,
 }) => {
@@ -27,11 +33,14 @@ const SidePanel = ({
     <Fragment>
       <div className={`side-panel ${settings.className}`}>
         <Tabs />
+        <div className="panel">
+          {Panel[activeTab]}
+        </div>
       </div>
       <IconButton
         className={`side-panel__menu ${settings.className}`}
         icon={faBars}
-        kind="secondary"
+        kind="primary"
         onClick={togglePanel}
       />
     </Fragment>
@@ -39,6 +48,7 @@ const SidePanel = ({
 };
 
 SidePanel.propTypes = {
+  activeTab: PropTypes.string.isRequired,
   isOpen: PropTypes.bool.isRequired,
   togglePanel: PropTypes.func.isRequired,
 };

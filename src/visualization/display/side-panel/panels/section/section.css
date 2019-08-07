@@ -1,0 +1,13 @@
+.panel__section-border {
+  margin: 15px 0;
+  border-bottom: 1px solid #e0e0e0;
+}
+
+.panel__section-title {
+  font-size: 1.1em;
+  font-weight: 600;
+  margin-bottom: 10px;
+  position: relative;
+  text-align: center;
+  text-transform: uppercase;
+}

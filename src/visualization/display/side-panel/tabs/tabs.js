@@ -29,7 +29,7 @@ const Tabs = ({
     <IconButton
       className={`side-panel__toggle ${panelOpen ? 'visible' : 'hidden'}`}
       icon={faArrowRight}
-      kind="secondary"
+      kind="primary"
       onClick={togglePanel}
     />
   </div>

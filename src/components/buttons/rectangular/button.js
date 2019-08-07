@@ -48,6 +48,20 @@ const Button = styled.button`
     }`
   )};
 
+  ${props => (props.kind === 'secondary'
+    && css`& {
+      background-color: ${props.theme.colorSecondary1};
+      border-color: transparent;
+      color: ${props.theme.fontLight};
+    }
+    &:focus,
+    &:hover {
+      background-color: #fff;
+      border-color: ${props.theme.colorSecondary1};
+      color: ${props.theme.fontDark};
+    }`
+  )};
+
   ${props => (props.kind === 'success'
     && css`& {
       background-color: ${props.theme.success};

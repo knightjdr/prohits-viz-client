@@ -1,3 +1,22 @@
+.panel {
+  animation-duration: inherit;
+  animation-name: panelin;
+  animation-timing-function: var(--timingFunction);
+  font-size: 0.9em;
+  padding: 10px 15px;
+}
+
+@keyframes panelin {
+  from {
+    opacity: 0;
+    transform: translateX(350px);
+  }
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
 .side-panel {
   background-color: #f5f5f5;
   border-radius: 3px;
