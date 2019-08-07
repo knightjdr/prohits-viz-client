@@ -14,7 +14,7 @@ describe('Button style', () => {
     let container;
 
     beforeAll(() => {
-      ({ container } = render(<Button fill="primary" theme={theme} />));
+      ({ container } = render(<Button kind="primary" theme={theme} />));
     });
 
     it('should match snapshot', () => {

@@ -1,0 +1,65 @@
+.side-panel__tab {
+  background-color: transparent;
+  border: none;
+  border-bottom: 1px solid #90AFC5;
+  font-size: 1.8em;
+  height: 50px;
+  max-width: 50px;
+  transition: background-color 0.5s ease;
+  width: 14%;
+}
+.side-panel__tab svg {
+  color: #336B87;
+  transform-origin: center;
+  transition: all 0.3s ease;
+}
+.side-panel__tab:focus svg,
+.side-panel__tab:hover svg {
+  color: #2A3132;
+  transform: scale(1.2);
+}
+.side-panel__tab:focus {
+  outline: none;
+}
+.side-panel__tab::-moz-focus-inner {
+  border: 0;
+}
+.side-panel__tab.active {
+  background-color: #90AFC5;
+}
+.side-panel__tab.active svg {
+  color: #2A3132;
+}
+
+.side-panel__tabs {
+  display: flex;
+}
+.side-panel__tabs > :first-child {
+  border-top-left-radius: 3px;
+}
+
+.side-panel__tabs-filler {
+  border-bottom: 1px solid #90AFC5;
+  flex-grow: 1;
+}
+
+.side-panel__toggle {
+  position: absolute;
+  top: 7px;
+}
+.side-panel__toggle.hidden {
+  opacity: 0;
+  pointer-events: none;
+  right: 5px;
+}
+.side-panel__toggle.visible {
+  opacity: 1;
+  pointer-events: default;
+  right: 12px;
+}
+
+@media (max-width: 374px) {
+  .side-panel__toggle {
+    right: 6px;
+  }
+}

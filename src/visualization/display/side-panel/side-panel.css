@@ -1,0 +1,40 @@
+.side-panel {
+  background-color: #f5f5f5;
+  border-radius: 3px;
+  box-shadow: 0 2px 4px 0 rgba(0, 0, 0, 0.4);
+  max-width: 350px;
+  min-height: calc(100% - 20px);
+  overflow-x: hidden;
+  overflow-y: auto;
+  position: absolute;
+  right: 5px;
+  top: 10px;
+  transition-property: all;
+  transition-duration: 0.3s;
+  transition-timing-function: cubic-bezier(0.17, 0.67, 0.16, 0.99);
+  width: 90vw;
+  z-index: 10;
+}
+.side-panel.hidden {
+  transform: translateX(355px);
+}
+.side-panel.visible {
+  transform: translateX(0);
+}
+
+.side-panel__menu {
+  position: absolute;
+  transition: all 0.5s ease;
+  top: 17px;
+  z-index: 11;
+}
+.side-panel__menu.hidden {
+  opacity: 1;
+  pointer-events: default;
+  right: 5px;
+}
+.side-panel__menu.visible {
+  opacity: 0;
+  pointer-events: none;
+  right: 10px;
+}

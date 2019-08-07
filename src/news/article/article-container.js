@@ -37,20 +37,12 @@ const ArticleContainer = ({
   );
 };
 
-ArticleContainer.propTypes = {
-  id: PropTypes.string.isRequired,
-};
-
-const ContainerWrapper = ({ id }) => (
-  <ArticleContainer id={id} />
-);
-
-ContainerWrapper.defaultProps = {
+ArticleContainer.defaultProps = {
   id: '',
 };
 
-ContainerWrapper.propTypes = {
+ArticleContainer.propTypes = {
   id: PropTypes.string,
 };
 
-export default ContainerWrapper;
+export default ArticleContainer;

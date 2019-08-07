@@ -6,7 +6,6 @@ const Button = styled.button`
   border: none;
   box-sizing: content-box;
   color: ${props => props.theme.colorPrimary1};
-  cursor: pointer;
   display: flex;
   font-size: 1.5em;
   justify-content: center;
@@ -40,7 +39,13 @@ const Button = styled.button`
     border: 0;
   }
 
-  ${props => (props.fill === 'primary'
+  ${props => (props.shadow
+    && css`& {
+      box-shadow: 0 2px 5px 0 rgba(0, 0, 0, 0.26);
+    }`
+  )};
+
+  ${props => (props.kind === 'primary'
     && css`&{
       background-color: ${props.theme.colorPrimary1};
       border-radius: 50%;
@@ -54,7 +59,20 @@ const Button = styled.button`
     }`
   )}
 
-  ${props => (props.fill === 'transparent'
+  ${props => (props.kind === 'secondary'
+    && css`&{
+      background-color: ${props.theme.colorSecondary1};
+      border-radius: 50%;
+      color: ${props.theme.fontLight};
+    }
+
+    &:focus,
+    &:hover {
+      background-color: ${props.theme.colorPrimary1};
+    }`
+  )}
+
+  ${props => (props.kind === 'transparent'
     && css`& {
       background-color: transparent;
     }
@@ -77,11 +95,11 @@ const Button = styled.button`
 `;
 
 Button.defaultProps = {
-  fill: 'transparent',
+  kind: 'transparent',
 };
 
 Button.propTypes = {
-  fill: PropTypes.string,
+  kind: PropTypes.string,
 };
 
 export default Button;

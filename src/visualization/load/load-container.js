@@ -1,36 +1,49 @@
-import React, { useState } from 'react';
+import React from 'react';
+import { navigate } from 'hookrouter';
+import { useDispatch } from 'react-redux';
 
 import Load from './load';
 import readFile from '../../utils/read-file';
+import removeFileExtenstion from '../../utils/remove-file-ext';
+import useLoading from '../../hooks/loading/use-loading';
 import validate from './validate';
+import { parseFile } from '../../state/visualization/file/interactive-file-actions';
 
 const LoadContainer = () => {
-  const [isLoading, setLoading] = useState(false);
-  const [error, setError] = useState(false);
-  const [errorMessage, setErrorMessage] = useState('');
+  const dispatch = useDispatch();
+  const status = useLoading();
 
   const handleChange = async (e) => {
-    setLoading(true);
+    const file = e.currentTarget.files[0];
+    status.setLoading(true);
     try {
-      const stringifiedFile = await readFile(e.currentTarget.files[0]);
-      const fileData = validate(stringifiedFile);
+      const fileContent = await readFile(file);
+      const fileData = validate(fileContent);
       if (fileData.err) {
-        setError(true);
-        setErrorMessage(fileData.message);
+        status.setError(true);
+        status.setErrorMessage(fileData.message);
+        status.setLoading(false);
+      } else {
+        const filename = removeFileExtenstion(file.name);
+        const data = fileData.json;
+        data.parameters.filename = filename;
+        data.parameters.taskID = 'userfile';
+        dispatch(parseFile(data));
+        navigate(`/visualization/userfile/${filename}`);
       }
     } catch (err) {
-      setError(true);
-      setErrorMessage(err.toString());
+      status.setError(true);
+      status.setErrorMessage(err.toString());
+      status.setLoading(false);
     }
-    setLoading(false);
   };
 
   return (
     <Load
-      error={error}
-      errorMessage={errorMessage}
+      error={status.error}
+      errorMessage={status.errorMessage}
       handleChange={handleChange}
-      isLoading={isLoading}
+      isLoading={status.isLoading}
     />
   );
 };

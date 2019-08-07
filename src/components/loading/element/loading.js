@@ -1,5 +1,5 @@
 import PropTypes from 'prop-types';
-import React from 'react';
+import React, { Fragment } from 'react';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faExclamationTriangle } from '@fortawesome/pro-duotone-svg-icons';
 import { faSpinner } from '@fortawesome/pro-solid-svg-icons';
@@ -15,27 +15,31 @@ const Loading = ({
   let content;
   if (error) {
     content = (
-      <span className="loading">
+      <Fragment>
         <span className="loading__icon loading__error">
           <FontAwesomeIcon icon={faExclamationTriangle} size="lg" />
         </span>
         <span>{message}</span>
-      </span>
+      </Fragment>
     );
   } else if (isLoading) {
     content = (
-      <span className="loading">
+      <Fragment>
         <span className="loading__icon">
           <FontAwesomeIcon icon={faSpinner} size="lg" pulse spin />
         </span>
         <span>{message}</span>
-      </span>
+      </Fragment>
     );
   }
   return (
-    <StyledLoading {...props}>
-      {content}
-    </StyledLoading>
+    content
+      ? (
+        <StyledLoading {...props}>
+          {content}
+        </StyledLoading>
+      )
+      : null
   );
 };
 

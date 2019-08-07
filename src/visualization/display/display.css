@@ -1,0 +1,5 @@
+.display {
+  position: relative;
+  height: calc(100vh - 40px);
+  overflow-x: hidden;
+}

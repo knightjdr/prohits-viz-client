@@ -53,7 +53,7 @@ const Menu = ({
     <IconButton
       aria-label="toggle help navigation menu"
       className="help__menu-toggle"
-      fill="transparent"
+      kind="transparent"
       onClick={toggleMenu}
       icon={faBars}
       type="button"
