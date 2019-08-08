@@ -7,13 +7,17 @@ const ModalFooter = ({
   footer
   && (
     <footer>
-      footer
+      {footer}
     </footer>
   )
 );
 
+ModalFooter.defaultProps = {
+  footer: null,
+};
+
 ModalFooter.propTypes = {
-  footer: PropTypes.bool.isRequired,
+  footer: PropTypes.bool,
 };
 
 export default ModalFooter;

@@ -17,8 +17,8 @@ const InfoContainer = () => {
   };
 
   const loadNewFile = () => {
-    navigate('/visualization');
     dispatch(clearFile());
+    navigate('/visualization');
   };
 
   return (

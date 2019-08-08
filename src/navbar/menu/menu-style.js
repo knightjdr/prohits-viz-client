@@ -3,7 +3,7 @@ import styled from 'styled-components';
 const Div = styled.div`
   margin-right: 8px;
   position: relative;
-  z-index: 10;
+  z-index: 20;
 
   & button {
     background-color: transparent;

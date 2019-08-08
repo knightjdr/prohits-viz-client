@@ -14,7 +14,7 @@ const Nav = styled.nav`
   text-transform: uppercase;
   top: 0;
   width: 100%;
-  z-index: 5;
+  z-index: 100;
 
   .nav__icon {
     align-items: center;

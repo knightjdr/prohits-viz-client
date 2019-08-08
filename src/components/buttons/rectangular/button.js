@@ -21,7 +21,7 @@ const Button = styled.button`
     }`
   )};
 
-  ${props => (props.kind === 'default'
+  ${props => (props.kind === 'grey'
     && css`& {
       background-color: rgba(0, 0, 0, 0.2);
       border-color: transparent;
