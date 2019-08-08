@@ -3,6 +3,7 @@ import React, { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 
 import fetch from '../../utils/fetch';
+import fillDefaults from '../defaults/fill';
 import Process from './process';
 import useLoading from '../../hooks/loading/use-loading';
 import { parseFile } from '../../state/visualization/file/interactive-file-actions';
@@ -30,14 +31,14 @@ const ProcessContainer = ({
           status.setError(true);
           status.setErrorMessage('There was an error displaying the image');
         } else {
-          const { data } = response;
-          data.parameters.filename = filename;
-          data.parameters.taskID = id;
+          const data = fillDefaults(response.data, filename, id);
           dispatch(parseFile(data));
         }
         status.setLoading(false);
       };
       getFile();
+    } else if (id === 'userfile') {
+      status.setLoading(false);
     }
   }, [dispatch, filename, id, parameters, status]);
 

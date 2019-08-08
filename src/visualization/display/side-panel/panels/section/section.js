@@ -10,12 +10,9 @@ const Info = ({
 }) => (
   <Fragment>
     { border && <div className="panel__section-border" /> }
-    { title
-      && (
-        <div className="panel__section-title">
-          {title}
-        </div>
-      )
+    {
+      title
+      && <h1 className="panel__section-title">{title}</h1>
     }
     {children}
   </Fragment>

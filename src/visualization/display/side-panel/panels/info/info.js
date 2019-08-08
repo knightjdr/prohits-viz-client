@@ -26,12 +26,12 @@ const Info = ({
     <Section title="Legend">
       <Legend />
     </Section>
-    <div className="panel__info-legend-save">
+    <div className="panel__info-legend-download">
       <div>
         Download legend
       </div>
       <IconButton
-        className="panel__info-legend-save-button"
+        className="panel__info-legend-download-button"
         onClick={downloadLegend}
         icon={faDownload}
         size="1x"

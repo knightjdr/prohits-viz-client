@@ -11,8 +11,7 @@ const LegendContainer = () => {
 
   return (
     <Legend
-      imageType={parameters.imageType}
-      scoreType={parameters.scoreType}
+      parameters={parameters}
       segments={segments}
       settings={settings}
     />

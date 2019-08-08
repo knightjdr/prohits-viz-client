@@ -2,6 +2,7 @@ import React from 'react';
 import { navigate } from 'hookrouter';
 import { useDispatch } from 'react-redux';
 
+import fillDefaults from '../defaults/fill';
 import Load from './load';
 import readFile from '../../utils/read-file';
 import removeFileExtenstion from '../../utils/remove-file-ext';
@@ -25,9 +26,7 @@ const LoadContainer = () => {
         status.setLoading(false);
       } else {
         const filename = removeFileExtenstion(file.name);
-        const data = fileData.json;
-        data.parameters.filename = filename;
-        data.parameters.taskID = 'userfile';
+        const data = fillDefaults(fileData.json, filename, 'userfile');
         dispatch(parseFile(data));
         navigate(`/visualization/userfile/${filename}`);
       }

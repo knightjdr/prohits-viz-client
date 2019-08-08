@@ -8,29 +8,36 @@ import CircHeatmap from './legend__circheatmap';
 import './legend.css';
 
 const Legend = ({
-  imageType,
-  scoreType,
+  parameters,
   segments,
   settings,
 }) => {
   let content;
-  switch (imageType) {
+  switch (parameters.imageType) {
     case 'dotplot':
       content = (
         <Dotplot
-          scoreType={scoreType}
+          abundanceColumn={parameters.abundanceColumn}
+          scoreColumn={parameters.scoreColumn}
+          scoreType={parameters.scoreType}
           {...settings}
         />
       );
       break;
     case 'heatmap':
-      content = <Heatmap {...settings} />;
+      content = (
+        <Heatmap
+          abundanceColumn={parameters.abundanceColumn}
+          {...settings}
+        />
+      );
       break;
     case 'circ-heatmap':
       content = (
         <CircHeatmap
           {...settings}
           segments={segments}
+          segmentSettings={settings.segments}
         />
       );
       break;
@@ -49,12 +56,18 @@ Legend.defaultProps = {
 };
 
 Legend.propTypes = {
-  imageType: PropTypes.string.isRequired,
+  parameters: PropTypes.shape({
+    abundanceColumn: PropTypes.string,
+    imageType: PropTypes.string,
+    scoreColumn: PropTypes.string,
+    scoreType: PropTypes.string,
+  }).isRequired,
   segments: PropTypes.arrayOf(
     PropTypes.shape({}),
   ),
-  settings: PropTypes.shape({}).isRequired,
-  scoreType: PropTypes.string.isRequired,
+  settings: PropTypes.shape({
+    segments: PropTypes.arrayOf(PropTypes.shape({})),
+  }).isRequired,
 };
 
 export default Legend;

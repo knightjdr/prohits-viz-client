@@ -5,10 +5,10 @@ import colorGradient from '../../../../../../utils/color/color-gradient';
 
 const CircHeatmapLegend = ({
   known,
-  circHeatmapSettings,
   segments,
+  segmentSettings,
 }) => {
-  const height = (circHeatmapSettings.length * 70) + 60;
+  const height = (segmentSettings.length * 70) + 60;
   return (
     <svg
       id="legend"
@@ -18,7 +18,7 @@ const CircHeatmapLegend = ({
       viewBox={`0 0 200 ${height}`}
     >
       {
-        circHeatmapSettings.map((setting, index) => {
+        segmentSettings.map((setting, index) => {
           const gradientFill = colorGradient(setting.color, 101, false);
           const { name } = segments[index];
           const numColors = gradientFill.length;
@@ -79,19 +79,19 @@ const CircHeatmapLegend = ({
 
 CircHeatmapLegend.propTypes = {
   known: PropTypes.bool.isRequired,
-  circHeatmapSettings: PropTypes.arrayOf(
-    PropTypes.shape({
-      abundanceCap: PropTypes.number,
-      color: PropTypes.string,
-      minAbundance: PropTypes.number,
-    }),
-  ).isRequired,
   segments: PropTypes.arrayOf(
     PropTypes.shape({
       abundanceCap: PropTypes.number,
       color: PropTypes.string,
       minAbundance: PropTypes.number,
       name: PropTypes.string,
+    }),
+  ).isRequired,
+  segmentSettings: PropTypes.arrayOf(
+    PropTypes.shape({
+      abundanceCap: PropTypes.number,
+      color: PropTypes.string,
+      minAbundance: PropTypes.number,
     }),
   ).isRequired,
 };

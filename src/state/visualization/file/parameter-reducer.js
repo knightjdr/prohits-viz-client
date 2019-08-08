@@ -1,10 +1,8 @@
 import * as fileActions from './interactive-file-actions';
 
 export const defaultState = {
-  abundanceColumn: '',
   filename: '',
-  scoreColumn: '',
-  scoreType: '',
+  id: '',
 };
 
 const Parameters = (state = { ...defaultState }, action) => {

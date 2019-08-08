@@ -1,14 +1,15 @@
-.panel__info-legend-save {
+.panel__info-legend-download {
   align-items: center;
   display: flex;
   justify-content: center;
+  margin-bottom: 15px;
   margin-top: 5px;
 }
-.panel__info-legend-save > div::after {
+.panel__info-legend-download > div::after {
   content: ':';
   margin-right: 10px;
 }
-.panel__info-legend-save-button {
+.panel__info-legend-download-button {
   border-radius: 4px;
   font-size: 18px;
   height: 32px;
