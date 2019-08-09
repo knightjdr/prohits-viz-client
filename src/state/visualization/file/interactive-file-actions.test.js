@@ -1,6 +1,6 @@
 import * as actions from './interactive-file-actions';
 
-describe('Interactive file set actions', () => {
+describe('Interactive file actions', () => {
   it('should dispatch an action to clear the file', () => {
     const expectedAction = {
       type: actions.CLEAR_INTERACTIVE_FILE,

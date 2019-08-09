@@ -3,19 +3,31 @@ export const defaultState = {
   cellSize: 15,
   edgeColor: 'blueBlack',
   fillColor: 'blueBlack',
+  imageType: 'heatmap',
   invertColor: false,
   minAbundance: 0,
   primaryFilter: 0.01,
   secondaryFilter: 0.05,
 };
 
-const acceptedColors = ['blueBlack', 'blueRed', 'blueYellow', 'greenBlack', 'greyscale', 'redBlack', 'yellowBlack'];
+const acceptedColors = {
+  blueBlack: true,
+  blueRed: true,
+  blueYellow: true,
+  greenBlack: true,
+  greyscale: true,
+  redBlack: true,
+  yellowBlack: true,
+};
 
-const fillSettings = (userSettings) => {
-  if (!userSettings || !userSettings.current) {
-    return {
-      current: { ...defaultState },
-    };
+const acceptedImageTypes = {
+  dotplot: true,
+  heatmap: true,
+};
+
+const validateSettings = (userSettings, defaultImageType = 'heatmap') => {
+  if (!userSettings) {
+    return { ...defaultState };
   }
 
   const {
@@ -23,29 +35,42 @@ const fillSettings = (userSettings) => {
     cellSize,
     edgeColor,
     fillColor,
+    imageType,
     invertColor,
     minAbundance,
     primaryFilter,
     secondaryFilter,
     ...other
-  } = userSettings.current;
-  const settings = {};
+  } = userSettings;
+
+  const settings = { ...other };
 
   settings.abundanceCap = typeof abundanceCap === 'number' ? abundanceCap : defaultState.abundanceCap;
   settings.cellSize = Number.isInteger(cellSize) && cellSize > 0 ? cellSize : defaultState.cellSize;
-  settings.edgeColor = acceptedColors.includes(edgeColor) ? edgeColor : defaultState.edgeColor;
-  settings.fillColor = acceptedColors.includes(fillColor) ? fillColor : defaultState.fillColor;
+  settings.edgeColor = acceptedColors[edgeColor] ? edgeColor : defaultState.edgeColor;
+  settings.fillColor = acceptedColors[fillColor] ? fillColor : defaultState.fillColor;
+  settings.imageType = acceptedImageTypes[imageType] ? imageType : defaultImageType;
   settings.invertColor = typeof invertColor === 'boolean' ? invertColor : defaultState.invertColor;
   settings.minAbundance = typeof minAbundance === 'number' ? minAbundance : defaultState.minAbundance;
   settings.primaryFilter = typeof primaryFilter === 'number' ? primaryFilter : defaultState.primaryFilter;
   settings.secondaryFilter = typeof secondaryFilter === 'number' ? secondaryFilter : defaultState.secondaryFilter;
 
-  return {
-    current: {
-      ...settings,
-      ...other,
-    },
-  };
+  return settings;
+};
+
+const fillSettings = (userSettings) => {
+  if (!userSettings) {
+    return {
+      current: { ...defaultState },
+      default: { ...defaultState },
+    };
+  }
+
+  const settings = {};
+  settings.current = validateSettings(userSettings.current);
+  settings.default = validateSettings(userSettings.default, settings.current.imageType);
+
+  return settings;
 };
 
 export default fillSettings;

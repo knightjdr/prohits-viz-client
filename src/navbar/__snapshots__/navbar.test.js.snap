@@ -18,7 +18,7 @@ exports[`Navbar normal screen size should match snapshot 1`] = `
   text-transform: uppercase;
   top: 0;
   width: 100%;
-  z-index: 5;
+  z-index: 100;
 }
 
 .c0 .nav__icon {
@@ -77,7 +77,7 @@ exports[`Navbar normal screen size should match snapshot 1`] = `
   display: -webkit-flex;
   display: -ms-flexbox;
   display: flex;
-  padding: 0 5px;
+  padding: 0 8px;
 }
 
 .c1 a {
@@ -235,7 +235,7 @@ exports[`Navbar small screen size should match snapshot 1`] = `
 .c1 {
   margin-right: 8px;
   position: relative;
-  z-index: 10;
+  z-index: 20;
 }
 
 .c1 button {
@@ -330,7 +330,7 @@ exports[`Navbar small screen size should match snapshot 1`] = `
   text-transform: uppercase;
   top: 0;
   width: 100%;
-  z-index: 5;
+  z-index: 100;
 }
 
 .c0 .nav__icon {

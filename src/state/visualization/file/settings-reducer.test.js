@@ -1,28 +1,20 @@
-import SettingsReducer, { defaultState } from './settings-reducer';
+import reducer, { defaultState } from './settings-reducer';
 import * as actions from './settings-actions';
-import * as fileActions from '../interactive-file-actions';
+import * as fileActions from './interactive-file-actions';
 
-const DefaultState = {
-  current: defaultState,
-  default: defaultState,
-  reset: false,
-};
-
-describe('SettingsReducer set reducer', () => {
+describe('Settings reducer', () => {
   it('should return a default initial state', () => {
     const action = {};
-    const expectedState = DefaultState;
-    expect(SettingsReducer(undefined, action)).toEqual(expectedState);
+    const expectedState = defaultState;
+    expect(reducer(undefined, action)).toEqual(expectedState);
   });
 
   it('should handle CLEAR_INTERACTIVE_FILE action', () => {
     const action = {
       type: fileActions.CLEAR_INTERACTIVE_FILE,
     };
-    const expectedState = {
-      ...DefaultState,
-    };
-    expect(SettingsReducer(undefined, action)).toEqual(expectedState);
+    const expectedState = defaultState;
+    expect(reducer(undefined, action)).toEqual(expectedState);
   });
 
   it('should handle PARSE_INTERACTIVE_FILE action', () => {
@@ -30,16 +22,17 @@ describe('SettingsReducer set reducer', () => {
       file: {
         settings: {
           current: { fillColor: 'greenBlack' },
+          default: {},
         },
       },
       type: fileActions.PARSE_INTERACTIVE_FILE,
     };
     const expectedState = {
       current: { fillColor: 'greenBlack' },
-      default: defaultState,
+      default: {},
       reset: false,
     };
-    expect(SettingsReducer(undefined, action)).toEqual(expectedState);
+    expect(reducer(undefined, action)).toEqual(expectedState);
   });
 
   it('should handle RESET_SETTINGS action', () => {
@@ -47,10 +40,10 @@ describe('SettingsReducer set reducer', () => {
       type: actions.RESET_SETTINGS,
     };
     const expectedState = {
-      ...DefaultState,
+      ...defaultState,
       reset: true,
     };
-    expect(SettingsReducer(undefined, action)).toEqual(expectedState);
+    expect(reducer(undefined, action)).toEqual(expectedState);
   });
 
   it('should handle UPDATE_SETTING action', () => {
@@ -60,13 +53,13 @@ describe('SettingsReducer set reducer', () => {
       value: 'test',
     };
     const expectedState = {
-      ...DefaultState,
+      ...defaultState,
       current: {
-        ...DefaultState.current,
+        ...defaultState.current,
         imageType: 'test',
       },
       reset: false,
     };
-    expect(SettingsReducer(undefined, action)).toEqual(expectedState);
+    expect(reducer(undefined, action)).toEqual(expectedState);
   });
 });

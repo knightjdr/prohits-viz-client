@@ -4,7 +4,7 @@ exports[`Navbar menu closed should match snapshot 1`] = `
 .c0 {
   margin-right: 8px;
   position: relative;
-  z-index: 10;
+  z-index: 20;
 }
 
 .c0 button {
@@ -132,7 +132,7 @@ exports[`Navbar menu open should match snapshot 1`] = `
 .c0 {
   margin-right: 8px;
   position: relative;
-  z-index: 10;
+  z-index: 20;
 }
 
 .c0 button {

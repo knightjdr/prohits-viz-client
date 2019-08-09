@@ -1,6 +1,6 @@
 import * as actions from './panel-actions';
 
-describe('Visualization panel set actions', () => {
+describe('Visualization panel actions', () => {
   it('should dispatch an action to change panel tab', () => {
     const expectedAction = {
       tab: 'map',

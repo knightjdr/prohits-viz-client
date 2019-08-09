@@ -1,12 +1,12 @@
-import panelReducer, { defaultState } from './panel-reducer';
+import reducer, { defaultState } from './panel-reducer';
 import * as actions from './panel-actions';
 import * as fileActions from '../file/interactive-file-actions';
 
-describe('Panel reducer set reducer', () => {
+describe('Panel reducer', () => {
   it('should return default initial state', () => {
     const action = {};
     const expectedState = defaultState;
-    expect(panelReducer(undefined, action)).toEqual(expectedState);
+    expect(reducer(undefined, action)).toEqual(expectedState);
   });
 
   it('should handle CHANGE_PANEL_TAB action', () => {
@@ -18,7 +18,7 @@ describe('Panel reducer set reducer', () => {
       ...defaultState,
       tab: 'map',
     };
-    expect(panelReducer(undefined, action)).toEqual(expectedState);
+    expect(reducer(undefined, action)).toEqual(expectedState);
   });
 
   it('should handle TOGGLE_PANEL action', () => {
@@ -29,7 +29,7 @@ describe('Panel reducer set reducer', () => {
       ...defaultState,
       open: false,
     };
-    expect(panelReducer(undefined, action)).toEqual(expectedState);
+    expect(reducer(undefined, action)).toEqual(expectedState);
   });
 
   describe('file actions', () => {
@@ -41,7 +41,7 @@ describe('Panel reducer set reducer', () => {
         ...defaultState,
         open: true,
       };
-      expect(panelReducer(undefined, action)).toEqual(expectedState);
+      expect(reducer(undefined, action)).toEqual(expectedState);
     });
 
     it('should handle PARSE_INTERACTIVE_FILE action when panel state is defined', () => {
@@ -56,7 +56,7 @@ describe('Panel reducer set reducer', () => {
       const expectedState = {
         open: false,
       };
-      expect(panelReducer(undefined, action)).toEqual(expectedState);
+      expect(reducer(undefined, action)).toEqual(expectedState);
     });
 
     it('should handle PARSE_INTERACTIVE_FILE action when panel state is not defined', () => {
@@ -65,7 +65,7 @@ describe('Panel reducer set reducer', () => {
         type: fileActions.PARSE_INTERACTIVE_FILE,
       };
       const expectedState = defaultState;
-      expect(panelReducer(undefined, action)).toEqual(expectedState);
+      expect(reducer(undefined, action)).toEqual(expectedState);
     });
   });
 });

@@ -1,25 +1,24 @@
 import * as actions from './settings-actions';
 import * as fileActions from './interactive-file-actions';
 
-export const defaultState = {};
-
-const Settings = (state = {
-  current: defaultState,
-  default: defaultState,
+export const defaultState = {
+  current: {},
+  default: {},
   reset: false,
-}, action) => {
-  const updateState = {};
+};
+
+const reducer = (state = defaultState, action) => {
   switch (action.type) {
     case fileActions.CLEAR_INTERACTIVE_FILE:
       return {
-        current: defaultState,
-        default: defaultState,
+        current: {},
+        default: {},
         reset: false,
       };
     case fileActions.PARSE_INTERACTIVE_FILE:
       return {
-        current: { ...action.file.settings.current },
-        default: { ...defaultState },
+        current: action.file.settings.current,
+        default: action.file.settings.default,
         reset: false,
       };
     case actions.RESET_SETTINGS:
@@ -29,12 +28,11 @@ const Settings = (state = {
         reset: true,
       };
     case actions.UPDATE_SETTING:
-      updateState[action.setting] = action.value;
       return {
         ...state,
         current: {
           ...state.current,
-          ...updateState,
+          [action.setting]: action.value,
         },
         reset: false,
       };
@@ -42,4 +40,5 @@ const Settings = (state = {
       return state;
   }
 };
-export default Settings;
+
+export default reducer;

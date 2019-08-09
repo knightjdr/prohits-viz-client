@@ -1,6 +1,6 @@
 import * as actions from './settings-actions';
 
-describe('Visualization settings set actions', () => {
+describe('Visualization settings actions', () => {
   it('should dispatch an action to update a setting', () => {
     const expectedAction = {
       setting: 'a',

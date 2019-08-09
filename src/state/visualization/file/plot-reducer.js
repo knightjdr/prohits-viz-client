@@ -3,7 +3,7 @@ import * as fileActions from './interactive-file-actions';
 
 export const defaultState = {};
 
-const plot = (state = defaultState, action) => {
+const reducer = (state = defaultState, action) => {
   switch (action.type) {
     case actions.CHANGE_PLOT:
       return action.plot;
@@ -12,10 +12,10 @@ const plot = (state = defaultState, action) => {
     case fileActions.PARSE_INTERACTIVE_FILE:
       return action.file.plot
         ? action.file.plot
-        : { ...defaultState };
+        : {};
     default:
       return state;
   }
 };
 
-export default plot;
+export default reducer;

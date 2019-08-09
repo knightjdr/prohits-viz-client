@@ -4,6 +4,8 @@ beforeAll(() => {
   jest.clearAllMocks();
 });
 
+console.log(window.URL);
+
 describe('download', () => {
   let createEl;
   let createSpy;

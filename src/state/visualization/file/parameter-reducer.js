@@ -5,14 +5,15 @@ export const defaultState = {
   id: '',
 };
 
-const Parameters = (state = { ...defaultState }, action) => {
+const reducer = (state = { ...defaultState }, action) => {
   switch (action.type) {
     case fileActions.CLEAR_INTERACTIVE_FILE:
       return { ...defaultState };
     case fileActions.PARSE_INTERACTIVE_FILE:
-      return { ...action.file.parameters };
+      return action.file.parameters;
     default:
       return state;
   }
 };
-export default Parameters;
+
+export default reducer;

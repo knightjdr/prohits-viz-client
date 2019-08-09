@@ -1,12 +1,12 @@
-import plotReducer, { defaultState } from './plot-reducer';
+import reducer, { defaultState } from './plot-reducer';
 import * as actions from './plot-actions';
 import * as fileActions from './interactive-file-actions';
 
-describe('Plot set reducer', () => {
+describe('Plot reducer', () => {
   it('should return an empty initial state', () => {
     const action = {};
     const expectedState = defaultState;
-    expect(plotReducer(undefined, action)).toEqual(expectedState);
+    expect(reducer(undefined, action)).toEqual(expectedState);
   });
 
   it('should handle CLEAR_INTERACTIVE_FILE action', () => {
@@ -14,7 +14,7 @@ describe('Plot set reducer', () => {
       type: fileActions.CLEAR_INTERACTIVE_FILE,
     };
     const expectedState = defaultState;
-    expect(plotReducer(undefined, action)).toEqual(expectedState);
+    expect(reducer(undefined, action)).toEqual(expectedState);
   });
 
   it('should handle CHANGE_PLOT action', () => {
@@ -23,7 +23,7 @@ describe('Plot set reducer', () => {
       type: actions.CHANGE_PLOT,
     };
     const expectedState = { data: [] };
-    expect(plotReducer(undefined, action)).toEqual(expectedState);
+    expect(reducer(undefined, action)).toEqual(expectedState);
   });
 
   describe('parse file', () => {
@@ -35,7 +35,7 @@ describe('Plot set reducer', () => {
         type: fileActions.PARSE_INTERACTIVE_FILE,
       };
       const expectedState = { data: [] };
-      expect(plotReducer(undefined, action)).toEqual(expectedState);
+      expect(reducer(undefined, action)).toEqual(expectedState);
     });
 
     it('should handle PARSE_INTERACTIVE_FILE action when plot field missing', () => {
@@ -44,7 +44,7 @@ describe('Plot set reducer', () => {
         type: fileActions.PARSE_INTERACTIVE_FILE,
       };
       const expectedState = defaultState;
-      expect(plotReducer(undefined, action)).toEqual(expectedState);
+      expect(reducer(undefined, action)).toEqual(expectedState);
     });
   });
 });
