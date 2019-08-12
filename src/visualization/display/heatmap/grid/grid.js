@@ -1,42 +1,32 @@
 import PropTypes from 'prop-types';
-import React from 'react';
+import React, { Fragment } from 'react';
 
 const Grid = ({
-  cellSize,
-  drawRow,
-  edgeSize,
-  offset,
+  clipPath,
+  gridTranslation,
   page,
 }) => (
-  <g
-    clipPath="url(#clipPath)"
-    transform="translate(100 100)"
-  >
-    {
-      page.reduce((cells, row, i) => {
-        const y = i * cellSize;
-        cells.push(...drawRow(cellSize, row.data, y, edgeSize, offset));
-        return cells;
-      }, [])
-    }
-  </g>
+  <Fragment>
+    {clipPath}
+    <g
+      clipPath="url(#clipPath)"
+      transform={gridTranslation}
+    >
+      {page}
+    </g>
+  </Fragment>
 );
 
+Grid.defaultProps = {
+  page: null,
+};
+
 Grid.propTypes = {
-  cellSize: PropTypes.number.isRequired,
-  drawRow: PropTypes.func.isRequired,
-  edgeSize: PropTypes.number.isRequired,
-  offset: PropTypes.number.isRequired,
+  clipPath: PropTypes.node.isRequired,
+  gridTranslation: PropTypes.string.isRequired,
   page: PropTypes.arrayOf(
-    PropTypes.shape({
-      data: PropTypes.arrayOf(
-        PropTypes.shape({
-          value: PropTypes.number,
-        }),
-      ),
-      name: PropTypes.string,
-    }),
-  ).isRequired,
+    PropTypes.node,
+  ),
 };
 
 export default Grid;

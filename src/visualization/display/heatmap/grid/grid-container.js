@@ -1,20 +1,20 @@
-import React, { useMemo } from 'react';
+import React, { useEffect, useMemo, useState } from 'react';
 import { useSelector } from 'react-redux';
 
+import clipPath from './clip-path';
 import colorGradient from '../../../../utils/color/color-gradient';
+import heatmapConfig from '../config';
 import setEdgeSize from './edge-size';
 import getPage from './page';
 import Grid from './grid';
-import row from './draw-row';
 import setEdgeRange from './edge-range';
 import setRange from '../../../../utils/set-range';
+import translation from './translation';
 import { stateSelector, stateSelectorProp } from '../../../../state/selector/general';
-
-const NUM_COLORS = 101;
-const PAGE_BUFFER = 5;
 
 const GridContainer = () => {
   const dimensions = useSelector(state => stateSelector(state, 'dimensions'));
+  const [page, setPage] = useState(null);
   const position = useSelector(state => stateSelector(state, 'position'));
   const rows = useSelector(state => stateSelectorProp(state, 'rows', 'list'));
   const scoreType = useSelector(state => stateSelectorProp(state, 'parameters', 'scoreType'));
@@ -32,54 +32,72 @@ const GridContainer = () => {
     secondaryFilter,
   } = settings;
 
-  const drawRow = useMemo(() => row(imageType), [imageType]);
-  const edgeGradient = useMemo(() => colorGradient(edgeColor, NUM_COLORS, false), [edgeColor]);
+  const { numColors } = heatmapConfig;
+
+  const gridClipPath = useMemo(
+    () => clipPath(
+      cellSize,
+      position.x,
+      position.y,
+      dimensions.height,
+      dimensions.width,
+    ),
+    [cellSize, position.x, position.y, dimensions.height, dimensions.width],
+  );
+  const edgeGradient = useMemo(
+    () => colorGradient(edgeColor, numColors, false),
+    [edgeColor, numColors],
+  );
   const edgeRange = useMemo(
-    () => setEdgeRange(primaryFilter, secondaryFilter, scoreType, 0, NUM_COLORS - 1),
-    [primaryFilter, secondaryFilter, scoreType],
+    () => setEdgeRange(primaryFilter, secondaryFilter, scoreType, 0, numColors - 1),
+    [numColors, primaryFilter, secondaryFilter, scoreType],
   );
   const edgeSize = useMemo(() => setEdgeSize(cellSize), [cellSize]);
   const fillGradient = useMemo(
-    () => colorGradient(fillColor, NUM_COLORS, invertColor),
-    [fillColor, invertColor],
+    () => colorGradient(fillColor, numColors, invertColor),
+    [fillColor, invertColor, numColors],
   );
   const fillRange = useMemo(
-    () => setRange(minAbundance, abundanceCap, 0, NUM_COLORS - 1),
-    [minAbundance, abundanceCap],
+    () => setRange(minAbundance, abundanceCap, 0, numColors - 1),
+    [abundanceCap, minAbundance, numColors],
+  );
+  const gridTranslation = useMemo(
+    () => translation(cellSize, position.x, position.y),
+    [cellSize, position.x, position.y],
   );
 
-  const page = useMemo(
-    () => getPage(
-      imageType,
-      rows,
-      position,
-      dimensions,
-      cellSize,
-      edgeGradient,
-      fillGradient,
-      edgeRange,
-      fillRange,
-      PAGE_BUFFER,
-    ),
-    [
-      imageType,
-      rows,
-      position,
-      dimensions,
-      cellSize,
-      edgeGradient,
-      fillGradient,
-      edgeRange,
-      fillRange,
-    ],
-  );
+  useEffect(() => {
+    if (dimensions.height > 0 && dimensions.width > 0) {
+      setPage(getPage(
+        imageType,
+        rows,
+        position,
+        dimensions,
+        cellSize,
+        edgeSize,
+        edgeGradient,
+        fillGradient,
+        edgeRange,
+        fillRange,
+      ));
+    }
+  }, [
+    cellSize,
+    dimensions,
+    edgeGradient,
+    edgeRange,
+    edgeSize,
+    fillGradient,
+    fillRange,
+    imageType,
+    position,
+    rows,
+  ]);
 
   return (
     <Grid
-      cellSize={cellSize}
-      drawRow={drawRow}
-      edgeSize={edgeSize}
-      offset={cellSize / 2}
+      clipPath={gridClipPath}
+      gridTranslation={gridTranslation}
       page={page}
     />
   );

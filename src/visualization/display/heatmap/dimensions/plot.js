@@ -61,7 +61,7 @@ export const plotWidth = (cellSize, cellWidth, windowWidth) => {
   return width;
 };
 
-const plotDimensions = (cellSize, cellHeight, cellWidth, windowHeight, windowWidth) => {
+const plot = (cellSize, cellHeight, cellWidth, windowHeight, windowWidth) => {
   const width = plotWidth(cellSize, cellWidth, windowWidth);
   const height = plotHeight(cellSize, cellHeight, windowHeight, width.arrowsX);
   return {
@@ -70,4 +70,4 @@ const plotDimensions = (cellSize, cellHeight, cellWidth, windowHeight, windowWid
   };
 };
 
-export default plotDimensions;
+export default plot;

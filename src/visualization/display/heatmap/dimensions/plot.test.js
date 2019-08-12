@@ -1,4 +1,4 @@
-import { plotHeight, plotWidth } from './plot-dimensions';
+import { plotHeight, plotWidth } from './plot';
 
 describe('calculate height', () => {
   it('should return height values when all rows fit within page', () => {

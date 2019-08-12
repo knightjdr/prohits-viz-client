@@ -1,3 +1,5 @@
+import React from 'react';
+
 /* getPage takes an array of row/heatmap data, slices it in both
 ** dimensions to fit the display. For heatmaps it adds in the fill color value
 ** after mapping the value to the gradient color range, while for dotplots
@@ -17,41 +19,59 @@ const page = (
   position,
   dimensions,
   cellSize,
+  edgeSize,
   edgeGradient,
   fillGradient,
   edgeRange,
   fillRange,
-  pageBuffer,
 ) => {
   const pageStart = {
-    x: Math.max(0, position.x - pageBuffer),
-    y: Math.max(0, position.y - pageBuffer),
+    x: Math.max(0, position.x),
+    y: Math.max(0, position.y),
   };
   const pageEnd = {
-    x: position.x + dimensions.pageX + pageBuffer,
-    y: position.y + dimensions.pageY + pageBuffer,
+    x: position.x + dimensions.pageX,
+    y: position.y + dimensions.pageY,
   };
   const circleRadius = Math.floor((cellSize / 2) - 1);
+  const xPadding = cellSize * pageStart.x;
+  const yPadding = cellSize * pageStart.y;
   if (imageType === 'dotplot') {
-    return rows.slice(pageStart.y, pageEnd.y).map(row => ({
-      data: row.data.slice(pageStart.x, pageEnd.x).map((item, i) => ({
-        ...item,
-        edgeColor: edgeGradient[edgeRange(setScore(item.score))],
-        fillColor: fillGradient[fillRange(item.value)],
-        key: `${row.name}-${i}`,
-        radius: setRadius(item.ratio, circleRadius),
-      })),
-      name: row.name,
-    }));
+    const offset = cellSize / 2;
+    return rows.slice(pageStart.y, pageEnd.y).map((row, i) => (
+      row.data.slice(pageStart.x, pageEnd.x).map((item, j) => {
+        const edgeColor = edgeGradient[edgeRange(setScore(item.score))];
+        const fillColor = fillGradient[fillRange(item.value)];
+        const radius = setRadius(item.ratio, circleRadius);
+        const key = `${row.name}-${pageStart.y + i}-${pageStart.x + j}`;
+        return (
+          <circle
+            cx={(j * cellSize) + xPadding + offset}
+            cy={(i * cellSize) + yPadding + offset}
+            fill={fillColor}
+            key={key}
+            r={radius}
+            stroke={edgeColor}
+            strokeWidth={edgeSize}
+          />
+        );
+      })
+    ));
   }
-  return rows.slice(pageStart.y, pageEnd.y).map(row => ({
-    data: row.data.slice(pageStart.x, pageEnd.x).map((item, i) => ({
-      ...item,
-      fillColor: fillGradient[fillRange(item.value)],
-      key: `${row.name}-${i}`,
-    })),
-    name: row.name,
-  }));
+  return rows.slice(pageStart.y, pageEnd.y).map((row, i) => (
+    row.data.slice(pageStart.x, pageEnd.x).map((item, j) => {
+      const fillColor = fillGradient[fillRange(item.value)];
+      const key = `${row.name}-${i}-${j}`;
+      return (
+        <circle
+          x={(j * cellSize) + xPadding}
+          y={(i * cellSize) + yPadding}
+          fill={fillColor}
+          key={key}
+        />
+      );
+    })
+  ));
 };
 
 export default page;

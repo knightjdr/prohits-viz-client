@@ -26,13 +26,13 @@ const Div = styled.div`
     max-height: calc(100vh - 90px);
     max-width: calc(100vw - 90px);
     opacity: inherit;
-    padding: 5px;
+    padding: ${props => (props.padding ? '5px' : '0')};
     pointer-events: inherit;
     position: fixed;
   }
 
   & > section > * {
-    padding: 5px 10px;
+    padding: ${props => (props.padding ? '5px 10px' : '0')};
   }
 
   &.modal_from-cursor > section {

@@ -1,9 +1,10 @@
-import React, { useEffect, useMemo } from 'react';
+import React, { useEffect, useMemo, useRef } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 
 import Heatmap from './heatmap';
-import plotDimensions from './dimensions/plot-dimensions';
+import plotDimensions from './dimensions/plot';
 import plotTranslate from './dimensions/translate';
+import usePlotScroll from './dimensions/use-plot-scroll';
 import useWindowDimension from '../../../hooks/window-size/use-window-dimension';
 import { setDimensions } from '../../../state/visualization/settings/dimension-actions';
 import { stateSelectorProp } from '../../../state/selector/general';
@@ -13,9 +14,11 @@ const HeatmapContainer = () => {
   const columns = useSelector(state => stateSelectorProp(state, 'columns', 'names'));
   const panelOpen = useSelector(state => stateSelectorProp(state, 'panel', 'open'));
   const plotFixed = useSelector(state => stateSelectorProp(state, 'display', 'plotFixed'));
+  const ref = useRef();
   const rows = useSelector(state => stateSelectorProp(state, 'rows', 'list'));
   const settings = useSelector(state => stateSelectorProp(state, 'settings', 'current'));
   const windowDimensions = useWindowDimension(50);
+  usePlotScroll(ref, 50);
 
   const { cellSize } = settings;
   const cellHeight = rows.length;
@@ -63,8 +66,7 @@ const HeatmapContainer = () => {
 
   return (
     <Heatmap
-      gridHeight={dimensions.height.heatmap}
-      gridWidth={dimensions.width.heatmap}
+      ref={ref}
       translation={translation}
       wrapperHeight={dimensions.height.wrapper}
       wrapperWidth={dimensions.width.wrapper}
