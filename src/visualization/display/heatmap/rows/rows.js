@@ -1,11 +1,10 @@
 import PropTypes from 'prop-types';
 import React, { Fragment } from 'react';
 
-import Reference from './reference';
 import SearchMatch from './search-match';
 import Tooltip from '../../../../components/tooltip/tooltip-container';
 
-const Columns = ({
+const Rows = ({
   cellSize,
   contextMenu,
   fontSize,
@@ -13,25 +12,23 @@ const Columns = ({
   hideTooltip,
   names,
   openContextMenu,
-  reference,
   search,
   showTooltip,
-  sortingNotification,
   tooltip,
 }) => {
   const textOffset = Math.round((cellSize / 2) - (fontSize / 3));
   return (
     <Fragment>
       {contextMenu}
-      {sortingNotification}
       <Tooltip
         isOpen={tooltip.open}
-        name="column-tooltip"
+        name="row-tooltip"
+        placement={{ horizontal: 'right', vertical: 'bottom' }}
         position={tooltip.position}
       >
         {tooltip.text}
       </Tooltip>
-      <g transform="translate(100 0)">
+      <g transform="translate(0 100)">
         {
           names.reduce((textElements, name, i) => {
             textElements.push(...[
@@ -41,20 +38,10 @@ const Columns = ({
                 name={name.original}
                 openContextMenu={openContextMenu}
                 search={search}
-                xPosition={i}
+                yPosition={i}
               />,
             ]);
-            textElements.push(...[
-              <Reference
-                cellSize={cellSize}
-                key={`${name.original}-reference`}
-                name={name.original}
-                openContextMenu={openContextMenu}
-                reference={reference}
-                xPosition={i}
-              />,
-            ]);
-            const x = (i * cellSize) + textOffset;
+            const y = Math.round(((i + 1) * cellSize) - textOffset);
             textElements.push(
               <text
                 data-name={name.original}
@@ -66,9 +53,8 @@ const Columns = ({
                 onMouseEnter={showTooltip}
                 onMouseLeave={hideTooltip}
                 textAnchor="end"
-                transform={`rotate(90, ${x}, 98)`}
-                x={x}
-                y="98"
+                x="98"
+                y={y}
               >
                 {name.text}
               </text>,
@@ -81,12 +67,7 @@ const Columns = ({
   );
 };
 
-Columns.defaultProps = {
-  reference: null,
-  sortingNotification: null,
-};
-
-Columns.propTypes = {
+Rows.propTypes = {
   cellSize: PropTypes.number.isRequired,
   contextMenu: PropTypes.node.isRequired,
   fontSize: PropTypes.number.isRequired,
@@ -100,14 +81,12 @@ Columns.propTypes = {
     }),
   ).isRequired,
   openContextMenu: PropTypes.func.isRequired,
-  reference: PropTypes.string,
   search: PropTypes.shape({
-    columns: PropTypes.shape({}),
     match: PropTypes.bool,
+    rows: PropTypes.shape({}),
     term: PropTypes.string,
   }).isRequired,
   showTooltip: PropTypes.func.isRequired,
-  sortingNotification: PropTypes.node,
   tooltip: PropTypes.shape({
     open: PropTypes.bool,
     position: PropTypes.shape({}),
@@ -115,4 +94,4 @@ Columns.propTypes = {
   }).isRequired,
 };
 
-export default Columns;
+export default Rows;

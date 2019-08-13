@@ -1,4 +1,5 @@
 import reducer, { defaultState } from './rows-reducer';
+import * as actions from './rows-actions';
 import * as fileActions from './interactive-file-actions';
 
 describe('Rows reducer', () => {
@@ -51,5 +52,47 @@ describe('Rows reducer', () => {
       const expectedState = defaultState;
       expect(reducer(undefined, action)).toEqual(expectedState);
     });
+  });
+
+  it('should handle RESTORE_ROWS action', () => {
+    const list = [
+      { data: {}, name: 'a' },
+      { data: {}, name: 'b' },
+      { data: {}, name: 'c' },
+    ];
+    const action = {
+      direction: null,
+      list,
+      sortBy: null,
+      type: actions.RESTORE_ROWS,
+    };
+    const expectedState = {
+      direction: null,
+      list,
+      order: [],
+      sortBy: null,
+    };
+    expect(reducer(undefined, action)).toEqual(expectedState);
+  });
+
+  it('should handle UPDATE_ROWS action', () => {
+    const list = [
+      { data: {}, name: 'a' },
+      { data: {}, name: 'b' },
+      { data: {}, name: 'c' },
+    ];
+    const action = {
+      direction: 'asc',
+      list,
+      sortBy: 1,
+      type: actions.UPDATE_ROWS,
+    };
+    const expectedState = {
+      direction: 'asc',
+      list,
+      order: [],
+      sortBy: 1,
+    };
+    expect(reducer(undefined, action)).toEqual(expectedState);
   });
 });

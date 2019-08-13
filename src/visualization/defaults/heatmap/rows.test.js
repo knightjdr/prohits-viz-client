@@ -4,7 +4,6 @@ describe('Fill rows', () => {
   it('should return user options when valid', () => {
     const rows = {
       direction: 'asc',
-      id: 1,
       list: [{ name: 'a' }, { name: 'b' }, { name: 'c' }],
       order: ['a', 'b', 'c'],
       sortBy: 1,
@@ -16,7 +15,6 @@ describe('Fill rows', () => {
   it('should return defaults when user options invalid', () => {
     const rows = {
       direction: 'other',
-      id: 'a',
       list: {},
       order: {},
       sortBy: 'a',
@@ -40,7 +38,6 @@ describe('Fill rows', () => {
     it('should define order from list when order is not an array', () => {
       const user = {
         direction: 'asc',
-        id: 1,
         list: [{ name: 'a' }, { name: 'b' }, { name: 'c' }],
         order: {},
         sortBy: 1,
@@ -55,7 +52,6 @@ describe('Fill rows', () => {
     it('should define order from list when order contains values not in list', () => {
       const user = {
         direction: 'asc',
-        id: 1,
         list: [{ name: 'a' }, { name: 'b' }, { name: 'c' }],
         order: ['a', 'b', 'd'],
         sortBy: 1,
@@ -71,7 +67,6 @@ describe('Fill rows', () => {
   it('should return default when sortby value is not within list length', () => {
     const user = {
       direction: 'asc',
-      id: 1,
       list: [{ name: 'a' }, { name: 'b' }, { name: 'c' }],
       order: ['a', 'b', 'c'],
       sortBy: 3,

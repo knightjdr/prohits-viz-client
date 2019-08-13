@@ -3,6 +3,7 @@ import fillPanel from './panel';
 import fillParameters from './parameters';
 import fillPosition from './position';
 import fillRows from './rows';
+import fillSelection from './selection';
 import fillSettings from './settings';
 
 const heatmap = (file, filename, taskID, imageType) => {
@@ -12,6 +13,7 @@ const heatmap = (file, filename, taskID, imageType) => {
     parameters,
     position,
     rows,
+    selection,
     settings,
   } = file;
   return {
@@ -20,6 +22,7 @@ const heatmap = (file, filename, taskID, imageType) => {
     parameters: fillParameters(parameters, filename, taskID, imageType),
     position: fillPosition(position),
     rows: fillRows(rows),
+    selection: fillSelection(selection, columns, rows),
     settings: fillSettings(settings),
   };
 };

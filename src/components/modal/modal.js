@@ -8,21 +8,19 @@ import ModalHeader from './modal-header';
 
 const Modal = forwardRef((
   {
-    background,
     children,
     className,
     footer,
     portal,
-    shadow,
     title,
     transform,
+    ...props
   },
   ref,
 ) => createPortal(
   <StyledModal
-    background={background}
     className={className}
-    shadow={shadow}
+    {...props}
   >
     <section
       ref={ref}
@@ -39,15 +37,12 @@ const Modal = forwardRef((
 ));
 
 Modal.defaultProps = {
-  background: true,
   children: null,
   footer: null,
-  shadow: true,
   title: '',
 };
 
 Modal.propTypes = {
-  background: PropTypes.bool,
   children: PropTypes.oneOfType([
     PropTypes.arrayOf(PropTypes.node),
     PropTypes.node,
@@ -55,7 +50,6 @@ Modal.propTypes = {
   className: PropTypes.string.isRequired,
   footer: PropTypes.bool,
   portal: PropTypes.shape({}).isRequired,
-  shadow: PropTypes.bool,
   title: PropTypes.string,
   transform: PropTypes.shape({
     transformOrigin: PropTypes.string,

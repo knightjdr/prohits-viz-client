@@ -1,8 +1,13 @@
 import React, { useState } from 'react';
+import { useDispatch, useSelector } from 'react-redux';
 
 import ContextMenu from './context-menu';
+import useSelections from '../selections/use-selections';
+import useSortRows from '../sort/use-sort-rows';
+import { setReference } from '../../../../state/visualization/file/columns-actions';
+import { stateSelectorProp } from '../../../../state/selector/general';
 
-const ContextMenuContainer = () => {
+const useContextMenu = (name = 'contextMenu', containerType = 'columns') => {
   const [contextItem, setContextItem] = useState('');
   const [isOpen, setOpen] = useState(false);
   const [position, setPosition] = useState({
@@ -11,6 +16,13 @@ const ContextMenuContainer = () => {
     x: 0,
     y: 0,
   });
+
+  const dispatch = useDispatch();
+
+  const reference = useSelector(state => stateSelectorProp(state, 'columns', 'ref'));
+
+  const setSelections = useSelections('columns', 'text');
+  const sort = useSortRows();
 
   const closeMenu = () => {
     setOpen(false);
@@ -28,43 +40,53 @@ const ContextMenuContainer = () => {
     setOpen(true);
   };
 
-  const setReference = () => {
+  const setReferenceColumn = () => {
     closeMenu();
+    dispatch(setReference(contextItem));
   };
 
   const setSelection = () => {
     closeMenu();
+    setSelections([contextItem], containerType, `${containerType}Selected`);
   };
 
   const sortAscending = () => {
     closeMenu();
+    sort.rows(contextItem, 'asc', reference);
   };
 
   const sortDescending = () => {
     closeMenu();
+    sort.rows(contextItem, 'desc', reference);
   };
 
   const unsetReference = () => {
     closeMenu();
+    dispatch(setReference(''));
   };
 
   return {
     open: openMenu,
+    setSelections,
+    sortRows: sort.rows,
     Component: (
       <ContextMenu
+        containerType={containerType}
         handleClose={closeMenu}
+        name={name}
         isOpen={isOpen}
         position={position}
-        reference="reference"
-        setReference={setReference}
+        reference={reference}
+        setReference={setReferenceColumn}
         setSelection={setSelection}
         sortAscending={sortAscending}
         sortDescending={sortDescending}
-        target="target"
+        target={contextItem}
         unsetReference={unsetReference}
       />
     ),
+    SortingComponent: sort.Component,
   };
 };
 
-export default ContextMenuContainer;
+export default useContextMenu;

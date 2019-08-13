@@ -1,33 +1,23 @@
 import PropTypes from 'prop-types';
-import React, { useRef } from 'react';
+import React from 'react';
 
-import Modal from './modal';
+import Tooltip from './tooltip';
 import transformPosition from './position';
-import useClickOutside from '../../hooks/click-outside/use-click-outside';
 import usePortal from '../../hooks/portal/use-portal';
 import usePrevious from '../../hooks/previous/use-previous';
 
-const ModalContainer = ({
-  fromCursor,
-  handleClose,
+const TooltipContainer = ({
   isOpen,
   name,
   placement,
+  position,
   ...props
 }) => {
-  const ref = useRef(null);
-  useClickOutside(ref, handleClose);
   const portal = usePortal(`${name}-root`);
   const prevIsOpen = usePrevious(isOpen);
 
   const classes = [];
-  let transform = {};
-  if (fromCursor) {
-    classes.push('modal_from-cursor');
-    transform = transformPosition(placement);
-  } else {
-    classes.push(...['modal_from-viewport', `modal_x-${placement.horizontal}`, `modal_y-${placement.vertical}`]);
-  }
+  const transform = transformPosition(placement, position);
 
   if (isOpen && !classes.includes('open')) {
     classes.push('open');
@@ -36,38 +26,39 @@ const ModalContainer = ({
   }
 
   return (
-    <Modal
+    <Tooltip
       {...props}
       className={classes.join(' ')}
       portal={portal}
-      ref={ref}
       transform={transform}
     />
   );
 };
 
-ModalContainer.defaultProps = {
-  fromCursor: false,
-  handleClose: () => {},
+TooltipContainer.defaultProps = {
   isOpen: false,
-  name: 'modal',
+  name: 'tooltip',
   placement: {
-    horizontal: 'center',
-    vertical: 'bottom',
+    horizontal: 'left',
+    vertical: 'center',
+  },
+  position: {
+    x: 0,
+    y: 0,
   },
 };
 
-ModalContainer.propTypes = {
-  fromCursor: PropTypes.bool,
-  handleClose: PropTypes.func,
+TooltipContainer.propTypes = {
   isOpen: PropTypes.bool,
   name: PropTypes.string,
   placement: PropTypes.shape({
     horizontal: PropTypes.string,
     vertical: PropTypes.string,
+  }),
+  position: PropTypes.shape({
     x: PropTypes.number,
     y: PropTypes.number,
   }),
 };
 
-export default ModalContainer;
+export default TooltipContainer;

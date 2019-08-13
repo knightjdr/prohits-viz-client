@@ -1,3 +1,4 @@
+import PropTypes from 'prop-types';
 import styled from 'styled-components';
 
 const Div = styled.div`
@@ -19,7 +20,7 @@ const Div = styled.div`
 
   & > section {
     background-color: white;
-    border-radius: 2px;
+    border-radius: 3px;
     box-shadow: ${props => (props.shadow ? 'rgba(0, 0, 0, 0.25) 0px 5px 10px, rgba(0, 0, 0, 0.22) 0px 5px 10px' : 'none')};
     box-sizing: border-box;
     color: ${props => props.theme.fontDark};
@@ -36,11 +37,7 @@ const Div = styled.div`
   }
 
   &.modal_from-cursor > section {
-    animation-duration: 0.3s;
-    animation-fill-mode: forwards;
-    animation-timing-function: ${props => props.theme.timingFunction};
     position: absolute;
-    transform: scale(0);
   }
 
   & header {
@@ -67,54 +64,23 @@ const Div = styled.div`
   }
 
   &.modal_from-cursor.open {
-    animation-name: modalappear;
+    animation-name: modalfadein;
     pointer-events: auto;
   }
   &.modal_from-cursor.close {
-    animation-name: modaldisappear;
-  }
-  &.modal_from-cursor.open > section {
-    animation-name: sectionscalein;
-  }
-  &.modal_from-cursor.close > section {
-    animation-name: sectionscaleout;
+    animation-name: modalfadeout;
   }
 
   &.modal_x-center > section {
     left: 50%;
     transform: translateX(-50%);
   }
+  &.modal_y-center > section {
+    top: 50%;
+    transform: translateY(-50%);
+  }
   &.modal_y-top > section {
     top: 40px;
-  }
-
-  @keyframes modalappear {
-    0% {
-      height: 0;
-      opacity: 0;
-    }
-    1% {
-      height: 100vh;
-      opacity: 1;
-    }
-    100% {
-      height: 100vh;
-      opacity: 1;
-    }
-  }
-  @keyframes modaldisappear {
-    0% {
-      height: 100vh;
-      opacity: 1;
-    }
-    99% {
-      height: 100vh;
-      opacity: 1;
-    }
-    100% {
-      height: 0;
-      opacity: 0;
-    }
   }
 
   @keyframes modalfadein {
@@ -145,27 +111,18 @@ const Div = styled.div`
       opacity: 0;
     }
   }
-
-  @keyframes sectionscalein {
-    0% {
-      opacity: 0;
-      transform: scale(0);
-    }
-    100% {
-      opacity: 1;
-      transform: scale(1);
-    }
-  }
-  @keyframes sectionscaleout {
-    0% {
-      opacity: 1;
-      transform: scale(1);
-    }
-    100% {
-      opacity: 0;
-      transform: scale(0);
-    }
-  }
 `;
+
+Div.defaultProps = {
+  background: true,
+  padding: true,
+  shadow: true,
+};
+
+Div.propTypes = {
+  background: PropTypes.bool,
+  padding: PropTypes.bool,
+  shadow: PropTypes.bool,
+};
 
 export default Div;

@@ -3,6 +3,7 @@ import React, { forwardRef } from 'react';
 
 import Columns from './columns/columns-container';
 import Grid from './grid/grid-container';
+import Rows from './rows/rows-container';
 
 import './heatmap.css';
 
@@ -28,6 +29,7 @@ const Heatmap = forwardRef((
       xmlns="http://www.w3.org/2000/svg"
     >
       <Columns />
+      <Rows />
       <Grid />
     </svg>
   </div>

@@ -11,12 +11,14 @@ import { stateSelectorProp } from '../../../state/selector/general';
 
 const HeatmapContainer = () => {
   const dispatch = useDispatch();
+  const ref = useRef();
+
   const columns = useSelector(state => stateSelectorProp(state, 'columns', 'names'));
   const panelOpen = useSelector(state => stateSelectorProp(state, 'panel', 'open'));
   const plotFixed = useSelector(state => stateSelectorProp(state, 'display', 'plotFixed'));
-  const ref = useRef();
   const rows = useSelector(state => stateSelectorProp(state, 'rows', 'list'));
   const settings = useSelector(state => stateSelectorProp(state, 'settings', 'current'));
+
   const windowDimensions = useWindowDimension(50);
   usePlotScroll(ref, 50);
 

@@ -12,6 +12,7 @@ import parameters from './visualization/file/parameter-reducer';
 import plot from './visualization/file/plot-reducer';
 import position from './visualization/file/position-reducer';
 import rows from './visualization/file/rows-reducer';
+import selection from './visualization/file/selection-reducer';
 import settings from './visualization/file/settings-reducer';
 
 const reducers = combineReducers({
@@ -27,6 +28,7 @@ const reducers = combineReducers({
   plot,
   position,
   rows,
+  selection,
   settings,
 });
 
