@@ -4,12 +4,14 @@ import { faBars } from '@fortawesome/pro-solid-svg-icons';
 
 import IconButton from '../../../components/buttons/icon/button';
 import Info from './panels/info/info-container';
+import Minimap from './panels/minimap/minimap-container';
 import Tabs from './tabs/tabs-container';
 
 import './side-panel.css';
 
 const Panel = {
   info: <Info />,
+  minimap: <Minimap />,
 };
 
 const visibilityConfig = (isOpen) => {

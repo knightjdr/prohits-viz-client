@@ -11,6 +11,7 @@ body {
   --fontStackSecondary: Raleway, sans-serif;
   --fontStackSystem: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol";
   --timingFunction: cubic-bezier(.17, .67, .16, .99);
+  font-family: Lato, sans-serif;
 }
 
 noscript {
@@ -19,4 +20,89 @@ noscript {
   height: 100vh;
   justify-content: center;
   width: 100vw;
+}
+
+/** Tooltips **/
+[data-tooltip] {
+  position: relative;
+}
+[data-tooltip]::before {
+  border-color: rgba(0, 0, 0, 0.9) transparent transparent transparent;
+  border-style: solid;
+  border-width: 4px 6px 0 6px;
+  content: '';
+  left: 50%;
+  opacity: 0;
+  position: absolute;
+  top: -6px;
+  transform: translateX(-50%);
+  transition: opacity 0.3s ease;
+  visibility: hidden;
+  z-index: 1000;
+}
+[data-tooltip]::after {
+  background: rgba(0, 0, 0, 0.9);
+  border-radius: 5px;
+  color: #fff;
+  content: attr(data-tooltip);
+  font-size: 12px;
+  left: 50%;
+  line-height: 1.1;
+  opacity: 0;
+  padding: 5px 8px;
+  pointer-events: none;
+  position: absolute;
+  text-align: center;
+  top: -6px;
+  transform: translateX(-50%) translateY(-100%);
+  transition: opacity 0.3s ease;
+  visibility: hidden;
+  white-space: nowrap;
+  overflow: hidden;
+  z-index: 1000;
+}
+[data-tooltip-position='left']::before {
+  left: 0%;
+  margin-left: -12px;
+  top: 50%;
+  transform: translatey(-50%) rotate(-90deg);
+}
+[data-tooltip-position='top']::before {
+  left: 50%;
+}
+[data-tooltip-position='bottom']::before {
+  margin-top: 8px;
+  top: 100%;
+  transform: translateX(-50%) translatey(-100%) rotate(-180deg);
+}
+[data-tooltip-position='right']::before{
+  left: 100%;
+  margin-left: 1px;
+  top: 50%;
+  transform: translatey(-50%) rotate(90deg);
+}
+[data-tooltip-position='left']::after {
+  left: 0%;
+  margin-left: -8px;
+  top: 50%;
+  transform: translateX(-100%) translateY(-50%);
+}
+[data-tooltip-position='top']::after {
+  left: 50%;
+}
+[data-tooltip-position='bottom']::after {
+  margin-top: 8px;
+  top: 100%;
+  transform: translateX(-50%) translateY(0%);
+}
+[data-tooltip-position='right']::after {
+  left: 100%;
+  margin-left: 8px;
+  top: 50%;
+  transform: translateX(0%) translateY(-50%);
+}
+[data-tooltip]:hover::after,
+[data-tooltip]:hover::before {
+  opacity: 1;
+  visibility: visible;
 }

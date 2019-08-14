@@ -26,7 +26,7 @@ Info.defaultProps = {
 Info.propTypes = {
   border: PropTypes.bool,
   children: PropTypes.node.isRequired,
-  title: PropTypes.string,
+  title: PropTypes.node,
 };
 
 export default Info;

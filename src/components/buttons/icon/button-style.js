@@ -4,6 +4,7 @@ import styled, { css } from 'styled-components';
 const Button = styled.button`
   align-items: center;
   border: none;
+  border-radius: 50%;
   box-sizing: border-box;
   color: ${props => props.theme.colorPrimary1};
   display: flex;
@@ -90,6 +91,19 @@ const Button = styled.button`
     &:hover::before {
       opacity: 1;
       transform: scale(1);
+    }`
+  )}
+
+  ${props => (props.kind === 'warning'
+    && css`&{
+      background-color: ${props.theme.warning};
+      border-radius: 50%;
+      color: #110D0D;
+    }
+
+    &:focus,
+    &:hover {
+      background-color: ${props.theme.colorPrimary1};
     }`
   )}
 `;

@@ -1,0 +1,20 @@
+.panel__minimap-title-button {
+  position: absolute;
+  top: -7px;
+}
+.panel__minimap-title-button-attach {
+  left: 0;
+}
+.panel__minimap-title-button-sync {
+  right: 0;
+}
+
+.panel__minimap-title {
+  align-items: center;
+  display: flex;
+  justify-content: center;
+  position: relative;
+}
+.panel__minimap-title h1 {
+  margin: 0;
+}

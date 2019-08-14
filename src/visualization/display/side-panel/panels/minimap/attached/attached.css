@@ -1,0 +1,7 @@
+.panel__attached {
+  align-items: center;
+  display: flex;
+  height: calc(100vh - 165px);
+  justify-content: center;
+  margin-top: 10px;
+}

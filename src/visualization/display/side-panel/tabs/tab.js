@@ -14,7 +14,7 @@ const icons = {
   analysis: faTable,
   annotation: faPenSquare,
   info: faInfoCircle,
-  map: faGlobeAmericas,
+  minimap: faGlobeAmericas,
   save: faSave,
   settings: faCog,
 };

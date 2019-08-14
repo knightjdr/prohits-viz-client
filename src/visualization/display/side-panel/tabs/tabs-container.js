@@ -10,7 +10,7 @@ const tabLabels = (imageType) => {
     case 'circ-heatmap':
       return ['info', 'settings'];
     default:
-      return ['info', 'map', 'settings', 'annotation', 'analysis', 'save'];
+      return ['info', 'minimap', 'settings', 'annotation', 'analysis', 'save'];
   }
 };
 

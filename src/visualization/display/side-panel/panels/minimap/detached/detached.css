@@ -1,0 +1,33 @@
+.minimap__detached {
+  background-color: #f5f5f5;
+  border-radius: 3px;
+  box-shadow: 0 2px 4px 0 rgba(0, 0, 0, 0.4);
+  min-width: 175px;
+  padding: 5px;
+  position: fixed;
+  z-index: 100;
+}
+
+.minimap__detached-buttons_left {
+  display: flex;
+}
+.minimap__detached-buttons_left > *:not(:last-child) {
+  margin-right: 5px;
+}
+.minimap__detached-buttons_right {
+  margin-left: auto;
+}
+
+.minimap__detached-header {
+  display: flex;
+}
+
+.minimap__detached-inner {
+  align-items: center;
+  border-top: 1px solid var(--colorPrimary2);
+  display: flex;
+  justify-content: center;
+  max-height: calc(100vh - 55px);
+  margin-top: 5px;
+  padding-top: 5px;
+}
