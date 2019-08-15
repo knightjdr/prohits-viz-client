@@ -2,42 +2,54 @@ import PropTypes from 'prop-types';
 import React from 'react';
 import { createPortal } from 'react-dom';
 
-import Header from './header';
+import Header from './header/header-container';
 import Image from '../image/image';
+import Resize from './resize/resize-container';
 
 import './detached.css';
 
 const Detached = ({
   containerDimensions,
   minimap,
+  opaque,
   portal,
   position,
-  showMinimap,
+  setContainerDimensions,
+  setOpacity,
+  setPosition,
+  setVisibility,
   toggleAttached,
-  toggleMinimap,
+  visibility,
 }) => (
   containerDimensions.height
     ? createPortal(
       <div
-        className="minimap__detached"
+        className={`minimap__detached ${opaque ? 'minimap_opaque' : 'minimap_transparent'}`}
         style={position}
       >
         <Header
-          showMinimap={showMinimap}
+          opaque={opaque}
+          position={position}
+          setOpacity={setOpacity}
+          setPosition={setPosition}
+          setVisibility={setVisibility}
           toggleAttached={toggleAttached}
-          toggleMinimap={toggleMinimap}
+          visibility={visibility}
         />
         <div
-          className="minimap__detached-inner"
+          className="minimap__detached-image"
           style={{
-            display: showMinimap ? 'flex' : 'none',
+            ...containerDimensions,
+            display: visibility ? 'flex' : 'none',
           }}
         >
-          <div style={containerDimensions}>
-            <Image
-              minimap={minimap}
-            />
-          </div>
+          <Image
+            minimap={minimap}
+          />
+          <Resize
+            containerDimensions={containerDimensions}
+            setContainerDimensions={setContainerDimensions}
+          />
         </div>
       </div>,
       portal,
@@ -55,13 +67,17 @@ Detached.propTypes = {
     width: PropTypes.number,
   }).isRequired,
   minimap: PropTypes.string,
+  opaque: PropTypes.bool.isRequired,
   portal: PropTypes.shape({}).isRequired,
   position: PropTypes.shape({
     right: PropTypes.number,
     top: PropTypes.number,
   }).isRequired,
-  showMinimap: PropTypes.bool.isRequired,
+  setContainerDimensions: PropTypes.func.isRequired,
+  setOpacity: PropTypes.func.isRequired,
+  setPosition: PropTypes.func.isRequired,
+  setVisibility: PropTypes.func.isRequired,
   toggleAttached: PropTypes.func.isRequired,
-  toggleMinimap: PropTypes.func.isRequired,
+  visibility: PropTypes.bool.isRequired,
 };
 export default Detached;

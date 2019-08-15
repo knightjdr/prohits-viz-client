@@ -2,7 +2,7 @@ import PropTypes from 'prop-types';
 import React, { useEffect, useState } from 'react';
 
 import Detached from './detached';
-import wrapperDimensions from './dimensions';
+import { imageDimensions } from './dimensions';
 import usePortal from '../../../../../../hooks/portal/use-portal';
 
 const DetachedContainer = ({
@@ -10,32 +10,33 @@ const DetachedContainer = ({
   toggleAttached,
 }) => {
   const [containerDimensions, setContainerDimensions] = useState({});
-  const [display, setDisplay] = useState(true);
+  const [opaque, setOpacity] = useState(true);
   const [position, setPosition] = useState({ right: 10, top: 10 });
+  const [visibility, setVisibility] = useState(true);
 
   const portal = usePortal('mini-map');
 
   useEffect(() => {
     const updateDimensions = async () => {
-      const newDimensions = await wrapperDimensions(minimap);
+      const newDimensions = await imageDimensions(minimap);
       setContainerDimensions(newDimensions);
     };
     updateDimensions();
   }, [minimap]);
 
-  const toggleMinimap = () => {
-    setDisplay(!display);
-  };
-
   return (
     <Detached
       containerDimensions={containerDimensions}
       minimap={minimap}
+      opaque={opaque}
       portal={portal}
       position={position}
-      showMinimap={display}
+      setContainerDimensions={setContainerDimensions}
+      setOpacity={setOpacity}
+      setPosition={setPosition}
+      setVisibility={setVisibility}
       toggleAttached={toggleAttached}
-      toggleMinimap={toggleMinimap}
+      visibility={visibility}
     />
   );
 };

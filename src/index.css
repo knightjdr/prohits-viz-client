@@ -37,6 +37,7 @@ noscript {
   top: -6px;
   transform: translateX(-50%);
   transition: opacity 0.3s ease;
+  transition-delay: 0.7s;
   visibility: hidden;
   z-index: 1000;
 }
@@ -56,6 +57,7 @@ noscript {
   top: -6px;
   transform: translateX(-50%) translateY(-100%);
   transition: opacity 0.3s ease;
+  transition-delay: 0.7s;
   visibility: hidden;
   white-space: nowrap;
   overflow: hidden;

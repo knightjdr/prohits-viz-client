@@ -1,22 +1,28 @@
 import PropTypes from 'prop-types';
 import React from 'react';
 import {
-  faAdjust,
   faArrowsAlt,
   faEye,
   faEyeSlash,
+  faToggleOff,
+  faToggleOn,
 } from '@fortawesome/pro-duotone-svg-icons';
 import { faPaperclip } from '@fortawesome/pro-solid-svg-icons';
 
-import Button from '../../../../../../components/buttons/icon/button';
+import Button from '../../../../../../../components/buttons/icon/button';
+
+import './header.css';
 
 const Header = ({
-  showMinimap,
+  handleMouseDown,
+  opaque,
   toggleAttached,
-  toggleMinimap,
+  toggleOpacity,
+  toggleVisibility,
+  visibility,
 }) => (
   <div className="minimap__detached-header">
-    <span className="minimap__detached-buttons_left">
+    <span className="minimap__detached-header-buttons_left">
       <span
         data-tooltip="Attach minimap"
         data-tooltip-position="bottom"
@@ -28,12 +34,12 @@ const Header = ({
         />
       </span>
       <span
-        data-tooltip={showMinimap ? 'Hide minimap' : 'Show minimap'}
+        data-tooltip={visibility ? 'Hide minimap' : 'Show minimap'}
         data-tooltip-position="bottom"
       >
         <Button
-          icon={showMinimap ? faEyeSlash : faEye}
-          onClick={toggleMinimap}
+          icon={visibility ? faEyeSlash : faEye}
+          onClick={toggleVisibility}
           type="button"
         />
       </span>
@@ -42,15 +48,17 @@ const Header = ({
         data-tooltip-position="bottom"
       >
         <Button
-          icon={faAdjust}
+          icon={opaque ? faToggleOn : faToggleOff}
+          onClick={toggleOpacity}
           type="button"
         />
       </span>
     </span>
     <span
-      className="minimap__detached-buttons_right"
+      className="minimap__detached-header-buttons_right"
     >
       <Button
+        onMouseDown={handleMouseDown}
         icon={faArrowsAlt}
         type="button"
       />
@@ -59,9 +67,12 @@ const Header = ({
 );
 
 Header.propTypes = {
-  showMinimap: PropTypes.bool.isRequired,
+  handleMouseDown: PropTypes.func.isRequired,
+  opaque: PropTypes.bool.isRequired,
   toggleAttached: PropTypes.func.isRequired,
-  toggleMinimap: PropTypes.func.isRequired,
+  toggleOpacity: PropTypes.func.isRequired,
+  toggleVisibility: PropTypes.func.isRequired,
+  visibility: PropTypes.bool.isRequired,
 };
 
 export default Header;

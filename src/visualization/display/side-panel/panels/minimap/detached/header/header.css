@@ -1,0 +1,18 @@
+.minimap__detached-header-buttons_left {
+  display: flex;
+}
+.minimap__detached-header-buttons_left > *:not(:last-child) {
+  margin-right: 5px;
+}
+.minimap__detached-header-buttons_right {
+  margin-left: auto;
+}
+.minimap__detached-header-buttons_right button {
+  cursor: move;
+}
+
+.minimap__detached-header {
+  border-bottom: 1px solid var(--colorPrimary2);
+  display: flex;
+  min-width: 100%;
+}

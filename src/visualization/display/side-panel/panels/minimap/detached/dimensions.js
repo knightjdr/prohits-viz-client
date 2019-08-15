@@ -22,9 +22,7 @@ const checkWidth = (desiredWidth) => {
   return width;
 };
 
-const dimensions = async (minimap) => {
-  const [imageHeight, imageWidth] = minimap ? await imageSize(minimap) : [0, 0];
-
+export const dimensions = (imageHeight, imageWidth) => {
   let height = checkHeight(imageHeight);
   let width = checkWidth(imageWidth);
 
@@ -40,4 +38,7 @@ const dimensions = async (minimap) => {
   };
 };
 
-export default dimensions;
+export const imageDimensions = async (minimap) => {
+  const [imageHeight, imageWidth] = await imageSize(minimap);
+  return dimensions(imageHeight, imageWidth);
+};

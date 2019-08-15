@@ -1,0 +1,24 @@
+.minimap__detached-resize {
+  background-color: transparent;
+  border: 0;
+  cursor: nesw-resize;
+  bottom: 1px;
+  height: 20px;
+  left: 1px;
+  padding: 0;
+  position: absolute;
+  width: 20px;
+}
+.minimap__detached-resize svg * {
+  transition: all 0.3s ease;
+}
+.minimap__detached-resize:focus svg *,
+.minimap__detached-resize:hover svg * {
+  fill: var(--colorPrimary1);
+}
+.minimap__detached-resize:focus {
+  outline: none;
+}
+.minimap__detached-resize::-moz-focus-inner {
+  border: 0;
+}
