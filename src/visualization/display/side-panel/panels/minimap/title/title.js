@@ -10,6 +10,7 @@ import './title.css';
 const Title = ({
   attached,
   toggleAttached,
+  updateMinimap,
 }) => (
   <div className="panel__minimap-title">
     <span
@@ -31,6 +32,7 @@ const Title = ({
     >
       <Button
         icon={faSync}
+        onClick={updateMinimap}
         type="button"
       />
     </span>
@@ -40,6 +42,7 @@ const Title = ({
 Title.propTypes = {
   attached: PropTypes.bool.isRequired,
   toggleAttached: PropTypes.func.isRequired,
+  updateMinimap: PropTypes.func.isRequired,
 };
 
 export default Title;

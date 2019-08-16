@@ -8,6 +8,7 @@ export const defaultState = {
   needSyncing: false,
   syncError: false,
   syncedImage: null,
+  updateOriginal: false,
 };
 
 const reducer = (state = { ...defaultState }, action) => {
@@ -16,11 +17,12 @@ const reducer = (state = { ...defaultState }, action) => {
       return { ...defaultState };
     case actions.MINIMAP_SYNCHED:
       return {
-        image: action.updateOriginal ? action.syncedImage : state.image,
+        image: state.updateOriginal ? action.syncedImage : state.image,
         isSyncing: false,
         needSyncing: false,
         syncError: false,
-        syncedImage: action.updateOriginal ? null : action.syncedImage,
+        syncedImage: state.updateOriginal ? null : action.syncedImage,
+        updateOriginal: false,
       };
     case actions.MINIMAP_SYNCHRONIZING:
       return {
@@ -28,6 +30,7 @@ const reducer = (state = { ...defaultState }, action) => {
         isSyncing: true,
         syncError: false,
         syncedImage: null,
+        updateOriginal: action.updateOriginal,
       };
     case fileActions.PARSE_INTERACTIVE_FILE:
       return action.file.minimap
@@ -40,6 +43,7 @@ const reducer = (state = { ...defaultState }, action) => {
         needSyncing: false,
         syncError: false,
         syncedImage: null,
+        updateOriginal: false,
       };
     case actions.SYNC_ERROR:
       return {
@@ -47,6 +51,7 @@ const reducer = (state = { ...defaultState }, action) => {
         isSyncing: false,
         syncError: true,
         syncedImage: null,
+        updateOriginal: false,
       };
     case rowActions.UPDATE_ROWS:
       return {
@@ -54,6 +59,7 @@ const reducer = (state = { ...defaultState }, action) => {
         isSyncing: false,
         needSyncing: true,
         syncedImage: null,
+        updateOriginal: false,
       };
     default:
       return state;

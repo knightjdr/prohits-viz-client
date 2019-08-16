@@ -2,7 +2,7 @@ import PropTypes from 'prop-types';
 import React, { useEffect, useState } from 'react';
 
 import Resize from './resize';
-import { dimensions } from '../dimensions';
+import useWindowDimension from '../../../../../../../hooks/window-size/use-window-dimension';
 
 const ResizeContainer = ({
   containerDimensions,
@@ -10,6 +10,8 @@ const ResizeContainer = ({
 }) => {
   const [mouseDown, setMouseDown] = useState(false);
   const [mouseDownReference, setMouseDownReference] = useState({});
+
+  const windowSize = useWindowDimension(0);
 
   const handleMouseDown = (e) => {
     const { clientX, clientY } = e;
@@ -22,8 +24,8 @@ const ResizeContainer = ({
 
   useEffect(() => {
     const handleMouseMove = async (e) => {
-      const minWidth = 165;
-
+      const maxHeight = windowSize.height - 68;
+      const maxWidth = windowSize.width - 30;
       const { height, width } = containerDimensions;
       const { clientX, clientY } = e;
 
@@ -31,12 +33,11 @@ const ResizeContainer = ({
       const deltaY = mouseDownReference.y - clientY;
 
       const newHeight = height - deltaY;
-      const newWidth = width + deltaX < minWidth ? minWidth : width + deltaX;
+      const newWidth = width + deltaX;
 
-      const newDimensions = dimensions(newHeight, newWidth);
       setContainerDimensions({
-        height: newDimensions.height,
-        width: newDimensions.width,
+        height: newHeight,
+        width: newWidth,
       });
       setMouseDownReference({
         x: clientX,

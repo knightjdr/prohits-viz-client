@@ -5,9 +5,9 @@ import Header from './header';
 
 const HeaderContainer = ({
   opaque,
-  position,
+  panelPosition,
   setOpacity,
-  setPosition,
+  setPanelPosition,
   setVisibility,
   toggleAttached,
   visibility,
@@ -34,11 +34,11 @@ const HeaderContainer = ({
 
   useEffect(() => {
     const handleMouseMove = (e) => {
-      const { right, top } = position;
+      const { right, top } = panelPosition;
       const { clientX, clientY } = e;
       const deltaX = mouseDownReference.x - clientX;
       const deltaY = mouseDownReference.y - clientY;
-      setPosition({
+      setPanelPosition({
         right: right + deltaX,
         top: top - deltaY,
       });
@@ -79,12 +79,12 @@ const HeaderContainer = ({
 
 HeaderContainer.propTypes = {
   opaque: PropTypes.bool.isRequired,
-  position: PropTypes.shape({
+  panelPosition: PropTypes.shape({
     right: PropTypes.number,
     top: PropTypes.number,
   }).isRequired,
   setOpacity: PropTypes.func.isRequired,
-  setPosition: PropTypes.func.isRequired,
+  setPanelPosition: PropTypes.func.isRequired,
   setVisibility: PropTypes.func.isRequired,
   toggleAttached: PropTypes.func.isRequired,
   visibility: PropTypes.bool.isRequired,

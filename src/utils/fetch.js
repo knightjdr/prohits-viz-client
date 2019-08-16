@@ -1,16 +1,33 @@
 import axios from 'axios';
 
-const fetch = async (route, method = 'GET', data = {}) => {
+const defaultOptions = {
+  data: {},
+  headers: {},
+  method: 'GET',
+};
+
+const fillOptions = (url, options) => {
+  const axiosOptions = Object.entries(defaultOptions).reduce((accum, [key, value]) => ({
+    ...accum,
+    [key]: options[key] || value,
+  }), {});
+  axiosOptions.url = url;
+
+  if (axiosOptions.method !== 'POST') {
+    delete axiosOptions.data;
+  }
+  if (Object.keys(axiosOptions.headers).length === 0) {
+    delete axiosOptions.headers;
+  }
+
+  return axiosOptions;
+};
+
+const fetch = async (route, options = {}) => {
   try {
     const url = `${process.env.REACT_APP_API}${route}`;
-    const options = {
-      method,
-      url,
-    };
-    if (method === 'POST') {
-      options.data = data;
-    }
-    const result = await axios(options);
+    const axiosOptions = fillOptions(url, options);
+    const result = await axios(axiosOptions);
     return result;
   } catch (error) {
     return {

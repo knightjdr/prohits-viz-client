@@ -1,26 +1,25 @@
 import PropTypes from 'prop-types';
 import React from 'react';
 
-import Image from '../image/image';
-
 import './attached.css';
 
 const Attached = ({
-  minimap,
+  children,
+  containerDimensions,
 }) => (
   <div className="panel__attached">
-    <Image
-      minimap={minimap}
-    />
+    <div style={containerDimensions}>
+      {children}
+    </div>
   </div>
 );
 
-Attached.defaultProps = {
-  minimap: null,
-};
-
 Attached.propTypes = {
-  minimap: PropTypes.string,
+  children: PropTypes.node.isRequired,
+  containerDimensions: PropTypes.shape({
+    height: PropTypes.number,
+    width: PropTypes.number,
+  }).isRequired,
 };
 
 export default Attached;

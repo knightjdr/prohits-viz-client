@@ -6,6 +6,7 @@ export const defaultState = {
   needSyncing: false,
   syncError: false,
   syncedImage: null,
+  updateOriginal: false,
 };
 
 const fillMinimap = (userMinimap) => {

@@ -3,20 +3,19 @@ import React from 'react';
 import { createPortal } from 'react-dom';
 
 import Header from './header/header-container';
-import Image from '../image/image';
 import Resize from './resize/resize-container';
 
 import './detached.css';
 
 const Detached = ({
+  children,
   containerDimensions,
-  minimap,
   opaque,
+  panelPosition,
   portal,
-  position,
   setContainerDimensions,
   setOpacity,
-  setPosition,
+  setPanelPosition,
   setVisibility,
   toggleAttached,
   visibility,
@@ -25,13 +24,15 @@ const Detached = ({
     ? createPortal(
       <div
         className={`minimap__detached ${opaque ? 'minimap_opaque' : 'minimap_transparent'}`}
-        style={position}
+        style={{
+          ...panelPosition,
+        }}
       >
         <Header
           opaque={opaque}
-          position={position}
+          panelPosition={panelPosition}
           setOpacity={setOpacity}
-          setPosition={setPosition}
+          setPanelPosition={setPanelPosition}
           setVisibility={setVisibility}
           toggleAttached={toggleAttached}
           visibility={visibility}
@@ -43,9 +44,7 @@ const Detached = ({
             display: visibility ? 'flex' : 'none',
           }}
         >
-          <Image
-            minimap={minimap}
-          />
+          {children}
           <Resize
             containerDimensions={containerDimensions}
             setContainerDimensions={setContainerDimensions}
@@ -57,25 +56,21 @@ const Detached = ({
     : null
 );
 
-Detached.defaultProps = {
-  minimap: null,
-};
-
 Detached.propTypes = {
+  children: PropTypes.node.isRequired,
   containerDimensions: PropTypes.shape({
     height: PropTypes.number,
     width: PropTypes.number,
   }).isRequired,
-  minimap: PropTypes.string,
   opaque: PropTypes.bool.isRequired,
-  portal: PropTypes.shape({}).isRequired,
-  position: PropTypes.shape({
+  panelPosition: PropTypes.shape({
     right: PropTypes.number,
     top: PropTypes.number,
   }).isRequired,
+  portal: PropTypes.shape({}).isRequired,
   setContainerDimensions: PropTypes.func.isRequired,
   setOpacity: PropTypes.func.isRequired,
-  setPosition: PropTypes.func.isRequired,
+  setPanelPosition: PropTypes.func.isRequired,
   setVisibility: PropTypes.func.isRequired,
   toggleAttached: PropTypes.func.isRequired,
   visibility: PropTypes.bool.isRequired,

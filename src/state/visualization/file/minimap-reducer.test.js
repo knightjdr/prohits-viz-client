@@ -22,13 +22,13 @@ describe('Minimap reducer', () => {
     const action = {
       syncedImage: 'image',
       type: actions.MINIMAP_SYNCHED,
-      updateOriginal: false,
     };
     const currentState = {
       ...defaultState,
       image: 'originalImage',
     };
     const expectedState = {
+      ...defaultState,
       image: 'originalImage',
       isSyncing: false,
       needSyncing: false,
@@ -42,10 +42,10 @@ describe('Minimap reducer', () => {
     const action = {
       syncedImage: 'image',
       type: actions.MINIMAP_SYNCHED,
-      updateOriginal: true,
     };
     const currentState = {
       ...defaultState,
+      updateOriginal: true,
     };
     const expectedState = {
       ...defaultState,
@@ -61,12 +61,14 @@ describe('Minimap reducer', () => {
   it('should handle MINIMAP_SYNCHRONIZING action', () => {
     const action = {
       type: actions.MINIMAP_SYNCHRONIZING,
+      updateOriginal: true,
     };
     const expectedState = {
       ...defaultState,
       isSyncing: true,
       syncError: false,
       syncedImage: null,
+      updateOriginal: true,
     };
     expect(reducer(undefined, action)).toEqual(expectedState);
   });

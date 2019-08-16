@@ -6,12 +6,14 @@ body {
   --colorPrimary1: #2A3132;
   --colorPrimary2: #90AFC5;
   --colorPrimary3: #336B87;
+  --warning: #f44336;
   --fontDark: #333;
   --fontStackPrimary: Lato, sans-serif;
   --fontStackSecondary: Raleway, sans-serif;
   --fontStackSystem: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol";
   --timingFunction: cubic-bezier(.17, .67, .16, .99);
-  font-family: Lato, sans-serif;
+  color: var(--fontDark);
+  font-family: var(--fontStackPrimary);
 }
 
 noscript {
@@ -102,6 +104,11 @@ noscript {
   margin-left: 8px;
   top: 50%;
   transform: translateX(0%) translateY(-50%);
+}
+[data-tooltip]:hover::after,
+[data-tooltip]:hover::before {
+  opacity: 1;
+  visibility: visible;
 }
 [data-tooltip]:hover::after,
 [data-tooltip]:hover::before {

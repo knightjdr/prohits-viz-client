@@ -1,5 +1,27 @@
 .minimap__image {
+  height: 100%;
+  position: relative;
+  width: 100%;
+}
+.minimap__image > img {
+  display: block;
+  cursor: crosshair;
   height: auto;
   max-height: 100%;
+  max-width: 100%;
   width: auto;
+}
+.minimap__image:focus {
+  outline: none;
+}
+.minimap__image::-moz-focus-inner {
+  border: 0;
+}
+
+.minimap__page-outline {
+  border: 1px dashed #000000;
+  margin-left: -1px;
+  margin-top: -1px;
+  pointer-events: none;
+  position: absolute;
 }

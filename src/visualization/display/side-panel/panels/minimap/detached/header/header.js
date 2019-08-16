@@ -21,7 +21,9 @@ const Header = ({
   toggleVisibility,
   visibility,
 }) => (
-  <div className="minimap__detached-header">
+  <div
+    className={`minimap__detached-header ${visibility ? 'minimap__detached-header_border' : 'minimap__detached-header_no-border'}`}
+  >
     <span className="minimap__detached-header-buttons_left">
       <span
         data-tooltip="Attach minimap"
