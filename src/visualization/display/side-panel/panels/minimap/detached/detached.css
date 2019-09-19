@@ -12,6 +12,7 @@
 
 .minimap_transparent {
   opacity: 0;
+  transition: opacity 0.2s var(--timingFunction);
 }
 .minimap_transparent:hover {
   opacity: 1;
