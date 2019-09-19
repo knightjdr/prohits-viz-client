@@ -1,25 +1,28 @@
 import PropTypes from 'prop-types';
-import React from 'react';
+import React, { cloneElement } from 'react';
 
 import './attached.css';
 
 const Attached = ({
   children,
-  containerDimensions,
 }) => (
   <div className="panel__attached">
-    <div style={containerDimensions}>
-      {children}
-    </div>
+    {
+      cloneElement(
+        children,
+        {
+          imgLimits: {
+            height: 'calc(100vh - 165px)',
+            width: 320,
+          },
+        },
+      )
+    }
   </div>
 );
 
 Attached.propTypes = {
   children: PropTypes.node.isRequired,
-  containerDimensions: PropTypes.shape({
-    height: PropTypes.number,
-    width: PropTypes.number,
-  }).isRequired,
 };
 
 export default Attached;

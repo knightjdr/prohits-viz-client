@@ -8,6 +8,7 @@ import './image.css';
 const Image = ({
   handleClick,
   handleKeyPress,
+  imgLimits,
   minimap,
   pageOutline,
   syncMinimap,
@@ -30,8 +31,12 @@ const Image = ({
         tabIndex="-1"
       >
         <img
-          alt="Minimap"
+          alt="Mini map"
           src={minimap.synchedImage || minimap.image}
+          style={{
+            maxHeight: imgLimits.height,
+            maxWidth: imgLimits.width,
+          }}
         />
         <span
           className="minimap__page-outline"
@@ -41,9 +46,26 @@ const Image = ({
     )
 );
 
+Image.defaultProps = {
+  imgLimits: {
+    height: 'none',
+    width: 'none',
+  },
+};
+
 Image.propTypes = {
   handleClick: PropTypes.func.isRequired,
   handleKeyPress: PropTypes.func.isRequired,
+  imgLimits: PropTypes.shape({
+    height: PropTypes.oneOfType([
+      PropTypes.number,
+      PropTypes.string,
+    ]),
+    width: PropTypes.oneOfType([
+      PropTypes.number,
+      PropTypes.string,
+    ]),
+  }),
   minimap: PropTypes.shape({
     image: PropTypes.string,
     isSyncing: PropTypes.bool,

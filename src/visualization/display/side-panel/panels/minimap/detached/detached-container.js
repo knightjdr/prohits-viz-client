@@ -4,15 +4,19 @@ import React, { useEffect, useState } from 'react';
 import Detached from './detached';
 import usePortal from '../../../../../../hooks/portal/use-portal';
 import useWindowDimension from '../../../../../../hooks/window-size/use-window-dimension';
-import { detachedImageDimensions } from '../image/dimensions';
+import {
+  intialContainerDimensions,
+  minimapDimensions,
+  viewportPadding,
+} from './dimensions';
 
 const DetachedContainer = ({
   children,
-  imageSize,
   minimap,
   toggleAttached,
 }) => {
   const [containerDimensions, setContainerDimensions] = useState({ height: 0, width: 0 });
+  const [imageSize, setImageSize] = useState({ height: 0, width: 0 });
   const [opaque, setOpacity] = useState(true);
   const [panelPosition, setPanelPosition] = useState({ right: 10, top: 10 });
   const [visibility, setVisibility] = useState(true);
@@ -21,15 +25,23 @@ const DetachedContainer = ({
   const windowSize = useWindowDimension(0);
 
   useEffect(() => {
-    const maxHeight = windowSize.height - 68;
-    const maxWidth = windowSize.width - 30;
-    const newImageDimensions = detachedImageDimensions(
+    const updateDimensions = async () => {
+      const newDimensions = await minimapDimensions(minimap);
+      setImageSize(newDimensions);
+    };
+    updateDimensions();
+  }, [minimap]);
+
+  useEffect(() => {
+    const maxHeight = windowSize.height - viewportPadding.height;
+    const maxWidth = windowSize.width - viewportPadding.width;
+    const newContainerDimensions = intialContainerDimensions(
       imageSize.height,
       imageSize.width,
       maxHeight,
       maxWidth,
     );
-    setContainerDimensions(newImageDimensions);
+    setContainerDimensions(newContainerDimensions);
   }, [imageSize.height, imageSize.width, windowSize.height, windowSize.width]);
 
   return (
@@ -57,10 +69,6 @@ DetachedContainer.defaultProps = {
 
 DetachedContainer.propTypes = {
   children: PropTypes.node.isRequired,
-  imageSize: PropTypes.shape({
-    height: PropTypes.number,
-    width: PropTypes.number,
-  }).isRequired,
   minimap: PropTypes.string,
   toggleAttached: PropTypes.func.isRequired,
 };

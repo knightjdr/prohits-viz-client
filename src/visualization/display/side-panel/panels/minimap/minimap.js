@@ -1,7 +1,7 @@
 import PropTypes from 'prop-types';
 import React from 'react';
 
-import Attached from './attached/attached-container';
+import Attached from './attached/attached';
 import Detached from './detached/detached-container';
 import Image from './image/image';
 import Title from './title/title';
@@ -12,7 +12,6 @@ const Minimap = ({
   attached,
   handleClick,
   handleKeyPress,
-  imageSize,
   minimap,
   pageOutline,
   syncMinimap,
@@ -39,13 +38,12 @@ const Minimap = ({
       {
         attached
           ? (
-            <Attached imageSize={imageSize}>
+            <Attached>
               {image}
             </Attached>
           )
           : (
             <Detached
-              imageSize={imageSize}
               minimap={minimap.syncedImage || minimap.image}
               toggleAttached={toggleAttached}
             >
@@ -61,7 +59,6 @@ Minimap.propTypes = {
   attached: PropTypes.bool.isRequired,
   handleClick: PropTypes.func.isRequired,
   handleKeyPress: PropTypes.func.isRequired,
-  imageSize: PropTypes.shape({}).isRequired,
   minimap: PropTypes.shape({
     image: PropTypes.string,
     syncedImage: PropTypes.string,

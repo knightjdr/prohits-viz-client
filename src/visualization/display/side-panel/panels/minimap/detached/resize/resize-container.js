@@ -3,6 +3,10 @@ import React, { useEffect, useState } from 'react';
 
 import Resize from './resize';
 import useWindowDimension from '../../../../../../../hooks/window-size/use-window-dimension';
+import {
+  MIN_WIDTH,
+  viewportPadding,
+} from '../dimensions';
 
 const ResizeContainer = ({
   containerDimensions,
@@ -24,8 +28,8 @@ const ResizeContainer = ({
 
   useEffect(() => {
     const handleMouseMove = async (e) => {
-      const maxHeight = windowSize.height - 68;
-      const maxWidth = windowSize.width - 30;
+      const maxHeight = windowSize.height - viewportPadding.height;
+      const maxWidth = windowSize.width - viewportPadding.width;
       const { height, width } = containerDimensions;
       const { clientX, clientY } = e;
 
@@ -33,10 +37,16 @@ const ResizeContainer = ({
       const deltaY = mouseDownReference.y - clientY;
 
       const newHeight = height - deltaY;
-      const newWidth = width + deltaX;
+      let newWidth = width + deltaX;
+
+      if (newWidth > maxWidth) {
+        newWidth = maxWidth;
+      } else if (newWidth < MIN_WIDTH) {
+        newWidth = MIN_WIDTH;
+      }
 
       setContainerDimensions({
-        height: newHeight,
+        height: newHeight < maxHeight ? newHeight : maxHeight,
         width: newWidth,
       });
       setMouseDownReference({

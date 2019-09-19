@@ -1,0 +1,8 @@
+/* TEAM */
+	Creator, designer and developer: James Knight
+	Contact: jknight [at] lunenfeld.ca
+	From: Toronto, Ontario, Canada
+
+/* SITE */
+	Language: English
+	Doctype: HTML5

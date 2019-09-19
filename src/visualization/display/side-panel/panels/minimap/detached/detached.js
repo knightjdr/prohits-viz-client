@@ -1,5 +1,5 @@
 import PropTypes from 'prop-types';
-import React from 'react';
+import React, { cloneElement } from 'react';
 import { createPortal } from 'react-dom';
 
 import Header from './header/header-container';
@@ -44,7 +44,17 @@ const Detached = ({
             display: visibility ? 'flex' : 'none',
           }}
         >
-          {children}
+          {
+            cloneElement(
+              children,
+              {
+                imgLimits: {
+                  height: containerDimensions.height - 10,
+                  width: containerDimensions.width - 10,
+                },
+              },
+            )
+          }
           <Resize
             containerDimensions={containerDimensions}
             setContainerDimensions={setContainerDimensions}
