@@ -22,6 +22,8 @@ module.exports = {
     'react',
   ],
   rules: {
+    "jsx-a11y/label-has-for": [0],
+    "jsx-a11y/label-has-associated-control": [2],
     "no-underscore-dangle": ["error", { "allow": ["__REDUX_DEVTOOLS_EXTENSION__"] }],
     "react/jsx-filename-extension": [1, { "extensions": [".js", ".jsx"] }],
   },

@@ -1,6 +1,6 @@
 export const defaultState = {
   open: true,
-  tab: 'minimap',
+  tab: 'settings',
 };
 
 const validTabs = {
