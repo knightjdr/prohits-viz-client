@@ -1,28 +1,32 @@
 import PropTypes from 'prop-types';
 import React from 'react';
 
-import Sorting from './sorting';
+import Basic from './basic';
+
+import './settings__heatmap.css';
 
 const Settings = ({
   handleChange,
   settings,
 }) => {
-  const { sortAbundanceFilter } = settings;
+  const {
+    cellSize,
+  } = settings;
 
   return (
-    <>
-      <Sorting
+    <div className="panel__settings">
+      <Basic
+        cellSize={cellSize}
         handleChange={handleChange}
-        sortAbundanceFilter={sortAbundanceFilter}
       />
-    </>
+    </div>
   );
 };
 
 Settings.propTypes = {
   handleChange: PropTypes.func.isRequired,
   settings: PropTypes.shape({
-    sortAbundanceFilter: PropTypes.number.isRequired,
+    cellSize: PropTypes.number.isRequired,
   }).isRequired,
 };
 

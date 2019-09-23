@@ -9,7 +9,7 @@ const InputText = ({
   label,
   ...props
 }) => (
-  <StyledInputText>
+  <StyledInputText className="input__container">
     {
       label
       && (

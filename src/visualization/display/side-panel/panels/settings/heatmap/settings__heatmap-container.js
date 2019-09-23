@@ -11,7 +11,6 @@ const SettingsHeatmapContainer = () => {
 
   const handleChange = (e, value) => {
     const { dataset } = e.target;
-    console.log(value);
     dispatch(updateSetting(dataset.setting, value));
   };
 

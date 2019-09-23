@@ -8,7 +8,6 @@ export const defaultState = {
   minAbundance: 0,
   primaryFilter: 0.01,
   secondaryFilter: 0.05,
-  sortAbundanceFilter: 0,
 };
 
 const acceptedColors = {
@@ -41,7 +40,6 @@ const validateSettings = (userSettings, defaultImageType = 'heatmap') => {
     minAbundance,
     primaryFilter,
     secondaryFilter,
-    sortAbundanceFilter,
     ...other
   } = userSettings;
 
@@ -56,8 +54,6 @@ const validateSettings = (userSettings, defaultImageType = 'heatmap') => {
   settings.minAbundance = typeof minAbundance === 'number' ? minAbundance : defaultState.minAbundance;
   settings.primaryFilter = typeof primaryFilter === 'number' ? primaryFilter : defaultState.primaryFilter;
   settings.secondaryFilter = typeof secondaryFilter === 'number' ? secondaryFilter : defaultState.secondaryFilter;
-  settings.sortAbundanceFilter = typeof sortAbundanceFilter === 'number'
-    ? sortAbundanceFilter : defaultState.sortAbundanceFilter;
 
   return settings;
 };

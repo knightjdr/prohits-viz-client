@@ -6,27 +6,27 @@ import Section from '../../section/section';
 
 const Sorting = ({
   handleChange,
-  sortAbundanceFilter,
+  cellSize,
 }) => (
   <>
     <Section
       border={false}
-      title="Reference sorting"
+      title="Basic settings"
     >
       <Input
-        data-setting="sortAbundanceFilter"
-        label="Abundance"
+        data-setting="cellSize"
+        label="Cell size"
         onChange={handleChange}
         type="number"
-        value={sortAbundanceFilter}
+        value={cellSize}
       />
     </Section>
   </>
 );
 
 Sorting.propTypes = {
+  cellSize: PropTypes.number.isRequired,
   handleChange: PropTypes.func.isRequired,
-  sortAbundanceFilter: PropTypes.number.isRequired,
 };
 
 export default Sorting;
