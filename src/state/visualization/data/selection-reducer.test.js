@@ -1,7 +1,6 @@
 import genesReducer, { defaultState } from './selection-reducer';
 import * as actions from './selection-actions';
 import * as fileActions from './interactive-file-actions';
-import * as rowActions from './rows-actions';
 
 describe('Gene selection reducer', () => {
   it('should return an empty initial state', () => {
@@ -52,38 +51,6 @@ describe('Gene selection reducer', () => {
       const expectedState = defaultState;
       expect(genesReducer(undefined, action)).toEqual(expectedState);
     });
-  });
-
-  it('should handle RESTORE_ROWS action', () => {
-    const action = {
-      rows: {
-        list: ['d', 'e', 'f'],
-        mapped: { d: 0, e: 1, f: 2 },
-      },
-      type: rowActions.RESTORE_ROWS,
-    };
-    const expectedState = {
-      ...defaultState,
-      rowMap: { d: 0, e: 1, f: 2 },
-      rows: ['d', 'e', 'f'],
-    };
-    expect(genesReducer(undefined, action)).toEqual(expectedState);
-  });
-
-  it('should handle UPDATE_ROWS action', () => {
-    const action = {
-      rows: {
-        list: ['d', 'e', 'f'],
-        mapped: { d: 0, e: 1, f: 2 },
-      },
-      type: rowActions.UPDATE_ROWS,
-    };
-    const expectedState = {
-      ...defaultState,
-      rowMap: { d: 0, e: 1, f: 2 },
-      rows: ['d', 'e', 'f'],
-    };
-    expect(genesReducer(undefined, action)).toEqual(expectedState);
   });
 
   it('should handle UPDATE_SELECTIONS action', () => {

@@ -8,7 +8,7 @@ import readFile from '../../utils/read-file';
 import removeFileExtenstion from '../../utils/remove-file-ext';
 import useLoading from '../../hooks/loading/use-loading';
 import validate from './validate';
-import { parseFile } from '../../state/visualization/file/interactive-file-actions';
+import { parseFile } from '../../state/visualization/data/interactive-file-actions';
 
 const LoadContainer = () => {
   const dispatch = useDispatch();

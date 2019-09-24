@@ -1,5 +1,6 @@
 import reducer, { defaultState } from './columns-reducer';
 import * as actions from './columns-actions';
+import * as displayActions from '../settings/display-actions';
 import * as fileActions from './interactive-file-actions';
 
 describe('Columns reducer', () => {
@@ -47,13 +48,33 @@ describe('Columns reducer', () => {
     });
   });
 
+  it('should handle RESET_IMAGE action', () => {
+    const currentState = {
+      defaultOrder: [0, 1, 2],
+      names: ['a', 'b', 'c'],
+      order: [1, 2, 0],
+      ref: 1,
+    };
+
+    const action = {
+      type: displayActions.RESET_IMAGE,
+    };
+    const expectedState = {
+      ...currentState,
+      order: [0, 1, 2],
+    };
+    expect(reducer(currentState, action)).toEqual(expectedState);
+  });
+
   it('should handle SET_COLUMN_REFERENCE action', () => {
     const action = {
       ref: 'a',
       type: actions.SET_COLUMN_REFERENCE,
     };
     const expectedState = {
+      defaultOrder: [],
       names: [],
+      order: [],
       ref: 'a',
     };
     expect(reducer(undefined, action)).toEqual(expectedState);

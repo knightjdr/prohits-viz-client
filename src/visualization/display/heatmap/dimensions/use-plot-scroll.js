@@ -3,7 +3,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import debounce from '../../../../utils/debounce';
 import useScroll from '../../../../hooks/scroll/use-scroll';
 import { stateSelector } from '../../../../state/selector/general';
-import { updatePosition } from '../../../../state/visualization/file/position-actions';
+import { updatePosition } from '../../../../state/visualization/data/position-actions';
 
 const Scroll = (ref, wait = 50) => {
   const dispatch = useDispatch();

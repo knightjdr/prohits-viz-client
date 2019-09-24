@@ -7,6 +7,7 @@ import heatmapConfig from '../config';
 import setEdgeSize from './edge-size';
 import getPage from './page';
 import Grid from './grid';
+import rowSelector from '../../../../state/selector/visualization/row-selector';
 import setEdgeRange from './edge-range';
 import setRange from '../../../../utils/set-range';
 import translation from './translation';
@@ -16,7 +17,7 @@ const GridContainer = () => {
   const dimensions = useSelector(state => stateSelector(state, 'dimensions'));
   const [page, setPage] = useState(null);
   const position = useSelector(state => stateSelector(state, 'position'));
-  const rows = useSelector(state => stateSelectorProp(state, 'rows', 'list'));
+  const rows = useSelector(state => rowSelector(state));
   const scoreType = useSelector(state => stateSelectorProp(state, 'parameters', 'scoreType'));
   const settings = useSelector(state => stateSelectorProp(state, 'settings', 'current'));
 

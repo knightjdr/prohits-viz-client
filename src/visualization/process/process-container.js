@@ -6,7 +6,7 @@ import fetch from '../../utils/fetch';
 import fillDefaults from '../defaults/fill';
 import Process from './process';
 import useLoading from '../../hooks/loading/use-loading';
-import { parseFile } from '../../state/visualization/file/interactive-file-actions';
+import { parseFile } from '../../state/visualization/data/interactive-file-actions';
 import { stateSelector } from '../../state/selector/general';
 
 const ProcessContainer = ({

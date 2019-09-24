@@ -1,12 +1,10 @@
 import React, { useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 
-import deepCopy from '../../../../utils/deep-copy';
-import rowMapping from './row-mapping';
 import Sorting from './sorting';
-import sortMethod from './sort-method';
+import rowSort from './row-sort';
 import { stateSelector, stateSelectorProp } from '../../../../state/selector/general';
-import { updateRows } from '../../../../state/visualization/file/rows-actions';
+import { updateRows } from '../../../../state/visualization/data/rows-actions';
 
 /* Sort the rows array based on a specific column as specified
 ** by requestedSortBy, and with reference to another column if ref is a number. */
@@ -17,7 +15,6 @@ const useSortRows = () => {
 
   const names = useSelector(state => stateSelectorProp(state, 'columns', 'names'));
   const rows = useSelector(state => stateSelector(state, 'rows'));
-  const selection = useSelector(state => stateSelector(state, 'selection'));
 
   const {
     direction,
@@ -47,13 +44,9 @@ const useSortRows = () => {
       sortDirection = 'desc';
     }
 
-    const sortedList = deepCopy(list);
-    sortedList.sort(sortMethod(requestedSortBy, sortDirection, refIndex));
+    const order = rowSort(list, requestedSortBy, sortDirection, refIndex);
 
-    // Create row list for selection menu.
-    const updatedSelection = rowMapping(selection.rows, sortedList);
-
-    dispatch(updateRows(sortDirection, sortedList, requestedSortBy, updatedSelection));
+    dispatch(updateRows(sortDirection, order, requestedSortBy));
 
     setSorting(false);
   };

@@ -2,7 +2,7 @@ import { useDispatch, useSelector } from 'react-redux';
 
 import fetch from '../../../../../../utils/fetch';
 import { stateSelector, stateSelectorProp } from '../../../../../../state/selector/general';
-import * as actions from '../../../../../../state/visualization/file/minimap-actions';
+import * as actions from '../../../../../../state/visualization/data/minimap-actions';
 
 const useSync = () => {
   const dispatch = useDispatch();

@@ -1,4 +1,5 @@
 import * as actions from './minimap-actions';
+import * as displayActions from '../settings/display-actions';
 import * as fileActions from './interactive-file-actions';
 import * as rowActions from './rows-actions';
 
@@ -36,7 +37,7 @@ const reducer = (state = { ...defaultState }, action) => {
       return action.file.minimap
         ? action.file.minimap
         : { ...defaultState };
-    case rowActions.RESTORE_ROWS:
+    case displayActions.RESET_IMAGE:
       return {
         ...state,
         isSyncing: false,

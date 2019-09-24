@@ -1,5 +1,6 @@
 import reducer, { defaultState } from './rows-reducer';
 import * as actions from './rows-actions';
+import * as displayActions from '../settings/display-actions';
 import * as fileActions from './interactive-file-actions';
 
 describe('Rows reducer', () => {
@@ -27,6 +28,7 @@ describe('Rows reducer', () => {
       const action = {
         file: {
           rows: {
+            defaultOrder: ['a', 'b', 'c'],
             direction: 'asc',
             list,
             order: ['a', 'b', 'c'],
@@ -36,6 +38,7 @@ describe('Rows reducer', () => {
         type: fileActions.PARSE_INTERACTIVE_FILE,
       };
       const expectedState = {
+        defaultOrder: ['a', 'b', 'c'],
         direction: 'asc',
         list,
         order: ['a', 'b', 'c'],
@@ -54,25 +57,28 @@ describe('Rows reducer', () => {
     });
   });
 
-  it('should handle RESTORE_ROWS action', () => {
+  it('should handle RESET_IMAGE action', () => {
     const list = [
       { data: {}, name: 'a' },
       { data: {}, name: 'b' },
       { data: {}, name: 'c' },
     ];
-    const action = {
-      direction: null,
+    const currentState = {
+      defaultOrder: [0, 1, 2],
       list,
-      sortBy: null,
-      type: actions.RESTORE_ROWS,
+      order: [1, 2, 0],
+    };
+
+    const action = {
+      type: displayActions.RESET_IMAGE,
     };
     const expectedState = {
+      ...currentState,
       direction: null,
-      list,
-      order: [],
+      order: [0, 1, 2],
       sortBy: null,
     };
-    expect(reducer(undefined, action)).toEqual(expectedState);
+    expect(reducer(currentState, action)).toEqual(expectedState);
   });
 
   it('should handle UPDATE_ROWS action', () => {
@@ -81,18 +87,24 @@ describe('Rows reducer', () => {
       { data: {}, name: 'b' },
       { data: {}, name: 'c' },
     ];
+    const currentState = {
+      defaultOrder: [0, 1, 2],
+      list,
+      order: [0, 1, 2],
+    };
+
     const action = {
       direction: 'asc',
-      list,
+      order: [1, 2, 0],
       sortBy: 1,
       type: actions.UPDATE_ROWS,
     };
     const expectedState = {
+      ...currentState,
       direction: 'asc',
-      list,
-      order: [],
+      order: [1, 2, 0],
       sortBy: 1,
     };
-    expect(reducer(undefined, action)).toEqual(expectedState);
+    expect(reducer(currentState, action)).toEqual(expectedState);
   });
 });

@@ -2,10 +2,11 @@ import React, { useMemo, useState } from 'react';
 import { useSelector } from 'react-redux';
 
 import Columns from './columns';
-import names from '../names/names';
+import columnSelector from '../../../../state/selector/visualization/column-selector';
+import parseNames from '../names/names';
 import setFontSize from '../font-size/font-size';
 import useContextMenu from '../context-menu/use-context-menu';
-import { stateSelector, stateSelectorProp } from '../../../../state/selector/general';
+import { stateSelectorProp } from '../../../../state/selector/general';
 
 const ColumnsContainer = () => {
   const [tooltip, setTooltip] = useState({
@@ -14,7 +15,8 @@ const ColumnsContainer = () => {
     text: '',
   });
 
-  const columns = useSelector(state => stateSelector(state, 'columns'));
+  const columnRef = useSelector(state => stateSelectorProp(state, 'columns', 'ref'));
+  const names = useSelector(state => columnSelector(state));
   const pageX = useSelector(state => stateSelectorProp(state, 'dimensions', 'pageX'));
   const settings = useSelector(state => stateSelectorProp(state, 'settings', 'current'));
   const x = useSelector(state => stateSelectorProp(state, 'position', 'x'));
@@ -25,8 +27,8 @@ const ColumnsContainer = () => {
   const fontSize = setFontSize(cellSize);
 
   const columnNames = useMemo(
-    () => names(columns.names, x, pageX, fontSize),
-    [columns.names, x, pageX, fontSize],
+    () => parseNames(names, x, pageX, fontSize),
+    [names, x, pageX, fontSize],
   );
 
   const handleClick = (e) => {
@@ -70,7 +72,7 @@ const ColumnsContainer = () => {
       names={columnNames}
       openContextMenu={contextMenu.open}
       search={{}}
-      reference={columns.ref}
+      reference={columnRef}
       showTooltip={showTooltip}
       sortingNotification={contextMenu.SortingComponent}
       tooltip={tooltip}

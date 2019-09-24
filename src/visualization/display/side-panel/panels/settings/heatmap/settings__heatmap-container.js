@@ -3,7 +3,7 @@ import { useDispatch, useSelector } from 'react-redux';
 
 import SettingsHeatmap from './settings__heatmap';
 import { stateSelectorProp } from '../../../../../../state/selector/general';
-import { updateSetting } from '../../../../../../state/visualization/file/settings-actions';
+import { updateSetting } from '../../../../../../state/visualization/data/settings-actions';
 
 const SettingsHeatmapContainer = () => {
   const dispatch = useDispatch();

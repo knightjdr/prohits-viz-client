@@ -1,5 +1,6 @@
 import reducer, { defaultState } from './minimap-reducer';
 import * as actions from './minimap-actions';
+import * as displayActions from '../settings/display-actions';
 import * as fileActions from './interactive-file-actions';
 import * as rowActions from './rows-actions';
 
@@ -101,9 +102,9 @@ describe('Minimap reducer', () => {
     });
   });
 
-  it('should handle RESTORE_ROWS action', () => {
+  it('should handle RESET_IMAGE action', () => {
     const action = {
-      type: rowActions.RESTORE_ROWS,
+      type: displayActions.RESET_IMAGE,
     };
     const expectedState = {
       ...defaultState,

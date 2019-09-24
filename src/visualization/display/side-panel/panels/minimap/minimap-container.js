@@ -6,7 +6,7 @@ import newPosition from './new-position';
 import setRange from './range';
 import useSync from './sync/use-sync';
 import { stateSelector } from '../../../../../state/selector/general';
-import { updatePosition } from '../../../../../state/visualization/file/position-actions';
+import { updatePosition } from '../../../../../state/visualization/data/position-actions';
 
 const MinimapContainer = () => {
   const [attached, setAttached] = useState(true);

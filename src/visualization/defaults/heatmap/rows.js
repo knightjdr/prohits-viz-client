@@ -1,6 +1,8 @@
+import arrayContains from '../../../utils/array-contains';
 import { arrayShallowEqual } from '../../../utils/array-shallow-equal';
 
 export const defaultState = {
+  defaultOrder: [],
   direction: null,
   list: [],
   order: [],
@@ -15,6 +17,7 @@ const fillRows = (userRows) => {
   }
 
   const {
+    defaultOrder,
     direction,
     list,
     order,
@@ -28,9 +31,11 @@ const fillRows = (userRows) => {
   // Ensure sortBy value is within range of list.
   rows.sortBy = Number.isInteger(sortBy) && sortBy < rows.list.length ? sortBy : null;
 
-  // Ensure row list contains order arr.
-  const listOrder = rows.list.map(item => item.name);
-  rows.order = Array.isArray(order) && arrayShallowEqual(listOrder, order)
+  // Ensure default row order and applied row order are defined.
+  const listOrder = [...Array(rows.list.length).keys()];
+  rows.defaultOrder = Array.isArray(defaultOrder) && arrayShallowEqual(listOrder, defaultOrder)
+    ? defaultOrder : listOrder;
+  rows.order = Array.isArray(order) && order.length > 0 && arrayContains(listOrder, order)
     ? order : listOrder;
 
   return rows;

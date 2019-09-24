@@ -5,7 +5,7 @@ import filterSelection from './filter-selection';
 import sortTarget from './sort-target';
 import updateSource from './update-source';
 import { stateSelector } from '../../../../state/selector/general';
-import { updateSelections } from '../../../../state/visualization/file/selection-actions';
+import { updateSelections } from '../../../../state/visualization/data/selection-actions';
 
 /* useSelections will remove any of the specified arr items that are not in the
 ** source list or that are in the target list. It will add the remaining to target list

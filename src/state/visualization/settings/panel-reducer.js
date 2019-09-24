@@ -1,5 +1,5 @@
 import * as actions from './panel-actions';
-import * as fileActions from '../file/interactive-file-actions';
+import * as fileActions from '../data/interactive-file-actions';
 
 export const defaultState = {
   open: true,

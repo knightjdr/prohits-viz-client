@@ -1,6 +1,5 @@
 import * as actions from './selection-actions';
 import * as fileActions from './interactive-file-actions';
-import * as rowActions from './rows-actions';
 
 export const defaultState = {
   columnMap: {},
@@ -33,18 +32,6 @@ const reducer = (state = defaultState, action) => {
           rows: [],
           rowsSelected: [],
         };
-    case rowActions.RESTORE_ROWS:
-      return {
-        ...state,
-        rowMap: action.rows.mapped,
-        rows: action.rows.list,
-      };
-    case rowActions.UPDATE_ROWS:
-      return {
-        ...state,
-        rowMap: action.rows.mapped,
-        rows: action.rows.list,
-      };
     case actions.UPDATE_SELECTIONS:
       return {
         ...state,

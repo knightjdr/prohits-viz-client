@@ -4,7 +4,7 @@ import { useDispatch, useSelector } from 'react-redux';
 
 import download from '../../../../../utils/download';
 import Info from './info';
-import { clearFile } from '../../../../../state/visualization/file/interactive-file-actions';
+import { clearFile } from '../../../../../state/visualization/data/interactive-file-actions';
 import { stateSelector } from '../../../../../state/selector/general';
 
 const InfoContainer = () => {

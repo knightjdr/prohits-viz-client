@@ -4,7 +4,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import ContextMenu from './context-menu';
 import useSelections from '../selections/use-selections';
 import useSortRows from '../sort/use-sort-rows';
-import { setReference } from '../../../../state/visualization/file/columns-actions';
+import { setReference } from '../../../../state/visualization/data/columns-actions';
 import { stateSelectorProp } from '../../../../state/selector/general';
 
 const useContextMenu = (name = 'contextMenu', containerType = 'columns') => {

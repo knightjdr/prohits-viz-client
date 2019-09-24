@@ -1,6 +1,6 @@
 import reducer, { defaultState } from './panel-reducer';
 import * as actions from './panel-actions';
-import * as fileActions from '../file/interactive-file-actions';
+import * as fileActions from '../data/interactive-file-actions';
 
 describe('Panel reducer', () => {
   it('should return default initial state', () => {
