@@ -12,7 +12,6 @@ const Span = styled.span`
   }
 
   label {
-    font-size: 1em;
     margin-right: 8px;
     position: relative;
   }

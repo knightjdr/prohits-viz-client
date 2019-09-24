@@ -16,7 +16,8 @@ const Span = styled.span`
     padding: 0 10px;
     transition-duration: 0.3s;
     transition-property: all;
-    transition-timing-function: ${props => props.theme.timingFunction || 'ease'}
+    transition-timing-function: ${props => props.theme.timingFunction || 'ease'};
+    width: auto;
   }
 
   input:focus,
