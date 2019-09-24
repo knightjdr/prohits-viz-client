@@ -32,7 +32,7 @@ const Image = ({
       >
         <img
           alt="Mini map"
-          src={minimap.synchedImage || minimap.image}
+          src={minimap.syncedImage || minimap.image}
           style={{
             maxHeight: imgLimits.height,
             maxWidth: imgLimits.width,
@@ -71,7 +71,7 @@ Image.propTypes = {
     isSyncing: PropTypes.bool,
     needSyncing: PropTypes.bool,
     syncError: PropTypes.bool,
-    synchedImage: PropTypes.string,
+    syncedImage: PropTypes.string,
   }).isRequired,
   pageOutline: PropTypes.shape({
     height: PropTypes.string,
