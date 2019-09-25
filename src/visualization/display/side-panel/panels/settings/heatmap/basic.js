@@ -17,9 +17,10 @@ const Sorting = ({
     >
       <Select
         label="Image Type"
+        onChange={() => {}}
         options={[
-          { text: 'dot plot', value: 'dotplot' },
-          { text: 'heat map', value: 'heatmap' },
+          { label: 'dot plot', value: 'dotplot' },
+          { label: 'heat map', value: 'heatmap' },
         ]}
         value={imageType}
       />

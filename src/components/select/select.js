@@ -1,20 +1,25 @@
 import PropTypes from 'prop-types';
-import React from 'react';
+import React, { forwardRef } from 'react';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faAngleDown } from '@fortawesome/pro-solid-svg-icons';
 
 import StyledSelect from './select-style';
 
-const Select = ({
-  dropdownVisibility,
-  handleChange,
-  label,
-  options,
-  selectID,
-  toggleDropdown,
-  value,
-  ...props
-}) => (
+const CustomSelect = forwardRef((
+  {
+    handleChange,
+    handleOptionKeyDown,
+    isDropdownVisible,
+    label,
+    options,
+    selectID,
+    selectedText,
+    toggleOnClick,
+    toggleOnKeydown,
+    value,
+  },
+  ref,
+) => (
   <StyledSelect className="select__container">
     {
       label
@@ -25,48 +30,65 @@ const Select = ({
         </label>
       )
     }
-    <span className="select__dropdown-container">
-      <select
-        id={selectID}
-        onChange={handleChange}
-        value={value}
-        {...props}
+    <span
+      className="select__dropdown"
+      ref={ref}
+    >
+      <span className="select__input-container">
+        <input
+          id={selectID}
+          onClick={toggleOnClick}
+          onKeyDown={toggleOnKeydown}
+          ref={ref}
+          type="button"
+          value={selectedText}
+        />
+        <FontAwesomeIcon
+          className={isDropdownVisible ? 'select__arrow select__arrow_up' : 'select__arrow select__arrow_down'}
+          icon={faAngleDown}
+        />
+      </span>
+      <div
+        aria-activedescendant={value}
+        aria-label={`${label} options`}
+        className={isDropdownVisible ? 'select__menu select__menu_visible' : 'select__menu'}
+        onClick={handleChange}
+        onKeyDown={handleOptionKeyDown}
+        onKeyPress={handleOptionKeyDown}
+        role="listbox"
+        tabIndex={isDropdownVisible ? 0 : -1}
       >
         {
           options.map(option => (
-            <option
+            <button
+              aria-selected={option.value === value}
+              data-value={option.value}
+              className="select__option"
+              id={option.value}
               key={option.value}
+              role="option"
+              tabIndex={isDropdownVisible ? 0 : -1}
+              type="button"
             >
-              {option.text}
-            </option>
+              {option.label}
+            </button>
           ))
         }
-      </select>
-      <span className="select__dropdown">
-        <button
-          className="select__selected-value"
-          onClick={toggleDropdown}
-          type="button"
-        >
-          {value}
-          <FontAwesomeIcon
-            className={dropdownVisibility ? 'select__arrow_open' : undefined}
-            icon={faAngleDown}
-          />
-        </button>
-      </span>
+      </div>
     </span>
   </StyledSelect>
-);
+));
 
-Select.defaultProps = {
+CustomSelect.defaultProps = {
   label: '',
+  selectedText: '',
   value: undefined,
 };
 
-Select.propTypes = {
-  dropdownVisibility: PropTypes.bool.isRequired,
+CustomSelect.propTypes = {
   handleChange: PropTypes.func.isRequired,
+  handleOptionKeyDown: PropTypes.func.isRequired,
+  isDropdownVisible: PropTypes.bool.isRequired,
   label: PropTypes.string,
   options: PropTypes.arrayOf(
     PropTypes.shape({
@@ -81,11 +103,13 @@ Select.propTypes = {
     }),
   ).isRequired,
   selectID: PropTypes.string.isRequired,
-  toggleDropdown: PropTypes.func.isRequired,
+  selectedText: PropTypes.string,
+  toggleOnClick: PropTypes.func.isRequired,
+  toggleOnKeydown: PropTypes.func.isRequired,
   value: PropTypes.oneOfType([
     PropTypes.number,
     PropTypes.string,
   ]),
 };
 
-export default Select;
+export default CustomSelect;

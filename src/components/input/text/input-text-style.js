@@ -16,13 +16,18 @@ const Span = styled.span`
     padding: 0 10px;
     transition-duration: 0.3s;
     transition-property: all;
-    transition-timing-function: ${props => props.theme.timingFunction || 'ease'};
+    transition-timing-function: ${props => props.theme.timingFunction};
     width: auto;
   }
 
   input:focus,
   input:hover {
     border-color: ${props => props.theme.colorPrimary1};
+  }
+
+  input:focus {
+    outline: none;
+    -webkit-focus-ring-color: none;
   }
 
   label {

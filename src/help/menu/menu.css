@@ -26,6 +26,9 @@
   cursor: pointer;
   display: block;
   padding: 5px;
+  transition-duration: 0.3s;
+  transition-property: background-color;
+  transition-timing-function: inherit;
 }
 .help__menu a.active {
   background-color: var(--colorPrimary2);

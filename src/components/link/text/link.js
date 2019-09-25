@@ -15,13 +15,11 @@ const A = styled.a`
 
   &:hover,
   &:active {
-    color: #23527c;
     text-decoration: underline;
   }
 
   ${props => (!props.outline
     && css`&:focus {
-      color: #23527c;
       outline: none;
       text-decoration: underline;
     }`
