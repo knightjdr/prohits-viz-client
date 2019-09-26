@@ -27,6 +27,7 @@ const CustomSelect = forwardRef((
     toggleOnClick,
     toggleOnKeydown,
     value,
+    ...props
   },
   ref,
 ) => (
@@ -66,6 +67,7 @@ const CustomSelect = forwardRef((
         onKeyPress={handleKeyPress}
         role="listbox"
         tabIndex={isDropdownVisible ? 0 : -1}
+        {...props}
       >
         {
           options.map(option => (

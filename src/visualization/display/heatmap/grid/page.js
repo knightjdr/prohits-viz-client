@@ -61,13 +61,15 @@ const page = (
   return rows.slice(pageStart.y, pageEnd.y).map((row, i) => (
     row.data.slice(pageStart.x, pageEnd.x).map((item, j) => {
       const fillColor = fillGradient[fillRange(item.value)];
-      const key = `${row.name}-${i}-${j}`;
+      const key = `${row.name}-${pageStart.y + i}-${pageStart.x + j}`;
       return (
-        <circle
+        <rect
+          fill={fillColor}
+          height={cellSize}
+          key={key}
+          width={cellSize}
           x={(j * cellSize) + xPadding}
           y={(i * cellSize) + yPadding}
-          fill={fillColor}
-          key={key}
         />
       );
     })

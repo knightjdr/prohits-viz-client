@@ -14,7 +14,7 @@ const InputTextContainer = ({
 
   const handleBlur = (e) => {
     if (onChange) {
-      onChange(e, inputValue);
+      onChange(e, id, inputValue);
     }
   };
 
@@ -29,7 +29,7 @@ const InputTextContainer = ({
     const { keyCode, which } = e;
 
     if (onChange && (keyCode === 13 || which === 13)) {
-      onChange(e, inputValue);
+      onChange(e, id, inputValue);
     }
   };
 

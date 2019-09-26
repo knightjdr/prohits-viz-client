@@ -12,7 +12,7 @@ const InputCheckboxContainer = ({
   const handleChange = (e) => {
     if (onChange) {
       const { checked } = e.target;
-      onChange(e, checked);
+      onChange(e, id, checked);
     }
   };
 

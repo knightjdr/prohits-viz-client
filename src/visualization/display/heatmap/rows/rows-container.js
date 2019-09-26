@@ -5,6 +5,7 @@ import Columns from './rows';
 import names from '../names/names';
 import setFontSize from '../font-size/font-size';
 import useContextMenu from '../context-menu/use-context-menu';
+import { rowNamesSelector } from '../../../../state/selector/visualization/row-selector';
 import { stateSelectorProp } from '../../../../state/selector/general';
 
 const RowsContainer = () => {
@@ -14,7 +15,7 @@ const RowsContainer = () => {
     text: '',
   });
 
-  const list = useSelector(state => stateSelectorProp(state, 'rows', 'list'));
+  const orderedNames = useSelector(state => rowNamesSelector(state));
   const pageY = useSelector(state => stateSelectorProp(state, 'dimensions', 'pageY'));
   const settings = useSelector(state => stateSelectorProp(state, 'settings', 'current'));
   const y = useSelector(state => stateSelectorProp(state, 'position', 'y'));
@@ -24,10 +25,9 @@ const RowsContainer = () => {
   const { cellSize } = settings;
   const fontSize = setFontSize(cellSize);
 
-  const order = useMemo(() => list.map(row => row.name), [list]);
   const rowNames = useMemo(
-    () => names(order, y, pageY, fontSize),
-    [order, y, pageY, fontSize],
+    () => names(orderedNames, y, pageY, fontSize),
+    [orderedNames, y, pageY, fontSize],
   );
 
   const handleClick = (e) => {

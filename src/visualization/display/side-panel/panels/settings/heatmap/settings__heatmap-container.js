@@ -9,9 +9,8 @@ const SettingsHeatmapContainer = () => {
   const dispatch = useDispatch();
   const settings = useSelector(state => stateSelectorProp(state, 'settings', 'current'));
 
-  const handleChange = (e, value) => {
-    const { dataset } = e.target;
-    dispatch(updateSetting(dataset.setting, value));
+  const handleChange = (e, name, value) => {
+    dispatch(updateSetting(name, value));
   };
 
   return (

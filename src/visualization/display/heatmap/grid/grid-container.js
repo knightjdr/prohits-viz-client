@@ -7,10 +7,10 @@ import heatmapConfig from '../config';
 import setEdgeSize from './edge-size';
 import getPage from './page';
 import Grid from './grid';
-import rowSelector from '../../../../state/selector/visualization/row-selector';
 import setEdgeRange from './edge-range';
 import setRange from '../../../../utils/set-range';
 import translation from './translation';
+import { rowSelector } from '../../../../state/selector/visualization/row-selector';
 import { stateSelector, stateSelectorProp } from '../../../../state/selector/general';
 
 const GridContainer = () => {

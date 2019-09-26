@@ -16,7 +16,6 @@ const SelectContainer = ({
 }) => {
   const dropdownRef = useRef(null);
   const [dropdownDirection, setDropdownDirection] = useState('down');
-  const [dropdownHeight, setDropdownHeight] = useState(0);
   const [isDropdownVisible, setDropdownVisibility] = useState(false);
   const [searchText, setSearchText] = useState('');
 
@@ -47,7 +46,7 @@ const SelectContainer = ({
     if (onChange) {
       const { dataset } = e.target;
       const parsedValue = dataset.value;
-      onChange(e, parsedValue);
+      onChange(e, id, parsedValue);
     }
     setDropdownVisibility(false);
   };

@@ -16,8 +16,9 @@ const Sorting = ({
       title="Basic settings"
     >
       <Select
+        id="imageType"
         label="Image Type"
-        onChange={() => {}}
+        onChange={handleChange}
         options={[
           { label: 'dot plot', value: 'dotplot' },
           { label: 'heat map', value: 'heatmap' },
@@ -25,7 +26,7 @@ const Sorting = ({
         value={imageType}
       />
       <Input
-        data-setting="cellSize"
+        id="cellSize"
         label="Cell size"
         onChange={handleChange}
         type="number"
