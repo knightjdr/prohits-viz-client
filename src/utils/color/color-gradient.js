@@ -52,7 +52,7 @@ const biDirection = (colorSpace, numColors) => {
 const monoDirection = (colorSpace, numColors) => {
   let h;
   let s;
-  if (colorSpace === 'greenBlack') {
+  if (colorSpace === 'green') {
     // Middle HSL value = (120, 100%, 50%).
     h = 120 / 360;
     s = 1;
@@ -60,15 +60,15 @@ const monoDirection = (colorSpace, numColors) => {
     // Middle HSL value = (0, 0%, 50%).
     h = 0;
     s = 0;
-  } else if (colorSpace === 'redBlack') {
+  } else if (colorSpace === 'red') {
     // Middle HSL value = (0, 100%, 50%).
     h = 0;
     s = 1;
-  } else if (colorSpace === 'yellowBlack') {
+  } else if (colorSpace === 'yellow') {
     // Middle HSL value = (60, 100%, 50%).
     h = 60 / 360;
     s = 1;
-  } else { // default blueBlack
+  } else { // default blue
     // Middle (HSL value = (225, 100%, 50%).
     h = 0.625;
     s = 1;

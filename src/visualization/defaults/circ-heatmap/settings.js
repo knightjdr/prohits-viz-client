@@ -5,11 +5,11 @@ export const defaultState = {
 
 export const defaultSegmentState = {
   abundanceCap: 50,
-  color: 'blueBlack',
+  color: 'blue',
   minAbundance: 0,
 };
 
-const acceptedColors = ['blueBlack', 'blueRed', 'blueYellow', 'greenBlack', 'greyscale', 'redBlack', 'yellowBlack'];
+const acceptedColors = ['blue', 'blueRed', 'blueYellow', 'green', 'greyscale', 'red', 'yellow'];
 
 const fillSegments = length => Array.from(Array(length)).map(() => ({ ...defaultSegmentState }));
 

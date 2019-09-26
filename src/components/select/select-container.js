@@ -16,6 +16,7 @@ const SelectContainer = ({
 }) => {
   const dropdownRef = useRef(null);
   const [dropdownDirection, setDropdownDirection] = useState('down');
+  const [dropdownHeight, setDropdownHeight] = useState(0);
   const [isDropdownVisible, setDropdownVisibility] = useState(false);
   const [searchText, setSearchText] = useState('');
 
@@ -28,7 +29,10 @@ const SelectContainer = ({
   useClickOutside(dropdownRef, closeDropdown);
 
   const findOption = (text) => {
-    const index = options.findIndex(option => option.label.startsWith(text));
+    if (!findOption.selectableOptions) {
+      findOption.selectableOptions = options.filter(option => !option.optGroup);
+    }
+    const index = findOption.selectableOptions.findIndex(option => option.label.startsWith(text));
 
     if (index > -1) {
       const { elements } = getOptionElements(dropdownRef.current);

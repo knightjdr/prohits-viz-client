@@ -6,8 +6,8 @@ describe('Fill settings', () => {
       current: {
         abundanceCap: 40,
         cellSize: 10,
-        edgeColor: 'yellowBlack',
-        fillColor: 'yellowBlack',
+        edgeColor: 'yellow',
+        fillColor: 'yellow',
         imageType: 'dotplot',
         invertColor: true,
         minAbundance: 1,
@@ -18,8 +18,8 @@ describe('Fill settings', () => {
       default: {
         abundanceCap: 40,
         cellSize: 10,
-        edgeColor: 'yellowBlack',
-        fillColor: 'yellowBlack',
+        edgeColor: 'yellow',
+        fillColor: 'yellow',
         imageType: 'dotplot',
         invertColor: true,
         minAbundance: 1,

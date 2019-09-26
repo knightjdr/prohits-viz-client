@@ -47,7 +47,6 @@ const Span = styled.span`
     display: inline-block;
     position: relative;
     width: 100%;
-    z-index: 5;
   }
 
   .select__dropdown {
@@ -57,6 +56,7 @@ const Span = styled.span`
     list-style: none;
     max-height: 350px;
     opacity: 0;
+    overflow-y: auto;
     padding: 0;
     position: absolute;
     top: 35px;
@@ -66,6 +66,7 @@ const Span = styled.span`
     transition-property: all;
     transition-timing-function: inherit;
     width: 100%;
+    z-index: 5;
   }
   .select__dropdown_up {
     bottom: 35px;
@@ -83,6 +84,17 @@ const Span = styled.span`
     width: 100%;
   }
 
+  .select__opt-group {
+    background-color: #eeeeee;
+    box-sizing: border-box;
+    color: rgba(0, 0, 0, 0.7);
+    font-size: 0.9em;
+    height: 30px;
+    padding: 4px 10px;
+    text-align: center;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+  }
   .select__option {
     box-sizing: border-box;
     height: 35px;

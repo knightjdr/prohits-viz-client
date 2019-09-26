@@ -21,14 +21,14 @@ describe('Settings reducer', () => {
     const action = {
       file: {
         settings: {
-          current: { fillColor: 'greenBlack' },
+          current: { fillColor: 'green' },
           default: {},
         },
       },
       type: fileActions.PARSE_INTERACTIVE_FILE,
     };
     const expectedState = {
-      current: { fillColor: 'greenBlack' },
+      current: { fillColor: 'green' },
       default: {},
       reset: false,
     };

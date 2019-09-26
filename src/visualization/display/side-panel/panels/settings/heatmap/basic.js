@@ -5,7 +5,7 @@ import Input from '../../../../../../components/input/text/input-text-container'
 import Section from '../../section/section';
 import Select from '../../../../../../components/select/select-container';
 
-const Sorting = ({
+const Basic = ({
   cellSize,
   handleChange,
   imageType,
@@ -36,10 +36,10 @@ const Sorting = ({
   </>
 );
 
-Sorting.propTypes = {
+Basic.propTypes = {
   cellSize: PropTypes.number.isRequired,
   handleChange: PropTypes.func.isRequired,
   imageType: PropTypes.string.isRequired,
 };
 
-export default Sorting;
+export default Basic;

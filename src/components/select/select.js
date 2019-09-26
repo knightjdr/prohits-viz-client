@@ -1,6 +1,8 @@
 import PropTypes from 'prop-types';
 import React, { forwardRef } from 'react';
 
+import OptGroup from './opt-group';
+import Option from './option';
 import StyledSelect from './select-style';
 import { ReactComponent as AngleDown } from './angle-down.svg';
 
@@ -71,18 +73,22 @@ const CustomSelect = forwardRef((
       >
         {
           options.map(option => (
-            <div
-              aria-selected={option.value === value}
-              data-value={option.value}
-              className="select__option"
-              id={option.value}
-              key={option.value}
-              role="option"
-              tabIndex={isDropdownVisible ? 0 : -1}
-              title={option.label}
-            >
-              {option.label}
-            </div>
+            option.optGroup
+              ? (
+                <OptGroup
+                  key={option.label}
+                  label={option.label}
+                />
+              )
+              : (
+                <Option
+                  key={option.value}
+                  label={option.label}
+                  selectedValue={value}
+                  value={option.value}
+                  visible={isDropdownVisible}
+                />
+              )
           ))
         }
       </div>

@@ -1,8 +1,8 @@
 export const defaultState = {
   abundanceCap: 50,
   cellSize: 15,
-  edgeColor: 'blueBlack',
-  fillColor: 'blueBlack',
+  edgeColor: 'blue',
+  fillColor: 'blue',
   imageType: 'heatmap',
   invertColor: false,
   minAbundance: 0,
@@ -11,13 +11,13 @@ export const defaultState = {
 };
 
 const acceptedColors = {
-  blueBlack: true,
+  blue: true,
   blueRed: true,
   blueYellow: true,
-  greenBlack: true,
+  green: true,
   greyscale: true,
-  redBlack: true,
-  yellowBlack: true,
+  red: true,
+  yellow: true,
 };
 
 const acceptedImageTypes = {

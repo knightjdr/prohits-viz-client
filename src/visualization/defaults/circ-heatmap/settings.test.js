@@ -11,8 +11,8 @@ describe('Fill settings', () => {
         known: false,
         plot: 1,
         segments: [
-          { abundanceCap: 40, color: 'yellowBlack', minAbundance: 1 },
-          { abundanceCap: 40, color: 'yellowBlack', minAbundance: 1 },
+          { abundanceCap: 40, color: 'yellow', minAbundance: 1 },
+          { abundanceCap: 40, color: 'yellow', minAbundance: 1 },
         ],
         otherField: 1,
       },
@@ -33,8 +33,8 @@ describe('Fill settings', () => {
         known: 'false',
         plot: 2,
         segments: [
-          { abundanceCap: 40, color: 'yellowBlack', minAbundance: 1 },
-          { abundanceCap: 40, color: 'yellowBlack', minAbundance: 1 },
+          { abundanceCap: 40, color: 'yellow', minAbundance: 1 },
+          { abundanceCap: 40, color: 'yellow', minAbundance: 1 },
         ],
       },
     };
@@ -97,7 +97,7 @@ describe('Fill settings', () => {
           known: false,
           plot: 1,
           segments: [
-            { abundanceCap: 40, color: 'yellowBlack', minAbundance: 1 },
+            { abundanceCap: 40, color: 'yellow', minAbundance: 1 },
           ],
         },
       };
