@@ -26,7 +26,6 @@ const InputText = ({
       onBlur={handleBlur}
       onChange={handleChange}
       onKeyDown={handleKeyDown}
-      onKeyPress={handleKeyDown}
       {...props}
     />
   </StyledInputText>

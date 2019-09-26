@@ -1,14 +1,24 @@
 import PropTypes from 'prop-types';
 import React, { forwardRef } from 'react';
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faAngleDown } from '@fortawesome/pro-solid-svg-icons';
 
 import StyledSelect from './select-style';
+import { ReactComponent as AngleDown } from './angle-down.svg';
+
+const setDropdownClass = (direction, isVisible) => {
+  const classses = ['select__dropdown', `select__dropdown_${direction}`];
+
+  if (isVisible) {
+    classses.push('select__dropdown_visible');
+  }
+  return classses.join(' ');
+};
 
 const CustomSelect = forwardRef((
   {
+    dropdownDirection,
     handleChange,
-    handleOptionKeyDown,
+    handleKeyDown,
+    handleKeyPress,
     isDropdownVisible,
     label,
     options,
@@ -31,7 +41,7 @@ const CustomSelect = forwardRef((
       )
     }
     <span
-      className="select__dropdown"
+      className="select__dropdown-container"
       ref={ref}
     >
       <span className="select__input-container">
@@ -43,24 +53,23 @@ const CustomSelect = forwardRef((
           type="button"
           value={selectedText}
         />
-        <FontAwesomeIcon
+        <AngleDown
           className={isDropdownVisible ? 'select__arrow select__arrow_up' : 'select__arrow select__arrow_down'}
-          icon={faAngleDown}
         />
       </span>
       <div
         aria-activedescendant={value}
         aria-label={`${label} options`}
-        className={isDropdownVisible ? 'select__menu select__menu_visible' : 'select__menu'}
+        className={setDropdownClass(dropdownDirection, isDropdownVisible)}
         onClick={handleChange}
-        onKeyDown={handleOptionKeyDown}
-        onKeyPress={handleOptionKeyDown}
+        onKeyDown={handleKeyDown}
+        onKeyPress={handleKeyPress}
         role="listbox"
         tabIndex={isDropdownVisible ? 0 : -1}
       >
         {
           options.map(option => (
-            <button
+            <div
               aria-selected={option.value === value}
               data-value={option.value}
               className="select__option"
@@ -68,10 +77,10 @@ const CustomSelect = forwardRef((
               key={option.value}
               role="option"
               tabIndex={isDropdownVisible ? 0 : -1}
-              type="button"
+              title={option.label}
             >
               {option.label}
-            </button>
+            </div>
           ))
         }
       </div>
@@ -86,8 +95,10 @@ CustomSelect.defaultProps = {
 };
 
 CustomSelect.propTypes = {
+  dropdownDirection: PropTypes.string.isRequired,
   handleChange: PropTypes.func.isRequired,
-  handleOptionKeyDown: PropTypes.func.isRequired,
+  handleKeyDown: PropTypes.func.isRequired,
+  handleKeyPress: PropTypes.func.isRequired,
   isDropdownVisible: PropTypes.bool.isRequired,
   label: PropTypes.string,
   options: PropTypes.arrayOf(
