@@ -1,24 +1,35 @@
 import nanoid from 'nanoid';
 import PropTypes from 'prop-types';
-import React from 'react';
+import React, { useState } from 'react';
 
 import InputText from './input-text';
 
 const InputTextContainer = ({
   id,
   onChange,
+  value,
   ...props
 }) => {
-  const handleChange = (e) => {
+  const [inputValue, setInputValue] = useState(value);
+
+  const handleBlur = (e) => {
     if (onChange) {
-      const { type, value } = e.target;
+      onChange(e, inputValue);
+    }
+  };
 
-      let parsedValue = value;
-      if (type === 'number') {
-        parsedValue = Number(value);
-      }
+  const handleChange = (e) => {
+    const { target } = e;
 
-      onChange(e, parsedValue);
+    const parsedValue = target.type === 'number' ? Number(target.value) : target.value;
+    setInputValue(parsedValue);
+  };
+
+  const handleKeyDown = (e) => {
+    const { keyCode, which } = e;
+
+    if (onChange && (keyCode === 13 || which === 13)) {
+      onChange(e, inputValue);
     }
   };
 
@@ -26,8 +37,11 @@ const InputTextContainer = ({
 
   return (
     <InputText
+      handleBlur={handleBlur}
       handleChange={handleChange}
+      handleKeyDown={handleKeyDown}
       inputID={inputID}
+      value={inputValue}
       {...props}
     />
   );
@@ -36,11 +50,16 @@ const InputTextContainer = ({
 InputTextContainer.defaultProps = {
   id: undefined,
   onChange: undefined,
+  value: undefined,
 };
 
 InputTextContainer.propTypes = {
   id: PropTypes.string,
   onChange: PropTypes.func,
+  value: PropTypes.oneOfType([
+    PropTypes.number,
+    PropTypes.string,
+  ]),
 };
 
 export default InputTextContainer;

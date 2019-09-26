@@ -4,7 +4,9 @@ import React from 'react';
 import StyledInputText from './input-text-style';
 
 const InputText = ({
+  handleBlur,
   handleChange,
+  handleKeyDown,
   inputID,
   label,
   ...props
@@ -21,7 +23,10 @@ const InputText = ({
     }
     <input
       id={inputID}
+      onBlur={handleBlur}
       onChange={handleChange}
+      onKeyDown={handleKeyDown}
+      onKeyPress={handleKeyDown}
       {...props}
     />
   </StyledInputText>
@@ -32,7 +37,9 @@ InputText.defaultProps = {
 };
 
 InputText.propTypes = {
+  handleBlur: PropTypes.func.isRequired,
   handleChange: PropTypes.func.isRequired,
+  handleKeyDown: PropTypes.func.isRequired,
   inputID: PropTypes.string.isRequired,
   label: PropTypes.string,
 };
