@@ -55,7 +55,7 @@ const Button = styled.button`
 
     &:focus,
     &:hover {
-      background-color: ${props.theme.accentPrimary1};
+      background-color: ${props.theme.colorPrimary2};
       color: ${props.theme.colorPrimary1};
     }`
   )}
@@ -96,14 +96,15 @@ const Button = styled.button`
 
   ${props => (props.kind === 'warning'
     && css`&{
-      background-color: ${props.theme.warning};
+      background-color: ${props.theme.warning1};
       border-radius: 50%;
-      color: #110D0D;
+      color: ${props.theme.fontLight};
     }
 
     &:focus,
     &:hover {
-      background-color: ${props.theme.colorPrimary1};
+      background-color: ${props.theme.warning2};
+      color: ${props.theme.fontDark};
     }`
   )}
 `;

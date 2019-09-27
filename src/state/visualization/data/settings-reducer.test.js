@@ -30,7 +30,6 @@ describe('Settings reducer', () => {
     const expectedState = {
       current: { fillColor: 'green' },
       default: {},
-      reset: false,
     };
     expect(reducer(undefined, action)).toEqual(expectedState);
   });
@@ -41,7 +40,6 @@ describe('Settings reducer', () => {
     };
     const expectedState = {
       ...defaultState,
-      reset: true,
     };
     expect(reducer(undefined, action)).toEqual(expectedState);
   });
@@ -58,7 +56,6 @@ describe('Settings reducer', () => {
         ...defaultState.current,
         imageType: 'test',
       },
-      reset: false,
     };
     expect(reducer(undefined, action)).toEqual(expectedState);
   });

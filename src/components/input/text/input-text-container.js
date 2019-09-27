@@ -1,6 +1,6 @@
 import nanoid from 'nanoid';
 import PropTypes from 'prop-types';
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 
 import InputText from './input-text';
 
@@ -11,6 +11,10 @@ const InputTextContainer = ({
   ...props
 }) => {
   const [inputValue, setInputValue] = useState(value);
+
+  useEffect(() => {
+    setInputValue(value);
+  }, [value]);
 
   const handleBlur = (e) => {
     if (onChange) {

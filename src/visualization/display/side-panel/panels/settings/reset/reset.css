@@ -1,0 +1,17 @@
+.settings__reset {
+  align-items: center;
+  display: flex;
+  justify-content: center;
+}
+
+.settings__reset > button {
+  margin: 0 10px;
+}
+
+.settings__reset-description {
+  background-color: var(--alert);
+  border: 1px solid rgba(0, 0, 0, 0.25);
+  border-radius: 3px;
+  margin-top: 20px;
+  padding: 5px 8px;
+}

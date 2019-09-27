@@ -77,14 +77,14 @@ const Button = styled.button`
 
   ${props => (props.kind === 'warning'
     && css`& {
-      background-color: ${props.theme.warning};
+      background-color: ${props.theme.warning1};
       border-color: transparent;
       color: #420802;
     }
     &:focus,
     &:hover {
       background-color: #fff;
-      border-color: ${props.theme.warning};
+      border-color: ${props.theme.warning1};
     }`
   )};
 

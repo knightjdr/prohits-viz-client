@@ -17,7 +17,7 @@ const Span = styled.span`
     font-size: 1em;
   }
   h1 svg {
-    color: ${props => props.theme.warning};
+    color: ${props => props.theme.warning1};
     margin-right: 8px;
   }
   .popconfirm__buttons {

@@ -68,7 +68,10 @@ const fillSettings = (userSettings) => {
 
   const settings = {};
   settings.current = validateSettings(userSettings.current);
-  settings.default = validateSettings(userSettings.default, settings.current.imageType);
+  settings.default = validateSettings(
+    userSettings.default || settings.current,
+    settings.current.imageType,
+  );
 
   return settings;
 };

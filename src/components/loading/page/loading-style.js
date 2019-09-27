@@ -7,7 +7,7 @@ const Div = styled.div`
   justify-content: center;
 
   .loading__icon {
-    color: ${props => props.theme.warning};
+    color: ${props => props.theme.warning1};
     margin-right: 10px;
   }
 `;
