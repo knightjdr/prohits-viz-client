@@ -1,41 +1,65 @@
 import nanoid from 'nanoid';
 import PropTypes from 'prop-types';
-import React, { useRef, useState } from 'react';
+import React, { useMemo, useRef, useState } from 'react';
 
+import DropdownPortal from './dropdown-portal';
 import Select from './select';
 
+import calculateDropdownLayout from './calculate-dropdown-layout';
 import getOptionElements from './get-option-elements';
+import parseOptions from './parse-options';
 import useClickOutside from '../../hooks/click-outside/use-click-outside';
+import usePortal from '../../hooks/portal/use-portal';
 
 const SelectContainer = ({
   id,
   onChange,
+  openDirection,
   options,
   value,
   ...props
 }) => {
-  const dropdownRef = useRef(null);
+  const inputRef = useRef(null);
+  const portalRef = useRef(null);
   const [dropdownDirection, setDropdownDirection] = useState('down');
-  const [dropdownHeight, setDropdownHeight] = useState(0);
+  const [dropdownLayout, setDropdownLayout] = useState({});
   const [isDropdownVisible, setDropdownVisibility] = useState(false);
   const [searchText, setSearchText] = useState('');
 
-  const closeDropdown = () => {
+  const inputID = id || nanoid();
+  const portalID = `${id}-root`;
+  const selectedText = options.find(option => option.value === value).label;
+
+  const portal = usePortal(portalID);
+
+  const optionSettings = useMemo(
+    () => parseOptions(options),
+    [options],
+  );
+
+  const returnFocus = () => {
+    inputRef.current.firstChild.focus();
+  };
+
+  const closeDropdown = (e) => {
     if (isDropdownVisible) {
       setDropdownVisibility(false);
+      const { keyCode, which } = e;
+      if (keyCode === 27 || which === 27) {
+        returnFocus();
+      }
     }
   };
 
-  useClickOutside(dropdownRef, closeDropdown);
+  useClickOutside(inputRef, closeDropdown);
 
   const findOption = (text) => {
-    if (!findOption.selectableOptions) {
-      findOption.selectableOptions = options.filter(option => !option.optGroup);
-    }
-    const index = findOption.selectableOptions.findIndex(option => option.label.startsWith(text));
+    const index = optionSettings.selectableOptions.findIndex(option => (
+      option.label.startsWith(text)
+    ));
 
     if (index > -1) {
-      const { elements } = getOptionElements(dropdownRef.current);
+      const { elements } = getOptionElements(portalRef.current);
       elements[index].focus();
     }
   };
@@ -53,11 +77,12 @@ const SelectContainer = ({
       onChange(e, id, parsedValue);
     }
     setDropdownVisibility(false);
+    returnFocus();
   };
 
   const handleKeyDown = (e) => {
     const { target, keyCode, which } = e;
-    const context = getOptionElements(dropdownRef.current, target);
+    const context = getOptionElements(portalRef.current, target);
 
     if (keyCode === 8 || which === 8) {
       e.preventDefault();
@@ -85,19 +110,17 @@ const SelectContainer = ({
     }
   };
 
-  const calculateDropdownDirection = () => {
-    const rect = dropdownRef.current.getBoundingClientRect();
-    const { innerHeight } = window;
-
-    const distanceToBottom = innerHeight - rect.bottom;
-    return distanceToBottom > rect.top ? 'down' : 'up';
-  };
-
   const toggleDropdown = () => {
-    setDropdownDirection(calculateDropdownDirection());
+    const { direction, ...layout } = calculateDropdownLayout(
+      inputRef.current,
+      optionSettings,
+      openDirection,
+    );
+    setDropdownDirection(direction);
+    setDropdownLayout(layout);
     setDropdownVisibility(!isDropdownVisible);
     setSearchText('');
-    focusOption(dropdownRef.current.querySelector('.select__option'));
+    focusOption(portalRef.current.querySelector('.select__option'));
   };
 
   const toggleOnKeydown = (e) => {
@@ -107,36 +130,44 @@ const SelectContainer = ({
     }
   };
 
-  const selectID = id || nanoid();
-  const selectedText = options.find(option => option.value === value).label;
-
   return (
-    <Select
-      dropdownDirection={dropdownDirection}
-      isDropdownVisible={isDropdownVisible}
-      handleChange={handleChange}
-      handleKeyDown={handleKeyDown}
-      handleKeyPress={handleKeyPress}
-      options={options}
-      ref={dropdownRef}
-      selectID={selectID}
-      selectedText={selectedText}
-      toggleOnClick={toggleDropdown}
-      toggleOnKeydown={toggleOnKeydown}
-      value={value}
-      {...props}
-    />
+    <>
+      <Select
+        inputID={inputID}
+        isDropdownVisible={isDropdownVisible}
+        ref={inputRef}
+        selectedText={selectedText}
+        toggleOnClick={toggleDropdown}
+        toggleOnKeydown={toggleOnKeydown}
+        {...props}
+      />
+      <DropdownPortal
+        dropdownDirection={dropdownDirection}
+        dropdownLayout={dropdownLayout}
+        handleChange={handleChange}
+        handleKeyDown={handleKeyDown}
+        handleKeyPress={handleKeyPress}
+        isDropdownVisible={isDropdownVisible}
+        options={options}
+        portal={portal}
+        ref={portalRef}
+        value={value}
+        {...props}
+      />
+    </>
   );
 };
 
 SelectContainer.defaultProps = {
   id: undefined,
+  openDirection: '',
   value: undefined,
 };
 
 SelectContainer.propTypes = {
   id: PropTypes.string,
   onChange: PropTypes.func.isRequired,
+  openDirection: PropTypes.string,
   options: PropTypes.arrayOf(
     PropTypes.shape({
       text: PropTypes.oneOfType([

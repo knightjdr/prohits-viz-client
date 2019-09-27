@@ -1,12 +1,10 @@
 const getOptionElements = (parent, node) => {
-  if (!getOptionElements.optionCache) {
-    getOptionElements.optionCache = parent.querySelectorAll('.select__option');
-  }
+  const options = parent.querySelectorAll('.select__option');
 
   let index = -1;
   if (node) {
-    for (let i = 0; i < getOptionElements.optionCache.length; i += 1) {
-      if (node === getOptionElements.optionCache[i]) {
+    for (let i = 0; i < options.length; i += 1) {
+      if (node === options[i]) {
         index = i;
         break;
       }
@@ -14,8 +12,8 @@ const getOptionElements = (parent, node) => {
   }
 
   return {
-    elements: getOptionElements.optionCache,
-    next: index < getOptionElements.optionCache.length - 1 ? index + 1 : null,
+    elements: options,
+    next: index < options.length - 1 ? index + 1 : null,
     previous: index > 0 ? index - 1 : null,
   };
 };

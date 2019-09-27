@@ -11,7 +11,6 @@ const Option = ({
     aria-selected={value === selectedValue}
     data-value={value}
     className="select__option"
-    id={value}
     role="option"
     tabIndex={visible ? 0 : -1}
     title={label}

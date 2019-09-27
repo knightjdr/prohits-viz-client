@@ -1,6 +1,6 @@
 import styled from 'styled-components';
 
-const Span = styled.span`
+export const SelectContainer = styled.span`
   color: ${props => props.theme.fontDark};
   transition-timing-function: ${props => props.theme.timingFunction};
 
@@ -42,46 +42,46 @@ const Span = styled.span`
     transform: rotate(180deg);
   }
 
-  .select__dropdown-container {
+  .select__input-container {
     height: 30px;
-    display: inline-block;
     position: relative;
-    width: 100%;
   }
 
-  .select__dropdown {
-    background-color: #fff;
-    border-radius: 3px;
-    box-shadow: rgba(0, 0, 0, 0.2) 0px 2px 8px 0px;
-    list-style: none;
-    max-height: 350px;
-    opacity: 0;
-    overflow-y: auto;
-    padding: 0;
-    position: absolute;
-    top: 35px;
-    transform: scaleY(0);
-    transform-origin: center top;
-    transition-duration: 0.2s;
-    transition-property: all;
-    transition-timing-function: inherit;
-    width: 100%;
-    z-index: 5;
+  input:focus,
+  input:hover {
+    border-color: ${props => props.theme.colorPrimary1};
   }
-  .select__dropdown_up {
-    bottom: 35px;
-    top: unset;
-    transform-origin: center bottom;
+
+  input:focus {
+    outline: none;
+    -webkit-focus-ring-color: none;
   }
-  .select__dropdown_visible {
+  input::-moz-focus-inner {
+    border: 0;
+  }
+`;
+
+export const Dropdown = styled.div`
+  color: ${props => props.theme.fontDark};
+  transition-timing-function: ${props => props.theme.timingFunction};
+  background-color: #fff;
+  border-radius: 3px;
+  box-shadow: rgba(0, 0, 0, 0.2) 0px 2px 8px 0px;
+  list-style: none;
+  max-height: 350px;
+  opacity: 0;
+  overflow-y: auto;
+  padding: 0;
+  position: absolute;
+  transform: scaleY(0);
+  transition-duration: 0.2s;
+  transition-property: opacity, transform;
+  transition-timing-function: inherit;
+  z-index: 2147483647;
+
+  &.select__dropdown_visible {
     opacity: 1;
     transform: scaleY(1);
-  }
-
-  .select__input-container {
-    display: inline-block;
-    position: relative;
-    width: 100%;
   }
 
   .select__opt-group {
@@ -119,19 +119,12 @@ const Span = styled.span`
     border-bottom-right-radius: 3px;
   }
 
-  input:focus,
-  input:hover {
-    border-color: ${props => props.theme.colorPrimary1};
-  }
-
-  input:focus,
-  .select__dropdown:focus,
+  &.select__dropdown:focus,
   .select__option:focus {
     outline: none;
     -webkit-focus-ring-color: none;
   }
-  input::-moz-focus-inner,
-  .select__dropdown::-moz-focus-inner,
+  &.select__dropdown::-moz-focus-inner,
   .select__option::-moz-focus-inner {
     border: 0;
   }
@@ -147,5 +140,3 @@ const Span = styled.span`
     color: #fff;
   }
 `;
-
-export default Span;

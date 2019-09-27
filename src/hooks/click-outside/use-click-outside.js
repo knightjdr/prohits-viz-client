@@ -9,22 +9,22 @@ import isVisible from './is-visible';
 ** key is the same as clicking outside the element. func is called when
 ** a click occurs outside the element. */
 const useClickOutside = (ref, func, esc = true, ignoreVisibility = false) => {
-  const clickedOutside = (isOutside) => {
+  const clickedOutside = (isOutside, e) => {
     if (isOutside) {
-      func();
+      func(e);
     }
   };
 
   const clickListener = (e) => {
     const element = ref.current;
     const outside = !element.contains(e.target) && (ignoreVisibility || isVisible(element));
-    clickedOutside(outside);
+    clickedOutside(outside, e);
   };
 
   const escListener = (e) => {
     const element = ref.current;
     if (e.key === 'Escape' && isVisible(element)) {
-      clickedOutside(true);
+      clickedOutside(true, e);
     }
   };
 
