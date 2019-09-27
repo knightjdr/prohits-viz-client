@@ -31,7 +31,7 @@ const Span = styled.span`
   }
 
   label {
-    margin-right: 8px;
+    padding-right: 8px;
   }
 `;
 

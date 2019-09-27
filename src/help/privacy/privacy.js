@@ -1,6 +1,8 @@
 import PropTypes from 'prop-types';
 import React from 'react';
 
+import Switch from '../../components/input/switch/switch-container';
+
 import './privacy.css';
 
 const Privacy = ({
@@ -25,23 +27,12 @@ const Privacy = ({
       tracking your site usage and remove all cookies required by Google Analytics. This
       will apply to the current session and all subsequent visits from the current browser.
     </p>
-    <div className="help__privacy-switch-container">
-      <label
-        className="help__privacy-switch"
-        htmlFor="help__privacy-consent-switch"
-      >
-        <input
-          checked={haveConsent}
-          disabled={!canConsent}
-          id="help__privacy-consent-switch"
-          onChange={handleChange}
-          type="checkbox"
-        />
-        <span
-          aria-label="privacy consent"
-          className="help__privacy-switch-slider"
-        />
-      </label>
+    <div className="help__privacy-switch">
+      <Switch
+        checked={haveConsent}
+        disabled={!canConsent}
+        onChange={handleChange}
+      />
       You are currently
       <strong className="help__privacy-status">
         {haveConsent ? 'opted in to' : 'opted out of'}

@@ -12,8 +12,7 @@ const Span = styled.span`
   }
 
   label {
-    margin-right: 8px;
-    position: relative;
+    padding-right: 8px;
   }
 
   .input__checkbox {
@@ -44,7 +43,7 @@ const Span = styled.span`
     top: 0;
     transition-duration: 0.3s;
     transition-property: all;
-    transition-timing-function: ${props => props.theme.timingFunction || 'ease'};
+    transition-timing-function: ${props => props.theme.timingFunction};
     width: 25px;
   }
 
@@ -52,7 +51,7 @@ const Span = styled.span`
     opacity: 0;
     transition-duration: 0.3s;
     transition-property: opacity;
-    transition-timing-function: ${props => props.theme.timingFunction || 'ease'};
+    transition-timing-function: ${props => props.theme.timingFunction};
   }
 
   input:focus + span,

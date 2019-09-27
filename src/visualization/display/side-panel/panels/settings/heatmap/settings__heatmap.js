@@ -15,6 +15,7 @@ const Settings = ({
     edgeColor,
     fillColor,
     imageType,
+    invertColor,
   } = settings;
 
   return (
@@ -28,6 +29,7 @@ const Settings = ({
         edgeColor={edgeColor}
         fillColor={fillColor}
         handleChange={handleChange}
+        invertColor={invertColor}
       />
     </div>
   );
@@ -40,6 +42,7 @@ Settings.propTypes = {
     edgeColor: PropTypes.string.isRequired,
     fillColor: PropTypes.string.isRequired,
     imageType: PropTypes.string.isRequired,
+    invertColor: PropTypes.bool.isRequired,
   }).isRequired,
 };
 

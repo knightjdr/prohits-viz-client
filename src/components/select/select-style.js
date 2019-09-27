@@ -2,10 +2,9 @@ import styled from 'styled-components';
 
 export const SelectContainer = styled.span`
   color: ${props => props.theme.fontDark};
-  transition-timing-function: ${props => props.theme.timingFunction};
 
   label {
-    margin-right: 8px;
+    padding-right: 8px;
   }
 
   input {
@@ -23,7 +22,7 @@ export const SelectContainer = styled.span`
     text-overflow: ellipsis;
     transition-duration: 0.3s;
     transition-property: all;
-    transition-timing-function: inherit;
+    transition-timing-function: ${props => props.theme.timingFunction};
     white-space: nowrap;
     width: 100%;
   }
@@ -36,7 +35,7 @@ export const SelectContainer = styled.span`
     top: 8px;
     transition-duration: 0.3s;
     transition-property: transform;
-    transition-timing-function: inherit;
+    transition-timing-function: ${props => props.theme.timingFunction};
   }
   .select__arrow_up {
     transform: rotate(180deg);
@@ -104,7 +103,7 @@ export const Dropdown = styled.div`
     text-overflow: ellipsis;
     transition-duration: 0.3s;
     transition-property: all;
-    transition-timing-function: inherit;
+    transition-timing-function: ${props => props.theme.timingFunction};
     white-space: nowrap;
   }
   .select__option[aria-selected="true"] {
