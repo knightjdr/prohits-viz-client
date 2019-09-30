@@ -36,7 +36,7 @@ const tools = [
     title: 'Videos',
   },
   {
-    image: <FontAwesomeIcon className="fa-swap-opacity" icon={faQuestion} size="xs" />,
+    image: <FontAwesomeIcon icon={faQuestion} size="xs" swapOpacity />,
     link: '/help',
     text: `New to ProHits-viz or have a question about one of our
       tools? Try our online help.`,
