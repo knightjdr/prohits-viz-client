@@ -10,6 +10,7 @@ import './settings__heatmap.css';
 
 const Settings = ({
   handleChange,
+  handleFilter,
   handleImageReset,
   handleSettingReset,
   settings,
@@ -42,6 +43,7 @@ const Settings = ({
       <Filters
         abundanceCap={abundanceCap}
         handleChange={handleChange}
+        handleFilter={handleFilter}
         minAbundance={minAbundance}
         primaryFilter={primaryFilter}
         secondaryFilter={secondaryFilter}
@@ -56,6 +58,7 @@ const Settings = ({
 
 Settings.propTypes = {
   handleChange: PropTypes.func.isRequired,
+  handleFilter: PropTypes.func.isRequired,
   handleImageReset: PropTypes.func.isRequired,
   handleSettingReset: PropTypes.func.isRequired,
   settings: PropTypes.shape({

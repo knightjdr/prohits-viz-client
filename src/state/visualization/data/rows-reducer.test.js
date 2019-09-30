@@ -18,6 +18,23 @@ describe('Rows reducer', () => {
     expect(reducer(undefined, action)).toEqual(expectedState);
   });
 
+  it('should handle FILTER_ROWS action', () => {
+    const currentState = {
+      ...defaultState,
+      order: [0, 1, 2],
+    };
+
+    const action = {
+      order: [1, 2, 0],
+      type: actions.FILTER_ROWS,
+    };
+    const expectedState = {
+      ...currentState,
+      order: [1, 2, 0],
+    };
+    expect(reducer(currentState, action)).toEqual(expectedState);
+  });
+
   describe('PARSE_INTERACTIVE_FILE action', () => {
     it('should handle action when rows field present', () => {
       const list = [
@@ -81,7 +98,7 @@ describe('Rows reducer', () => {
     expect(reducer(currentState, action)).toEqual(expectedState);
   });
 
-  it('should handle UPDATE_ROWS action', () => {
+  it('should handle SORT_ROWS action', () => {
     const list = [
       { data: {}, name: 'a' },
       { data: {}, name: 'b' },
@@ -97,7 +114,7 @@ describe('Rows reducer', () => {
       direction: 'asc',
       order: [1, 2, 0],
       sortBy: 1,
-      type: actions.UPDATE_ROWS,
+      type: actions.SORT_ROWS,
     };
     const expectedState = {
       ...currentState,

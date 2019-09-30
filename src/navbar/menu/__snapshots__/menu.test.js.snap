@@ -92,7 +92,7 @@ exports[`Navbar menu closed should match snapshot 1`] = `
     >
       <svg
         aria-hidden="true"
-        class="svg-inline--fa fa-bars fa-w-14 fa-lg nav__menu"
+        class="svg-inline--fa fa-bars fa-w-14 fa-lg fa-rotate-null fa-pull-null nav__menu"
         data-icon="bars"
         data-prefix="fas"
         focusable="false"
@@ -220,7 +220,7 @@ exports[`Navbar menu open should match snapshot 1`] = `
     >
       <svg
         aria-hidden="true"
-        class="svg-inline--fa fa-bars fa-w-14 fa-lg nav__menu"
+        class="svg-inline--fa fa-bars fa-w-14 fa-lg fa-rotate-null fa-pull-null nav__menu"
         data-icon="bars"
         data-prefix="fas"
         focusable="false"

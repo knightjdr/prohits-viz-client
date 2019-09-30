@@ -1,4 +1,4 @@
-import { SET_DIMENSIONS } from './dimension-actions';
+import * as actions from './dimension-actions';
 
 export const defaultState = {
   columns: 0,
@@ -11,7 +11,7 @@ export const defaultState = {
 
 const reducer = (state = defaultState, action) => {
   switch (action.type) {
-    case SET_DIMENSIONS:
+    case actions.SET_DIMENSIONS:
       return {
         columns: action.columns,
         height: action.height,

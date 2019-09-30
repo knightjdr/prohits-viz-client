@@ -17,7 +17,6 @@ exports[`Link style with no style for :visited should match snapshot 1`] = `
 
 .c0:hover,
 .c0:active {
-  color: #23527c;
   -webkit-text-decoration: underline;
   text-decoration: underline;
 }
@@ -55,7 +54,6 @@ exports[`Link style with style for :visited should match snapshot 1`] = `
 
 .c0:hover,
 .c0:active {
-  color: #23527c;
   -webkit-text-decoration: underline;
   text-decoration: underline;
 }

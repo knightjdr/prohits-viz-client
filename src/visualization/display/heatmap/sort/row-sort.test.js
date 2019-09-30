@@ -24,8 +24,9 @@ describe('Sort by locale', () => {
 
 describe('Row sort method', () => {
   it('should sort rows in ascending order by ref', () => {
+    const order = [0, 1, 2];
     const expected = [0, 2, 1];
-    expect(rowSort(list, 0, 'asc', 1)).toEqual(expected);
+    expect(rowSort(list, order, 0, 'asc', 1)).toEqual(expected);
   });
 
   it('should sort rows in ascending order by ref, and handle zeros', () => {
@@ -34,18 +35,21 @@ describe('Row sort method', () => {
       { data: [{ value: 5 }, { value: 0 }], name: 'b' },
       { data: [{ value: 2 }, { value: 3 }], name: 'c' },
     ];
+    const order = [0, 1, 2];
     const expected = [2, 0, 1];
-    expect(rowSort(zeroList, 0, 'asc', 1)).toEqual(expected);
+    expect(rowSort(zeroList, order, 0, 'asc', 1)).toEqual(expected);
   });
 
   it('should sort rows in ascending order', () => {
+    const order = [0, 1, 2];
     const expected = [0, 2, 1];
-    expect(rowSort(list, 0, 'asc')).toEqual(expected);
+    expect(rowSort(list, order, 0, 'asc')).toEqual(expected);
   });
 
   it('should sort rows in descending order by ref', () => {
+    const order = [0, 1, 2];
     const expected = [1, 2, 0];
-    expect(rowSort(list, 0, 'desc', 1)).toEqual(expected);
+    expect(rowSort(list, order, 0, 'desc', 1)).toEqual(expected);
   });
 
   it('should sort rows in descending order by ref, and handle zeros', () => {
@@ -54,12 +58,20 @@ describe('Row sort method', () => {
       { data: [{ value: 5 }, { value: 0 }], name: 'b' },
       { data: [{ value: 2 }, { value: 3 }], name: 'c' },
     ];
+    const order = [0, 1, 2];
     const expected = [1, 0, 2];
-    expect(rowSort(zeroList, 0, 'desc', 1)).toEqual(expected);
+    expect(rowSort(zeroList, order, 0, 'desc', 1)).toEqual(expected);
   });
 
   it('should sort rows in descending order', () => {
+    const order = [0, 1, 2];
     const expected = [1, 2, 0];
-    expect(rowSort(list, 0, 'desc')).toEqual(expected);
+    expect(rowSort(list, order, 0, 'desc')).toEqual(expected);
+  });
+
+  it('should sort filters rows in ascending order', () => {
+    const order = [1, 2];
+    const expected = [2, 1];
+    expect(rowSort(list, order, 0, 'asc')).toEqual(expected);
   });
 });

@@ -91,7 +91,7 @@ exports[`Icon button style primary button should match snapshot 1`] = `
   >
     <svg
       aria-hidden="true"
-      class="svg-inline--fa fa-plus fa-w-14 "
+      class="svg-inline--fa fa-plus fa-w-14 fa-null fa-rotate-null fa-pull-null "
       data-icon="plus"
       data-prefix="fas"
       focusable="false"
@@ -198,7 +198,7 @@ exports[`Icon button style transparent (default) button should match snapshot 1`
   >
     <svg
       aria-hidden="true"
-      class="svg-inline--fa fa-plus fa-w-14 "
+      class="svg-inline--fa fa-plus fa-w-14 fa-null fa-rotate-null fa-pull-null "
       data-icon="plus"
       data-prefix="fas"
       focusable="false"

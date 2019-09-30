@@ -8,9 +8,8 @@ export const sortPairByLocale = (value, a, b) => (
 /* Sort functions for row list. Assumes each row item has a data object with
 ** a numeric 'value' prop and a 'name' prop for fallback sorting when the
 ** value of 'a' and 'b' is the same. */
-const rowSort = (list, sortBy, direction, ref) => {
+const rowSort = (list, order, sortBy, direction, ref) => {
   const { sortDelta } = config;
-  const order = [...Array(list.length).keys()];
 
   if (direction === 'asc' && typeof ref === 'number') {
     order.sort((a, b) => {

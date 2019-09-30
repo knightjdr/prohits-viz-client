@@ -7,6 +7,7 @@ import Section from '../../section/section';
 const Filters = ({
   abundanceCap,
   handleChange,
+  handleFilter,
   minAbundance,
   primaryFilter,
   secondaryFilter,
@@ -23,14 +24,14 @@ const Filters = ({
       <Input
         id="minAbundance"
         label="Abundance minimum"
-        onChange={handleChange}
+        onChange={handleFilter}
         type="number"
         value={minAbundance}
       />
       <Input
         id="primaryFilter"
         label="Primary filter"
-        onChange={handleChange}
+        onChange={handleFilter}
         step={0.01}
         type="number"
         value={primaryFilter}
@@ -50,6 +51,7 @@ const Filters = ({
 Filters.propTypes = {
   abundanceCap: PropTypes.number.isRequired,
   handleChange: PropTypes.func.isRequired,
+  handleFilter: PropTypes.func.isRequired,
   minAbundance: PropTypes.number.isRequired,
   primaryFilter: PropTypes.number.isRequired,
   secondaryFilter: PropTypes.number.isRequired,

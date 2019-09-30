@@ -20,6 +20,11 @@ const reducer = (state = defaultState, action) => {
         order: [],
         sortBy: null,
       };
+    case actions.FILTER_ROWS:
+      return {
+        ...state,
+        order: action.order,
+      };
     case fileActions.PARSE_INTERACTIVE_FILE:
       return action.file.rows
         ? action.file.rows
@@ -37,7 +42,7 @@ const reducer = (state = defaultState, action) => {
         order: [...state.defaultOrder],
         sortBy: null,
       };
-    case actions.UPDATE_ROWS:
+    case actions.SORT_ROWS:
       return {
         ...state,
         direction: action.direction,

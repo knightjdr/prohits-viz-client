@@ -129,16 +129,31 @@ describe('Minimap reducer', () => {
     expect(reducer(undefined, action)).toEqual(expectedState);
   });
 
-  it('should handle UPDATE_ROWS action', () => {
-    const action = {
-      type: rowActions.UPDATE_ROWS,
-    };
-    const expectedState = {
-      ...defaultState,
-      isSyncing: false,
-      needSyncing: true,
-      syncedImage: null,
-    };
-    expect(reducer(undefined, action)).toEqual(expectedState);
+  describe('Row actions', () => {
+    it('should handle FILTER_ROWS action', () => {
+      const action = {
+        type: rowActions.FILTER_ROWS,
+      };
+      const expectedState = {
+        ...defaultState,
+        isSyncing: false,
+        needSyncing: true,
+        syncedImage: null,
+      };
+      expect(reducer(undefined, action)).toEqual(expectedState);
+    });
+
+    it('should handle SORT_ROWS action', () => {
+      const action = {
+        type: rowActions.SORT_ROWS,
+      };
+      const expectedState = {
+        ...defaultState,
+        isSyncing: false,
+        needSyncing: true,
+        syncedImage: null,
+      };
+      expect(reducer(undefined, action)).toEqual(expectedState);
+    });
   });
 });

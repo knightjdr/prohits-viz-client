@@ -54,7 +54,15 @@ const reducer = (state = { ...defaultState }, action) => {
         syncedImage: null,
         updateOriginal: false,
       };
-    case rowActions.UPDATE_ROWS:
+    case rowActions.FILTER_ROWS:
+      return {
+        ...state,
+        isSyncing: false,
+        needSyncing: true,
+        syncedImage: null,
+        updateOriginal: false,
+      };
+    case rowActions.SORT_ROWS:
       return {
         ...state,
         isSyncing: false,

@@ -1,8 +1,14 @@
-export const UPDATE_ROWS = 'UPDATE_ROWS';
+export const FILTER_ROWS = 'FILTER_ROWS';
+export const SORT_ROWS = 'SORT_ROWS';
 
-export const updateRows = (direction, order, sortBy) => ({
+export const filterRows = order => ({
+  order,
+  type: FILTER_ROWS,
+});
+
+export const sortRows = (direction, order, sortBy) => ({
   direction,
   order,
   sortBy,
-  type: UPDATE_ROWS,
+  type: SORT_ROWS,
 });

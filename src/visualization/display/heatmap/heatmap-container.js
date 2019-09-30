@@ -16,14 +16,14 @@ const HeatmapContainer = () => {
   const columns = useSelector(state => stateSelectorProp(state, 'columns', 'names'));
   const panelOpen = useSelector(state => stateSelectorProp(state, 'panel', 'open'));
   const plotFixed = useSelector(state => stateSelectorProp(state, 'display', 'plotFixed'));
-  const rows = useSelector(state => stateSelectorProp(state, 'rows', 'list'));
+  const rowOrder = useSelector(state => stateSelectorProp(state, 'rows', 'order'));
   const settings = useSelector(state => stateSelectorProp(state, 'settings', 'current'));
 
   const windowDimensions = useWindowDimension(50);
   usePlotScroll(ref, 50);
 
   const { cellSize } = settings;
-  const cellHeight = rows.length;
+  const cellHeight = rowOrder.length;
   const cellWidth = columns.length;
 
   const dimensions = useMemo(

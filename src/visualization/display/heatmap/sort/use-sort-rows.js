@@ -4,7 +4,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import Sorting from './sorting';
 import rowSort from './row-sort';
 import { stateSelector, stateSelectorProp } from '../../../../state/selector/general';
-import { updateRows } from '../../../../state/visualization/data/rows-actions';
+import { sortRows } from '../../../../state/visualization/data/rows-actions';
 
 /* Sort the rows array based on a specific column as specified
 ** by requestedSortBy, and with reference to another column if ref is a number. */
@@ -19,6 +19,7 @@ const useSortRows = () => {
   const {
     direction,
     list,
+    order,
     sortBy,
   } = rows;
 
@@ -44,9 +45,9 @@ const useSortRows = () => {
       sortDirection = 'desc';
     }
 
-    const order = rowSort(list, requestedSortBy, sortDirection, refIndex);
+    const newOrder = rowSort(list, order, requestedSortBy, sortDirection, refIndex);
 
-    dispatch(updateRows(sortDirection, order, requestedSortBy));
+    dispatch(sortRows(sortDirection, newOrder, requestedSortBy));
 
     setSorting(false);
   };
