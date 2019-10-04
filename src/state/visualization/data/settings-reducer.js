@@ -24,6 +24,7 @@ const reducer = (state = defaultState, action) => {
         ...state,
         current: {
           ...state.current,
+          filterBy: state.default.filterBy,
           minAbundance: state.default.minAbundance,
           primaryFilter: state.default.primaryFilter,
         },

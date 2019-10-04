@@ -10,13 +10,13 @@ const Button = styled.button`
   display: flex;
   font-size: 1.3em;
   justify-content: center;
-  min-height: 34px;
-  min-width: 34px;
+  height: 34px;
   padding: 2px;
   position: relative;
   transition-duration: 0.3s;
   transition-property: all;
   transition-timing-function: ${props => props.theme.timingFunction};
+  width: 34px;
   z-index: 2;
 
   &::before {

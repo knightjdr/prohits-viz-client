@@ -3,6 +3,7 @@ export const defaultState = {
   cellSize: 15,
   edgeColor: 'blue',
   fillColor: 'blue',
+  filterBy: '',
   imageType: 'heatmap',
   invertColor: false,
   minAbundance: 0,
@@ -35,6 +36,7 @@ const validateSettings = (userSettings, defaultImageType = 'heatmap') => {
     cellSize,
     edgeColor,
     fillColor,
+    filterBy,
     imageType,
     invertColor,
     minAbundance,
@@ -49,6 +51,7 @@ const validateSettings = (userSettings, defaultImageType = 'heatmap') => {
   settings.cellSize = Number.isInteger(cellSize) && cellSize > 0 ? cellSize : defaultState.cellSize;
   settings.edgeColor = acceptedColors[edgeColor] ? edgeColor : defaultState.edgeColor;
   settings.fillColor = acceptedColors[fillColor] ? fillColor : defaultState.fillColor;
+  settings.filterBy = typeof filterBy === 'string' ? filterBy : defaultState.filterBy;
   settings.imageType = acceptedImageTypes[imageType] ? imageType : defaultImageType;
   settings.invertColor = typeof invertColor === 'boolean' ? invertColor : defaultState.invertColor;
   settings.minAbundance = typeof minAbundance === 'number' ? minAbundance : defaultState.minAbundance;

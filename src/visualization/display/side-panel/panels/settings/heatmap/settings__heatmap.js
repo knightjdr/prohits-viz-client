@@ -9,6 +9,7 @@ import Reset from '../reset/reset';
 import './settings__heatmap.css';
 
 const Settings = ({
+  columns,
   handleChange,
   handleFilter,
   handleImageReset,
@@ -20,6 +21,7 @@ const Settings = ({
     cellSize,
     edgeColor,
     fillColor,
+    filterBy,
     imageType,
     invertColor,
     minAbundance,
@@ -42,6 +44,8 @@ const Settings = ({
       />
       <Filters
         abundanceCap={abundanceCap}
+        columns={columns}
+        filterBy={filterBy}
         handleChange={handleChange}
         handleFilter={handleFilter}
         minAbundance={minAbundance}
@@ -57,6 +61,7 @@ const Settings = ({
 };
 
 Settings.propTypes = {
+  columns: PropTypes.arrayOf(PropTypes.string).isRequired,
   handleChange: PropTypes.func.isRequired,
   handleFilter: PropTypes.func.isRequired,
   handleImageReset: PropTypes.func.isRequired,
@@ -66,6 +71,7 @@ Settings.propTypes = {
     cellSize: PropTypes.number.isRequired,
     edgeColor: PropTypes.string.isRequired,
     fillColor: PropTypes.string.isRequired,
+    filterBy: PropTypes.string.isRequired,
     imageType: PropTypes.string.isRequired,
     invertColor: PropTypes.bool.isRequired,
     minAbundance: PropTypes.number.isRequired,

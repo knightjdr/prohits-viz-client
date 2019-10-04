@@ -3,9 +3,12 @@ import React from 'react';
 
 import Input from '../../../../../../components/input/text/input-text-container';
 import Section from '../../section/section';
+import Select from '../../../../../../components/select/select-container';
 
 const Filters = ({
   abundanceCap,
+  columns,
+  filterBy,
   handleChange,
   handleFilter,
   minAbundance,
@@ -44,12 +47,22 @@ const Filters = ({
         type="number"
         value={secondaryFilter}
       />
+      <Select
+        canClear
+        id="filterBy"
+        label="Filter by"
+        onChange={handleFilter}
+        options={columns}
+        value={filterBy}
+      />
     </Section>
   </>
 );
 
 Filters.propTypes = {
   abundanceCap: PropTypes.number.isRequired,
+  columns: PropTypes.arrayOf(PropTypes.string).isRequired,
+  filterBy: PropTypes.string.isRequired,
   handleChange: PropTypes.func.isRequired,
   handleFilter: PropTypes.func.isRequired,
   minAbundance: PropTypes.number.isRequired,

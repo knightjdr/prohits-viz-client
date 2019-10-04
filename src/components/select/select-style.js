@@ -16,7 +16,7 @@ export const SelectContainer = styled.span`
     font-size: 1em;
     height: 30px;
     overflow-x: hidden;
-    padding: 0 10px;
+    padding-left: 10px;
     padding-right: 15px;
     text-align: left;
     text-overflow: ellipsis;
@@ -41,9 +41,43 @@ export const SelectContainer = styled.span`
     transform: rotate(180deg);
   }
 
+  .select__clear {
+    opacity: 0;
+    pointer-events: none;
+    position: absolute;
+    right: 22px;
+    transition-duration: 0.3s;
+    transition-property: opacity;
+    transition-timing-function: ${props => props.theme.timingFunction};
+  }
+  .select__clear > button {
+    height: 18px;
+    width: 18px;
+  }
+  .select__clear > button > svg {
+    height: 14px;
+  }
+
   .select__input-container {
+    align-items: center;
+    display: flex;
     height: 30px;
     position: relative;
+  }
+
+  .select__placeholder {
+    box-sizing: border-box;
+    font-size: 1em;
+    height: 30px;
+    left: 0;
+    line-height: 30px;
+    opacity: 0.7;
+    padding-left: 10px;
+    padding-right: 15px;
+    pointer-events: none;
+    position: absolute;
+    top: 0;
+    width: 100%;
   }
 
   input:focus,
@@ -58,6 +92,11 @@ export const SelectContainer = styled.span`
   input::-moz-focus-inner {
     border: 0;
   }
+
+  input:hover + .select__clear {
+    opacity: 0.8;
+    pointer-events: auto;
+  }
 `;
 
 export const Dropdown = styled.div`
@@ -66,6 +105,7 @@ export const Dropdown = styled.div`
   background-color: #fff;
   border-radius: 3px;
   box-shadow: rgba(0, 0, 0, 0.2) 0px 2px 8px 0px;
+  cursor: default;
   list-style: none;
   max-height: 350px;
   opacity: 0;
@@ -130,12 +170,6 @@ export const Dropdown = styled.div`
 
   .select__option:focus {
     background-color: #3271e7;
-    color: #fff;
-  }
-  .select__option:hover {
-    color: #2468e5;
-  }
-  .select__option:hover:focus {
     color: #fff;
   }
 `;
