@@ -1,40 +1,50 @@
-import axios from 'axios';
-
 const defaultOptions = {
   data: {},
   headers: {},
   method: 'GET',
 };
 
-const fillOptions = (url, options) => {
-  const axiosOptions = Object.entries(defaultOptions).reduce((accum, [key, value]) => ({
+const fillOptions = (options) => {
+  const fetchOptions = Object.entries(defaultOptions).reduce((accum, [key, value]) => ({
     ...accum,
     [key]: options[key] || value,
   }), {});
-  axiosOptions.url = url;
 
-  if (axiosOptions.method !== 'POST') {
-    delete axiosOptions.data;
+  if (fetchOptions.method === 'POST' && fetchOptions.data instanceof FormData) {
+    fetchOptions.body = fetchOptions.data;
+    fetchOptions.headers['Content-Type'] = 'multipart/form-data';
+  } else if (fetchOptions.method === 'POST') {
+    fetchOptions.body = JSON.stringify(fetchOptions.data);
+    fetchOptions.headers['Content-Type'] = 'application/json';
   }
-  if (Object.keys(axiosOptions.headers).length === 0) {
-    delete axiosOptions.headers;
+  delete fetchOptions.data;
+
+  if (Object.keys(fetchOptions.headers).length === 0) {
+    delete fetchOptions.headers;
   }
 
-  return axiosOptions;
+  return fetchOptions;
 };
 
-const fetch = async (route, options = {}) => {
+const fetchWrapper = async (route, options = {}) => {
   try {
     const url = `${process.env.REACT_APP_API}${route}`;
-    const axiosOptions = fillOptions(url, options);
-    const result = await axios(axiosOptions);
-    return result;
+    const fetchOptions = fillOptions(options);
+    const response = await fetch(url, fetchOptions);
+
+    if (!response.ok) {
+      throw new Error(response.statusText);
+    }
+    const json = await response.json();
+    return {
+      data: json,
+    };
   } catch (error) {
     return {
-      ...error.response,
       error: true,
+      message: error.toString(),
     };
   }
 };
 
-export default fetch;
+export default fetchWrapper;
