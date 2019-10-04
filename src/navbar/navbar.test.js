@@ -3,7 +3,10 @@ import { cleanup, render } from '@testing-library/react';
 
 import Navbar from './navbar';
 
+jest.mock('./navbar-style');
 jest.mock('../components/link/text/link');
+jest.mock('./menu/menu-style');
+jest.mock('./text-links/text-links-style');
 
 describe('Navbar', () => {
   describe('normal screen size', () => {

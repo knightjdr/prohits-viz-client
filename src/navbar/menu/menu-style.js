@@ -15,7 +15,7 @@ const Div = styled.div`
   }
   & button:focus *,
   & button:hover * {
-    fill: ${props => props.route === 'home' ? props.theme.colorPrimary1 : props.theme.accentPrimary1};
+    fill: ${props => (props.route === 'home' ? props.theme.colorPrimary1 : props.theme.accentPrimary1)};
   }
 
   & .nav__menu {

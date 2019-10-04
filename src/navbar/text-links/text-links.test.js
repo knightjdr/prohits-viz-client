@@ -3,6 +3,8 @@ import { cleanup, render } from '@testing-library/react';
 
 import TextLinks from './text-links';
 
+jest.mock('./text-links-style');
+
 describe('Navbar text links', () => {
   let container;
   let getByText;
