@@ -19,8 +19,7 @@ exports[`Icon button style primary button should match snapshot 1`] = `
   -webkit-justify-content: center;
   -ms-flex-pack: center;
   justify-content: center;
-  min-height: 34px;
-  min-width: 34px;
+  height: 34px;
   padding: 2px;
   position: relative;
   -webkit-transition-duration: 0.3s;
@@ -29,6 +28,7 @@ exports[`Icon button style primary button should match snapshot 1`] = `
   transition-property: all;
   -webkit-transition-timing-function: ease;
   transition-timing-function: ease;
+  width: 34px;
   z-index: 2;
 }
 
@@ -127,8 +127,7 @@ exports[`Icon button style transparent (default) button should match snapshot 1`
   -webkit-justify-content: center;
   -ms-flex-pack: center;
   justify-content: center;
-  min-height: 34px;
-  min-width: 34px;
+  height: 34px;
   padding: 2px;
   position: relative;
   -webkit-transition-duration: 0.3s;
@@ -137,6 +136,7 @@ exports[`Icon button style transparent (default) button should match snapshot 1`
   transition-property: all;
   -webkit-transition-timing-function: ease;
   transition-timing-function: ease;
+  width: 34px;
   z-index: 2;
 }
 

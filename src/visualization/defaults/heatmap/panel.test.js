@@ -4,7 +4,7 @@ describe('Fill panel', () => {
   it('should return user options when valid', () => {
     const panel = {
       open: false,
-      tab: 'settings',
+      tab: 'info',
     };
     const expected = panel;
     expect(fillPanel(panel)).toEqual(expected);

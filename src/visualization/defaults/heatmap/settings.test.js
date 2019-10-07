@@ -1,95 +1,100 @@
-import fillSettings, { defaultState } from './settings';
+import fillSettings, { defaultState, validateSettings } from './settings';
 
-describe('Fill settings', () => {
-  it('should return user options when valid', () => {
-    const settings = {
-      current: {
-        abundanceCap: 40,
-        cellSize: 10,
-        edgeColor: 'yellow',
-        fillColor: 'yellow',
-        imageType: 'dotplot',
-        invertColor: true,
-        minAbundance: 1,
-        primaryFilter: 0.02,
-        secondaryFilter: 0.06,
-        otherfield: 1,
-      },
-      default: {
-        abundanceCap: 40,
-        cellSize: 10,
-        edgeColor: 'yellow',
-        fillColor: 'yellow',
-        imageType: 'dotplot',
-        invertColor: true,
-        minAbundance: 1,
-        primaryFilter: 0.02,
-        secondaryFilter: 0.06,
-        otherfield: 1,
-      },
+describe('Validate settings', () => {
+  it('should return user-defined settings when valid', () => {
+    const userSettings = {
+      abundanceCap: 40,
+      cellSize: 10,
+      edgeColor: 'yellow',
+      fillColor: 'yellow',
+      filterBy: 'a',
+      imageType: 'dotplot',
+      invertColor: true,
+      minAbundance: 1,
+      primaryFilter: 0.02,
+      secondaryFilter: 0.06,
+      otherfield: 1,
     };
-    const expected = settings;
-    expect(fillSettings(settings)).toEqual(expected);
+    const expected = userSettings;
+    expect(validateSettings(userSettings)).toEqual(expected);
   });
 
-  it('should return defaults when user options invalid', () => {
+  it('should return defaults when user-defined settings invalid', () => {
+    const userSettings = {
+      abundanceCap: 'string',
+      cellSize: 'string',
+      edgeColor: 'pinkBlack',
+      fillColor: 'pinkBlack',
+      filterBy: 1,
+      imageType: 'other',
+      invertColor: 'true',
+      minAbundance: '0',
+      primaryFilter: '0.02',
+      secondaryFilter: '0.06',
+    };
+    const expected = defaultState;
+    expect(validateSettings(userSettings)).toEqual(expected);
+  });
+});
+
+describe('Fill settings', () => {
+  it('should return user-defined settings when valid', () => {
     const settings = {
-      current: {
-        abundanceCap: 'string',
-        cellSize: 'string',
-        edgeColor: 'pinkBlack',
-        fillColor: 'pinkBlack',
-        imageType: 'other',
-        invertColor: 'true',
-        minAbundance: '0',
-        primaryFilter: '0.02',
-        secondaryFilter: '0.06',
-      },
-      default: {
-        abundanceCap: 'string',
-        cellSize: 'string',
-        edgeColor: 'pinkBlack',
-        fillColor: 'pinkBlack',
-        imageType: 'other',
-        invertColor: 'true',
-        minAbundance: '0',
-        primaryFilter: '0.02',
-        secondaryFilter: '0.06',
+      abundanceCap: 40,
+      cellSize: 10,
+      edgeColor: 'yellow',
+      fillColor: 'yellow',
+      filterBy: 'a',
+      imageType: 'dotplot',
+      invertColor: true,
+      minAbundance: 1,
+      primaryFilter: 0.02,
+      secondaryFilter: 0.06,
+      otherfield: 1,
+    };
+    const userSettings = {
+      main: {
+        current: settings,
+        default: settings,
       },
     };
+    const expected = userSettings;
+    expect(fillSettings(userSettings)).toEqual(expected);
+  });
+
+  it('should return defaults when no selections are defined', () => {
+    const userSettings = {};
     const expected = {
-      current: defaultState,
-      default: defaultState,
+      main: {
+        current: defaultState,
+        default: defaultState,
+      },
     };
-    expect(fillSettings(settings)).toEqual(expected);
+    expect(fillSettings(userSettings)).toEqual(expected);
+  });
+
+  it('should return defaults when settings are not an object', () => {
+    const userSettings = [];
+    const expected = {
+      main: {
+        current: defaultState,
+        default: defaultState,
+      },
+    };
+    expect(fillSettings(userSettings)).toEqual(expected);
   });
 
   it('should return current imageType as default when default not defined', () => {
-    const settings = {
-      current: {
-        imageType: 'dotplot',
+    const userSettings = {
+      main: {
+        current: {
+          imageType: 'dotplot',
+        },
+        default: {},
       },
-      default: {},
     };
-    const actual = fillSettings(settings);
+    const actual = fillSettings(userSettings);
     const expected = 'dotplot';
-    expect(actual.default.imageType).toEqual(expected);
-  });
-
-  it('should return defaults when user options missing', () => {
-    const settings = {};
-    const expected = {
-      current: defaultState,
-      default: defaultState,
-    };
-    expect(fillSettings(settings)).toEqual(expected);
-  });
-
-  it('should return defaults when user options undefined', () => {
-    const expected = {
-      current: defaultState,
-      default: defaultState,
-    };
-    expect(fillSettings(undefined)).toEqual(expected);
+    expect(actual.main.default.imageType).toEqual(expected);
   });
 });

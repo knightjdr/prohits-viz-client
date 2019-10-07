@@ -1,3 +1,4 @@
+import isObject from '../../../utils/is-object';
 import validateUri from '../../../utils/validate-uri';
 
 export const defaultState = {
@@ -10,27 +11,34 @@ export const defaultState = {
 };
 
 const fillMinimap = (userMinimap) => {
-  if (!userMinimap) {
-    return { ...defaultState };
+  if (!userMinimap || !isObject(userMinimap) || Object.keys(userMinimap).length === 0) {
+    return {
+      main: { ...defaultState },
+    };
   }
 
-  const {
-    image,
-    needSyncing,
-    syncedImage,
-  } = userMinimap;
-  const minimap = {
-    ...defaultState,
-  };
+  return Object.keys(userMinimap).reduce((accum, selection) => {
+    const {
+      image,
+      needSyncing,
+      syncedImage,
+    } = userMinimap[selection];
+    const minimap = {
+      ...defaultState,
+    };
 
-  // Confirm data uri exists and is valid for original and synced image.
-  minimap.image = image && validateUri(image) ? image : defaultState.image;
-  minimap.syncedImage = syncedImage && validateUri(syncedImage)
-    ? syncedImage : defaultState.syncedImage;
+    // Confirm data uri exists and is valid for original and synced image.
+    minimap.image = image && validateUri(image) ? image : defaultState.image;
+    minimap.syncedImage = syncedImage && validateUri(syncedImage)
+      ? syncedImage : defaultState.syncedImage;
 
-  minimap.needSyncing = typeof needSyncing === 'boolean' ? needSyncing : defaultState.needSyncing;
+    minimap.needSyncing = typeof needSyncing === 'boolean' ? needSyncing : defaultState.needSyncing;
 
-  return minimap;
+    return {
+      ...accum,
+      [selection]: minimap,
+    };
+  }, {});
 };
 
 export default fillMinimap;

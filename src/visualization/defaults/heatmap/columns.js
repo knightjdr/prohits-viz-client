@@ -1,43 +1,46 @@
 import arrayContains from '../../../utils/array-contains';
-import { arrayShallowEqual } from '../../../utils/array-shallow-equal';
+import isObject from '../../../utils/is-object';
 
 const defaultState = {
   defaultOrder: [],
-  names: [],
   order: [],
   ref: null,
 };
 
-const fillColumns = (userColumns) => {
-  if (!userColumns) {
+const fillColumns = (userColumns, userColumnDB) => {
+  const defaultColumnOrder = userColumnDB ? [...Array(userColumnDB.length).keys()] : [];
+
+  if (!userColumns || !isObject(userColumns) || Object.keys(userColumns).length === 0) {
     return {
-      defaultOrder: [],
-      names: [],
-      order: [],
-      ref: null,
+      main: {
+        defaultOrder: defaultColumnOrder,
+        order: defaultColumnOrder,
+        ref: null,
+      },
     };
   }
 
-  const {
-    defaultOrder,
-    names,
-    order,
-    ref,
-  } = userColumns;
-  const columns = {};
+  return Object.keys(userColumns).reduce((accum, selection) => {
+    const {
+      defaultOrder,
+      order,
+      ref,
+    } = userColumns[selection];
+    const columns = {};
 
-  columns.names = Array.isArray(names) ? names : [];
-  // Ensure ref is within names.
-  columns.ref = typeof ref === 'string' && columns.names.includes(ref) ? ref : defaultState.ref;
+    // Ensure ref is within userColumnDB.
+    columns.ref = typeof ref === 'string' && userColumnDB.includes(ref) ? ref : defaultState.ref;
 
-  // Ensure default column order and applied column order are defined.
-  const listOrder = [...Array(columns.names.length).keys()];
-  columns.defaultOrder = Array.isArray(defaultOrder) && arrayShallowEqual(listOrder, defaultOrder)
-    ? defaultOrder : listOrder;
-  columns.order = Array.isArray(order) && order.length > 0 && arrayContains(listOrder, order)
-    ? order : listOrder;
+    columns.defaultOrder = Array.isArray(defaultOrder) && arrayContains(defaultColumnOrder, defaultOrder)
+      ? defaultOrder : defaultColumnOrder;
+    columns.order = Array.isArray(order) && order.length > 0 && arrayContains(defaultColumnOrder, order)
+      ? order : defaultColumnOrder;
 
-  return columns;
+    return {
+      ...accum,
+      [selection]: columns,
+    };
+  }, {});
 };
 
 export default fillColumns;

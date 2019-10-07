@@ -1,32 +1,50 @@
 import fillPosition, { defaultState } from './position';
 
 describe('Fill position', () => {
-  it('should return user options when valid', () => {
-    const position = {
-      x: 0.5,
-      y: 0.5,
+  it('should return user-defined position when valid', () => {
+    const userPosition = {
+      main: {
+        x: 0.5,
+        y: 0.5,
+      },
     };
-    const expected = position;
-    expect(fillPosition(position)).toEqual(expected);
+    const expected = userPosition;
+    expect(fillPosition(userPosition)).toEqual(expected);
   });
 
-  it('should return defaults when user options invalid', () => {
-    const position = {
-      x: 'a',
-      y: 'a',
+  it('should return defaults when user-defined position options invalid', () => {
+    const userPosition = {
+      main: {
+        x: 'a',
+        y: 'a',
+      },
     };
-    const expected = defaultState;
-    expect(fillPosition(position)).toEqual(expected);
+    const expected = {
+      main: defaultState,
+    };
+    expect(fillPosition(userPosition)).toEqual(expected);
   });
 
-  it('should return defaults when user options missing', () => {
-    const position = {};
-    const expected = defaultState;
-    expect(fillPosition(position)).toEqual(expected);
+  it('should return defaults when no selections are defined', () => {
+    const userPosition = {};
+    const expected = {
+      main: defaultState,
+    };
+    expect(fillPosition(userPosition)).toEqual(expected);
+  });
+
+  it('should return defaults when user-defined position is not an object', () => {
+    const userPosition = [];
+    const expected = {
+      main: defaultState,
+    };
+    expect(fillPosition(userPosition)).toEqual(expected);
   });
 
   it('should return defaults when user options undefined', () => {
-    const expected = defaultState;
+    const expected = {
+      main: defaultState,
+    };
     expect(fillPosition(undefined)).toEqual(expected);
   });
 });

@@ -1,3 +1,5 @@
+import isObject from '../../../utils/is-object';
+
 export const defaultState = {
   abundanceCap: 50,
   cellSize: 15,
@@ -26,7 +28,7 @@ const acceptedImageTypes = {
   heatmap: true,
 };
 
-const validateSettings = (userSettings, defaultImageType = 'heatmap') => {
+export const validateSettings = (userSettings, defaultImageType = 'heatmap') => {
   if (!userSettings) {
     return { ...defaultState };
   }
@@ -62,21 +64,30 @@ const validateSettings = (userSettings, defaultImageType = 'heatmap') => {
 };
 
 const fillSettings = (userSettings) => {
-  if (!userSettings) {
+  if (!userSettings || !isObject(userSettings) || Object.keys(userSettings).length === 0) {
     return {
-      current: { ...defaultState },
-      default: { ...defaultState },
+      main: {
+        current: { ...defaultState },
+        default: { ...defaultState },
+      },
     };
   }
 
-  const settings = {};
-  settings.current = validateSettings(userSettings.current);
-  settings.default = validateSettings(
-    userSettings.default || settings.current,
-    settings.current.imageType,
-  );
+  return Object.keys(userSettings).reduce((accum, selection) => {
+    const settings = {};
+    settings.current = validateSettings(userSettings[selection].current);
+    settings.default = userSettings[selection].default
+      ? validateSettings(
+        userSettings[selection].default,
+        settings.current.imageType,
+      )
+      : settings.current;
 
-  return settings;
+    return {
+      ...accum,
+      [selection]: settings,
+    };
+  }, {});
 };
 
 export default fillSettings;

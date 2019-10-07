@@ -1,6 +1,6 @@
 export const defaultState = {
   open: true,
-  tab: 'settings',
+  tab: 'info',
 };
 
 const validTabs = {

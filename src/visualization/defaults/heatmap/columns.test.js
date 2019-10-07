@@ -1,67 +1,83 @@
 import fillColumns from './columns';
 
+const userColumnsDB = ['a', 'b', 'c'];
+
 describe('Fill columns', () => {
-  it('should return user options when valid', () => {
-    const user = {
-      defaultOrder: [0, 1, 2],
-      names: ['a', 'b', 'c'],
-      order: [1, 2, 0],
-      ref: 'a',
+  it('should return user-defined columns when valid', () => {
+    const userColumns = {
+      main: {
+        defaultOrder: [0, 1, 2],
+        order: [1, 2, 0],
+        ref: 'a',
+      },
     };
-    const expected = user;
-    expect(fillColumns(user)).toEqual(expected);
+    const expected = userColumns;
+    expect(fillColumns(userColumns, userColumnsDB)).toEqual(expected);
   });
 
-  it('should return defaults when user options invalid', () => {
-    const user = {
-      defaultOrder: {},
-      names: { a: true, b: true },
-      order: {},
-      ref: 5,
+  it('should return defaults when user-defined column selection has invalid values', () => {
+    const userColumns = {
+      main: {
+        defaultOrder: {},
+        order: {},
+        ref: 5,
+      },
     };
     const expected = {
-      defaultOrder: [],
-      names: [],
-      order: [],
-      ref: null,
+      main: {
+        defaultOrder: [0, 1, 2],
+        order: [0, 1, 2],
+        ref: null,
+      },
     };
-    expect(fillColumns(user)).toEqual(expected);
+    expect(fillColumns(userColumns, userColumnsDB)).toEqual(expected);
   });
 
-  it('should return defaults when user options missing', () => {
-    const user = {};
+  it('should return defaults when no selections are defined', () => {
+    const userColumns = {};
     const expected = {
-      defaultOrder: [],
-      names: [],
-      order: [],
-      ref: null,
+      main: {
+        defaultOrder: [0, 1, 2],
+        order: [0, 1, 2],
+        ref: null,
+      },
     };
-    expect(fillColumns(user)).toEqual(expected);
+    expect(fillColumns(userColumns, userColumnsDB)).toEqual(expected);
   });
 
-  it('should return defaults when user options undefined', () => {
+  it('should return defaults when user-defined columns are not an object', () => {
+    const userColumns = [];
     const expected = {
-      defaultOrder: [],
-      names: [],
-      order: [],
-      ref: null,
+      main: {
+        defaultOrder: [0, 1, 2],
+        order: [0, 1, 2],
+        ref: null,
+      },
     };
-    expect(fillColumns(undefined)).toEqual(expected);
+    expect(fillColumns(userColumns, userColumnsDB)).toEqual(expected);
+  });
+
+  it('should return defaults when user-defined columns undefined', () => {
+    const userColumns = undefined;
+    const expected = {
+      main: {
+        defaultOrder: [0, 1, 2],
+        order: [0, 1, 2],
+        ref: null,
+      },
+    };
+    expect(fillColumns(userColumns, userColumnsDB)).toEqual(expected);
   });
 
   it('should return null for ref when not in names array', () => {
-    const user = {
-      defaultOrder: [0, 1, 2],
-      names: ['a', 'b', 'c'],
-      order: [0, 1, 2],
-      ref: 'd',
+    const userColumns = {
+      main: {
+        defaultOrder: [0, 1, 2],
+        order: [1, 2, 0],
+        ref: 'd',
+      },
     };
-    const expected = {
-      defaultOrder: [0, 1, 2],
-      names: ['a', 'b', 'c'],
-      order: [0, 1, 2],
-      ref: null,
-    };
-    expect(fillColumns(user)).toEqual(expected);
+    const result = fillColumns(userColumns, userColumnsDB);
+    expect(result.main.ref).toBeNull();
   });
 });

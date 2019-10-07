@@ -1,116 +1,147 @@
 import fillRows, { defaultState } from './rows';
 
+const userRowDB = [{ name: 'a' }, { name: 'b' }, { name: 'c' }];
+
 describe('Fill rows', () => {
-  it('should return user options when valid', () => {
-    const rows = {
-      defaultOrder: [0, 1, 2],
-      direction: 'asc',
-      list: [{ name: 'a' }, { name: 'b' }, { name: 'c' }],
-      order: [1, 2, 0],
-      sortBy: 1,
+  it('should return user-defined rows when valid', () => {
+    const userRows = {
+      main: {
+        defaultOrder: [0, 1, 2],
+        direction: 'asc',
+        order: [1, 2, 0],
+        sortBy: 1,
+      },
     };
-    const expected = rows;
-    expect(fillRows(rows)).toEqual(expected);
+    const expected = userRows;
+    expect(fillRows(userRows, userRowDB)).toEqual(expected);
   });
 
-  it('should return defaults when user options invalid', () => {
-    const rows = {
-      defaultOrder: {},
-      direction: 'other',
-      list: {},
-      order: {},
-      sortBy: 'a',
-    };
-    const expected = defaultState;
-    expect(fillRows(rows)).toEqual(expected);
-  });
-
-  it('should return defaults when user options missing', () => {
-    const rows = {};
-    const expected = defaultState;
-    expect(fillRows(rows)).toEqual(expected);
-  });
-
-  it('should return defaults when user options undefined', () => {
-    const expected = defaultState;
-    expect(fillRows(undefined)).toEqual(expected);
-  });
-
-  describe('list order', () => {
-    it('should define order from list when order properties are not an array', () => {
-      const user = {
+  it('should return defaults when user-defined row selection has invalid values', () => {
+    const userRows = {
+      main: {
         defaultOrder: {},
-        direction: 'asc',
-        list: [{ name: 'a' }, { name: 'b' }, { name: 'c' }],
+        direction: 'other',
         order: {},
-        sortBy: 1,
-      };
-      const expected = {
-        ...user,
+        sortBy: 'a',
+      },
+    };
+    const expected = {
+      main: {
+        ...defaultState,
         defaultOrder: [0, 1, 2],
         order: [0, 1, 2],
+      },
+    };
+    expect(fillRows(userRows, userRowDB)).toEqual(expected);
+  });
+
+  it('should return defaults when no selections are defined', () => {
+    const userRows = {};
+    const expected = {
+      main: {
+        ...defaultState,
+        defaultOrder: [0, 1, 2],
+        order: [0, 1, 2],
+      },
+    };
+    expect(fillRows(userRows, userRowDB)).toEqual(expected);
+  });
+
+  it('should return defaults when user-defined rows are not an object', () => {
+    const userRows = [];
+    const expected = {
+      main: {
+        ...defaultState,
+        defaultOrder: [0, 1, 2],
+        order: [0, 1, 2],
+      },
+    };
+    expect(fillRows(userRows, userRowDB)).toEqual(expected);
+  });
+
+  it('should return defaults when user-defined rows undefined', () => {
+    const userRows = undefined;
+    const expected = {
+      main: {
+        ...defaultState,
+        defaultOrder: [0, 1, 2],
+        order: [0, 1, 2],
+      },
+    };
+    expect(fillRows(userRows, userRowDB)).toEqual(expected);
+  });
+
+  describe('row order', () => {
+    it('should define default order from rowDB when order contains values not in DB', () => {
+      const userRows = {
+        main: {
+          defaultOrder: [0, 1, 3],
+          direction: 'asc',
+          order: [0, 1, 2],
+          sortBy: 1,
+        },
       };
-      expect(fillRows(user)).toEqual(expected);
+      const expected = {
+        main: {
+          ...userRows.main,
+          defaultOrder: [0, 1, 2],
+        },
+      };
+      expect(fillRows(userRows, userRowDB)).toEqual(expected);
     });
 
-    it('should define default order from list when order contains values not in list', () => {
-      const user = {
-        defaultOrder: [0, 1, 3],
-        direction: 'asc',
-        list: [{ name: 'a' }, { name: 'b' }, { name: 'c' }],
-        order: [0, 1, 2],
-        sortBy: 1,
+    it('should define order from DB when order contains values not in DB', () => {
+      const userRows = {
+        main: {
+          defaultOrder: [0, 1, 2],
+          direction: 'asc',
+          order: [0, 3],
+          sortBy: 1,
+        },
       };
       const expected = {
-        ...user,
-        defaultOrder: [0, 1, 2],
+        main: {
+          ...userRows.main,
+          order: [0, 1, 2],
+        },
       };
-      expect(fillRows(user)).toEqual(expected);
+      expect(fillRows(userRows, userRowDB)).toEqual(expected);
     });
 
-    it('should define order from list when order contains values not in list', () => {
-      const user = {
-        defaultOrder: [0, 1, 2],
-        direction: 'asc',
-        list: [{ name: 'a' }, { name: 'b' }, { name: 'c' }],
-        order: [0, 3],
-        sortBy: 1,
+    it('should define order from DB when order is empty', () => {
+      const userRows = {
+        main: {
+          defaultOrder: [0, 1, 2],
+          direction: 'asc',
+          order: [],
+          sortBy: 1,
+        },
       };
       const expected = {
-        ...user,
-        order: [0, 1, 2],
+        main: {
+          ...userRows.main,
+          order: [0, 1, 2],
+        },
       };
-      expect(fillRows(user)).toEqual(expected);
-    });
-
-    it('should define order from list when order is empty', () => {
-      const user = {
-        defaultOrder: [0, 1, 2],
-        direction: 'asc',
-        list: [{ name: 'a' }, { name: 'b' }, { name: 'c' }],
-        order: [],
-        sortBy: 1,
-      };
-      const expected = {
-        ...user,
-        order: [0, 1, 2],
-      };
-      expect(fillRows(user)).toEqual(expected);
+      expect(fillRows(userRows, userRowDB)).toEqual(expected);
     });
   });
 
   it('should return default when sortby value is not within list length', () => {
-    const user = {
-      defaultOrder: [0, 1, 2],
-      direction: 'asc',
-      list: [{ name: 'a' }, { name: 'b' }, { name: 'c' }],
-      order: [0, 1, 2],
-      sortBy: 3,
+    const userRows = {
+      main: {
+        defaultOrder: [0, 1, 2],
+        direction: 'asc',
+        order: [0, 1, 2],
+        sortBy: 3,
+      },
     };
     const expected = {
-      ...user,
-      sortBy: null,
+      main: {
+        ...userRows.main,
+        sortBy: null,
+      },
     };
-    expect(fillRows(user)).toEqual(expected);
+    expect(fillRows(userRows, userRowDB)).toEqual(expected);
   });
 });

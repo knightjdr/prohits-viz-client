@@ -2,137 +2,234 @@ import ValidateJson from './validate';
 
 describe('Validate user loaded json', () => {
   it('should return error for invalid JSON', () => {
-    const json = ValidateJson(1234);
-    expect(json.err).toBeTruthy();
-    expect(json.message).toBe('Invalid file format');
+    const jsonString = ValidateJson(1234);
+    const expected = {
+      err: true,
+      message: 'Invalid file format',
+    };
+    expect(ValidateJson(jsonString)).toEqual(expected);
   });
 
-  it('should return error for missing parameters prop or parameters not equal to an object', () => {
-    // Missing "parameters" property.
-    let jsonString = '{}';
-    let json = ValidateJson(jsonString);
-    expect(json.err).toBeTruthy();
-    expect(json.message).toBe('The JSON object must have a "parameters" property with an object containing analysis parameters');
+  describe('Missing or incorrectly defined paramaters', () => {
+    it('should return error for missing paramaters property', () => {
+      const jsonString = JSON.stringify({});
+      const expected = {
+        err: true,
+        message: 'The JSON object must have a "parameters" property with an object containing analysis parameters',
+      };
+      expect(ValidateJson(jsonString)).toEqual(expected);
+    });
 
-    // "parameters" value is not an object.
-    jsonString = '{"parameters": []}';
-    json = ValidateJson(jsonString);
-    expect(json.err).toBeTruthy();
-    expect(json.message).toBe('The JSON object must have a "parameters" property with an object containing analysis parameters');
+    it('should return error for incorrectly defined paramaters', () => {
+      const jsonString = JSON.stringify({
+        parameters: [],
+      });
+      const expected = {
+        err: true,
+        message: 'The JSON object must have a "parameters" property with an object containing analysis parameters',
+      };
+      expect(ValidateJson(jsonString)).toEqual(expected);
+    });
   });
 
-  it('should return error for missing or unsupported image type', () => {
-    // Missing imageType.
-    let jsonString = '{"parameters": {}}';
-    let json = ValidateJson(jsonString);
-    expect(json.err).toBeTruthy();
-    expect(json.message).toBe('The image type must be specified in the parameters object and be of a supported type');
+  describe('Missing or unsupported image type', () => {
+    it('should return error for missing image type', () => {
+      const jsonString = JSON.stringify({
+        parameters: {},
+      });
+      const expected = {
+        err: true,
+        message: 'The image type must be specified in the parameters object and be of a supported type',
+      };
+      expect(ValidateJson(jsonString)).toEqual(expected);
+    });
 
-    // Unsupported imageType.
-    jsonString = '{"parameters": {"imageType": "something"}}';
-    json = ValidateJson(jsonString);
-    expect(json.err).toBeTruthy();
-    expect(json.message).toBe('The image type must be specified in the parameters object and be of a supported type');
+    it('should return error for unsupported image type', () => {
+      const jsonString = JSON.stringify({
+        parameters: {
+          imageType: 'something',
+        },
+      });
+      const expected = {
+        err: true,
+        message: 'The image type must be specified in the parameters object and be of a supported type',
+      };
+      expect(ValidateJson(jsonString)).toEqual(expected);
+    });
   });
 });
 
 describe('Validate JSON for dotplot/heatmap', () => {
-  it('should return error for missing columns prop or columns does not have an array of names', () => {
-    // Missing "columns" property.
-    let jsonString = '{"parameters": {"imageType": "dotplot"}}';
-    let json = ValidateJson(jsonString);
-    expect(json.err).toBeTruthy();
-    expect(json.message).toBe('The JSON object must have a "column" property with an array of column names');
+  describe('Invalid columnDB', () => {
+    it('should return error for missing columnDB', () => {
+      const jsonString = JSON.stringify({
+        parameters: {
+          imageType: 'dotplot',
+        },
+      });
+      const expected = {
+        err: true,
+        message: 'The JSON object must have a "columnDB" array',
+      };
+      expect(ValidateJson(jsonString)).toEqual(expected);
+    });
 
-    // "columns.names" value is not an array.
-    jsonString = '{"columns": { "names": {} }, "parameters": {"imageType": "dotplot"}}';
-    json = ValidateJson(jsonString);
-    expect(json.err).toBeTruthy();
-    expect(json.message).toBe('The JSON object must have a "column" property with an array of column names');
+    it('should return error when columnDB is not an array', () => {
+      const jsonString = JSON.stringify({
+        columnDB: {},
+        parameters: {
+          imageType: 'dotplot',
+        },
+      });
+      const expected = {
+        err: true,
+        message: 'The JSON object must have a "columnDB" array',
+      };
+      expect(ValidateJson(jsonString)).toEqual(expected);
+    });
   });
 
-  it('should return error for missing rows prop or rows not equal to array', () => {
-    // Missing "rows" property.
-    let jsonString = '{"columns": { "names": ["a", "b"] }, "parameters": {"imageType": "dotplot"}}';
-    let json = ValidateJson(jsonString);
-    expect(json.err).toBeTruthy();
-    expect(json.message).toBe('The JSON object must have a "rows" property with a list of row values');
+  describe('Invalid rowDB', () => {
+    it('should return error for missing rowDB', () => {
+      const jsonString = JSON.stringify({
+        columnDB: ['a', 'b'],
+        parameters: {
+          imageType: 'dotplot',
+        },
+      });
+      const expected = {
+        err: true,
+        message: 'The JSON object must have a "rowDB" array',
+      };
+      expect(ValidateJson(jsonString)).toEqual(expected);
+    });
 
-    // row ""list"" value is not an array.
-    jsonString = '{"columns": { "names": ["a", "b"] }, "parameters": {"imageType": "dotplot"}, "rows": { "list": {} } }';
-    json = ValidateJson(jsonString);
-    expect(json.err).toBeTruthy();
-    expect(json.message).toBe('The JSON object must have a "rows" property with a list of row values');
+    it('should return error for invalid rowDB', () => {
+      const jsonString = JSON.stringify({
+        columnDB: ['a', 'b'],
+        parameters: {
+          imageType: 'dotplot',
+        },
+        rowDB: {},
+      });
+      const expected = {
+        err: true,
+        message: 'The JSON object must have a "rowDB" array',
+      };
+      expect(ValidateJson(jsonString)).toEqual(expected);
+    });
   });
 
-  it('should have a data and names prop of correct type for each entry in the rows array ', () => {
-    // Missing props.
-    let jsonString = '{"columns": { "names": ["a", "b"] }, "parameters": {"imageType": "dotplot"}, "rows": { "list": [] }}';
-    let json = ValidateJson(jsonString);
-    expect(json.err).toBeTruthy();
-    expect(json.message).toBe('Each "rows" entry should have a "data" and "name" prop');
+  describe('Row data', () => {
+    it('should return error when there are no row entries', () => {
+      const jsonString = JSON.stringify({
+        columnDB: ['a', 'b'],
+        parameters: {
+          imageType: 'dotplot',
+        },
+        rowDB: [],
+      });
+      const expected = {
+        err: true,
+        message: 'Each "rowDB" entry should have a "data" and "name" property',
+      };
+      expect(ValidateJson(jsonString)).toEqual(expected);
+    });
 
-    // Missing data prop.
-    jsonString = '{"columns": { "names": ["a", "b"] }, "parameters": {"imageType": "dotplot"}, "rows": { "list": [{"name": "test"}] } }';
-    json = ValidateJson(jsonString);
-    expect(json.err).toBeTruthy();
-    expect(json.message).toBe('Each "rows" entry should have a "data" and "name" prop');
+    it('should return error when the row entries have no "data"', () => {
+      const jsonString = JSON.stringify({
+        columnDB: ['a', 'b'],
+        parameters: {
+          imageType: 'dotplot',
+        },
+        rowDB: [
+          { name: 'test' },
+        ],
+      });
+      const expected = {
+        err: true,
+        message: 'Each "rowDB" entry should have a "data" and "name" property',
+      };
+      expect(ValidateJson(jsonString)).toEqual(expected);
+    });
 
-    // Missing name prop.
-    jsonString = '{"columns": { "names": ["a", "b"] }, "parameters": {"imageType": "dotplot"}, "rows": { "list": [{"data": []}] } }';
-    json = ValidateJson(jsonString);
-    expect(json.err).toBeTruthy();
-    expect(json.message).toBe('Each "rows" entry should have a "data" and "name" prop');
+    it('should return error when the row entries have no name', () => {
+      const jsonString = JSON.stringify({
+        columnDB: ['a', 'b'],
+        parameters: {
+          imageType: 'dotplot',
+        },
+        rowDB: [
+          { data: [] },
+        ],
+      });
+      const expected = {
+        err: true,
+        message: 'Each "rowDB" entry should have a "data" and "name" property',
+      };
+      expect(ValidateJson(jsonString)).toEqual(expected);
+    });
 
-    // Data prop of incorrect type.
-    jsonString = '{"columns": { "names": ["a", "b"] }, "parameters": {"imageType": "dotplot"}, "rows": { "list": [{"data": {}, "name": "test"}]} }';
-    json = ValidateJson(jsonString);
-    expect(json.err).toBeTruthy();
-    expect(json.message).toBe('The row data should be an array with at least a "value" key');
+    it('should return error when the row data is not an array', () => {
+      const jsonString = JSON.stringify({
+        columnDB: ['a', 'b'],
+        parameters: {
+          imageType: 'dotplot',
+        },
+        rowDB: [
+          { data: {}, name: 'test' },
+        ],
+      });
+      const expected = {
+        err: true,
+        message: 'The row data should be an array with at least a "value" property',
+      };
+      expect(ValidateJson(jsonString)).toEqual(expected);
+    });
 
-    // Data prop missing value.
-    jsonString = '{"columns": { "names": ["a", "b"] }, "parameters": {"imageType": "dotplot"}, "rows": { "list": [{"data": [{}], "name": "test"}]} }';
-    json = ValidateJson(jsonString);
-    expect(json.err).toBeTruthy();
-    expect(json.message).toBe('The row data should be an array with at least a "value" key');
+    it('should return error when the row data does not have a "value" property', () => {
+      const jsonString = JSON.stringify({
+        columnDB: ['a', 'b'],
+        parameters: {
+          imageType: 'dotplot',
+        },
+        rowDB: [
+          { data: [{}], name: 'test' },
+        ],
+      });
+      const expected = {
+        err: true,
+        message: 'The row data should be an array with at least a "value" property',
+      };
+      expect(ValidateJson(jsonString)).toEqual(expected);
+    });
   });
 
   it('should validate dotplot data', () => {
-    // Data prop missing value.
-    const jsonString = '{"columns": { "names": ["a", "b"] }, "parameters": {"imageType": "dotplot"}, "rows": { "list": [{"data": [{"value": 1}], "name": "test"}]} }';
-    const json = ValidateJson(jsonString);
-    expect(json.err).toBeFalsy();
-    const parsed = {
-      columns: { names: ['a', 'b'] },
+    const data = {
+      columnDB: ['a', 'b'],
       parameters: { imageType: 'dotplot' },
-      rows: { list: [{ data: [{ value: 1 }], name: 'test' }] },
+      rowDB: [{ data: [{ value: 1 }], name: 'test' }],
     };
-    expect(json.json).toEqual(parsed);
+    const jsonString = JSON.stringify(data);
+    const expected = {
+      err: false,
+      data,
+    };
+    expect(ValidateJson(jsonString)).toEqual(expected);
   });
 
   it('should valide heatmap data', () => {
-    // Data prop missing value.
-    const jsonString = '{"columns": { "names": ["a", "b"] }, "parameters": {"imageType": "heatmap"}, "rows": { "list": [{"data": [{"value": 1}], "name": "test"}]} }';
-    const json = ValidateJson(jsonString);
-    expect(json.err).toBeFalsy();
-    const parsed = {
-      columns: { names: ['a', 'b'] },
+    const data = {
+      columnDB: ['a', 'b'],
       parameters: { imageType: 'heatmap' },
-      rows: { list: [{ data: [{ value: 1 }], name: 'test' }] },
+      rowDB: [{ data: [{ value: 1 }], name: 'test' }],
     };
-    expect(json.json).toEqual(parsed);
-  });
-});
-
-describe('Validate json for scatterplot', () => {
-  it('should validate scatterplot data', () => {
-    // Data prop missing value.
-    const jsonString = '{"parameters": {"imageType": "scatter"}}';
-    const json = ValidateJson(jsonString);
-    expect(json.err).toBeFalsy();
-    const parsed = {
-      parameters: { imageType: 'scatter' },
+    const jsonString = JSON.stringify(data);
+    const expected = {
+      err: false,
+      data,
     };
-    expect(json.json).toEqual(parsed);
+    expect(ValidateJson(jsonString)).toEqual(expected);
   });
 });

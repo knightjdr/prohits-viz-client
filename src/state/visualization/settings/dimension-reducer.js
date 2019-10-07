@@ -9,16 +9,19 @@ export const defaultState = {
   width: 0,
 };
 
-const reducer = (state = defaultState, action) => {
+const reducer = (state = {}, action) => {
   switch (action.type) {
     case actions.SET_DIMENSIONS:
       return {
-        columns: action.columns,
-        height: action.height,
-        pageX: action.pageX,
-        pageY: action.pageY,
-        rows: action.rows,
-        width: action.width,
+        ...state,
+        [action.dataID]: {
+          columns: action.columns,
+          height: action.height,
+          pageX: action.pageX,
+          pageY: action.pageY,
+          rows: action.rows,
+          width: action.width,
+        },
       };
     default:
       return state;

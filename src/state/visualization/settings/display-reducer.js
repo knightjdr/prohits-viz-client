@@ -4,13 +4,16 @@ export const defaultState = {
   plotFixed: false,
 };
 
-const reducer = (state = { ...defaultState }, action) => {
+const reducer = (state = {}, action) => {
   switch (action.type) {
     case actions.UPDATE_PLOT_POSITION:
       return {
         ...state,
-        plotFixed: action.fixed,
-        plotTranslate: action.translate,
+        [action.dataID]: {
+          ...state[action.dataID],
+          plotFixed: action.fixed,
+          plotTranslate: action.translate,
+        },
       };
     default:
       return state;

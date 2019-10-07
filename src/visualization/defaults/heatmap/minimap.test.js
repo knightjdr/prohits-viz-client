@@ -4,39 +4,59 @@ import validateUri from '../../../utils/validate-uri';
 jest.mock('../../../utils/validate-uri');
 
 describe('Fill minimap', () => {
-  it('should return user options when valid', () => {
+  it('should return user-defined minimap when valid', () => {
     validateUri.mockReturnValue(true);
-    const minimap = {
-      image: 'image',
-      needSyncing: true,
-      syncedImage: 'image',
+    const userMinimap = {
+      main: {
+        image: 'image',
+        needSyncing: true,
+        syncedImage: 'image',
+      },
     };
     const expected = {
-      ...defaultState,
-      ...minimap,
+      main: {
+        ...defaultState,
+        ...userMinimap.main,
+      },
     };
-    expect(fillMap(minimap)).toEqual(expected);
+    expect(fillMap(userMinimap)).toEqual(expected);
   });
 
-  it('should return defaults when user options invalid', () => {
+  it('should return defaults when user-defined minimap options invalid', () => {
     validateUri.mockReturnValue(false);
-    const minimap = {
-      image: 'image',
-      needSyncing: 'true',
-      syncedImage: 'image',
+    const userMinimap = {
+      main: {
+        image: 'image',
+        needSyncing: 'true',
+        syncedImage: 'image',
+      },
     };
-    const expected = defaultState;
-    expect(fillMap(minimap)).toEqual(expected);
+    const expected = {
+      main: defaultState,
+    };
+    expect(fillMap(userMinimap)).toEqual(expected);
   });
 
-  it('should return defaults when user options missing', () => {
-    const minimap = {};
-    const expected = defaultState;
-    expect(fillMap(minimap)).toEqual(expected);
+  it('should return defaults when no selections are defined', () => {
+    const userMinimap = {};
+    const expected = {
+      main: defaultState,
+    };
+    expect(fillMap(userMinimap)).toEqual(expected);
   });
 
-  it('should return defaults when user options undefined', () => {
-    const expected = defaultState;
+  it('should return defaults when user-defined minimap is not an object', () => {
+    const userMinimap = [];
+    const expected = {
+      main: defaultState,
+    };
+    expect(fillMap(userMinimap)).toEqual(expected);
+  });
+
+  it('should return defaults when user-defined minimap undefined', () => {
+    const expected = {
+      main: defaultState,
+    };
     expect(fillMap(undefined)).toEqual(expected);
   });
 });
