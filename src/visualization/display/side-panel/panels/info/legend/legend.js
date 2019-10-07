@@ -3,13 +3,11 @@ import React from 'react';
 
 import Dotplot from './legend__dotplot';
 import Heatmap from './legend__heatmap';
-import CircHeatmap from './legend__circheatmap';
 
 import './legend.css';
 
 const Legend = ({
   parameters,
-  segments,
   settings,
 }) => {
   let content;
@@ -32,15 +30,6 @@ const Legend = ({
         />
       );
       break;
-    case 'circ-heatmap':
-      content = (
-        <CircHeatmap
-          {...settings}
-          segments={segments}
-          segmentSettings={settings.segments}
-        />
-      );
-      break;
     default:
       break;
   }
@@ -51,10 +40,6 @@ const Legend = ({
   );
 };
 
-Legend.defaultProps = {
-  segments: [],
-};
-
 Legend.propTypes = {
   parameters: PropTypes.shape({
     abundanceColumn: PropTypes.string,
@@ -62,12 +47,7 @@ Legend.propTypes = {
     scoreColumn: PropTypes.string,
     scoreType: PropTypes.string,
   }).isRequired,
-  segments: PropTypes.arrayOf(
-    PropTypes.shape({}),
-  ),
-  settings: PropTypes.shape({
-    segments: PropTypes.arrayOf(PropTypes.shape({})),
-  }).isRequired,
+  settings: PropTypes.shape({}).isRequired,
 };
 
 export default Legend;

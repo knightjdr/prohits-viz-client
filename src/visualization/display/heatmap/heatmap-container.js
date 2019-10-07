@@ -7,17 +7,18 @@ import plotTranslate from './dimensions/translate';
 import usePlotScroll from './dimensions/use-plot-scroll';
 import useWindowDimension from '../../../hooks/window-size/use-window-dimension';
 import { setDimensions } from '../../../state/visualization/settings/dimension-actions';
-import { stateSelectorProp } from '../../../state/selector/general';
+import { selectDataProperty } from '../../../state/selector/visualization/data-selector';
+import { selectStateProperty } from '../../../state/selector/general';
 
 const HeatmapContainer = () => {
   const dispatch = useDispatch();
   const ref = useRef();
 
-  const columns = useSelector(state => stateSelectorProp(state, 'columns', 'names'));
-  const panelOpen = useSelector(state => stateSelectorProp(state, 'panel', 'open'));
-  const plotFixed = useSelector(state => stateSelectorProp(state, 'display', 'plotFixed'));
-  const rowOrder = useSelector(state => stateSelectorProp(state, 'rows', 'order'));
-  const settings = useSelector(state => stateSelectorProp(state, 'settings', 'current'));
+  const columns = useSelector(state => selectDataProperty(state, 'columns', 'order'));
+  const panelOpen = useSelector(state => selectStateProperty(state, 'panel', 'open'));
+  const plotFixed = useSelector(state => selectStateProperty(state, 'display', 'plotFixed'));
+  const rowOrder = useSelector(state => selectDataProperty(state, 'rows', 'order'));
+  const settings = useSelector(state => selectDataProperty(state, 'settings', 'current'));
 
   const windowDimensions = useWindowDimension(50);
   usePlotScroll(ref, 50);

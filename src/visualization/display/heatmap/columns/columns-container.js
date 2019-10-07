@@ -6,7 +6,7 @@ import columnSelector from '../../../../state/selector/visualization/column-sele
 import parseNames from '../names/names';
 import setFontSize from '../font-size/font-size';
 import useContextMenu from '../context-menu/use-context-menu';
-import { stateSelectorProp } from '../../../../state/selector/general';
+import { selectDataProperty } from '../../../../state/selector/visualization/data-selector';
 
 const ColumnsContainer = () => {
   const [tooltip, setTooltip] = useState({
@@ -15,11 +15,11 @@ const ColumnsContainer = () => {
     text: '',
   });
 
-  const columnRef = useSelector(state => stateSelectorProp(state, 'columns', 'ref'));
+  const columnRef = useSelector(state => selectDataProperty(state, 'columns', 'ref'));
   const names = useSelector(state => columnSelector(state));
-  const pageX = useSelector(state => stateSelectorProp(state, 'dimensions', 'pageX'));
-  const settings = useSelector(state => stateSelectorProp(state, 'settings', 'current'));
-  const x = useSelector(state => stateSelectorProp(state, 'position', 'x'));
+  const pageX = useSelector(state => selectDataProperty(state, 'dimensions', 'pageX'));
+  const settings = useSelector(state => selectDataProperty(state, 'settings', 'current'));
+  const x = useSelector(state => selectDataProperty(state, 'position', 'x'));
 
   const contextMenu = useContextMenu('context-columns', 'columns');
 

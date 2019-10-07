@@ -2,10 +2,10 @@ import React from 'react';
 import { useSelector } from 'react-redux';
 
 import Settings from './settings';
-import { stateSelectorProp } from '../../../../../state/selector/general';
+import { selectStateProperty } from '../../../../../state/selector/general';
 
 const SettingsContainer = () => {
-  const imageType = useSelector(state => stateSelectorProp(state, 'parameters', 'imageType'));
+  const imageType = useSelector(state => selectStateProperty(state, 'parameters', 'imageType'));
 
   return (
     <Settings

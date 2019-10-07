@@ -5,13 +5,13 @@ import { useDispatch, useSelector } from 'react-redux';
 import fetch from '../../utils/fetch';
 import Article from './article';
 import { fillArticle, getArticle, articleError } from '../../state/news/article-actions';
-import { stateSelector } from '../../state/selector/general';
+import { selectState } from '../../state/selector/general';
 
 const ArticleContainer = ({
   id,
 }) => {
   const dispatch = useDispatch();
-  const article = useSelector(state => stateSelector(state, 'article'));
+  const article = useSelector(state => selectState(state, 'article'));
 
   useEffect(() => {
     const fetchContent = async () => {

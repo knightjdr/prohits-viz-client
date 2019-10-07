@@ -6,13 +6,13 @@ import SettingsHeatmap from './settings__heatmap';
 import columnSelector from '../../../../../../state/selector/visualization/column-selector';
 import useFilter from '../filter/use-filter';
 import { resetImage } from '../../../../../../state/visualization/settings/display-actions';
-import { resetSettings, updateSetting } from '../../../../../../state/visualization/data/settings-actions';
-import { stateSelectorProp } from '../../../../../../state/selector/general';
+import { resetSettings, updateSetting } from '../../../../../../state/visualization/settings/settings-actions';
+import { selectDataProperty } from '../../../../../../state/selector/visualization/data-selector';
 
 const SettingsHeatmapContainer = () => {
   const dispatch = useDispatch();
   const columns = useSelector(state => columnSelector(state));
-  const settings = useSelector(state => stateSelectorProp(state, 'settings', 'current'));
+  const settings = useSelector(state => selectDataProperty(state, 'settings', 'current'));
 
   const filter = useFilter();
 

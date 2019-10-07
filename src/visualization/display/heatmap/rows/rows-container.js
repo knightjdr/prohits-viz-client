@@ -6,7 +6,8 @@ import names from '../names/names';
 import setFontSize from '../font-size/font-size';
 import useContextMenu from '../context-menu/use-context-menu';
 import { rowNamesSelector } from '../../../../state/selector/visualization/row-selector';
-import { stateSelectorProp } from '../../../../state/selector/general';
+import { selectDataProperty } from '../../../../state/selector/visualization/data-selector';
+import { selectStateProperty } from '../../../../state/selector/general';
 
 const RowsContainer = () => {
   const [tooltip, setTooltip] = useState({
@@ -16,9 +17,9 @@ const RowsContainer = () => {
   });
 
   const orderedNames = useSelector(state => rowNamesSelector(state));
-  const pageY = useSelector(state => stateSelectorProp(state, 'dimensions', 'pageY'));
-  const settings = useSelector(state => stateSelectorProp(state, 'settings', 'current'));
-  const y = useSelector(state => stateSelectorProp(state, 'position', 'y'));
+  const pageY = useSelector(state => selectStateProperty(state, 'dimensions', 'pageY'));
+  const settings = useSelector(state => selectDataProperty(state, 'settings', 'current'));
+  const y = useSelector(state => selectStateProperty(state, 'position', 'y'));
 
   const contextMenu = useContextMenu('context-rows', 'rows');
 

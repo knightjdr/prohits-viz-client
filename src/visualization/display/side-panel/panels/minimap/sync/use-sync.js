@@ -2,16 +2,17 @@ import { useDispatch, useSelector } from 'react-redux';
 
 import fetch from '../../../../../../utils/fetch';
 import { rowSelector } from '../../../../../../state/selector/visualization/row-selector';
-import { stateSelector, stateSelectorProp } from '../../../../../../state/selector/general';
-import * as actions from '../../../../../../state/visualization/data/minimap-actions';
+import { selectDataProperty } from '../../../../../../state/selector/visualization/data-selector';
+import { selectState, selectStateProperty } from '../../../../../../state/selector/general';
+import * as actions from '../../../../../../state/visualization/heatmap/minimap-actions';
 
 const useSync = () => {
   const dispatch = useDispatch();
 
   const rows = useSelector(state => rowSelector(state));
-  const scoreType = useSelector(state => stateSelectorProp(state, 'parameters', 'scoreType'));
-  const session = useSelector(state => stateSelector(state, 'session'));
-  const settings = useSelector(state => stateSelectorProp(state, 'settings', 'current'));
+  const scoreType = useSelector(state => selectStateProperty(state, 'parameters', 'scoreType'));
+  const session = useSelector(state => selectState(state, 'session'));
+  const settings = useSelector(state => selectDataProperty(state, 'settings', 'current'));
 
   const {
     abundanceCap,

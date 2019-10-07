@@ -2,10 +2,10 @@ import React, { useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 
 import ContextMenu from './context-menu';
-import useSelections from '../selections/use-selections';
+// import useSelections from '../selections/use-selections';
 import useSortRows from '../sort/use-sort-rows';
-import { setReference } from '../../../../state/visualization/data/columns-actions';
-import { stateSelectorProp } from '../../../../state/selector/general';
+import { setReference } from '../../../../state/visualization/heatmap/columns-actions';
+import { selectDataProperty } from '../../../../state/selector/visualization/data-selector';
 
 const useContextMenu = (name = 'contextMenu', containerType = 'columns') => {
   const [contextItem, setContextItem] = useState('');
@@ -19,9 +19,9 @@ const useContextMenu = (name = 'contextMenu', containerType = 'columns') => {
 
   const dispatch = useDispatch();
 
-  const reference = useSelector(state => stateSelectorProp(state, 'columns', 'ref'));
+  const reference = useSelector(state => selectDataProperty(state, 'columns', 'ref'));
 
-  const setSelections = useSelections('columns', 'text');
+  // const setSelections = useSelections('columns', 'text');
   const sort = useSortRows();
 
   const closeMenu = () => {
@@ -45,10 +45,10 @@ const useContextMenu = (name = 'contextMenu', containerType = 'columns') => {
     dispatch(setReference(contextItem));
   };
 
-  const setSelection = () => {
+  /* const setSelection = () => {
     closeMenu();
     setSelections([contextItem], containerType, `${containerType}Selected`);
-  };
+  }; */
 
   const sortAscending = () => {
     closeMenu();
@@ -67,7 +67,7 @@ const useContextMenu = (name = 'contextMenu', containerType = 'columns') => {
 
   return {
     open: openMenu,
-    setSelections,
+    // setSelections,
     sortRows: sort.rows,
     Component: (
       <ContextMenu
@@ -78,7 +78,7 @@ const useContextMenu = (name = 'contextMenu', containerType = 'columns') => {
         position={position}
         reference={reference}
         setReference={setReferenceColumn}
-        setSelection={setSelection}
+        setSelection={() => {}}
         sortAscending={sortAscending}
         sortDescending={sortDescending}
         target={contextItem}

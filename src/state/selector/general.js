@@ -1,16 +1,16 @@
 import { createSelector } from 'reselect';
 
-const getState = (state, key) => state[key];
-const getStateProp = (state, key, prop) => state[key][prop];
+const getState = (state, element) => state[element];
+const getStateProp = (state, element, property) => state[element][property];
 
-export const stateSelector = createSelector(
+export const selectState = createSelector(
   [getState],
   state => (
     state
   ),
 );
 
-export const stateSelectorProp = createSelector(
+export const selectStateProperty = createSelector(
   [getStateProp],
   prop => (
     prop

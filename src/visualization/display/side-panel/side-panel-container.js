@@ -3,12 +3,12 @@ import { useDispatch, useSelector } from 'react-redux';
 
 import SidePanel from './side-panel';
 import useSmallScreen from '../../../hooks/small-screen/use-small-screen';
-import { stateSelector } from '../../../state/selector/general';
+import { selectState } from '../../../state/selector/general';
 import { togglePanel } from '../../../state/visualization/settings/panel-actions';
 
 const SidePanelContainer = () => {
   const isSmallScreen = useSmallScreen();
-  const parameters = useSelector(state => stateSelector(state, 'panel'));
+  const parameters = useSelector(state => selectState(state, 'panel'));
   const dispatch = useDispatch();
 
   useEffect(() => {

@@ -3,8 +3,11 @@ import { createSelector } from 'reselect';
 import arrayOrderBy from '../../../utils/array-order-by';
 
 const getState = (state) => {
-  const { names, order } = state.columns;
-  return arrayOrderBy(names, order);
+  const { columnDB } = state;
+  const { active } = state.tabs;
+  const { order } = state.columns[active];
+
+  return arrayOrderBy(columnDB, order);
 };
 
 const columnSelector = createSelector(

@@ -2,13 +2,13 @@ import { useDispatch, useSelector } from 'react-redux';
 
 import debounce from '../../../../utils/debounce';
 import useScroll from '../../../../hooks/scroll/use-scroll';
-import { stateSelector } from '../../../../state/selector/general';
-import { updatePosition } from '../../../../state/visualization/data/position-actions';
+import { selectState } from '../../../../state/selector/general';
+import { updatePosition } from '../../../../state/visualization/settings/position-actions';
 
 const Scroll = (ref, wait = 50) => {
   const dispatch = useDispatch();
-  const dimensions = useSelector(state => stateSelector(state, 'dimensions'));
-  const position = useSelector(state => stateSelector(state, 'position'));
+  const dimensions = useSelector(state => selectState(state, 'dimensions'));
+  const position = useSelector(state => selectState(state, 'position'));
 
   const update = debounce((x, y) => {
     dispatch(updatePosition(x, y));

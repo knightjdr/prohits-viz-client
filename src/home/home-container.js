@@ -4,11 +4,11 @@ import { useDispatch, useSelector } from 'react-redux';
 import fetch from '../utils/fetch';
 import Home from './home';
 import { fillHome } from '../state/home/home-actions';
-import { stateSelectorProp } from '../state/selector/general';
+import { selectStateProperty } from '../state/selector/general';
 
 const HomeContainer = () => {
   const dispatch = useDispatch();
-  const homeContentLoaded = useSelector(state => stateSelectorProp(state, 'home', 'isLoaded'));
+  const homeContentLoaded = useSelector(state => selectStateProperty(state, 'home', 'isLoaded'));
 
   useEffect(() => {
     const fetchContent = async () => {

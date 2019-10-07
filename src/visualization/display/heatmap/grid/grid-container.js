@@ -11,15 +11,16 @@ import setEdgeRange from './edge-range';
 import setRange from '../../../../utils/set-range';
 import translation from './translation';
 import { rowSelector } from '../../../../state/selector/visualization/row-selector';
-import { stateSelector, stateSelectorProp } from '../../../../state/selector/general';
+import { selectDataProperty } from '../../../../state/selector/visualization/data-selector';
+import { selectState, selectStateProperty } from '../../../../state/selector/general';
 
 const GridContainer = () => {
-  const dimensions = useSelector(state => stateSelector(state, 'dimensions'));
+  const dimensions = useSelector(state => selectState(state, 'dimensions'));
   const [page, setPage] = useState(null);
-  const position = useSelector(state => stateSelector(state, 'position'));
+  const position = useSelector(state => selectState(state, 'position'));
   const rows = useSelector(state => rowSelector(state));
-  const scoreType = useSelector(state => stateSelectorProp(state, 'parameters', 'scoreType'));
-  const settings = useSelector(state => stateSelectorProp(state, 'settings', 'current'));
+  const scoreType = useSelector(state => selectStateProperty(state, 'parameters', 'scoreType'));
+  const settings = useSelector(state => selectDataProperty(state, 'settings', 'current'));
 
   const {
     abundanceCap,

@@ -5,8 +5,8 @@ import Map from './minimap';
 import newPosition from './new-position';
 import setRange from './range';
 import useSync from './sync/use-sync';
-import { stateSelector } from '../../../../../state/selector/general';
-import { updatePosition } from '../../../../../state/visualization/data/position-actions';
+import { selectState } from '../../../../../state/selector/general';
+import { updatePosition } from '../../../../../state/visualization/settings/position-actions';
 
 const MinimapContainer = () => {
   const [attached, setAttached] = useState(true);
@@ -14,9 +14,9 @@ const MinimapContainer = () => {
   const dispatch = useDispatch();
   const sync = useSync();
 
-  const dimensions = useSelector(state => stateSelector(state, 'dimensions'));
-  const minimap = useSelector(state => stateSelector(state, 'minimap'));
-  const position = useSelector(state => stateSelector(state, 'position'));
+  const dimensions = useSelector(state => selectState(state, 'dimensions'));
+  const minimap = useSelector(state => selectState(state, 'minimap'));
+  const position = useSelector(state => selectState(state, 'position'));
 
   const pageOutline = setRange(dimensions, position);
 

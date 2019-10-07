@@ -1,4 +1,4 @@
-import { stateSelector, stateSelectorProp } from './general';
+import { selectState, selectStateProperty } from './general';
 
 const state = {
   keyA: {
@@ -8,10 +8,10 @@ const state = {
 
 describe('General selector for retrieving state values', () => {
   it('should return full object for specified key', () => {
-    expect(stateSelector(state, 'keyA')).toEqual(state.keyA);
+    expect(selectState(state, 'keyA')).toEqual(state.keyA);
   });
 
   it('should return a specific prop from state object', () => {
-    expect(stateSelectorProp(state, 'keyA', 'propA')).toBe('A');
+    expect(selectStateProperty(state, 'keyA', 'propA')).toBe('A');
   });
 });

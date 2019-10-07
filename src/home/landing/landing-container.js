@@ -2,10 +2,10 @@ import React from 'react';
 import { useSelector } from 'react-redux';
 
 import Landing from './landing';
-import { stateSelectorProp } from '../../state/selector/general';
+import { selectStateProperty } from '../../state/selector/general';
 
 const LandingContainer = () => {
-  const news = useSelector(state => stateSelectorProp(state, 'home', 'news'));
+  const news = useSelector(state => selectStateProperty(state, 'home', 'news'));
 
   const article = news && news[0]
     ? {

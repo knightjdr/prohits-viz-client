@@ -4,11 +4,11 @@ import { useDispatch, useSelector } from 'react-redux';
 import fetch from '../../utils/fetch';
 import List from './list';
 import { fillNews, getNews, newsError } from '../../state/news/news-actions';
-import { stateSelector } from '../../state/selector/general';
+import { selectState } from '../../state/selector/general';
 
 const ListContainer = () => {
   const dispatch = useDispatch();
-  const news = useSelector(state => stateSelector(state, 'news'));
+  const news = useSelector(state => selectState(state, 'news'));
 
   useEffect(() => {
     const fetchContent = async () => {

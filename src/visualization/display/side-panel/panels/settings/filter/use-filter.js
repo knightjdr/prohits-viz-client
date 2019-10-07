@@ -2,9 +2,10 @@ import { useCallback } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 
 import columnSelector from '../../../../../../state/selector/visualization/column-selector';
-import { filterRows } from '../../../../../../state/visualization/data/rows-actions';
-import { stateSelector, stateSelectorProp } from '../../../../../../state/selector/general';
-import { updateSetting } from '../../../../../../state/visualization/data/settings-actions';
+import { filterRows } from '../../../../../../state/visualization/heatmap/rows-actions';
+import { selectDataProperty } from '../../../../../../state/selector/visualization/data-selector';
+import { selectState, selectStateProperty } from '../../../../../../state/selector/general';
+import { updateSetting } from '../../../../../../state/visualization/settings/settings-actions';
 
 const defineScoreCriterion = (scoreType, primaryFilter) => {
   const gte = a => a >= primaryFilter;
@@ -33,14 +34,12 @@ const useFilter = () => {
   const dispatch = useDispatch();
 
   const columns = useSelector(state => columnSelector(state));
-  const scoreType = useSelector(state => stateSelectorProp(state, 'parameters', 'scoreType'));
-  const settings = useSelector(state => stateSelectorProp(state, 'settings', 'current'));
-  const rows = useSelector(state => stateSelector(state, 'rows'));
+  const scoreType = useSelector(state => selectStateProperty(state, 'parameters', 'scoreType'));
+  const settings = useSelector(state => selectDataProperty(state, 'settings', 'current'));
+  const rows = useSelector(state => selectState(state, 'rows'));
+  const rowDB = useSelector(state => selectState(state, 'rowsDB'));
 
-  const {
-    list,
-    order,
-  } = rows;
+  const { order } = rows;
   const {
     filterBy,
     minAbundance,
@@ -55,7 +54,7 @@ const useFilter = () => {
       const filterIndex = columns.indexOf(newFilterBy);
       const filteredRowOrder = filterRow(
         order,
-        list,
+        rowDB,
         filterIndex,
         scoreType,
         newAbundance,
@@ -65,7 +64,7 @@ const useFilter = () => {
       dispatch(updateSetting(setting, value));
       dispatch(filterRows(filteredRowOrder));
     },
-    [columns, dispatch, filterBy, list, minAbundance, order, primaryFilter, scoreType],
+    [columns, dispatch, filterBy, rowDB, minAbundance, order, primaryFilter, scoreType],
   );
 
   return filter;

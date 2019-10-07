@@ -2,10 +2,10 @@ import React from 'react';
 import { useSelector } from 'react-redux';
 
 import Spotlight from './spotlight';
-import { stateSelectorProp } from '../../state/selector/general';
+import { selectStateProperty } from '../../state/selector/general';
 
 const SpotlightContainer = () => {
-  const manuscripts = useSelector(state => stateSelectorProp(state, 'home', 'spotlight'));
+  const manuscripts = useSelector(state => selectStateProperty(state, 'home', 'spotlight'));
 
   return (
     <Spotlight manuscripts={manuscripts} />

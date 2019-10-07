@@ -7,13 +7,13 @@ import fillDefaults from '../defaults/fill';
 import Process from './process';
 import useLoading from '../../hooks/loading/use-loading';
 import { parseFile } from '../../state/visualization/data/interactive-file-actions';
-import { stateSelector } from '../../state/selector/general';
+import { selectState } from '../../state/selector/general';
 
 const ProcessContainer = ({
   filename,
   id,
 }) => {
-  const parameters = useSelector(state => stateSelector(state, 'parameters'));
+  const parameters = useSelector(state => selectState(state, 'parameters'));
   const dispatch = useDispatch();
   const status = useLoading(true);
 

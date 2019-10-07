@@ -5,6 +5,7 @@ import fillParameters from './parameters';
 import fillPosition from './position';
 import fillRows from './rows';
 import fillSettings from './settings';
+import fillTabs from '../tabs';
 
 const heatmap = (file, filename, taskID, imageType) => {
   const {
@@ -17,6 +18,7 @@ const heatmap = (file, filename, taskID, imageType) => {
     rowDB,
     rows,
     settings,
+    tabs,
   } = file;
 
   return {
@@ -27,6 +29,7 @@ const heatmap = (file, filename, taskID, imageType) => {
     position: fillPosition(position),
     rows: fillRows(rows, rowDB),
     settings: fillSettings(settings),
+    tabs: fillTabs(tabs),
   };
 };
 

@@ -4,7 +4,7 @@ import addToTarget from './add-to-target';
 import filterSelection from './filter-selection';
 import sortTarget from './sort-target';
 import updateSource from './update-source';
-import { stateSelector } from '../../../../state/selector/general';
+import { selectState } from '../../../../state/selector/general';
 import { updateSelections } from '../../../../state/visualization/data/selection-actions';
 
 /* useSelections will remove any of the specified arr items that are not in the
@@ -13,7 +13,7 @@ import { updateSelections } from '../../../../state/visualization/data/selection
 const useSelections = () => {
   const dispatch = useDispatch();
 
-  const selection = useSelector(state => stateSelector(state, 'selection'));
+  const selection = useSelector(state => selectState(state, 'selection'));
 
   const setSelections = (arr, source, target, replace = false, sortBy) => {
     const newLists = {};

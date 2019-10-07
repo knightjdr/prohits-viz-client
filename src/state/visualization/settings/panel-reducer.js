@@ -16,7 +16,7 @@ const reducer = (state = defaultState, action) => {
     case fileActions.CLEAR_INTERACTIVE_FILE:
       return { ...defaultState };
     case fileActions.PARSE_INTERACTIVE_FILE:
-      return action.file.panel !== undefined ? action.file.panel : defaultState;
+      return action.file.panel || { ...defaultState };
     case actions.TOGGLE_PANEL:
       return {
         ...state,
