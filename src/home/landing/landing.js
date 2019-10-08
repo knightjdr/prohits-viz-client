@@ -1,7 +1,7 @@
 import PropTypes from 'prop-types';
 import React from 'react';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faNewspaper, faVideo } from '@fortawesome/pro-solid-svg-icons';
+import { faVideo } from '@fortawesome/pro-solid-svg-icons';
 
 import LinkButton from '../../components/link/button/link';
 import LinkText from '../../components/link/text/link';
@@ -44,7 +44,8 @@ const Landing = ({
               href={`/news/${article.link}`}
               outline={false}
             >
-              <FontAwesomeIcon icon={faNewspaper} />
+              Latest news:
+              {' '}
               {article.headline}
             </LinkText>
           </div>

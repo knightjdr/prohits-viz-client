@@ -49,11 +49,8 @@
   background-color: rgba(255, 255, 255, 0.85);
   border-radius: 3px;
   bottom: 25px;
-  padding: 2px 5px;
+  padding: 5px 10px;
   position: absolute;
-}
-.landing__news svg {
-  margin-right: 10px;
 }
 .landing__title {
   color: transparent;
