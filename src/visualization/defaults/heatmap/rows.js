@@ -4,8 +4,10 @@ import isObject from '../../../utils/is-object';
 export const defaultState = {
   defaultOrder: [],
   direction: null,
+  filterOrder: [],
   order: [],
   sortBy: null,
+  sortOrder: [],
 };
 
 const validDirections = ['asc', 'desc'];
@@ -18,8 +20,10 @@ const fillRows = (userRows, userRowDB) => {
       main: {
         defaultOrder: defaultRowOrder,
         direction: defaultState.direction,
+        filterOrder: defaultState.filterOrder,
         order: defaultRowOrder,
         sortBy: defaultState.sortBy,
+        sortOrder: defaultState.sortOrder,
       },
     };
   }
@@ -28,8 +32,10 @@ const fillRows = (userRows, userRowDB) => {
     const {
       defaultOrder,
       direction,
+      filterOrder,
       order,
       sortBy,
+      sortOrder,
     } = userRows[selection];
     const rows = {};
 
@@ -38,11 +44,16 @@ const fillRows = (userRows, userRowDB) => {
     // Ensure sortBy value is within range of list.
     rows.sortBy = Number.isInteger(sortBy) && sortBy < defaultRowOrder.length ? sortBy : null;
 
-    // Ensure default row order and applied row order are defined.
     rows.defaultOrder = Array.isArray(defaultOrder) && arrayContains(defaultRowOrder, defaultOrder)
       ? defaultOrder : defaultRowOrder;
+    rows.filterOrder = Array.isArray(filterOrder)
+      && filterOrder.length > 0
+      && arrayContains(defaultRowOrder, filterOrder)
+      ? filterOrder : defaultState.filterOrder;
     rows.order = Array.isArray(order) && order.length > 0 && arrayContains(defaultRowOrder, order)
       ? order : defaultRowOrder;
+    rows.sortOrder = Array.isArray(sortOrder) && sortOrder.length > 0 && arrayContains(defaultRowOrder, sortOrder)
+      ? sortOrder : defaultState.sortOrder;
 
     return {
       ...accum,

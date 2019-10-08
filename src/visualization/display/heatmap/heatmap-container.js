@@ -4,6 +4,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import Heatmap from './heatmap';
 import plotDimensions from './dimensions/plot';
 import plotTranslate from './dimensions/translate';
+import selectActiveTab from '../../../state/selector/visualization/tab-selector';
 import usePlotScroll from './dimensions/use-plot-scroll';
 import useWindowDimension from '../../../hooks/window-size/use-window-dimension';
 import { setDimensions } from '../../../state/visualization/settings/dimension-actions';
@@ -14,9 +15,10 @@ const HeatmapContainer = () => {
   const dispatch = useDispatch();
   const ref = useRef();
 
+  const activeTab = useSelector(state => selectActiveTab(state));
   const columns = useSelector(state => selectDataProperty(state, 'columns', 'order'));
   const panelOpen = useSelector(state => selectStateProperty(state, 'panel', 'open'));
-  const plotFixed = useSelector(state => selectStateProperty(state, 'display', 'plotFixed'));
+  const plotFixed = useSelector(state => selectDataProperty(state, 'display', 'plotFixed'));
   const rowOrder = useSelector(state => selectDataProperty(state, 'rows', 'order'));
   const settings = useSelector(state => selectDataProperty(state, 'settings', 'current'));
 
@@ -58,6 +60,7 @@ const HeatmapContainer = () => {
   useEffect(() => {
     const { height, width } = dimensions;
     dispatch(setDimensions(
+      activeTab,
       height.rows,
       width.columns,
       width.pageX,
@@ -65,7 +68,7 @@ const HeatmapContainer = () => {
       height.heatmap,
       width.heatmap,
     ));
-  }, [dimensions, dispatch]);
+  }, [activeTab, dimensions, dispatch]);
 
   return (
     <Heatmap

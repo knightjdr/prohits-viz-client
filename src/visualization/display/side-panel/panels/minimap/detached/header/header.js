@@ -36,22 +36,22 @@ const Header = ({
         />
       </span>
       <span
-        data-tooltip={visibility ? 'Hide minimap' : 'Show minimap'}
-        data-tooltip-position="bottom"
-      >
-        <Button
-          icon={visibility ? faEyeSlash : faEye}
-          onClick={toggleVisibility}
-          type="button"
-        />
-      </span>
-      <span
         data-tooltip="Toggle opacity"
         data-tooltip-position="bottom"
       >
         <Button
           icon={opaque ? faToggleOn : faToggleOff}
           onClick={toggleOpacity}
+          type="button"
+        />
+      </span>
+      <span
+        data-tooltip={visibility ? 'Hide minimap' : 'Show minimap'}
+        data-tooltip-position="bottom"
+      >
+        <Button
+          icon={visibility ? faEyeSlash : faEye}
+          onClick={toggleVisibility}
           type="button"
         />
       </span>

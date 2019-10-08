@@ -1,7 +1,8 @@
 import { useDispatch, useSelector } from 'react-redux';
 
 import fetch from '../../../../../../utils/fetch';
-import { rowSelector } from '../../../../../../state/selector/visualization/row-selector';
+import selectActiveTab from '../../../../../../state/selector/visualization/tab-selector';
+import { selectRows } from '../../../../../../state/selector/visualization/row-selector';
 import { selectDataProperty } from '../../../../../../state/selector/visualization/data-selector';
 import { selectState, selectStateProperty } from '../../../../../../state/selector/general';
 import * as actions from '../../../../../../state/visualization/heatmap/minimap-actions';
@@ -9,7 +10,8 @@ import * as actions from '../../../../../../state/visualization/heatmap/minimap-
 const useSync = () => {
   const dispatch = useDispatch();
 
-  const rows = useSelector(state => rowSelector(state));
+  const activeTab = useSelector(state => selectActiveTab(state));
+  const rows = useSelector(state => selectRows(state));
   const scoreType = useSelector(state => selectStateProperty(state, 'parameters', 'scoreType'));
   const session = useSelector(state => selectState(state, 'session'));
   const settings = useSelector(state => selectDataProperty(state, 'settings', 'current'));
@@ -52,11 +54,11 @@ const useSync = () => {
   };
 
   const syncMinimap = async (updateOriginal = false) => {
-    dispatch(actions.synchronizeMinimap(updateOriginal));
+    dispatch(actions.synchronizeMinimap(activeTab, updateOriginal));
 
-    const response = await fetch('/sync', options);
+    const response = await fetch(`/sync/${activeTab}`, options);
     if (response.error) {
-      dispatch(actions.synchError());
+      dispatch(actions.synchError(activeTab));
     }
   };
 

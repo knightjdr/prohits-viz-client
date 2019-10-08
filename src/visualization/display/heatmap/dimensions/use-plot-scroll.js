@@ -1,17 +1,19 @@
 import { useDispatch, useSelector } from 'react-redux';
 
 import debounce from '../../../../utils/debounce';
+import selectActiveTab from '../../../../state/selector/visualization/tab-selector';
 import useScroll from '../../../../hooks/scroll/use-scroll';
-import { selectState } from '../../../../state/selector/general';
+import { selectData } from '../../../../state/selector/visualization/data-selector';
 import { updatePosition } from '../../../../state/visualization/settings/position-actions';
 
 const Scroll = (ref, wait = 50) => {
   const dispatch = useDispatch();
-  const dimensions = useSelector(state => selectState(state, 'dimensions'));
-  const position = useSelector(state => selectState(state, 'position'));
+  const activeTab = useSelector(state => selectActiveTab(state));
+  const dimensions = useSelector(state => selectData(state, 'dimensions'));
+  const position = useSelector(state => selectData(state, 'position'));
 
   const update = debounce((x, y) => {
-    dispatch(updatePosition(x, y));
+    dispatch(updatePosition(activeTab, x, y));
   }, wait);
 
 

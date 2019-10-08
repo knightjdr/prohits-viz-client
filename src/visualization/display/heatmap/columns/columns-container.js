@@ -2,7 +2,7 @@ import React, { useMemo, useState } from 'react';
 import { useSelector } from 'react-redux';
 
 import Columns from './columns';
-import columnSelector from '../../../../state/selector/visualization/column-selector';
+import selectColumns from '../../../../state/selector/visualization/column-selector';
 import parseNames from '../names/names';
 import setFontSize from '../font-size/font-size';
 import useContextMenu from '../context-menu/use-context-menu';
@@ -16,7 +16,7 @@ const ColumnsContainer = () => {
   });
 
   const columnRef = useSelector(state => selectDataProperty(state, 'columns', 'ref'));
-  const names = useSelector(state => columnSelector(state));
+  const names = useSelector(state => selectColumns(state));
   const pageX = useSelector(state => selectDataProperty(state, 'dimensions', 'pageX'));
   const settings = useSelector(state => selectDataProperty(state, 'settings', 'current'));
   const x = useSelector(state => selectDataProperty(state, 'position', 'x'));

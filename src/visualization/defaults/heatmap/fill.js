@@ -1,4 +1,6 @@
 import fillColumns from './columns';
+import fillDimensions from './dimensions';
+import fillDisplay from './display';
 import fillMinimap from './minimap';
 import fillPanel from './panel';
 import fillParameters from './parameters';
@@ -11,6 +13,8 @@ const heatmap = (file, filename, taskID, imageType) => {
   const {
     columnDB,
     columns,
+    dimensions,
+    display,
     minimap,
     panel,
     parameters,
@@ -22,11 +26,15 @@ const heatmap = (file, filename, taskID, imageType) => {
   } = file;
 
   return {
+    columnDB,
     columns: fillColumns(columns, columnDB),
+    dimensions: fillDimensions(dimensions),
+    display: fillDisplay(display),
     minimap: fillMinimap(minimap),
     panel: fillPanel(panel),
     parameters: fillParameters(parameters, filename, taskID, imageType),
     position: fillPosition(position),
+    rowDB,
     rows: fillRows(rows, rowDB),
     settings: fillSettings(settings),
     tabs: fillTabs(tabs),

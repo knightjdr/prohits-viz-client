@@ -13,7 +13,6 @@ const Settings = ({
   handleChange,
   handleFilter,
   handleImageReset,
-  handleSettingReset,
   settings,
 }) => {
   const {
@@ -54,7 +53,6 @@ const Settings = ({
       />
       <Reset
         handleImageReset={handleImageReset}
-        handleSettingReset={handleSettingReset}
       />
     </div>
   );
@@ -65,7 +63,6 @@ Settings.propTypes = {
   handleChange: PropTypes.func.isRequired,
   handleFilter: PropTypes.func.isRequired,
   handleImageReset: PropTypes.func.isRequired,
-  handleSettingReset: PropTypes.func.isRequired,
   settings: PropTypes.shape({
     abundanceCap: PropTypes.number.isRequired,
     cellSize: PropTypes.number.isRequired,

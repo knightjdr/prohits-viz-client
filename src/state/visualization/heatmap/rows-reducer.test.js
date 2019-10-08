@@ -35,6 +35,7 @@ describe('Rows reducer', () => {
       ...currentState,
       main: {
         ...currentState.main,
+        filterOrder: [1, 2, 0],
         order: [1, 2, 0],
       },
     };
@@ -94,8 +95,10 @@ describe('Rows reducer', () => {
       main: {
         ...currentState.main,
         direction: null,
+        filterOrder: [],
         order: [0, 1, 2],
         sortBy: null,
+        sortOrder: [],
       },
     };
     expect(reducer(currentState, action)).toEqual(expectedState);
@@ -123,6 +126,7 @@ describe('Rows reducer', () => {
         direction: 'asc',
         order: [1, 2, 0],
         sortBy: 1,
+        sortOrder: [1, 2, 0],
       },
     };
     expect(reducer(currentState, action)).toEqual(expectedState);

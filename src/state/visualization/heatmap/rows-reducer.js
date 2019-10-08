@@ -5,8 +5,10 @@ import * as fileActions from '../data/interactive-file-actions';
 export const defaultState = {
   defaultOrder: [],
   direction: null,
+  filterOrder: [],
   order: [],
   sortBy: null,
+  sortOrder: [],
 };
 
 const reducer = (state = {}, action) => {
@@ -18,7 +20,8 @@ const reducer = (state = {}, action) => {
         ...state,
         [action.dataID]: {
           ...state[action.dataID],
-          order: action.order,
+          filterOrder: [...action.order],
+          order: [...action.order],
         },
       };
     case fileActions.PARSE_INTERACTIVE_FILE:
@@ -31,8 +34,10 @@ const reducer = (state = {}, action) => {
         [action.dataID]: {
           ...state[action.dataID],
           direction: null,
+          filterOrder: [],
           order: [...state[action.dataID].defaultOrder],
           sortBy: null,
+          sortOrder: [],
         },
       };
     case actions.SORT_ROWS:
@@ -41,8 +46,9 @@ const reducer = (state = {}, action) => {
         [action.dataID]: {
           ...state[action.dataID],
           direction: action.direction,
-          order: action.order,
+          order: [...action.order],
           sortBy: action.sortBy,
+          sortOrder: [...action.order],
         },
       };
     default:

@@ -8,8 +8,10 @@ describe('Fill rows', () => {
       main: {
         defaultOrder: [0, 1, 2],
         direction: 'asc',
-        order: [1, 2, 0],
+        filterOrder: [1, 2],
+        order: [2, 1],
         sortBy: 1,
+        sortOrder: [2, 1],
       },
     };
     const expected = userRows;
@@ -20,9 +22,11 @@ describe('Fill rows', () => {
     const userRows = {
       main: {
         defaultOrder: {},
+        filterOrder: {},
         direction: 'other',
         order: {},
         sortBy: 'a',
+        sortOrder: {},
       },
     };
     const expected = {
@@ -83,6 +87,7 @@ describe('Fill rows', () => {
       };
       const expected = {
         main: {
+          ...defaultState,
           ...userRows.main,
           defaultOrder: [0, 1, 2],
         },
@@ -101,6 +106,7 @@ describe('Fill rows', () => {
       };
       const expected = {
         main: {
+          ...defaultState,
           ...userRows.main,
           order: [0, 1, 2],
         },
@@ -119,8 +125,49 @@ describe('Fill rows', () => {
       };
       const expected = {
         main: {
+          ...defaultState,
           ...userRows.main,
           order: [0, 1, 2],
+        },
+      };
+      expect(fillRows(userRows, userRowDB)).toEqual(expected);
+    });
+
+    it('should define filterOrder as empty array when order contains values not in DB', () => {
+      const userRows = {
+        main: {
+          defaultOrder: [0, 1, 2],
+          direction: 'asc',
+          filterOrder: [0, 3],
+          order: [0, 1, 2],
+          sortBy: 1,
+        },
+      };
+      const expected = {
+        main: {
+          ...defaultState,
+          ...userRows.main,
+          filterOrder: [],
+        },
+      };
+      expect(fillRows(userRows, userRowDB)).toEqual(expected);
+    });
+
+    it('should define sortOrder as empty array when order contains values not in DB', () => {
+      const userRows = {
+        main: {
+          defaultOrder: [0, 1, 2],
+          direction: 'asc',
+          order: [0, 1, 2],
+          sortBy: 1,
+          sortOrder: [0, 3],
+        },
+      };
+      const expected = {
+        main: {
+          ...defaultState,
+          ...userRows.main,
+          sortOrder: [],
         },
       };
       expect(fillRows(userRows, userRowDB)).toEqual(expected);
@@ -138,6 +185,7 @@ describe('Fill rows', () => {
     };
     const expected = {
       main: {
+        ...defaultState,
         ...userRows.main,
         sortBy: null,
       },

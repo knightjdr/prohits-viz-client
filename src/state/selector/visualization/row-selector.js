@@ -16,14 +16,14 @@ const getRowNames = (state) => {
   return order.map(index => rowDB[index].name);
 };
 
-export const rowNamesSelector = createSelector(
+export const selectRowNames = createSelector(
   [getRowNames],
   state => (
     state
   ),
 );
 
-export const rowSelector = createSelector(
+export const selectRows = createSelector(
   [getRowData],
   state => (
     state

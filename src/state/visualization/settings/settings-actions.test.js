@@ -10,12 +10,4 @@ describe('Visualization settings actions', () => {
     };
     expect(actions.updateSetting('main', 'a', 'b')).toEqual(expectedAction);
   });
-
-  it('should dispatch an action to reset settings', () => {
-    const expectedAction = {
-      dataID: 'main',
-      type: actions.RESET_SETTINGS,
-    };
-    expect(actions.resetSettings('main')).toEqual(expectedAction);
-  });
 });

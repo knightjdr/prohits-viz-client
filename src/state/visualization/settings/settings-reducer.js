@@ -23,14 +23,6 @@ const reducer = (state = {}, action) => {
           },
         },
       };
-    case actions.RESET_SETTINGS:
-      return {
-        ...state,
-        [action.dataID]: {
-          ...state[action.dataID],
-          current: { ...state[action.dataID].default },
-        },
-      };
     case actions.UPDATE_SETTING:
       return {
         ...state,

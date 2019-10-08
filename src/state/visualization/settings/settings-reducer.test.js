@@ -38,28 +38,6 @@ describe('Settings reducer', () => {
     expect(reducer(undefined, action)).toEqual(expectedState);
   });
 
-  it('should handle RESET_SETTINGS action', () => {
-    const currentState = {
-      main: {
-        current: { fillColor: 'red' },
-        default: { fillColor: 'blue' },
-      },
-    };
-
-    const action = {
-      dataID: 'main',
-      type: actions.RESET_SETTINGS,
-    };
-    const expectedState = {
-      ...currentState,
-      main: {
-        ...currentState.main,
-        current: { fillColor: 'blue' },
-      },
-    };
-    expect(reducer(currentState, action)).toEqual(expectedState);
-  });
-
   it('should handle UPDATE_SETTING action', () => {
     const currentState = {
       main: {

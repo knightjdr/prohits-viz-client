@@ -10,15 +10,15 @@ import Grid from './grid';
 import setEdgeRange from './edge-range';
 import setRange from '../../../../utils/set-range';
 import translation from './translation';
-import { rowSelector } from '../../../../state/selector/visualization/row-selector';
-import { selectDataProperty } from '../../../../state/selector/visualization/data-selector';
-import { selectState, selectStateProperty } from '../../../../state/selector/general';
+import { selectRows } from '../../../../state/selector/visualization/row-selector';
+import { selectData, selectDataProperty } from '../../../../state/selector/visualization/data-selector';
+import { selectStateProperty } from '../../../../state/selector/general';
 
 const GridContainer = () => {
-  const dimensions = useSelector(state => selectState(state, 'dimensions'));
+  const dimensions = useSelector(state => selectData(state, 'dimensions'));
   const [page, setPage] = useState(null);
-  const position = useSelector(state => selectState(state, 'position'));
-  const rows = useSelector(state => rowSelector(state));
+  const position = useSelector(state => selectData(state, 'position'));
+  const rows = useSelector(state => selectRows(state));
   const scoreType = useSelector(state => selectStateProperty(state, 'parameters', 'scoreType'));
   const settings = useSelector(state => selectDataProperty(state, 'settings', 'current'));
 

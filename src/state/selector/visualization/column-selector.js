@@ -10,11 +10,11 @@ const getState = (state) => {
   return arrayOrderBy(columnDB, order);
 };
 
-const columnSelector = createSelector(
+const selectColumns = createSelector(
   [getState],
   state => (
     state
   ),
 );
 
-export default columnSelector;
+export default selectColumns;

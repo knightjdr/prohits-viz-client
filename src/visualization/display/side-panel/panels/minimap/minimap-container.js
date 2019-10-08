@@ -3,9 +3,10 @@ import { useDispatch, useSelector } from 'react-redux';
 
 import Map from './minimap';
 import newPosition from './new-position';
+import selectActiveTab from '../../../../../state/selector/visualization/tab-selector';
 import setRange from './range';
 import useSync from './sync/use-sync';
-import { selectState } from '../../../../../state/selector/general';
+import { selectData } from '../../../../../state/selector/visualization/data-selector';
 import { updatePosition } from '../../../../../state/visualization/settings/position-actions';
 
 const MinimapContainer = () => {
@@ -14,15 +15,16 @@ const MinimapContainer = () => {
   const dispatch = useDispatch();
   const sync = useSync();
 
-  const dimensions = useSelector(state => selectState(state, 'dimensions'));
-  const minimap = useSelector(state => selectState(state, 'minimap'));
-  const position = useSelector(state => selectState(state, 'position'));
+  const activeTab = useSelector(state => selectActiveTab(state));
+  const dimensions = useSelector(state => selectData(state, 'dimensions'));
+  const minimap = useSelector(state => selectData(state, 'minimap'));
+  const position = useSelector(state => selectData(state, 'position'));
 
   const pageOutline = setRange(dimensions, position);
 
   const handleClick = (e) => {
     const [x, y] = newPosition(e, dimensions);
-    dispatch(updatePosition(x, y));
+    dispatch(updatePosition(activeTab, x, y));
   };
 
   const handleKeyPress = () => {};

@@ -1,4 +1,5 @@
 import * as actions from './dimension-actions';
+import * as fileActions from '../data/interactive-file-actions';
 
 export const defaultState = {
   columns: 0,
@@ -11,6 +12,8 @@ export const defaultState = {
 
 const reducer = (state = {}, action) => {
   switch (action.type) {
+    case fileActions.PARSE_INTERACTIVE_FILE:
+      return action.file.dimensions || {};
     case actions.SET_DIMENSIONS:
       return {
         ...state,
