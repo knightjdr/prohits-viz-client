@@ -15,9 +15,9 @@ describe('Row actions', () => {
       dataID: 'main',
       direction: 'asc',
       order: ['b', 'c', 'a'],
-      sortBy: 0,
+      sortBy: 'c',
       type: actions.SORT_ROWS,
     };
-    expect(actions.sortRows('main', 'asc', ['b', 'c', 'a'], 0)).toEqual(expectedAction);
+    expect(actions.sortRows('main', 'asc', ['b', 'c', 'a'], 'c')).toEqual(expectedAction);
   });
 });

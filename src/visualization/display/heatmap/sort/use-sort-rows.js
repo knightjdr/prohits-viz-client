@@ -29,10 +29,10 @@ const useSortRows = () => {
   } = rows;
 
   const rowOrder = filterOrder.length > 0 ? [...filterOrder] : [...defaultOrder];
-  const sort = (columnName, requestedDirection, ref) => {
+  const sort = (requestedSortBy, requestedDirection, ref) => {
     setSorting(true);
 
-    const requestedSortBy = columns.indexOf(columnName);
+    const requestedSortIndex = columns.indexOf(requestedSortBy);
     const refIndex = ref ? columns.indexOf(ref) : '';
 
     /* If a sort direction is requested, use that, or
@@ -51,7 +51,7 @@ const useSortRows = () => {
       sortDirection = 'desc';
     }
 
-    const newOrder = rowSort(rowDB, rowOrder, requestedSortBy, sortDirection, refIndex);
+    const newOrder = rowSort(rowDB, rowOrder, requestedSortIndex, sortDirection, refIndex);
 
     dispatch(sortRows(activeTab, sortDirection, newOrder, requestedSortBy));
 

@@ -51,7 +51,7 @@ describe('Rows reducer', () => {
               defaultOrder: ['a', 'b', 'c'],
               direction: 'asc',
               order: ['a', 'b', 'c'],
-              sortBy: 1,
+              sortBy: 'b',
             },
           },
         },
@@ -62,7 +62,7 @@ describe('Rows reducer', () => {
           defaultOrder: ['a', 'b', 'c'],
           direction: 'asc',
           order: ['a', 'b', 'c'],
-          sortBy: 1,
+          sortBy: 'b',
         },
       };
       expect(reducer(undefined, action)).toEqual(expectedState);
@@ -97,7 +97,7 @@ describe('Rows reducer', () => {
         direction: null,
         filterOrder: [],
         order: [0, 1, 2],
-        sortBy: null,
+        sortBy: '',
         sortOrder: [],
       },
     };
@@ -116,7 +116,7 @@ describe('Rows reducer', () => {
       dataID: 'main',
       direction: 'asc',
       order: [1, 2, 0],
-      sortBy: 1,
+      sortBy: 'b',
       type: actions.SORT_ROWS,
     };
     const expectedState = {
@@ -125,7 +125,7 @@ describe('Rows reducer', () => {
         ...currentState.main,
         direction: 'asc',
         order: [1, 2, 0],
-        sortBy: 1,
+        sortBy: 'b',
         sortOrder: [1, 2, 0],
       },
     };

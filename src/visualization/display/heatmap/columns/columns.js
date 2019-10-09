@@ -3,6 +3,7 @@ import React, { Fragment } from 'react';
 
 import Reference from './reference';
 import SearchMatch from './search-match';
+import SortMatch from './sort-match';
 import Tooltip from '../../../../components/tooltip/tooltip-container';
 
 const Columns = ({
@@ -16,6 +17,8 @@ const Columns = ({
   reference,
   search,
   showTooltip,
+  sortBy,
+  sortDirection,
   sortingNotification,
   tooltip,
 }) => {
@@ -35,22 +38,31 @@ const Columns = ({
         {
           names.reduce((textElements, name, i) => {
             textElements.push(...[
-              <SearchMatch
-                cellSize={cellSize}
-                key={`${name.original}-match`}
-                name={name.original}
-                openContextMenu={openContextMenu}
-                search={search}
-                xPosition={i}
-              />,
-            ]);
-            textElements.push(...[
               <Reference
                 cellSize={cellSize}
                 key={`${name.original}-reference`}
                 name={name.original}
                 openContextMenu={openContextMenu}
                 reference={reference}
+                xPosition={i}
+              />,
+            ]);
+            textElements.push(...[
+              <SortMatch
+                cellSize={cellSize}
+                columnIndex={i}
+                key={`${name.original}-sort`}
+                name={name.original}
+                openContextMenu={openContextMenu}
+                sortBy={sortBy}
+                sortDirection={sortDirection}
+              />,
+              <SearchMatch
+                cellSize={cellSize}
+                key={`${name.original}-match`}
+                name={name.original}
+                openContextMenu={openContextMenu}
+                search={search}
                 xPosition={i}
               />,
             ]);
@@ -83,6 +95,8 @@ const Columns = ({
 
 Columns.defaultProps = {
   reference: null,
+  sortBy: null,
+  sortDirection: null,
   sortingNotification: null,
 };
 
@@ -107,6 +121,8 @@ Columns.propTypes = {
     term: PropTypes.string,
   }).isRequired,
   showTooltip: PropTypes.func.isRequired,
+  sortBy: PropTypes.string,
+  sortDirection: PropTypes.string,
   sortingNotification: PropTypes.node,
   tooltip: PropTypes.shape({
     open: PropTypes.bool,

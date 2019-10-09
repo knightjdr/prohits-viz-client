@@ -6,7 +6,7 @@ export const defaultState = {
   direction: null,
   filterOrder: [],
   order: [],
-  sortBy: null,
+  sortBy: '',
   sortOrder: [],
 };
 
@@ -40,9 +40,7 @@ const fillRows = (userRows, userRowDB) => {
     const rows = {};
 
     rows.direction = validDirections.includes(direction) ? direction : null;
-
-    // Ensure sortBy value is within range of list.
-    rows.sortBy = Number.isInteger(sortBy) && sortBy < defaultRowOrder.length ? sortBy : null;
+    rows.sortBy = typeof sortBy === 'string' ? sortBy : defaultState.sortBy;
 
     rows.defaultOrder = Array.isArray(defaultOrder) && arrayContains(defaultRowOrder, defaultOrder)
       ? defaultOrder : defaultRowOrder;

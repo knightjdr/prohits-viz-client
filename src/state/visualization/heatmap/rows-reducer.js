@@ -7,7 +7,7 @@ export const defaultState = {
   direction: null,
   filterOrder: [],
   order: [],
-  sortBy: null,
+  sortBy: '',
   sortOrder: [],
 };
 
@@ -36,7 +36,7 @@ const reducer = (state = {}, action) => {
           direction: null,
           filterOrder: [],
           order: [...state[action.dataID].defaultOrder],
-          sortBy: null,
+          sortBy: '',
           sortOrder: [],
         },
       };

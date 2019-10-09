@@ -16,10 +16,7 @@ const reducer = (state = {}, action) => {
         [action.dataID]: {
           ...state[action.dataID],
           current: {
-            ...state[action.dataID].current,
-            filterBy: state[action.dataID].default.filterBy,
-            minAbundance: state[action.dataID].default.minAbundance,
-            primaryFilter: state[action.dataID].default.primaryFilter,
+            ...state[action.dataID].default,
           },
         },
       };

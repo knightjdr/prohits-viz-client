@@ -10,7 +10,7 @@ describe('Fill rows', () => {
         direction: 'asc',
         filterOrder: [1, 2],
         order: [2, 1],
-        sortBy: 1,
+        sortBy: 'a',
         sortOrder: [2, 1],
       },
     };
@@ -25,7 +25,7 @@ describe('Fill rows', () => {
         filterOrder: {},
         direction: 'other',
         order: {},
-        sortBy: 'a',
+        sortBy: 1,
         sortOrder: {},
       },
     };
@@ -82,7 +82,7 @@ describe('Fill rows', () => {
           defaultOrder: [0, 1, 3],
           direction: 'asc',
           order: [0, 1, 2],
-          sortBy: 1,
+          sortBy: 'a',
         },
       };
       const expected = {
@@ -101,7 +101,7 @@ describe('Fill rows', () => {
           defaultOrder: [0, 1, 2],
           direction: 'asc',
           order: [0, 3],
-          sortBy: 1,
+          sortBy: 'a',
         },
       };
       const expected = {
@@ -120,7 +120,7 @@ describe('Fill rows', () => {
           defaultOrder: [0, 1, 2],
           direction: 'asc',
           order: [],
-          sortBy: 1,
+          sortBy: 'a',
         },
       };
       const expected = {
@@ -140,7 +140,7 @@ describe('Fill rows', () => {
           direction: 'asc',
           filterOrder: [0, 3],
           order: [0, 1, 2],
-          sortBy: 1,
+          sortBy: 'a',
         },
       };
       const expected = {
@@ -159,7 +159,7 @@ describe('Fill rows', () => {
           defaultOrder: [0, 1, 2],
           direction: 'asc',
           order: [0, 1, 2],
-          sortBy: 1,
+          sortBy: 'a',
           sortOrder: [0, 3],
         },
       };
@@ -172,24 +172,5 @@ describe('Fill rows', () => {
       };
       expect(fillRows(userRows, userRowDB)).toEqual(expected);
     });
-  });
-
-  it('should return default when sortby value is not within list length', () => {
-    const userRows = {
-      main: {
-        defaultOrder: [0, 1, 2],
-        direction: 'asc',
-        order: [0, 1, 2],
-        sortBy: 3,
-      },
-    };
-    const expected = {
-      main: {
-        ...defaultState,
-        ...userRows.main,
-        sortBy: null,
-      },
-    };
-    expect(fillRows(userRows, userRowDB)).toEqual(expected);
   });
 });

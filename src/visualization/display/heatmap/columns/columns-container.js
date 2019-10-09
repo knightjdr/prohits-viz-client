@@ -19,6 +19,8 @@ const ColumnsContainer = () => {
   const names = useSelector(state => selectColumns(state));
   const pageX = useSelector(state => selectDataProperty(state, 'dimensions', 'pageX'));
   const settings = useSelector(state => selectDataProperty(state, 'settings', 'current'));
+  const sortBy = useSelector(state => selectDataProperty(state, 'rows', 'sortBy'));
+  const sortDirection = useSelector(state => selectDataProperty(state, 'rows', 'direction'));
   const x = useSelector(state => selectDataProperty(state, 'position', 'x'));
 
   const contextMenu = useContextMenu('context-columns', 'columns');
@@ -72,6 +74,8 @@ const ColumnsContainer = () => {
       names={columnNames}
       openContextMenu={contextMenu.open}
       search={{}}
+      sortBy={sortBy}
+      sortDirection={sortDirection}
       reference={columnRef}
       showTooltip={showTooltip}
       sortingNotification={contextMenu.SortingComponent}
