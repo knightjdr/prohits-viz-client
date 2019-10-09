@@ -1,7 +1,8 @@
-import reducer from './columns-reducer';
+import reducer, { defaultState } from './columns-reducer';
 import * as actions from './columns-actions';
 import * as displayActions from '../settings/display-actions';
 import * as fileActions from '../data/interactive-file-actions';
+import * as rowActions from './rows-actions';
 
 describe('Columns reducer', () => {
   it('should return an empty initial state', () => {
@@ -16,6 +17,29 @@ describe('Columns reducer', () => {
     };
     const expectedState = {};
     expect(reducer(undefined, action)).toEqual(expectedState);
+  });
+
+  it('should handle FILTER_ROWS action', () => {
+    const currentState = {
+      main: {
+        ...defaultState,
+        order: [0, 1, 2],
+      },
+    };
+
+    const action = {
+      columnOrder: [1, 2, 0],
+      dataID: 'main',
+      type: rowActions.FILTER_ROWS,
+    };
+    const expectedState = {
+      ...currentState,
+      main: {
+        ...currentState.main,
+        order: [1, 2, 0],
+      },
+    };
+    expect(reducer(currentState, action)).toEqual(expectedState);
   });
 
   describe('parse file', () => {

@@ -31,6 +31,17 @@ const reducer = (state = {}, action) => {
           },
         },
       };
+    case actions.UPDATE_SETTINGS:
+      return {
+        ...state,
+        [action.dataID]: {
+          ...state[action.dataID],
+          current: {
+            ...state[action.dataID].current,
+            ...action.settings,
+          },
+        },
+      };
     default:
       return state;
   }

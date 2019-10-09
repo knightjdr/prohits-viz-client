@@ -4,15 +4,20 @@ import React from 'react';
 import Input from '../../../../../../components/input/text/input-text-container';
 import Section from '../../section/section';
 import Select from '../../../../../../components/select/select-container';
+import Switch from '../../../../../../components/input/switch/switch-container';
 
 const Filters = ({
   abundanceCap,
   columns,
   filterBy,
-  handleChange,
+  handleChangeAbundanceCap,
+  handleChangeMinAbundance,
+  handleChangePrimaryFilter,
+  handleChangeSecondaryFilter,
   handleFilter,
   minAbundance,
   primaryFilter,
+  removeEmptyColumns,
   secondaryFilter,
 }) => (
   <>
@@ -20,21 +25,23 @@ const Filters = ({
       <Input
         id="abundanceCap"
         label="Abundance cap"
-        onChange={handleChange}
+        onChange={handleChangeAbundanceCap}
+        step={0.01}
         type="number"
         value={abundanceCap}
       />
       <Input
         id="minAbundance"
         label="Abundance minimum"
-        onChange={handleFilter}
+        onChange={handleChangeMinAbundance}
+        step={0.01}
         type="number"
         value={minAbundance}
       />
       <Input
         id="primaryFilter"
         label="Primary filter"
-        onChange={handleFilter}
+        onChange={handleChangePrimaryFilter}
         step={0.01}
         type="number"
         value={primaryFilter}
@@ -42,7 +49,7 @@ const Filters = ({
       <Input
         id="secondaryFilter"
         label="Secondary filter"
-        onChange={handleChange}
+        onChange={handleChangeSecondaryFilter}
         step={0.01}
         type="number"
         value={secondaryFilter}
@@ -55,6 +62,12 @@ const Filters = ({
         options={columns}
         value={filterBy}
       />
+      <Switch
+        checked={removeEmptyColumns}
+        id="removeEmptyColumns"
+        label="Clear empty columns"
+        onChange={handleFilter}
+      />
     </Section>
   </>
 );
@@ -63,10 +76,14 @@ Filters.propTypes = {
   abundanceCap: PropTypes.number.isRequired,
   columns: PropTypes.arrayOf(PropTypes.string).isRequired,
   filterBy: PropTypes.string.isRequired,
-  handleChange: PropTypes.func.isRequired,
+  handleChangeAbundanceCap: PropTypes.func.isRequired,
+  handleChangeMinAbundance: PropTypes.func.isRequired,
+  handleChangePrimaryFilter: PropTypes.func.isRequired,
+  handleChangeSecondaryFilter: PropTypes.func.isRequired,
   handleFilter: PropTypes.func.isRequired,
   minAbundance: PropTypes.number.isRequired,
   primaryFilter: PropTypes.number.isRequired,
+  removeEmptyColumns: PropTypes.bool.isRequired,
   secondaryFilter: PropTypes.number.isRequired,
 };
 

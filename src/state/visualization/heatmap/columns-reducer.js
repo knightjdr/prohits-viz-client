@@ -1,6 +1,7 @@
 import * as actions from './columns-actions';
 import * as displayActions from '../settings/display-actions';
 import * as fileActions from '../data/interactive-file-actions';
+import * as rowActions from './rows-actions';
 
 export const defaultState = {
   defaultOrder: [],
@@ -12,6 +13,14 @@ const reducer = (state = {}, action) => {
   switch (action.type) {
     case fileActions.CLEAR_INTERACTIVE_FILE:
       return {};
+    case rowActions.FILTER_ROWS:
+      return {
+        ...state,
+        [action.dataID]: {
+          ...state[action.dataID],
+          order: [...action.columnOrder],
+        },
+      };
     case fileActions.PARSE_INTERACTIVE_FILE:
       return action.file.columns
         ? action.file.columns

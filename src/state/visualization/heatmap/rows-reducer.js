@@ -20,8 +20,8 @@ const reducer = (state = {}, action) => {
         ...state,
         [action.dataID]: {
           ...state[action.dataID],
-          filterOrder: [...action.order],
-          order: [...action.order],
+          filterOrder: [...action.rowOrder],
+          order: [...action.rowOrder],
         },
       };
     case fileActions.PARSE_INTERACTIVE_FILE:

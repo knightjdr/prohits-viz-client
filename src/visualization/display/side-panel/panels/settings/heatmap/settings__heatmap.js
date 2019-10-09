@@ -11,6 +11,10 @@ import './settings__heatmap.css';
 const Settings = ({
   columns,
   handleChange,
+  handleChangeAbundanceCap,
+  handleChangeMinAbundance,
+  handleChangePrimaryFilter,
+  handleChangeSecondaryFilter,
   handleFilter,
   handleImageReset,
   settings,
@@ -25,6 +29,7 @@ const Settings = ({
     invertColor,
     minAbundance,
     primaryFilter,
+    removeEmptyColumns,
     secondaryFilter,
   } = settings;
 
@@ -45,10 +50,14 @@ const Settings = ({
         abundanceCap={abundanceCap}
         columns={columns}
         filterBy={filterBy}
-        handleChange={handleChange}
+        handleChangeAbundanceCap={handleChangeAbundanceCap}
+        handleChangeMinAbundance={handleChangeMinAbundance}
+        handleChangePrimaryFilter={handleChangePrimaryFilter}
+        handleChangeSecondaryFilter={handleChangeSecondaryFilter}
         handleFilter={handleFilter}
         minAbundance={minAbundance}
         primaryFilter={primaryFilter}
+        removeEmptyColumns={removeEmptyColumns}
         secondaryFilter={secondaryFilter}
       />
       <Reset
@@ -61,6 +70,10 @@ const Settings = ({
 Settings.propTypes = {
   columns: PropTypes.arrayOf(PropTypes.string).isRequired,
   handleChange: PropTypes.func.isRequired,
+  handleChangeAbundanceCap: PropTypes.func.isRequired,
+  handleChangeMinAbundance: PropTypes.func.isRequired,
+  handleChangePrimaryFilter: PropTypes.func.isRequired,
+  handleChangeSecondaryFilter: PropTypes.func.isRequired,
   handleFilter: PropTypes.func.isRequired,
   handleImageReset: PropTypes.func.isRequired,
   settings: PropTypes.shape({
@@ -73,6 +86,7 @@ Settings.propTypes = {
     invertColor: PropTypes.bool.isRequired,
     minAbundance: PropTypes.number.isRequired,
     primaryFilter: PropTypes.number.isRequired,
+    removeEmptyColumns: PropTypes.bool.isRequired,
     secondaryFilter: PropTypes.number.isRequired,
   }).isRequired,
 };

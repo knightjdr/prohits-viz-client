@@ -20,10 +20,6 @@ const Reset = ({
           onClick={handleImageReset}
         />
       </div>
-      <p className="settings__reset-description">
-        Resetting the image will undo sorting and filtering, and
-        restore settings to their defaults.
-      </p>
     </Section>
   </>
 );

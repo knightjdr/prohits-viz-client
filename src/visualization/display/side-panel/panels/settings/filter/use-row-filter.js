@@ -15,27 +15,41 @@ const defineScoreCriterion = (scoreType, primaryFilter) => {
   return scoreType === 'gte' ? gte : lte;
 };
 
-const filterRow = (order, list, filterIndex, scoreType, abundance, primaryFilter) => {
+const filterColumn = (rowDB, rowOrder, scoreType, primaryFilter) => {
+  const scoreCriterion = defineScoreCriterion(scoreType, primaryFilter);
+  const filteredColumns = [];
+  const numberColumns = rowDB[0].data.length;
+  for (let i = 0; i < numberColumns; i += 1) {
+    const keep = rowOrder.some(rowIndex => scoreCriterion(rowDB[rowIndex].data[i].score));
+    if (keep) {
+      filteredColumns.push(i);
+    }
+  }
+  return filteredColumns;
+};
+
+const filterRow = (order, rows, filterIndex, scoreType, abundance, primaryFilter) => {
   const scoreCriterion = defineScoreCriterion(scoreType, primaryFilter);
   if (filterIndex > -1) {
     return order.filter(rowIndex => (
-      list[rowIndex].data[filterIndex].value >= abundance
-      && scoreCriterion(list[rowIndex].data[filterIndex].score)
+      rows[rowIndex].data[filterIndex].value >= abundance
+      && scoreCriterion(rows[rowIndex].data[filterIndex].score)
     ));
   }
   return order.filter(rowIndex => (
-    list[rowIndex].data.some(datam => (
+    rows[rowIndex].data.some(datam => (
       datam.value >= abundance && scoreCriterion(datam.score)
     ))
   ));
 };
 
 /* Filter heatmap by minAbundance and primaryFilter score. */
-const useFilter = () => {
+const useRowFilter = () => {
   const dispatch = useDispatch();
 
   const activeTab = useSelector(state => selectActiveTab(state));
-  const columns = useSelector(state => selectColumns(state));
+  const columnDB = useSelector(state => selectColumns(state));
+  const defaultColumnOrder = useSelector(state => selectDataProperty(state, 'columns', 'defaultOrder'));
   const scoreType = useSelector(state => selectStateProperty(state, 'parameters', 'scoreType'));
   const settings = useSelector(state => selectDataProperty(state, 'settings', 'current'));
   const rows = useSelector(state => selectData(state, 'rows'));
@@ -49,6 +63,7 @@ const useFilter = () => {
     filterBy,
     minAbundance,
     primaryFilter,
+    removeEmptyColumns,
   } = settings;
 
   const filter = useCallback(
@@ -56,7 +71,8 @@ const useFilter = () => {
       const newAbundance = setting === 'minAbundance' ? value : minAbundance;
       const newFilterBy = setting === 'filterBy' ? value : filterBy;
       const newPrimaryFilter = setting === 'primaryFilter' ? value : primaryFilter;
-      const filterIndex = columns.indexOf(newFilterBy);
+      const newRemoveEmptyColumns = setting === 'removeEmptyColumns' ? value : removeEmptyColumns;
+      const filterIndex = columnDB.indexOf(newFilterBy);
       const rowOrder = setting === 'filterBy' || sortOrder.length === 0 ? defaultOrder : sortOrder;
       const filteredRowOrder = filterRow(
         rowOrder,
@@ -66,14 +82,29 @@ const useFilter = () => {
         newAbundance,
         newPrimaryFilter,
       );
+      const filteredColumnOrder = newRemoveEmptyColumns
+        ? filterColumn(rowDB, filteredRowOrder, scoreType, newPrimaryFilter) : defaultColumnOrder;
 
       dispatch(updateSetting(activeTab, setting, value));
-      dispatch(filterRows(activeTab, filteredRowOrder));
+      dispatch(filterRows(activeTab, filteredRowOrder, filteredColumnOrder));
     },
-    [activeTab, columns, defaultOrder, dispatch, filterBy, rowDB, minAbundance, sortOrder, primaryFilter, scoreType],
+    [
+      activeTab,
+      columnDB,
+      defaultColumnOrder,
+      defaultOrder,
+      dispatch,
+      filterBy,
+      minAbundance,
+      removeEmptyColumns,
+      rowDB,
+      sortOrder,
+      primaryFilter,
+      scoreType,
+    ],
   );
 
   return filter;
 };
 
-export default useFilter;
+export default useRowFilter;

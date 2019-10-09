@@ -1,10 +1,36 @@
 import { selectRowNames, selectRows } from './row-selector';
 
 const state = {
+  columns: {
+    main: {
+      order: [0, 2],
+    },
+  },
   rowDB: [
-    { name: 'a' },
-    { name: 'b' },
-    { name: 'c' },
+    {
+      data: [
+        { value: 1 },
+        { value: 2 },
+        { value: 3 },
+      ],
+      name: 'a',
+    },
+    {
+      data: [
+        { value: 1 },
+        { value: 2 },
+        { value: 3 },
+      ],
+      name: 'b',
+    },
+    {
+      data: [
+        { value: 1 },
+        { value: 2 },
+        { value: 3 },
+      ],
+      name: 'c',
+    },
   ],
   rows: {
     main: {
@@ -19,8 +45,20 @@ const state = {
 describe('Row selector for heat map', () => {
   it('should return rows from DB in correct order', () => {
     const expected = [
-      { name: 'c' },
-      { name: 'b' },
+      {
+        data: [
+          { value: 1 },
+          { value: 3 },
+        ],
+        name: 'c',
+      },
+      {
+        data: [
+          { value: 1 },
+          { value: 3 },
+        ],
+        name: 'b',
+      },
     ];
     expect(selectRows(state)).toEqual(expected);
   });

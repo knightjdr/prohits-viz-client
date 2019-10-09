@@ -28,7 +28,7 @@ describe('Rows reducer', () => {
 
     const action = {
       dataID: 'main',
-      order: [1, 2, 0],
+      rowOrder: [1, 2, 0],
       type: actions.FILTER_ROWS,
     };
     const expectedState = {

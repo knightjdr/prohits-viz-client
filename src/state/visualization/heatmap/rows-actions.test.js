@@ -4,7 +4,7 @@ describe('Row actions', () => {
   it('should dispatch an action to filter the rows', () => {
     const expectedAction = {
       dataID: 'main',
-      order: ['b', 'c', 'a'],
+      rowOrder: ['b', 'c', 'a'],
       type: actions.FILTER_ROWS,
     };
     expect(actions.filterRows('main', ['b', 'c', 'a'])).toEqual(expectedAction);

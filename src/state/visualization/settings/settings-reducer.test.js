@@ -61,4 +61,39 @@ describe('Settings reducer', () => {
     };
     expect(reducer(currentState, action)).toEqual(expectedState);
   });
+
+  it('should handle UPDATE_SETTINGS action', () => {
+    const currentState = {
+      main: {
+        current: {
+          edgeColor: 'blue',
+          fillColor: 'blue',
+        },
+        default: {
+          edgeColor: 'blue',
+          fillColor: 'blue',
+        },
+      },
+    };
+
+    const action = {
+      dataID: 'main',
+      settings: {
+        edgeColor: 'red',
+        fillColor: 'red',
+      },
+      type: actions.UPDATE_SETTINGS,
+    };
+    const expectedState = {
+      ...currentState,
+      main: {
+        ...currentState.main,
+        current: {
+          edgeColor: 'red',
+          fillColor: 'red',
+        },
+      },
+    };
+    expect(reducer(currentState, action)).toEqual(expectedState);
+  });
 });

@@ -12,6 +12,7 @@ describe('Validate settings', () => {
       invertColor: true,
       minAbundance: 1,
       primaryFilter: 0.02,
+      removeEmptyColumns: true,
       secondaryFilter: 0.06,
       otherfield: 1,
     };
@@ -30,6 +31,7 @@ describe('Validate settings', () => {
       invertColor: 'true',
       minAbundance: '0',
       primaryFilter: '0.02',
+      removeEmptyColumns: 'true',
       secondaryFilter: '0.06',
     };
     const expected = defaultState;
@@ -49,6 +51,7 @@ describe('Fill settings', () => {
       invertColor: true,
       minAbundance: 1,
       primaryFilter: 0.02,
+      removeEmptyColumns: true,
       secondaryFilter: 0.06,
       otherfield: 1,
     };

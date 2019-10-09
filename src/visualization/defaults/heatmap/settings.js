@@ -10,6 +10,7 @@ export const defaultState = {
   invertColor: false,
   minAbundance: 0,
   primaryFilter: 0.01,
+  removeEmptyColumns: false,
   secondaryFilter: 0.05,
 };
 
@@ -43,6 +44,7 @@ export const validateSettings = (userSettings, defaultImageType = 'heatmap') => 
     invertColor,
     minAbundance,
     primaryFilter,
+    removeEmptyColumns,
     secondaryFilter,
     ...other
   } = userSettings;
@@ -58,6 +60,8 @@ export const validateSettings = (userSettings, defaultImageType = 'heatmap') => 
   settings.invertColor = typeof invertColor === 'boolean' ? invertColor : defaultState.invertColor;
   settings.minAbundance = typeof minAbundance === 'number' ? minAbundance : defaultState.minAbundance;
   settings.primaryFilter = typeof primaryFilter === 'number' ? primaryFilter : defaultState.primaryFilter;
+  settings.removeEmptyColumns = typeof removeEmptyColumns === 'boolean'
+    ? removeEmptyColumns : defaultState.removeEmptyColumns;
   settings.secondaryFilter = typeof secondaryFilter === 'number' ? secondaryFilter : defaultState.secondaryFilter;
 
   return settings;
