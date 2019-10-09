@@ -1,6 +1,6 @@
 const PANEL_WIDTH = 400;
 
-const translate = (canTranslate, plotFixed, panelOpen, windowWidth, wrapperWidth) => {
+const defineTranslation = (canTranslate, plotFixed, panelOpen, windowWidth, wrapperWidth) => {
   if (plotFixed) {
     return -(((windowWidth - wrapperWidth) / 2) - 20);
   } if (canTranslate && panelOpen) {
@@ -14,4 +14,4 @@ const translate = (canTranslate, plotFixed, panelOpen, windowWidth, wrapperWidth
   return 0;
 };
 
-export default translate;
+export default defineTranslation;

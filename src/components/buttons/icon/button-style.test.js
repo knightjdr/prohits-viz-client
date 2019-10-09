@@ -35,28 +35,28 @@ describe('Button style', () => {
 
     it('should set icon background color on focus', () => {
       const modifier = {
-        modifier: '&:focus',
+        modifier: '&:focus:not([disabled])',
       };
       expect(container.firstChild).toHaveStyleRule('background-color', theme.accentPrimary1, modifier);
     });
 
     it('should set icon color on focus', () => {
       const modifier = {
-        modifier: '&:focus',
+        modifier: '&:focus:not([disabled])',
       };
       expect(container.firstChild).toHaveStyleRule('color', theme.colorPrimary1, modifier);
     });
 
     it('should set icon background color on hover', () => {
       const modifier = {
-        modifier: '&:hover',
+        modifier: '&:hover:not([disabled])',
       };
       expect(container.firstChild).toHaveStyleRule('background-color', theme.accentPrimary1, modifier);
     });
 
     it('should set icon color on hover', () => {
       const modifier = {
-        modifier: '&:hover',
+        modifier: '&:hover:not([disabled])',
       };
       expect(container.firstChild).toHaveStyleRule('color', theme.colorPrimary1, modifier);
     });
@@ -90,14 +90,14 @@ describe('Button style', () => {
 
     it('should set icon color on focus', () => {
       const modifier = {
-        modifier: '&:focus',
+        modifier: '&:focus:not([disabled])',
       };
       expect(container.firstChild).toHaveStyleRule('color', theme.fontLight, modifier);
     });
 
     it('should set icon color on hover', () => {
       const modifier = {
-        modifier: '&:hover',
+        modifier: '&:hover:not([disabled])',
       };
       expect(container.firstChild).toHaveStyleRule('color', theme.fontLight, modifier);
     });

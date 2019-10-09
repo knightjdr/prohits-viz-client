@@ -3,6 +3,7 @@
 }
 .minimap__image > img {
   cursor: crosshair;
+  display: block;
 }
 .minimap__image:focus {
   outline: none;

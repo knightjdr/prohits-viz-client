@@ -65,8 +65,8 @@ exports[`Button style primary should match snapshot 1`] = `
   color: #fff;
 }
 
-.c0:focus,
-.c0:hover {
+.c0:focus:not([disabled]),
+.c0:hover:not([disabled]) {
   color: #00f;
 }
 
@@ -146,13 +146,13 @@ exports[`Button style transparent should match snapshot 1`] = `
   opacity: 0;
 }
 
-.c0:focus,
-.c0:hover {
+.c0:focus:not([disabled]),
+.c0:hover:not([disabled]) {
   color: #fff;
 }
 
-.c0:focus::before,
-.c0:hover::before {
+.c0:focus:not([disabled])::before,
+.c0:hover:not([disabled])::before {
   opacity: 1;
   -webkit-transform: scale(1);
   -ms-transform: scale(1);

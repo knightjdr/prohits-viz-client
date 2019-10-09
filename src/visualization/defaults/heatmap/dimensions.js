@@ -7,6 +7,8 @@ export const defaultState = {
   pageY: 0,
   rows: 0,
   width: 0,
+  wrapperHeight: 0,
+  wrapperWidth: 0,
 };
 
 const fillDimensions = (userDimensions) => {

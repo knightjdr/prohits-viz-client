@@ -1,0 +1,17 @@
+.nav-controls {
+  border: 1px solid #e0e0e0;
+  border-radius: 3px;
+  display: flex;
+  flex-direction: column;
+  padding: 2px;
+  position: absolute;
+  transform-origin: bottom right;
+  width: auto;
+}
+.nav-controls > button {
+  height: 30px;
+  width: 30px;
+}
+.nav-controls > button:not(:last-child) {
+  margin-bottom: 3px;
+}

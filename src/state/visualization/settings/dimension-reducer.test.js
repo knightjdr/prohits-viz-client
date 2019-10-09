@@ -17,18 +17,24 @@ describe('Dimension reducer', () => {
         pageY: 0,
         rows: 0,
         width: 0,
+        wrapperHeight: 0,
+        wrapperWidth: 0,
       },
     };
 
     const action = {
-      columns: 40,
       dataID: 'main',
-      height: 500,
-      pageX: 30,
-      pageY: 20,
-      rows: 40,
+      dimensions: {
+        columns: 40,
+        height: 500,
+        pageX: 30,
+        pageY: 20,
+        rows: 40,
+        width: 500,
+        wrapperHeight: 600,
+        wrapperWidth: 600,
+      },
       type: actions.SET_DIMENSIONS,
-      width: 500,
     };
     const expectedState = {
       ...currentState,
@@ -39,6 +45,8 @@ describe('Dimension reducer', () => {
         pageY: 20,
         rows: 40,
         width: 500,
+        wrapperHeight: 600,
+        wrapperWidth: 600,
       },
     };
     expect(reducer(currentState, action)).toEqual(expectedState);

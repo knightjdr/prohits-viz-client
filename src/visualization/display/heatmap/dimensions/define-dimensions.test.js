@@ -1,4 +1,4 @@
-import { plotHeight, plotWidth } from './plot';
+import { calculateHeight, calculateWidth } from './define-dimensions';
 
 describe('calculate height', () => {
   it('should return height values when all rows fit within page', () => {
@@ -12,7 +12,7 @@ describe('calculate height', () => {
       rows: 3,
       wrapper: 132,
     };
-    expect(plotHeight(cellSize, cellHeight, windowHeight, false)).toEqual(expected);
+    expect(calculateHeight(cellSize, cellHeight, windowHeight, false)).toEqual(expected);
   });
 
   it('should return height values when rows do not fit within page', () => {
@@ -26,7 +26,7 @@ describe('calculate height', () => {
       rows: 3,
       wrapper: 120,
     };
-    expect(plotHeight(cellSize, cellHeight, windowHeight, false)).toEqual(expected);
+    expect(calculateHeight(cellSize, cellHeight, windowHeight, false)).toEqual(expected);
   });
 
   it('should return height values when extra padding is available', () => {
@@ -40,7 +40,7 @@ describe('calculate height', () => {
       rows: 3,
       wrapper: 120,
     };
-    expect(plotHeight(cellSize, cellHeight, windowHeight, true)).toEqual(expected);
+    expect(calculateHeight(cellSize, cellHeight, windowHeight, true)).toEqual(expected);
   });
 });
 
@@ -57,7 +57,7 @@ describe('calculate width', () => {
       pageX: 3,
       wrapper: 132,
     };
-    expect(plotWidth(cellSize, cellWidth, windowWidth)).toEqual(expected);
+    expect(calculateWidth(cellSize, cellWidth, windowWidth)).toEqual(expected);
   });
 
   it('should return width values when columns do not fit within page', () => {
@@ -72,6 +72,6 @@ describe('calculate width', () => {
       pageX: 2,
       wrapper: 120,
     };
-    expect(plotWidth(cellSize, cellWidth, windowWidth)).toEqual(expected);
+    expect(calculateWidth(cellSize, cellWidth, windowWidth)).toEqual(expected);
   });
 });

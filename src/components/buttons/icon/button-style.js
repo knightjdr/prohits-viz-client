@@ -40,6 +40,13 @@ const Button = styled.button`
     border: 0;
   }
 
+  ${props => (props.disabled
+    && css`& {
+      cursor: not-allowed;
+      opacity: 0.6;
+    }`
+  )};
+
   ${props => (props.shadow
     && css`& {
       box-shadow: 0 2px 5px 0 rgba(0, 0, 0, 0.26);
@@ -53,8 +60,8 @@ const Button = styled.button`
       color: ${props.theme.fontLight};
     }
 
-    &:focus,
-    &:hover {
+    &:focus:not([disabled]),
+    &:hover:not([disabled]) {
       background-color: ${props.theme.colorPrimary2};
       color: ${props.theme.colorPrimary1};
     }`
@@ -67,8 +74,8 @@ const Button = styled.button`
       color: ${props.theme.fontLight};
     }
 
-    &:focus,
-    &:hover {
+    &:focus:not([disabled]),
+    &:hover:not([disabled]) {
       background-color: ${props.theme.colorPrimary1};
     }`
   )}
@@ -83,12 +90,12 @@ const Button = styled.button`
       opacity: 0;
     }
 
-    &:focus,
-    &:hover {
+    &:focus:not([disabled]),
+    &:hover:not([disabled]) {
       color: ${props.theme.fontLight};
     }
-    &:focus::before,
-    &:hover::before {
+    &:focus:not([disabled])::before,
+    &:hover:not([disabled])::before {
       opacity: 1;
       transform: scale(1);
     }`
@@ -101,8 +108,8 @@ const Button = styled.button`
       color: ${props.theme.fontLight};
     }
 
-    &:focus,
-    &:hover {
+    &:focus:not([disabled]),
+    &:hover:not([disabled]) {
       background-color: ${props.theme.warning2};
       color: ${props.theme.fontDark};
     }`
@@ -110,10 +117,12 @@ const Button = styled.button`
 `;
 
 Button.defaultProps = {
+  disabled: false,
   kind: 'transparent',
 };
 
 Button.propTypes = {
+  disabled: PropTypes.bool,
   kind: PropTypes.string,
 };
 

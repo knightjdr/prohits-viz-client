@@ -8,6 +8,8 @@ export const defaultState = {
   pageY: 0,
   rows: 0,
   width: 0,
+  wrapperHeight: 0,
+  wrapperWidth: 0,
 };
 
 const reducer = (state = {}, action) => {
@@ -18,12 +20,14 @@ const reducer = (state = {}, action) => {
       return {
         ...state,
         [action.dataID]: {
-          columns: action.columns,
-          height: action.height,
-          pageX: action.pageX,
-          pageY: action.pageY,
-          rows: action.rows,
-          width: action.width,
+          columns: action.dimensions.columns,
+          height: action.dimensions.height,
+          pageX: action.dimensions.pageX,
+          pageY: action.dimensions.pageY,
+          rows: action.dimensions.rows,
+          width: action.dimensions.width,
+          wrapperHeight: action.dimensions.wrapperHeight,
+          wrapperWidth: action.dimensions.wrapperWidth,
         },
       };
     default:

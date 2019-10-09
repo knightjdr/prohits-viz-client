@@ -2,8 +2,9 @@ import React, { useEffect, useMemo, useRef } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 
 import Heatmap from './heatmap';
-import plotDimensions from './dimensions/plot';
-import plotTranslate from './dimensions/translate';
+
+import defineDimensions from './dimensions/define-dimensions';
+import defineTranslation from './dimensions/define-translation';
 import selectActiveTab from '../../../state/selector/visualization/tab-selector';
 import usePlotScroll from './dimensions/use-plot-scroll';
 import useWindowDimension from '../../../hooks/window-size/use-window-dimension';
@@ -30,7 +31,7 @@ const HeatmapContainer = () => {
   const cellWidth = columns.length;
 
   const dimensions = useMemo(
-    () => plotDimensions(
+    () => defineDimensions(
       cellSize,
       cellHeight,
       cellWidth,
@@ -41,7 +42,7 @@ const HeatmapContainer = () => {
   );
 
   const translation = useMemo(
-    () => plotTranslate(
+    () => defineTranslation(
       dimensions.width.canTranslate,
       plotFixed,
       panelOpen,
@@ -61,18 +62,24 @@ const HeatmapContainer = () => {
     const { height, width } = dimensions;
     dispatch(setDimensions(
       activeTab,
-      height.rows,
-      width.columns,
-      width.pageX,
-      height.pageY,
-      height.heatmap,
-      width.heatmap,
+      {
+        columns: width.columns,
+        height: height.heatmap,
+        pageX: width.pageX,
+        pageY: height.pageY,
+        rows: height.rows,
+        width: width.heatmap,
+        wrapperHeight: dimensions.height.wrapper,
+        wrapperWidth: dimensions.width.wrapper,
+      },
     ));
   }, [activeTab, dimensions, dispatch]);
 
   return (
     <Heatmap
       ref={ref}
+      showHorizontalArrows={dimensions.width.arrowsX}
+      showVerticalArrows={dimensions.height.arrowsY}
       translation={translation}
       wrapperHeight={dimensions.height.wrapper}
       wrapperWidth={dimensions.width.wrapper}

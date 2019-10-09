@@ -7,7 +7,7 @@ const PADDING = 2;
 const ROW_MARGIN = 100;
 const VERT_PADDING = 20;
 
-export const plotHeight = (cellSize, cellHeight, windowHeight, removePadding) => {
+export const calculateHeight = (cellSize, cellHeight, windowHeight, removePadding) => {
   let wrapper = windowHeight - NAVBAR_HEIGHT - VERT_PADDING;
 
   // If horizontal scroll arrows are being shown, remove some more height from wrapper.
@@ -37,7 +37,7 @@ export const plotHeight = (cellSize, cellHeight, windowHeight, removePadding) =>
   return height;
 };
 
-export const plotWidth = (cellSize, cellWidth, windowWidth) => {
+export const calculateWidth = (cellSize, cellWidth, windowWidth) => {
   const wrapper = windowWidth - HORZ_PADDING;
   const heatmap = wrapper - ROW_MARGIN;
   const pageX = Math.floor(heatmap / cellSize);
@@ -61,13 +61,13 @@ export const plotWidth = (cellSize, cellWidth, windowWidth) => {
   return width;
 };
 
-const plot = (cellSize, cellHeight, cellWidth, windowHeight, windowWidth) => {
-  const width = plotWidth(cellSize, cellWidth, windowWidth);
-  const height = plotHeight(cellSize, cellHeight, windowHeight, width.arrowsX);
+const defineDimensions = (cellSize, cellHeight, cellWidth, windowHeight, windowWidth) => {
+  const width = calculateWidth(cellSize, cellWidth, windowWidth);
+  const height = calculateHeight(cellSize, cellHeight, windowHeight, width.arrowsX);
   return {
     height,
     width,
   };
 };
 
-export default plot;
+export default defineDimensions;
