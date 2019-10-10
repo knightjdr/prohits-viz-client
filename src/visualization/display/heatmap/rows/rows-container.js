@@ -3,9 +3,9 @@ import { useSelector } from 'react-redux';
 
 import Columns from './rows';
 import names from '../names/names';
+import selectRowNames from '../../../../state/selector/visualization/row-selector';
 import setFontSize from '../font-size/font-size';
 import useContextMenu from '../context-menu/use-context-menu';
-import { selectRowNames } from '../../../../state/selector/visualization/row-selector';
 import { selectDataProperty } from '../../../../state/selector/visualization/data-selector';
 
 const RowsContainer = () => {

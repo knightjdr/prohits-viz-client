@@ -10,15 +10,17 @@ import Grid from './grid';
 import setEdgeRange from './edge-range';
 import setRange from '../../../../utils/set-range';
 import translation from './translation';
-import { selectRows } from '../../../../state/selector/visualization/row-selector';
 import { selectData, selectDataProperty } from '../../../../state/selector/visualization/data-selector';
-import { selectStateProperty } from '../../../../state/selector/general';
+import { selectState, selectStateProperty } from '../../../../state/selector/general';
 
 const GridContainer = () => {
   const dimensions = useSelector(state => selectData(state, 'dimensions'));
   const [page, setPage] = useState(null);
+
+  const columnOrder = useSelector(state => selectDataProperty(state, 'columns', 'order'));
   const position = useSelector(state => selectData(state, 'position'));
-  const rows = useSelector(state => selectRows(state));
+  const rowDB = useSelector(state => selectState(state, 'rowDB'));
+  const rowOrder = useSelector(state => selectDataProperty(state, 'rows', 'order'));
   const scoreType = useSelector(state => selectStateProperty(state, 'parameters', 'scoreType'));
   const settings = useSelector(state => selectDataProperty(state, 'settings', 'current'));
 
@@ -72,7 +74,9 @@ const GridContainer = () => {
     if (dimensions.height > 0 && dimensions.width > 0) {
       setPage(getPage(
         imageType,
-        rows,
+        rowDB,
+        columnOrder,
+        rowOrder,
         position,
         dimensions,
         cellSize,
@@ -85,6 +89,7 @@ const GridContainer = () => {
     }
   }, [
     cellSize,
+    columnOrder,
     dimensions,
     edgeGradient,
     edgeRange,
@@ -93,7 +98,8 @@ const GridContainer = () => {
     fillRange,
     imageType,
     position,
-    rows,
+    rowDB,
+    rowOrder,
   ]);
 
   return (

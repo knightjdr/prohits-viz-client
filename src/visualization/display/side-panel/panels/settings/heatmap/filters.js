@@ -10,17 +10,20 @@ const Filters = ({
   abundanceCap,
   columns,
   filterBy,
+  filteringNotification,
   handleChangeAbundanceCap,
   handleChangeMinAbundance,
   handleChangePrimaryFilter,
   handleChangeSecondaryFilter,
   handleFilter,
+  imageType,
   minAbundance,
   primaryFilter,
   removeEmptyColumns,
   secondaryFilter,
 }) => (
   <>
+    {filteringNotification}
     <Section title="Filters">
       <Input
         id="abundanceCap"
@@ -46,14 +49,19 @@ const Filters = ({
         type="number"
         value={primaryFilter}
       />
-      <Input
-        id="secondaryFilter"
-        label="Secondary filter"
-        onChange={handleChangeSecondaryFilter}
-        step={0.01}
-        type="number"
-        value={secondaryFilter}
-      />
+      {
+        imageType === 'dotplot'
+        && (
+          <Input
+            id="secondaryFilter"
+            label="Secondary filter"
+            onChange={handleChangeSecondaryFilter}
+            step={0.01}
+            type="number"
+            value={secondaryFilter}
+          />
+        )
+      }
       <Select
         canClear
         id="filterBy"
@@ -72,15 +80,21 @@ const Filters = ({
   </>
 );
 
+Filters.defaultProps = {
+  filteringNotification: null,
+};
+
 Filters.propTypes = {
   abundanceCap: PropTypes.number.isRequired,
   columns: PropTypes.arrayOf(PropTypes.string).isRequired,
   filterBy: PropTypes.string.isRequired,
+  filteringNotification: PropTypes.node,
   handleChangeAbundanceCap: PropTypes.func.isRequired,
   handleChangeMinAbundance: PropTypes.func.isRequired,
   handleChangePrimaryFilter: PropTypes.func.isRequired,
   handleChangeSecondaryFilter: PropTypes.func.isRequired,
   handleFilter: PropTypes.func.isRequired,
+  imageType: PropTypes.string.isRequired,
   minAbundance: PropTypes.number.isRequired,
   primaryFilter: PropTypes.number.isRequired,
   removeEmptyColumns: PropTypes.bool.isRequired,

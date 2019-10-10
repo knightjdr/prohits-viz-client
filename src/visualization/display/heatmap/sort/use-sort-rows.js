@@ -1,9 +1,10 @@
 import React, { useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 
+import ActionNotification from '../../../utils/action-notification';
+
 import rowSort from './row-sort';
 import selectActiveTab from '../../../../state/selector/visualization/tab-selector';
-import Sorting from './sorting';
 import { selectData } from '../../../../state/selector/visualization/data-selector';
 import { selectState } from '../../../../state/selector/general';
 import { sortRows } from '../../../../state/visualization/heatmap/rows-actions';
@@ -59,8 +60,16 @@ const useSortRows = () => {
   };
 
   return {
-    rows: sort,
-    Component: sorting ? <Sorting isOpen={sorting} /> : null,
+    process: sort,
+    Component: sorting
+      ? (
+        <ActionNotification
+          id="heatmap-sorting"
+          isOpen={sorting}
+          text="sorting"
+        />
+      )
+      : null,
   };
 };
 

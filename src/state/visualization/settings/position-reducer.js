@@ -1,4 +1,5 @@
 import * as fileActions from '../data/interactive-file-actions';
+import * as rowActions from '../heatmap/rows-actions';
 
 import { UPDATE_POSITION } from './position-actions';
 
@@ -11,10 +12,26 @@ const reducer = (state = {}, action) => {
   switch (action.type) {
     case fileActions.CLEAR_INTERACTIVE_FILE:
       return {};
+    case rowActions.FILTER_ROWS:
+      return {
+        ...state,
+        [action.dataID]: {
+          x: 0,
+          y: 0,
+        },
+      };
     case fileActions.PARSE_INTERACTIVE_FILE:
       return action.file.position
         ? action.file.position
         : {};
+    case rowActions.SORT_ROWS:
+      return {
+        ...state,
+        [action.dataID]: {
+          x: 0,
+          y: 0,
+        },
+      };
     case UPDATE_POSITION:
       return {
         ...state,

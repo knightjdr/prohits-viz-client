@@ -18,7 +18,7 @@ const SettingsHeatmapContainer = () => {
   const scoreType = useSelector(state => selectStateProperty(state, 'parameters', 'scoreType'));
   const settings = useSelector(state => selectDataProperty(state, 'settings', 'current'));
 
-  const filterRows = useRowFilter();
+  const rowFilter = useRowFilter();
 
   const handleChange = (e, name, value) => {
     dispatch(updateSetting(activeTab, name, value));
@@ -34,6 +34,7 @@ const SettingsHeatmapContainer = () => {
         minAbundance: value - 0.01,
       };
       dispatch(updateSettings(activeTab, newSettings));
+      rowFilter.process('minAbundance', value - 0.01);
     }
   };
 
@@ -47,8 +48,8 @@ const SettingsHeatmapContainer = () => {
         minAbundance: value,
       };
       dispatch(updateSettings(activeTab, newSettings));
-      filterRows('minAbundance', value);
     }
+    rowFilter.process('minAbundance', value);
   };
 
   const handleChangePrimaryFilter = (e, name, value) => {
@@ -64,8 +65,8 @@ const SettingsHeatmapContainer = () => {
         secondaryFilter: value,
       };
       dispatch(updateSettings(activeTab, newSettings));
-      filterRows('primaryFilter', value);
     }
+    rowFilter.process('primaryFilter', value);
   };
 
   const handleChangeSecondaryFilter = (e, name, value) => {
@@ -81,12 +82,12 @@ const SettingsHeatmapContainer = () => {
         secondaryFilter: value,
       };
       dispatch(updateSettings(activeTab, newSettings));
-      filterRows('primaryFilter', value);
+      rowFilter.process('primaryFilter', value);
     }
   };
 
   const handleFilter = (e, name, value) => {
-    filterRows(name, value);
+    rowFilter.process(name, value);
   };
 
   const handleImageReset = () => {
@@ -96,6 +97,7 @@ const SettingsHeatmapContainer = () => {
   return (
     <SettingsHeatmap
       columns={columns}
+      filteringNotification={rowFilter.Component}
       handleChange={handleChange}
       handleChangeAbundanceCap={handleChangeAbundanceCap}
       handleChangeMinAbundance={handleChangeMinAbundance}

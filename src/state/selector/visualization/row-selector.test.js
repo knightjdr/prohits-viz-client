@@ -1,4 +1,4 @@
-import { selectRowNames, selectRows } from './row-selector';
+import selectRowNames from './row-selector';
 
 const state = {
   columns: {
@@ -43,26 +43,6 @@ const state = {
 };
 
 describe('Row selector for heat map', () => {
-  it('should return rows from DB in correct order', () => {
-    const expected = [
-      {
-        data: [
-          { value: 1 },
-          { value: 3 },
-        ],
-        name: 'c',
-      },
-      {
-        data: [
-          { value: 1 },
-          { value: 3 },
-        ],
-        name: 'b',
-      },
-    ];
-    expect(selectRows(state)).toEqual(expected);
-  });
-
   it('should return rows names in correct order', () => {
     const expected = ['c', 'b'];
     expect(selectRowNames(state)).toEqual(expected);

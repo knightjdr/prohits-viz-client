@@ -1,6 +1,7 @@
 import redcuer from './position-reducer';
 import * as actions from './position-actions';
 import * as fileActions from '../data/interactive-file-actions';
+import * as rowActions from '../heatmap/rows-actions';
 
 describe('Position reducer', () => {
   it('should return a default initial state', () => {
@@ -14,6 +15,20 @@ describe('Position reducer', () => {
       type: fileActions.CLEAR_INTERACTIVE_FILE,
     };
     const expectedState = {};
+    expect(redcuer(undefined, action)).toEqual(expectedState);
+  });
+
+  it('should handle FILTER_ROWS action', () => {
+    const action = {
+      dataID: 'main',
+      type: rowActions.FILTER_ROWS,
+    };
+    const expectedState = {
+      main: {
+        x: 0,
+        y: 0,
+      },
+    };
     expect(redcuer(undefined, action)).toEqual(expectedState);
   });
 
@@ -33,6 +48,20 @@ describe('Position reducer', () => {
       main: {
         x: 0.1,
         y: 0.5,
+      },
+    };
+    expect(redcuer(undefined, action)).toEqual(expectedState);
+  });
+
+  it('should handle SORT_ROWS action', () => {
+    const action = {
+      dataID: 'main',
+      type: rowActions.SORT_ROWS,
+    };
+    const expectedState = {
+      main: {
+        x: 0,
+        y: 0,
       },
     };
     expect(redcuer(undefined, action)).toEqual(expectedState);

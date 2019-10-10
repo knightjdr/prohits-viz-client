@@ -15,7 +15,9 @@ export const setScore = score => (
 
 const page = (
   imageType,
-  rows,
+  rowDB,
+  columnOrder,
+  rowOrder,
   position,
   dimensions,
   cellSize,
@@ -33,17 +35,18 @@ const page = (
     x: position.x + dimensions.pageX,
     y: position.y + dimensions.pageY,
   };
-  const circleRadius = Math.floor((cellSize / 2) - 1);
   const xPadding = cellSize * pageStart.x;
   const yPadding = cellSize * pageStart.y;
   if (imageType === 'dotplot') {
+    const circleRadius = Math.floor((cellSize / 2) - 1);
     const offset = cellSize / 2;
-    return rows.slice(pageStart.y, pageEnd.y).map((row, i) => (
-      row.data.slice(pageStart.x, pageEnd.x).map((item, j) => {
+    return rowOrder.slice(pageStart.y, pageEnd.y).map((rowIndex, i) => (
+      columnOrder.slice(pageStart.x, pageEnd.x).map((columnIndex, j) => {
+        const item = rowDB[rowIndex].data[columnIndex];
         const edgeColor = edgeGradient[edgeRange(setScore(item.score))];
         const fillColor = fillGradient[fillRange(item.value)];
         const radius = setRadius(item.ratio, circleRadius);
-        const key = `${row.name}-${pageStart.y + i}-${pageStart.x + j}`;
+        const key = `${rowDB[rowIndex].name}-${pageStart.y + i}-${pageStart.x + j}`;
         return (
           <circle
             cx={(j * cellSize) + xPadding + offset}
@@ -58,10 +61,11 @@ const page = (
       })
     ));
   }
-  return rows.slice(pageStart.y, pageEnd.y).map((row, i) => (
-    row.data.slice(pageStart.x, pageEnd.x).map((item, j) => {
+  return rowOrder.slice(pageStart.y, pageEnd.y).map((rowIndex, i) => (
+    columnOrder.slice(pageStart.x, pageEnd.x).map((columnIndex, j) => {
+      const item = rowDB[rowIndex].data[columnIndex];
       const fillColor = fillGradient[fillRange(item.value)];
-      const key = `${row.name}-${pageStart.y + i}-${pageStart.x + j}`;
+      const key = `${rowDB[rowIndex].name}-${pageStart.y + i}-${pageStart.x + j}`;
       return (
         <rect
           fill={fillColor}

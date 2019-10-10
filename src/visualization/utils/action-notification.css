@@ -1,8 +1,8 @@
-.sorting__notification {
+.action__notification {
   align-items: center;
   color: black;
   display: flex;
 }
-.sorting__notification svg {
+.action__notification svg {
   margin-right: 8px;
 }

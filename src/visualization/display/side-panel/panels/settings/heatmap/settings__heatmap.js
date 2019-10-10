@@ -10,6 +10,7 @@ import './settings__heatmap.css';
 
 const Settings = ({
   columns,
+  filteringNotification,
   handleChange,
   handleChangeAbundanceCap,
   handleChangeMinAbundance,
@@ -49,12 +50,14 @@ const Settings = ({
       <Filters
         abundanceCap={abundanceCap}
         columns={columns}
+        filteringNotification={filteringNotification}
         filterBy={filterBy}
         handleChangeAbundanceCap={handleChangeAbundanceCap}
         handleChangeMinAbundance={handleChangeMinAbundance}
         handleChangePrimaryFilter={handleChangePrimaryFilter}
         handleChangeSecondaryFilter={handleChangeSecondaryFilter}
         handleFilter={handleFilter}
+        imageType={imageType}
         minAbundance={minAbundance}
         primaryFilter={primaryFilter}
         removeEmptyColumns={removeEmptyColumns}
@@ -67,8 +70,13 @@ const Settings = ({
   );
 };
 
+Settings.defaultProps = {
+  filteringNotification: null,
+};
+
 Settings.propTypes = {
   columns: PropTypes.arrayOf(PropTypes.string).isRequired,
+  filteringNotification: PropTypes.node,
   handleChange: PropTypes.func.isRequired,
   handleChangeAbundanceCap: PropTypes.func.isRequired,
   handleChangeMinAbundance: PropTypes.func.isRequired,

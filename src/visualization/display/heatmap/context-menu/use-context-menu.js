@@ -23,7 +23,7 @@ const useContextMenu = (name = 'contextMenu', containerType = 'columns') => {
   const reference = useSelector(state => selectDataProperty(state, 'columns', 'ref'));
 
   // const setSelections = useSelections('columns', 'text');
-  const sort = useSortRows();
+  const rowSort = useSortRows();
 
   const closeMenu = () => {
     setOpen(false);
@@ -53,12 +53,12 @@ const useContextMenu = (name = 'contextMenu', containerType = 'columns') => {
 
   const sortAscending = () => {
     closeMenu();
-    sort.rows(contextItem, 'asc', reference);
+    rowSort.process(contextItem, 'asc', reference);
   };
 
   const sortDescending = () => {
     closeMenu();
-    sort.rows(contextItem, 'desc', reference);
+    rowSort.process(contextItem, 'desc', reference);
   };
 
   const unsetReference = () => {
@@ -69,7 +69,7 @@ const useContextMenu = (name = 'contextMenu', containerType = 'columns') => {
   return {
     open: openMenu,
     // setSelections,
-    sortRows: sort.rows,
+    sortRows: rowSort.process,
     Component: (
       <ContextMenu
         containerType={containerType}
@@ -86,7 +86,7 @@ const useContextMenu = (name = 'contextMenu', containerType = 'columns') => {
         unsetReference={unsetReference}
       />
     ),
-    SortingComponent: sort.Component,
+    SortingComponent: rowSort.Component,
   };
 };
 

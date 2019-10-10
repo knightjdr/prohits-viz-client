@@ -3,31 +3,35 @@ import React from 'react';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faSpinner } from '@fortawesome/pro-duotone-svg-icons';
 
-import Modal from '../../../../components/modal/modal-container';
+import Modal from '../../components/modal/modal-container';
 
-import './sorting.css';
+import './action-notification.css';
 
-const Sorting = ({
+const ActionNotification = ({
+  id,
   isOpen,
+  text,
 }) => (
   <Modal
     background={false}
     isOpen={isOpen}
-    name="sorting-notification"
+    name={`${id}-notification`}
     placement={{
       horizontal: 'center',
       vertical: 'center',
     }}
   >
-    <span className="sorting__notification">
+    <span className="action__notification">
       <FontAwesomeIcon icon={faSpinner} spin />
-      sorting
+      {text}
     </span>
   </Modal>
 );
 
-Sorting.propTypes = {
+ActionNotification.propTypes = {
+  id: PropTypes.string.isRequired,
   isOpen: PropTypes.bool.isRequired,
+  text: PropTypes.string.isRequired,
 };
 
-export default Sorting;
+export default ActionNotification;

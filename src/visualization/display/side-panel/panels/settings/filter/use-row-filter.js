@@ -1,6 +1,9 @@
-import { useCallback } from 'react';
+import React, { useCallback, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 
+import ActionNotification from '../../../../../utils/action-notification';
+
+import rowSort from '../../../../heatmap/sort/row-sort';
 import selectColumns from '../../../../../../state/selector/visualization/column-selector';
 import selectActiveTab from '../../../../../../state/selector/visualization/tab-selector';
 import { filterRows } from '../../../../../../state/visualization/heatmap/rows-actions';
@@ -45,18 +48,24 @@ const filterRow = (order, rows, filterIndex, scoreType, abundance, primaryFilter
 
 /* Filter heatmap by minAbundance and primaryFilter score. */
 const useRowFilter = () => {
+  const [isFiltering, setFiltering] = useState(false);
+
   const dispatch = useDispatch();
 
   const activeTab = useSelector(state => selectActiveTab(state));
   const columnDB = useSelector(state => selectColumns(state));
-  const defaultColumnOrder = useSelector(state => selectDataProperty(state, 'columns', 'defaultOrder'));
+  const columns = useSelector(state => selectData(state, 'columns'));
   const scoreType = useSelector(state => selectStateProperty(state, 'parameters', 'scoreType'));
   const settings = useSelector(state => selectDataProperty(state, 'settings', 'current'));
   const rows = useSelector(state => selectData(state, 'rows'));
   const rowDB = useSelector(state => selectState(state, 'rowDB'));
 
+  const defaultColumnOrder = columns.order;
+  const sortByRef = columns.ref;
   const {
+    direction,
     defaultOrder,
+    sortBy,
     sortOrder,
   } = rows;
   const {
@@ -68,13 +77,17 @@ const useRowFilter = () => {
 
   const filter = useCallback(
     (setting, value) => {
+      setFiltering(true);
       const newAbundance = setting === 'minAbundance' ? value : minAbundance;
       const newFilterBy = setting === 'filterBy' ? value : filterBy;
       const newPrimaryFilter = setting === 'primaryFilter' ? value : primaryFilter;
       const newRemoveEmptyColumns = setting === 'removeEmptyColumns' ? value : removeEmptyColumns;
+
+      // Filter rows first, then reapplying sorting if sorting had been applied. Finally,
+      // filter columns.
       const filterIndex = columnDB.indexOf(newFilterBy);
       const rowOrder = setting === 'filterBy' || sortOrder.length === 0 ? defaultOrder : sortOrder;
-      const filteredRowOrder = filterRow(
+      let newRowOrder = filterRow(
         rowOrder,
         rowDB,
         filterIndex,
@@ -82,17 +95,26 @@ const useRowFilter = () => {
         newAbundance,
         newPrimaryFilter,
       );
-      const filteredColumnOrder = newRemoveEmptyColumns
-        ? filterColumn(rowDB, filteredRowOrder, scoreType, newPrimaryFilter) : defaultColumnOrder;
+      if (sortBy) {
+        const requestedSortIndex = columnDB.indexOf(sortBy);
+        const refIndex = sortByRef ? columnDB.indexOf(sortByRef) : '';
+        newRowOrder = rowSort(rowDB, newRowOrder, requestedSortIndex, direction, refIndex);
+      }
+
+      const newColumnOrder = newRemoveEmptyColumns
+        ? filterColumn(rowDB, newRowOrder, scoreType, newPrimaryFilter) : defaultColumnOrder;
 
       dispatch(updateSetting(activeTab, setting, value));
-      dispatch(filterRows(activeTab, filteredRowOrder, filteredColumnOrder));
+      dispatch(filterRows(activeTab, newRowOrder, newColumnOrder));
+
+      setFiltering(false);
     },
     [
       activeTab,
       columnDB,
       defaultColumnOrder,
       defaultOrder,
+      direction,
       dispatch,
       filterBy,
       minAbundance,
@@ -101,10 +123,23 @@ const useRowFilter = () => {
       sortOrder,
       primaryFilter,
       scoreType,
+      sortBy,
+      sortByRef,
     ],
   );
 
-  return filter;
+  return {
+    process: filter,
+    Component: isFiltering
+      ? (
+        <ActionNotification
+          id="heatmap-filtering"
+          isOpen={isFiltering}
+          text="filtering"
+        />
+      )
+      : null,
+  };
 };
 
 export default useRowFilter;
