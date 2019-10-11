@@ -1,3 +1,6 @@
+.panel__settings {
+  padding-bottom: 15px;
+}
 .panel__settings .input__container,
 .panel__settings .select__container {
   align-items: center;
