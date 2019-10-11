@@ -1,11 +1,12 @@
 import PropTypes from 'prop-types';
 import styled, { css } from 'styled-components';
 
-const Button = styled.button`
+import DefaultButton from '../button-defaults';
+
+const Button = styled(DefaultButton)`
   align-items: center;
   border: none;
   border-radius: 50%;
-  box-sizing: border-box;
   color: ${props => props.theme.colorPrimary1};
   display: flex;
   font-size: 1.3em;
@@ -13,11 +14,7 @@ const Button = styled.button`
   height: 34px;
   padding: 2px;
   position: relative;
-  transition-duration: 0.3s;
-  transition-property: all;
-  transition-timing-function: ${props => props.theme.timingFunction};
   width: 34px;
-  z-index: 2;
 
   &::before {
     border-radius: 50%;
@@ -32,26 +29,6 @@ const Button = styled.button`
     width: 100%;
     z-index: -1;
   }
-
-  &:focus {
-    outline: none;
-  }
-  &::-moz-focus-inner {
-    border: 0;
-  }
-
-  ${props => (props.disabled
-    && css`& {
-      cursor: not-allowed;
-      opacity: 0.6;
-    }`
-  )};
-
-  ${props => (props.shadow
-    && css`& {
-      box-shadow: 0 2px 5px 0 rgba(0, 0, 0, 0.26);
-    }`
-  )};
 
   ${props => (props.kind === 'primary'
     && css`&{
@@ -119,11 +96,13 @@ const Button = styled.button`
 Button.defaultProps = {
   disabled: false,
   kind: 'transparent',
+  shadow: false,
 };
 
 Button.propTypes = {
   disabled: PropTypes.bool,
   kind: PropTypes.string,
+  shadow: PropTypes.bool,
 };
 
 export default Button;

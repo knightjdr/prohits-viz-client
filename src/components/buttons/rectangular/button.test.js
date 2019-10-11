@@ -1,18 +1,18 @@
 import React from 'react';
 import { render } from '@testing-library/react';
 
-import Button from './button-style';
+import Button from './button';
 
 const theme = {
   colorPrimary1: '#0000ff',
-  colorSecondary1: '#00ff00',
+  colorSecondary1: '#000088',
   fontLight: '#fff',
   fontDark: '#111',
+  success: '#0f0',
   warning1: '#ee000',
-  warning2: '#ff000',
 };
 
-describe('Icon button style', () => {
+describe('Rectangular button style', () => {
   describe('default', () => {
     let container;
 
@@ -22,6 +22,23 @@ describe('Icon button style', () => {
 
     it('should match snapshot', () => {
       expect(container).toMatchSnapshot();
+    });
+  });
+
+  describe('grey', () => {
+    let container;
+
+    beforeAll(() => {
+      ({ container } = render(
+        <Button
+          kind="grey"
+          theme={theme}
+        />,
+      ));
+    });
+
+    it('should set color', () => {
+      expect(container.firstChild).toHaveStyleRule('color', theme.fontDark);
     });
   });
 
@@ -49,32 +66,32 @@ describe('Icon button style', () => {
       expect(container.firstChild).toHaveStyleRule('color', theme.fontLight);
     });
 
-    it('should set icon background color on focus', () => {
+    it('should set border color on focus', () => {
       const modifier = {
         modifier: '&:focus:not([disabled])',
       };
-      expect(container.firstChild).toHaveStyleRule('background-color', theme.accentPrimary1, modifier);
+      expect(container.firstChild).toHaveStyleRule('border-color', theme.colorPrimary1, modifier);
     });
 
-    it('should set icon color on focus', () => {
+    it('should set color on focus', () => {
       const modifier = {
         modifier: '&:focus:not([disabled])',
       };
-      expect(container.firstChild).toHaveStyleRule('color', theme.colorPrimary1, modifier);
+      expect(container.firstChild).toHaveStyleRule('color', theme.fontDark, modifier);
     });
 
-    it('should set icon background color on hover', () => {
+    it('should set border color on hover', () => {
       const modifier = {
         modifier: '&:hover:not([disabled])',
       };
-      expect(container.firstChild).toHaveStyleRule('background-color', theme.accentPrimary1, modifier);
+      expect(container.firstChild).toHaveStyleRule('border-color', theme.colorPrimary1, modifier);
     });
 
-    it('should set icon color on hover', () => {
+    it('should set color on hover', () => {
       const modifier = {
         modifier: '&:hover:not([disabled])',
       };
-      expect(container.firstChild).toHaveStyleRule('color', theme.colorPrimary1, modifier);
+      expect(container.firstChild).toHaveStyleRule('color', theme.fontDark, modifier);
     });
   });
 
@@ -102,26 +119,45 @@ describe('Icon button style', () => {
       expect(container.firstChild).toHaveStyleRule('color', theme.fontLight);
     });
 
-    it('should set icon background color on focus', () => {
+    it('should set border color on focus', () => {
       const modifier = {
         modifier: '&:focus:not([disabled])',
       };
-      expect(container.firstChild).toHaveStyleRule('background-color', theme.colorPrimary1, modifier);
+      expect(container.firstChild).toHaveStyleRule('border-color', theme.colorSecondary1, modifier);
     });
 
-    it('should set icon background color on hover', () => {
+    it('should set color on focus', () => {
+      const modifier = {
+        modifier: '&:focus:not([disabled])',
+      };
+      expect(container.firstChild).toHaveStyleRule('color', theme.fontDark, modifier);
+    });
+
+    it('should set border color on hover', () => {
       const modifier = {
         modifier: '&:hover:not([disabled])',
       };
-      expect(container.firstChild).toHaveStyleRule('background-color', theme.colorPrimary1, modifier);
+      expect(container.firstChild).toHaveStyleRule('border-color', theme.colorSecondary1, modifier);
+    });
+
+    it('should set color on hover', () => {
+      const modifier = {
+        modifier: '&:hover:not([disabled])',
+      };
+      expect(container.firstChild).toHaveStyleRule('color', theme.fontDark, modifier);
     });
   });
 
-  describe('transparent', () => {
+  describe('success', () => {
     let container;
 
     beforeAll(() => {
-      ({ container } = render(<Button theme={theme} />));
+      ({ container } = render(
+        <Button
+          kind="success"
+          theme={theme}
+        />,
+      ));
     });
 
     it('should match snapshot', () => {
@@ -129,32 +165,21 @@ describe('Icon button style', () => {
     });
 
     it('should set background color', () => {
-      expect(container.firstChild).toHaveStyleRule('background-color', 'transparent');
+      expect(container.firstChild).toHaveStyleRule('background-color', theme.success);
     });
 
-    it('should set color', () => {
-      expect(container.firstChild).toHaveStyleRule('color', theme.colorPrimary1);
-    });
-
-    it('should set before background color', () => {
-      const modifier = {
-        modifier: '&::before',
-      };
-      expect(container.firstChild).toHaveStyleRule('background-color', theme.colorPrimary1, modifier);
-    });
-
-    it('should set icon color on focus', () => {
+    it('should set border color on focus', () => {
       const modifier = {
         modifier: '&:focus:not([disabled])',
       };
-      expect(container.firstChild).toHaveStyleRule('color', theme.fontLight, modifier);
+      expect(container.firstChild).toHaveStyleRule('border-color', theme.success, modifier);
     });
 
-    it('should set icon color on hover', () => {
+    it('should set border color on hover', () => {
       const modifier = {
         modifier: '&:hover:not([disabled])',
       };
-      expect(container.firstChild).toHaveStyleRule('color', theme.fontLight, modifier);
+      expect(container.firstChild).toHaveStyleRule('border-color', theme.success, modifier);
     });
   });
 
@@ -178,36 +203,18 @@ describe('Icon button style', () => {
       expect(container.firstChild).toHaveStyleRule('background-color', theme.warning1);
     });
 
-    it('should set color', () => {
-      expect(container.firstChild).toHaveStyleRule('color', theme.fontLight);
-    });
-
-    it('should set icon background color on focus', () => {
+    it('should set border color on focus', () => {
       const modifier = {
         modifier: '&:focus:not([disabled])',
       };
-      expect(container.firstChild).toHaveStyleRule('background-color', theme.warning2, modifier);
+      expect(container.firstChild).toHaveStyleRule('border-color', theme.warning1, modifier);
     });
 
-    it('should set icon color on focus', () => {
-      const modifier = {
-        modifier: '&:focus:not([disabled])',
-      };
-      expect(container.firstChild).toHaveStyleRule('color', theme.fontDark, modifier);
-    });
-
-    it('should set icon background color on hover', () => {
+    it('should set border color on hover', () => {
       const modifier = {
         modifier: '&:hover:not([disabled])',
       };
-      expect(container.firstChild).toHaveStyleRule('background-color', theme.warning2, modifier);
-    });
-
-    it('should set icon color on hover', () => {
-      const modifier = {
-        modifier: '&:hover:not([disabled])',
-      };
-      expect(container.firstChild).toHaveStyleRule('color', theme.fontDark, modifier);
+      expect(container.firstChild).toHaveStyleRule('border-color', theme.warning1, modifier);
     });
   });
 });

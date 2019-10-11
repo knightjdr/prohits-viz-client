@@ -1,0 +1,269 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Rectangular button style default should match snapshot 1`] = `
+.c0 {
+  background-color: transparent;
+  box-sizing: border-box;
+  -webkit-transform-origin: center;
+  -ms-transform-origin: center;
+  transform-origin: center;
+  -webkit-transition-duration: 0.3s;
+  transition-duration: 0.3s;
+  -webkit-transition-property: all;
+  transition-property: all;
+  border-radius: 3px;
+  border-style: solid;
+  border-width: 2px;
+  font-size: inherit;
+  padding: 0.2em 0.5em;
+}
+
+.c0:focus {
+  outline: none;
+}
+
+.c0::-moz-focus-inner {
+  border: 0;
+}
+
+.c0:active {
+  -webkit-animation-duration: 0.3s;
+  animation-duration: 0.3s;
+  -webkit-animation-name: click;
+  animation-name: click;
+}
+
+.c0 {
+  background-color: #0000ff;
+  border-color: transparent;
+  color: #fff;
+}
+
+.c0:focus:not([disabled]),
+.c0:hover:not([disabled]) {
+  background-color: #fff;
+  border-color: #0000ff;
+  color: #111;
+}
+
+<div>
+  <button
+    class="c0"
+    kind="primary"
+  />
+</div>
+`;
+
+exports[`Rectangular button style primary should match snapshot 1`] = `
+.c0 {
+  background-color: transparent;
+  box-sizing: border-box;
+  -webkit-transform-origin: center;
+  -ms-transform-origin: center;
+  transform-origin: center;
+  -webkit-transition-duration: 0.3s;
+  transition-duration: 0.3s;
+  -webkit-transition-property: all;
+  transition-property: all;
+  border-radius: 3px;
+  border-style: solid;
+  border-width: 2px;
+  font-size: inherit;
+  padding: 0.2em 0.5em;
+}
+
+.c0:focus {
+  outline: none;
+}
+
+.c0::-moz-focus-inner {
+  border: 0;
+}
+
+.c0:active {
+  -webkit-animation-duration: 0.3s;
+  animation-duration: 0.3s;
+  -webkit-animation-name: click;
+  animation-name: click;
+}
+
+.c0 {
+  background-color: #0000ff;
+  border-color: transparent;
+  color: #fff;
+}
+
+.c0:focus:not([disabled]),
+.c0:hover:not([disabled]) {
+  background-color: #fff;
+  border-color: #0000ff;
+  color: #111;
+}
+
+<div>
+  <button
+    class="c0"
+    kind="primary"
+  />
+</div>
+`;
+
+exports[`Rectangular button style secondary should match snapshot 1`] = `
+.c0 {
+  background-color: transparent;
+  box-sizing: border-box;
+  -webkit-transform-origin: center;
+  -ms-transform-origin: center;
+  transform-origin: center;
+  -webkit-transition-duration: 0.3s;
+  transition-duration: 0.3s;
+  -webkit-transition-property: all;
+  transition-property: all;
+  border-radius: 3px;
+  border-style: solid;
+  border-width: 2px;
+  font-size: inherit;
+  padding: 0.2em 0.5em;
+}
+
+.c0:focus {
+  outline: none;
+}
+
+.c0::-moz-focus-inner {
+  border: 0;
+}
+
+.c0:active {
+  -webkit-animation-duration: 0.3s;
+  animation-duration: 0.3s;
+  -webkit-animation-name: click;
+  animation-name: click;
+}
+
+.c0 {
+  background-color: #000088;
+  border-color: transparent;
+  color: #fff;
+}
+
+.c0:focus:not([disabled]),
+.c0:hover:not([disabled]) {
+  background-color: #fff;
+  border-color: #000088;
+  color: #111;
+}
+
+<div>
+  <button
+    class="c0"
+    kind="secondary"
+  />
+</div>
+`;
+
+exports[`Rectangular button style success should match snapshot 1`] = `
+.c0 {
+  background-color: transparent;
+  box-sizing: border-box;
+  -webkit-transform-origin: center;
+  -ms-transform-origin: center;
+  transform-origin: center;
+  -webkit-transition-duration: 0.3s;
+  transition-duration: 0.3s;
+  -webkit-transition-property: all;
+  transition-property: all;
+  border-radius: 3px;
+  border-style: solid;
+  border-width: 2px;
+  font-size: inherit;
+  padding: 0.2em 0.5em;
+}
+
+.c0:focus {
+  outline: none;
+}
+
+.c0::-moz-focus-inner {
+  border: 0;
+}
+
+.c0:active {
+  -webkit-animation-duration: 0.3s;
+  animation-duration: 0.3s;
+  -webkit-animation-name: click;
+  animation-name: click;
+}
+
+.c0 {
+  background-color: #0f0;
+  border-color: transparent;
+  color: #421C1A;
+}
+
+.c0:focus:not([disabled]),
+.c0:hover:not([disabled]) {
+  background-color: #fff;
+  border-color: #0f0;
+}
+
+<div>
+  <button
+    class="c0"
+    kind="success"
+  />
+</div>
+`;
+
+exports[`Rectangular button style warning should match snapshot 1`] = `
+.c0 {
+  background-color: transparent;
+  box-sizing: border-box;
+  -webkit-transform-origin: center;
+  -ms-transform-origin: center;
+  transform-origin: center;
+  -webkit-transition-duration: 0.3s;
+  transition-duration: 0.3s;
+  -webkit-transition-property: all;
+  transition-property: all;
+  border-radius: 3px;
+  border-style: solid;
+  border-width: 2px;
+  font-size: inherit;
+  padding: 0.2em 0.5em;
+}
+
+.c0:focus {
+  outline: none;
+}
+
+.c0::-moz-focus-inner {
+  border: 0;
+}
+
+.c0:active {
+  -webkit-animation-duration: 0.3s;
+  animation-duration: 0.3s;
+  -webkit-animation-name: click;
+  animation-name: click;
+}
+
+.c0 {
+  background-color: #ee000;
+  border-color: transparent;
+  color: #420802;
+}
+
+.c0:focus:not([disabled]),
+.c0:hover:not([disabled]) {
+  background-color: #fff;
+  border-color: #ee000;
+}
+
+<div>
+  <button
+    class="c0"
+    kind="warning"
+  />
+</div>
+`;

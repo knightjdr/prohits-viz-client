@@ -2,13 +2,23 @@
 
 exports[`Icon button style primary button should match snapshot 1`] = `
 .c0 {
+  background-color: transparent;
+  box-sizing: border-box;
+  -webkit-transform-origin: center;
+  -ms-transform-origin: center;
+  transform-origin: center;
+  -webkit-transition-duration: 0.3s;
+  transition-duration: 0.3s;
+  -webkit-transition-property: all;
+  transition-property: all;
+  -webkit-transition-timing-function: ease;
+  transition-timing-function: ease;
   -webkit-align-items: center;
   -webkit-box-align: center;
   -ms-flex-align: center;
   align-items: center;
   border: none;
   border-radius: 50%;
-  box-sizing: border-box;
   color: #00f;
   display: -webkit-box;
   display: -webkit-flex;
@@ -22,14 +32,24 @@ exports[`Icon button style primary button should match snapshot 1`] = `
   height: 34px;
   padding: 2px;
   position: relative;
-  -webkit-transition-duration: 0.3s;
-  transition-duration: 0.3s;
-  -webkit-transition-property: all;
-  transition-property: all;
-  -webkit-transition-timing-function: ease;
-  transition-timing-function: ease;
   width: 34px;
-  z-index: 2;
+}
+
+.c0:focus {
+  outline: none;
+}
+
+.c0::-moz-focus-inner {
+  border: 0;
+}
+
+.c0:active {
+  -webkit-animation-duration: 0.3s;
+  animation-duration: 0.3s;
+  -webkit-animation-name: click;
+  animation-name: click;
+  -webkit-animation-timing-function: ease;
+  animation-timing-function: ease;
 }
 
 .c0::before {
@@ -49,14 +69,6 @@ exports[`Icon button style primary button should match snapshot 1`] = `
   transform-origin: center center;
   width: 100%;
   z-index: -1;
-}
-
-.c0:focus {
-  outline: none;
-}
-
-.c0::-moz-focus-inner {
-  border: 0;
 }
 
 .c0 {
@@ -110,13 +122,23 @@ exports[`Icon button style primary button should match snapshot 1`] = `
 
 exports[`Icon button style transparent (default) button should match snapshot 1`] = `
 .c0 {
+  background-color: transparent;
+  box-sizing: border-box;
+  -webkit-transform-origin: center;
+  -ms-transform-origin: center;
+  transform-origin: center;
+  -webkit-transition-duration: 0.3s;
+  transition-duration: 0.3s;
+  -webkit-transition-property: all;
+  transition-property: all;
+  -webkit-transition-timing-function: ease;
+  transition-timing-function: ease;
   -webkit-align-items: center;
   -webkit-box-align: center;
   -ms-flex-align: center;
   align-items: center;
   border: none;
   border-radius: 50%;
-  box-sizing: border-box;
   color: #00f;
   display: -webkit-box;
   display: -webkit-flex;
@@ -130,14 +152,24 @@ exports[`Icon button style transparent (default) button should match snapshot 1`
   height: 34px;
   padding: 2px;
   position: relative;
-  -webkit-transition-duration: 0.3s;
-  transition-duration: 0.3s;
-  -webkit-transition-property: all;
-  transition-property: all;
-  -webkit-transition-timing-function: ease;
-  transition-timing-function: ease;
   width: 34px;
-  z-index: 2;
+}
+
+.c0:focus {
+  outline: none;
+}
+
+.c0::-moz-focus-inner {
+  border: 0;
+}
+
+.c0:active {
+  -webkit-animation-duration: 0.3s;
+  animation-duration: 0.3s;
+  -webkit-animation-name: click;
+  animation-name: click;
+  -webkit-animation-timing-function: ease;
+  animation-timing-function: ease;
 }
 
 .c0::before {
@@ -157,14 +189,6 @@ exports[`Icon button style transparent (default) button should match snapshot 1`
   transform-origin: center center;
   width: 100%;
   z-index: -1;
-}
-
-.c0:focus {
-  outline: none;
-}
-
-.c0::-moz-focus-inner {
-  border: 0;
 }
 
 .c0 {
