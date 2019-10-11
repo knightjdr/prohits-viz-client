@@ -1,6 +1,6 @@
 import React from 'react';
 
-const clipPath = (cellSize, cellX, cellY, height, width) => {
+const createClipPath = (cellSize, cellX, cellY, height, width) => {
   const x = cellSize * cellX;
   const y = cellSize * cellY;
   return (
@@ -15,4 +15,4 @@ const clipPath = (cellSize, cellX, cellY, height, width) => {
   );
 };
 
-export default clipPath;
+export default createClipPath;

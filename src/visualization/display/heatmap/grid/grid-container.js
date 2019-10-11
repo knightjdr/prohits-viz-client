@@ -1,23 +1,24 @@
 import React, { useEffect, useMemo, useState } from 'react';
 import { useSelector } from 'react-redux';
 
-import clipPath from './clip-path';
-import colorGradient from '../../../../utils/color/color-gradient';
-import heatmapConfig from '../config';
-import setEdgeSize from './edge-size';
-import getPage from './page';
 import Grid from './grid';
-import setEdgeRange from './edge-range';
-import setRange from '../../../../utils/set-range';
-import translation from './translation';
+
+import calculateEdgeWidth from './calculate-edge-width';
+import calculateTranslation from './calculate-translation';
+import createClipPath from './create-clip-path';
+import heatmapConfig from '../config';
+import initializeColorGradient from '../../../../utils/color/initialize-color-gradient';
+import partialEdgeRange from './set-edge-range-partial';
+import partialSetRange from '../../../../utils/set-range-partial';
+import subsetPage from './subset-page';
 import { selectData, selectDataProperty } from '../../../../state/selector/visualization/data-selector';
 import { selectState, selectStateProperty } from '../../../../state/selector/general';
 
 const GridContainer = () => {
-  const dimensions = useSelector(state => selectData(state, 'dimensions'));
   const [page, setPage] = useState(null);
 
   const columnOrder = useSelector(state => selectDataProperty(state, 'columns', 'order'));
+  const dimensions = useSelector(state => selectData(state, 'dimensions'));
   const position = useSelector(state => selectData(state, 'position'));
   const rowDB = useSelector(state => selectState(state, 'rowDB'));
   const rowOrder = useSelector(state => selectDataProperty(state, 'rows', 'order'));
@@ -33,13 +34,31 @@ const GridContainer = () => {
     invertColor,
     minAbundance,
     primaryFilter,
+    resetRatios,
     secondaryFilter,
   } = settings;
 
   const { numColors } = heatmapConfig;
 
+  const convertToEdgeRange = useMemo(
+    () => partialEdgeRange(primaryFilter, secondaryFilter, scoreType, 0, numColors - 1),
+    [numColors, primaryFilter, secondaryFilter, scoreType],
+  );
+  const convertToFillRange = useMemo(
+    () => partialSetRange(minAbundance, abundanceCap, 0, numColors - 1),
+    [abundanceCap, minAbundance, numColors],
+  );
+  const edgeGradient = useMemo(
+    () => initializeColorGradient(edgeColor, numColors, false),
+    [edgeColor, numColors],
+  );
+  const edgeWidth = useMemo(() => calculateEdgeWidth(cellSize), [cellSize]);
+  const fillGradient = useMemo(
+    () => initializeColorGradient(fillColor, numColors, invertColor),
+    [fillColor, invertColor, numColors],
+  );
   const gridClipPath = useMemo(
-    () => clipPath(
+    () => createClipPath(
       cellSize,
       position.x,
       position.y,
@@ -48,31 +67,14 @@ const GridContainer = () => {
     ),
     [cellSize, position.x, position.y, dimensions.height, dimensions.width],
   );
-  const edgeGradient = useMemo(
-    () => colorGradient(edgeColor, numColors, false),
-    [edgeColor, numColors],
-  );
-  const edgeRange = useMemo(
-    () => setEdgeRange(primaryFilter, secondaryFilter, scoreType, 0, numColors - 1),
-    [numColors, primaryFilter, secondaryFilter, scoreType],
-  );
-  const edgeSize = useMemo(() => setEdgeSize(cellSize), [cellSize]);
-  const fillGradient = useMemo(
-    () => colorGradient(fillColor, numColors, invertColor),
-    [fillColor, invertColor, numColors],
-  );
-  const fillRange = useMemo(
-    () => setRange(minAbundance, abundanceCap, 0, numColors - 1),
-    [abundanceCap, minAbundance, numColors],
-  );
   const gridTranslation = useMemo(
-    () => translation(cellSize, position.x, position.y),
+    () => calculateTranslation(cellSize, position.x, position.y),
     [cellSize, position.x, position.y],
   );
 
   useEffect(() => {
     if (dimensions.height > 0 && dimensions.width > 0) {
-      setPage(getPage(
+      setPage(subsetPage(
         imageType,
         rowDB,
         columnOrder,
@@ -80,11 +82,12 @@ const GridContainer = () => {
         position,
         dimensions,
         cellSize,
-        edgeSize,
+        edgeWidth,
         edgeGradient,
         fillGradient,
-        edgeRange,
-        fillRange,
+        convertToEdgeRange,
+        convertToFillRange,
+        resetRatios,
       ));
     }
   }, [
@@ -92,14 +95,15 @@ const GridContainer = () => {
     columnOrder,
     dimensions,
     edgeGradient,
-    edgeRange,
-    edgeSize,
+    convertToEdgeRange,
+    edgeWidth,
     fillGradient,
-    fillRange,
+    convertToFillRange,
     imageType,
     position,
     rowDB,
     rowOrder,
+    resetRatios,
   ]);
 
   return (

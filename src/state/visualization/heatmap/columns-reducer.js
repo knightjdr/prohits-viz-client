@@ -18,6 +18,7 @@ const reducer = (state = {}, action) => {
         ...state,
         [action.dataID]: {
           ...state[action.dataID],
+          filterOrder: [...action.columnOrder],
           order: [...action.columnOrder],
         },
       };
@@ -30,7 +31,9 @@ const reducer = (state = {}, action) => {
         ...state,
         [action.dataID]: {
           ...state[action.dataID],
+          filterOrder: [],
           order: [...state[action.dataID].defaultOrder],
+          sortOrder: [],
         },
       };
     case actions.SET_COLUMN_REFERENCE:

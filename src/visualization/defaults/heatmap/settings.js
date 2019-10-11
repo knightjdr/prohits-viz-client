@@ -11,6 +11,7 @@ export const defaultState = {
   minAbundance: 0,
   primaryFilter: 0.01,
   removeEmptyColumns: false,
+  resetRatios: false,
   secondaryFilter: 0.05,
 };
 
@@ -45,6 +46,7 @@ export const validateSettings = (userSettings, defaultImageType = 'heatmap') => 
     minAbundance,
     primaryFilter,
     removeEmptyColumns,
+    resetRatios,
     secondaryFilter,
     ...other
   } = userSettings;
@@ -62,6 +64,7 @@ export const validateSettings = (userSettings, defaultImageType = 'heatmap') => 
   settings.primaryFilter = typeof primaryFilter === 'number' ? primaryFilter : defaultState.primaryFilter;
   settings.removeEmptyColumns = typeof removeEmptyColumns === 'boolean'
     ? removeEmptyColumns : defaultState.removeEmptyColumns;
+  settings.resetRatios = typeof resetRatios === 'boolean' ? resetRatios : defaultState.resetRatios;
   settings.secondaryFilter = typeof secondaryFilter === 'number' ? secondaryFilter : defaultState.secondaryFilter;
 
   return settings;

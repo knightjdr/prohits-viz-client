@@ -1,7 +1,7 @@
 /* Return a function that will map a number to an output integer range.
 ** Checks to make sure the input number is within the input range. */
 
-const setRange = (inMin, inMax, outMin, outMax) => {
+const setRangePartial = (inMin, inMax, outMin, outMax) => {
   const inputRange = inMax - inMin;
   const outputRange = outMax - outMin;
   return (inputNum) => {
@@ -15,4 +15,4 @@ const setRange = (inMin, inMax, outMin, outMax) => {
   };
 };
 
-export default setRange;
+export default setRangePartial;

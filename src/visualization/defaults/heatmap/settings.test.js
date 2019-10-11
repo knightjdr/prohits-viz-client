@@ -13,6 +13,7 @@ describe('Validate settings', () => {
       minAbundance: 1,
       primaryFilter: 0.02,
       removeEmptyColumns: true,
+      resetRatios: true,
       secondaryFilter: 0.06,
       otherfield: 1,
     };
@@ -32,6 +33,7 @@ describe('Validate settings', () => {
       minAbundance: '0',
       primaryFilter: '0.02',
       removeEmptyColumns: 'true',
+      resetRatios: 'true',
       secondaryFilter: '0.06',
     };
     const expected = defaultState;
@@ -52,6 +54,7 @@ describe('Fill settings', () => {
       minAbundance: 1,
       primaryFilter: 0.02,
       removeEmptyColumns: true,
+      resetRatios: true,
       secondaryFilter: 0.06,
       otherfield: 1,
     };

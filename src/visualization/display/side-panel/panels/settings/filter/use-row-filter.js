@@ -12,23 +12,20 @@ import { selectState, selectStateProperty } from '../../../../../../state/select
 import { updateSetting } from '../../../../../../state/visualization/settings/settings-actions';
 
 const defineScoreCriterion = (scoreType, primaryFilter) => {
-  const gte = a => a >= primaryFilter;
-  const lte = a => a <= primaryFilter;
+  const gte = a => a === undefined || a >= primaryFilter;
+  const lte = a => a === undefined || a <= primaryFilter;
 
   return scoreType === 'gte' ? gte : lte;
 };
 
-const filterColumn = (rowDB, rowOrder, scoreType, primaryFilter) => {
+const filterColumn = (rowDB, rowOrder, columnOrder, scoreType, minAbundance, primaryFilter) => {
   const scoreCriterion = defineScoreCriterion(scoreType, primaryFilter);
-  const filteredColumns = [];
-  const numberColumns = rowDB[0].data.length;
-  for (let i = 0; i < numberColumns; i += 1) {
-    const keep = rowOrder.some(rowIndex => scoreCriterion(rowDB[rowIndex].data[i].score));
-    if (keep) {
-      filteredColumns.push(i);
-    }
-  }
-  return filteredColumns;
+  return columnOrder.filter(columnIndex => (
+    rowOrder.some(rowIndex => (
+      rowDB[rowIndex].data[columnIndex].value >= minAbundance
+      && scoreCriterion(rowDB[rowIndex].data[columnIndex].score)
+    ))
+  ));
 };
 
 const filterRow = (order, rows, filterIndex, scoreType, abundance, primaryFilter) => {
@@ -60,24 +57,28 @@ const useRowFilter = () => {
   const rows = useSelector(state => selectData(state, 'rows'));
   const rowDB = useSelector(state => selectState(state, 'rowDB'));
 
-  const defaultColumnOrder = columns.order;
-  const sortByRef = columns.ref;
-  const {
-    direction,
-    defaultOrder,
-    sortBy,
-    sortOrder,
-  } = rows;
-  const {
-    filterBy,
-    minAbundance,
-    primaryFilter,
-    removeEmptyColumns,
-  } = settings;
-
   const filter = useCallback(
     (setting, value) => {
       setFiltering(true);
+
+      const {
+        defaultOrder: defaultColumnOrder,
+        sortOrder: columnSortOrder,
+      } = columns;
+      const sortByRef = columns.ref;
+      const {
+        direction,
+        defaultOrder: defaultRowOrder,
+        sortBy,
+        sortOrder: rowSortOrder,
+      } = rows;
+      const {
+        filterBy,
+        minAbundance,
+        primaryFilter,
+        removeEmptyColumns,
+      } = settings;
+
       const newAbundance = setting === 'minAbundance' ? value : minAbundance;
       const newFilterBy = setting === 'filterBy' ? value : filterBy;
       const newPrimaryFilter = setting === 'primaryFilter' ? value : primaryFilter;
@@ -86,7 +87,7 @@ const useRowFilter = () => {
       // Filter rows first, then reapplying sorting if sorting had been applied. Finally,
       // filter columns.
       const filterIndex = columnDB.indexOf(newFilterBy);
-      const rowOrder = setting === 'filterBy' || sortOrder.length === 0 ? defaultOrder : sortOrder;
+      const rowOrder = setting === 'filterBy' || rowSortOrder.length === 0 ? defaultRowOrder : rowSortOrder;
       let newRowOrder = filterRow(
         rowOrder,
         rowDB,
@@ -101,8 +102,9 @@ const useRowFilter = () => {
         newRowOrder = rowSort(rowDB, newRowOrder, requestedSortIndex, direction, refIndex);
       }
 
+      const columnOrder = columnSortOrder.length === 0 ? defaultColumnOrder : columnSortOrder;
       const newColumnOrder = newRemoveEmptyColumns
-        ? filterColumn(rowDB, newRowOrder, scoreType, newPrimaryFilter) : defaultColumnOrder;
+        ? filterColumn(rowDB, newRowOrder, columnOrder, scoreType, newAbundance, newPrimaryFilter) : columnOrder;
 
       dispatch(updateSetting(activeTab, setting, value));
       dispatch(filterRows(activeTab, newRowOrder, newColumnOrder));
@@ -112,19 +114,12 @@ const useRowFilter = () => {
     [
       activeTab,
       columnDB,
-      defaultColumnOrder,
-      defaultOrder,
-      direction,
+      columns,
       dispatch,
-      filterBy,
-      minAbundance,
-      removeEmptyColumns,
       rowDB,
-      sortOrder,
-      primaryFilter,
+      rows,
       scoreType,
-      sortBy,
-      sortByRef,
+      settings,
     ],
   );
 

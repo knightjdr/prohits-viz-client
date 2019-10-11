@@ -1,7 +1,7 @@
 import PropTypes from 'prop-types';
 import React from 'react';
 
-import colorGradient from '../../../../../../utils/color/color-gradient';
+import colorGradient from '../../../../../../utils/color/initialize-color-gradient';
 import scoreEntities from './legend__score-entities';
 
 const DotplotLegend = ({

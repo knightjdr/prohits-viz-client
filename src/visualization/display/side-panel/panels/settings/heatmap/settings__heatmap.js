@@ -31,6 +31,7 @@ const Settings = ({
     minAbundance,
     primaryFilter,
     removeEmptyColumns,
+    resetRatios,
     secondaryFilter,
   } = settings;
 
@@ -40,6 +41,7 @@ const Settings = ({
         cellSize={cellSize}
         imageType={imageType}
         handleChange={handleChange}
+        resetRatios={resetRatios}
       />
       <ColorPalette
         edgeColor={edgeColor}
@@ -95,6 +97,7 @@ Settings.propTypes = {
     minAbundance: PropTypes.number.isRequired,
     primaryFilter: PropTypes.number.isRequired,
     removeEmptyColumns: PropTypes.bool.isRequired,
+    resetRatios: PropTypes.bool.isRequired,
     secondaryFilter: PropTypes.number.isRequired,
   }).isRequired,
 };

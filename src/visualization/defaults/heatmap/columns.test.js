@@ -7,8 +7,10 @@ describe('Fill columns', () => {
     const userColumns = {
       main: {
         defaultOrder: [0, 1, 2],
+        filterOrder: [1, 2],
         order: [1, 2, 0],
         ref: 'a',
+        sortOrder: [2, 1],
       },
     };
     const expected = userColumns;
@@ -19,15 +21,19 @@ describe('Fill columns', () => {
     const userColumns = {
       main: {
         defaultOrder: {},
+        filterOrder: {},
         order: {},
         ref: 5,
+        sortOrder: {},
       },
     };
     const expected = {
       main: {
         defaultOrder: [0, 1, 2],
+        filterOrder: [],
         order: [0, 1, 2],
         ref: null,
+        sortOrder: [],
       },
     };
     expect(fillColumns(userColumns, userColumnsDB)).toEqual(expected);
@@ -38,8 +44,10 @@ describe('Fill columns', () => {
     const expected = {
       main: {
         defaultOrder: [0, 1, 2],
+        filterOrder: [],
         order: [0, 1, 2],
         ref: null,
+        sortOrder: [],
       },
     };
     expect(fillColumns(userColumns, userColumnsDB)).toEqual(expected);
@@ -50,8 +58,10 @@ describe('Fill columns', () => {
     const expected = {
       main: {
         defaultOrder: [0, 1, 2],
+        filterOrder: [],
         order: [0, 1, 2],
         ref: null,
+        sortOrder: [],
       },
     };
     expect(fillColumns(userColumns, userColumnsDB)).toEqual(expected);
@@ -62,8 +72,10 @@ describe('Fill columns', () => {
     const expected = {
       main: {
         defaultOrder: [0, 1, 2],
+        filterOrder: [],
         order: [0, 1, 2],
         ref: null,
+        sortOrder: [],
       },
     };
     expect(fillColumns(userColumns, userColumnsDB)).toEqual(expected);
@@ -73,8 +85,10 @@ describe('Fill columns', () => {
     const userColumns = {
       main: {
         defaultOrder: [0, 1, 2],
+        filterOrder: [],
         order: [1, 2, 0],
         ref: 'd',
+        sortOrder: [],
       },
     };
     const result = fillColumns(userColumns, userColumnsDB);

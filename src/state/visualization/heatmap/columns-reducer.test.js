@@ -23,6 +23,7 @@ describe('Columns reducer', () => {
     const currentState = {
       main: {
         ...defaultState,
+        filterOrder: [],
         order: [0, 1, 2],
       },
     };
@@ -36,6 +37,7 @@ describe('Columns reducer', () => {
       ...currentState,
       main: {
         ...currentState.main,
+        filterOrder: [1, 2, 0],
         order: [1, 2, 0],
       },
     };
@@ -78,8 +80,10 @@ describe('Columns reducer', () => {
     const currentState = {
       main: {
         defaultOrder: [0, 1, 2],
+        filterOrder: [1, 2, 0],
         order: [1, 2, 0],
         ref: 1,
+        sortOrder: [2, 1],
       },
     };
 
@@ -91,7 +95,9 @@ describe('Columns reducer', () => {
       ...currentState,
       main: {
         ...currentState.main,
+        filterOrder: [],
         order: [0, 1, 2],
+        sortOrder: [],
       },
     };
     expect(reducer(currentState, action)).toEqual(expectedState);

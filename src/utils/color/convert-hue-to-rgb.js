@@ -1,5 +1,5 @@
-// HuetoRGB converts a hue to rgb.
-const HuetoRGB = (p, q, tInput) => {
+// convertHuetoRGB converts a hue to rgb.
+const convertHuetoRGB = (p, q, tInput) => {
   let t = tInput;
   if (t < 0) {
     t += 1;
@@ -8,11 +8,12 @@ const HuetoRGB = (p, q, tInput) => {
   }
   if (t < 1 / 6) {
     return p + ((q - p) * 6 * t);
-  } else if (t < 0.5) {
+  } if (t < 0.5) {
     return q;
-  } else if (t < 2 / 3) {
+  } if (t < 2 / 3) {
     return p + ((q - p) * ((2 / 3) - t) * 6);
   }
   return p;
 };
-export default HuetoRGB;
+
+export default convertHuetoRGB;

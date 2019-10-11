@@ -73,7 +73,7 @@ const Filters = ({
       <Switch
         checked={removeEmptyColumns}
         id="removeEmptyColumns"
-        label="Clear empty columns"
+        label="Clear failing columns"
         onChange={handleFilter}
       />
     </Section>
