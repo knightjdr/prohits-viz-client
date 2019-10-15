@@ -1,15 +1,15 @@
 import React, { useCallback, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 
-import ActionNotification from '../../../../../utils/action-notification';
+import ActionNotification from '../../../../../../utils/action-notification';
 
-import rowSort from '../../../../heatmap/sort/row-sort';
-import selectColumns from '../../../../../../state/selector/visualization/column-selector';
-import selectActiveTab from '../../../../../../state/selector/visualization/tab-selector';
-import { filterRows } from '../../../../../../state/visualization/heatmap/rows-actions';
-import { selectData, selectDataProperty } from '../../../../../../state/selector/visualization/data-selector';
-import { selectState, selectStateProperty } from '../../../../../../state/selector/general';
-import { updateSetting } from '../../../../../../state/visualization/settings/settings-actions';
+import rowSort from '../../../../../heatmap/sort/row-sort';
+import selectColumns from '../../../../../../../state/selector/visualization/column-selector';
+import selectActiveTab from '../../../../../../../state/selector/visualization/tab-selector';
+import { filterRows } from '../../../../../../../state/visualization/heatmap/rows-actions';
+import { selectData, selectDataProperty } from '../../../../../../../state/selector/visualization/data-selector';
+import { selectState, selectStateProperty } from '../../../../../../../state/selector/general';
+import { updateSetting } from '../../../../../../../state/visualization/settings/settings-actions';
 
 const defineScoreCriterion = (scoreType, primaryFilter) => {
   const gte = a => a === undefined || a >= primaryFilter;

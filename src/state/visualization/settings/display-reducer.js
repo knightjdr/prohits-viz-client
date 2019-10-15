@@ -7,17 +7,16 @@ export const defaultState = {
 
 const reducer = (state = {}, action) => {
   switch (action.type) {
-    case fileActions.PARSE_INTERACTIVE_FILE:
-      return action.file.display || {};
-    case actions.UPDATE_PLOT_POSITION:
+    case actions.FIX_PLOT:
       return {
         ...state,
         [action.dataID]: {
           ...state[action.dataID],
           plotFixed: action.fixed,
-          plotTranslate: action.translate,
         },
       };
+    case fileActions.PARSE_INTERACTIVE_FILE:
+      return action.file.display || {};
     default:
       return state;
   }

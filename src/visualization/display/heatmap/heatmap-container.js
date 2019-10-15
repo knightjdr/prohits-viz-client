@@ -63,6 +63,7 @@ const HeatmapContainer = () => {
     dispatch(setDimensions(
       activeTab,
       {
+        canTranslate: width.canTranslate,
         columns: width.columns,
         height: height.heatmap,
         pageX: width.pageX,

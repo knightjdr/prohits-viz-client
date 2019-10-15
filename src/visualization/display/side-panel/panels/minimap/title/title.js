@@ -1,7 +1,6 @@
 import PropTypes from 'prop-types';
 import React from 'react';
-import { faReply, faSync } from '@fortawesome/pro-duotone-svg-icons';
-import { faPaperclip } from '@fortawesome/pro-solid-svg-icons';
+import { faLink, faSync, faUnlink } from '@fortawesome/pro-duotone-svg-icons';
 
 import Button from '../../../../../../components/buttons/icon/button';
 
@@ -19,7 +18,7 @@ const Title = ({
       data-tooltip-position="right"
     >
       <Button
-        icon={attached ? faReply : faPaperclip}
+        icon={attached ? faUnlink : faLink}
         onClick={toggleAttached}
         type="button"
       />

@@ -1,12 +1,12 @@
 import PropTypes from 'prop-types';
 import React from 'react';
 
-import Input from '../../../../../../components/input/text/input-text-container';
-import Section from '../../section/section';
-import Select from '../../../../../../components/select/select-container';
-import Switch from '../../../../../../components/input/switch/switch-container';
+import Input from '../../../../../../../components/input/text/input-text-container';
+import Section from '../../../section/section';
+import Select from '../../../../../../../components/select/select-container';
+import Switch from '../../../../../../../components/input/switch/switch-container';
 
-const Filters = ({
+const Filter = ({
   abundanceCap,
   columns,
   filterBy,
@@ -80,11 +80,11 @@ const Filters = ({
   </>
 );
 
-Filters.defaultProps = {
+Filter.defaultProps = {
   filteringNotification: null,
 };
 
-Filters.propTypes = {
+Filter.propTypes = {
   abundanceCap: PropTypes.number.isRequired,
   columns: PropTypes.arrayOf(PropTypes.string).isRequired,
   filterBy: PropTypes.string.isRequired,
@@ -101,4 +101,4 @@ Filters.propTypes = {
   secondaryFilter: PropTypes.number.isRequired,
 };
 
-export default Filters;
+export default Filter;

@@ -1,6 +1,7 @@
 import isObject from '../../../utils/is-object';
 
 export const defaultState = {
+  canTranslate: true,
   columns: 0,
   height: 0,
   pageX: 0,

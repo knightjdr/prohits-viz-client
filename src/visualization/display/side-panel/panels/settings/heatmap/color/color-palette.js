@@ -1,9 +1,9 @@
 import PropTypes from 'prop-types';
 import React from 'react';
 
-import Section from '../../section/section';
-import Select from '../../../../../../components/select/select-container';
-import Switch from '../../../../../../components/input/switch/switch-container';
+import Section from '../../../section/section';
+import Select from '../../../../../../../components/select/select-container';
+import Switch from '../../../../../../../components/input/switch/switch-container';
 
 const colorOptions = [
   { label: 'mono', optGroup: true },

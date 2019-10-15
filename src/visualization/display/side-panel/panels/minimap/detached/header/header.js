@@ -4,10 +4,10 @@ import {
   faArrowsAlt,
   faEye,
   faEyeSlash,
+  faLink,
   faToggleOff,
   faToggleOn,
 } from '@fortawesome/pro-duotone-svg-icons';
-import { faPaperclip } from '@fortawesome/pro-solid-svg-icons';
 
 import Button from '../../../../../../../components/buttons/icon/button';
 
@@ -30,7 +30,7 @@ const Header = ({
         data-tooltip-position="bottom"
       >
         <Button
-          icon={faPaperclip}
+          icon={faLink}
           onClick={toggleAttached}
           type="button"
         />
