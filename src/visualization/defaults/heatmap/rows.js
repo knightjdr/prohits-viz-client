@@ -1,5 +1,5 @@
-import arrayContains from '../../../utils/array-contains';
 import isObject from '../../../utils/is-object';
+import isSubset from '../../../utils/is-subset';
 
 export const defaultState = {
   defaultOrder: [],
@@ -42,15 +42,15 @@ const fillRows = (userRows, userRowDB) => {
     rows.direction = validDirections.includes(direction) ? direction : null;
     rows.sortBy = typeof sortBy === 'string' ? sortBy : defaultState.sortBy;
 
-    rows.defaultOrder = Array.isArray(defaultOrder) && arrayContains(defaultRowOrder, defaultOrder)
+    rows.defaultOrder = Array.isArray(defaultOrder) && isSubset(defaultRowOrder, defaultOrder)
       ? defaultOrder : defaultRowOrder;
     rows.filterOrder = Array.isArray(filterOrder)
       && filterOrder.length > 0
-      && arrayContains(defaultRowOrder, filterOrder)
+      && isSubset(defaultRowOrder, filterOrder)
       ? filterOrder : defaultState.filterOrder;
-    rows.order = Array.isArray(order) && order.length > 0 && arrayContains(defaultRowOrder, order)
+    rows.order = Array.isArray(order) && order.length > 0 && isSubset(defaultRowOrder, order)
       ? order : defaultRowOrder;
-    rows.sortOrder = Array.isArray(sortOrder) && sortOrder.length > 0 && arrayContains(defaultRowOrder, sortOrder)
+    rows.sortOrder = Array.isArray(sortOrder) && sortOrder.length > 0 && isSubset(defaultRowOrder, sortOrder)
       ? sortOrder : defaultState.sortOrder;
 
     return {

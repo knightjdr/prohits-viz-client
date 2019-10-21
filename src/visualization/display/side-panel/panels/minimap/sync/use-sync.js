@@ -1,6 +1,6 @@
 import { useDispatch, useSelector } from 'react-redux';
 
-import arrayOrderBy from '../../../../../../utils/array-order-by';
+import orderArrayBySequence from '../../../../../../utils/order-array-by-sequence';
 import fetch from '../../../../../../utils/fetch';
 import selectActiveTab from '../../../../../../state/selector/visualization/tab-selector';
 import { selectDataProperty } from '../../../../../../state/selector/visualization/data-selector';
@@ -32,8 +32,8 @@ const useSync = () => {
   const syncMinimap = async (updateOriginal = false) => {
     dispatch(actions.synchronizeMinimap(activeTab, updateOriginal));
 
-    const orderedRows = arrayOrderBy(rowDB, rowOrder).map(row => ({
-      data: arrayOrderBy(row.data, columnOrder),
+    const orderedRows = orderArrayBySequence(rowDB, rowOrder).map(row => ({
+      data: orderArrayBySequence(row.data, columnOrder),
       name: row.name,
     }));
 

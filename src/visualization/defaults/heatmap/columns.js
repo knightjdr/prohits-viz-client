@@ -1,4 +1,4 @@
-import arrayContains from '../../../utils/array-contains';
+import isSubset from '../../../utils/is-subset';
 import isObject from '../../../utils/is-object';
 
 const defaultState = {
@@ -37,15 +37,15 @@ const fillColumns = (userColumns, userColumnDB) => {
     // Ensure ref is within userColumnDB.
     columns.ref = typeof ref === 'string' && userColumnDB.includes(ref) ? ref : defaultState.ref;
 
-    columns.defaultOrder = Array.isArray(defaultOrder) && arrayContains(defaultColumnOrder, defaultOrder)
+    columns.defaultOrder = Array.isArray(defaultOrder) && isSubset(defaultColumnOrder, defaultOrder)
       ? defaultOrder : defaultColumnOrder;
     columns.filterOrder = Array.isArray(filterOrder)
       && filterOrder.length > 0
-      && arrayContains(defaultColumnOrder, filterOrder)
+      && isSubset(defaultColumnOrder, filterOrder)
       ? filterOrder : defaultState.filterOrder;
-    columns.order = Array.isArray(order) && order.length > 0 && arrayContains(defaultColumnOrder, order)
+    columns.order = Array.isArray(order) && order.length > 0 && isSubset(defaultColumnOrder, order)
       ? order : defaultColumnOrder;
-    columns.sortOrder = Array.isArray(sortOrder) && sortOrder.length > 0 && arrayContains(defaultColumnOrder, sortOrder)
+    columns.sortOrder = Array.isArray(sortOrder) && sortOrder.length > 0 && isSubset(defaultColumnOrder, sortOrder)
       ? sortOrder : defaultState.sortOrder;
 
     return {
