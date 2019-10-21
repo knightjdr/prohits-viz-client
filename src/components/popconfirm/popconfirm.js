@@ -1,79 +1,49 @@
 import PropTypes from 'prop-types';
-import React, { cloneElement, forwardRef } from 'react';
+import React from 'react';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faExclamationCircle } from '@fortawesome/pro-duotone-svg-icons';
 
 import Button from '../buttons/rectangular/button';
-import Modal from '../modal/modal-container';
-import StyledPopconfirm, { ConfirmWrapper } from './popconfirm-style';
+import ModalButton from '../modal-button/modal-button-container';
+import StyledPopconfirm from './popconfirm-style';
 
-const Popconfirm = forwardRef((
-  {
-    children,
-    handleClick,
-    handleClose,
-    handleConfirm,
-    handleKeyPress,
-    open,
-    position,
-    title,
-  },
-  ref,
-) => (
-  <ConfirmWrapper
-    onClick={handleClick}
-    onKeyPress={handleKeyPress}
-    role="button"
-    tabIndex={-1}
+const Popconfirm = ({
+  button,
+  onConfirm,
+  placement,
+  title,
+}) => (
+  <ModalButton
+    button={button}
+    name="pop-confirm"
+    placement={placement}
   >
-    {cloneElement(children, { ref })}
-    <Modal
-      background={false}
-      fromCursor
-      handleClose={handleClose}
-      isOpen={open}
-      name="popconfirm"
-      placement={position}
-    >
-      <StyledPopconfirm>
-        <h1>
-          <FontAwesomeIcon icon={faExclamationCircle} />
-          {title}
-        </h1>
-        <div className="popconfirm__buttons">
-          <Button
-            onClick={handleClose}
-            kind="grey"
-            type="button"
-          >
-            No
-          </Button>
-          <Button
-            onClick={handleConfirm}
-            kind="success"
-            type="button"
-          >
-            Yes
-          </Button>
-        </div>
-      </StyledPopconfirm>
-    </Modal>
-  </ConfirmWrapper>
-));
+    <StyledPopconfirm>
+      <h1>
+        <FontAwesomeIcon icon={faExclamationCircle} />
+        {title}
+      </h1>
+      <div className="popconfirm__buttons">
+        <Button
+          onClick={onConfirm}
+          kind="success"
+          type="button"
+        >
+          Yes
+        </Button>
+      </div>
+    </StyledPopconfirm>
+  </ModalButton>
+);
+
+Popconfirm.defaultProps = {
+  placement: ['center', 'bottom'],
+};
 
 Popconfirm.propTypes = {
-  children: PropTypes.node.isRequired,
-  handleClick: PropTypes.func.isRequired,
-  handleClose: PropTypes.func.isRequired,
-  handleConfirm: PropTypes.func.isRequired,
-  handleKeyPress: PropTypes.func.isRequired,
-  open: PropTypes.bool.isRequired,
-  position: PropTypes.shape({
-    horizontal: PropTypes.string,
-    vertical: PropTypes.string,
-    x: PropTypes.number,
-    y: PropTypes.number,
-  }).isRequired,
+  button: PropTypes.node.isRequired,
+  onConfirm: PropTypes.func.isRequired,
+  placement: PropTypes.arrayOf(PropTypes.string),
   title: PropTypes.string.isRequired,
 };
 

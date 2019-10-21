@@ -1,4 +1,18 @@
-import fillParameters, { defaultState } from './parameters';
+import fillParameters, { defaultState, validateScoreType } from './parameters';
+
+describe('Validate score type', () => {
+  it('should return valid score type "lte"', () => {
+    expect(validateScoreType('lte')).toBe('lte');
+  });
+
+  it('should return valid score type "gte"', () => {
+    expect(validateScoreType('gte')).toBe('gte');
+  });
+
+  it('should return default score type when invalid', () => {
+    expect(validateScoreType('invalid')).toBe('lte');
+  });
+});
 
 describe('Fill parameters', () => {
   it('should return user options when valid', () => {
@@ -11,10 +25,9 @@ describe('Fill parameters', () => {
     const expected = {
       ...parameters,
       filename: 'file',
-      imageType: 'dotplot',
       taskID: 'task1',
     };
-    expect(fillParameters(parameters, 'file', 'task1', 'dotplot')).toEqual(expected);
+    expect(fillParameters(parameters, 'file', 'task1')).toEqual(expected);
   });
 
   it('should return defaults when user options invalid', () => {
@@ -26,30 +39,8 @@ describe('Fill parameters', () => {
     const expected = {
       ...defaultState,
       filename: 'file',
-      imageType: 'dotplot',
       taskID: 'task1',
     };
-    expect(fillParameters(parameters, 'file', 'task1', 'dotplot')).toEqual(expected);
-  });
-
-  it('should return defaults when user options missing', () => {
-    const parameters = {};
-    const expected = {
-      ...defaultState,
-      filename: 'file',
-      imageType: 'dotplot',
-      taskID: 'task1',
-    };
-    expect(fillParameters(parameters, 'file', 'task1', 'dotplot')).toEqual(expected);
-  });
-
-  it('should return defaults when user options undefined', () => {
-    const expected = {
-      ...defaultState,
-      filename: 'file',
-      imageType: 'dotplot',
-      taskID: 'task1',
-    };
-    expect(fillParameters(undefined, 'file', 'task1', 'dotplot')).toEqual(expected);
+    expect(fillParameters(parameters, 'file', 'task1')).toEqual(expected);
   });
 });

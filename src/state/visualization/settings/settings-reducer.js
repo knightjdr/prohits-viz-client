@@ -4,9 +4,9 @@ import * as fileActions from '../data/interactive-file-actions';
 
 const reducer = (state = {}, action) => {
   switch (action.type) {
-    case fileActions.CLEAR_INTERACTIVE_FILE:
+    case fileActions.CLEAR_INTERACTIVE_STATE:
       return {};
-    case fileActions.PARSE_INTERACTIVE_FILE:
+    case fileActions.LOAD_INTERACTIVE_STATE:
       return action.file.settings
         ? action.file.settings
         : {};

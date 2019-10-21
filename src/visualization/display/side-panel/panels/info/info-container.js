@@ -4,7 +4,7 @@ import { useDispatch, useSelector } from 'react-redux';
 
 import download from '../../../../../utils/download';
 import Info from './info';
-import { clearFile } from '../../../../../state/visualization/data/interactive-file-actions';
+import { clearInteractiveState } from '../../../../../state/visualization/data/interactive-file-actions';
 import { selectState } from '../../../../../state/selector/general';
 
 const InfoContainer = () => {
@@ -17,7 +17,7 @@ const InfoContainer = () => {
   };
 
   const loadNewFile = () => {
-    dispatch(clearFile());
+    dispatch(clearInteractiveState());
     navigate('/visualization');
   };
 

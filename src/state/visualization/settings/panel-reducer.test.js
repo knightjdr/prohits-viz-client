@@ -33,9 +33,9 @@ describe('Panel reducer', () => {
   });
 
   describe('file actions', () => {
-    it('should handle CLEAR_INTERACTIVE_FILE action', () => {
+    it('should handle CLEAR_INTERACTIVE_STATE action', () => {
       const action = {
-        type: fileActions.CLEAR_INTERACTIVE_FILE,
+        type: fileActions.CLEAR_INTERACTIVE_STATE,
       };
       const expectedState = {
         ...defaultState,
@@ -44,14 +44,14 @@ describe('Panel reducer', () => {
       expect(reducer(undefined, action)).toEqual(expectedState);
     });
 
-    it('should handle PARSE_INTERACTIVE_FILE action when panel state is defined', () => {
+    it('should handle LOAD_INTERACTIVE_STATE action when panel state is defined', () => {
       const action = {
         file: {
           panel: {
             open: false,
           },
         },
-        type: fileActions.PARSE_INTERACTIVE_FILE,
+        type: fileActions.LOAD_INTERACTIVE_STATE,
       };
       const expectedState = {
         open: false,
@@ -59,10 +59,10 @@ describe('Panel reducer', () => {
       expect(reducer(undefined, action)).toEqual(expectedState);
     });
 
-    it('should handle PARSE_INTERACTIVE_FILE action when panel state is not defined', () => {
+    it('should handle LOAD_INTERACTIVE_STATE action when panel state is not defined', () => {
       const action = {
         file: {},
-        type: fileActions.PARSE_INTERACTIVE_FILE,
+        type: fileActions.LOAD_INTERACTIVE_STATE,
       };
       const expectedState = defaultState;
       expect(reducer(undefined, action)).toEqual(expectedState);

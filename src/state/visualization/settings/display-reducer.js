@@ -5,8 +5,10 @@ export const defaultState = {
   plotFixed: false,
 };
 
-const reducer = (state = {}, action) => {
+const reducer = (state = { ...defaultState }, action) => {
   switch (action.type) {
+    case fileActions.CLEAR_INTERACTIVE_STATE:
+      return { ...defaultState };
     case actions.FIX_PLOT:
       return {
         ...state,
@@ -15,8 +17,8 @@ const reducer = (state = {}, action) => {
           plotFixed: action.fixed,
         },
       };
-    case fileActions.PARSE_INTERACTIVE_FILE:
-      return action.file.display || {};
+    case fileActions.LOAD_INTERACTIVE_STATE:
+      return action.file.display || { ...defaultState };
     default:
       return state;
   }

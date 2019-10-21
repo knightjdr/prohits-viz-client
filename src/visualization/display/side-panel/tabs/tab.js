@@ -12,8 +12,8 @@ import {
 
 const icons = {
   analysis: faTable,
-  annotation: faPenSquare,
   info: faInfoCircle,
+  markup: faPenSquare,
   minimap: faGlobeAmericas,
   save: faSave,
   settings: faCog,

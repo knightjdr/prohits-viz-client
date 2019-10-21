@@ -1,41 +1,31 @@
+import { validateString } from '../../../utils/validate-type';
+
 export const defaultState = {
   abundanceColumn: 'Abundance',
   scoreColumn: 'Score',
   scoreType: 'lte',
 };
 
-const validScoreTypes = ['lte', 'gte'];
+export const validateScoreType = (scoreType) => {
+  const validTypes = ['lte', 'gte'];
+  return scoreType && validTypes.includes(scoreType)
+    ? scoreType : defaultState.scoreType;
+};
 
-const fillParameters = (userParams, filename, taskID, imageType) => {
-  const addedParameters = {
-    filename,
-    imageType,
-    taskID,
-  };
-
-  if (!userParams) {
-    return {
-      ...defaultState,
-      ...addedParameters,
-    };
-  }
-
+const fillParameters = (userParams, filename, taskID) => {
   const {
     abundanceColumn,
-    name,
     scoreColumn,
     scoreType,
     ...other
   } = userParams;
-  const parameters = { ...addedParameters };
-
-  parameters.abundanceColumn = typeof abundanceColumn === 'string' ? abundanceColumn : defaultState.abundanceColumn;
-  parameters.scoreColumn = typeof scoreColumn === 'string' ? scoreColumn : defaultState.scoreColumn;
-  parameters.scoreType = scoreType && validScoreTypes.includes(scoreType)
-    ? scoreType : defaultState.scoreType;
 
   return {
-    ...parameters,
+    abundanceColumn: validateString(abundanceColumn, defaultState.abundanceColumn),
+    filename,
+    scoreColumn: validateString(scoreColumn, defaultState.scoreColumn),
+    scoreType: validateScoreType(scoreType),
+    taskID,
     ...other,
   };
 };

@@ -13,7 +13,7 @@ export const defaultState = {
 
 const reducer = (state = {}, action) => {
   switch (action.type) {
-    case fileActions.CLEAR_INTERACTIVE_FILE:
+    case fileActions.CLEAR_INTERACTIVE_STATE:
       return {};
     case actions.FILTER_ROWS:
       return {
@@ -24,7 +24,7 @@ const reducer = (state = {}, action) => {
           order: [...action.rowOrder],
         },
       };
-    case fileActions.PARSE_INTERACTIVE_FILE:
+    case fileActions.LOAD_INTERACTIVE_STATE:
       return action.file.rows
         ? action.file.rows
         : {};

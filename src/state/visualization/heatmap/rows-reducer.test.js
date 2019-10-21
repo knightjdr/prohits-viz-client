@@ -10,9 +10,9 @@ describe('Rows reducer', () => {
     expect(reducer(undefined, action)).toEqual(expectedState);
   });
 
-  it('should handle CLEAR_INTERACTIVE_FILE action', () => {
+  it('should handle CLEAR_INTERACTIVE_STATE action', () => {
     const action = {
-      type: fileActions.CLEAR_INTERACTIVE_FILE,
+      type: fileActions.CLEAR_INTERACTIVE_STATE,
     };
     const expectedState = {};
     expect(reducer(undefined, action)).toEqual(expectedState);
@@ -42,7 +42,7 @@ describe('Rows reducer', () => {
     expect(reducer(currentState, action)).toEqual(expectedState);
   });
 
-  describe('PARSE_INTERACTIVE_FILE action', () => {
+  describe('LOAD_INTERACTIVE_STATE action', () => {
     it('should handle action when rows field present', () => {
       const action = {
         file: {
@@ -55,7 +55,7 @@ describe('Rows reducer', () => {
             },
           },
         },
-        type: fileActions.PARSE_INTERACTIVE_FILE,
+        type: fileActions.LOAD_INTERACTIVE_STATE,
       };
       const expectedState = {
         main: {
@@ -71,7 +71,7 @@ describe('Rows reducer', () => {
     it('should handle action when rows field missing', () => {
       const action = {
         file: {},
-        type: fileActions.PARSE_INTERACTIVE_FILE,
+        type: fileActions.LOAD_INTERACTIVE_STATE,
       };
       const expectedState = {};
       expect(reducer(undefined, action)).toEqual(expectedState);

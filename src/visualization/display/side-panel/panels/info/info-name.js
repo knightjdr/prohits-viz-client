@@ -2,7 +2,15 @@ import PropTypes from 'prop-types';
 import React from 'react';
 
 import Button from '../../../../../components/buttons/rectangular/button';
-import Popconfirm from '../../../../../components/popconfirm/popconfirm-container';
+import Popconfirm from '../../../../../components/popconfirm/popconfirm';
+
+const LoadButton = (
+  <Button
+    kind="secondary"
+  >
+    Load new file
+  </Button>
+);
 
 const Name = ({
   loadNewFile,
@@ -16,16 +24,11 @@ const Name = ({
       {name}
     </div>
     <Popconfirm
+      button={LoadButton}
       onConfirm={loadNewFile}
       placement={['right', 'bottom']}
       title="Confirm: open new file"
-    >
-      <Button
-        kind="secondary"
-      >
-        Load new file
-      </Button>
-    </Popconfirm>
+    />
   </div>
 );
 

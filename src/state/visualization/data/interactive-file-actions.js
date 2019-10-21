@@ -1,11 +1,11 @@
-export const CLEAR_INTERACTIVE_FILE = 'CLEAR_INTERACTIVE_FILE';
-export const PARSE_INTERACTIVE_FILE = 'PARSE_INTERACTIVE_FILE';
+export const CLEAR_INTERACTIVE_STATE = 'CLEAR_INTERACTIVE_STATE';
+export const LOAD_INTERACTIVE_STATE = 'LOAD_INTERACTIVE_STATE';
 
-export const clearFile = () => ({
-  type: CLEAR_INTERACTIVE_FILE,
+export const clearInteractiveState = () => ({
+  type: CLEAR_INTERACTIVE_STATE,
 });
 
-export const parseFile = file => ({
+export const loadInteractiveState = file => ({
   file,
-  type: PARSE_INTERACTIVE_FILE,
+  type: LOAD_INTERACTIVE_STATE,
 });

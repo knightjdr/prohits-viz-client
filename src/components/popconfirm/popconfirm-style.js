@@ -1,18 +1,6 @@
 import styled from 'styled-components';
 
-export const ConfirmWrapper = styled.span`
-  &:focus {
-    outline: none;
-  }
-  &::-moz-focus-inner {
-    border: 0;
-  }
-`;
-
-const Span = styled.span`
-  display: inline-block;
-  padding: 5px;
-
+const Div = styled.div`
   h1 {
     font-size: 1em;
   }
@@ -26,9 +14,6 @@ const Span = styled.span`
     justify-content: flex-end;
     margin-top: 20px;
   }
-  .popconfirm__buttons > button:first-child {
-    margin-right: 8px;
-  }
 `;
 
-export default Span;
+export default Div;

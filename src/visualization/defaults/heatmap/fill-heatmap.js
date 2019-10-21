@@ -1,3 +1,4 @@
+import fillAnnotations from './annotations';
 import fillColumns from './columns';
 import fillDimensions from './dimensions';
 import fillDisplay from './display';
@@ -9,8 +10,9 @@ import fillRows from './rows';
 import fillSettings from './settings';
 import fillTabs from '../tabs';
 
-const heatmap = (file, filename, taskID, imageType) => {
+const validateHeatmap = (file, filename, taskID) => {
   const {
+    annotations,
     columnDB,
     columns,
     dimensions,
@@ -26,13 +28,14 @@ const heatmap = (file, filename, taskID, imageType) => {
   } = file;
 
   return {
+    annotations: fillAnnotations(annotations),
     columnDB,
     columns: fillColumns(columns, columnDB),
     dimensions: fillDimensions(dimensions),
     display: fillDisplay(display),
     minimap: fillMinimap(minimap),
     panel: fillPanel(panel),
-    parameters: fillParameters(parameters, filename, taskID, imageType),
+    parameters: fillParameters(parameters, filename, taskID),
     position: fillPosition(position),
     rowDB,
     rows: fillRows(rows, rowDB),
@@ -41,4 +44,4 @@ const heatmap = (file, filename, taskID, imageType) => {
   };
 };
 
-export default heatmap;
+export default validateHeatmap;

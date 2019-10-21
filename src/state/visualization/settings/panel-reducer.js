@@ -6,16 +6,16 @@ export const defaultState = {
   tab: 'info',
 };
 
-const reducer = (state = defaultState, action) => {
+const reducer = (state = { ...defaultState }, action) => {
   switch (action.type) {
     case actions.CHANGE_PANEL_TAB:
       return {
         ...state,
         tab: action.tab,
       };
-    case fileActions.CLEAR_INTERACTIVE_FILE:
+    case fileActions.CLEAR_INTERACTIVE_STATE:
       return { ...defaultState };
-    case fileActions.PARSE_INTERACTIVE_FILE:
+    case fileActions.LOAD_INTERACTIVE_STATE:
       return action.file.panel || { ...defaultState };
     case actions.TOGGLE_PANEL:
       return {

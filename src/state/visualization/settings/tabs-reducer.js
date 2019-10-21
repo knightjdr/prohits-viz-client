@@ -7,9 +7,9 @@ export const defaultState = {
 
 const reducer = (state = { ...defaultState }, action) => {
   switch (action.type) {
-    case fileActions.CLEAR_INTERACTIVE_FILE:
+    case fileActions.CLEAR_INTERACTIVE_STATE:
       return { ...defaultState };
-    case fileActions.PARSE_INTERACTIVE_FILE:
+    case fileActions.LOAD_INTERACTIVE_STATE:
       return action.file.tabs || { ...defaultState };
     default:
       return state;

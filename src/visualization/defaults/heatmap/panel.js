@@ -1,12 +1,12 @@
 export const defaultState = {
   open: true,
-  tab: 'settings',
+  tab: 'markup',
 };
 
 const validTabs = {
   analysis: true,
-  annotation: true,
   info: true,
+  markup: true,
   minimap: true,
   save: true,
   settings: true,

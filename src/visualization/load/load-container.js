@@ -2,13 +2,13 @@ import React from 'react';
 import { navigate } from 'hookrouter';
 import { useDispatch } from 'react-redux';
 
-import fillDefaults from '../defaults/fill';
 import Load from './load';
-import readFile from '../../utils/read-file';
+
+import fillInteractiveState from '../defaults/fill-interactive-state';
 import removeFileExtenstion from '../../utils/remove-file-ext';
 import useLoading from '../../hooks/loading/use-loading';
-import validate from './validate';
-import { parseFile } from '../../state/visualization/data/interactive-file-actions';
+import validateInteractiveFile from './validate-interactive-file';
+import { loadInteractiveState } from '../../state/visualization/data/interactive-file-actions';
 
 const LoadContainer = () => {
   const dispatch = useDispatch();
@@ -18,18 +18,11 @@ const LoadContainer = () => {
     const file = e.currentTarget.files[0];
     status.setLoading(true);
     try {
-      const fileContent = await readFile(file);
-      const fileData = validate(fileContent);
-      if (fileData.err) {
-        status.setError(true);
-        status.setErrorMessage(fileData.message);
-        status.setLoading(false);
-      } else {
-        const filename = removeFileExtenstion(file.name);
-        const data = fillDefaults(fileData.json, filename, 'userfile');
-        dispatch(parseFile(data));
-        navigate(`/visualization/userfile/${filename}`);
-      }
+      const fileData = await validateInteractiveFile(file);
+      const filename = removeFileExtenstion(file.name);
+      const interactiveData = fillInteractiveState(fileData, filename, filename);
+      dispatch(loadInteractiveState(interactiveData));
+      navigate(`/visualization/userfile/${filename}`);
     } catch (err) {
       status.setError(true);
       status.setErrorMessage(err.toString());

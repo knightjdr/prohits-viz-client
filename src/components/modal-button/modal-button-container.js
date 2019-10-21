@@ -1,10 +1,9 @@
 import PropTypes from 'prop-types';
 import React, { useRef, useState } from 'react';
 
-import Popconfirm from './popconfirm';
+import ModalButton from './modal-button';
 
-const PopconfirmContainer = ({
-  onConfirm,
+const ModalButtonContainer = ({
   placement,
   ...props
 }) => {
@@ -21,13 +20,9 @@ const PopconfirmContainer = ({
     setOpen(false);
   };
 
-  const handleConfirm = (e) => {
-    onConfirm(e);
-  };
-
   const handleClick = (e) => {
     const { target, pageX, pageY } = e;
-    if (target === ref.current) {
+    if (ref.current.contains(target)) {
       setPosition({
         ...position,
         x: pageX,
@@ -44,10 +39,9 @@ const PopconfirmContainer = ({
   };
 
   return (
-    <Popconfirm
+    <ModalButton
       handleClick={handleClick}
       handleClose={handleClose}
-      handleConfirm={handleConfirm}
       handleKeyPress={handleKeyPress}
       open={open}
       position={position}
@@ -57,13 +51,14 @@ const PopconfirmContainer = ({
   );
 };
 
-PopconfirmContainer.defaultProps = {
+ModalButtonContainer.defaultProps = {
+  name: 'modal-button',
   placement: ['center', 'bottom'],
 };
 
-PopconfirmContainer.propTypes = {
-  onConfirm: PropTypes.func.isRequired,
+ModalButtonContainer.propTypes = {
+  name: PropTypes.string,
   placement: PropTypes.arrayOf(PropTypes.string),
 };
 
-export default PopconfirmContainer;
+export default ModalButtonContainer;

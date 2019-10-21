@@ -15,21 +15,13 @@ export const defaultState = {
 
 const reducer = (state = {}, action) => {
   switch (action.type) {
-    case fileActions.PARSE_INTERACTIVE_FILE:
+    case fileActions.LOAD_INTERACTIVE_STATE:
       return action.file.dimensions || {};
     case actions.SET_DIMENSIONS:
       return {
         ...state,
         [action.dataID]: {
-          canTranslate: action.dimensions.canTranslate,
-          columns: action.dimensions.columns,
-          height: action.dimensions.height,
-          pageX: action.dimensions.pageX,
-          pageY: action.dimensions.pageY,
-          rows: action.dimensions.rows,
-          width: action.dimensions.width,
-          wrapperHeight: action.dimensions.wrapperHeight,
-          wrapperWidth: action.dimensions.wrapperWidth,
+          ...action.dimensions,
         },
       };
     default:

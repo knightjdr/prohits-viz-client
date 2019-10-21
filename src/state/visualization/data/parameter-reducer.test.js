@@ -8,15 +8,15 @@ describe('Parameters reducer', () => {
     expect(reducer(undefined, action)).toEqual(expectedState);
   });
 
-  it('should handle CLEAR_INTERACTIVE_FILE action', () => {
+  it('should handle CLEAR_INTERACTIVE_STATE action', () => {
     const action = {
-      type: fileActions.CLEAR_INTERACTIVE_FILE,
+      type: fileActions.CLEAR_INTERACTIVE_STATE,
     };
     const expectedState = defaultState;
     expect(reducer(undefined, action)).toEqual(expectedState);
   });
 
-  it('should handle PARSE_INTERACTIVE_FILE action', () => {
+  it('should handle LOAD_INTERACTIVE_STATE action', () => {
     const action = {
       file: {
         parameters: {
@@ -25,7 +25,7 @@ describe('Parameters reducer', () => {
           c: 'test3',
         },
       },
-      type: fileActions.PARSE_INTERACTIVE_FILE,
+      type: fileActions.LOAD_INTERACTIVE_STATE,
     };
     const expectedState = {
       a: 'test1',

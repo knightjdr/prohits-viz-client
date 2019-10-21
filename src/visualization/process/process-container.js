@@ -3,10 +3,10 @@ import React, { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 
 import fetch from '../../utils/fetch';
-import fillDefaults from '../defaults/fill';
+import fillInteractiveState from '../defaults/fill-interactive-state';
 import Process from './process';
 import useLoading from '../../hooks/loading/use-loading';
-import { parseFile } from '../../state/visualization/data/interactive-file-actions';
+import { loadInteractiveState } from '../../state/visualization/data/interactive-file-actions';
 import { selectState } from '../../state/selector/general';
 
 const ProcessContainer = ({
@@ -31,8 +31,8 @@ const ProcessContainer = ({
           status.setError(true);
           status.setErrorMessage('There was an error displaying the image');
         } else {
-          const data = fillDefaults(response.data, filename, id);
-          dispatch(parseFile(data));
+          const data = fillInteractiveState(response.data, filename, id);
+          dispatch(loadInteractiveState(data));
         }
         status.setLoading(false);
       };

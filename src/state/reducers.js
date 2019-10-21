@@ -1,5 +1,6 @@
 import { combineReducers } from 'redux';
 
+import annotations from './visualization/markup/annotation-reducer';
 import article from './news/article-reducer';
 import columnDB from './visualization/data/column-db-reducer';
 import columns from './visualization/heatmap/columns-reducer';
@@ -19,6 +20,7 @@ import settings from './visualization/settings/settings-reducer';
 import tabs from './visualization/settings/tabs-reducer';
 
 const reducers = combineReducers({
+  annotations,
   article,
   columnDB,
   columns,
