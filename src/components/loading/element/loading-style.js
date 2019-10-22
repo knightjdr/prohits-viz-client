@@ -6,7 +6,7 @@ const Span = styled.span`
   padding: 5px 8px;
 
   .loading__error {
-    color: ${props => props.theme.warning1};
+    color: ${props => props.theme.warning};
   }
   .loading__icon {
     margin-right: 10px;

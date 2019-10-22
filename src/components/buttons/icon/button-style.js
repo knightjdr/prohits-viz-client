@@ -5,8 +5,10 @@ import DefaultButton from '../button-defaults';
 
 const Button = styled(DefaultButton)`
   align-items: center;
-  border: none;
+  border-color: transparent;
   border-radius: 50%;
+  border-style: solid;
+  border-width: 2px;
   color: ${props => props.theme.colorPrimary1};
   display: flex;
   font-size: 1.3em;
@@ -30,36 +32,11 @@ const Button = styled(DefaultButton)`
     z-index: -1;
   }
 
-  ${props => (props.kind === 'primary'
-    && css`&{
-      background-color: ${props.theme.colorPrimary1};
-      border-radius: 50%;
-      color: ${props.theme.fontLight};
-    }
-
-    &:focus:not([disabled]),
-    &:hover:not([disabled]) {
-      background-color: ${props.theme.colorPrimary2};
-      color: ${props.theme.colorPrimary1};
-    }`
-  )}
-
-  ${props => (props.kind === 'secondary'
-    && css`&{
-      background-color: ${props.theme.colorSecondary1};
-      border-radius: 50%;
-      color: ${props.theme.fontLight};
-    }
-
-    &:focus:not([disabled]),
-    &:hover:not([disabled]) {
-      filter: contrast(200%);
-    }`
-  )}
-
   ${props => (props.kind === 'transparent'
     && css`& {
       background-color: transparent;
+      border: none;
+      border-radius: 50%;
     }
 
     &::before {
@@ -69,6 +46,7 @@ const Button = styled(DefaultButton)`
 
     &:focus:not([disabled]),
     &:hover:not([disabled]) {
+      box-shadow: none;
       color: ${props.theme.fontLight};
     }
     &:focus:not([disabled])::before,
@@ -77,32 +55,16 @@ const Button = styled(DefaultButton)`
       transform: scale(1);
     }`
   )}
-
-  ${props => (props.kind === 'warning'
-    && css`&{
-      background-color: ${props.theme.warning2};
-      border-radius: 50%;
-      color: ${props.theme.fontDark};
-    }
-
-    &:focus:not([disabled]),
-    &:hover:not([disabled]) {
-      background-color: ${props.theme.warning1};
-      color: ${props.theme.fontLight};
-    }`
-  )}
 `;
 
 Button.defaultProps = {
   disabled: false,
   kind: 'transparent',
-  shadow: false,
 };
 
 Button.propTypes = {
   disabled: PropTypes.bool,
   kind: PropTypes.string,
-  shadow: PropTypes.bool,
 };
 
 export default Button;

@@ -3,6 +3,7 @@
 exports[`Icon button style default should match snapshot 1`] = `
 .c0 {
   background-color: transparent;
+  border-color: transparent;
   box-sizing: border-box;
   -webkit-transform-origin: center;
   -ms-transform-origin: center;
@@ -15,8 +16,10 @@ exports[`Icon button style default should match snapshot 1`] = `
   -webkit-box-align: center;
   -ms-flex-align: center;
   align-items: center;
-  border: none;
+  border-color: transparent;
   border-radius: 50%;
+  border-style: solid;
+  border-width: 2px;
   color: #0000ff;
   display: -webkit-box;
   display: -webkit-flex;
@@ -39,6 +42,11 @@ exports[`Icon button style default should match snapshot 1`] = `
 
 .c0::-moz-focus-inner {
   border: 0;
+}
+
+.c0:focus,
+.c0:hover {
+  box-shadow: 0 2px 5px 0 rgba(0,0,0,0.26);
 }
 
 .c0:active {
@@ -69,6 +77,8 @@ exports[`Icon button style default should match snapshot 1`] = `
 
 .c0 {
   background-color: transparent;
+  border: none;
+  border-radius: 50%;
 }
 
 .c0::before {
@@ -78,6 +88,7 @@ exports[`Icon button style default should match snapshot 1`] = `
 
 .c0:focus:not([disabled]),
 .c0:hover:not([disabled]) {
+  box-shadow: none;
   color: #fff;
 }
 
@@ -93,179 +104,6 @@ exports[`Icon button style default should match snapshot 1`] = `
   <button
     class="c0"
     kind="transparent"
-  />
-</div>
-`;
-
-exports[`Icon button style primary should match snapshot 1`] = `
-.c0 {
-  background-color: transparent;
-  box-sizing: border-box;
-  -webkit-transform-origin: center;
-  -ms-transform-origin: center;
-  transform-origin: center;
-  -webkit-transition-duration: 0.3s;
-  transition-duration: 0.3s;
-  -webkit-transition-property: all;
-  transition-property: all;
-  -webkit-align-items: center;
-  -webkit-box-align: center;
-  -ms-flex-align: center;
-  align-items: center;
-  border: none;
-  border-radius: 50%;
-  color: #0000ff;
-  display: -webkit-box;
-  display: -webkit-flex;
-  display: -ms-flexbox;
-  display: flex;
-  font-size: 1.3em;
-  -webkit-box-pack: center;
-  -webkit-justify-content: center;
-  -ms-flex-pack: center;
-  justify-content: center;
-  height: 34px;
-  padding: 2px;
-  position: relative;
-  width: 34px;
-}
-
-.c0:focus {
-  outline: none;
-}
-
-.c0::-moz-focus-inner {
-  border: 0;
-}
-
-.c0:active {
-  -webkit-animation-duration: 0.3s;
-  animation-duration: 0.3s;
-  -webkit-animation-name: click;
-  animation-name: click;
-}
-
-.c0::before {
-  border-radius: 50%;
-  content: '';
-  height: 100%;
-  left: 0;
-  position: absolute;
-  top: 0;
-  -webkit-transition: inherit;
-  transition: inherit;
-  -webkit-transform: scale(0);
-  -ms-transform: scale(0);
-  transform: scale(0);
-  -webkit-transform-origin: center center;
-  -ms-transform-origin: center center;
-  transform-origin: center center;
-  width: 100%;
-  z-index: -1;
-}
-
-.c0 {
-  background-color: #0000ff;
-  border-radius: 50%;
-  color: #fff;
-}
-
-.c0:focus:not([disabled]),
-.c0:hover:not([disabled]) {
-  color: #0000ff;
-}
-
-<div>
-  <button
-    class="c0"
-    kind="primary"
-  />
-</div>
-`;
-
-exports[`Icon button style secondary should match snapshot 1`] = `
-.c0 {
-  background-color: transparent;
-  box-sizing: border-box;
-  -webkit-transform-origin: center;
-  -ms-transform-origin: center;
-  transform-origin: center;
-  -webkit-transition-duration: 0.3s;
-  transition-duration: 0.3s;
-  -webkit-transition-property: all;
-  transition-property: all;
-  -webkit-align-items: center;
-  -webkit-box-align: center;
-  -ms-flex-align: center;
-  align-items: center;
-  border: none;
-  border-radius: 50%;
-  color: #0000ff;
-  display: -webkit-box;
-  display: -webkit-flex;
-  display: -ms-flexbox;
-  display: flex;
-  font-size: 1.3em;
-  -webkit-box-pack: center;
-  -webkit-justify-content: center;
-  -ms-flex-pack: center;
-  justify-content: center;
-  height: 34px;
-  padding: 2px;
-  position: relative;
-  width: 34px;
-}
-
-.c0:focus {
-  outline: none;
-}
-
-.c0::-moz-focus-inner {
-  border: 0;
-}
-
-.c0:active {
-  -webkit-animation-duration: 0.3s;
-  animation-duration: 0.3s;
-  -webkit-animation-name: click;
-  animation-name: click;
-}
-
-.c0::before {
-  border-radius: 50%;
-  content: '';
-  height: 100%;
-  left: 0;
-  position: absolute;
-  top: 0;
-  -webkit-transition: inherit;
-  transition: inherit;
-  -webkit-transform: scale(0);
-  -ms-transform: scale(0);
-  transform: scale(0);
-  -webkit-transform-origin: center center;
-  -ms-transform-origin: center center;
-  transform-origin: center center;
-  width: 100%;
-  z-index: -1;
-}
-
-.c0 {
-  background-color: #00ff00;
-  border-radius: 50%;
-  color: #fff;
-}
-
-.c0:focus:not([disabled]),
-.c0:hover:not([disabled]) {
-  -webkit-filter: contrast(200%);
-  filter: contrast(200%);
-}
-
-<div>
-  <button
-    class="c0"
-    kind="secondary"
   />
 </div>
 `;
@@ -273,6 +111,7 @@ exports[`Icon button style secondary should match snapshot 1`] = `
 exports[`Icon button style transparent should match snapshot 1`] = `
 .c0 {
   background-color: transparent;
+  border-color: transparent;
   box-sizing: border-box;
   -webkit-transform-origin: center;
   -ms-transform-origin: center;
@@ -285,8 +124,10 @@ exports[`Icon button style transparent should match snapshot 1`] = `
   -webkit-box-align: center;
   -ms-flex-align: center;
   align-items: center;
-  border: none;
+  border-color: transparent;
   border-radius: 50%;
+  border-style: solid;
+  border-width: 2px;
   color: #0000ff;
   display: -webkit-box;
   display: -webkit-flex;
@@ -309,6 +150,11 @@ exports[`Icon button style transparent should match snapshot 1`] = `
 
 .c0::-moz-focus-inner {
   border: 0;
+}
+
+.c0:focus,
+.c0:hover {
+  box-shadow: 0 2px 5px 0 rgba(0,0,0,0.26);
 }
 
 .c0:active {
@@ -339,6 +185,8 @@ exports[`Icon button style transparent should match snapshot 1`] = `
 
 .c0 {
   background-color: transparent;
+  border: none;
+  border-radius: 50%;
 }
 
 .c0::before {
@@ -348,6 +196,7 @@ exports[`Icon button style transparent should match snapshot 1`] = `
 
 .c0:focus:not([disabled]),
 .c0:hover:not([disabled]) {
+  box-shadow: none;
   color: #fff;
 }
 
@@ -363,93 +212,6 @@ exports[`Icon button style transparent should match snapshot 1`] = `
   <button
     class="c0"
     kind="transparent"
-  />
-</div>
-`;
-
-exports[`Icon button style warning should match snapshot 1`] = `
-.c0 {
-  background-color: transparent;
-  box-sizing: border-box;
-  -webkit-transform-origin: center;
-  -ms-transform-origin: center;
-  transform-origin: center;
-  -webkit-transition-duration: 0.3s;
-  transition-duration: 0.3s;
-  -webkit-transition-property: all;
-  transition-property: all;
-  -webkit-align-items: center;
-  -webkit-box-align: center;
-  -ms-flex-align: center;
-  align-items: center;
-  border: none;
-  border-radius: 50%;
-  color: #0000ff;
-  display: -webkit-box;
-  display: -webkit-flex;
-  display: -ms-flexbox;
-  display: flex;
-  font-size: 1.3em;
-  -webkit-box-pack: center;
-  -webkit-justify-content: center;
-  -ms-flex-pack: center;
-  justify-content: center;
-  height: 34px;
-  padding: 2px;
-  position: relative;
-  width: 34px;
-}
-
-.c0:focus {
-  outline: none;
-}
-
-.c0::-moz-focus-inner {
-  border: 0;
-}
-
-.c0:active {
-  -webkit-animation-duration: 0.3s;
-  animation-duration: 0.3s;
-  -webkit-animation-name: click;
-  animation-name: click;
-}
-
-.c0::before {
-  border-radius: 50%;
-  content: '';
-  height: 100%;
-  left: 0;
-  position: absolute;
-  top: 0;
-  -webkit-transition: inherit;
-  transition: inherit;
-  -webkit-transform: scale(0);
-  -ms-transform: scale(0);
-  transform: scale(0);
-  -webkit-transform-origin: center center;
-  -ms-transform-origin: center center;
-  transform-origin: center center;
-  width: 100%;
-  z-index: -1;
-}
-
-.c0 {
-  background-color: #ff000;
-  border-radius: 50%;
-  color: #111;
-}
-
-.c0:focus:not([disabled]),
-.c0:hover:not([disabled]) {
-  background-color: #ee000;
-  color: #fff;
-}
-
-<div>
-  <button
-    class="c0"
-    kind="warning"
   />
 </div>
 `;

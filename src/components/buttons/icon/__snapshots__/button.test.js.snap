@@ -3,6 +3,7 @@
 exports[`Icon button style primary button should match snapshot 1`] = `
 .c0 {
   background-color: transparent;
+  border-color: transparent;
   box-sizing: border-box;
   -webkit-transform-origin: center;
   -ms-transform-origin: center;
@@ -17,8 +18,10 @@ exports[`Icon button style primary button should match snapshot 1`] = `
   -webkit-box-align: center;
   -ms-flex-align: center;
   align-items: center;
-  border: none;
+  border-color: transparent;
   border-radius: 50%;
+  border-style: solid;
+  border-width: 2px;
   color: #00f;
   display: -webkit-box;
   display: -webkit-flex;
@@ -41,6 +44,11 @@ exports[`Icon button style primary button should match snapshot 1`] = `
 
 .c0::-moz-focus-inner {
   border: 0;
+}
+
+.c0:focus,
+.c0:hover {
+  box-shadow: 0 2px 5px 0 rgba(0,0,0,0.26);
 }
 
 .c0:active {
@@ -73,6 +81,8 @@ exports[`Icon button style primary button should match snapshot 1`] = `
 
 .c0 {
   background-color: transparent;
+  border: none;
+  border-radius: 50%;
 }
 
 .c0::before {
@@ -82,6 +92,7 @@ exports[`Icon button style primary button should match snapshot 1`] = `
 
 .c0:focus:not([disabled]),
 .c0:hover:not([disabled]) {
+  box-shadow: none;
   color: #fff;
 }
 
@@ -123,6 +134,7 @@ exports[`Icon button style primary button should match snapshot 1`] = `
 exports[`Icon button style transparent (default) button should match snapshot 1`] = `
 .c0 {
   background-color: transparent;
+  border-color: transparent;
   box-sizing: border-box;
   -webkit-transform-origin: center;
   -ms-transform-origin: center;
@@ -137,8 +149,10 @@ exports[`Icon button style transparent (default) button should match snapshot 1`
   -webkit-box-align: center;
   -ms-flex-align: center;
   align-items: center;
-  border: none;
+  border-color: transparent;
   border-radius: 50%;
+  border-style: solid;
+  border-width: 2px;
   color: #00f;
   display: -webkit-box;
   display: -webkit-flex;
@@ -161,6 +175,11 @@ exports[`Icon button style transparent (default) button should match snapshot 1`
 
 .c0::-moz-focus-inner {
   border: 0;
+}
+
+.c0:focus,
+.c0:hover {
+  box-shadow: 0 2px 5px 0 rgba(0,0,0,0.26);
 }
 
 .c0:active {
@@ -193,6 +212,8 @@ exports[`Icon button style transparent (default) button should match snapshot 1`
 
 .c0 {
   background-color: transparent;
+  border: none;
+  border-radius: 50%;
 }
 
 .c0::before {
@@ -202,6 +223,7 @@ exports[`Icon button style transparent (default) button should match snapshot 1`
 
 .c0:focus:not([disabled]),
 .c0:hover:not([disabled]) {
+  box-shadow: none;
   color: #fff;
 }
 

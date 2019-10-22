@@ -3,8 +3,9 @@
 exports[`Default button style default should match snapshot 1`] = `
 .c0 {
   background-color: transparent;
+  border-color: transparent;
   box-sizing: border-box;
-  font-family: arial;
+  font-family: Arial;
   -webkit-transform-origin: center;
   -ms-transform-origin: center;
   transform-origin: center;
@@ -22,6 +23,23 @@ exports[`Default button style default should match snapshot 1`] = `
 
 .c0::-moz-focus-inner {
   border: 0;
+}
+
+.c0:focus,
+.c0:hover {
+  box-shadow: 0 2px 5px 0 rgba(0,0,0,0.26);
+}
+
+.c0 {
+  background-color: #0000ff;
+  color: #fff;
+}
+
+.c0:focus:not([disabled]),
+.c0:hover:not([disabled]) {
+  background-color: #fff;
+  border-color: #0000ff;
+  color: #0000ff;
 }
 
 .c0:active {
@@ -41,11 +59,12 @@ exports[`Default button style default should match snapshot 1`] = `
 </div>
 `;
 
-exports[`Default button style default with optional props should match snapshot 1`] = `
+exports[`Default button style grey button should match snapshot 1`] = `
 .c0 {
   background-color: transparent;
+  border-color: transparent;
   box-sizing: border-box;
-  font-family: arial;
+  font-family: Arial;
   -webkit-transform-origin: center;
   -ms-transform-origin: center;
   transform-origin: center;
@@ -65,6 +84,68 @@ exports[`Default button style default with optional props should match snapshot 
   border: 0;
 }
 
+.c0:focus,
+.c0:hover {
+  box-shadow: 0 2px 5px 0 rgba(0,0,0,0.26);
+}
+
+.c0 {
+  background-color: rgba(0,0,0,0.2);
+}
+
+.c0:focus:not([disabled]),
+.c0:hover:not([disabled]) {
+  background-color: #fff;
+  border-color: rgba(0,0,0,0.2);
+}
+
+.c0:active {
+  -webkit-animation-duration: 0.3s;
+  animation-duration: 0.3s;
+  -webkit-animation-name: click;
+  animation-name: click;
+  -webkit-animation-timing-function: ease-in;
+  animation-timing-function: ease-in;
+}
+
+<div>
+  <button
+    class="c0"
+    kind="grey"
+  />
+</div>
+`;
+
+exports[`Default button style optional props should match snapshot 1`] = `
+.c0 {
+  background-color: transparent;
+  border-color: transparent;
+  box-sizing: border-box;
+  font-family: Arial;
+  -webkit-transform-origin: center;
+  -ms-transform-origin: center;
+  transform-origin: center;
+  -webkit-transition-duration: 0.3s;
+  transition-duration: 0.3s;
+  -webkit-transition-property: all;
+  transition-property: all;
+  -webkit-transition-timing-function: ease-in;
+  transition-timing-function: ease-in;
+}
+
+.c0:focus {
+  outline: none;
+}
+
+.c0::-moz-focus-inner {
+  border: 0;
+}
+
+.c0:focus,
+.c0:hover {
+  box-shadow: 0 2px 5px 0 rgba(0,0,0,0.26);
+}
+
 .c0 {
   cursor: not-allowed;
   opacity: 0.6;
@@ -72,6 +153,18 @@ exports[`Default button style default with optional props should match snapshot 
 
 .c0 {
   box-shadow: 0 2px 5px 0 rgba(0,0,0,0.26);
+}
+
+.c0 {
+  background-color: #0000ff;
+  color: #fff;
+}
+
+.c0:focus:not([disabled]),
+.c0:hover:not([disabled]) {
+  background-color: #fff;
+  border-color: #0000ff;
+  color: #0000ff;
 }
 
 .c0:active {
@@ -88,6 +181,241 @@ exports[`Default button style default with optional props should match snapshot 
     class="c0"
     disabled=""
     kind="primary"
+  />
+</div>
+`;
+
+exports[`Default button style primary should match snapshot 1`] = `
+.c0 {
+  background-color: transparent;
+  border-color: transparent;
+  box-sizing: border-box;
+  font-family: Arial;
+  -webkit-transform-origin: center;
+  -ms-transform-origin: center;
+  transform-origin: center;
+  -webkit-transition-duration: 0.3s;
+  transition-duration: 0.3s;
+  -webkit-transition-property: all;
+  transition-property: all;
+  -webkit-transition-timing-function: ease-in;
+  transition-timing-function: ease-in;
+}
+
+.c0:focus {
+  outline: none;
+}
+
+.c0::-moz-focus-inner {
+  border: 0;
+}
+
+.c0:focus,
+.c0:hover {
+  box-shadow: 0 2px 5px 0 rgba(0,0,0,0.26);
+}
+
+.c0 {
+  background-color: #0000ff;
+  color: #fff;
+}
+
+.c0:focus:not([disabled]),
+.c0:hover:not([disabled]) {
+  background-color: #fff;
+  border-color: #0000ff;
+  color: #0000ff;
+}
+
+.c0:active {
+  -webkit-animation-duration: 0.3s;
+  animation-duration: 0.3s;
+  -webkit-animation-name: click;
+  animation-name: click;
+  -webkit-animation-timing-function: ease-in;
+  animation-timing-function: ease-in;
+}
+
+<div>
+  <button
+    class="c0"
+    kind="primary"
+  />
+</div>
+`;
+
+exports[`Default button style secondary should match snapshot 1`] = `
+.c0 {
+  background-color: transparent;
+  border-color: transparent;
+  box-sizing: border-box;
+  font-family: Arial;
+  -webkit-transform-origin: center;
+  -ms-transform-origin: center;
+  transform-origin: center;
+  -webkit-transition-duration: 0.3s;
+  transition-duration: 0.3s;
+  -webkit-transition-property: all;
+  transition-property: all;
+  -webkit-transition-timing-function: ease-in;
+  transition-timing-function: ease-in;
+}
+
+.c0:focus {
+  outline: none;
+}
+
+.c0::-moz-focus-inner {
+  border: 0;
+}
+
+.c0:focus,
+.c0:hover {
+  box-shadow: 0 2px 5px 0 rgba(0,0,0,0.26);
+}
+
+.c0 {
+  background-color: #00ffff;
+  color: #fff;
+}
+
+.c0:focus:not([disabled]),
+.c0:hover:not([disabled]) {
+  background-color: #fff;
+  border-color: #00ffff;
+  color: #00ffff;
+}
+
+.c0:active {
+  -webkit-animation-duration: 0.3s;
+  animation-duration: 0.3s;
+  -webkit-animation-name: click;
+  animation-name: click;
+  -webkit-animation-timing-function: ease-in;
+  animation-timing-function: ease-in;
+}
+
+<div>
+  <button
+    class="c0"
+    kind="secondary"
+  />
+</div>
+`;
+
+exports[`Default button style success should match snapshot 1`] = `
+.c0 {
+  background-color: transparent;
+  border-color: transparent;
+  box-sizing: border-box;
+  font-family: Arial;
+  -webkit-transform-origin: center;
+  -ms-transform-origin: center;
+  transform-origin: center;
+  -webkit-transition-duration: 0.3s;
+  transition-duration: 0.3s;
+  -webkit-transition-property: all;
+  transition-property: all;
+  -webkit-transition-timing-function: ease-in;
+  transition-timing-function: ease-in;
+}
+
+.c0:focus {
+  outline: none;
+}
+
+.c0::-moz-focus-inner {
+  border: 0;
+}
+
+.c0:focus,
+.c0:hover {
+  box-shadow: 0 2px 5px 0 rgba(0,0,0,0.26);
+}
+
+.c0 {
+  background-color: #00ff00;
+  color: #421C1A;
+}
+
+.c0:focus:not([disabled]),
+.c0:hover:not([disabled]) {
+  background-color: #fff;
+  border-color: #00ff00;
+}
+
+.c0:active {
+  -webkit-animation-duration: 0.3s;
+  animation-duration: 0.3s;
+  -webkit-animation-name: click;
+  animation-name: click;
+  -webkit-animation-timing-function: ease-in;
+  animation-timing-function: ease-in;
+}
+
+<div>
+  <button
+    class="c0"
+    kind="success"
+  />
+</div>
+`;
+
+exports[`Default button style warning should match snapshot 1`] = `
+.c0 {
+  background-color: transparent;
+  border-color: transparent;
+  box-sizing: border-box;
+  font-family: Arial;
+  -webkit-transform-origin: center;
+  -ms-transform-origin: center;
+  transform-origin: center;
+  -webkit-transition-duration: 0.3s;
+  transition-duration: 0.3s;
+  -webkit-transition-property: all;
+  transition-property: all;
+  -webkit-transition-timing-function: ease-in;
+  transition-timing-function: ease-in;
+}
+
+.c0:focus {
+  outline: none;
+}
+
+.c0::-moz-focus-inner {
+  border: 0;
+}
+
+.c0:focus,
+.c0:hover {
+  box-shadow: 0 2px 5px 0 rgba(0,0,0,0.26);
+}
+
+.c0 {
+  background-color: #ff0000;
+  color: #fff;
+}
+
+.c0:focus:not([disabled]),
+.c0:hover:not([disabled]) {
+  background-color: #fff;
+  border-color: #ff0000;
+  color: #ff0000;
+}
+
+.c0:active {
+  -webkit-animation-duration: 0.3s;
+  animation-duration: 0.3s;
+  -webkit-animation-name: click;
+  animation-name: click;
+  -webkit-animation-timing-function: ease-in;
+  animation-timing-function: ease-in;
+}
+
+<div>
+  <button
+    class="c0"
+    kind="warning"
   />
 </div>
 `;
