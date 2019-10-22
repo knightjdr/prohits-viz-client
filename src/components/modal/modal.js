@@ -13,7 +13,6 @@ const Modal = forwardRef((
     footer,
     portal,
     title,
-    transform,
     ...props
   },
   ref,
@@ -22,10 +21,7 @@ const Modal = forwardRef((
     className={className}
     {...props}
   >
-    <section
-      ref={ref}
-      style={transform}
-    >
+    <section ref={ref}>
       <ModalHeader title={title} />
       <div>
         {children}
@@ -38,6 +34,7 @@ const Modal = forwardRef((
 
 Modal.defaultProps = {
   children: null,
+  className: undefined,
   footer: null,
   title: '',
 };
@@ -47,15 +44,10 @@ Modal.propTypes = {
     PropTypes.arrayOf(PropTypes.node),
     PropTypes.node,
   ]),
-  className: PropTypes.string.isRequired,
+  className: PropTypes.string,
   footer: PropTypes.bool,
   portal: PropTypes.shape({}).isRequired,
   title: PropTypes.string,
-  transform: PropTypes.shape({
-    transformOrigin: PropTypes.string,
-    x: PropTypes.number,
-    y: PropTypes.number,
-  }).isRequired,
 };
 
 export default Modal;

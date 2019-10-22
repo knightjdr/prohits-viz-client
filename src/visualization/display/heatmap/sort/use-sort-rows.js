@@ -9,10 +9,8 @@ import { selectState } from '../../../../state/selector/general';
 import { sortRows } from '../../../../state/visualization/heatmap/rows-actions';
 
 
-/* Sort the rows array based on a specific column as specified
-** by requestedSortBy, and with reference to another column if ref is a number. */
 const useSortRows = () => {
-  const [sorting, setSorting] = useState(false);
+  const [isSorting, setSorting] = useState(false);
 
   const dispatch = useDispatch();
 
@@ -34,10 +32,6 @@ const useSortRows = () => {
     const requestedSortIndex = columns.indexOf(requestedSortBy);
     const refIndex = ref ? columns.indexOf(ref) : '';
 
-    /* If a sort direction is requested, use that, or
-    ** if a sort direction is not requested, but the requested
-    ** sort index is the same as the last, swap sort direction, else
-    ** sort descending */
     let sortDirection;
     if (requestedDirection) {
       sortDirection = requestedDirection;
@@ -59,11 +53,11 @@ const useSortRows = () => {
 
   return {
     process: sort,
-    Component: sorting
+    Component: isSorting
       ? (
         <ActionNotification
           id="heatmap-sorting"
-          isOpen={sorting}
+          isOpen={isSorting}
           text="sorting"
         />
       )

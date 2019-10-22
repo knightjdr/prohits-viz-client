@@ -42,7 +42,6 @@ const filterRow = (order, rows, filterIndex, scoreType, abundance, primaryFilter
   ));
 };
 
-/* Filter heatmap by minAbundance and primaryFilter score. */
 const useRowFilter = () => {
   const [isFiltering, setFiltering] = useState(false);
 

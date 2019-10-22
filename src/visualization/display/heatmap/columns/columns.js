@@ -30,7 +30,7 @@ const Columns = ({
       <Tooltip
         isOpen={tooltip.open}
         name="column-tooltip"
-        position={tooltip.position}
+        placement={tooltip.placement}
       >
         {tooltip.text}
       </Tooltip>
@@ -126,7 +126,7 @@ Columns.propTypes = {
   sortingNotification: PropTypes.node,
   tooltip: PropTypes.shape({
     open: PropTypes.bool,
-    position: PropTypes.shape({}),
+    placement: PropTypes.shape({}),
     text: PropTypes.string,
   }).isRequired,
 };

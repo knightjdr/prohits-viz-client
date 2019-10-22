@@ -1,8 +1,11 @@
 import PropTypes from 'prop-types';
-import React, { useRef } from 'react';
+import React, { useEffect, useRef } from 'react';
 
 import Modal from './modal';
-import transformPosition from './position';
+
+import defineClassName from './define-classname';
+import positionFromCursor from './position-from-cursor';
+import positionFromViewport from './position-from-viewport';
 import useClickOutside from '../../hooks/click-outside/use-click-outside';
 import usePortal from '../../hooks/portal/use-portal';
 import usePrevious from '../../hooks/previous/use-previous';
@@ -16,32 +19,27 @@ const ModalContainer = ({
   ...props
 }) => {
   const ref = useRef(null);
-  useClickOutside(ref, handleClose);
   const portal = usePortal(`${name}-root`);
-  const prevIsOpen = usePrevious(isOpen);
+  const wasOpen = usePrevious(isOpen);
 
-  const classes = [];
-  let transform = {};
-  if (fromCursor) {
-    classes.push('modal_from-cursor');
-    transform = transformPosition(placement);
-  } else {
-    classes.push(...['modal_from-viewport', `modal_x-${placement.horizontal}`, `modal_y-${placement.vertical}`]);
-  }
+  useClickOutside(ref, handleClose);
 
-  if (isOpen && !classes.includes('open')) {
-    classes.push('open');
-  } else if (!isOpen && prevIsOpen) {
-    classes.push('close');
-  }
+  useEffect(() => {
+    if (isOpen && fromCursor) {
+      positionFromCursor(ref.current, placement);
+    } else if (isOpen) {
+      positionFromViewport(ref.current, placement);
+    }
+  }, [fromCursor, isOpen, placement, ref]);
+
+  const className = defineClassName(isOpen, wasOpen);
 
   return (
     <Modal
       {...props}
-      className={classes.join(' ')}
+      className={className}
       portal={portal}
       ref={ref}
-      transform={transform}
     />
   );
 };

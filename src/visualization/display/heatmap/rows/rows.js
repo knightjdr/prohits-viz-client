@@ -23,8 +23,7 @@ const Rows = ({
       <Tooltip
         isOpen={tooltip.open}
         name="row-tooltip"
-        placement={{ horizontal: 'right', vertical: 'bottom' }}
-        position={tooltip.position}
+        placement={tooltip.placement}
       >
         {tooltip.text}
       </Tooltip>
@@ -89,7 +88,7 @@ Rows.propTypes = {
   showTooltip: PropTypes.func.isRequired,
   tooltip: PropTypes.shape({
     open: PropTypes.bool,
-    position: PropTypes.shape({}),
+    placement: PropTypes.shape({}),
     text: PropTypes.string,
   }).isRequired,
 };

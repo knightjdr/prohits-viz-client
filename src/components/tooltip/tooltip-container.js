@@ -1,8 +1,10 @@
 import PropTypes from 'prop-types';
-import React from 'react';
+import React, { useEffect, useRef } from 'react';
 
 import Tooltip from './tooltip';
-import transformPosition from './position';
+
+import defineClassName from '../modal/define-classname';
+import positionFromCursor from '../modal/position-from-cursor';
 import usePortal from '../../hooks/portal/use-portal';
 import usePrevious from '../../hooks/previous/use-previous';
 
@@ -10,27 +12,26 @@ const TooltipContainer = ({
   isOpen,
   name,
   placement,
-  position,
   ...props
 }) => {
+  const ref = useRef(null);
   const portal = usePortal(`${name}-root`);
-  const prevIsOpen = usePrevious(isOpen);
+  const wasOpen = usePrevious(isOpen);
 
-  const classes = [];
-  const transform = transformPosition(placement, position);
+  useEffect(() => {
+    if (isOpen) {
+      positionFromCursor(ref.current, placement);
+    }
+  }, [isOpen, placement, ref]);
 
-  if (isOpen && !classes.includes('open')) {
-    classes.push('open');
-  } else if (!isOpen && prevIsOpen) {
-    classes.push('close');
-  }
+  const className = defineClassName(isOpen, wasOpen);
 
   return (
     <Tooltip
       {...props}
-      className={classes.join(' ')}
+      className={className}
       portal={portal}
-      transform={transform}
+      ref={ref}
     />
   );
 };
@@ -38,14 +39,6 @@ const TooltipContainer = ({
 TooltipContainer.defaultProps = {
   isOpen: false,
   name: 'tooltip',
-  placement: {
-    horizontal: 'left',
-    vertical: 'center',
-  },
-  position: {
-    x: 0,
-    y: 0,
-  },
 };
 
 TooltipContainer.propTypes = {
@@ -54,11 +47,9 @@ TooltipContainer.propTypes = {
   placement: PropTypes.shape({
     horizontal: PropTypes.string,
     vertical: PropTypes.string,
-  }),
-  position: PropTypes.shape({
     x: PropTypes.number,
     y: PropTypes.number,
-  }),
+  }).isRequired,
 };
 
 export default TooltipContainer;

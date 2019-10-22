@@ -1,37 +1,35 @@
 import PropTypes from 'prop-types';
-import React from 'react';
+import React, { forwardRef } from 'react';
 import { createPortal } from 'react-dom';
 
 import StyledTooltip from './tooltip-style';
 
-const Tooltip = ({
-  children,
-  className,
-  portal,
-  transform,
-}) => createPortal(
+const Tooltip = forwardRef((
+  {
+    children,
+    className,
+    portal,
+  },
+  ref,
+) => createPortal(
   <StyledTooltip
     className={className}
-    style={transform}
+    ref={ref}
   >
     {children}
   </StyledTooltip>,
   portal,
-);
+));
 
 Tooltip.defaultProps = {
   children: null,
+  className: undefined,
 };
 
 Tooltip.propTypes = {
   children: PropTypes.node,
-  className: PropTypes.string.isRequired,
+  className: PropTypes.string,
   portal: PropTypes.shape({}).isRequired,
-  transform: PropTypes.shape({
-    transformOrigin: PropTypes.string,
-    x: PropTypes.number,
-    y: PropTypes.number,
-  }).isRequired,
 };
 
 export default Tooltip;

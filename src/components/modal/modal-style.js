@@ -12,7 +12,7 @@ const Div = styled.div`
   left: 0;
   opacity: 0;
   pointer-events: none;
-  position: fixed;
+  position: absolute;
   text-transform: none;
   top: 0;
   width: 100vw;
@@ -29,15 +29,11 @@ const Div = styled.div`
     opacity: inherit;
     padding: ${props => (props.padding ? '5px' : '0')};
     pointer-events: inherit;
-    position: fixed;
+    position: absolute;
   }
 
   & > section > * {
     padding: ${props => (props.padding ? '5px 10px' : '0')};
-  }
-
-  &.modal_from-cursor > section {
-    position: absolute;
   }
 
   & header {
@@ -55,32 +51,12 @@ const Div = styled.div`
     border-top: 1px solid #e0e0e0;
   }
 
-  &.modal_from-viewport.open {
+  &.open {
     animation-name: modalfadein;
     pointer-events: auto;
   }
-  &.modal_from-viewport.close {
+  &.closed {
     animation-name: modalfadeout;
-  }
-
-  &.modal_from-cursor.open {
-    animation-name: modalfadein;
-    pointer-events: auto;
-  }
-  &.modal_from-cursor.close {
-    animation-name: modalfadeout;
-  }
-
-  &.modal_x-center > section {
-    left: 50%;
-    transform: translateX(-50%);
-  }
-  &.modal_y-center > section {
-    top: 50%;
-    transform: translateY(-50%);
-  }
-  &.modal_y-top > section {
-    top: 40px;
   }
 
   @keyframes modalfadein {

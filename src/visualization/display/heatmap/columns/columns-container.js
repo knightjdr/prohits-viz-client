@@ -11,7 +11,12 @@ import { selectDataProperty } from '../../../../state/selector/visualization/dat
 const ColumnsContainer = () => {
   const [tooltip, setTooltip] = useState({
     open: false,
-    position: { x: 0, y: 0 },
+    placement: {
+      horizontal: 'left',
+      vertical: 'center',
+      x: 0,
+      y: 0,
+    },
     text: '',
   });
 
@@ -58,7 +63,11 @@ const ColumnsContainer = () => {
     if (trimmed === 'true') {
       setTooltip({
         open: true,
-        position: { x: clientX, y: clientY },
+        placement: {
+          ...tooltip.placement,
+          x: clientX,
+          y: clientY,
+        },
         text: name,
       });
     }
