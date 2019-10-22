@@ -20,7 +20,7 @@ describe('Position reducer', () => {
 
   it('should handle FILTER_ROWS action', () => {
     const action = {
-      dataID: 'main',
+      selectionID: 'main',
       type: rowActions.FILTER_ROWS,
     };
     const expectedState = {
@@ -55,7 +55,7 @@ describe('Position reducer', () => {
 
   it('should handle SORT_ROWS action', () => {
     const action = {
-      dataID: 'main',
+      selectionID: 'main',
       type: rowActions.SORT_ROWS,
     };
     const expectedState = {
@@ -69,7 +69,7 @@ describe('Position reducer', () => {
 
   it('should handle UPDATE_POSITION action', () => {
     const action = {
-      dataID: 'main',
+      selectionID: 'main',
       type: actions.UPDATE_POSITION,
       x: 0.1,
       y: 0.5,

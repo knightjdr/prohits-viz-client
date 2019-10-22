@@ -1,8 +1,14 @@
-import reducer, { defaultState } from './columns-reducer';
+import reducer from './columns-reducer';
 import * as actions from './columns-actions';
 import * as displayActions from '../settings/display-actions';
 import * as fileActions from '../data/interactive-file-actions';
 import * as rowActions from './rows-actions';
+
+const defaultState = {
+  defaultOrder: [],
+  order: [],
+  ref: null,
+};
 
 describe('Columns reducer', () => {
   it('should return an empty initial state', () => {
@@ -29,8 +35,8 @@ describe('Columns reducer', () => {
     };
 
     const action = {
+      selectionID: 'main',
       columnOrder: [1, 2, 0],
-      dataID: 'main',
       type: rowActions.FILTER_ROWS,
     };
     const expectedState = {
@@ -88,7 +94,7 @@ describe('Columns reducer', () => {
     };
 
     const action = {
-      dataID: 'main',
+      selectionID: 'main',
       type: displayActions.RESET_IMAGE,
     };
     const expectedState = {
@@ -113,7 +119,7 @@ describe('Columns reducer', () => {
     };
 
     const action = {
-      dataID: 'main',
+      selectionID: 'main',
       ref: 'a',
       type: actions.SET_COLUMN_REFERENCE,
     };

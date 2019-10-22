@@ -20,7 +20,7 @@ const reducer = (state = {}, action) => {
     case actions.SET_DIMENSIONS:
       return {
         ...state,
-        [action.dataID]: {
+        [action.selectionID]: {
           ...action.dimensions,
         },
       };

@@ -3,47 +3,49 @@ import * as displayActions from '../settings/display-actions';
 import * as fileActions from '../data/interactive-file-actions';
 import * as rowActions from './rows-actions';
 
-export const defaultState = {
-  defaultOrder: [],
-  order: [],
-  ref: null,
-};
+const reduceForResetting = (state, action) => ({
+  ...state,
+  [action.selectionID]: {
+    ...state[action.selectionID],
+    filterOrder: [],
+    order: [...state[action.selectionID].defaultOrder],
+    sortOrder: [],
+  },
+});
+
+const reduceForRowFiltering = (state, action) => ({
+  ...state,
+  [action.selectionID]: {
+    ...state[action.selectionID],
+    filterOrder: [...action.columnOrder],
+    order: [...action.columnOrder],
+  },
+});
+
+const reduceInteractiveState = file => (
+  file.columns ? file.columns : {}
+);
+
+const reduceRef = (state, action) => ({
+  ...state,
+  [action.selectionID]: {
+    ...state[action.selectionID],
+    ref: action.ref,
+  },
+});
 
 const reducer = (state = {}, action) => {
   switch (action.type) {
     case fileActions.CLEAR_INTERACTIVE_STATE:
       return {};
     case rowActions.FILTER_ROWS:
-      return {
-        ...state,
-        [action.dataID]: {
-          ...state[action.dataID],
-          filterOrder: [...action.columnOrder],
-          order: [...action.columnOrder],
-        },
-      };
+      return reduceForRowFiltering(state, action);
     case fileActions.LOAD_INTERACTIVE_STATE:
-      return action.file.columns
-        ? action.file.columns
-        : {};
+      return reduceInteractiveState(action.file);
     case displayActions.RESET_IMAGE:
-      return {
-        ...state,
-        [action.dataID]: {
-          ...state[action.dataID],
-          filterOrder: [],
-          order: [...state[action.dataID].defaultOrder],
-          sortOrder: [],
-        },
-      };
+      return reduceForResetting(state, action);
     case actions.SET_COLUMN_REFERENCE:
-      return {
-        ...state,
-        [action.dataID]: {
-          ...state[action.dataID],
-          ref: action.ref,
-        },
-      };
+      return reduceRef(state, action);
     default:
       return state;
   }

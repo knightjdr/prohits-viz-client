@@ -19,21 +19,21 @@ const reducer = (state = {}, action) => {
     case actions.MINIMAP_SYNCHED:
       return {
         ...state,
-        [action.dataID]: {
-          ...state[action.dataID],
-          image: state[action.dataID].updateOriginal ? action.syncedImage : state[action.dataID].image,
+        [action.selectionID]: {
+          ...state[action.selectionID],
+          image: state[action.selectionID].updateOriginal ? action.syncedImage : state[action.selectionID].image,
           isSyncing: false,
           needSyncing: false,
           syncError: false,
-          syncedImage: state[action.dataID].updateOriginal ? null : action.syncedImage,
+          syncedImage: state[action.selectionID].updateOriginal ? null : action.syncedImage,
           updateOriginal: false,
         },
       };
     case actions.MINIMAP_SYNCHRONIZING:
       return {
         ...state,
-        [action.dataID]: {
-          ...state[action.dataID],
+        [action.selectionID]: {
+          ...state[action.selectionID],
           isSyncing: true,
           syncError: false,
           syncedImage: null,
@@ -47,8 +47,8 @@ const reducer = (state = {}, action) => {
     case displayActions.RESET_IMAGE:
       return {
         ...state,
-        [action.dataID]: {
-          ...state[action.dataID],
+        [action.selectionID]: {
+          ...state[action.selectionID],
           isSyncing: false,
           needSyncing: false,
           syncError: false,
@@ -59,8 +59,8 @@ const reducer = (state = {}, action) => {
     case actions.SYNC_ERROR:
       return {
         ...state,
-        [action.dataID]: {
-          ...state[action.dataID],
+        [action.selectionID]: {
+          ...state[action.selectionID],
           isSyncing: false,
           syncError: true,
           syncedImage: null,
@@ -70,8 +70,8 @@ const reducer = (state = {}, action) => {
     case rowActions.FILTER_ROWS:
       return {
         ...state,
-        [action.dataID]: {
-          ...state[action.dataID],
+        [action.selectionID]: {
+          ...state[action.selectionID],
           isSyncing: false,
           needSyncing: true,
           syncedImage: null,
@@ -81,8 +81,8 @@ const reducer = (state = {}, action) => {
     case rowActions.SORT_ROWS:
       return {
         ...state,
-        [action.dataID]: {
-          ...state[action.dataID],
+        [action.selectionID]: {
+          ...state[action.selectionID],
           isSyncing: false,
           needSyncing: true,
           syncedImage: null,

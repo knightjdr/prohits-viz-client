@@ -6,7 +6,7 @@ export const defaultState = {
   color: '#f44336',
   fontSize: 16,
   list: [],
-  show: true,
+  showAnnotations: true,
 };
 
 const fillSelectionAnnotations = fileAnnotations => (
@@ -15,14 +15,14 @@ const fillSelectionAnnotations = fileAnnotations => (
       color,
       fontSize,
       list,
-      show,
+      showAnnotations,
     } = fileAnnotations[selection];
 
     const stateAnnotations = {
       color: validateHex(color, defaultState.color),
       fontSize: validateNumber(fontSize, defaultState.fontSize),
       list: validateArray(list, defaultState.list),
-      show: validateBoolean(show, defaultState.show),
+      showAnnotations: validateBoolean(showAnnotations, defaultState.showAnnotations),
     };
 
     return {

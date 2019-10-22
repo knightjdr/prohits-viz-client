@@ -102,18 +102,18 @@ describe('Icon button style', () => {
       expect(container.firstChild).toHaveStyleRule('color', theme.fontLight);
     });
 
-    it('should set icon background color on focus', () => {
+    it('should set filter on focus', () => {
       const modifier = {
         modifier: '&:focus:not([disabled])',
       };
-      expect(container.firstChild).toHaveStyleRule('background-color', theme.colorPrimary1, modifier);
+      expect(container.firstChild).toHaveStyleRule('filter', 'contrast(200%)', modifier);
     });
 
-    it('should set icon background color on hover', () => {
+    it('should set filter on hover', () => {
       const modifier = {
         modifier: '&:hover:not([disabled])',
       };
-      expect(container.firstChild).toHaveStyleRule('background-color', theme.colorPrimary1, modifier);
+      expect(container.firstChild).toHaveStyleRule('filter', 'contrast(200%)', modifier);
     });
   });
 
@@ -175,39 +175,39 @@ describe('Icon button style', () => {
     });
 
     it('should set background color', () => {
-      expect(container.firstChild).toHaveStyleRule('background-color', theme.warning1);
+      expect(container.firstChild).toHaveStyleRule('background-color', theme.warning2);
     });
 
     it('should set color', () => {
-      expect(container.firstChild).toHaveStyleRule('color', theme.fontLight);
+      expect(container.firstChild).toHaveStyleRule('color', theme.fontDark);
     });
 
     it('should set icon background color on focus', () => {
       const modifier = {
         modifier: '&:focus:not([disabled])',
       };
-      expect(container.firstChild).toHaveStyleRule('background-color', theme.warning2, modifier);
+      expect(container.firstChild).toHaveStyleRule('background-color', theme.warning1, modifier);
     });
 
     it('should set icon color on focus', () => {
       const modifier = {
         modifier: '&:focus:not([disabled])',
       };
-      expect(container.firstChild).toHaveStyleRule('color', theme.fontDark, modifier);
+      expect(container.firstChild).toHaveStyleRule('color', theme.fontLight, modifier);
     });
 
     it('should set icon background color on hover', () => {
       const modifier = {
         modifier: '&:hover:not([disabled])',
       };
-      expect(container.firstChild).toHaveStyleRule('background-color', theme.warning2, modifier);
+      expect(container.firstChild).toHaveStyleRule('background-color', theme.warning1, modifier);
     });
 
     it('should set icon color on hover', () => {
       const modifier = {
         modifier: '&:hover:not([disabled])',
       };
-      expect(container.firstChild).toHaveStyleRule('color', theme.fontDark, modifier);
+      expect(container.firstChild).toHaveStyleRule('color', theme.fontLight, modifier);
     });
   });
 });

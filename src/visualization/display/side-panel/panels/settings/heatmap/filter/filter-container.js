@@ -4,7 +4,6 @@ import { useDispatch, useSelector } from 'react-redux';
 import Filter from './filter';
 
 import selectColumns from '../../../../../../../state/selector/visualization/column-selector';
-import selectActiveTab from '../../../../../../../state/selector/visualization/tab-selector';
 import useRowFilter from './use-row-filter';
 import { selectDataProperty } from '../../../../../../../state/selector/visualization/data-selector';
 import { selectStateProperty } from '../../../../../../../state/selector/general';
@@ -12,7 +11,6 @@ import { updateSetting, updateSettings } from '../../../../../../../state/visual
 
 const FilterSettingsContainer = () => {
   const dispatch = useDispatch();
-  const activeTab = useSelector(state => selectActiveTab(state));
   const columns = useSelector(state => selectColumns(state));
   const scoreType = useSelector(state => selectStateProperty(state, 'parameters', 'scoreType'));
   const settings = useSelector(state => selectDataProperty(state, 'settings', 'current'));
@@ -31,26 +29,26 @@ const FilterSettingsContainer = () => {
 
   const handleChangeAbundanceCap = (e, name, value) => {
     if (value >= minAbundance) {
-      dispatch(updateSetting(activeTab, name, value));
+      dispatch(updateSetting(name, value));
     } else {
       const newSettings = {
         abundanceCap: value,
         minAbundance: value - 0.01,
       };
-      dispatch(updateSettings(activeTab, newSettings));
+      dispatch(updateSettings(newSettings));
       rowFilter.process('minAbundance', value - 0.01);
     }
   };
 
   const handleChangeMinAbundance = (e, name, value) => {
     if (value <= abundanceCap) {
-      dispatch(updateSetting(activeTab, name, value));
+      dispatch(updateSetting(name, value));
     } else {
       const newSettings = {
         abundanceCap: value + 0.01,
         minAbundance: value,
       };
-      dispatch(updateSettings(activeTab, newSettings));
+      dispatch(updateSettings(newSettings));
     }
     rowFilter.process('minAbundance', value);
   };
@@ -60,13 +58,13 @@ const FilterSettingsContainer = () => {
       (scoreType === 'lte' && value <= secondaryFilter)
       || (scoreType === 'gte' && value >= secondaryFilter)
     ) {
-      dispatch(updateSetting(activeTab, name, value));
+      dispatch(updateSetting(name, value));
     } else {
       const newSettings = {
         primaryFilter: value,
         secondaryFilter: value,
       };
-      dispatch(updateSettings(activeTab, newSettings));
+      dispatch(updateSettings(newSettings));
     }
     rowFilter.process('primaryFilter', value);
   };
@@ -76,13 +74,13 @@ const FilterSettingsContainer = () => {
       (scoreType === 'lte' && value >= primaryFilter)
       || (scoreType === 'gte' && value <= primaryFilter)
     ) {
-      dispatch(updateSetting(activeTab, name, value));
+      dispatch(updateSetting(name, value));
     } else {
       const newSettings = {
         primaryFilter: value,
         secondaryFilter: value,
       };
-      dispatch(updateSettings(activeTab, newSettings));
+      dispatch(updateSettings(newSettings));
       rowFilter.process('primaryFilter', value);
     }
   };

@@ -13,20 +13,20 @@ const reducer = (state = {}, action) => {
     case displayActions.RESET_IMAGE:
       return {
         ...state,
-        [action.dataID]: {
-          ...state[action.dataID],
+        [action.selectionID]: {
+          ...state[action.selectionID],
           current: {
-            ...state[action.dataID].default,
+            ...state[action.selectionID].default,
           },
         },
       };
     case actions.UPDATE_SETTING:
       return {
         ...state,
-        [action.dataID]: {
-          ...state[action.dataID],
+        [action.selectionID]: {
+          ...state[action.selectionID],
           current: {
-            ...state[action.dataID].current,
+            ...state[action.selectionID].current,
             [action.setting]: action.value,
           },
         },
@@ -34,10 +34,10 @@ const reducer = (state = {}, action) => {
     case actions.UPDATE_SETTINGS:
       return {
         ...state,
-        [action.dataID]: {
-          ...state[action.dataID],
+        [action.selectionID]: {
+          ...state[action.selectionID],
           current: {
-            ...state[action.dataID].current,
+            ...state[action.selectionID].current,
             ...action.settings,
           },
         },

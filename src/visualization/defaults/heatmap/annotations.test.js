@@ -13,7 +13,7 @@ describe('Fill annotations', () => {
             y: 0.1,
           },
         ],
-        show: false,
+        showAnnotations: false,
       },
     };
     const expected = fileAnnotations;
@@ -26,7 +26,7 @@ describe('Fill annotations', () => {
         color: 'f44338',
         fontSize: '14',
         list: {},
-        show: 'fa;se',
+        showAnnotations: 'fa;se',
       },
     };
     const expected = {

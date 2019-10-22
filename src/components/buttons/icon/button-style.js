@@ -53,7 +53,7 @@ const Button = styled(DefaultButton)`
 
     &:focus:not([disabled]),
     &:hover:not([disabled]) {
-      background-color: ${props.theme.colorPrimary1};
+      filter: contrast(200%);
     }`
   )}
 
@@ -80,15 +80,15 @@ const Button = styled(DefaultButton)`
 
   ${props => (props.kind === 'warning'
     && css`&{
-      background-color: ${props.theme.warning1};
+      background-color: ${props.theme.warning2};
       border-radius: 50%;
-      color: ${props.theme.fontLight};
+      color: ${props.theme.fontDark};
     }
 
     &:focus:not([disabled]),
     &:hover:not([disabled]) {
-      background-color: ${props.theme.warning2};
-      color: ${props.theme.fontDark};
+      background-color: ${props.theme.warning1};
+      color: ${props.theme.fontLight};
     }`
   )}
 `;

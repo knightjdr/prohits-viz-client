@@ -20,20 +20,30 @@ const ModalButtonContainer = ({
     setOpen(false);
   };
 
+  const openModal = (x, y) => {
+    setPosition({
+      ...position,
+      x,
+      y,
+    });
+    setOpen(true);
+  };
+
   const handleClick = (e) => {
-    const { target, pageX, pageY } = e;
-    if (ref.current.contains(target)) {
-      setPosition({
-        ...position,
-        x: pageX,
-        y: pageY,
-      });
-      setOpen(true);
+    const { pageX, pageY, target } = e;
+    if (pageX === 0 && pageY === 0) {
+      const rect = target.getBoundingClientRect();
+      const x = rect.x + (rect.width / 2);
+      const y = rect.y + (rect.height / 2);
+      openModal(x, y);
+    } else {
+      openModal(pageX, pageY);
     }
   };
 
   const handleKeyPress = (e) => {
-    if (e.key === 'Escape') {
+    const { key } = e;
+    if (key === 'Escape') {
       handleClose();
     }
   };

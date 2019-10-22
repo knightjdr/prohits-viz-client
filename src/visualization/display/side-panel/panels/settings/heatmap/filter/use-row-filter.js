@@ -5,7 +5,6 @@ import ActionNotification from '../../../../../../utils/action-notification';
 
 import rowSort from '../../../../../heatmap/sort/row-sort';
 import selectColumns from '../../../../../../../state/selector/visualization/column-selector';
-import selectActiveTab from '../../../../../../../state/selector/visualization/tab-selector';
 import { filterRows } from '../../../../../../../state/visualization/heatmap/rows-actions';
 import { selectData, selectDataProperty } from '../../../../../../../state/selector/visualization/data-selector';
 import { selectState, selectStateProperty } from '../../../../../../../state/selector/general';
@@ -49,7 +48,6 @@ const useRowFilter = () => {
 
   const dispatch = useDispatch();
 
-  const activeTab = useSelector(state => selectActiveTab(state));
   const columnDB = useSelector(state => selectColumns(state));
   const columns = useSelector(state => selectData(state, 'columns'));
   const scoreType = useSelector(state => selectStateProperty(state, 'parameters', 'scoreType'));
@@ -106,13 +104,12 @@ const useRowFilter = () => {
       const newColumnOrder = newRemoveEmptyColumns
         ? filterColumn(rowDB, newRowOrder, columnOrder, scoreType, newAbundance, newPrimaryFilter) : columnOrder;
 
-      dispatch(updateSetting(activeTab, setting, value));
-      dispatch(filterRows(activeTab, newRowOrder, newColumnOrder));
+      dispatch(updateSetting(setting, value));
+      dispatch(filterRows(newRowOrder, newColumnOrder));
 
       setFiltering(false);
     },
     [
-      activeTab,
       columnDB,
       columns,
       dispatch,

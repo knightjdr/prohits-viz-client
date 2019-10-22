@@ -2,7 +2,6 @@ import React, { useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 
 import ContextMenu from './context-menu';
-import selectActiveTab from '../../../../state/selector/visualization/tab-selector';
 // import useSelections from '../selections/use-selections';
 import useSortRows from '../sort/use-sort-rows';
 import { setReference } from '../../../../state/visualization/heatmap/columns-actions';
@@ -19,7 +18,6 @@ const useContextMenu = (name = 'contextMenu', containerType = 'columns') => {
   });
 
   const dispatch = useDispatch();
-  const activeTab = useSelector(state => selectActiveTab(state));
   const reference = useSelector(state => selectDataProperty(state, 'columns', 'ref'));
 
   // const setSelections = useSelections('columns', 'text');
@@ -43,7 +41,7 @@ const useContextMenu = (name = 'contextMenu', containerType = 'columns') => {
 
   const setReferenceColumn = () => {
     closeMenu();
-    dispatch(setReference(activeTab, contextItem));
+    dispatch(setReference(contextItem));
   };
 
   /* const setSelection = () => {
@@ -63,7 +61,7 @@ const useContextMenu = (name = 'contextMenu', containerType = 'columns') => {
 
   const unsetReference = () => {
     closeMenu();
-    dispatch(setReference(activeTab, ''));
+    dispatch(setReference(''));
   };
 
   return {

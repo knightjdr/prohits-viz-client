@@ -18,8 +18,8 @@ const reducer = (state = {}, action) => {
     case actions.FILTER_ROWS:
       return {
         ...state,
-        [action.dataID]: {
-          ...state[action.dataID],
+        [action.selectionID]: {
+          ...state[action.selectionID],
           filterOrder: [...action.rowOrder],
           order: [...action.rowOrder],
         },
@@ -31,11 +31,11 @@ const reducer = (state = {}, action) => {
     case displayActions.RESET_IMAGE:
       return {
         ...state,
-        [action.dataID]: {
-          ...state[action.dataID],
+        [action.selectionID]: {
+          ...state[action.selectionID],
           direction: null,
           filterOrder: [],
-          order: [...state[action.dataID].defaultOrder],
+          order: [...state[action.selectionID].defaultOrder],
           sortBy: '',
           sortOrder: [],
         },
@@ -43,8 +43,8 @@ const reducer = (state = {}, action) => {
     case actions.SORT_ROWS:
       return {
         ...state,
-        [action.dataID]: {
-          ...state[action.dataID],
+        [action.selectionID]: {
+          ...state[action.selectionID],
           direction: action.direction,
           order: [...action.order],
           sortBy: action.sortBy,

@@ -6,10 +6,10 @@ import Thunk from 'redux-thunk';
 import { createStore, applyMiddleware, compose } from 'redux';
 import { Provider } from 'react-redux';
 
+import augmentMiddleware from './augment/augment-middleware';
 import reducers from './reducers';
 import reHydrate from './local-storage/rehydrate';
 import subscribeMiddleware from './local-storage/subscribe-middleware';
-// import TestState from './test-state/test-state';
 
 const socket = SocketIo(process.env.REACT_APP_WS_HOST, { path: '/ws' });
 
@@ -27,6 +27,7 @@ export const store = createStore(
     applyMiddleware(
       Thunk,
       subscribeMiddleware,
+      augmentMiddleware,
       createSocketIoMiddleware(socket, ['post/']),
     ),
     addDevTools(),

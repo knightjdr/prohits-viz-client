@@ -23,7 +23,7 @@ describe('Dimension reducer', () => {
     };
 
     const action = {
-      dataID: 'main',
+      selectionID: 'main',
       dimensions: {
         columns: 40,
         height: 500,

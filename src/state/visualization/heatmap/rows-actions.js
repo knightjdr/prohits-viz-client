@@ -1,15 +1,15 @@
 export const FILTER_ROWS = 'FILTER_ROWS';
 export const SORT_ROWS = 'SORT_ROWS';
 
-export const filterRows = (dataID, rowOrder, columnOrder) => ({
+export const filterRows = (rowOrder, columnOrder) => ({
   columnOrder,
-  dataID,
+  AUGMENT_WITH_ACTIVE_SELECTION: true,
   rowOrder,
   type: FILTER_ROWS,
 });
 
-export const sortRows = (dataID, direction, order, sortBy) => ({
-  dataID,
+export const sortRows = (direction, order, sortBy) => ({
+  AUGMENT_WITH_ACTIVE_SELECTION: true,
   direction,
   order,
   sortBy,

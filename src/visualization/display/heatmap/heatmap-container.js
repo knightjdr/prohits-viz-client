@@ -5,7 +5,6 @@ import Heatmap from './heatmap';
 
 import defineDimensions from './dimensions/define-dimensions';
 import defineTranslation from './dimensions/define-translation';
-import selectActiveTab from '../../../state/selector/visualization/tab-selector';
 import usePlotScroll from './dimensions/use-plot-scroll';
 import useWindowDimension from '../../../hooks/window-size/use-window-dimension';
 import { setDimensions } from '../../../state/visualization/settings/dimension-actions';
@@ -16,7 +15,6 @@ const HeatmapContainer = () => {
   const dispatch = useDispatch();
   const ref = useRef();
 
-  const activeTab = useSelector(state => selectActiveTab(state));
   const columns = useSelector(state => selectDataProperty(state, 'columns', 'order'));
   const panelOpen = useSelector(state => selectStateProperty(state, 'panel', 'open'));
   const plotFixed = useSelector(state => selectDataProperty(state, 'display', 'plotFixed'));
@@ -61,7 +59,6 @@ const HeatmapContainer = () => {
   useEffect(() => {
     const { height, width } = dimensions;
     dispatch(setDimensions(
-      activeTab,
       {
         canTranslate: width.canTranslate,
         columns: width.columns,
@@ -74,7 +71,7 @@ const HeatmapContainer = () => {
         wrapperWidth: dimensions.width.wrapper,
       },
     ));
-  }, [activeTab, dimensions, dispatch]);
+  }, [dimensions, dispatch]);
 
   return (
     <Heatmap

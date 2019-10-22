@@ -27,8 +27,8 @@ describe('Display reducer', () => {
     };
 
     const action = {
-      dataID: 'main',
       fixed: true,
+      selectionID: 'main',
       type: actions.FIX_PLOT,
     };
     const expectedState = {

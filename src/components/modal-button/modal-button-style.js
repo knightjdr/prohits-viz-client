@@ -1,10 +1,10 @@
 import styled from 'styled-components';
 
-export const ConfirmWrapper = styled.span`
-  &:focus {
+export const ModalButtonWrapper = styled.span`
+  .modal-button__button:focus {
     outline: none;
   }
-  &::-moz-focus-inner {
+  .modal-button__button::-moz-focus-inner {
     border: 0;
   }
 `;

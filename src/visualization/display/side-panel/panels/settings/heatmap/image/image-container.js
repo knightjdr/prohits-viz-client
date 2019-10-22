@@ -4,7 +4,6 @@ import { useDispatch, useSelector } from 'react-redux';
 
 import Image from './image';
 
-import selectActiveTab from '../../../../../../../state/selector/visualization/tab-selector';
 import { fixPlot } from '../../../../../../../state/visualization/settings/display-actions';
 import { selectData, selectDataProperty } from '../../../../../../../state/selector/visualization/data-selector';
 
@@ -12,7 +11,6 @@ const ImageSettingsContainer = ({
   handleChange,
 }) => {
   const dispatch = useDispatch();
-  const activeTab = useSelector(state => selectActiveTab(state));
   const canTranslate = useSelector(state => selectDataProperty(state, 'dimensions', 'canTranslate'));
   const display = useSelector(state => selectData(state, 'display'));
   const settings = useSelector(state => selectDataProperty(state, 'settings', 'current'));
@@ -25,7 +23,7 @@ const ImageSettingsContainer = ({
   } = settings;
 
   const fixPlotLeft = () => {
-    dispatch(fixPlot(activeTab, !plotFixed));
+    dispatch(fixPlot(!plotFixed));
   };
 
 

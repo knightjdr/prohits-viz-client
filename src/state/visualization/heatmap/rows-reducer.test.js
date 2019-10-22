@@ -27,7 +27,7 @@ describe('Rows reducer', () => {
     };
 
     const action = {
-      dataID: 'main',
+      selectionID: 'main',
       rowOrder: [1, 2, 0],
       type: actions.FILTER_ROWS,
     };
@@ -87,7 +87,7 @@ describe('Rows reducer', () => {
     };
 
     const action = {
-      dataID: 'main',
+      selectionID: 'main',
       type: displayActions.RESET_IMAGE,
     };
     const expectedState = {
@@ -113,7 +113,7 @@ describe('Rows reducer', () => {
     };
 
     const action = {
-      dataID: 'main',
+      selectionID: 'main',
       direction: 'asc',
       order: [1, 2, 0],
       sortBy: 'b',

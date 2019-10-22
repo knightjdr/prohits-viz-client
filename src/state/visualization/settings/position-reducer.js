@@ -3,11 +3,6 @@ import * as rowActions from '../heatmap/rows-actions';
 
 import { UPDATE_POSITION } from './position-actions';
 
-export const defaultState = {
-  x: 0,
-  y: 0,
-};
-
 const reducer = (state = {}, action) => {
   switch (action.type) {
     case fileActions.CLEAR_INTERACTIVE_STATE:
@@ -15,7 +10,7 @@ const reducer = (state = {}, action) => {
     case rowActions.FILTER_ROWS:
       return {
         ...state,
-        [action.dataID]: {
+        [action.selectionID]: {
           x: 0,
           y: 0,
         },
@@ -27,7 +22,7 @@ const reducer = (state = {}, action) => {
     case rowActions.SORT_ROWS:
       return {
         ...state,
-        [action.dataID]: {
+        [action.selectionID]: {
           x: 0,
           y: 0,
         },
@@ -35,7 +30,7 @@ const reducer = (state = {}, action) => {
     case UPDATE_POSITION:
       return {
         ...state,
-        [action.dataID]: {
+        [action.selectionID]: {
           x: action.x,
           y: action.y,
         },

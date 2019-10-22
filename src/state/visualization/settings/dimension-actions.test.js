@@ -1,6 +1,6 @@
 import * as actions from './dimension-actions';
 
-describe('Dimesion actions', () => {
+describe('Dimension actions', () => {
   it('should dispatch an action to set the image dimensions', () => {
     const dimensions = {
       columns: 30,
@@ -13,10 +13,10 @@ describe('Dimesion actions', () => {
       wrapperWidth: 600,
     };
     const expectedAction = {
-      dataID: 'main',
+      AUGMENT_WITH_ACTIVE_SELECTION: true,
       dimensions,
       type: actions.SET_DIMENSIONS,
     };
-    expect(actions.setDimensions('main', dimensions)).toEqual(expectedAction);
+    expect(actions.setDimensions(dimensions)).toEqual(expectedAction);
   });
 });

@@ -258,7 +258,8 @@ exports[`Icon button style secondary should match snapshot 1`] = `
 
 .c0:focus:not([disabled]),
 .c0:hover:not([disabled]) {
-  background-color: #0000ff;
+  -webkit-filter: contrast(200%);
+  filter: contrast(200%);
 }
 
 <div>
@@ -434,15 +435,15 @@ exports[`Icon button style warning should match snapshot 1`] = `
 }
 
 .c0 {
-  background-color: #ee000;
+  background-color: #ff000;
   border-radius: 50%;
-  color: #fff;
+  color: #111;
 }
 
 .c0:focus:not([disabled]),
 .c0:hover:not([disabled]) {
-  background-color: #ff000;
-  color: #111;
+  background-color: #ee000;
+  color: #fff;
 }
 
 <div>

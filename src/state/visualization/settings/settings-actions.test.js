@@ -3,12 +3,12 @@ import * as actions from './settings-actions';
 describe('Visualization settings actions', () => {
   it('should dispatch an action to update a setting', () => {
     const expectedAction = {
-      dataID: 'main',
+      AUGMENT_WITH_ACTIVE_SELECTION: true,
       setting: 'a',
       type: actions.UPDATE_SETTING,
       value: 'b',
     };
-    expect(actions.updateSetting('main', 'a', 'b')).toEqual(expectedAction);
+    expect(actions.updateSetting('a', 'b')).toEqual(expectedAction);
   });
 
   it('should dispatch an action to update multiple settings', () => {
@@ -17,10 +17,10 @@ describe('Visualization settings actions', () => {
       b: 2,
     };
     const expectedAction = {
-      dataID: 'main',
+      AUGMENT_WITH_ACTIVE_SELECTION: true,
       settings,
       type: actions.UPDATE_SETTINGS,
     };
-    expect(actions.updateSettings('main', settings)).toEqual(expectedAction);
+    expect(actions.updateSettings(settings)).toEqual(expectedAction);
   });
 });

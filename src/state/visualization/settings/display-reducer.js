@@ -12,8 +12,8 @@ const reducer = (state = { ...defaultState }, action) => {
     case actions.FIX_PLOT:
       return {
         ...state,
-        [action.dataID]: {
-          ...state[action.dataID],
+        [action.selectionID]: {
+          ...state[action.selectionID],
           plotFixed: action.fixed,
         },
       };

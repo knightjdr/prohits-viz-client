@@ -47,7 +47,7 @@ describe('Settings reducer', () => {
     };
 
     const action = {
-      dataID: 'main',
+      selectionID: 'main',
       setting: 'fillColor',
       type: actions.UPDATE_SETTING,
       value: 'red',
@@ -77,7 +77,7 @@ describe('Settings reducer', () => {
     };
 
     const action = {
-      dataID: 'main',
+      selectionID: 'main',
       settings: {
         edgeColor: 'red',
         fillColor: 'red',

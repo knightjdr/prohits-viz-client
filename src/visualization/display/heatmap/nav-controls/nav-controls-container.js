@@ -7,7 +7,6 @@ import NavControls from './nav-controls';
 import calculateElementPosition from './calculate-element-position';
 import calculatePlotPosition from './calculate-plot-position';
 import debounce from '../../../../utils/debounce';
-import selectActiveTab from '../../../../state/selector/visualization/tab-selector';
 import shouldDisable from './should-disable';
 import { selectData } from '../../../../state/selector/visualization/data-selector';
 import { updatePosition } from '../../../../state/visualization/settings/position-actions';
@@ -20,7 +19,6 @@ const NavControlsContainer = ({
 
   const dispatch = useDispatch();
 
-  const activeTab = useSelector(state => selectActiveTab(state));
   const dimensions = useSelector(state => selectData(state, 'dimensions'));
   const position = useSelector(state => selectData(state, 'position'));
 
@@ -44,7 +42,7 @@ const NavControlsContainer = ({
 
   const calculateNewPostion = (increment) => {
     const newPosition = calculatePlotPosition(position, vertex, length, dimensions[pageType], increment);
-    dispatch(updatePosition(activeTab, newPosition.x, newPosition.y));
+    dispatch(updatePosition(newPosition.x, newPosition.y));
   };
 
   const handlePageDown = () => {

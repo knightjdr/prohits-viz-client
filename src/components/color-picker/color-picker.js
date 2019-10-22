@@ -9,7 +9,8 @@ import ModalButton from '../modal-button/modal-button-container';
 const OpenButton = (
   <IconButton
     icon={faPalette}
-    kind="primary"
+    kind="secondary"
+    type="button"
   />
 );
 

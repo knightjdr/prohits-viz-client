@@ -30,7 +30,7 @@ const useSync = () => {
   } = settings;
 
   const syncMinimap = async (updateOriginal = false) => {
-    dispatch(actions.synchronizeMinimap(activeTab, updateOriginal));
+    dispatch(actions.synchronizeMinimap(updateOriginal));
 
     const orderedRows = orderArrayBySequence(rowDB, rowOrder).map(row => ({
       data: orderArrayBySequence(row.data, columnOrder),
@@ -65,7 +65,7 @@ const useSync = () => {
 
     const response = await fetch(`/sync/${activeTab}`, options);
     if (response.error) {
-      dispatch(actions.synchError(activeTab));
+      dispatch(actions.synchError());
     }
   };
 

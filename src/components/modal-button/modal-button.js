@@ -2,7 +2,7 @@ import PropTypes from 'prop-types';
 import React, { forwardRef } from 'react';
 
 import Modal from '../modal/modal-container';
-import StyledModalButton, { ConfirmWrapper } from './modal-button-style';
+import StyledModalButton, { ModalButtonWrapper } from './modal-button-style';
 
 const ModalButton = forwardRef((
   {
@@ -17,13 +17,15 @@ const ModalButton = forwardRef((
   },
   ref,
 ) => (
-  <ConfirmWrapper
-    onClick={handleClick}
-    onKeyPress={handleKeyPress}
-    role="button"
-    tabIndex={-1}
-  >
-    <span ref={ref}>
+  <ModalButtonWrapper>
+    <span
+      className="modal-button__button"
+      onClick={handleClick}
+      onKeyPress={handleKeyPress}
+      ref={ref}
+      role="button"
+      tabIndex={-1}
+    >
       {button}
     </span>
     <Modal
@@ -39,7 +41,7 @@ const ModalButton = forwardRef((
         {children}
       </StyledModalButton>
     </Modal>
-  </ConfirmWrapper>
+  </ModalButtonWrapper>
 ));
 
 ModalButton.propTypes = {

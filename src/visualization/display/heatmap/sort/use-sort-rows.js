@@ -4,7 +4,6 @@ import { useDispatch, useSelector } from 'react-redux';
 import ActionNotification from '../../../utils/action-notification';
 
 import rowSort from './row-sort';
-import selectActiveTab from '../../../../state/selector/visualization/tab-selector';
 import { selectData } from '../../../../state/selector/visualization/data-selector';
 import { selectState } from '../../../../state/selector/general';
 import { sortRows } from '../../../../state/visualization/heatmap/rows-actions';
@@ -17,7 +16,6 @@ const useSortRows = () => {
 
   const dispatch = useDispatch();
 
-  const activeTab = useSelector(state => selectActiveTab(state));
   const columns = useSelector(state => selectState(state, 'columnDB'));
   const rows = useSelector(state => selectData(state, 'rows'));
   const rowDB = useSelector(state => selectState(state, 'rowDB'));
@@ -54,7 +52,7 @@ const useSortRows = () => {
 
     const newOrder = rowSort(rowDB, rowOrder, requestedSortIndex, sortDirection, refIndex);
 
-    dispatch(sortRows(activeTab, sortDirection, newOrder, requestedSortBy));
+    dispatch(sortRows(sortDirection, newOrder, requestedSortBy));
 
     setSorting(false);
   };
