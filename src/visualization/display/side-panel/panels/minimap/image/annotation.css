@@ -1,5 +1,6 @@
 .panel-map__annotation {
   border-radius: 50%;
+  cursor: crosshair;
   height: 10px;
   position: absolute;
   width: 10px;

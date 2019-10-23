@@ -50,15 +50,15 @@ describe('Validate number', () => {
 
 describe('Validate object', () => {
   it('should return a valid object', () => {
-    expect(validateArray({ a: 1 })).toEqual({ a: 1 });
+    expect(validateObject({ a: 1 })).toEqual({ a: 1 });
   });
 
   it('should return default for an invalid object', () => {
-    expect(validateArray([])).toEqual({});
+    expect(validateObject([])).toEqual({});
   });
 
   it('should return argument default for an invalid object', () => {
-    expect(validateArray([], { test: 'a' })).toEqual({ test: 'a' });
+    expect(validateObject([], { test: 'a' })).toEqual({ test: 'a' });
   });
 });
 

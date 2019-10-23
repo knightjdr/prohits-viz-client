@@ -27,11 +27,6 @@ exports[`Rectangular button style should match snapshot 1`] = `
   border: 0;
 }
 
-.c0:focus,
-.c0:hover {
-  box-shadow: 0 2px 5px 0 rgba(0,0,0,0.26);
-}
-
 .c0:focus:not([disabled]),
 .c0:hover:not([disabled]) {
   background-color: #fff;

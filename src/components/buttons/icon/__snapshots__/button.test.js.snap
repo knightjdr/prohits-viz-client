@@ -46,11 +46,6 @@ exports[`Icon button style primary button should match snapshot 1`] = `
   border: 0;
 }
 
-.c0:focus,
-.c0:hover {
-  box-shadow: 0 2px 5px 0 rgba(0,0,0,0.26);
-}
-
 .c0:active {
   -webkit-animation-duration: 0.3s;
   animation-duration: 0.3s;
@@ -175,11 +170,6 @@ exports[`Icon button style transparent (default) button should match snapshot 1`
 
 .c0::-moz-focus-inner {
   border: 0;
-}
-
-.c0:focus,
-.c0:hover {
-  box-shadow: 0 2px 5px 0 rgba(0,0,0,0.26);
 }
 
 .c0:active {

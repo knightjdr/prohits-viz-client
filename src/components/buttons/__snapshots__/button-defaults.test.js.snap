@@ -25,11 +25,6 @@ exports[`Default button style default should match snapshot 1`] = `
   border: 0;
 }
 
-.c0:focus,
-.c0:hover {
-  box-shadow: 0 2px 5px 0 rgba(0,0,0,0.26);
-}
-
 .c0 {
   background-color: #0000ff;
   color: #fff;
@@ -84,11 +79,6 @@ exports[`Default button style grey button should match snapshot 1`] = `
   border: 0;
 }
 
-.c0:focus,
-.c0:hover {
-  box-shadow: 0 2px 5px 0 rgba(0,0,0,0.26);
-}
-
 .c0 {
   background-color: rgba(0,0,0,0.2);
 }
@@ -139,11 +129,6 @@ exports[`Default button style optional props should match snapshot 1`] = `
 
 .c0::-moz-focus-inner {
   border: 0;
-}
-
-.c0:focus,
-.c0:hover {
-  box-shadow: 0 2px 5px 0 rgba(0,0,0,0.26);
 }
 
 .c0 {
@@ -210,11 +195,6 @@ exports[`Default button style primary should match snapshot 1`] = `
   border: 0;
 }
 
-.c0:focus,
-.c0:hover {
-  box-shadow: 0 2px 5px 0 rgba(0,0,0,0.26);
-}
-
 .c0 {
   background-color: #0000ff;
   color: #fff;
@@ -267,11 +247,6 @@ exports[`Default button style secondary should match snapshot 1`] = `
 
 .c0::-moz-focus-inner {
   border: 0;
-}
-
-.c0:focus,
-.c0:hover {
-  box-shadow: 0 2px 5px 0 rgba(0,0,0,0.26);
 }
 
 .c0 {
@@ -328,11 +303,6 @@ exports[`Default button style success should match snapshot 1`] = `
   border: 0;
 }
 
-.c0:focus,
-.c0:hover {
-  box-shadow: 0 2px 5px 0 rgba(0,0,0,0.26);
-}
-
 .c0 {
   background-color: #00ff00;
   color: #421C1A;
@@ -384,11 +354,6 @@ exports[`Default button style warning should match snapshot 1`] = `
 
 .c0::-moz-focus-inner {
   border: 0;
-}
-
-.c0:focus,
-.c0:hover {
-  box-shadow: 0 2px 5px 0 rgba(0,0,0,0.26);
 }
 
 .c0 {
