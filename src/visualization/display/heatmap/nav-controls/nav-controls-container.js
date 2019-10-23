@@ -13,10 +13,9 @@ import { updatePosition } from '../../../../state/visualization/settings/positio
 
 const NavControlsContainer = ({
   direction,
+  isResizing,
   offsetVertical,
 }) => {
-  const [isVisible, setVisibility] = useState(true);
-
   const dispatch = useDispatch();
 
   const dimensions = useSelector(state => selectData(state, 'dimensions'));
@@ -25,20 +24,6 @@ const NavControlsContainer = ({
   const length = direction === 'horizontal' ? dimensions.columns : dimensions.rows;
   const pageType = direction === 'horizontal' ? 'pageX' : 'pageY';
   const vertex = direction === 'horizontal' ? 'x' : 'y';
-
-  useEffect(() => {
-    const makeVisible = debounce(() => {
-      setVisibility(true);
-    }, 800);
-    const onResize = () => {
-      setVisibility(false);
-      makeVisible();
-    };
-    window.addEventListener('resize', onResize);
-    return () => {
-      window.removeEventListener('resize', onResize);
-    };
-  });
 
   const calculateNewPostion = (increment) => {
     const newPosition = calculatePlotPosition(position, vertex, length, dimensions[pageType], increment);
@@ -89,7 +74,7 @@ const NavControlsContainer = ({
       handlePageUp={handlePageUp}
       handleRowDown={handleRowDown}
       handleRowUp={handleRowUp}
-      isVisible={isVisible}
+      isResizing={isResizing}
     />
   );
 };
@@ -102,6 +87,43 @@ NavControlsContainer.defaultProps = {
 NavControlsContainer.propTypes = {
   direction: PropTypes.string,
   offsetVertical: PropTypes.bool,
+  isResizing: PropTypes.bool.isRequired,
 };
 
-export default NavControlsContainer;
+const ShowNavControls = ({
+  show,
+  ...props
+}) => {
+  const [isResizing, setIsRisizing] = useState(true);
+
+  useEffect(() => {
+    const makeVisible = debounce(() => {
+      setIsRisizing(true);
+    }, 800);
+    const onResize = () => {
+      setIsRisizing(false);
+      makeVisible();
+    };
+    window.addEventListener('resize', onResize);
+    return () => {
+      window.removeEventListener('resize', onResize);
+    };
+  });
+
+  return (
+    show
+      ? (
+        <NavControlsContainer
+          isResizing={isResizing}
+          {...props}
+        />
+      )
+      : null
+  );
+};
+
+ShowNavControls.propTypes = {
+  show: PropTypes.bool.isRequired,
+};
+
+export default ShowNavControls;

@@ -35,23 +35,15 @@ const Heatmap = forwardRef((
       <Rows />
       <Grid />
     </svg>
-    {
-      showVerticalArrows
-      && (
-        <NavControls
-          direction="vertical"
-          offsetVertical={showHorizontalArrows}
-        />
-      )
-    }
-    {
-      showHorizontalArrows
-      && (
-        <NavControls
-          direction="horizontal"
-        />
-      )
-    }
+    <NavControls
+      direction="vertical"
+      offsetVertical={showHorizontalArrows}
+      show={showVerticalArrows}
+    />
+    <NavControls
+      direction="horizontal"
+      show={showHorizontalArrows}
+    />
   </div>
 ));
 

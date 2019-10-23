@@ -19,7 +19,7 @@ const NavControls = ({
   handlePageUp,
   handleRowDown,
   handleRowUp,
-  isVisible,
+  isResizing,
 }) => (
   <div
     className="nav-controls"
@@ -27,7 +27,7 @@ const NavControls = ({
       bottom: elPosition.bottom,
       right: elPosition.right,
       transform: elPosition.transform,
-      visibility: isVisible ? 'visible' : 'hidden',
+      visibility: isResizing ? 'visible' : 'hidden',
     }}
   >
     <Button
@@ -88,7 +88,7 @@ NavControls.propTypes = {
   handlePageUp: PropTypes.func.isRequired,
   handleRowDown: PropTypes.func.isRequired,
   handleRowUp: PropTypes.func.isRequired,
-  isVisible: PropTypes.bool.isRequired,
+  isResizing: PropTypes.bool.isRequired,
 };
 
 export default NavControls;
