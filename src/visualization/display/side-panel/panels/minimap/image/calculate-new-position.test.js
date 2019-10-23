@@ -11,7 +11,7 @@ describe('New position', () => {
     const event = {
       clientX: 500,
       clientY: 500,
-      target: {
+      currentTarget: {
         getBoundingClientRect: () => ({
           height: 1000,
           left: 0,
@@ -34,7 +34,7 @@ describe('New position', () => {
     const event = {
       clientX: 900,
       clientY: 950,
-      target: {
+      currentTarget: {
         getBoundingClientRect: () => ({
           height: 1000,
           left: 0,
@@ -57,7 +57,7 @@ describe('New position', () => {
     const event = {
       clientX: 0,
       clientY: 0,
-      target: {
+      currentTarget: {
         getBoundingClientRect: () => ({
           height: 1000,
           left: 0,

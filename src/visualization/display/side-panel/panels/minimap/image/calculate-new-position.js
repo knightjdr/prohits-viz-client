@@ -1,5 +1,5 @@
 const calculateNewPosition = (e, dimensions) => {
-  const rect = e.target.getBoundingClientRect();
+  const rect = e.currentTarget.getBoundingClientRect();
   // Calculate mouse position as percentage of container.
   let x = (e.clientX - rect.left) / rect.width;
   let y = (e.clientY - rect.top) / rect.height;
