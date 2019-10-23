@@ -1,3 +1,5 @@
+import isObject from './is-object';
+
 export const validateArray = (testArray, defaultArray = []) => (
   Array.isArray(testArray) ? testArray : defaultArray
 );
@@ -8,6 +10,10 @@ export const validateBoolean = (testValue, defaultBoolean = false) => (
 
 export const validateNumber = (testValue, defaultNumber = 0) => (
   typeof testValue === 'number' ? testValue : defaultNumber
+);
+
+export const validateObject = (testObject, defaultObject = {}) => (
+  isObject(testObject) ? testObject : defaultObject
 );
 
 export const validateString = (testValue, defaultString = '') => (

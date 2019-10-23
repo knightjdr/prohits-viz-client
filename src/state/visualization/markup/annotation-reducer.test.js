@@ -9,6 +9,57 @@ describe('Annotation reducer', () => {
     expect(redcuer(undefined, action)).toEqual(expectedState);
   });
 
+  it('should handle ADD_ANNOTATION action', () => {
+    const currenState = {
+      main: {
+        color: '#0000ff',
+        list: {
+          a1: { position: { x: 0.2, y: 0.2 }, text: 'a' },
+        },
+      },
+    };
+    const action = {
+      id: 'a2',
+      position: { x: 0.5, y: 0.5 },
+      selectionID: 'main',
+      text: 'test annotation',
+      type: actions.ADD_ANNOTATION,
+    };
+    const expectedState = {
+      main: {
+        ...currenState.main,
+        list: {
+          a1: { position: { x: 0.2, y: 0.2 }, text: 'a' },
+          a2: { position: { x: 0.5, y: 0.5 }, text: 'test annotation' },
+        },
+      },
+    };
+    expect(redcuer(currenState, action)).toEqual(expectedState);
+  });
+
+  it('should handle CLEAR_ALL_ANNOTATIONS action', () => {
+    const currenState = {
+      main: {
+        color: '#0000ff',
+        list: {
+          a1: { position: { x: 0.2, y: 0.2 }, text: 'a' },
+          a2: { position: { x: 0.5, y: 0.5 }, text: 'test annotation' },
+        },
+      },
+    };
+    const action = {
+      selectionID: 'main',
+      type: actions.CLEAR_ALL_ANNOTATIONS,
+    };
+    const expectedState = {
+      main: {
+        ...currenState.main,
+        list: {},
+      },
+    };
+    expect(redcuer(currenState, action)).toEqual(expectedState);
+  });
+
   it('should handle CLEAR_INTERACTIVE_STATE action', () => {
     const action = {
       type: fileActions.CLEAR_INTERACTIVE_STATE,
@@ -38,17 +89,18 @@ describe('Annotation reducer', () => {
     expect(redcuer(undefined, action)).toEqual(expectedState);
   });
 
-  it('should handle SET_ANNOTATION_COLOR action', () => {
+  it('should handle CHANGE_ANNOTATION_SETTING action', () => {
     const currenState = {
       main: {
         color: '#0000ff',
-        showAnnotations: true,
+        show: true,
       },
     };
     const action = {
       selectionID: 'main',
-      color: '#ff0000',
-      type: actions.SET_ANNOTATION_COLOR,
+      setting: 'color',
+      type: actions.CHANGE_ANNOTATION_SETTING,
+      value: '#ff0000',
     };
     const expectedState = {
       main: {
@@ -68,13 +120,42 @@ describe('Annotation reducer', () => {
     };
     const action = {
       selectionID: 'main',
-      showAnnotations: false,
+      show: false,
       type: actions.TOGGLE_ANNOTATIONS,
     };
     const expectedState = {
       main: {
         ...currenState.main,
-        showAnnotations: false,
+        show: false,
+      },
+    };
+    expect(redcuer(currenState, action)).toEqual(expectedState);
+  });
+
+  it('should handle UPDATE_ANNOTATION_POSITION action', () => {
+    const currenState = {
+      main: {
+        color: '#0000ff',
+        list: {
+          a1: { position: { x: 0.2, y: 0.2 }, text: 'a' },
+          a2: { position: { x: 0.5, y: 0.5 }, text: 'test annotation' },
+        },
+      },
+    };
+    const newPosition = { x: 0.3, y: 0.3 };
+    const action = {
+      id: 'a1',
+      position: newPosition,
+      selectionID: 'main',
+      type: actions.UPDATE_ANNOTATION_POSITION,
+    };
+    const expectedState = {
+      main: {
+        ...currenState.main,
+        list: {
+          a1: { position: { x: 0.3, y: 0.3 }, text: 'a' },
+          a2: { position: { x: 0.5, y: 0.5 }, text: 'test annotation' },
+        },
       },
     };
     expect(redcuer(currenState, action)).toEqual(expectedState);

@@ -1,14 +1,38 @@
-export const SET_ANNOTATION_COLOR = 'SET_ANNOTATION_COLOR';
+export const ADD_ANNOTATION = 'ADD_ANNOTATION';
+export const CHANGE_ANNOTATION_SETTING = 'CHANGE_ANNOTATION_SETTING';
+export const CLEAR_ALL_ANNOTATIONS = 'CLEAR_ALL_ANNOTATIONS';
 export const TOGGLE_ANNOTATIONS = 'TOGGLE_ANNOTATIONS';
+export const UPDATE_ANNOTATION_POSITION = 'UPDATE_ANNOTATION_POSITION';
 
-export const setAnnotationColor = color => ({
+export const addAnnotation = (id, text, position) => ({
   AUGMENT_WITH_ACTIVE_SELECTION: true,
-  color,
-  type: SET_ANNOTATION_COLOR,
+  id,
+  position,
+  text,
+  type: ADD_ANNOTATION,
 });
 
-export const toggleAnnotations = showAnnotations => ({
+export const clearAllAnnotations = () => ({
   AUGMENT_WITH_ACTIVE_SELECTION: true,
-  showAnnotations,
+  type: CLEAR_ALL_ANNOTATIONS,
+});
+
+export const changeAnnotationSetting = (setting, value) => ({
+  AUGMENT_WITH_ACTIVE_SELECTION: true,
+  setting,
+  type: CHANGE_ANNOTATION_SETTING,
+  value,
+});
+
+export const toggleAnnotations = show => ({
+  AUGMENT_WITH_ACTIVE_SELECTION: true,
+  show,
   type: TOGGLE_ANNOTATIONS,
+});
+
+export const updateAnnotationPosition = (id, position) => ({
+  AUGMENT_WITH_ACTIVE_SELECTION: true,
+  id,
+  position,
+  type: UPDATE_ANNOTATION_POSITION,
 });

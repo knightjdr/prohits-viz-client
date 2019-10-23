@@ -1,11 +1,13 @@
 import PropTypes from 'prop-types';
 import React from 'react';
 
+import Annotations from './annotations';
 import SynchingStatus from '../sync/synching-status';
 
 import './image.css';
 
 const Image = ({
+  annotations,
   handleClick,
   handleKeyPress,
   imgLimits,
@@ -38,6 +40,7 @@ const Image = ({
             maxWidth: imgLimits.width,
           }}
         />
+        <Annotations annotations={annotations} />
         <span
           className="minimap__page-outline"
           style={pageOutline}
@@ -46,14 +49,18 @@ const Image = ({
     )
 );
 
-Image.defaultProps = {
-  imgLimits: {
-    height: 'none',
-    width: 'none',
-  },
-};
-
 Image.propTypes = {
+  annotations: PropTypes.shape({
+    color: PropTypes.string.isRequired,
+    list: PropTypes.shape({
+      position: PropTypes.shape({
+        x: PropTypes.number,
+        y: PropTypes.number,
+      }),
+      text: PropTypes.string,
+    }).isRequired,
+    show: PropTypes.bool.isRequired,
+  }).isRequired,
   handleClick: PropTypes.func.isRequired,
   handleKeyPress: PropTypes.func.isRequired,
   imgLimits: PropTypes.shape({
@@ -65,7 +72,7 @@ Image.propTypes = {
       PropTypes.number,
       PropTypes.string,
     ]),
-  }),
+  }).isRequired,
   minimap: PropTypes.shape({
     image: PropTypes.string,
     isSyncing: PropTypes.bool,

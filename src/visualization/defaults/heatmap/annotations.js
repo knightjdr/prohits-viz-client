@@ -1,12 +1,12 @@
 import isObject from '../../../utils/is-object';
 import validateHex from '../../../utils/validate-hex';
-import { validateArray, validateBoolean, validateNumber } from '../../../utils/validate-type';
+import { validateBoolean, validateNumber, validateObject } from '../../../utils/validate-type';
 
 export const defaultState = {
   color: '#f44336',
   fontSize: 16,
-  list: [],
-  showAnnotations: true,
+  list: {},
+  show: true,
 };
 
 const fillSelectionAnnotations = fileAnnotations => (
@@ -15,14 +15,14 @@ const fillSelectionAnnotations = fileAnnotations => (
       color,
       fontSize,
       list,
-      showAnnotations,
+      show,
     } = fileAnnotations[selection];
 
     const stateAnnotations = {
       color: validateHex(color, defaultState.color),
       fontSize: validateNumber(fontSize, defaultState.fontSize),
-      list: validateArray(list, defaultState.list),
-      showAnnotations: validateBoolean(showAnnotations, defaultState.showAnnotations),
+      list: validateObject(list, defaultState.list),
+      show: validateBoolean(show, defaultState.show),
     };
 
     return {
@@ -37,7 +37,7 @@ const fillAnnotations = (fileAnnotations) => {
     return {
       main: {
         ...defaultState,
-        list: [],
+        list: {},
       },
     };
   }

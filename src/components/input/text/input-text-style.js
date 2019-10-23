@@ -1,7 +1,9 @@
 import styled from 'styled-components';
 
 const Span = styled.span`
+  align-items: center;
   color: ${props => props.theme.fontDark};
+  display: flex;
 
   input {
     border-color: #cccccc;

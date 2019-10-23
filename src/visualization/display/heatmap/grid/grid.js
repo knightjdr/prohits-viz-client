@@ -1,20 +1,21 @@
 import PropTypes from 'prop-types';
-import React, { Fragment } from 'react';
+import React from 'react';
 
 const Grid = ({
   clipPath,
-  gridTranslation,
+  clipPathID,
   page,
+  translation,
 }) => (
-  <Fragment>
+  <>
     {clipPath}
     <g
-      clipPath="url(#clipPath)"
-      transform={gridTranslation}
+      clipPath={`url(#${clipPathID})`}
+      transform={translation}
     >
       {page}
     </g>
-  </Fragment>
+  </>
 );
 
 Grid.defaultProps = {
@@ -23,10 +24,11 @@ Grid.defaultProps = {
 
 Grid.propTypes = {
   clipPath: PropTypes.node.isRequired,
-  gridTranslation: PropTypes.string.isRequired,
+  clipPathID: PropTypes.string.isRequired,
   page: PropTypes.arrayOf(
     PropTypes.node,
   ),
+  translation: PropTypes.string.isRequired,
 };
 
 export default Grid;

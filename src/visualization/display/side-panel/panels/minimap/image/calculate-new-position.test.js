@@ -1,4 +1,4 @@
-import newPosition from './new-position';
+import calculateNewPosition from './calculate-new-position';
 
 describe('New position', () => {
   it('should return x and y when region will be in bounds', () => {
@@ -21,7 +21,7 @@ describe('New position', () => {
       },
     };
     const expected = [13, 13];
-    expect(newPosition(event, dimensions)).toEqual(expected);
+    expect(calculateNewPosition(event, dimensions)).toEqual(expected);
   });
 
   it('should return limits when region will be beyond bounds', () => {
@@ -44,7 +44,7 @@ describe('New position', () => {
       },
     };
     const expected = [25, 25];
-    expect(newPosition(event, dimensions)).toEqual(expected);
+    expect(calculateNewPosition(event, dimensions)).toEqual(expected);
   });
 
   it('should return minimums when region will be below bounds', () => {
@@ -67,6 +67,6 @@ describe('New position', () => {
       },
     };
     const expected = [0, 0];
-    expect(newPosition(event, dimensions)).toEqual(expected);
+    expect(calculateNewPosition(event, dimensions)).toEqual(expected);
   });
 });

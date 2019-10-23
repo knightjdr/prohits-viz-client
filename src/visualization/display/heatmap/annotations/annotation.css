@@ -1,0 +1,7 @@
+.heatmap__annotation {
+  cursor: pointer;
+}
+.heatmap__annotation_moving {
+  cursor: move;
+  user-select: none;
+}

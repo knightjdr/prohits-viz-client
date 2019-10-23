@@ -2,6 +2,7 @@ import {
   validateArray,
   validateBoolean,
   validateNumber,
+  validateObject,
   validateString,
 } from './validate-type';
 
@@ -44,6 +45,20 @@ describe('Validate number', () => {
 
   it('should return argument default for an invalid number', () => {
     expect(validateNumber('1', 2)).toBe(2);
+  });
+});
+
+describe('Validate object', () => {
+  it('should return a valid object', () => {
+    expect(validateArray({ a: 1 })).toEqual({ a: 1 });
+  });
+
+  it('should return default for an invalid object', () => {
+    expect(validateArray([])).toEqual({});
+  });
+
+  it('should return argument default for an invalid object', () => {
+    expect(validateArray([], { test: 'a' })).toEqual({ test: 'a' });
   });
 });
 

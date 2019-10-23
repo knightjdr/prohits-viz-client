@@ -6,14 +6,13 @@ describe('Fill annotations', () => {
       main: {
         color: '#f44338',
         fontSize: 14,
-        list: [
-          {
+        list: {
+          id: {
+            position: { x: 0.5, y: 0.1 },
             text: 'test',
-            x: 0.5,
-            y: 0.1,
           },
-        ],
-        showAnnotations: false,
+        },
+        show: false,
       },
     };
     const expected = fileAnnotations;
@@ -25,8 +24,8 @@ describe('Fill annotations', () => {
       main: {
         color: 'f44338',
         fontSize: '14',
-        list: {},
-        showAnnotations: 'fa;se',
+        list: [],
+        show: 'false',
       },
     };
     const expected = {

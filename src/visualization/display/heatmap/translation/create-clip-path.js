@@ -1,10 +1,10 @@
 import React from 'react';
 
-const createClipPath = (cellSize, cellX, cellY, height, width) => {
+const createClipPath = (clipPathID, cellSize, cellX, cellY, height, width) => {
   const x = cellSize * cellX;
   const y = cellSize * cellY;
   return (
-    <clipPath id="clipPath">
+    <clipPath id={clipPathID}>
       <rect
         height={height}
         width={width}

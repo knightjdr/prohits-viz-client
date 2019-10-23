@@ -1,0 +1,6 @@
+.panel-map__annotation {
+  border-radius: 50%;
+  height: 10px;
+  position: absolute;
+  width: 10px;
+}

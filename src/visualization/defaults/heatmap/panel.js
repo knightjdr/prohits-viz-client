@@ -1,6 +1,6 @@
 export const defaultState = {
   open: true,
-  tab: 'markup',
+  tab: 'minimap',
 };
 
 const validTabs = {

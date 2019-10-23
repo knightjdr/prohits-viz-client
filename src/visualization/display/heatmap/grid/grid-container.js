@@ -4,13 +4,12 @@ import { useSelector } from 'react-redux';
 import Grid from './grid';
 
 import calculateEdgeWidth from './calculate-edge-width';
-import calculateTranslation from './calculate-translation';
-import createClipPath from './create-clip-path';
 import heatmapConfig from '../config';
 import initializeColorGradient from '../../../../utils/color/initialize-color-gradient';
 import partialEdgeRange from './set-edge-range-partial';
 import partialSetRange from '../../../../utils/set-range-partial';
 import subsetPage from './subset-page';
+import useTranslation from '../translation/use-translation';
 import { selectData, selectDataProperty } from '../../../../state/selector/visualization/data-selector';
 import { selectState, selectStateProperty } from '../../../../state/selector/general';
 
@@ -24,6 +23,9 @@ const GridContainer = () => {
   const rowOrder = useSelector(state => selectDataProperty(state, 'rows', 'order'));
   const scoreType = useSelector(state => selectStateProperty(state, 'parameters', 'scoreType'));
   const settings = useSelector(state => selectDataProperty(state, 'settings', 'current'));
+
+  const clipPathID = 'gridClipPath';
+  const translation = useTranslation(clipPathID);
 
   const {
     abundanceCap,
@@ -57,21 +59,6 @@ const GridContainer = () => {
     () => initializeColorGradient(fillColor, numColors, invertColor),
     [fillColor, invertColor, numColors],
   );
-  const gridClipPath = useMemo(
-    () => createClipPath(
-      cellSize,
-      position.x,
-      position.y,
-      dimensions.height,
-      dimensions.width,
-    ),
-    [cellSize, position.x, position.y, dimensions.height, dimensions.width],
-  );
-  const gridTranslation = useMemo(
-    () => calculateTranslation(cellSize, position.x, position.y),
-    [cellSize, position.x, position.y],
-  );
-
   useEffect(() => {
     if (dimensions.height > 0 && dimensions.width > 0) {
       setPage(subsetPage(
@@ -108,9 +95,10 @@ const GridContainer = () => {
 
   return (
     <Grid
-      clipPath={gridClipPath}
-      gridTranslation={gridTranslation}
+      clipPath={translation.clipPath}
+      clipPathID={clipPathID}
       page={page}
+      translation={translation.translation}
     />
   );
 };

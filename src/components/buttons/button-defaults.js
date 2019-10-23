@@ -18,11 +18,6 @@ const Button = styled.button`
     border: 0;
   }
 
-  &:focus,
-  &:hover {
-    box-shadow: 0 2px 5px 0 rgba(0, 0, 0, 0.26);
-  }
-
   ${props => (props.disabled
     && css`& {
       cursor: not-allowed;

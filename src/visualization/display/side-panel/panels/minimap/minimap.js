@@ -3,15 +3,13 @@ import React from 'react';
 
 import Attached from './attached/attached';
 import Detached from './detached/detached-container';
-import Image from './image/image';
+import Image from './image/image-container';
 import Title from './title/title';
 
 import './minimap.css';
 
 const Minimap = ({
   attached,
-  handleClick,
-  handleKeyPress,
   minimap,
   pageOutline,
   syncMinimap,
@@ -20,8 +18,6 @@ const Minimap = ({
 }) => {
   const image = (
     <Image
-      handleClick={handleClick}
-      handleKeyPress={handleKeyPress}
       minimap={minimap}
       pageOutline={pageOutline}
       syncMinimap={syncMinimap}
@@ -57,8 +53,6 @@ const Minimap = ({
 
 Minimap.propTypes = {
   attached: PropTypes.bool.isRequired,
-  handleClick: PropTypes.func.isRequired,
-  handleKeyPress: PropTypes.func.isRequired,
   minimap: PropTypes.shape({
     image: PropTypes.string,
     syncedImage: PropTypes.string,

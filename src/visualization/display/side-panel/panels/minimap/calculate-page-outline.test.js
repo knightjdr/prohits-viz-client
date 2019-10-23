@@ -1,4 +1,4 @@
-import range from './range';
+import calculatePageOutline from './calculate-page-outline';
 
 describe('Minimap range', () => {
   it('should define range for current view', () => {
@@ -18,6 +18,6 @@ describe('Minimap range', () => {
       top: '4%',
       width: '50%',
     };
-    expect(range(dimensions, position)).toEqual(expected);
+    expect(calculatePageOutline(dimensions, position)).toEqual(expected);
   });
 });

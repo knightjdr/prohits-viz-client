@@ -1,6 +1,7 @@
 import PropTypes from 'prop-types';
 import React, { forwardRef } from 'react';
 
+import Annotations from './annotations/annotations-container';
 import Columns from './columns/columns-container';
 import Grid from './grid/grid-container';
 import NavControls from './nav-controls/nav-controls-container';
@@ -34,6 +35,7 @@ const Heatmap = forwardRef((
       <Columns />
       <Rows />
       <Grid />
+      <Annotations />
     </svg>
     <NavControls
       direction="vertical"
