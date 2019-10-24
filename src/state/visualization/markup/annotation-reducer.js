@@ -1,7 +1,7 @@
 import * as actions from './annotation-actions';
 import * as fileActions from '../data/interactive-file-actions';
 
-const reduceAnnotationList = (state, action) => ({
+const reduceAllAnnotations = (state, action) => ({
   ...state,
   [action.selectionID]: {
     ...state[action.selectionID],
@@ -12,6 +12,14 @@ const reduceAnnotationList = (state, action) => ({
 const reduceInteractiveState = file => (
   file.annotations ? file.annotations : {}
 );
+
+const reduceList = (state, action) => ({
+  ...state,
+  [action.selectionID]: {
+    ...state[action.selectionID],
+    list: action.list,
+  },
+});
 
 const reduceNewAnnotation = (state, action) => ({
   ...state,
@@ -64,7 +72,7 @@ const reducer = (state = {}, action) => {
     case actions.CHANGE_ANNOTATION_SETTING:
       return reduceSetting(state, action);
     case actions.CLEAR_ALL_ANNOTATIONS:
-      return reduceAnnotationList(state, action);
+      return reduceAllAnnotations(state, action);
     case fileActions.CLEAR_INTERACTIVE_STATE:
       return {};
     case fileActions.LOAD_INTERACTIVE_STATE:
@@ -73,6 +81,8 @@ const reducer = (state = {}, action) => {
       return reduceShowAnnotations(state, action);
     case actions.UPDATE_ANNOTATION_POSITION:
       return reducePosition(state, action);
+    case actions.UPDATE_ANNOTATIONS:
+      return reduceList(state, action);
     default:
       return state;
   }

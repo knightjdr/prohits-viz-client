@@ -3,6 +3,7 @@ export const CHANGE_ANNOTATION_SETTING = 'CHANGE_ANNOTATION_SETTING';
 export const CLEAR_ALL_ANNOTATIONS = 'CLEAR_ALL_ANNOTATIONS';
 export const TOGGLE_ANNOTATIONS = 'TOGGLE_ANNOTATIONS';
 export const UPDATE_ANNOTATION_POSITION = 'UPDATE_ANNOTATION_POSITION';
+export const UPDATE_ANNOTATIONS = 'UPDATE_ANNOTATIONS';
 
 export const addAnnotation = (id, text, position) => ({
   AUGMENT_WITH_ACTIVE_SELECTION: true,
@@ -35,4 +36,10 @@ export const updateAnnotationPosition = (id, position) => ({
   id,
   position,
   type: UPDATE_ANNOTATION_POSITION,
+});
+
+export const updateAnnotations = list => ({
+  AUGMENT_WITH_ACTIVE_SELECTION: true,
+  list,
+  type: UPDATE_ANNOTATIONS,
 });

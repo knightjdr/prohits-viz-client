@@ -53,4 +53,19 @@ describe('Annotation actions', () => {
     };
     expect(actions.updateAnnotationPosition('testID', position)).toEqual(expectedAction);
   });
+
+  it('should dispatch an action to update annotation list', () => {
+    const list = {
+      testID: {
+        position: { x: 0.1, y: 0.1 },
+        text: 'test',
+      },
+    };
+    const expectedAction = {
+      AUGMENT_WITH_ACTIVE_SELECTION: true,
+      list,
+      type: actions.UPDATE_ANNOTATIONS,
+    };
+    expect(actions.updateAnnotations(list)).toEqual(expectedAction);
+  });
 });

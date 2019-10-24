@@ -8,6 +8,7 @@ const Annotations = ({
   clipPath,
   clipPathID,
   fontSize,
+  handleAnnotationDeletion,
   height,
   list,
   show,
@@ -26,6 +27,7 @@ const Annotations = ({
             Object.entries(list).map(([id, annotation]) => (
               <Annotation
                 cellSize={cellSize}
+                handleAnnotationDeletion={handleAnnotationDeletion}
                 height={height}
                 fontSize={fontSize}
                 id={id}
@@ -47,6 +49,7 @@ Annotations.propTypes = {
   clipPath: PropTypes.node.isRequired,
   clipPathID: PropTypes.string.isRequired,
   fontSize: PropTypes.number.isRequired,
+  handleAnnotationDeletion: PropTypes.func.isRequired,
   height: PropTypes.number.isRequired,
   list: PropTypes.shape({
     position: PropTypes.shape({

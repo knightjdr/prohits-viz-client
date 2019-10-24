@@ -10,6 +10,7 @@ import { updateAnnotationPosition } from '../../../../state/visualization/markup
 
 const AnnotationContainer = ({
   cellSize,
+  handleAnnotationDeletion,
   height,
   id,
   position,
@@ -36,6 +37,10 @@ const AnnotationContainer = ({
     const { clientX: x, clientY: y } = e;
     cursorReference.current.x = x;
     cursorReference.current.y = y;
+  };
+
+  const handleDeletion = () => {
+    handleAnnotationDeletion(id);
   };
 
   const handleMouseMove = (e) => {
@@ -67,6 +72,7 @@ const AnnotationContainer = ({
   return (
     <Annotation
       {...props}
+      handleDeletion={handleDeletion}
       handleMouseDown={handleMouseDown}
       height={height}
       isMouseDown={isMouseDown}
@@ -78,6 +84,7 @@ const AnnotationContainer = ({
 
 AnnotationContainer.propTypes = {
   cellSize: PropTypes.number.isRequired,
+  handleAnnotationDeletion: PropTypes.func.isRequired,
   height: PropTypes.number.isRequired,
   id: PropTypes.string.isRequired,
   position: PropTypes.shape({

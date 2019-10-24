@@ -160,4 +160,31 @@ describe('Annotation reducer', () => {
     };
     expect(redcuer(currenState, action)).toEqual(expectedState);
   });
+
+  it('should handle UPDATE_ANNOTATIONS action', () => {
+    const currenState = {
+      main: {
+        color: '#0000ff',
+        list: {
+          a1: { position: { x: 0.2, y: 0.2 }, text: 'a' },
+          a2: { position: { x: 0.5, y: 0.5 }, text: 'test annotation' },
+        },
+      },
+    };
+    const newList = {
+      a1: { position: { x: 0.2, y: 0.2 }, text: 'a' },
+    };
+    const action = {
+      list: newList,
+      selectionID: 'main',
+      type: actions.UPDATE_ANNOTATIONS,
+    };
+    const expectedState = {
+      main: {
+        ...currenState.main,
+        list: newList,
+      },
+    };
+    expect(redcuer(currenState, action)).toEqual(expectedState);
+  });
 });
