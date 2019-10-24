@@ -7,6 +7,7 @@ import fillPanel from './panel';
 import fillParameters from './parameters';
 import fillPosition from './position';
 import fillRows from './rows';
+import fillSearchStatus from './search-status';
 import fillSettings from './settings';
 import fillTabs from '../tabs';
 
@@ -23,6 +24,7 @@ const validateHeatmap = (file, filename, taskID) => {
     position,
     rowDB,
     rows,
+    searchStatus,
     settings,
     tabs,
   } = file;
@@ -39,6 +41,7 @@ const validateHeatmap = (file, filename, taskID) => {
     position: fillPosition(position),
     rowDB,
     rows: fillRows(rows, rowDB),
+    searchStatus: fillSearchStatus(searchStatus),
     settings: fillSettings(settings),
     tabs: fillTabs(tabs),
   };

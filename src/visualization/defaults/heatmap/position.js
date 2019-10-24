@@ -19,7 +19,6 @@ const fillPosition = (userPosition) => {
     } = userPosition[selection];
     const position = {};
 
-    // Ensure x and y are between 0 and 1.
     if (
       typeof x === 'number'
       && typeof y === 'number'

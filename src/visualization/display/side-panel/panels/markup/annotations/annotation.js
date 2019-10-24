@@ -5,6 +5,7 @@ import { faPlus } from '@fortawesome/pro-solid-svg-icons';
 
 import IconButton from '../../../../../../components/buttons/icon/button';
 import Input from '../../../../../../components/input/text/input-text-container';
+import InputWithButton from '../../../../../../components/input/with-button/input-with-button-container';
 import ColorPicker from '../../../../../../components/color-picker/color-picker-container';
 import Section from '../../section/section';
 import Switch from '../../../../../../components/input/switch/switch-container';
@@ -15,12 +16,10 @@ const Annotation = ({
   color,
   fontSize,
   handleAddAnnotation,
-  handleAnnotationChange,
   handleClearAll,
   handleColorChange,
   handleFontSizeChange,
   handleToggleAnnotations,
-  newAnnotation,
   show,
 }) => (
   <Section
@@ -28,22 +27,15 @@ const Annotation = ({
     title="Annotations"
   >
     <div className="panel-annotation__input">
-      <div className="panel-annotation__input-inner">
-        <Input
-          id="newAnnotationInput"
-          onChange={handleAnnotationChange}
-          placeholder="Annotation..."
-          type="text"
-          value={newAnnotation}
-        />
-        <IconButton
-          id="newAnnotationButton"
-          icon={faPlus}
-          kind="secondary"
-          onClick={handleAddAnnotation}
-          type="button"
-        />
-      </div>
+      <InputWithButton
+        kind="secondary"
+        buttonType="button"
+        icon={faPlus}
+        id="newAnnotation"
+        inputType="text"
+        placeholder="Annotation..."
+        onClick={handleAddAnnotation}
+      />
     </div>
     <div className="panel-annotation__grid">
       <Input
@@ -62,7 +54,7 @@ const Annotation = ({
         onChange={handleToggleAnnotations}
       />
       <span className="panel-annotation__label">
-        Color:
+        Dot color:
       </span>
       <ColorPicker
         color={color}
@@ -86,12 +78,10 @@ Annotation.propTypes = {
   color: PropTypes.string.isRequired,
   fontSize: PropTypes.number.isRequired,
   handleAddAnnotation: PropTypes.func.isRequired,
-  handleAnnotationChange: PropTypes.func.isRequired,
   handleClearAll: PropTypes.func.isRequired,
   handleColorChange: PropTypes.func.isRequired,
   handleFontSizeChange: PropTypes.func.isRequired,
   handleToggleAnnotations: PropTypes.func.isRequired,
-  newAnnotation: PropTypes.string.isRequired,
   show: PropTypes.bool.isRequired,
 };
 

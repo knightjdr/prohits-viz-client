@@ -15,6 +15,7 @@ import parameters from './visualization/data/parameter-reducer';
 import position from './visualization/settings/position-reducer';
 import rowDB from './visualization/data/row-db-reducer';
 import rows from './visualization/heatmap/rows-reducer';
+import searchStatus from './visualization/markup/search-reducer';
 import session from './session/session-reducer';
 import settings from './visualization/settings/settings-reducer';
 import tabs from './visualization/settings/tabs-reducer';
@@ -35,6 +36,7 @@ const reducers = combineReducers({
   position,
   rowDB,
   rows,
+  searchStatus,
   session,
   settings,
   tabs,

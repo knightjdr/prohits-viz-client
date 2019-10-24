@@ -1,4 +1,4 @@
-import fillAnotations, { defaultState } from './annotations';
+import fillAnnotations, { defaultState } from './annotations';
 
 describe('Fill annotations', () => {
   it('should return file-defined annotation object when valid', () => {
@@ -16,7 +16,7 @@ describe('Fill annotations', () => {
       },
     };
     const expected = fileAnnotations;
-    expect(fillAnotations(fileAnnotations)).toEqual(expected);
+    expect(fillAnnotations(fileAnnotations)).toEqual(expected);
   });
 
   it('should return defaults when file-defined annotation object invalid', () => {
@@ -31,7 +31,7 @@ describe('Fill annotations', () => {
     const expected = {
       main: defaultState,
     };
-    expect(fillAnotations(fileAnnotations)).toEqual(expected);
+    expect(fillAnnotations(fileAnnotations)).toEqual(expected);
   });
 
   it('should return defaults when no selections are defined', () => {
@@ -39,7 +39,7 @@ describe('Fill annotations', () => {
     const expected = {
       main: defaultState,
     };
-    expect(fillAnotations(fileAnnotations)).toEqual(expected);
+    expect(fillAnnotations(fileAnnotations)).toEqual(expected);
   });
 
   it('should return defaults when file-defined annotations is not an object', () => {
@@ -47,13 +47,13 @@ describe('Fill annotations', () => {
     const expected = {
       main: defaultState,
     };
-    expect(fillAnotations(fileAnnotations)).toEqual(expected);
+    expect(fillAnnotations(fileAnnotations)).toEqual(expected);
   });
 
   it('should return defaults when file-defined annotations undefined', () => {
     const expected = {
       main: defaultState,
     };
-    expect(fillAnotations()).toEqual(expected);
+    expect(fillAnnotations()).toEqual(expected);
   });
 });

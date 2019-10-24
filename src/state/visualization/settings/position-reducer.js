@@ -1,7 +1,16 @@
 import * as fileActions from '../data/interactive-file-actions';
 import * as rowActions from '../heatmap/rows-actions';
+import * as searchActions from '../markup/search-actions';
 
 import { UPDATE_POSITION } from './position-actions';
+
+const reduceAndUpdate = (state, action) => ({
+  ...state,
+  [action.selectionID]: {
+    x: action.x,
+    y: action.y,
+  },
+});
 
 const reducer = (state = {}, action) => {
   switch (action.type) {
@@ -19,6 +28,8 @@ const reducer = (state = {}, action) => {
       return action.file.position
         ? action.file.position
         : {};
+    case searchActions.SET_SEARCH_STATUS:
+      return reduceAndUpdate(state, action);
     case rowActions.SORT_ROWS:
       return {
         ...state,
@@ -28,13 +39,7 @@ const reducer = (state = {}, action) => {
         },
       };
     case UPDATE_POSITION:
-      return {
-        ...state,
-        [action.selectionID]: {
-          x: action.x,
-          y: action.y,
-        },
-      };
+      return reduceAndUpdate(state, action);
     default:
       return state;
   }

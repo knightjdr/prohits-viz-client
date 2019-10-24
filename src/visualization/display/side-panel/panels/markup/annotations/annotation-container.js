@@ -1,4 +1,4 @@
-import React, { useMemo, useState } from 'react';
+import React, { useMemo } from 'react';
 import nanoID from 'nanoid';
 import { useDispatch, useSelector } from 'react-redux';
 
@@ -14,7 +14,6 @@ import {
 } from '../../../../../../state/visualization/markup/annotation-actions';
 
 const AnnotationContainer = () => {
-  const [newAnnotation, setNewAnnotation] = useState('');
   const dispatch = useDispatch();
   const annotations = useSelector(state => selectData(state, 'annotations'));
   const dimensions = useSelector(state => selectData(state, 'dimensions'));
@@ -27,15 +26,11 @@ const AnnotationContainer = () => {
     [dimensions, position],
   );
 
-  const handleAddAnnotation = () => {
-    if (newAnnotation) {
-      const id = nanoID();
-      dispatch(addAnnotation(id, newAnnotation, defaultPosition));
+  const handleAddAnnotation = (e, elementID, value) => {
+    if (value) {
+      const annotationID = nanoID();
+      dispatch(addAnnotation(annotationID, value, defaultPosition));
     }
-  };
-
-  const handleAnnotationChange = (e, id, value) => {
-    setNewAnnotation(value);
   };
 
   const handleClearAll = () => {
@@ -59,12 +54,10 @@ const AnnotationContainer = () => {
       color={color}
       fontSize={fontSize}
       handleAddAnnotation={handleAddAnnotation}
-      handleAnnotationChange={handleAnnotationChange}
       handleClearAll={handleClearAll}
       handleColorChange={handleColorChange}
       handleFontSizeChange={handleFontSizeChange}
       handleToggleAnnotations={handleToggleAnnotations}
-      newAnnotation={newAnnotation}
       show={show}
     />
   );
