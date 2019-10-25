@@ -4,6 +4,26 @@ import * as searchActions from '../markup/search-actions';
 
 import { UPDATE_POSITION } from './position-actions';
 
+const reduceAndFilter = (state, action) => ({
+  ...state,
+  [action.selectionID]: {
+    x: 0,
+    y: 0,
+  },
+});
+
+const reduceAndLoad = (state, action) => (
+  action.file.position ? action.file.position : {}
+);
+
+const reduceAndSort = (state, action) => ({
+  ...state,
+  [action.selectionID]: {
+    x: 0,
+    y: 0,
+  },
+});
+
 const reduceAndUpdate = (state, action) => ({
   ...state,
   [action.selectionID]: {
@@ -17,27 +37,13 @@ const reducer = (state = {}, action) => {
     case fileActions.CLEAR_INTERACTIVE_STATE:
       return {};
     case rowActions.FILTER_ROWS:
-      return {
-        ...state,
-        [action.selectionID]: {
-          x: 0,
-          y: 0,
-        },
-      };
+      return reduceAndFilter(state, action);
     case fileActions.LOAD_INTERACTIVE_STATE:
-      return action.file.position
-        ? action.file.position
-        : {};
+      return reduceAndLoad(state, action);
     case searchActions.SET_SEARCH_STATUS:
       return reduceAndUpdate(state, action);
     case rowActions.SORT_ROWS:
-      return {
-        ...state,
-        [action.selectionID]: {
-          x: 0,
-          y: 0,
-        },
-      };
+      return reduceAndSort(state, action);
     case UPDATE_POSITION:
       return reduceAndUpdate(state, action);
     default:

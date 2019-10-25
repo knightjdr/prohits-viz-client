@@ -1,3 +1,5 @@
+import { validateBoolean } from '../../../utils/validate-type';
+
 export const defaultState = {
   open: true,
   tab: 'markup',
@@ -20,7 +22,7 @@ const fillPanel = (userPanel) => {
   const { open, tab } = userPanel;
   const panel = {};
 
-  panel.open = typeof open === 'boolean' ? open : defaultState.open;
+  panel.open = validateBoolean(open, defaultState.open);
   panel.tab = validTabs[tab] ? tab : defaultState.tab;
   return panel;
 };

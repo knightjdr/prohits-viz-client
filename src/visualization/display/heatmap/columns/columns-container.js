@@ -21,6 +21,7 @@ const ColumnsContainer = () => {
   });
 
   const columnRef = useSelector(state => selectDataProperty(state, 'columns', 'ref'));
+  const columnSearchMatches = useSelector(state => selectDataProperty(state, 'searchStatus', 'columns'));
   const names = useSelector(state => selectColumns(state));
   const pageX = useSelector(state => selectDataProperty(state, 'dimensions', 'pageX'));
   const settings = useSelector(state => selectDataProperty(state, 'settings', 'current'));
@@ -82,7 +83,7 @@ const ColumnsContainer = () => {
       hideTooltip={hideTooltip}
       names={columnNames}
       openContextMenu={contextMenu.open}
-      search={{}}
+      searchMatches={columnSearchMatches}
       sortBy={sortBy}
       sortDirection={sortDirection}
       reference={columnRef}

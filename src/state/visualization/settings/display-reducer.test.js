@@ -1,6 +1,8 @@
-import reducer, { defaultState } from './display-reducer';
+import reducer from './display-reducer';
 import * as actions from './display-actions';
 import * as fileActions from '../data/interactive-file-actions';
+
+const defaultState = {};
 
 describe('Display reducer', () => {
   it('should return a default initial state', () => {
@@ -19,28 +21,6 @@ describe('Display reducer', () => {
     expect(reducer(undefined, action)).toEqual(expectedState);
   });
 
-  it('should handle FIX_PLOT action', () => {
-    const currentState = {
-      main: {
-        fixed: false,
-      },
-    };
-
-    const action = {
-      fixed: true,
-      selectionID: 'main',
-      type: actions.FIX_PLOT,
-    };
-    const expectedState = {
-      ...currentState,
-      main: {
-        ...currentState.main,
-        plotFixed: true,
-      },
-    };
-    expect(reducer(currentState, action)).toEqual(expectedState);
-  });
-
   it('should handle LOAD_INTERACTIVE_STATE action when panel state is not defined', () => {
     const action = {
       file: {
@@ -50,5 +30,28 @@ describe('Display reducer', () => {
     };
     const expectedState = { plotFixed: true };
     expect(reducer(undefined, action)).toEqual(expectedState);
+  });
+
+  it('should handle UPDATE_DISPLAY_SETTING action', () => {
+    const currentState = {
+      main: {
+        plotFixed: false,
+      },
+    };
+
+    const action = {
+      selectionID: 'main',
+      setting: 'plotFixed',
+      type: actions.UPDATE_DISPLAY_SETTING,
+      value: true,
+    };
+    const expectedState = {
+      ...currentState,
+      main: {
+        ...currentState.main,
+        plotFixed: true,
+      },
+    };
+    expect(reducer(currentState, action)).toEqual(expectedState);
   });
 });

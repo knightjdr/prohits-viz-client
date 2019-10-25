@@ -23,7 +23,7 @@ const SearchContainer = () => {
     dispatch(setSearchStatus(searchTerm, searchResult));
   };
 
-  const warning = term && !match;
+  const warning = term && !match ? 'No match found' : '';
 
   return (
     <Search

@@ -5,6 +5,7 @@ describe('Fill display', () => {
     const userMinimap = {
       main: {
         plotFixed: true,
+        showTooltips: true,
       },
     };
     const expected = {
@@ -20,6 +21,7 @@ describe('Fill display', () => {
     const userMinimap = {
       main: {
         plotFixed: 'true',
+        showTooltips: 'true',
       },
     };
     const expected = {

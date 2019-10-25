@@ -16,8 +16,8 @@ const ImageContainer = ({
 }) => {
   const dispatch = useDispatch();
 
-  const annotations = useSelector(state => selectData(state, 'annotations'));
   const dimensions = useSelector(state => selectData(state, 'dimensions'));
+
 
   const handleClick = (e) => {
     const [x, y] = calculateNewPosition(e, dimensions);
@@ -28,7 +28,6 @@ const ImageContainer = ({
 
   return (
     <Image
-      annotations={annotations}
       handleClick={handleClick}
       handleKeyPress={handleKeyPress}
       imgLimits={imgLimits}

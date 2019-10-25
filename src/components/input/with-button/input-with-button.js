@@ -16,6 +16,7 @@ const InputWithButton = ({
   label,
   placeholder,
   value,
+  warning,
 }) => (
   <StyledInput className="input-with-button">
     <Input
@@ -25,6 +26,7 @@ const InputWithButton = ({
       placeholder={placeholder}
       type={inputType}
       value={value}
+      warning={warning}
     />
     <IconButton
       id={`${id}-button`}
@@ -42,6 +44,7 @@ InputWithButton.defaultProps = {
   inputType: 'text',
   label: '',
   placeholder: '',
+  warning: '',
 };
 
 InputWithButton.propTypes = {
@@ -58,6 +61,7 @@ InputWithButton.propTypes = {
     PropTypes.number,
     PropTypes.string,
   ]).isRequired,
+  warning: PropTypes.string,
 };
 
 export default InputWithButton;

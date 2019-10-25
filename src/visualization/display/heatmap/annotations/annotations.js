@@ -11,37 +11,32 @@ const Annotations = ({
   handleAnnotationDeletion,
   height,
   list,
-  show,
   translation,
   width,
 }) => (
-  show
-    ? (
-      <>
-        {clipPath}
-        <g
-          clipPath={`url(#${clipPathID})`}
-          transform={translation}
-        >
-          {
-            Object.entries(list).map(([id, annotation]) => (
-              <Annotation
-                cellSize={cellSize}
-                handleAnnotationDeletion={handleAnnotationDeletion}
-                height={height}
-                fontSize={fontSize}
-                id={id}
-                key={id}
-                position={annotation.position}
-                text={annotation.text}
-                width={width}
-              />
-            ))
-          }
-        </g>
-      </>
-    )
-    : null
+  <>
+    {clipPath}
+    <g
+      clipPath={`url(#${clipPathID})`}
+      transform={translation}
+    >
+      {
+        Object.entries(list).map(([id, annotation]) => (
+          <Annotation
+            cellSize={cellSize}
+            handleAnnotationDeletion={handleAnnotationDeletion}
+            height={height}
+            fontSize={fontSize}
+            id={id}
+            key={id}
+            position={annotation.position}
+            text={annotation.text}
+            width={width}
+          />
+        ))
+      }
+    </g>
+  </>
 );
 
 Annotations.propTypes = {
@@ -58,7 +53,6 @@ Annotations.propTypes = {
     }),
     text: PropTypes.string,
   }).isRequired,
-  show: PropTypes.bool.isRequired,
   translation: PropTypes.string.isRequired,
   width: PropTypes.number.isRequired,
 };

@@ -1,13 +1,13 @@
 import PropTypes from 'prop-types';
 import React from 'react';
 
-import Annotations from './annotations';
+import Annotations from './annotations/annotation-container';
+import SearchResult from './search-results/search-results-container';
 import SynchingStatus from '../sync/synching-status';
 
 import './image.css';
 
 const Image = ({
-  annotations,
   handleClick,
   handleKeyPress,
   imgLimits,
@@ -40,7 +40,8 @@ const Image = ({
             maxWidth: imgLimits.width,
           }}
         />
-        <Annotations annotations={annotations} />
+        <Annotations />
+        <SearchResult />
         <span
           className="minimap__page-outline"
           style={pageOutline}
@@ -50,17 +51,6 @@ const Image = ({
 );
 
 Image.propTypes = {
-  annotations: PropTypes.shape({
-    color: PropTypes.string.isRequired,
-    list: PropTypes.shape({
-      position: PropTypes.shape({
-        x: PropTypes.number,
-        y: PropTypes.number,
-      }),
-      text: PropTypes.string,
-    }).isRequired,
-    show: PropTypes.bool.isRequired,
-  }).isRequired,
   handleClick: PropTypes.func.isRequired,
   handleKeyPress: PropTypes.func.isRequired,
   imgLimits: PropTypes.shape({

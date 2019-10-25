@@ -18,7 +18,7 @@ const AnnotationsContainer = () => {
   const clipPathID = 'annotationClipPath';
   const translation = useTranslation('annotationClipPath');
 
-  const { fontSize, list, show } = annotations;
+  const { fontSize, list } = annotations;
   const { columns, rows } = dimensions;
   const { cellSize } = settings;
 
@@ -40,11 +40,16 @@ const AnnotationsContainer = () => {
       handleAnnotationDeletion={handleAnnotationDeletion}
       height={height}
       list={list}
-      show={show}
       translation={translation.translation}
       width={width}
     />
   );
 };
 
-export default AnnotationsContainer;
+const ShowComponent = () => {
+  const show = useSelector(state => selectDataProperty(state, 'annotations', 'show'));
+
+  return show && <AnnotationsContainer />;
+};
+
+export default ShowComponent;

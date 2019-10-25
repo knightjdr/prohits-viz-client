@@ -1,0 +1,8 @@
+.panel-map__search-result {
+  background-color: #4caf50;
+  border-radius: 50%;
+  cursor: crosshair;
+  height: 10px;
+  position: absolute;
+  width: 10px;
+}

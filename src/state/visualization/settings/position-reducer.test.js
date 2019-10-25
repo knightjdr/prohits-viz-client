@@ -2,6 +2,7 @@ import redcuer from './position-reducer';
 import * as actions from './position-actions';
 import * as fileActions from '../data/interactive-file-actions';
 import * as rowActions from '../heatmap/rows-actions';
+import * as searchActions from '../markup/search-actions';
 
 describe('Position reducer', () => {
   it('should return a default initial state', () => {
@@ -48,6 +49,22 @@ describe('Position reducer', () => {
       main: {
         x: 0.1,
         y: 0.5,
+      },
+    };
+    expect(redcuer(undefined, action)).toEqual(expectedState);
+  });
+
+  it('should handle SET_SEARCH_STATUS action', () => {
+    const action = {
+      selectionID: 'main',
+      type: searchActions.SET_SEARCH_STATUS,
+      x: 5,
+      y: 10,
+    };
+    const expectedState = {
+      main: {
+        x: 5,
+        y: 10,
       },
     };
     expect(redcuer(undefined, action)).toEqual(expectedState);

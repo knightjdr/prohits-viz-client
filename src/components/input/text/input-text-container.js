@@ -8,13 +8,19 @@ const InputTextContainer = ({
   id,
   onChange,
   value,
+  warning,
   ...props
 }) => {
   const [inputValue, setInputValue] = useState(value);
+  const [inputWarning, setInputWarning] = useState(warning);
 
   useEffect(() => {
     setInputValue(value);
   }, [value]);
+
+  useEffect(() => {
+    setInputWarning(warning);
+  }, [warning]);
 
   const handleBlur = (e) => {
     if (onChange) {
@@ -27,6 +33,10 @@ const InputTextContainer = ({
 
     const parsedValue = target.type === 'number' ? Number(target.value) : target.value;
     setInputValue(parsedValue);
+  };
+
+  const handleFocus = () => {
+    setInputWarning('');
   };
 
   const handleKeyDown = (e) => {
@@ -43,9 +53,11 @@ const InputTextContainer = ({
     <InputText
       handleBlur={handleBlur}
       handleChange={handleChange}
+      handleFocus={handleFocus}
       handleKeyDown={handleKeyDown}
       inputID={inputID}
       value={inputValue}
+      warning={inputWarning}
       {...props}
     />
   );
@@ -55,6 +67,7 @@ InputTextContainer.defaultProps = {
   id: undefined,
   onChange: undefined,
   value: undefined,
+  warning: '',
 };
 
 InputTextContainer.propTypes = {
@@ -64,6 +77,7 @@ InputTextContainer.propTypes = {
     PropTypes.number,
     PropTypes.string,
   ]),
+  warning: PropTypes.string,
 };
 
 export default InputTextContainer;

@@ -13,11 +13,12 @@ const Search = ({
   handleClear,
   handleSearch,
   term,
+  warning,
 }) => (
   <Section
     title="Search"
   >
-    <div className="panel-search__input">
+    <div className="panel-markup__input">
       <InputWithButton
         kind="secondary"
         buttonType="button"
@@ -27,24 +28,25 @@ const Search = ({
         placeholder="Search term..."
         onClick={handleSearch}
         value={term}
+        warning={warning}
       />
     </div>
-    <div className="panel-search__grid">
+    <div className="panel-markup__grid">
       {
         term
         && (
           <Fragment>
-            <span className="panel-search__label">
+            <span className="panel-markup__label">
               Current query:
             </span>
-            <span>
+            <span className="panel-search__query">
               {term}
             </span>
           </Fragment>
         )
       }
-      <span className="panel-search__label">
-        Clear search:
+      <span className="panel-markup__label">
+        Clear search term:
       </span>
       <IconButton
         icon={faTrash}
@@ -60,6 +62,7 @@ Search.propTypes = {
   handleClear: PropTypes.func.isRequired,
   handleSearch: PropTypes.func.isRequired,
   term: PropTypes.string.isRequired,
+  warning: PropTypes.string.isRequired,
 };
 
 export default Search;

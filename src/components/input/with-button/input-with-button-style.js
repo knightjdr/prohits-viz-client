@@ -1,7 +1,7 @@
 import styled from 'styled-components';
 
 const Span = styled.span`
-  align-items: center;
+  align-items: flex-start;
   display: inline-flex;
 
   &.input-with-button input {

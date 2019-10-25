@@ -19,7 +19,7 @@ const AnnotationContainer = () => {
   const dimensions = useSelector(state => selectData(state, 'dimensions'));
   const position = useSelector(state => selectData(state, 'position'));
 
-  const { color, fontSize, show } = annotations;
+  const { fontSize, show } = annotations;
 
   const defaultPosition = useMemo(
     () => calculateNewPosition(dimensions, position),
@@ -34,11 +34,7 @@ const AnnotationContainer = () => {
   };
 
   const handleClearAll = () => {
-    dispatch(clearAllAnnotations);
-  };
-
-  const handleColorChange = (value) => {
-    dispatch(changeAnnotationSetting('color', value));
+    dispatch(clearAllAnnotations());
   };
 
   const handleFontSizeChange = (e, id, value) => {
@@ -51,11 +47,9 @@ const AnnotationContainer = () => {
 
   return (
     <Annotation
-      color={color}
       fontSize={fontSize}
       handleAddAnnotation={handleAddAnnotation}
       handleClearAll={handleClearAll}
-      handleColorChange={handleColorChange}
       handleFontSizeChange={handleFontSizeChange}
       handleToggleAnnotations={handleToggleAnnotations}
       show={show}

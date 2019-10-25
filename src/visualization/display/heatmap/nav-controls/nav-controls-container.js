@@ -112,13 +112,12 @@ const ShowNavControls = ({
 
   return (
     show
-      ? (
-        <NavControlsContainer
-          isResizing={isResizing}
-          {...props}
-        />
-      )
-      : null
+    && (
+      <NavControlsContainer
+        isResizing={isResizing}
+        {...props}
+      />
+    )
   );
 };
 

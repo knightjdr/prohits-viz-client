@@ -2,7 +2,7 @@ import PropTypes from 'prop-types';
 import React, { Fragment } from 'react';
 
 import Reference from './reference';
-import SearchMatch from './search-match';
+import SearchMatch from '../search/search-match';
 import SortMatch from './sort-match';
 import Tooltip from '../../../../components/tooltip/tooltip-container';
 
@@ -15,7 +15,7 @@ const Columns = ({
   names,
   openContextMenu,
   reference,
-  search,
+  searchMatches,
   showTooltip,
   sortBy,
   sortDirection,
@@ -59,11 +59,12 @@ const Columns = ({
               />,
               <SearchMatch
                 cellSize={cellSize}
+                direction="column"
                 key={`${name.original}-match`}
                 name={name.original}
                 openContextMenu={openContextMenu}
-                search={search}
-                xPosition={i}
+                searchMatches={searchMatches}
+                position={i}
               />,
             ]);
             const x = (i * cellSize) + textOffset;
@@ -115,11 +116,7 @@ Columns.propTypes = {
   ).isRequired,
   openContextMenu: PropTypes.func.isRequired,
   reference: PropTypes.string,
-  search: PropTypes.shape({
-    columns: PropTypes.shape({}),
-    match: PropTypes.bool,
-    term: PropTypes.string,
-  }).isRequired,
+  searchMatches: PropTypes.shape({}).isRequired,
   showTooltip: PropTypes.func.isRequired,
   sortBy: PropTypes.string,
   sortDirection: PropTypes.string,

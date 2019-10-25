@@ -1,24 +1,26 @@
 import * as actions from './display-actions';
 import * as fileActions from '../data/interactive-file-actions';
 
-export const defaultState = {
-  plotFixed: false,
-};
+const reduceAndLoad = action => (
+  action.file.display || {}
+);
 
-const reducer = (state = { ...defaultState }, action) => {
+const reduceSetting = (state, action) => ({
+  ...state,
+  [action.selectionID]: {
+    ...state[action.selectionID],
+    [action.setting]: action.value,
+  },
+});
+
+const reducer = (state = {}, action) => {
   switch (action.type) {
     case fileActions.CLEAR_INTERACTIVE_STATE:
-      return { ...defaultState };
-    case actions.FIX_PLOT:
-      return {
-        ...state,
-        [action.selectionID]: {
-          ...state[action.selectionID],
-          plotFixed: action.fixed,
-        },
-      };
+      return {};
     case fileActions.LOAD_INTERACTIVE_STATE:
-      return action.file.display || { ...defaultState };
+      return reduceAndLoad(action);
+    case actions.UPDATE_DISPLAY_SETTING:
+      return reduceSetting(state, action);
     default:
       return state;
   }

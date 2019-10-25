@@ -6,6 +6,7 @@ import Columns from './columns/columns-container';
 import Grid from './grid/grid-container';
 import NavControls from './nav-controls/nav-controls-container';
 import Rows from './rows/rows-container';
+import Tooltips from './tooltips/tooltip-overlay-container';
 
 import './heatmap.css';
 
@@ -35,6 +36,7 @@ const Heatmap = forwardRef((
       <Columns />
       <Rows />
       <Grid />
+      <Tooltips />
       <Annotations />
     </svg>
     <NavControls

@@ -22,6 +22,7 @@ const RowsContainer = () => {
 
   const orderedNames = useSelector(state => selectRowNames(state));
   const pageY = useSelector(state => selectDataProperty(state, 'dimensions', 'pageY'));
+  const rowSearchMatches = useSelector(state => selectDataProperty(state, 'searchStatus', 'rows'));
   const settings = useSelector(state => selectDataProperty(state, 'settings', 'current'));
   const y = useSelector(state => selectDataProperty(state, 'position', 'y'));
 
@@ -77,7 +78,7 @@ const RowsContainer = () => {
       hideTooltip={hideTooltip}
       names={rowNames}
       openContextMenu={contextMenu.open}
-      search={{}}
+      searchMatches={rowSearchMatches}
       showTooltip={showTooltip}
       tooltip={tooltip}
     />

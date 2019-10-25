@@ -1,7 +1,7 @@
 import PropTypes from 'prop-types';
 import React, { Fragment } from 'react';
 
-import SearchMatch from './search-match';
+import SearchMatch from '../search/search-match';
 import Tooltip from '../../../../components/tooltip/tooltip-container';
 
 const Rows = ({
@@ -12,7 +12,7 @@ const Rows = ({
   hideTooltip,
   names,
   openContextMenu,
-  search,
+  searchMatches,
   showTooltip,
   tooltip,
 }) => {
@@ -33,11 +33,12 @@ const Rows = ({
             textElements.push(...[
               <SearchMatch
                 cellSize={cellSize}
+                direction="row"
                 key={`${name.original}-match`}
                 name={name.original}
                 openContextMenu={openContextMenu}
-                search={search}
-                yPosition={i}
+                searchMatches={searchMatches}
+                position={i}
               />,
             ]);
             const y = Math.round(((i + 1) * cellSize) - textOffset);
@@ -80,11 +81,7 @@ Rows.propTypes = {
     }),
   ).isRequired,
   openContextMenu: PropTypes.func.isRequired,
-  search: PropTypes.shape({
-    match: PropTypes.bool,
-    rows: PropTypes.shape({}),
-    term: PropTypes.string,
-  }).isRequired,
+  searchMatches: PropTypes.shape({}).isRequired,
   showTooltip: PropTypes.func.isRequired,
   tooltip: PropTypes.shape({
     open: PropTypes.bool,

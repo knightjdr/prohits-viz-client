@@ -13,6 +13,7 @@ describe('Search status actions', () => {
     const results = {
       columns: { a: true, aa: true },
       match: true,
+      position: { x: 5, y: 10 },
       rows: { aaa: true },
     };
     const expectedAction = {
@@ -20,6 +21,8 @@ describe('Search status actions', () => {
       results,
       term: 'a',
       type: actions.SET_SEARCH_STATUS,
+      x: results.position.x,
+      y: results.position.y,
     };
     expect(actions.setSearchStatus('a', results)).toEqual(expectedAction);
   });

@@ -6,18 +6,13 @@ import { faPlus } from '@fortawesome/pro-solid-svg-icons';
 import IconButton from '../../../../../../components/buttons/icon/button';
 import Input from '../../../../../../components/input/text/input-text-container';
 import InputWithButton from '../../../../../../components/input/with-button/input-with-button-container';
-import ColorPicker from '../../../../../../components/color-picker/color-picker-container';
 import Section from '../../section/section';
 import Switch from '../../../../../../components/input/switch/switch-container';
 
-import './annotation.css';
-
 const Annotation = ({
-  color,
   fontSize,
   handleAddAnnotation,
   handleClearAll,
-  handleColorChange,
   handleFontSizeChange,
   handleToggleAnnotations,
   show,
@@ -26,7 +21,7 @@ const Annotation = ({
     border={false}
     title="Annotations"
   >
-    <div className="panel-annotation__input">
+    <div className="panel-markup__input">
       <InputWithButton
         kind="secondary"
         buttonType="button"
@@ -37,7 +32,7 @@ const Annotation = ({
         onClick={handleAddAnnotation}
       />
     </div>
-    <div className="panel-annotation__grid">
+    <div className="panel-markup__grid">
       <Input
         id="annotationFontSize"
         label="Font size (px)"
@@ -53,15 +48,7 @@ const Annotation = ({
         label="Show"
         onChange={handleToggleAnnotations}
       />
-      <span className="panel-annotation__label">
-        Dot color:
-      </span>
-      <ColorPicker
-        color={color}
-        onChange={handleColorChange}
-        placement={['right', 'bottom']}
-      />
-      <span className="panel-annotation__label">
+      <span className="panel-markup__label">
         Clear all:
       </span>
       <IconButton
@@ -75,11 +62,9 @@ const Annotation = ({
 );
 
 Annotation.propTypes = {
-  color: PropTypes.string.isRequired,
   fontSize: PropTypes.number.isRequired,
   handleAddAnnotation: PropTypes.func.isRequired,
   handleClearAll: PropTypes.func.isRequired,
-  handleColorChange: PropTypes.func.isRequired,
   handleFontSizeChange: PropTypes.func.isRequired,
   handleToggleAnnotations: PropTypes.func.isRequired,
   show: PropTypes.bool.isRequired,

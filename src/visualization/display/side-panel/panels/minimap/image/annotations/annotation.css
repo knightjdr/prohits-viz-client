@@ -1,4 +1,5 @@
 .panel-map__annotation {
+  background-color: #f44336;
   border-radius: 50%;
   cursor: crosshair;
   height: 10px;
