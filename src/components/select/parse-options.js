@@ -1,24 +1,25 @@
-const parseOptions = (inputOtions) => {
-  const MAX_HEIGHT = 350;
-  const OPT_GROUP_HEIGHT = 30;
-  const OPTION_HEIGHT = 35;
+const MAX_HEIGHT = 350;
+const OPT_GROUP_HEIGHT = 30;
+const OPTION_HEIGHT = 35;
 
-  let options = inputOtions;
-  if (options && typeof options[0] === 'string') {
-    options = options.map(option => ({ label: option, value: option }));
-  }
+export const convertArrayElementsToObject = options => (
+  options && typeof options[0] === 'string'
+    ? options.map(option => ({ label: option, value: option }))
+    : options
+);
+
+const parseOptions = (inputOtions) => {
+  const options = convertArrayElementsToObject(inputOtions);
 
   const selectableOptions = options.filter(option => !option.optGroup);
-  const optGroupNumber = options.length - selectableOptions.length;
-  const optionNumber = selectableOptions.length;
-  const desiredHeight = (optGroupNumber * OPT_GROUP_HEIGHT) + (optionNumber * OPTION_HEIGHT);
+  const numberOfOptGroups = options.length - selectableOptions.length;
+  const numberOfOptions = selectableOptions.length;
+  const desiredHeight = (numberOfOptGroups * OPT_GROUP_HEIGHT) + (numberOfOptions * OPTION_HEIGHT);
 
   return {
     height: desiredHeight < MAX_HEIGHT ? desiredHeight : MAX_HEIGHT,
-    optGroupNumber,
     optionHeight: OPTION_HEIGHT,
     options,
-    optionNumber,
     selectableOptions,
   };
 };

@@ -1,41 +1,54 @@
-const calculateDropdownLayout = (ref, settings, openDirection) => {
-  const PADDING = 15;
-  const rect = ref.getBoundingClientRect();
-  const { innerHeight } = window;
+const PADDING = 15;
 
-  const distanceToBottom = innerHeight - rect.bottom;
+export const calculateAvailableHeight = (direction, distanceToBottom, elementTop) => (
+  direction === 'down' ? distanceToBottom - PADDING : elementTop - PADDING
+);
 
-  let direction;
-  if (openDirection) {
-    direction = openDirection;
-  } else {
-    direction = distanceToBottom > rect.top ? 'down' : 'up';
+export const calculateDistanceToViewportBottom = elementBottom => (
+  window.innerHeight - elementBottom
+);
+
+export const defineDirectionToOpen = (directionToOpen, distanceToBottom, elementTop) => {
+  if (directionToOpen) {
+    return directionToOpen;
   }
+  return distanceToBottom > elementTop ? 'down' : 'up';
+};
+
+export const defineDropdownPosition = (direction, distanceToBottom, rect) => {
+  const { bottom, left, height } = rect;
 
   let position = {
-    left: rect.left,
+    left,
   };
   if (direction === 'down') {
     position = {
       ...position,
-      top: rect.bottom + 5,
+      top: bottom + 5,
       transformOrigin: 'center top',
     };
   } else {
     position = {
       ...position,
-      bottom: distanceToBottom + rect.height + 5,
+      bottom: distanceToBottom + height + 5,
       transformOrigin: 'center bottom',
     };
   }
 
-  const availableHeight = direction === 'down'
-    ? distanceToBottom - PADDING
-    : rect.top - PADDING;
+  return position;
+};
+
+const calculateDropdownLayout = (ref, dropdownHeight, directionToOpen) => {
+  const rect = ref.getBoundingClientRect();
+
+  const distanceToBottom = calculateDistanceToViewportBottom(rect.bottom);
+  const direction = defineDirectionToOpen(directionToOpen, distanceToBottom, rect.top);
+  const position = defineDropdownPosition(direction, distanceToBottom, rect);
+  const availableHeight = calculateAvailableHeight(direction, distanceToBottom, rect.top);
 
   return {
     direction,
-    height: availableHeight < settings.height ? availableHeight : settings.height,
+    height: availableHeight < dropdownHeight ? availableHeight : dropdownHeight,
     width: rect.width,
     ...position,
   };

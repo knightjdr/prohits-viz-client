@@ -1,34 +1,35 @@
 import PropTypes from 'prop-types';
 import React from 'react';
 
+const setTabIndex = visible => (visible ? 0 : -1);
+
 const Option = ({
+  id,
   label,
-  selectedValue,
+  selectedValues,
   value,
   visible,
 }) => (
   <div
-    aria-selected={value === selectedValue}
+    aria-selected={selectedValues.includes(value)}
     data-value={value}
     className="select__option"
+    id={id}
     role="option"
-    tabIndex={visible ? 0 : -1}
+    tabIndex={setTabIndex(visible)}
     title={label}
   >
     {label}
   </div>
 );
 
-Option.defaultProps = {
-  selectedValue: '',
-};
-
 Option.propTypes = {
+  id: PropTypes.string.isRequired,
   label: PropTypes.string.isRequired,
-  selectedValue: PropTypes.oneOfType([
+  selectedValues: PropTypes.arrayOf(PropTypes.oneOfType([
     PropTypes.number,
-    PropTypes.string.isRequired,
-  ]),
+    PropTypes.string,
+  ])).isRequired,
   value: PropTypes.oneOfType([
     PropTypes.number,
     PropTypes.string.isRequired,

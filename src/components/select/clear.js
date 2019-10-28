@@ -9,21 +9,23 @@ const Clear = ({
   clearOption,
   value,
 }) => (
-  <span className="select__clear">
-    {
-      canClear
-      && value
-        ? (
-          <Button
-            icon={faTimes}
-            kind="transparent"
-            onClick={clearOption}
-            type="button"
-          />
-        )
-        : null
-    }
-  </span>
+  canClear
+  && (
+    <span className="select__clear">
+      {
+        value
+          ? (
+            <Button
+              icon={faTimes}
+              kind="transparent"
+              onClick={clearOption}
+              type="button"
+            />
+          )
+          : null
+      }
+    </span>
+  )
 );
 
 Clear.defaultProps = {

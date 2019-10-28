@@ -2,6 +2,7 @@ import PropTypes from 'prop-types';
 import React, { forwardRef } from 'react';
 
 import Clear from './clear';
+import Label from '../label/label';
 import Placeholder from './placeholder';
 import { SelectContainer } from './select-style';
 import { ReactComponent as AngleDown } from './angle-down.svg';
@@ -22,15 +23,10 @@ const CustomSelect = forwardRef((
   ref,
 ) => (
   <SelectContainer className="select__container">
-    {
-      label
-      && (
-        <label htmlFor={inputID}>
-          {label}
-          :
-        </label>
-      )
-    }
+    <Label
+      id={inputID}
+      label={label}
+    />
     <div
       className="select__input-container"
       ref={ref}
@@ -61,14 +57,13 @@ const CustomSelect = forwardRef((
 ));
 
 CustomSelect.defaultProps = {
-  canClear: false,
   label: '',
   placeholder: 'Select...',
   selectedText: '',
 };
 
 CustomSelect.propTypes = {
-  canClear: PropTypes.bool,
+  canClear: PropTypes.bool.isRequired,
   clearOption: PropTypes.func.isRequired,
   handleKeyUp: PropTypes.func.isRequired,
   inputID: PropTypes.string.isRequired,

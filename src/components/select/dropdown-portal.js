@@ -17,22 +17,28 @@ const setDropdownClass = (direction, isVisible) => {
 
 const DropdownPortal = forwardRef((
   {
+    canClear,
     dropdownDirection,
     dropdownLayout,
+    focusedOption,
     handleChange,
     handleKeyDown,
     handleKeyPress,
+    inputID,
     isDropdownVisible,
     label,
+    multiple,
     options,
     portal,
-    value,
+    selectedValues,
   },
   ref,
 ) => createPortal(
   <Dropdown
-    aria-activedescendant={value}
+    aria-activedescendant={focusedOption}
     aria-label={`${label} options`}
+    aria-multiselectable={multiple}
+    aria-required={!canClear}
     className={setDropdownClass(dropdownDirection, isDropdownVisible)}
     onClick={handleChange}
     onKeyDown={handleKeyDown}
@@ -53,9 +59,10 @@ const DropdownPortal = forwardRef((
           )
           : (
             <Option
+              id={`${inputID}-${option.value}`}
               key={option.value}
               label={option.label}
-              selectedValue={value}
+              selectedValues={selectedValues}
               value={option.value}
               visible={isDropdownVisible}
             />
@@ -67,11 +74,12 @@ const DropdownPortal = forwardRef((
 ));
 
 DropdownPortal.defaultProps = {
+  focusedOption: '',
   label: '',
-  value: undefined,
 };
 
 DropdownPortal.propTypes = {
+  canClear: PropTypes.bool.isRequired,
   dropdownDirection: PropTypes.string.isRequired,
   dropdownLayout: PropTypes.shape({
     bottom: PropTypes.number,
@@ -81,11 +89,14 @@ DropdownPortal.propTypes = {
     transformOrigin: PropTypes.string,
     width: PropTypes.number,
   }).isRequired,
+  focusedOption: PropTypes.string,
   handleChange: PropTypes.func.isRequired,
   handleKeyDown: PropTypes.func.isRequired,
   handleKeyPress: PropTypes.func.isRequired,
+  inputID: PropTypes.string.isRequired,
   isDropdownVisible: PropTypes.bool.isRequired,
   label: PropTypes.string,
+  multiple: PropTypes.bool.isRequired,
   options: PropTypes.arrayOf(
     PropTypes.shape({
       text: PropTypes.oneOfType([
@@ -99,10 +110,10 @@ DropdownPortal.propTypes = {
     }),
   ).isRequired,
   portal: PropTypes.shape({}).isRequired,
-  value: PropTypes.oneOfType([
+  selectedValues: PropTypes.arrayOf(PropTypes.oneOfType([
     PropTypes.number,
     PropTypes.string,
-  ]),
+  ])).isRequired,
 };
 
 export default DropdownPortal;

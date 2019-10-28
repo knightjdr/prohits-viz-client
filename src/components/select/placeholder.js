@@ -6,12 +6,11 @@ const Placeholder = ({
   value,
 }) => (
   !value
-    ? (
-      <span className="select__placeholder">
-        {text}
-      </span>
-    )
-    : null
+  && (
+    <span className="select__placeholder">
+      {text}
+    </span>
+  )
 );
 
 Placeholder.defaultProps = {

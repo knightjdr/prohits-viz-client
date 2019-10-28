@@ -6,13 +6,23 @@ import DropdownPortal from './dropdown-portal';
 import Select from './select';
 
 import calculateDropdownLayout from './calculate-dropdown-layout';
+import createSelectedText from './create-selected-text';
+import findFocusIndex from './find-focus-index';
+import formatReturnValue from './format-return-value';
 import getOptionElements from './get-option-elements';
 import parseOptions from './parse-options';
+import parseValue from './parse-value';
+import updateSelectedValues from './update-selected-values';
 import useClickOutside from '../../hooks/click-outside/use-click-outside';
 import usePortal from '../../hooks/portal/use-portal';
+import * as keyCodes from '../../utils/pressed-key-code';
+
+const letterRE = new RegExp(/^\w{1}$/);
 
 const SelectContainer = ({
+  canClear,
   id,
+  multiple,
   onChange,
   openDirection,
   options,
@@ -23,98 +33,102 @@ const SelectContainer = ({
   const portalRef = useRef(null);
   const [dropdownDirection, setDropdownDirection] = useState('down');
   const [dropdownLayout, setDropdownLayout] = useState({});
+  const [focusedOption, setFocusedOption] = useState();
   const [isDropdownVisible, setDropdownVisibility] = useState(false);
   const [searchText, setSearchText] = useState('');
 
-  const optionSettings = useMemo(
-    () => parseOptions(options),
-    [options],
+  const optionSettings = useMemo(() => parseOptions(options), [options]);
+
+  const [selectedValues, setSelectedValues] = useState(parseValue(optionSettings.selectableOptions, value));
+  const selectedText = useMemo(
+    () => createSelectedText(optionSettings.selectableOptions, selectedValues),
+    [optionSettings.selectableOptions, selectedValues],
   );
 
-  const inputID = id || nanoid();
-  const portalID = `${id}-root`;
-  const selectedIndex = optionSettings.options.findIndex(option => option.value === value);
-  const selectedText = selectedIndex > -1 ? optionSettings.options[selectedIndex].label : value;
-
-  const portal = usePortal(portalID);
-
-  const returnFocus = () => {
-    inputRef.current.firstChild.focus();
+  const returnFocus = (e, onlyOnEscape) => {
+    if (!onlyOnEscape || keyCodes.pressedEscape(e)) {
+      inputRef.current.firstChild.focus();
+    }
   };
 
   const closeDropdown = (e) => {
-    if (isDropdownVisible) {
-      setDropdownVisibility(false);
-      const { keyCode, which } = e;
-      if (keyCode === 27 || which === 27) {
-        returnFocus();
-      }
-    }
+    setDropdownVisibility(false);
+    returnFocus(e, true);
+    const returnValue = formatReturnValue(multiple, selectedValues);
+    onChange(e, id, returnValue);
   };
 
-  useClickOutside(inputRef, closeDropdown);
+  useClickOutside(portalRef, closeDropdown);
 
   const clearOption = (e) => {
-    if (onChange) {
-      onChange(e, id, '');
-    }
-  };
-
-  const findOption = (text) => {
-    const index = optionSettings.selectableOptions.findIndex(option => (
-      option.label.toLowerCase().startsWith(text.toLowerCase())
-    ));
-
-    if (index > -1) {
-      const { elements } = getOptionElements(portalRef.current);
-      elements[index].focus();
-    }
+    const returnValue = formatReturnValue(multiple, '');
+    onChange(e, id, returnValue);
   };
 
   const focusOption = (option) => {
     if (option) {
+      setFocusedOption(option.id);
       option.focus();
     }
   };
 
-  const handleChange = (e) => {
-    if (onChange) {
-      const { dataset } = e.target;
-      const parsedValue = dataset.value;
-      onChange(e, id, parsedValue);
+  const findOption = (queryText) => {
+    const text = queryText.toLowerCase();
+    const index = optionSettings.selectableOptions.findIndex(option => (
+      option.label.toLowerCase().startsWith(text)
+    ));
+
+    if (index > -1) {
+      const { elements } = getOptionElements(portalRef.current);
+      focusOption(elements[index]).focus();
     }
-    setDropdownVisibility(false);
-    returnFocus();
+  };
+
+  const handleChange = (e) => {
+    const { dataset } = e.target;
+    const elementOptions = {
+      canClear,
+      multiple,
+    };
+    const updatedSelectedValues = updateSelectedValues(selectedValues, dataset.value, elementOptions);
+    setSelectedValues(updatedSelectedValues);
+    if (!multiple) {
+      setDropdownVisibility(false);
+      returnFocus();
+      const returnValue = formatReturnValue(multiple, updatedSelectedValues);
+      onChange(e, id, returnValue);
+    }
   };
 
   const handleKeyDown = (e) => {
-    const { target, keyCode, which } = e;
+    const { target } = e;
     const context = getOptionElements(portalRef.current, target);
 
-    if (keyCode === 8 || which === 8) {
+    if (keyCodes.pressedBackspace(e)) {
       e.preventDefault();
       setSearchText(searchText.substring(0, searchText.length - 1));
-    } else if (keyCode === 35 || which === 35) {
+    } else if (keyCodes.pressedEnd(e)) {
       e.preventDefault();
       focusOption(context.elements[context.elements.length - 1]);
-    } else if (keyCode === 36 || which === 36) {
+    } else if (keyCodes.pressedHome(e)) {
       e.preventDefault();
       focusOption(context.elements[0]);
-    } else if (keyCode === 38 || which === 38) {
+    } else if (keyCodes.pressedArrowUp(e)) {
       e.preventDefault();
       focusOption(context.elements[context.previous]);
-    } else if (keyCode === 40 || which === 40) {
+    } else if (keyCodes.pressedArrowDown(e)) {
       e.preventDefault();
       focusOption(context.elements[context.next]);
     }
   };
 
   const handleKeyPress = (e) => {
-    const { key, keyCode, which } = e;
+    const { key } = e;
 
-    if (keyCode === 32 || which === 32) {
+    if (keyCodes.pressedSpace(e)) {
+      e.preventDefault();
       handleChange(e);
-    } else if (/^\w{1}$/.test(key)) {
+    } else if (letterRE.test(key)) {
       const newSearchText = searchText + key;
       setSearchText(newSearchText);
       findOption(newSearchText);
@@ -128,29 +142,32 @@ const SelectContainer = ({
   const toggleDropdown = () => {
     const { direction, ...layout } = calculateDropdownLayout(
       inputRef.current,
-      optionSettings,
+      optionSettings.height,
       openDirection,
     );
-    const visibility = !isDropdownVisible;
     setDropdownDirection(direction);
     setDropdownLayout(layout);
-    setDropdownVisibility(visibility);
+    setDropdownVisibility(!isDropdownVisible);
     setSearchText('');
-    const focusIndex = selectedIndex > 0 ? selectedIndex : 0;
+    const focusIndex = findFocusIndex(optionSettings.selectableOptions, selectedValues);
     focusOption(portalRef.current.querySelectorAll('.select__option')[focusIndex]);
     portalRef.current.scrollTop = optionSettings.optionHeight * focusIndex;
   };
 
   const toggleOnKeydown = (e) => {
-    const { keyCode, which } = e;
-    if (keyCode === 13 || which === 13) {
+    if (keyCodes.pressedEnter(e)) {
       toggleDropdown();
     }
   };
 
+  const inputID = id || nanoid();
+  const portalID = `${id}-root`;
+  const portal = usePortal(portalID);
+
   return (
     <>
       <Select
+        canClear={canClear}
         clearOption={clearOption}
         handleKeyUp={handleKeyUp}
         inputID={inputID}
@@ -162,16 +179,20 @@ const SelectContainer = ({
         {...props}
       />
       <DropdownPortal
+        canClear={canClear}
         dropdownDirection={dropdownDirection}
         dropdownLayout={dropdownLayout}
+        focusedOption={focusedOption}
         handleChange={handleChange}
         handleKeyDown={handleKeyDown}
         handleKeyPress={handleKeyPress}
+        inputID={inputID}
         isDropdownVisible={isDropdownVisible}
+        multiple={multiple}
         options={optionSettings.options}
         portal={portal}
         ref={portalRef}
-        value={value}
+        selectedValues={selectedValues}
         {...props}
       />
     </>
@@ -179,13 +200,17 @@ const SelectContainer = ({
 };
 
 SelectContainer.defaultProps = {
+  canClear: false,
   id: undefined,
+  multiple: false,
   openDirection: '',
-  value: undefined,
+  value: [],
 };
 
 SelectContainer.propTypes = {
+  canClear: PropTypes.bool,
   id: PropTypes.string,
+  multiple: PropTypes.bool,
   onChange: PropTypes.func.isRequired,
   openDirection: PropTypes.string,
   options: PropTypes.oneOfType([
@@ -206,6 +231,10 @@ SelectContainer.propTypes = {
     ),
   ]).isRequired,
   value: PropTypes.oneOfType([
+    PropTypes.arrayOf(
+      PropTypes.number,
+      PropTypes.string,
+    ),
     PropTypes.number,
     PropTypes.string,
   ]),
