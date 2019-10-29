@@ -1,55 +1,54 @@
-import reducer from './annotation-reducer';
-import * as actions from './annotation-actions';
+import reducer from './marker-reducer';
+import * as actions from './marker-actions';
 import * as fileActions from '../data/interactive-file-actions';
 
-describe('Annotation reducer', () => {
+describe('Marker reducer', () => {
   it('should return a default initial state', () => {
     const action = {};
     const expectedState = {};
     expect(reducer(undefined, action)).toEqual(expectedState);
   });
 
-  it('should handle ADD_ANNOTATION action', () => {
+  it('should handle ADD_MARKER action', () => {
     const currenState = {
       main: {
         color: '#0000ff',
         list: {
-          a1: { position: { x: 0.2, y: 0.2 }, text: 'a' },
+          a1: { height: 20, width: 30, x: 0.1, y: 0.2 },
         },
       },
     };
     const action = {
       id: 'a2',
-      position: { x: 0.5, y: 0.5 },
+      dimensions: { height: 30, width: 100, x: 0.5, y: 0.3 },
       selectionID: 'main',
-      text: 'test annotation',
-      type: actions.ADD_ANNOTATION,
+      type: actions.ADD_MARKER,
     };
     const expectedState = {
       main: {
         ...currenState.main,
         list: {
-          a1: { position: { x: 0.2, y: 0.2 }, text: 'a' },
-          a2: { position: { x: 0.5, y: 0.5 }, text: 'test annotation' },
+          a1: { height: 20, width: 30, x: 0.1, y: 0.2 },
+          a2: { height: 30, width: 100, x: 0.5, y: 0.3 },
         },
       },
     };
     expect(reducer(currenState, action)).toEqual(expectedState);
   });
 
-  it('should handle CLEAR_ALL_ANNOTATIONS action', () => {
+  it('should handle CLEAR_ALL_MARKERS action', () => {
     const currenState = {
       main: {
         color: '#0000ff',
         list: {
-          a1: { position: { x: 0.2, y: 0.2 }, text: 'a' },
-          a2: { position: { x: 0.5, y: 0.5 }, text: 'test annotation' },
+          a1: { height: 20, width: 30, x: 0.1, y: 0.2 },
+          a2: { height: 30, width: 100, x: 0.5, y: 0.3 },
         },
       },
     };
     const action = {
       selectionID: 'main',
-      type: actions.CLEAR_ALL_ANNOTATIONS,
+      type: actions.CLEAR_ALL_MARKERS,
     };
     const expectedState = {
       main: {
@@ -71,7 +70,7 @@ describe('Annotation reducer', () => {
   it('should handle LOAD_INTERACTIVE_STATE action', () => {
     const action = {
       file: {
-        annotations: {
+        markers: {
           main: {
             color: '#ff00000',
             show: false,
@@ -89,7 +88,7 @@ describe('Annotation reducer', () => {
     expect(reducer(undefined, action)).toEqual(expectedState);
   });
 
-  it('should handle CHANGE_ANNOTATION_SETTING action', () => {
+  it('should handle CHANGE_MARKER_SETTING action', () => {
     const currenState = {
       main: {
         color: '#0000ff',
@@ -99,7 +98,7 @@ describe('Annotation reducer', () => {
     const action = {
       selectionID: 'main',
       setting: 'color',
-      type: actions.CHANGE_ANNOTATION_SETTING,
+      type: actions.CHANGE_MARKER_SETTING,
       value: '#ff0000',
     };
     const expectedState = {
@@ -111,73 +110,23 @@ describe('Annotation reducer', () => {
     expect(reducer(currenState, action)).toEqual(expectedState);
   });
 
-  it('should handle TOGGLE_ANNOTATIONS action', () => {
-    const currenState = {
-      main: {
-        color: '#0000ff',
-        show: true,
-      },
-    };
-    const action = {
-      selectionID: 'main',
-      show: false,
-      type: actions.TOGGLE_ANNOTATIONS,
-    };
-    const expectedState = {
-      main: {
-        ...currenState.main,
-        show: false,
-      },
-    };
-    expect(reducer(currenState, action)).toEqual(expectedState);
-  });
-
-  it('should handle UPDATE_ANNOTATION_POSITION action', () => {
+  it('should handle UPDATE_MARKERS action', () => {
     const currenState = {
       main: {
         color: '#0000ff',
         list: {
-          a1: { position: { x: 0.2, y: 0.2 }, text: 'a' },
-          a2: { position: { x: 0.5, y: 0.5 }, text: 'test annotation' },
-        },
-      },
-    };
-    const newPosition = { x: 0.3, y: 0.3 };
-    const action = {
-      id: 'a1',
-      position: newPosition,
-      selectionID: 'main',
-      type: actions.UPDATE_ANNOTATION_POSITION,
-    };
-    const expectedState = {
-      main: {
-        ...currenState.main,
-        list: {
-          a1: { position: { x: 0.3, y: 0.3 }, text: 'a' },
-          a2: { position: { x: 0.5, y: 0.5 }, text: 'test annotation' },
-        },
-      },
-    };
-    expect(reducer(currenState, action)).toEqual(expectedState);
-  });
-
-  it('should handle UPDATE_ANNOTATIONS action', () => {
-    const currenState = {
-      main: {
-        color: '#0000ff',
-        list: {
-          a1: { position: { x: 0.2, y: 0.2 }, text: 'a' },
-          a2: { position: { x: 0.5, y: 0.5 }, text: 'test annotation' },
+          a1: { height: 20, width: 30, x: 0.1, y: 0.2 },
+          a2: { height: 30, width: 100, x: 0.5, y: 0.3 },
         },
       },
     };
     const newList = {
-      a1: { position: { x: 0.2, y: 0.2 }, text: 'a' },
+      a1: { height: 20, width: 30, x: 0.1, y: 0.2 },
     };
     const action = {
       list: newList,
       selectionID: 'main',
-      type: actions.UPDATE_ANNOTATIONS,
+      type: actions.UPDATE_MARKERS,
     };
     const expectedState = {
       main: {

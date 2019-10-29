@@ -1,4 +1,4 @@
-import redcuer from './position-reducer';
+import reducer from './position-reducer';
 import * as actions from './position-actions';
 import * as fileActions from '../data/interactive-file-actions';
 import * as rowActions from '../heatmap/rows-actions';
@@ -8,7 +8,7 @@ describe('Position reducer', () => {
   it('should return a default initial state', () => {
     const action = {};
     const expectedState = {};
-    expect(redcuer(undefined, action)).toEqual(expectedState);
+    expect(reducer(undefined, action)).toEqual(expectedState);
   });
 
   it('should handle CLEAR_INTERACTIVE_STATE action', () => {
@@ -16,7 +16,7 @@ describe('Position reducer', () => {
       type: fileActions.CLEAR_INTERACTIVE_STATE,
     };
     const expectedState = {};
-    expect(redcuer(undefined, action)).toEqual(expectedState);
+    expect(reducer(undefined, action)).toEqual(expectedState);
   });
 
   it('should handle FILTER_ROWS action', () => {
@@ -30,7 +30,7 @@ describe('Position reducer', () => {
         y: 0,
       },
     };
-    expect(redcuer(undefined, action)).toEqual(expectedState);
+    expect(reducer(undefined, action)).toEqual(expectedState);
   });
 
   it('should handle LOAD_INTERACTIVE_STATE action', () => {
@@ -51,7 +51,7 @@ describe('Position reducer', () => {
         y: 0.5,
       },
     };
-    expect(redcuer(undefined, action)).toEqual(expectedState);
+    expect(reducer(undefined, action)).toEqual(expectedState);
   });
 
   it('should handle SET_SEARCH_STATUS action', () => {
@@ -67,7 +67,7 @@ describe('Position reducer', () => {
         y: 10,
       },
     };
-    expect(redcuer(undefined, action)).toEqual(expectedState);
+    expect(reducer(undefined, action)).toEqual(expectedState);
   });
 
   it('should handle SORT_ROWS action', () => {
@@ -81,7 +81,7 @@ describe('Position reducer', () => {
         y: 0,
       },
     };
-    expect(redcuer(undefined, action)).toEqual(expectedState);
+    expect(reducer(undefined, action)).toEqual(expectedState);
   });
 
   it('should handle UPDATE_POSITION action', () => {
@@ -94,6 +94,6 @@ describe('Position reducer', () => {
     const expected = {
       main: { x: 0.1, y: 0.5 },
     };
-    expect(redcuer(undefined, action)).toEqual(expected);
+    expect(reducer(undefined, action)).toEqual(expected);
   });
 });

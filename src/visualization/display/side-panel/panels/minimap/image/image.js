@@ -2,6 +2,7 @@ import PropTypes from 'prop-types';
 import React from 'react';
 
 import Annotations from './annotations/annotation-container';
+import Markers from './markers/marker-container';
 import SearchResult from './search-results/search-results-container';
 import SynchingStatus from '../sync/synching-status';
 
@@ -40,6 +41,7 @@ const Image = ({
             maxWidth: imgLimits.width,
           }}
         />
+        <Markers />
         <Annotations />
         <SearchResult />
         <span

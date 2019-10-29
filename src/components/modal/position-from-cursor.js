@@ -51,6 +51,11 @@ const calculateCenterLeft = (elementDimensions, x, y) => ({
   top: calculateVerticalCenter(elementDimensions.height, y),
 });
 
+const calculateCenterRight = (elementDimensions, x, y) => ({
+  right: calculateRight(elementDimensions.width, x),
+  top: calculateVerticalCenter(elementDimensions.height, y),
+});
+
 const calculateTopLeft = (elementDimensions, x, y) => ({
   left: calculateLeft(elementDimensions.width, x),
   top: calculateTop(elementDimensions.height, y),
@@ -76,6 +81,8 @@ const calculatePosition = (element, origin, x, y) => {
       return calculateBottomRight(elementDimensions, x, y);
     case 'center left':
       return calculateCenterLeft(elementDimensions, x, y);
+    case 'center right':
+      return calculateCenterRight(elementDimensions, x, y);
     case 'top left':
       return calculateTopLeft(elementDimensions, x, y);
     case 'top right':

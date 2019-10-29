@@ -4,9 +4,10 @@ import React, { forwardRef } from 'react';
 import Annotations from './annotations/annotations-container';
 import Columns from './columns/columns-container';
 import Grid from './grid/grid-container';
+import Markers from './markers/markers-container';
 import NavControls from './nav-controls/nav-controls-container';
 import Rows from './rows/rows-container';
-import Tooltips from './tooltips/tooltip-overlay-container';
+import Overlay from './overlay/overlay-container';
 
 import './heatmap.css';
 
@@ -36,7 +37,8 @@ const Heatmap = forwardRef((
       <Columns />
       <Rows />
       <Grid />
-      <Tooltips />
+      <Overlay />
+      <Markers />
       <Annotations />
     </svg>
     <NavControls

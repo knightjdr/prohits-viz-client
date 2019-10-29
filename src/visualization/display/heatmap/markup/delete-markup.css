@@ -1,0 +1,6 @@
+.heatmap__markup-times .fa-primary {
+  fill: #fff;
+}
+.heatmap__markup-times .fa-secondary {
+  fill: var(--warning);
+}

@@ -10,11 +10,12 @@ import { updateAnnotationPosition } from '../../../../state/visualization/markup
 
 const AnnotationContainer = ({
   cellSize,
+  fontSize,
   handleAnnotationDeletion,
-  height,
   id,
+  imageDimensions,
   position,
-  width,
+  scalePosition,
   ...props
 }) => {
   const [isMouseDown, setMouseIsDown] = useState(false);
@@ -22,6 +23,8 @@ const AnnotationContainer = ({
   const cursorReference = useRef({});
   const newPosition = useRef(position);
   const dispatch = useDispatch();
+
+  const { height, width } = imageDimensions;
 
   const fractionalBoundaries = useMemo(
     () => calculateBoundaires(cellSize, height, width),
@@ -69,14 +72,22 @@ const AnnotationContainer = ({
     addListeners();
   };
 
+  const scaledPosition = scalePosition(textPosition || position);
+  const timesPosition = {
+    x: scaledPosition.x - 7,
+    y: scaledPosition.y - 9 - fontSize,
+  };
+
   return (
     <Annotation
       {...props}
+      fontSize={fontSize}
       handleDeletion={handleDeletion}
       handleMouseDown={handleMouseDown}
       height={height}
       isMouseDown={isMouseDown}
-      position={textPosition || position}
+      position={scaledPosition}
+      timesPosition={timesPosition}
       width={width}
     />
   );
@@ -84,14 +95,18 @@ const AnnotationContainer = ({
 
 AnnotationContainer.propTypes = {
   cellSize: PropTypes.number.isRequired,
+  fontSize: PropTypes.number.isRequired,
   handleAnnotationDeletion: PropTypes.func.isRequired,
-  height: PropTypes.number.isRequired,
   id: PropTypes.string.isRequired,
+  imageDimensions: PropTypes.shape({
+    height: PropTypes.number.isRequired,
+    width: PropTypes.number.isRequired,
+  }).isRequired,
   position: PropTypes.shape({
     x: PropTypes.number.isRequired,
     y: PropTypes.number.isRequired,
   }).isRequired,
-  width: PropTypes.number.isRequired,
+  scalePosition: PropTypes.func.isRequired,
 };
 
 export default AnnotationContainer;

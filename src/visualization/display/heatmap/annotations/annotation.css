@@ -2,15 +2,8 @@
   cursor: pointer;
 }
 
-.heatmap__annotation-times {
+.heatmap__markup-times {
   visibility: hidden;
-}
-
-.heatmap__annotation-times .fa-primary {
-  fill: #fff;
-}
-.heatmap__annotation-times .fa-secondary {
-  fill: var(--warning);
 }
 
 .heatmap__annotation_moving {
@@ -18,9 +11,9 @@
   user-select: none;
 }
 
-.heatmap__annotation:not(.heatmap__annotation_moving):hover .heatmap__annotation-times {
+.heatmap__annotation:not(.heatmap__annotation_moving):hover .heatmap__markup-times {
   visibility: visible;
 }
-.heatmap__annotation_moving .heatmap__annotation-times {
+.heatmap__annotation_moving .heatmap__markup-times {
   visibility: hidden;
 }

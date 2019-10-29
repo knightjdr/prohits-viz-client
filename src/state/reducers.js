@@ -8,6 +8,7 @@ import cookies from './cookies/cookie-reducer';
 import dimensions from './visualization/settings/dimension-reducer';
 import display from './visualization/settings/display-reducer';
 import home from './home/home-reducer';
+import markers from './visualization/markup/marker-reducer';
 import minimap from './visualization/heatmap/minimap-reducer';
 import news from './news/news-reducer';
 import panel from './visualization/settings/panel-reducer';
@@ -29,6 +30,7 @@ const reducers = combineReducers({
   dimensions,
   display,
   home,
+  markers,
   minimap,
   news,
   panel,

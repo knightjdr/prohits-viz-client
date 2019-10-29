@@ -9,10 +9,10 @@ const Annotations = ({
   clipPathID,
   fontSize,
   handleAnnotationDeletion,
-  height,
+  imageDimensions,
   list,
+  scalePosition,
   translation,
-  width,
 }) => (
   <>
     {clipPath}
@@ -25,13 +25,13 @@ const Annotations = ({
           <Annotation
             cellSize={cellSize}
             handleAnnotationDeletion={handleAnnotationDeletion}
-            height={height}
+            imageDimensions={imageDimensions}
             fontSize={fontSize}
             id={id}
             key={id}
             position={annotation.position}
+            scalePosition={scalePosition}
             text={annotation.text}
-            width={width}
           />
         ))
       }
@@ -45,7 +45,10 @@ Annotations.propTypes = {
   clipPathID: PropTypes.string.isRequired,
   fontSize: PropTypes.number.isRequired,
   handleAnnotationDeletion: PropTypes.func.isRequired,
-  height: PropTypes.number.isRequired,
+  imageDimensions: PropTypes.shape({
+    height: PropTypes.number.isRequired,
+    width: PropTypes.number.isRequired,
+  }).isRequired,
   list: PropTypes.shape({
     position: PropTypes.shape({
       x: PropTypes.number,
@@ -53,8 +56,8 @@ Annotations.propTypes = {
     }),
     text: PropTypes.string,
   }).isRequired,
+  scalePosition: PropTypes.func.isRequired,
   translation: PropTypes.string.isRequired,
-  width: PropTypes.number.isRequired,
 };
 
 export default Annotations;

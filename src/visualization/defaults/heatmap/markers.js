@@ -1,27 +1,27 @@
 import isObject from '../../../utils/is-object';
 import validateHex from '../../../utils/validate-hex';
-import { validateBoolean, validateNumber, validateObject } from '../../../utils/validate-type';
+import { validateBoolean, validateObject } from '../../../utils/validate-type';
 
 export const defaultState = {
-  color: '#f44336',
-  fontSize: 16,
+  color: '#000000',
   list: {},
+  record: false,
   show: true,
 };
 
-const fillSelectionAnnotations = fileAnnotations => (
-  Object.entries(fileAnnotations).reduce((accum, [id, selection]) => {
+const fillSelectionMarkers = fileMarkers => (
+  Object.entries(fileMarkers).reduce((accum, [id, selection]) => {
     const {
       color,
-      fontSize,
       list,
+      record,
       show,
     } = selection;
 
     const stateAnnotations = {
       color: validateHex(color, defaultState.color),
-      fontSize: validateNumber(fontSize, defaultState.fontSize),
       list: validateObject(list, defaultState.list),
+      record: validateBoolean(record, defaultState.record),
       show: validateBoolean(show, defaultState.show),
     };
 
@@ -32,8 +32,8 @@ const fillSelectionAnnotations = fileAnnotations => (
   }, {})
 );
 
-const fillAnnotations = (fileAnnotations) => {
-  if (!fileAnnotations || !isObject(fileAnnotations) || Object.keys(fileAnnotations).length === 0) {
+const fillMarkers = (fileMarkers) => {
+  if (!fileMarkers || !isObject(fileMarkers) || Object.keys(fileMarkers).length === 0) {
     return {
       main: {
         ...defaultState,
@@ -42,7 +42,7 @@ const fillAnnotations = (fileAnnotations) => {
     };
   }
 
-  return fillSelectionAnnotations(fileAnnotations);
+  return fillSelectionMarkers(fileMarkers);
 };
 
-export default fillAnnotations;
+export default fillMarkers;

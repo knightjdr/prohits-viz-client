@@ -4,6 +4,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import Annotations from './annotations';
 
 import deepCopy from '../../../../utils/deep-copy';
+import scalePositionPartial from '../markup/scale-dimensions-partial';
 import useTranslation from '../translation/use-translation';
 import { selectData, selectDataProperty } from '../../../../state/selector/visualization/data-selector';
 import { updateAnnotations } from '../../../../state/visualization/markup/annotation-actions';
@@ -22,8 +23,11 @@ const AnnotationsContainer = () => {
   const { columns, rows } = dimensions;
   const { cellSize } = settings;
 
-  const height = cellSize * rows;
-  const width = cellSize * columns;
+  const imageDimensions = {
+    height: cellSize * rows,
+    width: cellSize * columns,
+  };
+  const scalePosition = scalePositionPartial(imageDimensions);
 
   const handleAnnotationDeletion = (id) => {
     const updatedAnnotations = deepCopy(list);
@@ -38,10 +42,10 @@ const AnnotationsContainer = () => {
       clipPathID={clipPathID}
       fontSize={fontSize}
       handleAnnotationDeletion={handleAnnotationDeletion}
-      height={height}
+      imageDimensions={imageDimensions}
       list={list}
+      scalePosition={scalePosition}
       translation={translation.translation}
-      width={width}
     />
   );
 };

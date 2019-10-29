@@ -1,4 +1,4 @@
-import redcuer from './search-reducer';
+import reducer from './search-reducer';
 import * as actions from './search-actions';
 import * as fileActions from '../data/interactive-file-actions';
 
@@ -6,7 +6,7 @@ describe('Search status reducer', () => {
   it('should return a default initial state', () => {
     const action = {};
     const expectedState = {};
-    expect(redcuer(undefined, action)).toEqual(expectedState);
+    expect(reducer(undefined, action)).toEqual(expectedState);
   });
 
   it('should handle CLEAR_SEARCH action', () => {
@@ -30,7 +30,7 @@ describe('Search status reducer', () => {
         term: '',
       },
     };
-    expect(redcuer(currenState, action)).toEqual(expectedState);
+    expect(reducer(currenState, action)).toEqual(expectedState);
   });
 
   it('should handle CLEAR_INTERACTIVE_STATE action', () => {
@@ -38,7 +38,7 @@ describe('Search status reducer', () => {
       type: fileActions.CLEAR_INTERACTIVE_STATE,
     };
     const expectedState = {};
-    expect(redcuer(undefined, action)).toEqual(expectedState);
+    expect(reducer(undefined, action)).toEqual(expectedState);
   });
 
   it('should handle LOAD_INTERACTIVE_STATE action', () => {
@@ -63,7 +63,7 @@ describe('Search status reducer', () => {
         term: 'a',
       },
     };
-    expect(redcuer(undefined, action)).toEqual(expectedState);
+    expect(reducer(undefined, action)).toEqual(expectedState);
   });
 
   it('should handle SET_SEARCH_STATUS action', () => {
@@ -94,6 +94,6 @@ describe('Search status reducer', () => {
         term: 'a',
       },
     };
-    expect(redcuer(currenState, action)).toEqual(expectedState);
+    expect(reducer(currenState, action)).toEqual(expectedState);
   });
 });

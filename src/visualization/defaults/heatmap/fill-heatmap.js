@@ -2,6 +2,7 @@ import fillAnnotations from './annotations';
 import fillColumns from './columns';
 import fillDimensions from './dimensions';
 import fillDisplay from './display';
+import fillMarkers from './markers';
 import fillMinimap from './minimap';
 import fillPanel from './panel';
 import fillParameters from './parameters';
@@ -18,6 +19,7 @@ const validateHeatmap = (file, filename, taskID) => {
     columns,
     dimensions,
     display,
+    markers,
     minimap,
     panel,
     parameters,
@@ -35,6 +37,7 @@ const validateHeatmap = (file, filename, taskID) => {
     columns: fillColumns(columns, columnDB),
     dimensions: fillDimensions(dimensions),
     display: fillDisplay(display),
+    markers: fillMarkers(markers),
     minimap: fillMinimap(minimap),
     panel: fillPanel(panel),
     parameters: fillParameters(parameters, filename, taskID),
