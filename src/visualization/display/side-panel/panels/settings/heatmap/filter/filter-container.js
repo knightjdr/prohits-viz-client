@@ -85,8 +85,8 @@ const FilterSettingsContainer = () => {
     }
   };
 
-  const handleFilter = (e, name, value) => {
-    rowFilter.process(name, value);
+  const handleFilter = (e, name, values) => {
+    rowFilter.process(name, values);
   };
 
   return (

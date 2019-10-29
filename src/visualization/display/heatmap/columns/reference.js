@@ -9,18 +9,17 @@ const Reference = ({
   xPosition,
 }) => (
   reference === name
-    ? (
-      <rect
-        data-name={name}
-        fill="#ffee58"
-        height="100"
-        onContextMenu={openContextMenu}
-        width={cellSize}
-        x={xPosition * cellSize}
-        y="0"
-      />
-    )
-    : null
+  && (
+    <rect
+      data-name={name}
+      fill="#ffee58"
+      height="100"
+      onContextMenu={openContextMenu}
+      width={cellSize}
+      x={xPosition * cellSize}
+      y="0"
+    />
+  )
 );
 
 Reference.defaultProps = {

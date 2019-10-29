@@ -36,58 +36,51 @@ const Columns = ({
       </Tooltip>
       <g transform="translate(100 0)">
         {
-          names.reduce((textElements, name, i) => {
-            textElements.push(...[
-              <Reference
-                cellSize={cellSize}
-                key={`${name.original}-reference`}
-                name={name.original}
-                openContextMenu={openContextMenu}
-                reference={reference}
-                xPosition={i}
-              />,
-            ]);
-            textElements.push(...[
-              <SortMatch
-                cellSize={cellSize}
-                columnIndex={i}
-                key={`${name.original}-sort`}
-                name={name.original}
-                openContextMenu={openContextMenu}
-                sortBy={sortBy}
-                sortDirection={sortDirection}
-              />,
-              <SearchMatch
-                cellSize={cellSize}
-                direction="column"
-                key={`${name.original}-match`}
-                name={name.original}
-                openContextMenu={openContextMenu}
-                searchMatches={searchMatches}
-                position={i}
-              />,
-            ]);
+          names.map((name, i) => {
             const x = (i * cellSize) + textOffset;
-            textElements.push(
-              <text
-                data-name={name.original}
-                data-trimmed={name.trimmed}
-                fontSize={fontSize}
-                key={name.original}
-                onClick={handleClick}
-                onContextMenu={openContextMenu}
-                onMouseEnter={showTooltip}
-                onMouseLeave={hideTooltip}
-                textAnchor="end"
-                transform={`rotate(90, ${x}, 98)`}
-                x={x}
-                y="98"
-              >
-                {name.text}
-              </text>,
+            return (
+              <Fragment key={`column-${name.original}`}>
+                <SearchMatch
+                  cellSize={cellSize}
+                  direction="column"
+                  name={name.original}
+                  openContextMenu={openContextMenu}
+                  searchMatches={searchMatches}
+                  position={i}
+                />
+                <Reference
+                  cellSize={cellSize}
+                  name={name.original}
+                  openContextMenu={openContextMenu}
+                  reference={reference}
+                  xPosition={i}
+                />
+                <SortMatch
+                  cellSize={cellSize}
+                  columnIndex={i}
+                  name={name.original}
+                  openContextMenu={openContextMenu}
+                  sortBy={sortBy}
+                  sortDirection={sortDirection}
+                />
+                <text
+                  data-name={name.original}
+                  data-trimmed={name.trimmed}
+                  fontSize={fontSize}
+                  onClick={handleClick}
+                  onContextMenu={openContextMenu}
+                  onMouseEnter={showTooltip}
+                  onMouseLeave={hideTooltip}
+                  textAnchor="end"
+                  transform={`rotate(90, ${x}, 98)`}
+                  x={x}
+                  y="98"
+                >
+                  {name.text}
+                </text>
+              </Fragment>
             );
-            return textElements;
-          }, [])
+          })
         }
       </g>
     </Fragment>

@@ -1,6 +1,11 @@
 import nanoid from 'nanoid';
 import PropTypes from 'prop-types';
-import React, { useMemo, useRef, useState } from 'react';
+import React, {
+  useEffect,
+  useMemo,
+  useRef,
+  useState,
+} from 'react';
 
 import DropdownPortal from './dropdown-portal';
 import Select from './select';
@@ -44,6 +49,10 @@ const SelectContainer = ({
     () => createSelectedText(optionSettings.selectableOptions, selectedValues),
     [optionSettings.selectableOptions, selectedValues],
   );
+
+  useEffect(() => {
+    setSelectedValues(parseValue(optionSettings.selectableOptions, value));
+  }, [optionSettings.selectableOptions, value]);
 
   const returnFocus = (e, onlyOnEscape) => {
     if (!onlyOnEscape || keyCodes.pressedEscape(e)) {
@@ -232,8 +241,10 @@ SelectContainer.propTypes = {
   ]).isRequired,
   value: PropTypes.oneOfType([
     PropTypes.arrayOf(
-      PropTypes.number,
-      PropTypes.string,
+      PropTypes.oneOfType([
+        PropTypes.number,
+        PropTypes.string,
+      ]),
     ),
     PropTypes.number,
     PropTypes.string,

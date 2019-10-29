@@ -20,15 +20,14 @@ const SortMatch = ({
   sortBy
   && sortBy === name
   && sortDirection
-    ? (
-      <polygon
-        data-name={name}
-        fill="#f48fb1"
-        onContextMenu={openContextMenu}
-        points={definePolygon(sortDirection, cellSize, columnIndex)}
-      />
-    )
-    : null
+  && (
+    <polygon
+      data-name={name}
+      fill="#f48fb1"
+      onContextMenu={openContextMenu}
+      points={definePolygon(sortDirection, cellSize, columnIndex)}
+    />
+  )
 );
 
 SortMatch.defaultProps = {

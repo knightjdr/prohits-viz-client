@@ -29,38 +29,37 @@ const Rows = ({
       </Tooltip>
       <g transform="translate(0 100)">
         {
-          names.reduce((textElements, name, i) => {
-            textElements.push(...[
-              <SearchMatch
-                cellSize={cellSize}
-                direction="row"
-                key={`${name.original}-match`}
-                name={name.original}
-                openContextMenu={openContextMenu}
-                searchMatches={searchMatches}
-                position={i}
-              />,
-            ]);
+          names.map((name, i) => {
             const y = Math.round(((i + 1) * cellSize) - textOffset);
-            textElements.push(
-              <text
-                data-name={name.original}
-                data-trimmed={name.trimmed}
-                fontSize={fontSize}
-                key={name.original}
-                onClick={handleClick}
-                onContextMenu={openContextMenu}
-                onMouseEnter={showTooltip}
-                onMouseLeave={hideTooltip}
-                textAnchor="end"
-                x="98"
-                y={y}
-              >
-                {name.text}
-              </text>,
+            return (
+              <Fragment key={`row-${name.original}`}>
+                <SearchMatch
+                  cellSize={cellSize}
+                  direction="row"
+                  key={`${name.original}-match`}
+                  name={name.original}
+                  openContextMenu={openContextMenu}
+                  searchMatches={searchMatches}
+                  position={i}
+                />
+                <text
+                  data-name={name.original}
+                  data-trimmed={name.trimmed}
+                  fontSize={fontSize}
+                  key={name.original}
+                  onClick={handleClick}
+                  onContextMenu={openContextMenu}
+                  onMouseEnter={showTooltip}
+                  onMouseLeave={hideTooltip}
+                  textAnchor="end"
+                  x="98"
+                  y={y}
+                >
+                  {name.text}
+                </text>
+              </Fragment>
             );
-            return textElements;
-          }, [])
+          })
         }
       </g>
     </Fragment>

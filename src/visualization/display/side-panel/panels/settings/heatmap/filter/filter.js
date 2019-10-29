@@ -66,6 +66,7 @@ const Filter = ({
         canClear
         id="filterBy"
         label="Filter by"
+        multiple
         onChange={handleFilter}
         options={columns}
         value={filterBy}
@@ -87,7 +88,7 @@ Filter.defaultProps = {
 Filter.propTypes = {
   abundanceCap: PropTypes.number.isRequired,
   columns: PropTypes.arrayOf(PropTypes.string).isRequired,
-  filterBy: PropTypes.string.isRequired,
+  filterBy: PropTypes.arrayOf(PropTypes.string).isRequired,
   filteringNotification: PropTypes.node,
   handleChangeAbundanceCap: PropTypes.func.isRequired,
   handleChangeMinAbundance: PropTypes.func.isRequired,

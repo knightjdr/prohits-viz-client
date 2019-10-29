@@ -1,11 +1,12 @@
 import isObject from '../../../utils/is-object';
+import { validateArray, validateBoolean, validateNumber } from '../../../utils/validate-type';
 
 export const defaultState = {
   abundanceCap: 50,
   cellSize: 15,
   edgeColor: 'blue',
   fillColor: 'blue',
-  filterBy: '',
+  filterBy: [],
   imageType: 'heatmap',
   invertColor: false,
   minAbundance: 0,
@@ -30,6 +31,14 @@ const acceptedImageTypes = {
   heatmap: true,
 };
 
+const validateColor = (color, defaultColor) => (
+  acceptedColors[color] ? color : defaultColor
+);
+
+const validateImageType = (imageType, defaultImageType) => (
+  acceptedImageTypes[imageType] ? imageType : defaultImageType
+);
+
 export const validateSettings = (userSettings, defaultImageType = 'heatmap') => {
   if (!userSettings) {
     return { ...defaultState };
@@ -53,39 +62,29 @@ export const validateSettings = (userSettings, defaultImageType = 'heatmap') => 
 
   const settings = { ...other };
 
-  settings.abundanceCap = typeof abundanceCap === 'number' ? abundanceCap : defaultState.abundanceCap;
+  settings.abundanceCap = validateNumber(abundanceCap, defaultState.abundanceCap);
   settings.cellSize = Number.isInteger(cellSize) && cellSize > 0 ? cellSize : defaultState.cellSize;
-  settings.edgeColor = acceptedColors[edgeColor] ? edgeColor : defaultState.edgeColor;
-  settings.fillColor = acceptedColors[fillColor] ? fillColor : defaultState.fillColor;
-  settings.filterBy = typeof filterBy === 'string' ? filterBy : defaultState.filterBy;
-  settings.imageType = acceptedImageTypes[imageType] ? imageType : defaultImageType;
-  settings.invertColor = typeof invertColor === 'boolean' ? invertColor : defaultState.invertColor;
-  settings.minAbundance = typeof minAbundance === 'number' ? minAbundance : defaultState.minAbundance;
-  settings.primaryFilter = typeof primaryFilter === 'number' ? primaryFilter : defaultState.primaryFilter;
-  settings.removeEmptyColumns = typeof removeEmptyColumns === 'boolean'
-    ? removeEmptyColumns : defaultState.removeEmptyColumns;
-  settings.resetRatios = typeof resetRatios === 'boolean' ? resetRatios : defaultState.resetRatios;
-  settings.secondaryFilter = typeof secondaryFilter === 'number' ? secondaryFilter : defaultState.secondaryFilter;
+  settings.edgeColor = validateColor(edgeColor, defaultState.edgeColor);
+  settings.fillColor = validateColor(fillColor, defaultState.fillColor);
+  settings.filterBy = validateArray(filterBy, defaultState.filterBy);
+  settings.imageType = validateImageType(imageType, defaultImageType);
+  settings.invertColor = validateBoolean(invertColor, defaultState.invertColor);
+  settings.minAbundance = validateNumber(minAbundance, defaultState.minAbundance);
+  settings.primaryFilter = validateNumber(primaryFilter, defaultState.primaryFilter);
+  settings.removeEmptyColumns = validateBoolean(removeEmptyColumns, defaultState.removeEmptyColumns);
+  settings.resetRatios = validateBoolean(resetRatios, defaultState.resetRatios);
+  settings.secondaryFilter = validateNumber(secondaryFilter, defaultState.secondaryFilter);
 
   return settings;
 };
 
-const fillSettings = (userSettings) => {
-  if (!userSettings || !isObject(userSettings) || Object.keys(userSettings).length === 0) {
-    return {
-      main: {
-        current: { ...defaultState },
-        default: { ...defaultState },
-      },
-    };
-  }
-
-  return Object.keys(userSettings).reduce((accum, selection) => {
+const fillSelectionSettings = fileSettings => (
+  Object.keys(fileSettings).reduce((accum, selection) => {
     const settings = {};
-    settings.current = validateSettings(userSettings[selection].current);
-    settings.default = userSettings[selection].default
+    settings.current = validateSettings(fileSettings[selection].current);
+    settings.default = fileSettings[selection].default
       ? validateSettings(
-        userSettings[selection].default,
+        fileSettings[selection].default,
         settings.current.imageType,
       )
       : settings.current;
@@ -94,7 +93,20 @@ const fillSettings = (userSettings) => {
       ...accum,
       [selection]: settings,
     };
-  }, {});
+  }, {})
+);
+
+const fillSettings = (fileSettings) => {
+  if (!fileSettings || !isObject(fileSettings) || Object.keys(fileSettings).length === 0) {
+    return {
+      main: {
+        current: { ...defaultState },
+        default: { ...defaultState },
+      },
+    };
+  }
+
+  return fillSelectionSettings(fileSettings);
 };
 
 export default fillSettings;
