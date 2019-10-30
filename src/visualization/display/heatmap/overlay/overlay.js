@@ -1,6 +1,7 @@
 import PropTypes from 'prop-types';
 import React, { forwardRef } from 'react';
 
+import Selection from './selection/selection-overlay-container';
 import Tooltip from './tooltip/tooltip-overlay-container';
 
 const Overlay = forwardRef((
@@ -25,6 +26,7 @@ const Overlay = forwardRef((
         x={0}
         y={0}
       />
+      <Selection gridRef={ref.current} />
     </g>
   </>
 ));

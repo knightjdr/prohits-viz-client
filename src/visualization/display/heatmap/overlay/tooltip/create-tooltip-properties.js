@@ -24,9 +24,9 @@ const createTextElement = (column, row, rowDB) => (
 );
 
 const createTooltipProperties = (e, options) => {
-  const cursorPosition = calculateCursorPosition(e);
+  const { ref, rowDB } = options;
 
-  const { rowDB } = options;
+  const cursorPosition = calculateCursorPosition(e, ref);
 
   const indices = mapCursorToGrid(cursorPosition, options);
   const text = createTextElement(indices.column, indices.row, rowDB);

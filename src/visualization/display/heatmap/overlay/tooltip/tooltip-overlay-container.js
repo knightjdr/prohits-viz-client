@@ -24,6 +24,7 @@ const TooltipOverlayContainer = ({
     cellSize,
     columnOrder,
     pagePosition,
+    ref: gridRef,
     rowDB,
     rowOrder,
   };
@@ -53,11 +54,18 @@ const TooltipOverlayContainer = ({
   );
 };
 
+TooltipOverlayContainer.defaultProps = {
+  gridRef: {
+    addEventListener: () => {},
+    removeEventListener: () => {},
+  },
+};
+
 TooltipOverlayContainer.propTypes = {
   gridRef: PropTypes.shape({
-    addEventListener: PropTypes.func.isRequired,
-    removeEventListener: PropTypes.func.isRequired,
-  }).isRequired,
+    addEventListener: PropTypes.func,
+    removeEventListener: PropTypes.func,
+  }),
 };
 
 const ShowContainer = ({

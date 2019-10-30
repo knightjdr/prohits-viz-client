@@ -1,6 +1,6 @@
-const calculateCursorPosition = (e) => {
-  const { clientX, clientY, target } = e;
-  const { left, top } = target.getBoundingClientRect();
+const calculateCursorPosition = (e, ref) => {
+  const { clientX, clientY } = e;
+  const { left, top } = ref.getBoundingClientRect();
   return {
     clientX,
     clientY,
