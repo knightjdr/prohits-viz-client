@@ -1,8 +1,8 @@
-const calculateSelectionSize = (startingPosition, currentCooridinates) => (
+const calculateSelectionSize = (startingPosition, currentPosition) => (
   startingPosition
     ? {
-      height: Math.abs(currentCooridinates.y - startingPosition.coordinates.y),
-      width: Math.abs(currentCooridinates.x - startingPosition.coordinates.x),
+      height: Math.abs(currentPosition.y - startingPosition.y),
+      width: Math.abs(currentPosition.x - startingPosition.x),
     }
     : {
       height: 0,
