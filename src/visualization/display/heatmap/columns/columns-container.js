@@ -44,7 +44,7 @@ const ColumnsContainer = () => {
     if (e.shiftKey) {
       contextMenu.sortRows(name);
     } else if (e.altKey) {
-      contextMenu.setSelections([name], 'columns', 'columnsSelected');
+      contextMenu.appendPOI([name]);
     }
   };
 

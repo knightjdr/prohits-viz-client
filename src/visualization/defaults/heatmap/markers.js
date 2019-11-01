@@ -18,7 +18,7 @@ const fillSelectionMarkers = fileMarkers => (
       show,
     } = selection;
 
-    const stateAnnotations = {
+    const stateMarkers = {
       color: validateHex(color, defaultState.color),
       list: validateObject(list, defaultState.list),
       record: validateBoolean(record, defaultState.record),
@@ -27,7 +27,7 @@ const fillSelectionMarkers = fileMarkers => (
 
     return {
       ...accum,
-      [id]: stateAnnotations,
+      [id]: stateMarkers,
     };
   }, {})
 );

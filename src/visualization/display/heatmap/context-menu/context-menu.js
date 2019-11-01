@@ -7,13 +7,13 @@ import Modal from '../../../../components/modal/modal-container';
 import './context-menu.css';
 
 const ContextMenu = ({
+  appendPOI,
   containerType,
   handleClose,
   isOpen,
   name,
   position,
   reference,
-  setSelection,
   setReference,
   sortAscending,
   sortDescending,
@@ -45,7 +45,7 @@ const ContextMenu = ({
       }
       <li>
         <button
-          onClick={setSelection}
+          onClick={appendPOI}
           type="button"
         >
           Select
@@ -62,6 +62,7 @@ ContextMenu.defaultProps = {
 };
 
 ContextMenu.propTypes = {
+  appendPOI: PropTypes.func.isRequired,
   containerType: PropTypes.string.isRequired,
   handleClose: PropTypes.func.isRequired,
   isOpen: PropTypes.bool.isRequired,
@@ -74,7 +75,6 @@ ContextMenu.propTypes = {
   }).isRequired,
   reference: PropTypes.string,
   setReference: PropTypes.func.isRequired,
-  setSelection: PropTypes.func.isRequired,
   sortAscending: PropTypes.func.isRequired,
   sortDescending: PropTypes.func.isRequired,
   target: PropTypes.string.isRequired,

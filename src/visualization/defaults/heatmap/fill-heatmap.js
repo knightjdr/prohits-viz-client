@@ -6,6 +6,7 @@ import fillMarkers from './markers';
 import fillMinimap from './minimap';
 import fillPanel from './panel';
 import fillParameters from './parameters';
+import fillPOI from './poi';
 import fillPosition from './position';
 import fillRows from './rows';
 import fillSearchStatus from './search-status';
@@ -23,6 +24,7 @@ const validateHeatmap = (file, filename, taskID) => {
     minimap,
     panel,
     parameters,
+    poi,
     position,
     rowDB,
     rows,
@@ -41,6 +43,7 @@ const validateHeatmap = (file, filename, taskID) => {
     minimap: fillMinimap(minimap),
     panel: fillPanel(panel),
     parameters: fillParameters(parameters, filename, taskID),
+    poi: fillPOI(poi),
     position: fillPosition(position),
     rowDB,
     rows: fillRows(rows, rowDB),

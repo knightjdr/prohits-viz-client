@@ -6,28 +6,25 @@ describe('Calculate cell index', () => {
   it('should return index within bounds', () => {
     const cellSize = 10;
     const pageSize = 15;
-    const pageStart = 10;
     const cursorPosition = 134;
     const expected = 13;
-    expect(calculateCellIndex(cursorPosition, cellSize, pageStart, pageSize)).toBe(expected);
+    expect(calculateCellIndex(cursorPosition, cellSize, pageSize)).toBe(expected);
   });
 
   it('should return minimum when index below lower bound', () => {
     const cellSize = 10;
     const pageSize = 15;
-    const pageStart = 10;
-    const cursorPosition = 99;
-    const expected = 10;
-    expect(calculateCellIndex(cursorPosition, cellSize, pageStart, pageSize)).toBe(expected);
+    const cursorPosition = -1;
+    const expected = 0;
+    expect(calculateCellIndex(cursorPosition, cellSize, pageSize)).toBe(expected);
   });
 
   it('should return maximum when index above upper bound', () => {
     const cellSize = 10;
     const pageSize = 15;
-    const pageStart = 10;
     const cursorPosition = 251;
-    const expected = 25;
-    expect(calculateCellIndex(cursorPosition, cellSize, pageStart, pageSize)).toBe(expected);
+    const expected = 15;
+    expect(calculateCellIndex(cursorPosition, cellSize, pageSize)).toBe(expected);
   });
 });
 
@@ -39,14 +36,10 @@ describe('Calculate cell indices from cursor position', () => {
         pageX: 15,
         pageY: 10,
       },
-      position: {
-        x: 10,
-        y: 5,
-      },
     };
     const expected = {
-      x: 100,
-      y: 140,
+      x: 90,
+      y: 100,
     };
     expect(calculateCellFromCursor({}, options)).toEqual(expected);
   });

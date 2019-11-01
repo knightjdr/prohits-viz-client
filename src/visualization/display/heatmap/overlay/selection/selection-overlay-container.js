@@ -14,8 +14,10 @@ import calculateCellFromCursor from './calculate-cell-from-cursor';
 import calculateFractionalSelection from './calculate-fractional-selection';
 import calculateSelectionPosition from './calculate-selection-position';
 import calculateSelectionSize from './calculate-selection-size';
+import extractSelection from './extract-selection';
 import { addMarker } from '../../../../../state/visualization/markup/marker-actions';
 import { selectData, selectDataProperty } from '../../../../../state/selector/visualization/data-selector';
+import usePOI from '../../poi/use-poi';
 
 const defaultSelection = {
   dimensions: {
@@ -36,24 +38,30 @@ const SelectionOverlayContainer = ({
   const [selectionPosition, setSelectionPosition] = useState({ ...defaultSelection.position });
   const [selectionDimensions, setSelectionDimensions] = useState({ ...defaultSelection.dimensions });
 
+  const columnOrder = useSelector(state => selectDataProperty(state, 'columns', 'order'));
   const dimensions = useSelector(state => selectData(state, 'dimensions'));
   const position = useSelector(state => selectData(state, 'position'));
   const recordSelections = useSelector(state => selectDataProperty(state, 'markers', 'record'));
+  const rowOrder = useSelector(state => selectDataProperty(state, 'rows', 'order'));
   const settings = useSelector(state => selectDataProperty(state, 'settings', 'current'));
+
+  const poi = usePOI();
 
   const { cellSize } = settings;
 
   const cursorOptions = {
     cellSize,
     dimensions,
-    position,
     ref: gridRef,
   };
 
   const selectionOptions = {
     cellSize,
+    columnOrder,
     dimensions,
+    position,
     record: recordSelections,
+    rowOrder,
   };
 
   const createMarker = useCallback(
@@ -63,8 +71,11 @@ const SelectionOverlayContainer = ({
         const id = nanoid();
         dispatch(addMarker(id, markerDimensions));
       }
+      const selection = extractSelection(rect, selectionOptions);
+      poi.replace(selection.columns, 'columns');
+      poi.replace(selection.rows, 'rows');
     },
-    [dispatch, selectionOptions],
+    [dispatch, poi, selectionOptions],
   );
 
   const updateRect = useCallback(

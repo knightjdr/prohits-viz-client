@@ -1,12 +1,11 @@
 import calculateCursorPosition from '../calculate-cursor-position';
 
-export const calculateCellIndex = (position, cellSize, pageStart, pageSize) => {
+export const calculateCellIndex = (position, cellSize, pageSize) => {
   const cellIndex = Math.round(position / cellSize);
-  const pageEnd = pageStart + pageSize;
-  if (cellIndex < pageStart) {
-    return pageStart;
-  } if (cellIndex > pageEnd) {
-    return pageEnd;
+  if (cellIndex <= 0) {
+    return 0;
+  } if (cellIndex > pageSize) {
+    return pageSize;
   }
   return cellIndex;
 };
@@ -15,13 +14,12 @@ const calculateCellFromCursor = (e, options) => {
   const {
     cellSize,
     dimensions,
-    position,
     ref,
   } = options;
   const cursorPosition = calculateCursorPosition(e, ref);
   const cell = {
-    x: calculateCellIndex(cursorPosition.x, cellSize, position.x, dimensions.pageX),
-    y: calculateCellIndex(cursorPosition.y, cellSize, position.y, dimensions.pageY),
+    x: calculateCellIndex(cursorPosition.x, cellSize, dimensions.pageX),
+    y: calculateCellIndex(cursorPosition.y, cellSize, dimensions.pageY),
   };
 
   return {

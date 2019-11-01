@@ -18,12 +18,16 @@ describe('Calculate fractional selection', () => {
         columns: 20,
         rows: 40,
       },
+      position: {
+        x: 5,
+        y: 10,
+      },
     };
     const expected = {
       height: 0.25,
       width: 0.75,
-      x: 0.1,
-      y: 0.2,
+      x: 0.35,
+      y: 0.45,
     };
     expect(calculateFractionalSelection(rect, options)).toEqual(expected);
   });

@@ -13,6 +13,7 @@ import minimap from './visualization/heatmap/minimap-reducer';
 import news from './news/news-reducer';
 import panel from './visualization/settings/panel-reducer';
 import parameters from './visualization/data/parameter-reducer';
+import poi from './visualization/analysis/poi-reducer';
 import position from './visualization/settings/position-reducer';
 import rowDB from './visualization/data/row-db-reducer';
 import rows from './visualization/heatmap/rows-reducer';
@@ -35,6 +36,7 @@ const reducers = combineReducers({
   news,
   panel,
   parameters,
+  poi,
   position,
   rowDB,
   rows,
