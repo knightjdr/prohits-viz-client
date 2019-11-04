@@ -1,4 +1,4 @@
-import calculateCellFromCursor, { calculateCellIndex } from './calculate-cell-from-cursor';
+import calculateGridCoordinatesFromCursor, { calculateCellIndex } from './calculate-grid-coordinates-from-cursor';
 
 jest.mock('../calculate-cursor-position', () => () => ({ x: 90, y: 140 }));
 
@@ -28,7 +28,7 @@ describe('Calculate cell index', () => {
   });
 });
 
-describe('Calculate cell indices from cursor position', () => {
+describe('Calculate grid coordinates cursor position', () => {
   it('should return nearest cell coordinates', () => {
     const options = {
       cellSize: 10,
@@ -41,6 +41,6 @@ describe('Calculate cell indices from cursor position', () => {
       x: 90,
       y: 100,
     };
-    expect(calculateCellFromCursor({}, options)).toEqual(expected);
+    expect(calculateGridCoordinatesFromCursor({}, options)).toEqual(expected);
   });
 });

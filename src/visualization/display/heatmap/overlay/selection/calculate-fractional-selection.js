@@ -1,10 +1,13 @@
+import convertPositionToCell from './convert-position-to-cell';
+
 const calculateFractionalSelection = (rect, options) => {
   const { cellSize, dimensions, position } = options;
+
   const { columns, rows } = dimensions;
 
   const gridPosition = {
-    x: Math.round(rect.position.x / cellSize),
-    y: Math.round(rect.position.y / cellSize),
+    x: convertPositionToCell(cellSize, rect.position.x),
+    y: convertPositionToCell(cellSize, rect.position.y),
   };
 
   const height = cellSize * rows;

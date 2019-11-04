@@ -2,29 +2,29 @@ import PropTypes from 'prop-types';
 import React from 'react';
 
 const SelectionOverlay = ({
-  dimensions,
-  position,
+  coordinates,
+  size,
 }) => (
   <rect
     fillOpacity={0}
-    height={dimensions.height}
+    height={size.height}
     pointerEvents="none"
     stroke="#000"
     strokeDasharray={2}
-    width={dimensions.width}
-    x={position.x}
-    y={position.y}
+    width={size.width}
+    x={coordinates.x}
+    y={coordinates.y}
   />
 );
 
 SelectionOverlay.propTypes = {
-  dimensions: PropTypes.shape({
-    height: PropTypes.number.isRequired,
-    width: PropTypes.number.isRequired,
-  }).isRequired,
-  position: PropTypes.shape({
+  coordinates: PropTypes.shape({
     x: PropTypes.number,
     y: PropTypes.number,
+  }).isRequired,
+  size: PropTypes.shape({
+    height: PropTypes.number.isRequired,
+    width: PropTypes.number.isRequired,
   }).isRequired,
 };
 

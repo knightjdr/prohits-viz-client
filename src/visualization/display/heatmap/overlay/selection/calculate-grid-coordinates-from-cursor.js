@@ -1,7 +1,8 @@
 import calculateCursorPosition from '../calculate-cursor-position';
+import convertPositionToCell from './convert-position-to-cell';
 
 export const calculateCellIndex = (position, cellSize, pageSize) => {
-  const cellIndex = Math.round(position / cellSize);
+  const cellIndex = convertPositionToCell(cellSize, position);
   if (cellIndex <= 0) {
     return 0;
   } if (cellIndex > pageSize) {
@@ -10,12 +11,8 @@ export const calculateCellIndex = (position, cellSize, pageSize) => {
   return cellIndex;
 };
 
-const calculateCellFromCursor = (e, options) => {
-  const {
-    cellSize,
-    dimensions,
-    ref,
-  } = options;
+const calculateGridCoordinatesFromCursor = (e, options) => {
+  const { cellSize, dimensions, ref } = options;
   const cursorPosition = calculateCursorPosition(e, ref);
   const cell = {
     x: calculateCellIndex(cursorPosition.x, cellSize, dimensions.pageX),
@@ -28,4 +25,4 @@ const calculateCellFromCursor = (e, options) => {
   };
 };
 
-export default calculateCellFromCursor;
+export default calculateGridCoordinatesFromCursor;

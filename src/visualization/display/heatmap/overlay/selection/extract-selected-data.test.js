@@ -1,6 +1,6 @@
-import extractSelection from './extract-selection';
+import extractSelectedData from './extract-selected-data';
 
-describe('Extract selection', () => {
+describe('Extract selected data', () => {
   it('should return array of column and row indices encompassed by selection', () => {
     const options = {
       cellSize: 10,
@@ -22,6 +22,6 @@ describe('Extract selection', () => {
       columns: [4, 3],
       rows: [4, 1],
     };
-    expect(extractSelection(rect, options)).toEqual(expected);
+    expect(extractSelectedData(rect, options)).toEqual(expected);
   });
 });

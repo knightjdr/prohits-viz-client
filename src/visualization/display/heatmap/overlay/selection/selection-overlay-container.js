@@ -10,11 +10,11 @@ import { useDispatch, useSelector } from 'react-redux';
 
 import SelectionOverlay from './selection-overlay';
 
-import calculateCellFromCursor from './calculate-cell-from-cursor';
+import calculateGridCoordinatesFromCursor from './calculate-grid-coordinates-from-cursor';
 import calculateFractionalSelection from './calculate-fractional-selection';
-import calculateSelectionPosition from './calculate-selection-position';
+import calculateSelectionCoordinates from './calculate-selection-coordinates';
 import calculateSelectionSize from './calculate-selection-size';
-import extractSelection from './extract-selection';
+import extractSelectedData from './extract-selected-data';
 import { addMarker } from '../../../../../state/visualization/markup/marker-actions';
 import { selectData, selectDataProperty } from '../../../../../state/selector/visualization/data-selector';
 import usePOI from '../../poi/use-poi';
@@ -35,8 +35,8 @@ const SelectionOverlayContainer = ({
 }) => {
   const dispatch = useDispatch();
   const startPosition = useRef(null);
-  const [selectionPosition, setSelectionPosition] = useState({ ...defaultSelection.position });
-  const [selectionDimensions, setSelectionDimensions] = useState({ ...defaultSelection.dimensions });
+  const [selectionCoordinates, setSelectionCoordinates] = useState({ ...defaultSelection.position });
+  const [selectionSize, setSelectionSize] = useState({ ...defaultSelection.dimensions });
 
   const columnOrder = useSelector(state => selectDataProperty(state, 'columns', 'order'));
   const dimensions = useSelector(state => selectData(state, 'dimensions'));
@@ -71,7 +71,7 @@ const SelectionOverlayContainer = ({
         const id = nanoid();
         dispatch(addMarker(id, markerDimensions));
       }
-      const selection = extractSelection(rect, selectionOptions);
+      const selection = extractSelectedData(rect, selectionOptions);
       poi.replace(selection.columns, 'columns');
       poi.replace(selection.rows, 'rows');
     },
@@ -80,13 +80,13 @@ const SelectionOverlayContainer = ({
 
   const updateRect = useCallback(
     (e) => {
-      const currentCoordinates = calculateCellFromCursor(e, cursorOptions);
-      const newPosition = calculateSelectionPosition(startPosition.current, currentCoordinates);
+      const currentCoordinates = calculateGridCoordinatesFromCursor(e, cursorOptions);
+      const newCoordinates = calculateSelectionCoordinates(startPosition.current, currentCoordinates);
       const size = calculateSelectionSize(startPosition.current, currentCoordinates);
-      setSelectionDimensions(size);
-      setSelectionPosition(newPosition);
+      setSelectionSize(size);
+      setSelectionCoordinates(newCoordinates);
       return {
-        position: newPosition,
+        position: newCoordinates,
         size,
       };
     },
@@ -123,8 +123,8 @@ const SelectionOverlayContainer = ({
 
   return (
     <SelectionOverlay
-      dimensions={selectionDimensions}
-      position={selectionPosition}
+      coordinates={selectionCoordinates}
+      size={selectionSize}
     />
   );
 };
