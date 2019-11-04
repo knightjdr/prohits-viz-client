@@ -2,11 +2,11 @@ import React, { useMemo, useState } from 'react';
 import { useSelector } from 'react-redux';
 
 import Columns from './rows';
-import names from '../names/names';
-import selectRowNames from '../../../../state/selector/visualization/row-selector';
+import formatNames from '../names/format-names';
 import setFontSize from '../font-size/font-size';
 import useContextMenu from '../context-menu/use-context-menu';
 import { selectDataProperty } from '../../../../state/selector/visualization/data-selector';
+import { selectVisibleRowNames } from '../../../../state/selector/visualization/row-selector';
 
 const RowsContainer = () => {
   const [tooltip, setTooltip] = useState({
@@ -20,11 +20,9 @@ const RowsContainer = () => {
     text: '',
   });
 
-  const orderedNames = useSelector(state => selectRowNames(state));
-  const pageY = useSelector(state => selectDataProperty(state, 'dimensions', 'pageY'));
+  const names = useSelector(state => selectVisibleRowNames(state));
   const rowSearchMatches = useSelector(state => selectDataProperty(state, 'searchStatus', 'rows'));
   const settings = useSelector(state => selectDataProperty(state, 'settings', 'current'));
-  const y = useSelector(state => selectDataProperty(state, 'position', 'y'));
 
   const contextMenu = useContextMenu('context-rows', 'rows');
 
@@ -32,8 +30,8 @@ const RowsContainer = () => {
   const fontSize = setFontSize(cellSize);
 
   const rowNames = useMemo(
-    () => names(orderedNames, y, pageY, fontSize),
-    [orderedNames, y, pageY, fontSize],
+    () => formatNames(names, fontSize),
+    [names, fontSize],
   );
 
   const handleClick = (e) => {

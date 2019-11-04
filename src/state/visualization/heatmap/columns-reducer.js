@@ -1,32 +1,39 @@
 import * as actions from './columns-actions';
 import * as displayActions from '../settings/display-actions';
 import * as fileActions from '../data/interactive-file-actions';
-import * as rowActions from './rows-actions';
 
-const reduceForResetting = (state, action) => ({
+const reduceAndDelete = (state, action) => ({
   ...state,
   [action.selectionID]: {
     ...state[action.selectionID],
-    filterOrder: [],
+    deleted: [...state[action.selectionID].deleted, action.index],
+    order: action.order,
+  },
+});
+
+const reduceAndFilter = (state, action) => ({
+  ...state,
+  [action.selectionID]: {
+    ...state[action.selectionID],
+    order: action.order,
+  },
+});
+
+const reduceAndReset = (state, action) => ({
+  ...state,
+  [action.selectionID]: {
+    ...state[action.selectionID],
+    deleted: [],
     order: [...state[action.selectionID].defaultOrder],
     sortOrder: [],
   },
 });
 
-const reduceForRowFiltering = (state, action) => ({
-  ...state,
-  [action.selectionID]: {
-    ...state[action.selectionID],
-    filterOrder: [...action.columnOrder],
-    order: [...action.columnOrder],
-  },
-});
-
-const reduceInteractiveState = file => (
+const reduceAndLoadState = file => (
   file.columns ? file.columns : {}
 );
 
-const reduceRef = (state, action) => ({
+const reduceAndSetRef = (state, action) => ({
   ...state,
   [action.selectionID]: {
     ...state[action.selectionID],
@@ -38,14 +45,16 @@ const reducer = (state = {}, action) => {
   switch (action.type) {
     case fileActions.CLEAR_INTERACTIVE_STATE:
       return {};
-    case rowActions.FILTER_ROWS:
-      return reduceForRowFiltering(state, action);
+    case actions.DELETE_COLUMN:
+      return reduceAndDelete(action.file);
     case fileActions.LOAD_INTERACTIVE_STATE:
-      return reduceInteractiveState(action.file);
+      return reduceAndLoadState(action.file);
     case displayActions.RESET_IMAGE:
-      return reduceForResetting(state, action);
+      return reduceAndReset(state, action);
+    case actions.SET_COLUMN_FILTER_ORDER:
+      return reduceAndFilter(state, action);
     case actions.SET_COLUMN_REFERENCE:
-      return reduceRef(state, action);
+      return reduceAndSetRef(state, action);
     default:
       return state;
   }

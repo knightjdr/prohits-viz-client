@@ -15,13 +15,13 @@ const reducer = (state = {}, action) => {
   switch (action.type) {
     case fileActions.CLEAR_INTERACTIVE_STATE:
       return {};
-    case actions.FILTER_ROWS:
+    case actions.SET_ROW_FILTER_ORDER:
       return {
         ...state,
         [action.selectionID]: {
           ...state[action.selectionID],
-          filterOrder: [...action.rowOrder],
-          order: [...action.rowOrder],
+          filterOrder: [...action.order],
+          order: [...action.order],
         },
       };
     case fileActions.LOAD_INTERACTIVE_STATE:

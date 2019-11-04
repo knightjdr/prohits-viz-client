@@ -3,14 +3,14 @@ import { useDispatch, useSelector } from 'react-redux';
 
 import SettingsHeatmap from './settings__heatmap';
 
-import selectColumns from '../../../../../../state/selector/visualization/column-selector';
+import { selectColumnNames } from '../../../../../../state/selector/visualization/column-selector';
 import { resetImage } from '../../../../../../state/visualization/settings/display-actions';
 import { selectDataProperty } from '../../../../../../state/selector/visualization/data-selector';
 import { updateSetting } from '../../../../../../state/visualization/settings/settings-actions';
 
 const SettingsHeatmapContainer = () => {
   const dispatch = useDispatch();
-  const columns = useSelector(state => selectColumns(state));
+  const columns = useSelector(state => selectColumnNames(state));
   const settings = useSelector(state => selectDataProperty(state, 'settings', 'current'));
 
   const handleChange = (e, name, value) => {

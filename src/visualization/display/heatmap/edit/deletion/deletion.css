@@ -1,0 +1,22 @@
+.heatmap__deletion {
+  display: flex;
+  position: absolute;
+}
+
+.heatmap__deletion-button-container {
+  align-items: center;
+  display: flex;
+  justify-content: center;
+}
+
+.heatmap__deletion-button-container button {
+  height: calc(100% - 4px);
+  width: calc(100% - 4px);
+}
+
+.heatmap__deletion-column {
+  flex-direction: row;
+}
+.heatmap__deletion-row {
+  flex-direction: column;
+}

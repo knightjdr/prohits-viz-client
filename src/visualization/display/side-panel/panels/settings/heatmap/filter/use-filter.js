@@ -1,14 +1,20 @@
 import React, { useCallback, useState } from 'react';
-import { useDispatch, useSelector } from 'react-redux';
+import { batch, useDispatch, useSelector } from 'react-redux';
 
 import ActionNotification from '../../../../../../utils/action-notification';
 
 import rowSort from '../../../../../heatmap/sort/row-sort';
-import selectColumns from '../../../../../../../state/selector/visualization/column-selector';
-import { filterRows } from '../../../../../../../state/visualization/heatmap/rows-actions';
 import { selectData, selectDataProperty } from '../../../../../../../state/selector/visualization/data-selector';
 import { selectState, selectStateProperty } from '../../../../../../../state/selector/general';
+import { setColumnFilterOrder } from '../../../../../../../state/visualization/heatmap/columns-actions';
+import { setRowFilterOrder } from '../../../../../../../state/visualization/heatmap/rows-actions';
 import { updateSetting } from '../../../../../../../state/visualization/settings/settings-actions';
+
+export const defineAvailableIndices = (indices, deleted) => {
+  indices.reduce((accum, index) => (
+    deleted.includes(index) ? accum : [...accum, index]
+  ), []);
+};
 
 export const defineLatestValues = (updatedSetting, updatedValue, settings) => {
   const {
@@ -34,18 +40,14 @@ export const defineScoreCriterion = (scoreType, primaryFilter) => {
   return scoreType === 'gte' ? gte : lte;
 };
 
-export const defineStartingColumnOrder = (defaultOrder, sortOrder) => (
-  sortOrder.length === 0 ? defaultOrder : sortOrder
+const defineStartingColumnOrder = (defaultOrder, filterColumnIndices) => (
+  filterColumnIndices.length > 0 ? filterColumnIndices : defaultOrder
 );
 
-export const defineStartingRowOrder = (setting, defaultOrder, sortOrder) => (
-  setting === 'filterBy' || sortOrder.length === 0 ? defaultOrder : sortOrder
-);
-
-export const filterAndOrderColumns = (rowDB, rowOrder, startingOrder, scoreType, latestValues) => {
+export const filterAndOrderColumns = (rowDB, rowOrder, columnOrder, scoreType, latestValues) => {
   const { minAbundance, primaryFilter } = latestValues;
   const scoreCriterion = defineScoreCriterion(scoreType, primaryFilter);
-  return startingOrder.filter(columnIndex => (
+  return columnOrder.filter(columnIndex => (
     rowOrder.some(rowIndex => (
       rowDB[rowIndex].data[columnIndex].value >= minAbundance
       && scoreCriterion(rowDB[rowIndex].data[columnIndex].score)
@@ -53,36 +55,29 @@ export const filterAndOrderColumns = (rowDB, rowOrder, startingOrder, scoreType,
   ));
 };
 
-export const filterAndOrderRows = (rowDB, startingOrder, filterIndices, scoreType, latestValues) => {
+export const filterAndOrderRows = (rowData, indices, scoreType, latestValues) => {
   const { minAbundance, primaryFilter } = latestValues;
   const scoreCriterion = defineScoreCriterion(scoreType, primaryFilter);
-  if (filterIndices.length > 0) {
-    return startingOrder.filter(rowIndex => (
-      filterIndices.some(filterIndex => (
-        rowDB[rowIndex].data[filterIndex].value >= minAbundance
-        && scoreCriterion(rowDB[rowIndex].data[filterIndex].score)
-      ))
-    ));
-  }
-  return startingOrder.filter(rowIndex => (
-    rowDB[rowIndex].data.some(datam => (
-      datam.value >= minAbundance && scoreCriterion(datam.score)
-    ))
+  return indices.rows.filter(rowIndex => (
+    indices.columns.some((columnIndex) => {
+      const { score, value } = rowData[rowIndex].data[columnIndex];
+      return value >= minAbundance && scoreCriterion(score);
+    })
   ));
 };
 
-export const findColumnIndices = (columnNames, selectedColumns) => (
-  columnNames.reduce((accum, name, index) => (
-    selectedColumns.includes(name) ? [...accum, index] : accum
-  ), [])
+export const subsetAvailableData = (rowData, indices) => (
+  indices.rows.map(rowIndex => ({
+    data: indices.columns.map(columnIndex => rowData[rowIndex].data[columnIndex]),
+    name: rowData[rowIndex].name,
+  }))
 );
 
-const useRowFilter = () => {
+const useFilter = () => {
   const [isFiltering, setFiltering] = useState(false);
 
   const dispatch = useDispatch();
 
-  const columnDB = useSelector(state => selectColumns(state));
   const columns = useSelector(state => selectData(state, 'columns'));
   const scoreType = useSelector(state => selectStateProperty(state, 'parameters', 'scoreType'));
   const settings = useSelector(state => selectDataProperty(state, 'settings', 'current'));
@@ -94,42 +89,42 @@ const useRowFilter = () => {
       setFiltering(true);
 
       const {
-        defaultOrder: defaultColumnOrder,
+        deleted: deletedColumns,
+        defaultOrder: columnOrder,
         ref: sortByRef,
-        sortOrder: columnSortOrder,
       } = columns;
       const {
+        deleted: deletedRows,
         direction,
-        defaultOrder: defaultRowOrder,
+        defaultOrder: rowOrder,
         sortBy,
-        sortOrder: rowSortOrder,
       } = rows;
 
       const latestValues = defineLatestValues(updatedSetting, updatedValue, settings);
+      const startingColumnOrder = defineStartingColumnOrder(columnOrder, latestValues.filterBy);
+      const indices = {
+        columns: defineAvailableIndices(startingColumnOrder, deletedColumns),
+        rows: defineAvailableIndices(rowOrder, deletedRows),
+      };
 
-      // Filter rows first, then reapplying sorting if sorting had been applied. Finally,
-      // filter columns.
-      const filterIndices = findColumnIndices(columnDB, latestValues.filterBy);
-      const startingRowOrder = defineStartingRowOrder(updatedSetting, defaultRowOrder, rowSortOrder);
-      let newRowOrder = filterAndOrderRows(rowDB, startingRowOrder, filterIndices, scoreType, latestValues);
+      let newRowOrder = filterAndOrderRows(rowDB, indices, scoreType, latestValues);
       if (sortBy) {
-        const requestedSortIndex = columnDB.indexOf(sortBy);
-        const refIndex = sortByRef ? columnDB.indexOf(sortByRef) : '';
-        newRowOrder = rowSort(rowDB, newRowOrder, requestedSortIndex, direction, refIndex);
+        newRowOrder = rowSort(rowDB, newRowOrder, sortBy, direction, sortByRef);
       }
 
-      const startingColumnOrder = defineStartingColumnOrder(defaultColumnOrder, columnSortOrder);
       const newColumnOrder = latestValues.removeEmptyColumns
-        ? filterAndOrderColumns(rowDB, newRowOrder, startingColumnOrder, scoreType, latestValues)
-        : startingColumnOrder;
+        ? filterAndOrderColumns(rowDB, newRowOrder, columnOrder, scoreType, latestValues)
+        : columnOrder;
 
-      dispatch(updateSetting(updatedSetting, updatedValue));
-      dispatch(filterRows(newRowOrder, newColumnOrder));
+      batch(() => {
+        dispatch(updateSetting(updatedSetting, updatedValue));
+        dispatch(setRowFilterOrder(newRowOrder));
+        dispatch(setColumnFilterOrder(newColumnOrder));
+      });
 
       setFiltering(false);
     },
     [
-      columnDB,
       columns,
       dispatch,
       rowDB,
@@ -153,4 +148,4 @@ const useRowFilter = () => {
   };
 };
 
-export default useRowFilter;
+export default useFilter;

@@ -7,7 +7,7 @@ describe('Select dropdown text', () => {
       { label: 'B', value: 'b' },
       { label: 'C', value: 'c' },
     ];
-    const selectedValues = ['c', 'a'];
+    const selectedValues = ['c', 'a', 'd'];
     const expected = 'C, A';
     expect(createSelectedText(options, selectedValues)).toBe(expected);
   });

@@ -1,40 +1,37 @@
-import selectRowNames from './row-selector';
+import { selectRowNames, selectVisibleRowNames } from './row-selector';
 
 const state = {
-  columns: {
+  dimensions: {
     main: {
-      order: [0, 2],
+      pageY: 2,
     },
   },
   rowDB: [
     {
-      data: [
-        { value: 1 },
-        { value: 2 },
-        { value: 3 },
-      ],
+      data: [{ value: 1 }, { value: 2 }, { value: 3 }],
       name: 'a',
     },
     {
-      data: [
-        { value: 1 },
-        { value: 2 },
-        { value: 3 },
-      ],
+      data: [{ value: 1 }, { value: 2 }, { value: 3 }],
       name: 'b',
     },
     {
-      data: [
-        { value: 1 },
-        { value: 2 },
-        { value: 3 },
-      ],
+      data: [{ value: 1 }, { value: 2 }, { value: 3 }],
       name: 'c',
     },
+    {
+      data: [{ value: 1 }, { value: 2 }, { value: 3 }],
+      name: 'd',
+    },
   ],
+  position: {
+    main: {
+      y: 1,
+    },
+  },
   rows: {
     main: {
-      order: [2, 1],
+      order: [0, 2, 1, 3],
     },
   },
   tabs: {
@@ -44,7 +41,12 @@ const state = {
 
 describe('Row selector for heat map', () => {
   it('should return rows names in correct order', () => {
-    const expected = ['c', 'b'];
+    const expected = ['a', 'c', 'b', 'd'];
     expect(selectRowNames(state)).toEqual(expected);
+  });
+
+  it('should return rows names for visible page', () => {
+    const expected = ['c', 'b'];
+    expect(selectVisibleRowNames(state)).toEqual(expected);
   });
 });

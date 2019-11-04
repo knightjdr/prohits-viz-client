@@ -30,6 +30,13 @@ const Image = ({
         ]}
         value={imageType}
       />
+      <Input
+        id="cellSize"
+        label="Cell size"
+        onChange={handleChange}
+        type="number"
+        value={cellSize}
+      />
       {
         imageType === 'dotplot'
         && (
@@ -41,13 +48,6 @@ const Image = ({
           />
         )
       }
-      <Input
-        id="cellSize"
-        label="Cell size"
-        onChange={handleChange}
-        type="number"
-        value={cellSize}
-      />
       {
         canTranslate
         && (

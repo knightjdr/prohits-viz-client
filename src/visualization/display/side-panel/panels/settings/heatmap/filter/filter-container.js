@@ -3,19 +3,19 @@ import { useDispatch, useSelector } from 'react-redux';
 
 import Filter from './filter';
 
-import selectColumns from '../../../../../../../state/selector/visualization/column-selector';
-import useRowFilter from './use-row-filter';
+import { selectColumnNames } from '../../../../../../../state/selector/visualization/column-selector';
+import useFilter from './use-filter';
 import { selectDataProperty } from '../../../../../../../state/selector/visualization/data-selector';
 import { selectStateProperty } from '../../../../../../../state/selector/general';
 import { updateSetting, updateSettings } from '../../../../../../../state/visualization/settings/settings-actions';
 
 const FilterSettingsContainer = () => {
   const dispatch = useDispatch();
-  const columns = useSelector(state => selectColumns(state));
+  const columns = useSelector(state => selectColumnNames(state));
   const scoreType = useSelector(state => selectStateProperty(state, 'parameters', 'scoreType'));
   const settings = useSelector(state => selectDataProperty(state, 'settings', 'current'));
 
-  const rowFilter = useRowFilter();
+  const rowFilter = useFilter();
 
   const {
     abundanceCap,

@@ -19,13 +19,11 @@ const useSortRows = () => {
   const rowDB = useSelector(state => selectState(state, 'rowDB'));
 
   const {
-    defaultOrder,
     direction,
-    filterOrder,
+    order,
     sortBy,
   } = rows;
 
-  const rowOrder = filterOrder.length > 0 ? [...filterOrder] : [...defaultOrder];
   const sort = (requestedSortBy, requestedDirection, ref) => {
     setSorting(true);
 
@@ -44,7 +42,7 @@ const useSortRows = () => {
       sortDirection = 'desc';
     }
 
-    const newOrder = rowSort(rowDB, rowOrder, requestedSortIndex, sortDirection, refIndex);
+    const newOrder = rowSort(rowDB, order, requestedSortIndex, sortDirection, refIndex);
 
     dispatch(sortRows(sortDirection, newOrder, requestedSortBy));
 

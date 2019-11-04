@@ -1,4 +1,5 @@
 import * as actions from './minimap-actions';
+import * as columnActions from './columns-actions';
 import * as displayActions from '../settings/display-actions';
 import * as fileActions from '../data/interactive-file-actions';
 import * as rowActions from './rows-actions';
@@ -67,7 +68,18 @@ const reducer = (state = {}, action) => {
           updateOriginal: false,
         },
       };
-    case rowActions.FILTER_ROWS:
+    case columnActions.SET_COLUMN_FILTER_ORDER:
+      return {
+        ...state,
+        [action.selectionID]: {
+          ...state[action.selectionID],
+          isSyncing: false,
+          needSyncing: true,
+          syncedImage: null,
+          updateOriginal: false,
+        },
+      };
+    case rowActions.SET_ROW_FILTER_ORDER:
       return {
         ...state,
         [action.selectionID]: {

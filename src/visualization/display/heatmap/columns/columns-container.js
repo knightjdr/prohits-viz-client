@@ -2,11 +2,12 @@ import React, { useMemo, useState } from 'react';
 import { useSelector } from 'react-redux';
 
 import Columns from './columns';
-import selectColumns from '../../../../state/selector/visualization/column-selector';
-import parseNames from '../names/names';
+
+import formatNames from '../names/format-names';
 import setFontSize from '../font-size/font-size';
 import useContextMenu from '../context-menu/use-context-menu';
 import { selectDataProperty } from '../../../../state/selector/visualization/data-selector';
+import { selectVisibleColumnNames } from '../../../../state/selector/visualization/column-selector';
 
 const ColumnsContainer = () => {
   const [tooltip, setTooltip] = useState({
@@ -22,12 +23,10 @@ const ColumnsContainer = () => {
 
   const columnRef = useSelector(state => selectDataProperty(state, 'columns', 'ref'));
   const columnSearchMatches = useSelector(state => selectDataProperty(state, 'searchStatus', 'columns'));
-  const names = useSelector(state => selectColumns(state));
-  const pageX = useSelector(state => selectDataProperty(state, 'dimensions', 'pageX'));
+  const names = useSelector(state => selectVisibleColumnNames(state));
   const settings = useSelector(state => selectDataProperty(state, 'settings', 'current'));
   const sortBy = useSelector(state => selectDataProperty(state, 'rows', 'sortBy'));
   const sortDirection = useSelector(state => selectDataProperty(state, 'rows', 'direction'));
-  const x = useSelector(state => selectDataProperty(state, 'position', 'x'));
 
   const contextMenu = useContextMenu('context-columns', 'columns');
 
@@ -35,8 +34,8 @@ const ColumnsContainer = () => {
   const fontSize = setFontSize(cellSize);
 
   const columnNames = useMemo(
-    () => parseNames(names, x, pageX, fontSize),
-    [names, x, pageX, fontSize],
+    () => formatNames(names, fontSize),
+    [names, fontSize],
   );
 
   const handleClick = (e) => {

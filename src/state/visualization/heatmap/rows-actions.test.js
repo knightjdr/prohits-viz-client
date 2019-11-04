@@ -1,11 +1,11 @@
 import * as actions from './rows-actions';
 
 describe('Row actions', () => {
-  it('should dispatch an action to filter the rows', () => {
+  it('should dispatch an action to set row filter order', () => {
     const expectedAction = {
       AUGMENT_WITH_ACTIVE_SELECTION: true,
-      rowOrder: ['b', 'c', 'a'],
-      type: actions.FILTER_ROWS,
+      order: ['b', 'c', 'a'],
+      type: actions.SET_ROW_FILTER_ORDER,
     };
     expect(actions.filterRows(['b', 'c', 'a'])).toEqual(expectedAction);
   });

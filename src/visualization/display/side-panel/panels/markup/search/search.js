@@ -16,6 +16,7 @@ const Search = ({
   warning,
 }) => (
   <Section
+    border={false}
     title="Search"
   >
     <div className="panel-markup__input">

@@ -4,6 +4,8 @@ describe('Fill display', () => {
   it('should return user-defined display when valid', () => {
     const userMinimap = {
       main: {
+        deleteFromImage: true,
+        reorderImage: true,
         plotFixed: true,
         showTooltips: true,
       },
@@ -20,6 +22,8 @@ describe('Fill display', () => {
   it('should return defaults when user-defined display options invalid', () => {
     const userMinimap = {
       main: {
+        deleteFromImage: 'true',
+        reorderImage: 'true',
         plotFixed: 'true',
         showTooltips: 'true',
       },

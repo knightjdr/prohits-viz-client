@@ -6,7 +6,9 @@ import * as rowActions from './rows-actions';
 
 const defaultState = {
   defaultOrder: [],
+  filterOrder: [],
   order: [],
+  sortOrder: [],
   ref: null,
 };
 
@@ -23,31 +25,6 @@ describe('Columns reducer', () => {
     };
     const expectedState = {};
     expect(reducer(undefined, action)).toEqual(expectedState);
-  });
-
-  it('should handle FILTER_ROWS action', () => {
-    const currentState = {
-      main: {
-        ...defaultState,
-        filterOrder: [],
-        order: [0, 1, 2],
-      },
-    };
-
-    const action = {
-      selectionID: 'main',
-      columnOrder: [1, 2, 0],
-      type: rowActions.FILTER_ROWS,
-    };
-    const expectedState = {
-      ...currentState,
-      main: {
-        ...currentState.main,
-        filterOrder: [1, 2, 0],
-        order: [1, 2, 0],
-      },
-    };
-    expect(reducer(currentState, action)).toEqual(expectedState);
   });
 
   describe('parse file', () => {
@@ -104,6 +81,30 @@ describe('Columns reducer', () => {
         filterOrder: [],
         order: [0, 1, 2],
         sortOrder: [],
+      },
+    };
+    expect(reducer(currentState, action)).toEqual(expectedState);
+  });
+
+  it('should handle SET_COLUMN_FILTER_ORDER action', () => {
+    const currentState = {
+      main: {
+        ...defaultState,
+        defaultOrder: [0, 1, 2],
+        order: [0, 1, 2],
+      },
+    };
+
+    const action = {
+      selectionID: 'main',
+      order: [0, 2],
+      type: actions.SET_COLUMN_FILTER_ORDER,
+    };
+    const expectedState = {
+      main: {
+        ...currentState.main,
+        filterOrder: [0, 2],
+        order: [0, 2],
       },
     };
     expect(reducer(currentState, action)).toEqual(expectedState);

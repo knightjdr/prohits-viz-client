@@ -3,11 +3,10 @@ import isSubset from '../../../utils/is-subset';
 
 export const defaultState = {
   defaultOrder: [],
+  deleted: [],
   direction: null,
-  filterOrder: [],
   order: [],
-  sortBy: '',
-  sortOrder: [],
+  sortBy: null,
 };
 
 const validDirections = ['asc', 'desc'];
@@ -18,12 +17,11 @@ const fillRows = (userRows, userRowDB) => {
   if (!userRows || !isObject(userRows) || Object.keys(userRows).length === 0) {
     return {
       main: {
+        deleted: defaultState.deleted,
         defaultOrder: defaultRowOrder,
         direction: defaultState.direction,
-        filterOrder: defaultState.filterOrder,
         order: defaultRowOrder,
         sortBy: defaultState.sortBy,
-        sortOrder: defaultState.sortOrder,
       },
     };
   }
@@ -31,11 +29,10 @@ const fillRows = (userRows, userRowDB) => {
   return Object.keys(userRows).reduce((accum, selection) => {
     const {
       defaultOrder,
+      deleted,
       direction,
-      filterOrder,
       order,
       sortBy,
-      sortOrder,
     } = userRows[selection];
     const rows = {};
 
@@ -44,14 +41,10 @@ const fillRows = (userRows, userRowDB) => {
 
     rows.defaultOrder = Array.isArray(defaultOrder) && isSubset(defaultRowOrder, defaultOrder)
       ? defaultOrder : defaultRowOrder;
-    rows.filterOrder = Array.isArray(filterOrder)
-      && filterOrder.length > 0
-      && isSubset(defaultRowOrder, filterOrder)
-      ? filterOrder : defaultState.filterOrder;
+    rows.deleted = Array.isArray(deleted) && deleted.length > 0 && isSubset(defaultRowOrder, deleted)
+      ? deleted : defaultState.deleted;
     rows.order = Array.isArray(order) && order.length > 0 && isSubset(defaultRowOrder, order)
       ? order : defaultRowOrder;
-    rows.sortOrder = Array.isArray(sortOrder) && sortOrder.length > 0 && isSubset(defaultRowOrder, sortOrder)
-      ? sortOrder : defaultState.sortOrder;
 
     return {
       ...accum,

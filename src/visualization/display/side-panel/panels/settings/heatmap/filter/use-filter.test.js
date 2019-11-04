@@ -6,7 +6,7 @@ import {
   filterAndOrderColumns,
   filterAndOrderRows,
   findColumnIndices,
-} from './use-row-filter';
+} from './use-filter';
 
 describe('Row filtering', () => {
   describe('latest filter settings', () => {

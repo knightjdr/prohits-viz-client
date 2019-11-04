@@ -17,10 +17,7 @@ const Annotation = ({
   handleToggleAnnotations,
   show,
 }) => (
-  <Section
-    border={false}
-    title="Annotations"
-  >
+  <Section title="Annotations">
     <div className="panel-markup__input">
       <InputWithButton
         kind="secondary"
