@@ -6,7 +6,7 @@ export const deleteColumn = (index, order) => ({
   AUGMENT_WITH_ACTIVE_SELECTION: true,
   index,
   order,
-  type: SET_COLUMN_FILTER_ORDER,
+  type: DELETE_COLUMN,
 });
 
 export const setColumnFilterOrder = order => ({

@@ -1,5 +1,5 @@
-import isSubset from '../../../utils/is-subset';
 import isObject from '../../../utils/is-object';
+import { validateArray, validateString } from '../../../utils/validate-type';
 
 const defaultState = {
   defaultOrder: [],
@@ -8,44 +8,44 @@ const defaultState = {
   ref: null,
 };
 
-const fillColumns = (userColumns, userColumnDB) => {
-  const defaultColumnOrder = userColumnDB ? [...Array(userColumnDB.length).keys()] : [];
+const fillSelectionColumns = (fileColumns, defaultColumnOrder) => (
+  Object.entries(fileColumns).reduce((accum, [id, selection]) => {
+    const {
+      defaultOrder,
+      deleted,
+      order,
+      ref,
+    } = selection;
 
-  if (!userColumns || !isObject(userColumns) || Object.keys(userColumns).length === 0) {
+    const rowsState = {
+      defaultOrder: validateArray(defaultOrder, defaultColumnOrder),
+      deleted: validateArray(deleted, defaultState.deleted),
+      order: validateArray(order, defaultColumnOrder),
+      ref: validateString(ref, defaultState.ref),
+    };
+
+    return {
+      ...accum,
+      [id]: rowsState,
+    };
+  }, {})
+);
+
+const fillColumns = (fileColumns, fileColumnDB) => {
+  const defaultColumnOrder = fileColumnDB ? [...Array(fileColumnDB.length).keys()] : [];
+
+  if (!fileColumns || !isObject(fileColumns) || Object.keys(fileColumns).length === 0) {
     return {
       main: {
-        deleted: [],
         defaultOrder: defaultColumnOrder,
+        deleted: defaultState.deleted,
         order: defaultColumnOrder,
-        ref: null,
+        ref: defaultState.ref,
       },
     };
   }
 
-  return Object.keys(userColumns).reduce((accum, selection) => {
-    const {
-      deleted,
-      defaultOrder,
-      order,
-      ref,
-    } = userColumns[selection];
-    const columns = {};
-
-    // Ensure ref is within userColumnDB.
-    columns.ref = typeof ref === 'string' && userColumnDB.includes(ref) ? ref : defaultState.ref;
-
-    columns.deleted = Array.isArray(deleted) && isSubset(defaultColumnOrder, deleted)
-      ? deleted : defaultColumnOrder;
-    columns.defaultOrder = Array.isArray(defaultOrder) && isSubset(defaultColumnOrder, defaultOrder)
-      ? defaultOrder : defaultColumnOrder;
-    columns.order = Array.isArray(order) && order.length > 0 && isSubset(defaultColumnOrder, order)
-      ? order : defaultColumnOrder;
-
-    return {
-      ...accum,
-      [selection]: columns,
-    };
-  }, {});
+  return fillSelectionColumns(fileColumns, defaultColumnOrder);
 };
 
 export default fillColumns;

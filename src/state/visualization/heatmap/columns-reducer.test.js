@@ -2,7 +2,6 @@ import reducer from './columns-reducer';
 import * as actions from './columns-actions';
 import * as displayActions from '../settings/display-actions';
 import * as fileActions from '../data/interactive-file-actions';
-import * as rowActions from './rows-actions';
 
 const defaultState = {
   defaultOrder: [],
@@ -25,6 +24,31 @@ describe('Columns reducer', () => {
     };
     const expectedState = {};
     expect(reducer(undefined, action)).toEqual(expectedState);
+  });
+
+  it('should handle DELETE_COLUMN action', () => {
+    const currentState = {
+      main: {
+        ...defaultState,
+        deleted: [],
+        order: [0, 1, 2],
+      },
+    };
+
+    const action = {
+      selectionID: 'main',
+      index: 1,
+      order: [0, 2],
+      type: actions.DELETE_COLUMN,
+    };
+    const expectedState = {
+      main: {
+        ...currentState.main,
+        deleted: [1],
+        order: [0, 2],
+      },
+    };
+    expect(reducer(currentState, action)).toEqual(expectedState);
   });
 
   describe('parse file', () => {
@@ -63,10 +87,9 @@ describe('Columns reducer', () => {
     const currentState = {
       main: {
         defaultOrder: [0, 1, 2],
-        filterOrder: [1, 2, 0],
-        order: [1, 2, 0],
+        deleted: [2],
+        order: [1, 0],
         ref: 1,
-        sortOrder: [2, 1],
       },
     };
 
@@ -78,9 +101,8 @@ describe('Columns reducer', () => {
       ...currentState,
       main: {
         ...currentState.main,
-        filterOrder: [],
+        deleted: [],
         order: [0, 1, 2],
-        sortOrder: [],
       },
     };
     expect(reducer(currentState, action)).toEqual(expectedState);
@@ -103,7 +125,6 @@ describe('Columns reducer', () => {
     const expectedState = {
       main: {
         ...currentState.main,
-        filterOrder: [0, 2],
         order: [0, 2],
       },
     };

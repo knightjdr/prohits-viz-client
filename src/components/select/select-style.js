@@ -43,7 +43,6 @@ export const SelectContainer = styled.span`
 
   .select__clear {
     opacity: 0;
-    pointer-events: none;
     position: absolute;
     right: 22px;
     transition-duration: 0.3s;
@@ -93,9 +92,9 @@ export const SelectContainer = styled.span`
     border: 0;
   }
 
-  input:hover + .select__clear {
+  input:hover + .select__clear,
+  .select__clear:hover {
     opacity: 0.8;
-    pointer-events: auto;
   }
 `;
 

@@ -1,13 +1,25 @@
 import * as actions from './rows-actions';
 
 describe('Row actions', () => {
+  it('should dispatch an action to delete a row', () => {
+    const index = 1;
+    const order = [0, 1];
+    const expectedAction = {
+      AUGMENT_WITH_ACTIVE_SELECTION: true,
+      index,
+      order,
+      type: actions.DELETE_ROW,
+    };
+    expect(actions.deleteRow(index, order)).toEqual(expectedAction);
+  });
+
   it('should dispatch an action to set row filter order', () => {
     const expectedAction = {
       AUGMENT_WITH_ACTIVE_SELECTION: true,
       order: ['b', 'c', 'a'],
       type: actions.SET_ROW_FILTER_ORDER,
     };
-    expect(actions.filterRows(['b', 'c', 'a'])).toEqual(expectedAction);
+    expect(actions.setRowFilterOrder(['b', 'c', 'a'])).toEqual(expectedAction);
   });
 
   it('should dispatch an action to update the rows', () => {

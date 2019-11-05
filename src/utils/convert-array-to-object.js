@@ -1,9 +1,8 @@
 const convertArrayToObject = arr => (
-  arr.reduce(((accum, item, index) => {
-    const newGene = {};
-    newGene[item] = index;
-    return { ...accum, ...newGene };
-  }), {})
+  arr.reduce(((accum, item) => ({
+    ...accum,
+    [item]: true,
+  })), {})
 );
 
 export default convertArrayToObject;

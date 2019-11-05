@@ -1,5 +1,5 @@
 import React, { useEffect, useMemo, useState } from 'react';
-import { useSelector } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 
 import Grid from './grid';
 
@@ -12,8 +12,10 @@ import subsetPage from './subset-page';
 import useTranslation from '../translation/use-translation';
 import { selectData, selectDataProperty } from '../../../../state/selector/visualization/data-selector';
 import { selectState, selectStateProperty } from '../../../../state/selector/general';
+import { updatePosition } from '../../../../state/visualization/settings/position-actions';
 
 const GridContainer = () => {
+  const dispatch = useDispatch();
   const [page, setPage] = useState(null);
 
   const columnOrder = useSelector(state => selectDataProperty(state, 'columns', 'order'));
@@ -92,6 +94,12 @@ const GridContainer = () => {
     rowOrder,
     resetRatios,
   ]);
+
+  useEffect(() => {
+    if (page && page.length === 0 && (position.x !== 0 || position.y !== 0)) {
+      dispatch(updatePosition(0, 0));
+    }
+  }, [dispatch, page, position]);
 
   return (
     <Grid

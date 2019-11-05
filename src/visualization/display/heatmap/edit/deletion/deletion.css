@@ -1,5 +1,6 @@
 .heatmap__deletion {
   display: flex;
+  pointer-events: none;
   position: absolute;
 }
 
@@ -7,6 +8,7 @@
   align-items: center;
   display: flex;
   justify-content: center;
+  pointer-events: auto;
 }
 
 .heatmap__deletion-button-container button {

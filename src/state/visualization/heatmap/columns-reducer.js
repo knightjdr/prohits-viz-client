@@ -25,7 +25,6 @@ const reduceAndReset = (state, action) => ({
     ...state[action.selectionID],
     deleted: [],
     order: [...state[action.selectionID].defaultOrder],
-    sortOrder: [],
   },
 });
 
@@ -46,7 +45,7 @@ const reducer = (state = {}, action) => {
     case fileActions.CLEAR_INTERACTIVE_STATE:
       return {};
     case actions.DELETE_COLUMN:
-      return reduceAndDelete(action.file);
+      return reduceAndDelete(state, action);
     case fileActions.LOAD_INTERACTIVE_STATE:
       return reduceAndLoadState(action.file);
     case displayActions.RESET_IMAGE:

@@ -10,7 +10,7 @@ const getColumnNames = (state) => {
   return orderArrayBySequence(columnDB, order);
 };
 
-const getVisibleColumnNamesAndIndices = (state) => {
+const getVisibleColumnNames = (state) => {
   const { columnDB } = state;
   const { active } = state.tabs;
   const { order } = state.columns[active];
@@ -21,7 +21,7 @@ const getVisibleColumnNamesAndIndices = (state) => {
 };
 
 export const selectVisibleColumnNames = createSelector(
-  [getVisibleColumnNamesAndIndices],
+  [getVisibleColumnNames],
   state => (
     state
   ),

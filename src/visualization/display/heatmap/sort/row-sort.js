@@ -10,9 +10,10 @@ export const sortPairByLocale = (value, a, b) => (
 ** value of 'a' and 'b' is the same. */
 const rowSort = (list, order, sortBy, direction, ref) => {
   const { sortDelta } = config;
+  const newOrder = [...order];
 
   if (direction === 'asc' && typeof ref === 'number') {
-    order.sort((a, b) => {
+    newOrder.sort((a, b) => {
       // Set reference to a small value to avoid division by zero.
       const refA = list[a].data[ref].value === 0 ? sortDelta : list[a].data[ref].value;
       const refB = list[b].data[ref].value === 0 ? sortDelta : list[b].data[ref].value;
@@ -20,12 +21,12 @@ const rowSort = (list, order, sortBy, direction, ref) => {
       return sortPairByLocale(sortValue, list[a].name, list[b].name);
     });
   } else if (direction === 'asc') {
-    order.sort((a, b) => {
+    newOrder.sort((a, b) => {
       const sortValue = list[a].data[sortBy].value - list[b].data[sortBy].value;
       return sortPairByLocale(sortValue, list[a].name, list[b].name);
     });
   } else if (direction === 'desc' && typeof ref === 'number') {
-    order.sort((a, b) => {
+    newOrder.sort((a, b) => {
       // Set reference to a small value to avoid division by zero.
       const refA = list[a].data[ref].value === 0 ? sortDelta : list[a].data[ref].value;
       const refB = list[b].data[ref].value === 0 ? sortDelta : list[b].data[ref].value;
@@ -33,13 +34,13 @@ const rowSort = (list, order, sortBy, direction, ref) => {
       return sortPairByLocale(sortValue, list[b].name, list[a].name);
     });
   } else {
-    order.sort((a, b) => {
+    newOrder.sort((a, b) => {
       const sortValue = list[b].data[sortBy].value - list[a].data[sortBy].value;
       return sortPairByLocale(sortValue, list[b].name, list[a].name);
     });
   }
 
-  return order;
+  return newOrder;
 };
 
 export default rowSort;

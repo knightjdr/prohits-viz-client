@@ -1,5 +1,5 @@
 import isObject from '../../../utils/is-object';
-import isSubset from '../../../utils/is-subset';
+import { validateArray, validateString } from '../../../utils/validate-type';
 
 export const defaultState = {
   defaultOrder: [],
@@ -11,10 +11,35 @@ export const defaultState = {
 
 const validDirections = ['asc', 'desc'];
 
-const fillRows = (userRows, userRowDB) => {
-  const defaultRowOrder = userRowDB ? [...Array(userRowDB.length).keys()] : [];
+const fillSelectionRows = (fileRows, defaultRowOrder) => (
+  Object.entries(fileRows).reduce((accum, [id, selection]) => {
+    const {
+      defaultOrder,
+      deleted,
+      direction,
+      order,
+      sortBy,
+    } = selection;
 
-  if (!userRows || !isObject(userRows) || Object.keys(userRows).length === 0) {
+    const rowsState = {
+      defaultOrder: validateArray(defaultOrder, defaultRowOrder),
+      deleted: validateArray(deleted, defaultState.deleted),
+      direction: validDirections.includes(direction) ? direction : defaultState.direction,
+      order: validateArray(order, defaultRowOrder),
+      sortBy: validateString(sortBy, defaultState.sortBy),
+    };
+
+    return {
+      ...accum,
+      [id]: rowsState,
+    };
+  }, {})
+);
+
+const fillRows = (fileRows, fileRowDB) => {
+  const defaultRowOrder = fileRowDB ? [...Array(fileRowDB.length).keys()] : [];
+
+  if (!fileRows || !isObject(fileRows) || Object.keys(fileRows).length === 0) {
     return {
       main: {
         deleted: defaultState.deleted,
@@ -26,31 +51,7 @@ const fillRows = (userRows, userRowDB) => {
     };
   }
 
-  return Object.keys(userRows).reduce((accum, selection) => {
-    const {
-      defaultOrder,
-      deleted,
-      direction,
-      order,
-      sortBy,
-    } = userRows[selection];
-    const rows = {};
-
-    rows.direction = validDirections.includes(direction) ? direction : null;
-    rows.sortBy = typeof sortBy === 'string' ? sortBy : defaultState.sortBy;
-
-    rows.defaultOrder = Array.isArray(defaultOrder) && isSubset(defaultRowOrder, defaultOrder)
-      ? defaultOrder : defaultRowOrder;
-    rows.deleted = Array.isArray(deleted) && deleted.length > 0 && isSubset(defaultRowOrder, deleted)
-      ? deleted : defaultState.deleted;
-    rows.order = Array.isArray(order) && order.length > 0 && isSubset(defaultRowOrder, order)
-      ? order : defaultRowOrder;
-
-    return {
-      ...accum,
-      [selection]: rows,
-    };
-  }, {});
+  return fillSelectionRows(fileRows, defaultRowOrder);
 };
 
 export default fillRows;

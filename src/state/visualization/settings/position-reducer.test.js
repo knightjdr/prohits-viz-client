@@ -19,20 +19,6 @@ describe('Position reducer', () => {
     expect(reducer(undefined, action)).toEqual(expectedState);
   });
 
-  it('should handle FILTER_ROWS action', () => {
-    const action = {
-      selectionID: 'main',
-      type: rowActions.FILTER_ROWS,
-    };
-    const expectedState = {
-      main: {
-        x: 0,
-        y: 0,
-      },
-    };
-    expect(reducer(undefined, action)).toEqual(expectedState);
-  });
-
   it('should handle LOAD_INTERACTIVE_STATE action', () => {
     const action = {
       file: {

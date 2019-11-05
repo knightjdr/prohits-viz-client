@@ -1,7 +1,15 @@
-import reducer, { defaultState } from './rows-reducer';
+import reducer from './rows-reducer';
 import * as actions from './rows-actions';
 import * as displayActions from '../settings/display-actions';
 import * as fileActions from '../data/interactive-file-actions';
+
+const defaultState = {
+  defaultOrder: [],
+  deleted: [],
+  direction: null,
+  order: [],
+  sortBy: '',
+};
 
 describe('Rows reducer', () => {
   it('should return an empty initial state', () => {
@@ -16,6 +24,32 @@ describe('Rows reducer', () => {
     };
     const expectedState = {};
     expect(reducer(undefined, action)).toEqual(expectedState);
+  });
+
+  it('should handle DELETE_ROW action', () => {
+    const currentState = {
+      main: {
+        ...defaultState,
+        deleted: [],
+        order: [0, 1, 2],
+      },
+    };
+
+    const action = {
+      selectionID: 'main',
+      index: 1,
+      order: [0, 2],
+      type: actions.DELETE_ROW,
+    };
+    const expectedState = {
+      ...currentState,
+      main: {
+        ...currentState.main,
+        deleted: [1],
+        order: [0, 2],
+      },
+    };
+    expect(reducer(currentState, action)).toEqual(expectedState);
   });
 
   it('should handle SET_ROW_FILTER_ORDER action', () => {
@@ -35,7 +69,6 @@ describe('Rows reducer', () => {
       ...currentState,
       main: {
         ...currentState.main,
-        filterOrder: [1, 2, 0],
         order: [1, 2, 0],
       },
     };
@@ -95,10 +128,9 @@ describe('Rows reducer', () => {
       main: {
         ...currentState.main,
         direction: null,
-        filterOrder: [],
+        deleted: [],
         order: [0, 1, 2],
         sortBy: '',
-        sortOrder: [],
       },
     };
     expect(reducer(currentState, action)).toEqual(expectedState);
@@ -126,7 +158,6 @@ describe('Rows reducer', () => {
         direction: 'asc',
         order: [1, 2, 0],
         sortBy: 'b',
-        sortOrder: [1, 2, 0],
       },
     };
     expect(reducer(currentState, action)).toEqual(expectedState);

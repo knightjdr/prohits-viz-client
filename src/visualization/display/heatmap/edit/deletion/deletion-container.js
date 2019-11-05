@@ -5,11 +5,11 @@ import { useDispatch, useSelector } from 'react-redux';
 import Deletion from './deletion';
 
 import calculateEditElementStyle from '../calculate-edit-element-style';
+import { deleteColumn } from '../../../../../state/visualization/heatmap/columns-actions';
+import { deleteRow } from '../../../../../state/visualization/heatmap/rows-actions';
 import { selectData, selectDataProperty } from '../../../../../state/selector/visualization/data-selector';
 import { selectVisibleColumnNames } from '../../../../../state/selector/visualization/column-selector';
 import { selectVisibleRowNames } from '../../../../../state/selector/visualization/row-selector';
-import { setColumnFilterOrder } from '../../../../../state/visualization/heatmap/columns-actions';
-import { setRowFilterOrder } from '../../../../../state/visualization/heatmap/rows-actions';
 
 const DeletionContainer = ({
   heatmapRef,
@@ -29,20 +29,27 @@ const DeletionContainer = ({
     [dimensions, heatmapRef],
   );
 
+  const deleteItem = (pageIndex, pageStart, order) => {
+    const arrayIndexToDelete = pageStart + parseInt(pageIndex, 10);
+    const arrayValue = order[arrayIndexToDelete];
+    const newOrder = [...order];
+    newOrder.splice(arrayIndexToDelete, 1);
+    return {
+      order: newOrder,
+      value: arrayValue,
+    };
+  };
+
   const handleDeleteColumn = (e) => {
     const { index } = e.currentTarget.dataset;
-    const pageStart = pagePosition.x;
-    const newOrder = [...columnOrder];
-    newOrder.splice(pageStart + index, 1);
-    dispatch(setColumnFilterOrder(newOrder));
+    const deletionStatus = deleteItem(index, pagePosition.x, columnOrder);
+    dispatch(deleteColumn(deletionStatus.value, deletionStatus.order));
   };
 
   const handleDeleteRow = (e) => {
     const { index } = e.currentTarget.dataset;
-    const pageStart = pagePosition.y;
-    const newOrder = [...rowOrder];
-    newOrder.splice(pageStart + index, 1);
-    dispatch(setRowFilterOrder(newOrder));
+    const deletionStatus = deleteItem(index, pagePosition.y, rowOrder);
+    dispatch(deleteRow(deletionStatus.value, deletionStatus.order));
   };
 
   const { cellSize } = settings;
