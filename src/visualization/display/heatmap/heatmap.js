@@ -7,6 +7,7 @@ import Deletion from './edit/deletion/deletion-container';
 import Grid from './grid/grid-container';
 import Markers from './markers/markers-container';
 import NavControls from './nav-controls/nav-controls-container';
+import Reorder from './edit/reorder/reorder-container';
 import Rows from './rows/rows-container';
 import Overlay from './overlay/overlay-container';
 
@@ -43,6 +44,7 @@ const Heatmap = forwardRef((
       <Annotations />
     </svg>
     <Deletion heatmapRef={ref} />
+    <Reorder heatmapRef={ref} />
     <NavControls
       direction="vertical"
       offsetVertical={showHorizontalArrows}

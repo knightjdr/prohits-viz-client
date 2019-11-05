@@ -11,7 +11,7 @@ const reduceAndDelete = (state, action) => ({
   },
 });
 
-const reduceAndFilter = (state, action) => ({
+const reduceAndOrder = (state, action) => ({
   ...state,
   [action.selectionID]: {
     ...state[action.selectionID],
@@ -50,8 +50,8 @@ const reducer = (state = {}, action) => {
       return reduceAndLoadState(action.file);
     case displayActions.RESET_IMAGE:
       return reduceAndReset(state, action);
-    case actions.SET_COLUMN_FILTER_ORDER:
-      return reduceAndFilter(state, action);
+    case actions.SET_COLUMN_ORDER:
+      return reduceAndOrder(state, action);
     case actions.SET_COLUMN_REFERENCE:
       return reduceAndSetRef(state, action);
     default:

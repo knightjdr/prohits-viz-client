@@ -7,6 +7,7 @@ import InputText from './input-text';
 const InputTextContainer = ({
   id,
   onChange,
+  type,
   value,
   warning,
   ...props
@@ -49,6 +50,8 @@ const InputTextContainer = ({
 
   const inputID = id || nanoid();
 
+  const parsedValue = type === 'number' ? Number(inputValue).toString() : inputValue;
+
   return (
     <InputText
       handleBlur={handleBlur}
@@ -56,7 +59,8 @@ const InputTextContainer = ({
       handleFocus={handleFocus}
       handleKeyDown={handleKeyDown}
       inputID={inputID}
-      value={inputValue}
+      type={type}
+      value={parsedValue}
       warning={inputWarning}
       {...props}
     />
@@ -66,6 +70,7 @@ const InputTextContainer = ({
 InputTextContainer.defaultProps = {
   id: undefined,
   onChange: undefined,
+  type: 'text',
   value: undefined,
   warning: '',
 };
@@ -73,6 +78,7 @@ InputTextContainer.defaultProps = {
 InputTextContainer.propTypes = {
   id: PropTypes.string,
   onChange: PropTypes.func,
+  type: PropTypes.string,
   value: PropTypes.oneOfType([
     PropTypes.number,
     PropTypes.string,

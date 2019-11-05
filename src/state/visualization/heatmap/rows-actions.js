@@ -1,5 +1,5 @@
 export const DELETE_ROW = 'DELETE_ROW';
-export const SET_ROW_FILTER_ORDER = 'SET_ROW_FILTER_ORDER';
+export const SET_ROW_ORDER = 'SET_ROW_ORDER';
 export const SORT_ROWS = 'SORT_ROWS';
 
 export const deleteRow = (index, order) => ({
@@ -9,10 +9,10 @@ export const deleteRow = (index, order) => ({
   type: DELETE_ROW,
 });
 
-export const setRowFilterOrder = order => ({
+export const setRowOrder = order => ({
   AUGMENT_WITH_ACTIVE_SELECTION: true,
   order,
-  type: SET_ROW_FILTER_ORDER,
+  type: SET_ROW_ORDER,
 });
 
 export const sortRows = (direction, order, sortBy) => ({

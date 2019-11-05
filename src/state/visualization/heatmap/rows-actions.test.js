@@ -17,9 +17,9 @@ describe('Row actions', () => {
     const expectedAction = {
       AUGMENT_WITH_ACTIVE_SELECTION: true,
       order: ['b', 'c', 'a'],
-      type: actions.SET_ROW_FILTER_ORDER,
+      type: actions.SET_ROW_ORDER,
     };
-    expect(actions.setRowFilterOrder(['b', 'c', 'a'])).toEqual(expectedAction);
+    expect(actions.setRowOrder(['b', 'c', 'a'])).toEqual(expectedAction);
   });
 
   it('should dispatch an action to update the rows', () => {

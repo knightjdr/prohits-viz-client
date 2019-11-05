@@ -11,7 +11,7 @@ const reduceAndDelete = (state, action) => ({
   },
 });
 
-const reduceAndFilter = (state, action) => ({
+const reduceAndOrder = (state, action) => ({
   ...state,
   [action.selectionID]: {
     ...state[action.selectionID],
@@ -50,8 +50,8 @@ const reducer = (state = {}, action) => {
       return {};
     case actions.DELETE_ROW:
       return reduceAndDelete(state, action);
-    case actions.SET_ROW_FILTER_ORDER:
-      return reduceAndFilter(state, action);
+    case actions.SET_ROW_ORDER:
+      return reduceAndOrder(state, action);
     case fileActions.LOAD_INTERACTIVE_STATE:
       return reduceAndLoadState(action.file);
     case displayActions.RESET_IMAGE:

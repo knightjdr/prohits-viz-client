@@ -181,7 +181,7 @@ describe('Minimap reducer', () => {
   });
 
   describe('Row actions', () => {
-    it('should handle SET_ROW_FILTER_ORDER action', () => {
+    it('should handle SET_ROW_ORDER action', () => {
       const currentState = {
         main: {
           ...defaultState,
@@ -191,7 +191,7 @@ describe('Minimap reducer', () => {
 
       const action = {
         selectionID: 'main',
-        type: rowActions.SET_ROW_FILTER_ORDER,
+        type: rowActions.SET_ROW_ORDER,
       };
       const expectedState = {
         ...currentState,

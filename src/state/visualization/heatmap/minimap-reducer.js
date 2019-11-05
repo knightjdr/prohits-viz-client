@@ -68,7 +68,7 @@ const reducer = (state = {}, action) => {
           updateOriginal: false,
         },
       };
-    case columnActions.SET_COLUMN_FILTER_ORDER:
+    case columnActions.SET_COLUMN_ORDER:
       return {
         ...state,
         [action.selectionID]: {
@@ -79,7 +79,7 @@ const reducer = (state = {}, action) => {
           updateOriginal: false,
         },
       };
-    case rowActions.SET_ROW_FILTER_ORDER:
+    case rowActions.SET_ROW_ORDER:
       return {
         ...state,
         [action.selectionID]: {

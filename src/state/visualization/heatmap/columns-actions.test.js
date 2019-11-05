@@ -18,9 +18,9 @@ describe('Column actions', () => {
     const expectedAction = {
       AUGMENT_WITH_ACTIVE_SELECTION: true,
       order,
-      type: actions.SET_COLUMN_FILTER_ORDER,
+      type: actions.SET_COLUMN_ORDER,
     };
-    expect(actions.setColumnFilterOrder(order)).toEqual(expectedAction);
+    expect(actions.setColumnOrder(order)).toEqual(expectedAction);
   });
 
   it('should dispatch an action to set the reference', () => {

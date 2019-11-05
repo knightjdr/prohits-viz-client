@@ -1,0 +1,32 @@
+.heatmap__reorder {
+  display: flex;
+  pointer-events: none;
+  position: absolute;
+}
+
+.heatmap__reorder-container {
+  align-items: center;
+  display: flex;
+  overflow: visible;
+  pointer-events: auto;
+}
+
+.heatmap__reorder-column {
+  flex-direction: row;
+}
+.heatmap__reorder-row {
+  flex-direction: column;
+}
+
+.heatmap__reorder-container input {
+  text-align: center;
+  padding: 0;
+}
+.heatmap__reorder-container input[type="number"]::-webkit-outer-spin-button,
+.heatmap__reorder-container input[type="number"]::-webkit-inner-spin-button {
+    -webkit-appearance: none;
+    margin: 0;
+}
+.heatmap__reorder-container input[type="number"] {
+    -moz-appearance: textfield;
+}

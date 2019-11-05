@@ -12,8 +12,8 @@ import rowSort from '../../../../../heatmap/sort/row-sort';
 import { filterAndOrderColumns, filterAndOrderRows } from './filter-and-order';
 import { selectData, selectDataProperty } from '../../../../../../../state/selector/visualization/data-selector';
 import { selectState, selectStateProperty } from '../../../../../../../state/selector/general';
-import { setColumnFilterOrder } from '../../../../../../../state/visualization/heatmap/columns-actions';
-import { setRowFilterOrder } from '../../../../../../../state/visualization/heatmap/rows-actions';
+import { setColumnOrder } from '../../../../../../../state/visualization/heatmap/columns-actions';
+import { setRowOrder } from '../../../../../../../state/visualization/heatmap/rows-actions';
 import { updateSetting } from '../../../../../../../state/visualization/settings/settings-actions';
 
 const useFilter = () => {
@@ -64,8 +64,8 @@ const useFilter = () => {
 
       batch(() => {
         dispatch(updateSetting(updatedSetting, updatedValue));
-        dispatch(setRowFilterOrder(newRowOrder));
-        dispatch(setColumnFilterOrder(newColumnOrder));
+        dispatch(setRowOrder(newRowOrder));
+        dispatch(setColumnOrder(newColumnOrder));
       });
 
       setFiltering(false);

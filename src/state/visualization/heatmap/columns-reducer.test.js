@@ -108,7 +108,7 @@ describe('Columns reducer', () => {
     expect(reducer(currentState, action)).toEqual(expectedState);
   });
 
-  it('should handle SET_COLUMN_FILTER_ORDER action', () => {
+  it('should handle SET_COLUMN_ORDER action', () => {
     const currentState = {
       main: {
         ...defaultState,
@@ -120,7 +120,7 @@ describe('Columns reducer', () => {
     const action = {
       selectionID: 'main',
       order: [0, 2],
-      type: actions.SET_COLUMN_FILTER_ORDER,
+      type: actions.SET_COLUMN_ORDER,
     };
     const expectedState = {
       main: {

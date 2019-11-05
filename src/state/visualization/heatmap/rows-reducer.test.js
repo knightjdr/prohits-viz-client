@@ -52,7 +52,7 @@ describe('Rows reducer', () => {
     expect(reducer(currentState, action)).toEqual(expectedState);
   });
 
-  it('should handle SET_ROW_FILTER_ORDER action', () => {
+  it('should handle SET_ROW_ORDER action', () => {
     const currentState = {
       main: {
         ...defaultState,
@@ -63,7 +63,7 @@ describe('Rows reducer', () => {
     const action = {
       selectionID: 'main',
       order: [1, 2, 0],
-      type: actions.SET_ROW_FILTER_ORDER,
+      type: actions.SET_ROW_ORDER,
     };
     const expectedState = {
       ...currentState,
