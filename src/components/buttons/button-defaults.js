@@ -31,6 +31,18 @@ const Button = styled.button`
     }`
   )};
 
+${props => (props.kind === 'alert'
+    && css`& {
+      background-color: ${props.theme.alert2};
+      color: #421C1A;
+    }
+    &:focus:not([disabled]),
+    &:hover:not([disabled]) {
+      background-color: #fff;
+      border-color: ${props.theme.alert2};
+    }`
+  )};
+
   ${props => (props.kind === 'grey'
     && css`& {
       background-color: rgba(0, 0, 0, 0.2);

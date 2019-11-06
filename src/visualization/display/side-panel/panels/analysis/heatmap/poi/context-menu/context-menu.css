@@ -1,0 +1,23 @@
+.heatmap__poi-context-menu {
+  list-style: none;
+  margin: 0;
+  padding-left: 0;
+}
+.heatmap__poi-context-menu button {
+  background-color: transparent;
+  border: none;
+  display: inline-block;
+  font-family: var(--fontStackPrimary);
+  font-size: 0.85em;
+  padding: 8px 10px;
+  transition: background-color 0.5s ease;
+  width: 100%;
+}
+.heatmap__poi-context-menu button:focus, 
+.heatmap__poi-context-menu button:hover {
+  background-color: rgba(66, 134, 244, 0.4);
+  outline: none;
+}
+.heatmap__poi-context-menu button::-moz-focus-inner {
+  border: 0;
+}

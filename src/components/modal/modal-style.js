@@ -33,7 +33,7 @@ const Div = styled.div`
   }
 
   & > section > * {
-    padding: ${props => (props.padding ? '5px 10px' : '0')};
+    padding: ${props => (props.padding ? '10px' : '0')};
   }
 
   & header {
@@ -42,9 +42,11 @@ const Div = styled.div`
     padding-top: 5px;
   }
   & h1 {
-    font-size: 1.5em;
+    font-family: ${props => props.theme.fontStackSecondary};
+    font-size: 1.3em;
     font-weight: 400;
     margin: 0;
+    text-transform: uppercase;
   }
 
   & footer {

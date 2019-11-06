@@ -2,6 +2,7 @@ import PropTypes from 'prop-types';
 import React, { Fragment } from 'react';
 import { faBars } from '@fortawesome/pro-solid-svg-icons';
 
+import Analysis from './panels/analysis/analysis-container';
 import IconButton from '../../../components/buttons/icon/button';
 import Info from './panels/info/info-container';
 import Markup from './panels/markup/markup';
@@ -11,7 +12,9 @@ import Tabs from './tabs/tabs-container';
 
 import './side-panel.css';
 
+
 const Panel = {
+  analysis: <Analysis />,
   info: <Info />,
   markup: <Markup />,
   minimap: <Minimap />,

@@ -1,0 +1,36 @@
+.poi__select {
+  align-items: center;
+  display: flex;
+  flex-direction: column;
+}
+.poi__select h2 {
+  font-size: 1.1em;
+  margin: 0;
+}
+.poi__select select {
+  appearance: none;
+  border: 1px solid var(--colorPrimary2);
+  border-radius: 4px 0 0 4px;
+  font-size: 0.8em;
+  height: 182px;
+  margin-top: 5px;
+  padding: 2px;
+  user-select: none;
+  width: 120px;
+}
+.poi__select select:focus {
+  border: 1px solid var(--colorPrimary1);
+  outline: none;
+}
+
+@media (max-width: 800px) {
+  .poi__select select {
+    height: auto;
+  }
+}
+
+@media (max-width: 374px) {
+  .poi__select select {
+    width: 90px;
+  }
+}

@@ -51,7 +51,7 @@ ModalContainer.defaultProps = {
   name: 'modal',
   placement: {
     horizontal: 'center',
-    vertical: 'bottom',
+    vertical: 'top',
   },
 };
 

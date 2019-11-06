@@ -1,0 +1,15 @@
+.selection__paste-input textarea {
+  max-width: 500px;
+  width: calc(60vw);
+}
+.selection__paste-input svg {
+  color: var(--colorPrimary1);
+  margin-right: 8px;
+}
+.selection__paste-input-footer {
+  display: flex;
+  justify-content: flex-end;
+}
+.selection__paste-input-footer > *:not(:last-child) {
+  margin-right: 8px;
+}

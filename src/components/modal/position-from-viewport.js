@@ -13,7 +13,7 @@ const verticalStyles = {
     transform: 'translateY(-50%)',
   },
   top: {
-    top: '40px',
+    top: '60px',
   },
 };
 

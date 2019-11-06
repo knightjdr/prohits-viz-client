@@ -17,7 +17,7 @@ ModalFooter.defaultProps = {
 };
 
 ModalFooter.propTypes = {
-  footer: PropTypes.bool,
+  footer: PropTypes.node,
 };
 
 export default ModalFooter;

@@ -3,6 +3,7 @@ const theme = {
   accentPrimary1: '#AC867C', // rgb(172, 134, 124)
   accentPrimary2: '#763626', // rgb(118, 54, 38)
   alert: '#FFFBE6', // rgb(255, 251, 230)
+  alert2: '#ffe14d', // rgb(255, 225, 77)
   colorPrimary1: '#2A3132', // rgb(42, 49, 50)
   colorPrimary2: '#90AFC5', // rgb(144, 175, 197)
   colorPrimary3: '#336B87', // rgb(51, 107, 135)
