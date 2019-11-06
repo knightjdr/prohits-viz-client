@@ -12,6 +12,8 @@ import { selectVisibleRowNames } from '../../../../../state/selector/visualizati
 import { setColumnOrder } from '../../../../../state/visualization/heatmap/columns-actions';
 import { setRowOrder } from '../../../../../state/visualization/heatmap/rows-actions';
 
+const MIN_FOCUS_HEIGHT = 20;
+
 const ReorderContainer = ({
   heatmapRef,
 }) => {
@@ -24,6 +26,9 @@ const ReorderContainer = ({
   const rowOrder = useSelector(state => selectDataProperty(state, 'rows', 'order'));
   const rows = useSelector(state => selectVisibleRowNames(state));
   const settings = useSelector(state => selectDataProperty(state, 'settings', 'current'));
+
+  const { cellSize } = settings;
+  const defaultFontSize = cellSize / 1.75;
 
   const position = useMemo(
     () => calculateEditElementStyle(dimensions, heatmapRef),
@@ -38,6 +43,43 @@ const ReorderContainer = ({
     return newOrder;
   };
 
+  const parsePixelHeight = (element) => {
+    const { height } = element.style;
+    return parseInt(height.replace('px', ''), 10);
+  };
+
+  const setInputStyle = (element, styleSettings) => {
+    const { fontSize: newFontSize, size, zIndex } = styleSettings;
+    const styles = `font-size: ${newFontSize}px; height: ${size}px; width: ${size}px; z-index: ${zIndex}`;
+    element.setAttribute('style', styles);
+  };
+
+  const handleBlur = (e) => {
+    const { target } = e;
+    const height = parsePixelHeight(target);
+    if (height >= MIN_FOCUS_HEIGHT) {
+      const styleSettings = {
+        fontSize: defaultFontSize,
+        size: cellSize,
+        zIndex: 1,
+      };
+      setInputStyle(target, styleSettings);
+    }
+  };
+
+  const handleFocus = (e) => {
+    const { target } = e;
+    const height = parsePixelHeight(target);
+    if (height < MIN_FOCUS_HEIGHT) {
+      const styleSettings = {
+        fontSize: cellSize / 1.5,
+        size: MIN_FOCUS_HEIGHT,
+        zIndex: 2,
+      };
+      setInputStyle(target, styleSettings);
+    }
+  };
+
   const handleReorderColumn = (e, id, value) => {
     const newOrder = reorderItem(id, value, pagePosition.x, columnOrder);
     dispatch(setColumnOrder(newOrder));
@@ -48,14 +90,13 @@ const ReorderContainer = ({
     dispatch(setRowOrder(newOrder));
   };
 
-  const { cellSize } = settings;
-  const fontSize = cellSize / 1.75;
-
   return (
     <>
       <Reorder
         cellSize={cellSize}
-        fontSize={fontSize}
+        fontSize={defaultFontSize}
+        handleBlur={handleBlur}
+        handleFocus={handleFocus}
         handleReorder={handleReorderColumn}
         items={columns}
         position={position.column}
@@ -63,7 +104,9 @@ const ReorderContainer = ({
       />
       <Reorder
         cellSize={cellSize}
-        fontSize={fontSize}
+        fontSize={defaultFontSize}
+        handleBlur={handleBlur}
+        handleFocus={handleFocus}
         handleReorder={handleReorderRow}
         items={rows}
         position={position.row}

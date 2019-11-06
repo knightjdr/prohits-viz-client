@@ -6,7 +6,9 @@ import InputText from './input-text';
 
 const InputTextContainer = ({
   id,
+  onBlur,
   onChange,
+  onFocus,
   type,
   value,
   warning,
@@ -24,6 +26,9 @@ const InputTextContainer = ({
   }, [warning]);
 
   const handleBlur = (e) => {
+    if (onBlur) {
+      onBlur(e);
+    }
     if (onChange) {
       onChange(e, id, inputValue);
     }
@@ -36,7 +41,10 @@ const InputTextContainer = ({
     setInputValue(parsedValue);
   };
 
-  const handleFocus = () => {
+  const handleFocus = (e) => {
+    if (onFocus) {
+      onFocus(e);
+    }
     setInputWarning('');
   };
 
@@ -69,7 +77,9 @@ const InputTextContainer = ({
 
 InputTextContainer.defaultProps = {
   id: undefined,
+  onBlur: undefined,
   onChange: undefined,
+  onFocus: undefined,
   type: 'text',
   value: undefined,
   warning: '',
@@ -77,7 +87,9 @@ InputTextContainer.defaultProps = {
 
 InputTextContainer.propTypes = {
   id: PropTypes.string,
+  onBlur: PropTypes.func,
   onChange: PropTypes.func,
+  onFocus: PropTypes.func,
   type: PropTypes.string,
   value: PropTypes.oneOfType([
     PropTypes.number,

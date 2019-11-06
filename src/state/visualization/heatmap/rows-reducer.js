@@ -16,6 +16,7 @@ const reduceAndOrder = (state, action) => ({
   [action.selectionID]: {
     ...state[action.selectionID],
     order: [...action.order],
+    sortBy: '',
   },
 });
 

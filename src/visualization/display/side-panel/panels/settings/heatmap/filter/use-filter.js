@@ -4,7 +4,7 @@ import { batch, useDispatch, useSelector } from 'react-redux';
 import ActionNotification from '../../../../../../utils/action-notification';
 
 import canReSort from './can-re-sort';
-import defineAvailableIndices from './define-available-indices';
+import defineAndOrderAvailableIndices from './define-and-order-available-indices';
 import defineFilteringColumnOrder from './define-filtering-column-order';
 import defineLatestValues from './define-latest-values';
 import findFilterIndices from './find-filter-indices';
@@ -33,23 +33,25 @@ const useFilter = () => {
       setFiltering(true);
 
       const {
+        defaultOrder: defaultColumnOrder,
         deleted: deletedColumns,
-        defaultOrder: columnOrder,
+        order: columnOrder,
         ref: sortByRef,
       } = columns;
       const {
+        defaultOrder: defaultRowOrder,
         deleted: deletedRows,
         direction,
-        defaultOrder: rowOrder,
+        order: rowOrder,
         sortBy,
       } = rows;
 
       const latestValues = defineLatestValues(updatedSetting, updatedValue, settings);
       const columnFilterIndices = findFilterIndices(columnDB, latestValues.filterBy);
-      const availableColumns = defineAvailableIndices(columnOrder, deletedColumns);
+      const availableColumns = defineAndOrderAvailableIndices(defaultColumnOrder, columnOrder, deletedColumns);
       const subsetIndices = {
         columns: defineFilteringColumnOrder(availableColumns, columnFilterIndices),
-        rows: defineAvailableIndices(rowOrder, deletedRows),
+        rows: defineAndOrderAvailableIndices(defaultRowOrder, rowOrder, deletedRows),
       };
 
       let newRowOrder = filterAndOrderRows(rowDB, subsetIndices, scoreType, latestValues);

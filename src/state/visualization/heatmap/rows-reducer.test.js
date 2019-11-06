@@ -57,6 +57,7 @@ describe('Rows reducer', () => {
       main: {
         ...defaultState,
         order: [0, 1, 2],
+        sortBy: 'a',
       },
     };
 
@@ -70,6 +71,7 @@ describe('Rows reducer', () => {
       main: {
         ...currentState.main,
         order: [1, 2, 0],
+        sortBy: '',
       },
     };
     expect(reducer(currentState, action)).toEqual(expectedState);

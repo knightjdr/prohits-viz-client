@@ -14,6 +14,8 @@ const defineClassName = type => (
 const Reorder = ({
   cellSize,
   fontSize,
+  handleBlur,
+  handleFocus,
   handleReorder,
   items,
   position,
@@ -29,7 +31,6 @@ const Reorder = ({
           className="heatmap__reorder-container"
           key={item}
           style={{
-            fontSize,
             maxHeight: cellSize,
             maxWidth: cellSize,
           }}
@@ -39,8 +40,11 @@ const Reorder = ({
             max={items.length}
             min={1}
             onChange={handleReorder}
+            onBlur={handleBlur}
+            onFocus={handleFocus}
             step={1}
             style={{
+              fontSize,
               height: cellSize,
               width: cellSize,
             }}
@@ -56,6 +60,8 @@ const Reorder = ({
 Reorder.propTypes = {
   cellSize: PropTypes.number.isRequired,
   fontSize: PropTypes.number.isRequired,
+  handleBlur: PropTypes.func.isRequired,
+  handleFocus: PropTypes.func.isRequired,
   handleReorder: PropTypes.func.isRequired,
   items: PropTypes.arrayOf(
     PropTypes.string,

@@ -19,8 +19,9 @@
 }
 
 .heatmap__reorder-container input {
-  text-align: center;
   padding: 0;
+  text-align: center;
+  z-index: 1;
 }
 .heatmap__reorder-container input[type="number"]::-webkit-outer-spin-button,
 .heatmap__reorder-container input[type="number"]::-webkit-inner-spin-button {
