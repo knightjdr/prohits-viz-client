@@ -20,7 +20,7 @@ const ListSwap = ({
       type="button"
     />
     <IconButton
-      data-swap-source="selected"
+      data-swap-source="poi"
       data-swap-type={type}
       kind="secondary"
       icon={faArrowRight}

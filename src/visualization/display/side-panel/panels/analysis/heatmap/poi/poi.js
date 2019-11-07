@@ -1,6 +1,7 @@
 import PropTypes from 'prop-types';
 import React, { forwardRef } from 'react';
 
+import Button from '../../../../../../../components/buttons/rectangular/button';
 import ContextMenu from './context-menu/context-menu-container';
 import ListReorder from './list-reorder';
 import ListSwap from './list-swap';
@@ -14,6 +15,7 @@ const Poi = forwardRef((
     closeContextMenu,
     columns,
     contextMenuState,
+    handleApply,
     handleContextMenu,
     handleReorder,
     handleSwap,
@@ -23,10 +25,8 @@ const Poi = forwardRef((
 ) => (
   <>
     <ContextMenu
-      columns={columns}
       handleMenuClose={closeContextMenu}
       menuState={contextMenuState}
-      rows={rows}
     />
     <Section
       border={false}
@@ -48,8 +48,8 @@ const Poi = forwardRef((
         <Select
           handleContextMenu={handleContextMenu}
           options={columns.poi}
-          ref={ref.columns.selected}
-          selectedType="selected"
+          ref={ref.columns.poi}
+          selectedType="poi"
           type="columns"
           title="Selected"
         />
@@ -72,8 +72,8 @@ const Poi = forwardRef((
         <Select
           handleContextMenu={handleContextMenu}
           options={rows.poi}
-          ref={ref.rows.selected}
-          selectedType="selected"
+          ref={ref.rows.poi}
+          selectedType="poi"
           type="rows"
           title="Selected"
         />
@@ -81,6 +81,15 @@ const Poi = forwardRef((
           handleReorder={handleReorder}
           type="rows"
         />
+      </div>
+      <div className="poi__apply">
+        <Button
+          onClick={handleApply}
+          kind="secondary"
+          type="button"
+        >
+          Apply selections
+        </Button>
       </div>
     </Section>
   </>
@@ -103,6 +112,7 @@ Poi.propTypes = {
     ).isRequired,
   }).isRequired,
   contextMenuState: PropTypes.shape({}).isRequired,
+  handleApply: PropTypes.func.isRequired,
   handleContextMenu: PropTypes.func.isRequired,
   handleReorder: PropTypes.func.isRequired,
   handleSwap: PropTypes.func.isRequired,

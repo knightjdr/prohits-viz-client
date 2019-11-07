@@ -1,6 +1,6 @@
 import { useSelector } from 'react-redux';
 
-import { selectColumnNames } from '../../../../../../state/selector/visualization/column-selector';
+import { selectOrderedColumnNames } from '../../../../../../state/selector/visualization/column-selector';
 import selectRows from '../../../../../../state/selector/visualization/row-selector';
 import { selectData } from '../../../../../../state/selector/visualization/data-selector';
 
@@ -64,7 +64,7 @@ export const searchElements = (regex, columns, rows) => ({
 });
 
 const useSearch = () => {
-  const columns = useSelector(state => selectColumnNames(state));
+  const columns = useSelector(state => selectOrderedColumnNames(state));
   const dimensions = useSelector(state => selectData(state, 'dimensions'));
   const rows = useSelector(state => selectRows(state));
   const position = useSelector(state => selectData(state, 'position'));

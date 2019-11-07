@@ -29,7 +29,7 @@ const ContextMenu = ({
           onClick={handleCopyHighlighted}
           type="button"
         >
-          Copy selected
+          Copy highlighted
         </button>
       </li>
       <li>

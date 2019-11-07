@@ -4,18 +4,21 @@ import React, {
   useRef,
   useState,
 } from 'react';
-import { useDispatch, useSelector } from 'react-redux';
+import { batch, useDispatch, useSelector } from 'react-redux';
 
 import Poi from './poi';
 
+import defineNewOrderForSelection from './define-new-order-for-selection';
 import defineNewPOI from './define-new-poi';
 import definePoiOptions from './define-poi-options';
-import getHighlightedValues from './get-highlighted-values';
+import getHighlightedAttribute from './get-highlighted-attribute';
 import findOptionToFocus from './find-option-to-focus';
 import reorderPOI from './reorder-poi';
 import { selectColumnNames } from '../../../../../../../state/selector/visualization/column-selector';
+import { setColumnOrder } from '../../../../../../../state/visualization/heatmap/columns-actions';
 import { selectData, selectDataProperty } from '../../../../../../../state/selector/visualization/data-selector';
 import { selectRowNames } from '../../../../../../../state/selector/visualization/row-selector';
+import { setRowOrder } from '../../../../../../../state/visualization/heatmap/rows-actions';
 import { updatePOI } from '../../../../../../../state/visualization/analysis/poi-actions';
 
 const PoiContainer = () => {
@@ -25,11 +28,11 @@ const PoiContainer = () => {
 
   const refs = {
     columns: {
-      selected: useRef(),
+      poi: useRef(),
       unselected: useRef(),
     },
     rows: {
-      selected: useRef(),
+      poi: useRef(),
       unselected: useRef(),
     },
   };
@@ -52,7 +55,20 @@ const PoiContainer = () => {
   );
 
   const closeContextMenu = () => {
-    setContextMenuState({ isOpen: false });
+    setContextMenuState({
+      ...contextMenuState,
+      isOpen: false,
+    });
+  };
+
+  const handleApply = () => {
+    const newColumnOrder = defineNewOrderForSelection(poi.columns, columnOptions.unselectedOrder);
+    const newRowOrder = defineNewOrderForSelection(poi.rows, rowOptions.unselectedOrder);
+    batch(() => {
+      dispatch(setColumnOrder(newColumnOrder));
+      dispatch(setRowOrder(newRowOrder));
+      dispatch(updatePOI({ columns: [], rows: [] }));
+    });
   };
 
   const handleContextMenu = (e) => {
@@ -60,6 +76,8 @@ const PoiContainer = () => {
     const { contextType, selectionType } = e.currentTarget.dataset;
     setContextMenuState({
       contextType,
+      highlighted: getHighlightedAttribute(refs[contextType][selectionType].current, 'text'),
+      items: contextType === 'columns' ? columnOptions : rowOptions,
       isOpen: true,
       selectionType,
       x: e.clientX,
@@ -69,7 +87,7 @@ const PoiContainer = () => {
 
   const handleReorder = (e) => {
     const { reorderDirection, reorderType } = e.currentTarget.dataset;
-    const highlighted = getHighlightedValues(refs[reorderType].selected.current);
+    const highlighted = getHighlightedAttribute(refs[reorderType].poi.current);
     const updatedPOI = {
       [reorderType]: reorderPOI(reorderDirection, poi[reorderType], highlighted),
     };
@@ -78,7 +96,7 @@ const PoiContainer = () => {
 
   const handleSwap = (e) => {
     const { swapSource, swapType } = e.currentTarget.dataset;
-    const highlighted = getHighlightedValues(refs[swapType][swapSource].current);
+    const highlighted = getHighlightedAttribute(refs[swapType][swapSource].current);
     const updatedPOI = {
       [swapType]: defineNewPOI(swapSource, poi[swapType], highlighted),
     };
@@ -102,6 +120,7 @@ const PoiContainer = () => {
       closeContextMenu={closeContextMenu}
       columns={columnOptions}
       contextMenuState={contextMenuState}
+      handleApply={handleApply}
       handleContextMenu={handleContextMenu}
       handleReorder={handleReorder}
       handleSwap={handleSwap}

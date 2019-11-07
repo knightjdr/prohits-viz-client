@@ -1,35 +1,54 @@
 import PropTypes from 'prop-types';
 import React, { useState } from 'react';
+import { useDispatch } from 'react-redux';
 
 import ContextMenu from './context-menu';
 import PasteInput from './paste-input';
 
+import convertTextToPOI from './convert-text-to-poi';
+import copyOptions from './copy-options';
+import { updatePOI } from '../../../../../../../../state/visualization/analysis/poi-actions';
+
 const ContextMenuContainer = ({
-  columns,
   handleMenuClose,
   menuState,
-  rows,
 }) => {
-  const [isPasteInputOpen, setPasteInputState] = useState(true);
+  const dispatch = useDispatch();
+  const [isPasteInputOpen, setIsPasteInputOpen] = useState(false);
   const [pasteText, setPasteText] = useState('');
 
-  const canPaste = menuState.selectionType === 'selected';
+  const canPaste = menuState.selectionType === 'poi';
 
   const handlePasteInputClose = () => {
-    setPasteInputState(false);
+    setIsPasteInputOpen(false);
+    setPasteText('');
+  };
+
+  const pastePOI = (currentOrder = []) => {
+    handlePasteInputClose();
+    const newPOI = {
+      [menuState.contextType]: convertTextToPOI(pasteText, menuState.items.names, currentOrder),
+    };
+    dispatch(updatePOI(newPOI));
   };
 
   const handleAppend = () => {
-    handlePasteInputClose();
+    pastePOI(menuState.items.poiOrder);
   };
 
-  const handleCopy = () => {};
+  const handleCopy = () => {
+    handleMenuClose();
+    copyOptions(menuState.items[menuState.selectionType]);
+  };
 
-  const handleCopyHighlighted = () => {};
+  const handleCopyHighlighted = () => {
+    handleMenuClose();
+    copyOptions(menuState.highlighted);
+  };
 
   const handlePasteInputOpen = () => {
     handleMenuClose();
-    setPasteInputState(true);
+    setIsPasteInputOpen(true);
   };
 
   const handlePasteTextChange = (e, id, value) => {
@@ -37,7 +56,7 @@ const ContextMenuContainer = ({
   };
 
   const handleReplace = () => {
-    handlePasteInputClose();
+    pastePOI();
   };
 
   const placement = {
@@ -71,41 +90,30 @@ const ContextMenuContainer = ({
 };
 
 ContextMenuContainer.propTypes = {
-  columns: PropTypes.shape({
-    unselected: PropTypes.arrayOf(
-      PropTypes.shape({
-        index: PropTypes.number,
-        name: PropTypes.string,
-      }),
-    ).isRequired,
-    poi: PropTypes.arrayOf(
-      PropTypes.shape({
-        index: PropTypes.number,
-        name: PropTypes.string,
-      }),
-    ).isRequired,
-  }).isRequired,
   handleMenuClose: PropTypes.func.isRequired,
   menuState: PropTypes.shape({
     contextType: PropTypes.string,
+    highlighted: PropTypes.arrayOf(PropTypes.string),
+    items: PropTypes.shape({
+      names: PropTypes.arrayOf(PropTypes.string),
+      poi: PropTypes.arrayOf(
+        PropTypes.shape({
+          index: PropTypes.number,
+          name: PropTypes.string,
+        }),
+      ),
+      poiOrder: PropTypes.arrayOf(PropTypes.number),
+      unselected: PropTypes.arrayOf(
+        PropTypes.shape({
+          index: PropTypes.number,
+          name: PropTypes.string,
+        }),
+      ),
+    }),
     isOpen: PropTypes.bool.isRequired,
     selectionType: PropTypes.string,
     x: PropTypes.number,
     y: PropTypes.number,
-  }).isRequired,
-  rows: PropTypes.shape({
-    unselected: PropTypes.arrayOf(
-      PropTypes.shape({
-        index: PropTypes.number,
-        name: PropTypes.string,
-      }),
-    ).isRequired,
-    poi: PropTypes.arrayOf(
-      PropTypes.shape({
-        index: PropTypes.number,
-        name: PropTypes.string,
-      }),
-    ).isRequired,
   }).isRequired,
 };
 

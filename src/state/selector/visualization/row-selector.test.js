@@ -1,4 +1,4 @@
-import { selectRowNames, selectVisibleRowNames } from './row-selector';
+import { selectOrderedRowNames, selectRowNames, selectVisibleRowNames } from './row-selector';
 
 const state = {
   dimensions: {
@@ -31,6 +31,7 @@ const state = {
   },
   rows: {
     main: {
+      defaultOrder: [0, 1, 2, 3],
       order: [0, 2, 1, 3],
     },
   },
@@ -40,9 +41,14 @@ const state = {
 };
 
 describe('Row selector for heat map', () => {
+  it('should return rows names in default order', () => {
+    const expected = ['a', 'b', 'c', 'd'];
+    expect(selectRowNames(state)).toEqual(expected);
+  });
+
   it('should return rows names in correct order', () => {
     const expected = ['a', 'c', 'b', 'd'];
-    expect(selectRowNames(state)).toEqual(expected);
+    expect(selectOrderedRowNames(state)).toEqual(expected);
   });
 
   it('should return rows names for visible page', () => {

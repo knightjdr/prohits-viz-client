@@ -6,10 +6,16 @@
   color: var(--colorPrimary1);
   margin-right: 8px;
 }
-.selection__paste-input-footer {
+
+.selection__paste-input-footer p {
+  font-size: 0.9em;
+  max-width: 500px;
+  margin-top: 0;
+}
+.selection__paste-input-footer-buttons {
   display: flex;
   justify-content: flex-end;
 }
-.selection__paste-input-footer > *:not(:last-child) {
+.selection__paste-input-footer-buttons > *:not(:last-child) {
   margin-right: 8px;
 }
