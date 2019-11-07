@@ -1,34 +1,37 @@
 import PropTypes from 'prop-types';
-import React from 'react';
+import React, { forwardRef } from 'react';
 
-const Grid = ({
-  clipPath,
-  clipPathID,
-  page,
-  translation,
-}) => (
-  <>
-    {clipPath}
-    <g
-      clipPath={`url(#${clipPathID})`}
-      transform={translation}
+const DPI = window.devicePixelRatio;
+
+const Grid = forwardRef((
+  {
+    height,
+    width,
+  },
+  ref,
+) => (
+  <g transform="translate(100 100)">
+    <foreignObject
+      height={height}
+      width={width}
     >
-      {page}
-    </g>
-  </>
-);
-
-Grid.defaultProps = {
-  page: null,
-};
+      <canvas
+        xmlns="http://www.w3.org/1999/xhtml"
+        height={height * DPI}
+        ref={ref}
+        style={{
+          transform: `scale(${1 / DPI})`,
+          transformOrigin: 'top left',
+        }}
+        width={width * DPI}
+      />
+    </foreignObject>
+  </g>
+));
 
 Grid.propTypes = {
-  clipPath: PropTypes.node.isRequired,
-  clipPathID: PropTypes.string.isRequired,
-  page: PropTypes.arrayOf(
-    PropTypes.node,
-  ),
-  translation: PropTypes.string.isRequired,
+  height: PropTypes.number.isRequired,
+  width: PropTypes.number.isRequired,
 };
 
 export default Grid;

@@ -1,21 +1,26 @@
-import React, { useEffect, useMemo, useState } from 'react';
+import React, {
+  useEffect,
+  useMemo,
+  useRef,
+  useState,
+} from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 
 import Grid from './grid';
 
 import calculateEdgeWidth from './calculate-edge-width';
+import createCanvas from './create-canvas';
 import heatmapConfig from '../config';
 import initializeColorGradient from '../../../../utils/color/initialize-color-gradient';
 import partialEdgeRange from './set-edge-range-partial';
 import partialSetRange from '../../../../utils/set-range-partial';
-import subsetPage from './subset-page';
-import useTranslation from '../translation/use-translation';
 import { selectData, selectDataProperty } from '../../../../state/selector/visualization/data-selector';
 import { selectState, selectStateProperty } from '../../../../state/selector/general';
 import { updatePosition } from '../../../../state/visualization/settings/position-actions';
 
 const GridContainer = () => {
   const dispatch = useDispatch();
+  const ref = useRef();
   const [page, setPage] = useState(null);
 
   const columnOrder = useSelector(state => selectDataProperty(state, 'columns', 'order'));
@@ -25,9 +30,6 @@ const GridContainer = () => {
   const rowOrder = useSelector(state => selectDataProperty(state, 'rows', 'order'));
   const scoreType = useSelector(state => selectStateProperty(state, 'parameters', 'scoreType'));
   const settings = useSelector(state => selectDataProperty(state, 'settings', 'current'));
-
-  const clipPathID = 'gridClipPath';
-  const translation = useTranslation(clipPathID);
 
   const {
     abundanceCap,
@@ -48,22 +50,28 @@ const GridContainer = () => {
     () => partialEdgeRange(primaryFilter, secondaryFilter, scoreType, 0, numColors - 1),
     [numColors, primaryFilter, secondaryFilter, scoreType],
   );
+
   const convertToFillRange = useMemo(
     () => partialSetRange(minAbundance, abundanceCap, 0, numColors - 1),
     [abundanceCap, minAbundance, numColors],
   );
+
   const edgeGradient = useMemo(
     () => initializeColorGradient(edgeColor, numColors, false),
     [edgeColor, numColors],
   );
+
   const edgeWidth = useMemo(() => calculateEdgeWidth(cellSize), [cellSize]);
+
   const fillGradient = useMemo(
     () => initializeColorGradient(fillColor, numColors, invertColor),
     [fillColor, invertColor, numColors],
   );
+
   useEffect(() => {
     if (dimensions.height > 0 && dimensions.width > 0) {
-      setPage(subsetPage(
+      setPage(createCanvas(
+        ref.current,
         imageType,
         rowDB,
         columnOrder,
@@ -96,17 +104,19 @@ const GridContainer = () => {
   ]);
 
   useEffect(() => {
-    if (page && page.length === 0 && (position.x !== 0 || position.y !== 0)) {
+    if (position.x >= columnOrder.length || position.y >= rowOrder.length) {
       dispatch(updatePosition(0, 0));
     }
   }, [dispatch, page, position]);
 
+  const canvasHeight = 765;
+  const canvasWidth = columnOrder.length * cellSize;
+
   return (
     <Grid
-      clipPath={translation.clipPath}
-      clipPathID={clipPathID}
-      page={page}
-      translation={translation.translation}
+      height={canvasHeight}
+      ref={ref}
+      width={canvasWidth}
     />
   );
 };
