@@ -1,0 +1,12 @@
+.poi__action {
+  display: flex;
+  justify-content: center;
+  margin-top: 15px;
+}
+.poi__action > button {
+  margin: 0 5px;
+}
+.poi__action > button > svg {
+  font-size: 0.9em;
+  margin-right: 5px;
+}

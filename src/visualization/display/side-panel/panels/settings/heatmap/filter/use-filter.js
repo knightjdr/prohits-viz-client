@@ -29,7 +29,7 @@ const useFilter = () => {
   const rowDB = useSelector(state => selectState(state, 'rowDB'));
 
   const filter = useCallback(
-    (updatedSetting, updatedValue) => {
+    (updatedSetting, updatedValue, updatedOrder = {}) => {
       setFiltering(true);
 
       const {
@@ -48,10 +48,15 @@ const useFilter = () => {
 
       const latestValues = defineLatestValues(updatedSetting, updatedValue, settings);
       const columnFilterIndices = findFilterIndices(columnDB, latestValues.filterBy);
-      const availableColumns = defineAndOrderAvailableIndices(defaultColumnOrder, columnOrder, deletedColumns);
+      const availableColumns = defineAndOrderAvailableIndices(
+        updatedOrder.columns,
+        defaultColumnOrder,
+        columnOrder,
+        deletedColumns,
+      );
       const subsetIndices = {
         columns: defineFilteringColumnOrder(availableColumns, columnFilterIndices),
-        rows: defineAndOrderAvailableIndices(defaultRowOrder, rowOrder, deletedRows),
+        rows: defineAndOrderAvailableIndices(updatedOrder.rows, defaultRowOrder, rowOrder, deletedRows),
       };
 
       let newRowOrder = filterAndOrderRows(rowDB, subsetIndices, scoreType, latestValues);

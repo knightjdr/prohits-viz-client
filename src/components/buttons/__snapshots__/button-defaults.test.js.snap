@@ -305,13 +305,14 @@ exports[`Default button style success should match snapshot 1`] = `
 
 .c0 {
   background-color: #00ff00;
-  color: #421C1A;
+  color: #fff;
 }
 
 .c0:focus:not([disabled]),
 .c0:hover:not([disabled]) {
   background-color: #fff;
   border-color: #00ff00;
+  color: #00ff00;
 }
 
 .c0:active {

@@ -85,12 +85,13 @@ ${props => (props.kind === 'alert'
   ${props => (props.kind === 'success'
     && css`& {
       background-color: ${props.theme.success};
-      color: #421C1A;
+      color: ${props.theme.fontLight};
     }
     &:focus:not([disabled]),
     &:hover:not([disabled]) {
       background-color: #fff;
       border-color: ${props.theme.success};
+      color: ${props.theme.success};
     }`
   )};
 

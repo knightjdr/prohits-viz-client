@@ -1,7 +1,7 @@
 import PropTypes from 'prop-types';
 import React, { forwardRef } from 'react';
 
-import Button from '../../../../../../../components/buttons/rectangular/button';
+import Action from './action/poi-action-container';
 import ContextMenu from './context-menu/context-menu-container';
 import ListReorder from './list-reorder';
 import ListSwap from './list-swap';
@@ -15,7 +15,6 @@ const Poi = forwardRef((
     closeContextMenu,
     columns,
     contextMenuState,
-    handleApply,
     handleContextMenu,
     handleReorder,
     handleSwap,
@@ -82,15 +81,7 @@ const Poi = forwardRef((
           type="rows"
         />
       </div>
-      <div className="poi__apply">
-        <Button
-          onClick={handleApply}
-          kind="secondary"
-          type="button"
-        >
-          Apply selections
-        </Button>
-      </div>
+      <Action />
     </Section>
   </>
 ));
@@ -112,7 +103,6 @@ Poi.propTypes = {
     ).isRequired,
   }).isRequired,
   contextMenuState: PropTypes.shape({}).isRequired,
-  handleApply: PropTypes.func.isRequired,
   handleContextMenu: PropTypes.func.isRequired,
   handleReorder: PropTypes.func.isRequired,
   handleSwap: PropTypes.func.isRequired,

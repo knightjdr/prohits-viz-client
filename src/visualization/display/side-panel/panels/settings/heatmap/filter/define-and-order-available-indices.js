@@ -1,9 +1,13 @@
 import convertArrayToObject from '../../../../../../../utils/convert-array-to-object';
 
-const defineAvailableIndices = (defaultIndices, indices, deleted) => {
+const defineAvailableIndices = (suppliedOrder, defaultIndices, storedIndices, deleted) => {
+  if (suppliedOrder) {
+    return suppliedOrder;
+  }
+
   const deletedIndexLookup = convertArrayToObject(deleted);
-  const filteredIndices = defaultIndices.filter(x => !indices.includes(x));
-  const orderedIndices = [...indices, ...filteredIndices];
+  const filteredIndices = defaultIndices.filter(x => !storedIndices.includes(x));
+  const orderedIndices = [...storedIndices, ...filteredIndices];
   return orderedIndices.filter(index => !deletedIndexLookup[index]);
 };
 

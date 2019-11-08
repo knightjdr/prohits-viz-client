@@ -7,11 +7,11 @@ import {
   faInfoCircle,
   faPenSquare,
   faSave,
-  faTable,
+  faObjectUngroup,
 } from '@fortawesome/pro-light-svg-icons';
 
 const icons = {
-  analysis: faTable,
+  analysis: faObjectUngroup,
   info: faInfoCircle,
   markup: faPenSquare,
   minimap: faGlobeAmericas,

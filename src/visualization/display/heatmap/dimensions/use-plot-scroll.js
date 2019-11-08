@@ -19,7 +19,7 @@ const Scroll = (ref, wait = 50) => {
     const horizontal = e.pixelX;
     const normalizedScrollPixels = 40;
     const direction = Math.sign(e.pixelY);
-    const cells = Math.max(1, Math.abs(e.pixelY / normalizedScrollPixels));
+    const cells = Math.max(1, Math.round(Math.abs(e.pixelY / normalizedScrollPixels)));
 
     const newPosition = {
       x: position.x,

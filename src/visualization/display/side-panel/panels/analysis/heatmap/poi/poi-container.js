@@ -4,21 +4,19 @@ import React, {
   useRef,
   useState,
 } from 'react';
-import { batch, useDispatch, useSelector } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 
 import Poi from './poi';
 
-import defineNewOrderForSelection from './define-new-order-for-selection';
+
 import defineNewPOI from './define-new-poi';
 import definePoiOptions from './define-poi-options';
 import getHighlightedAttribute from './get-highlighted-attribute';
 import findOptionToFocus from './find-option-to-focus';
 import reorderPOI from './reorder-poi';
 import { selectColumnNames } from '../../../../../../../state/selector/visualization/column-selector';
-import { setColumnOrder } from '../../../../../../../state/visualization/heatmap/columns-actions';
 import { selectData, selectDataProperty } from '../../../../../../../state/selector/visualization/data-selector';
 import { selectRowNames } from '../../../../../../../state/selector/visualization/row-selector';
-import { setRowOrder } from '../../../../../../../state/visualization/heatmap/rows-actions';
 import { updatePOI } from '../../../../../../../state/visualization/analysis/poi-actions';
 
 const PoiContainer = () => {
@@ -61,16 +59,6 @@ const PoiContainer = () => {
     });
   };
 
-  const handleApply = () => {
-    const newColumnOrder = defineNewOrderForSelection(poi.columns, columnOptions.unselectedOrder);
-    const newRowOrder = defineNewOrderForSelection(poi.rows, rowOptions.unselectedOrder);
-    batch(() => {
-      dispatch(setColumnOrder(newColumnOrder));
-      dispatch(setRowOrder(newRowOrder));
-      dispatch(updatePOI({ columns: [], rows: [] }));
-    });
-  };
-
   const handleContextMenu = (e) => {
     e.preventDefault();
     const { contextType, selectionType } = e.currentTarget.dataset;
@@ -105,9 +93,11 @@ const PoiContainer = () => {
 
   const scrollToPageTopOption = (order, unselectedOrder, pageIndex, ref) => {
     const optionIndex = findOptionToFocus(order, unselectedOrder, pageIndex);
-    const selectTop = ref.current.offsetTop;
-    const optionTop = [...ref.current.options][optionIndex].offsetTop;
-    ref.current.scrollTo(0, optionTop - selectTop);
+    if (optionIndex >= 0) {
+      const selectTop = ref.current.offsetTop;
+      const optionTop = [...ref.current.options][optionIndex].offsetTop;
+      ref.current.scrollTo(0, optionTop - selectTop);
+    }
   };
 
   useEffect(() => {
@@ -120,7 +110,6 @@ const PoiContainer = () => {
       closeContextMenu={closeContextMenu}
       columns={columnOptions}
       contextMenuState={contextMenuState}
-      handleApply={handleApply}
       handleContextMenu={handleContextMenu}
       handleReorder={handleReorder}
       handleSwap={handleSwap}
