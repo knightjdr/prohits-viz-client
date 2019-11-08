@@ -2,12 +2,12 @@ import React, {
   useEffect,
   useMemo,
   useRef,
-  useState,
 } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 
-import Grid from './grid';
+import Canvas from './canvas';
 
+import calculatePageDimensions from './calculate-page-dimensions';
 import calculateEdgeWidth from './calculate-edge-width';
 import createCanvas from './create-canvas';
 import heatmapConfig from '../config';
@@ -18,10 +18,9 @@ import { selectData, selectDataProperty } from '../../../../state/selector/visua
 import { selectState, selectStateProperty } from '../../../../state/selector/general';
 import { updatePosition } from '../../../../state/visualization/settings/position-actions';
 
-const GridContainer = () => {
+const CanvasContainer = () => {
   const dispatch = useDispatch();
   const ref = useRef();
-  const [page, setPage] = useState(null);
 
   const columnOrder = useSelector(state => selectDataProperty(state, 'columns', 'order'));
   const dimensions = useSelector(state => selectData(state, 'dimensions'));
@@ -68,57 +67,44 @@ const GridContainer = () => {
     [fillColor, invertColor, numColors],
   );
 
+  const pageDimensions = useMemo(
+    () => calculatePageDimensions(dimensions, position, columnOrder, rowOrder, cellSize),
+    [cellSize, columnOrder, dimensions, position, rowOrder],
+  );
+
+  const pageSettings = {
+    imageType,
+    pageDimensions,
+    rowDB,
+    columnOrder,
+    rowOrder,
+    cellSize,
+    edgeWidth,
+    edgeGradient,
+    fillGradient,
+    convertToEdgeRange,
+    convertToFillRange,
+    resetRatios,
+  };
+
   useEffect(() => {
     if (dimensions.height > 0 && dimensions.width > 0) {
-      setPage(createCanvas(
-        ref.current,
-        imageType,
-        rowDB,
-        columnOrder,
-        rowOrder,
-        position,
-        dimensions,
-        cellSize,
-        edgeWidth,
-        edgeGradient,
-        fillGradient,
-        convertToEdgeRange,
-        convertToFillRange,
-        resetRatios,
-      ));
+      createCanvas(ref.current, pageSettings);
     }
-  }, [
-    cellSize,
-    columnOrder,
-    dimensions,
-    edgeGradient,
-    convertToEdgeRange,
-    edgeWidth,
-    fillGradient,
-    convertToFillRange,
-    imageType,
-    position,
-    rowDB,
-    rowOrder,
-    resetRatios,
-  ]);
+  }, [dimensions, pageSettings]);
 
   useEffect(() => {
-    if (position.x >= columnOrder.length || position.y >= rowOrder.length) {
+    if (pageDimensions.resetPosition) {
       dispatch(updatePosition(0, 0));
     }
-  }, [dispatch, page, position]);
-
-  const canvasHeight = 765;
-  const canvasWidth = columnOrder.length * cellSize;
+  }, [dispatch, pageDimensions]);
 
   return (
-    <Grid
-      height={canvasHeight}
+    <Canvas
+      pageDimensions={pageDimensions}
       ref={ref}
-      width={canvasWidth}
     />
   );
 };
 
-export default GridContainer;
+export default CanvasContainer;

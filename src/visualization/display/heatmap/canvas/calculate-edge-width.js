@@ -1,7 +1,7 @@
 import round from '../../../../utils/round';
 
 const calculateEdgeWidth = cellSize => (
-  cellSize < 15 ? round(cellSize / 10, 1) : 1.5
+  cellSize >= 20 ? 3 : round(cellSize / 5, 1)
 );
 
 export default calculateEdgeWidth;

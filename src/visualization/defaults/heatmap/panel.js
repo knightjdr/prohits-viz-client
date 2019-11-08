@@ -2,7 +2,7 @@ import { validateBoolean } from '../../../utils/validate-type';
 
 export const defaultState = {
   open: true,
-  tab: 'analysis',
+  tab: 'settings',
 };
 
 const validTabs = {
