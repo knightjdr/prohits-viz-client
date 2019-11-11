@@ -30,7 +30,13 @@ const filter = (updatedSetting, updatedValue, updatedOrder, filterOptions) => {
     sortBy,
   } = rows;
 
-  const latestValues = defineLatestValues(updatedSetting, updatedValue, settings);
+  const filterSettings = {
+    ...settings,
+    sortBy,
+    sortByRef,
+  };
+
+  const latestValues = defineLatestValues(updatedSetting, updatedValue, updatedOrder, filterSettings);
   const columnFilterIndices = findFilterIndices(columnDB, latestValues.filterBy);
   const availableColumns = defineAndOrderAvailableIndices(
     updatedOrder.columns,
@@ -44,7 +50,7 @@ const filter = (updatedSetting, updatedValue, updatedOrder, filterOptions) => {
   };
 
   let newRowOrder = filterAndOrderRows(rowDB, subsetIndices, scoreType, latestValues);
-  const resort = canReSort(columnDB, availableColumns, sortBy, sortByRef);
+  const resort = canReSort(columnDB, availableColumns, latestValues.sortBy, latestValues.sortByRef);
   if (resort.status) {
     newRowOrder = rowSort(rowDB, newRowOrder, resort.sortByIndex, direction, resort.sortByRefIndex);
   }

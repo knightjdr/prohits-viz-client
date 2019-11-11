@@ -6,6 +6,7 @@ import Heatmap from './heatmap';
 import defineDimensions from './dimensions/define-dimensions';
 import defineTranslation from './dimensions/define-translation';
 import usePlotScroll from './dimensions/use-plot-scroll';
+import useShortCuts from './shortcuts/use-shortcuts';
 import useWindowDimension from '../../../hooks/window-size/use-window-dimension';
 import { setDimensions } from '../../../state/visualization/settings/dimension-actions';
 import { selectDataProperty } from '../../../state/selector/visualization/data-selector';
@@ -24,6 +25,7 @@ const HeatmapContainer = () => {
 
   const windowDimensions = useWindowDimension(50);
   usePlotScroll(ref, 50);
+  useShortCuts();
 
   const { cellSize } = settings;
   const cellHeight = rowOrder.length;

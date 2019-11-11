@@ -1,9 +1,11 @@
-const defineLatestValues = (updatedSetting, updatedValue, settings) => {
+const defineLatestValues = (updatedSetting, updatedValue, updatedOrder, settings) => {
   const {
     filterBy,
     minAbundance,
     primaryFilter,
     removeEmptyColumns,
+    sortBy,
+    sortByRef,
   } = settings;
 
   return {
@@ -11,6 +13,8 @@ const defineLatestValues = (updatedSetting, updatedValue, settings) => {
     filterBy,
     primaryFilter,
     removeEmptyColumns,
+    sortBy: Object.keys(updatedOrder).length > 0 ? '' : sortBy,
+    sortByRef,
     [updatedSetting]: updatedValue,
   };
 };
