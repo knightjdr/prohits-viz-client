@@ -7,7 +7,7 @@ describe('POI actions', () => {
       rows: [5, 1],
     };
     const expectedAction = {
-      AUGMENT_WITH_ACTIVE_SELECTION: true,
+      AUGMENT_WITH_ACTIVE_SNAPSHOT: true,
       poi,
       type: actions.UPDATE_POI,
     };

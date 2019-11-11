@@ -2,6 +2,7 @@ import reducer from './rows-reducer';
 import * as actions from './rows-actions';
 import * as displayActions from '../settings/display-actions';
 import * as fileActions from '../data/interactive-file-actions';
+import * as snapshotActions from '../data/snapshot-actions';
 
 const defaultState = {
   defaultOrder: [],
@@ -16,6 +17,29 @@ describe('Rows reducer', () => {
     const action = {};
     const expectedState = {};
     expect(reducer(undefined, action)).toEqual(expectedState);
+  });
+
+  it('should handle ADD_HEATMAP_SNAPSHOT action', () => {
+    const currentState = {
+      main: {
+        defaultOrder: [0, 1, 2, 3, 4],
+        order: [0, 1, 2, 3, 4],
+      },
+    };
+    const snapshotState = {
+      defaultOrder: [0, 2, 3],
+      order: [0, 2, 3],
+    };
+    const action = {
+      rows: snapshotState,
+      name: 'snapshot-1',
+      type: snapshotActions.ADD_HEATMAP_SNAPSHOT,
+    };
+    const expectedState = {
+      ...currentState,
+      'snapshot-1': snapshotState,
+    };
+    expect(reducer(currentState, action)).toEqual(expectedState);
   });
 
   it('should handle CLEAR_INTERACTIVE_STATE action', () => {
@@ -36,7 +60,7 @@ describe('Rows reducer', () => {
     };
 
     const action = {
-      selectionID: 'main',
+      snapshotID: 'main',
       index: 1,
       order: [0, 2],
       type: actions.DELETE_ROW,
@@ -62,7 +86,7 @@ describe('Rows reducer', () => {
     };
 
     const action = {
-      selectionID: 'main',
+      snapshotID: 'main',
       order: [1, 2, 0],
       type: actions.SET_ROW_ORDER,
     };
@@ -122,7 +146,7 @@ describe('Rows reducer', () => {
     };
 
     const action = {
-      selectionID: 'main',
+      snapshotID: 'main',
       type: displayActions.RESET_IMAGE,
     };
     const expectedState = {
@@ -147,7 +171,7 @@ describe('Rows reducer', () => {
     };
 
     const action = {
-      selectionID: 'main',
+      snapshotID: 'main',
       direction: 'asc',
       order: [1, 2, 0],
       sortBy: 'b',

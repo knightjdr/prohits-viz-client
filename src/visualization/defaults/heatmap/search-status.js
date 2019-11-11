@@ -1,3 +1,4 @@
+import fillSnapshots from '../snapshot';
 import isObject from '../../../utils/is-object';
 import { validateBoolean, validateObject, validateString } from '../../../utils/validate-type';
 
@@ -8,28 +9,21 @@ export const defaultState = {
   term: '',
 };
 
-const fillSelectionSearchStatus = fileSearchStatus => (
-  Object.keys(fileSearchStatus).reduce((accum, selection) => {
-    const {
-      columns,
-      match,
-      rows,
-      term,
-    } = fileSearchStatus[selection];
+export const fillSnapshotSearchStatus = (inputSearchStatus) => {
+  const {
+    columns,
+    match,
+    rows,
+    term,
+  } = inputSearchStatus;
 
-    const stateSearchStatus = {
-      columns: validateObject(columns, defaultState.columns),
-      match: validateBoolean(match, defaultState.match),
-      rows: validateObject(rows, defaultState.rows),
-      term: validateString(term, defaultState.term),
-    };
-
-    return {
-      ...accum,
-      [selection]: stateSearchStatus,
-    };
-  }, {})
-);
+  return {
+    columns: validateObject(columns, defaultState.columns),
+    match: validateBoolean(match, defaultState.match),
+    rows: validateObject(rows, defaultState.rows),
+    term: validateString(term, defaultState.term),
+  };
+};
 
 const fillSelectionTerm = (fileSearchStatus) => {
   if (!fileSearchStatus || !isObject(fileSearchStatus) || Object.keys(fileSearchStatus).length === 0) {
@@ -42,7 +36,7 @@ const fillSelectionTerm = (fileSearchStatus) => {
     };
   }
 
-  return fillSelectionSearchStatus(fileSearchStatus);
+  return fillSnapshots(fileSearchStatus, fillSnapshotSearchStatus);
 };
 
 export default fillSelectionTerm;

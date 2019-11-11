@@ -1,32 +1,13 @@
 import * as actions from './annotation-actions';
 import * as fileActions from '../data/interactive-file-actions';
+import * as snapshotActions from '../data/snapshot-actions';
 
-const reduceAllAnnotations = (state, action) => ({
+const reduceAndAdd = (state, action) => ({
   ...state,
-  [action.selectionID]: {
-    ...state[action.selectionID],
-    list: {},
-  },
-});
-
-const reduceInteractiveState = file => (
-  file.annotations ? file.annotations : {}
-);
-
-const reduceList = (state, action) => ({
-  ...state,
-  [action.selectionID]: {
-    ...state[action.selectionID],
-    list: action.list,
-  },
-});
-
-const reduceNewAnnotation = (state, action) => ({
-  ...state,
-  [action.selectionID]: {
-    ...state[action.selectionID],
+  [action.snapshotID]: {
+    ...state[action.snapshotID],
     list: {
-      ...state[action.selectionID].list,
+      ...state[action.snapshotID].list,
       [action.id]: {
         position: { ...action.position },
         text: action.text,
@@ -35,54 +16,81 @@ const reduceNewAnnotation = (state, action) => ({
   },
 });
 
-const reducePosition = (state, action) => ({
+const reduceAndAddSnapshot = (state, action) => ({
   ...state,
-  [action.selectionID]: {
-    ...state[action.selectionID],
+  [action.name]: action.annotations,
+});
+
+const reduceAndChangeSetting = (state, action) => ({
+  ...state,
+  [action.snapshotID]: {
+    ...state[action.snapshotID],
+    [action.setting]: action.value,
+  },
+});
+
+const reduceAndClear = (state, action) => ({
+  ...state,
+  [action.snapshotID]: {
+    ...state[action.snapshotID],
+    list: {},
+  },
+});
+
+const reduceAndLoad = file => (
+  file.annotations ? file.annotations : {}
+);
+
+const reduceAndToggle = (state, action) => ({
+  ...state,
+  [action.snapshotID]: {
+    ...state[action.snapshotID],
+    show: action.show,
+  },
+});
+
+const reduceAndUpdateAll = (state, action) => ({
+  ...state,
+  [action.snapshotID]: {
+    ...state[action.snapshotID],
+    list: action.list,
+  },
+});
+
+const reduceAndUpdatePosition = (state, action) => ({
+  ...state,
+  [action.snapshotID]: {
+    ...state[action.snapshotID],
     list: {
-      ...state[action.selectionID].list,
+      ...state[action.snapshotID].list,
       [action.id]: {
-        ...state[action.selectionID].list[[action.id]],
+        ...state[action.snapshotID].list[[action.id]],
         position: { ...action.position },
       },
     },
   },
 });
 
-const reduceSetting = (state, action) => ({
-  ...state,
-  [action.selectionID]: {
-    ...state[action.selectionID],
-    [action.setting]: action.value,
-  },
-});
-
-const reduceShowAnnotations = (state, action) => ({
-  ...state,
-  [action.selectionID]: {
-    ...state[action.selectionID],
-    show: action.show,
-  },
-});
-
 const reducer = (state = {}, action) => {
   switch (action.type) {
     case actions.ADD_ANNOTATION:
-      return reduceNewAnnotation(state, action);
+      return reduceAndAdd(state, action);
+    case snapshotActions.ADD_HEATMAP_SNAPSHOT:
+      return reduceAndAddSnapshot(state, action);
     case actions.CHANGE_ANNOTATION_SETTING:
-      return reduceSetting(state, action);
+      return reduceAndChangeSetting(state, action);
     case actions.CLEAR_ALL_ANNOTATIONS:
-      return reduceAllAnnotations(state, action);
+      return reduceAndClear(state, action);
     case fileActions.CLEAR_INTERACTIVE_STATE:
       return {};
     case fileActions.LOAD_INTERACTIVE_STATE:
-      return reduceInteractiveState(action.file);
+      return reduceAndLoad(action.file);
     case actions.TOGGLE_ANNOTATIONS:
-      return reduceShowAnnotations(state, action);
+      return reduceAndToggle(state, action);
     case actions.UPDATE_ANNOTATION_POSITION:
-      return reducePosition(state, action);
+      return reduceAndUpdatePosition(state, action);
     case actions.UPDATE_ANNOTATIONS:
-      return reduceList(state, action);
+      return reduceAndUpdateAll(state, action);
     default:
       return state;
   }

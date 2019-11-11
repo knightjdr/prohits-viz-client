@@ -3,12 +3,36 @@ import * as actions from './position-actions';
 import * as fileActions from '../data/interactive-file-actions';
 import * as rowActions from '../heatmap/rows-actions';
 import * as searchActions from '../markup/search-actions';
+import * as snapshotActions from '../data/snapshot-actions';
 
 describe('Position reducer', () => {
   it('should return a default initial state', () => {
     const action = {};
     const expectedState = {};
     expect(reducer(undefined, action)).toEqual(expectedState);
+  });
+
+  it('should handle ADD_HEATMAP_SNAPSHOT action', () => {
+    const currentState = {
+      main: {
+        x: 10,
+        y: 5,
+      },
+    };
+    const snapshotState = {
+      x: 0,
+      y: 0,
+    };
+    const action = {
+      position: snapshotState,
+      name: 'snapshot-1',
+      type: snapshotActions.ADD_HEATMAP_SNAPSHOT,
+    };
+    const expectedState = {
+      ...currentState,
+      'snapshot-1': snapshotState,
+    };
+    expect(reducer(currentState, action)).toEqual(expectedState);
   });
 
   it('should handle CLEAR_INTERACTIVE_STATE action', () => {
@@ -42,7 +66,7 @@ describe('Position reducer', () => {
 
   it('should handle SET_SEARCH_STATUS action', () => {
     const action = {
-      selectionID: 'main',
+      snapshotID: 'main',
       type: searchActions.SET_SEARCH_STATUS,
       x: 5,
       y: 10,
@@ -58,7 +82,7 @@ describe('Position reducer', () => {
 
   it('should handle SORT_ROWS action', () => {
     const action = {
-      selectionID: 'main',
+      snapshotID: 'main',
       type: rowActions.SORT_ROWS,
     };
     const expectedState = {
@@ -72,7 +96,7 @@ describe('Position reducer', () => {
 
   it('should handle UPDATE_POSITION action', () => {
     const action = {
-      selectionID: 'main',
+      snapshotID: 'main',
       type: actions.UPDATE_POSITION,
       x: 0.1,
       y: 0.5,

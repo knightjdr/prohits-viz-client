@@ -19,7 +19,7 @@ export const updateMultipleValue = (currentValues, newValue, canClear) => {
 };
 
 export const updateSingleValue = (currentValue, newValue, canClear) => {
-  if (canClear && currentValue[0] === newValue) {
+  if (canClear && currentValue && currentValue[0] === newValue) {
     return [];
   }
   return [newValue];

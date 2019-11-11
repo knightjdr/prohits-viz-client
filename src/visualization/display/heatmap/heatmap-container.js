@@ -15,6 +15,7 @@ const HeatmapContainer = () => {
   const dispatch = useDispatch();
   const ref = useRef();
 
+  const activeSnapshotTab = useSelector(state => selectStateProperty(state, 'tabs', 'activeSnapshot'));
   const columns = useSelector(state => selectDataProperty(state, 'columns', 'order'));
   const panelOpen = useSelector(state => selectStateProperty(state, 'panel', 'open'));
   const plotFixed = useSelector(state => selectDataProperty(state, 'display', 'plotFixed'));
@@ -35,8 +36,9 @@ const HeatmapContainer = () => {
       cellWidth,
       windowDimensions.height,
       windowDimensions.width,
+      activeSnapshotTab,
     ),
-    [cellSize, cellHeight, cellWidth, windowDimensions.height, windowDimensions.width],
+    [activeSnapshotTab, cellSize, cellHeight, cellWidth, windowDimensions.height, windowDimensions.width],
   );
 
   const translation = useMemo(

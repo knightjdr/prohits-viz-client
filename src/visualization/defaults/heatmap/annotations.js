@@ -1,3 +1,4 @@
+import fillSnapshots from '../snapshot';
 import isObject from '../../../utils/is-object';
 import validateHex from '../../../utils/validate-hex';
 import { validateBoolean, validateNumber, validateObject } from '../../../utils/validate-type';
@@ -9,28 +10,21 @@ export const defaultState = {
   show: true,
 };
 
-const fillSelectionAnnotations = fileAnnotations => (
-  Object.entries(fileAnnotations).reduce((accum, [id, selection]) => {
-    const {
-      color,
-      fontSize,
-      list,
-      show,
-    } = selection;
+export const fillSnapshotAnnotations = (inputAnnotations) => {
+  const {
+    color,
+    fontSize,
+    list,
+    show,
+  } = inputAnnotations;
 
-    const stateAnnotations = {
-      color: validateHex(color, defaultState.color),
-      fontSize: validateNumber(fontSize, defaultState.fontSize),
-      list: validateObject(list, defaultState.list),
-      show: validateBoolean(show, defaultState.show),
-    };
-
-    return {
-      ...accum,
-      [id]: stateAnnotations,
-    };
-  }, {})
-);
+  return {
+    color: validateHex(color, defaultState.color),
+    fontSize: validateNumber(fontSize, defaultState.fontSize),
+    list: validateObject(list, defaultState.list),
+    show: validateBoolean(show, defaultState.show),
+  };
+};
 
 const fillAnnotations = (fileAnnotations) => {
   if (!fileAnnotations || !isObject(fileAnnotations) || Object.keys(fileAnnotations).length === 0) {
@@ -42,7 +36,7 @@ const fillAnnotations = (fileAnnotations) => {
     };
   }
 
-  return fillSelectionAnnotations(fileAnnotations);
+  return fillSnapshots(fileAnnotations, fillSnapshotAnnotations);
 };
 
 export default fillAnnotations;

@@ -3,7 +3,7 @@ import * as actions from './settings-actions';
 describe('Visualization settings actions', () => {
   it('should dispatch an action to update a setting', () => {
     const expectedAction = {
-      AUGMENT_WITH_ACTIVE_SELECTION: true,
+      AUGMENT_WITH_ACTIVE_SNAPSHOT: true,
       setting: 'a',
       type: actions.UPDATE_SETTING,
       value: 'b',
@@ -17,7 +17,7 @@ describe('Visualization settings actions', () => {
       b: 2,
     };
     const expectedAction = {
-      AUGMENT_WITH_ACTIVE_SELECTION: true,
+      AUGMENT_WITH_ACTIVE_SNAPSHOT: true,
       settings,
       type: actions.UPDATE_SETTINGS,
     };

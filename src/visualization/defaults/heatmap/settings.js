@@ -1,3 +1,4 @@
+import fillSnapshots from '../snapshot';
 import isObject from '../../../utils/is-object';
 import { validateArray, validateBoolean, validateNumber } from '../../../utils/validate-type';
 
@@ -78,23 +79,18 @@ export const validateSettings = (userSettings, defaultImageType = 'heatmap') => 
   return settings;
 };
 
-const fillSelectionSettings = fileSettings => (
-  Object.keys(fileSettings).reduce((accum, selection) => {
-    const settings = {};
-    settings.current = validateSettings(fileSettings[selection].current);
-    settings.default = fileSettings[selection].default
-      ? validateSettings(
-        fileSettings[selection].default,
-        settings.current.imageType,
-      )
-      : settings.current;
+export const fillSnapshotSettings = (inputSettings) => {
+  const settings = {};
+  settings.current = validateSettings(inputSettings.current);
+  settings.default = inputSettings.default
+    ? validateSettings(
+      inputSettings.default,
+      settings.current.imageType,
+    )
+    : settings.current;
 
-    return {
-      ...accum,
-      [selection]: settings,
-    };
-  }, {})
-);
+  return settings;
+};
 
 const fillSettings = (fileSettings) => {
   if (!fileSettings || !isObject(fileSettings) || Object.keys(fileSettings).length === 0) {
@@ -106,7 +102,7 @@ const fillSettings = (fileSettings) => {
     };
   }
 
-  return fillSelectionSettings(fileSettings);
+  return fillSnapshots(fileSettings, fillSnapshotSettings);
 };
 
 export default fillSettings;

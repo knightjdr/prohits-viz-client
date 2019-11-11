@@ -9,7 +9,7 @@ describe('Marker actions', () => {
       y: 0.5,
     };
     const expectedAction = {
-      AUGMENT_WITH_ACTIVE_SELECTION: true,
+      AUGMENT_WITH_ACTIVE_SNAPSHOT: true,
       dimensions,
       id: 'id',
       type: actions.ADD_MARKER,
@@ -19,7 +19,7 @@ describe('Marker actions', () => {
 
   it('should dispatch an action to change marker setting', () => {
     const expectedAction = {
-      AUGMENT_WITH_ACTIVE_SELECTION: true,
+      AUGMENT_WITH_ACTIVE_SNAPSHOT: true,
       setting: 'color',
       type: actions.CHANGE_MARKER_SETTING,
       value: '#ff0000',
@@ -29,7 +29,7 @@ describe('Marker actions', () => {
 
   it('should dispatch an action to clear all markers', () => {
     const expectedAction = {
-      AUGMENT_WITH_ACTIVE_SELECTION: true,
+      AUGMENT_WITH_ACTIVE_SNAPSHOT: true,
       type: actions.CLEAR_ALL_MARKERS,
     };
     expect(actions.clearAllMarkers()).toEqual(expectedAction);
@@ -45,7 +45,7 @@ describe('Marker actions', () => {
       },
     };
     const expectedAction = {
-      AUGMENT_WITH_ACTIVE_SELECTION: true,
+      AUGMENT_WITH_ACTIVE_SNAPSHOT: true,
       list,
       type: actions.UPDATE_MARKERS,
     };

@@ -13,7 +13,7 @@ describe('Dimension actions', () => {
       wrapperWidth: 600,
     };
     const expectedAction = {
-      AUGMENT_WITH_ACTIVE_SELECTION: true,
+      AUGMENT_WITH_ACTIVE_SNAPSHOT: true,
       dimensions,
       type: actions.SET_DIMENSIONS,
     };

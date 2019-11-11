@@ -1,11 +1,35 @@
 import reducer from './dimension-reducer';
 import * as actions from './dimension-actions';
+import * as snapshotActions from '../data/snapshot-actions';
 
 describe('Dimension reducer', () => {
   it('should return a default initial state', () => {
     const action = {};
     const expectedState = {};
     expect(reducer(undefined, action)).toEqual(expectedState);
+  });
+
+  it('should handle ADD_HEATMAP_SNAPSHOT action', () => {
+    const currentState = {
+      main: {
+        height: 50,
+        width: 100,
+      },
+    };
+    const snapshotState = {
+      height: 0,
+      width: 0,
+    };
+    const action = {
+      dimensions: snapshotState,
+      name: 'snapshot-1',
+      type: snapshotActions.ADD_HEATMAP_SNAPSHOT,
+    };
+    const expectedState = {
+      ...currentState,
+      'snapshot-1': snapshotState,
+    };
+    expect(reducer(currentState, action)).toEqual(expectedState);
   });
 
   it('should handle SET_DIMENSIONS action', () => {
@@ -23,7 +47,7 @@ describe('Dimension reducer', () => {
     };
 
     const action = {
-      selectionID: 'main',
+      snapshotID: 'main',
       dimensions: {
         columns: 40,
         height: 500,

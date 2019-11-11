@@ -1,29 +1,31 @@
 import * as actions from './dimension-actions';
 import * as fileActions from '../data/interactive-file-actions';
+import * as snapshotActions from '../data/snapshot-actions';
 
-export const defaultState = {
-  canTranslate: 0,
-  columns: 0,
-  height: 0,
-  pageX: 0,
-  pageY: 0,
-  rows: 0,
-  width: 0,
-  wrapperHeight: 0,
-  wrapperWidth: 0,
-};
+const reduceAndAddSnapshot = (state, action) => ({
+  ...state,
+  [action.name]: action.dimensions,
+});
+
+const reduceAndLoad = action => (
+  action.file.dimensions || {}
+);
+
+const reduceAndSetDimeneions = (state, action) => ({
+  ...state,
+  [action.snapshotID]: {
+    ...action.dimensions,
+  },
+});
 
 const reducer = (state = {}, action) => {
   switch (action.type) {
+    case snapshotActions.ADD_HEATMAP_SNAPSHOT:
+      return reduceAndAddSnapshot(state, action);
     case fileActions.LOAD_INTERACTIVE_STATE:
-      return action.file.dimensions || {};
+      return reduceAndLoad(action);
     case actions.SET_DIMENSIONS:
-      return {
-        ...state,
-        [action.selectionID]: {
-          ...action.dimensions,
-        },
-      };
+      return reduceAndSetDimeneions(state, action);
     default:
       return state;
   }

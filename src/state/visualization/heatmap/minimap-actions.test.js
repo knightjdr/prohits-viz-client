@@ -3,7 +3,7 @@ import * as actions from './minimap-actions';
 describe('Minimap actions', () => {
   it('should dispatch an action that the map is synced', () => {
     const expectedAction = {
-      selectionID: 'main',
+      snapshotID: 'main',
       syncedImage: 'image',
       type: actions.MINIMAP_SYNCHED,
     };
@@ -13,7 +13,7 @@ describe('Minimap actions', () => {
   describe('synchronizing', () => {
     it('should dispatch an action that the map is synchronizing', () => {
       const expectedAction = {
-        AUGMENT_WITH_ACTIVE_SELECTION: true,
+        AUGMENT_WITH_ACTIVE_SNAPSHOT: true,
         type: actions.MINIMAP_SYNCHRONIZING,
         updateOriginal: false,
       };
@@ -22,7 +22,7 @@ describe('Minimap actions', () => {
 
     it('should dispatch an action that the map is synchronizing and update original', () => {
       const expectedAction = {
-        AUGMENT_WITH_ACTIVE_SELECTION: true,
+        AUGMENT_WITH_ACTIVE_SNAPSHOT: true,
         type: actions.MINIMAP_SYNCHRONIZING,
         updateOriginal: true,
       };
@@ -32,7 +32,7 @@ describe('Minimap actions', () => {
 
   it('should dispatch an action that the synchronizing gave an error', () => {
     const expectedAction = {
-      AUGMENT_WITH_ACTIVE_SELECTION: true,
+      AUGMENT_WITH_ACTIVE_SNAPSHOT: true,
       type: actions.SYNC_ERROR,
     };
     expect(actions.synchError()).toEqual(expectedAction);

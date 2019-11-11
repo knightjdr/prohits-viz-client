@@ -2,6 +2,7 @@ import reducer from './columns-reducer';
 import * as actions from './columns-actions';
 import * as displayActions from '../settings/display-actions';
 import * as fileActions from '../data/interactive-file-actions';
+import * as snapshotActions from '../data/snapshot-actions';
 
 const defaultState = {
   defaultOrder: [],
@@ -16,6 +17,29 @@ describe('Columns reducer', () => {
     const action = {};
     const expectedState = {};
     expect(reducer(undefined, action)).toEqual(expectedState);
+  });
+
+  it('should handle ADD_HEATMAP_SNAPSHOT action', () => {
+    const currentState = {
+      main: {
+        defaultOrder: [0, 1, 2, 3, 4],
+        order: [0, 1, 2, 3, 4],
+      },
+    };
+    const snapshotState = {
+      defaultOrder: [0, 2, 3],
+      order: [0, 2, 3],
+    };
+    const action = {
+      columns: snapshotState,
+      name: 'snapshot-1',
+      type: snapshotActions.ADD_HEATMAP_SNAPSHOT,
+    };
+    const expectedState = {
+      ...currentState,
+      'snapshot-1': snapshotState,
+    };
+    expect(reducer(currentState, action)).toEqual(expectedState);
   });
 
   it('should handle CLEAR_INTERACTIVE_STATE action', () => {
@@ -36,7 +60,7 @@ describe('Columns reducer', () => {
     };
 
     const action = {
-      selectionID: 'main',
+      snapshotID: 'main',
       index: 1,
       order: [0, 2],
       type: actions.DELETE_COLUMN,
@@ -58,7 +82,7 @@ describe('Columns reducer', () => {
           columns: {
             main: {
               ref: 'a',
-              names: ['a', 'b', 'c'],
+              order: [0, 1, 2],
             },
           },
         },
@@ -67,7 +91,7 @@ describe('Columns reducer', () => {
       const expectedState = {
         main: {
           ref: 'a',
-          names: ['a', 'b', 'c'],
+          order: [0, 1, 2],
         },
       };
       expect(reducer(undefined, action)).toEqual(expectedState);
@@ -94,7 +118,7 @@ describe('Columns reducer', () => {
     };
 
     const action = {
-      selectionID: 'main',
+      snapshotID: 'main',
       type: displayActions.RESET_IMAGE,
     };
     const expectedState = {
@@ -118,7 +142,7 @@ describe('Columns reducer', () => {
     };
 
     const action = {
-      selectionID: 'main',
+      snapshotID: 'main',
       order: [0, 2],
       type: actions.SET_COLUMN_ORDER,
     };
@@ -141,7 +165,7 @@ describe('Columns reducer', () => {
     };
 
     const action = {
-      selectionID: 'main',
+      snapshotID: 'main',
       ref: 'a',
       type: actions.SET_COLUMN_REFERENCE,
     };

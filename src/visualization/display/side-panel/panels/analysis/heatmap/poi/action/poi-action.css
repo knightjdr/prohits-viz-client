@@ -1,12 +1,14 @@
 .poi__action {
+  align-items: flex-start;
   display: flex;
-  justify-content: center;
-  margin-top: 15px;
+  flex-direction: column;
+  margin-top: 10px;
 }
-.poi__action > button {
-  margin: 0 5px;
+
+.poi__action > * {
+  margin: 5px 0;
 }
-.poi__action > button > svg {
-  font-size: 0.9em;
+
+.poi__action-filter svg {
   margin-right: 5px;
 }

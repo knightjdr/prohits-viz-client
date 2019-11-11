@@ -1,6 +1,7 @@
 import reducer from './display-reducer';
 import * as actions from './display-actions';
 import * as fileActions from '../data/interactive-file-actions';
+import * as snapshotActions from '../data/snapshot-actions';
 
 const defaultState = {};
 
@@ -9,6 +10,29 @@ describe('Display reducer', () => {
     const action = {};
     const expectedState = defaultState;
     expect(reducer(undefined, action)).toEqual(expectedState);
+  });
+
+  it('should handle ADD_HEATMAP_SNAPSHOT action', () => {
+    const currentState = {
+      main: {
+        plotFixed: false,
+        showTooltips: true,
+      },
+    };
+    const snapshotState = {
+      plotFixed: false,
+      showTooltips: false,
+    };
+    const action = {
+      display: snapshotState,
+      name: 'snapshot-1',
+      type: snapshotActions.ADD_HEATMAP_SNAPSHOT,
+    };
+    const expectedState = {
+      ...currentState,
+      'snapshot-1': snapshotState,
+    };
+    expect(reducer(currentState, action)).toEqual(expectedState);
   });
 
   it('should handle CLEAR_INTERACTIVE_STATE action', () => {
@@ -40,7 +64,7 @@ describe('Display reducer', () => {
     };
 
     const action = {
-      selectionID: 'main',
+      snapshotID: 'main',
       setting: 'plotFixed',
       type: actions.UPDATE_DISPLAY_SETTING,
       value: true,

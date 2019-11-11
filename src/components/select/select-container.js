@@ -70,7 +70,6 @@ const SelectContainer = ({
   useClickOutside(portalRef, closeDropdown);
 
   const clearOption = (e) => {
-    console.log('here');
     const returnValue = formatReturnValue(multiple, '');
     onChange(e, id, returnValue);
   };

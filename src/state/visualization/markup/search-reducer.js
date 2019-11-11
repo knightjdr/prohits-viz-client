@@ -1,9 +1,15 @@
 import * as actions from './search-actions';
 import * as fileActions from '../data/interactive-file-actions';
+import * as snapshotActions from '../data/snapshot-actions';
+
+const reduceAndAddSnapshot = (state, action) => ({
+  ...state,
+  [action.name]: action.searchStatus,
+});
 
 const reduceAndClear = (state, action) => ({
   ...state,
-  [action.selectionID]: {
+  [action.snapshotID]: {
     columns: {},
     match: false,
     rows: {},
@@ -13,7 +19,7 @@ const reduceAndClear = (state, action) => ({
 
 const reduceAndSetSearchStatus = (state, action) => ({
   ...state,
-  [action.selectionID]: {
+  [action.snapshotID]: {
     columns: action.results.columns,
     match: action.results.match,
     rows: action.results.rows,
@@ -27,6 +33,8 @@ const reduceInteractiveState = file => (
 
 const reducer = (state = {}, action) => {
   switch (action.type) {
+    case snapshotActions.ADD_HEATMAP_SNAPSHOT:
+      return reduceAndAddSnapshot(state, action);
     case actions.CLEAR_SEARCH:
       return reduceAndClear(state, action);
     case fileActions.CLEAR_INTERACTIVE_STATE:

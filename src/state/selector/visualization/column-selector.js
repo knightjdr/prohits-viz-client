@@ -4,10 +4,7 @@ import orderArrayBySequence from '../../../utils/order-array-by-sequence';
 
 const getColumnNames = (state) => {
   const { columnDB } = state;
-  const { active } = state.tabs;
-  const { defaultOrder } = state.columns[active];
-
-  return orderArrayBySequence(columnDB, defaultOrder);
+  return columnDB;
 };
 
 const getOrderedColumnNames = (state) => {

@@ -2,9 +2,7 @@ import { createSelector } from 'reselect';
 
 const getRowNames = (state) => {
   const { rowDB } = state;
-  const { active } = state.tabs;
-  const { defaultOrder } = state.rows[active];
-  return defaultOrder.map(index => rowDB[index].name);
+  return rowDB.map(row => row.name);
 };
 
 const getOrderedRowNames = (state) => {

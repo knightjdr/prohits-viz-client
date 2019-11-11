@@ -1,3 +1,4 @@
+import fillSnapshots from '../snapshot';
 import isObject from '../../../utils/is-object';
 import { validateArray } from '../../../utils/validate-type';
 
@@ -6,24 +7,17 @@ export const defaultState = {
   rows: [],
 };
 
-const fillSelectionPOI = filePOI => (
-  Object.entries(filePOI).reduce((accum, [id, selection]) => {
-    const {
-      columns,
-      rows,
-    } = selection;
+export const fillSnapshotPOI = (inputPOI) => {
+  const {
+    columns,
+    rows,
+  } = inputPOI;
 
-    const stateAnnotations = {
-      columns: validateArray(columns, defaultState.columns),
-      rows: validateArray(rows, defaultState.rows),
-    };
-
-    return {
-      ...accum,
-      [id]: stateAnnotations,
-    };
-  }, {})
-);
+  return {
+    columns: validateArray(columns, defaultState.columns),
+    rows: validateArray(rows, defaultState.rows),
+  };
+};
 
 const fillPOI = (filePOI) => {
   if (!filePOI || !isObject(filePOI) || Object.keys(filePOI).length === 0) {
@@ -35,7 +29,7 @@ const fillPOI = (filePOI) => {
     };
   }
 
-  return fillSelectionPOI(filePOI);
+  return fillSnapshots(filePOI, fillSnapshotPOI);
 };
 
 export default fillPOI;

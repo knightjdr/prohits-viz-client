@@ -5,7 +5,7 @@ describe('Row actions', () => {
     const index = 1;
     const order = [0, 1];
     const expectedAction = {
-      AUGMENT_WITH_ACTIVE_SELECTION: true,
+      AUGMENT_WITH_ACTIVE_SNAPSHOT: true,
       index,
       order,
       type: actions.DELETE_ROW,
@@ -15,7 +15,7 @@ describe('Row actions', () => {
 
   it('should dispatch an action to set row filter order', () => {
     const expectedAction = {
-      AUGMENT_WITH_ACTIVE_SELECTION: true,
+      AUGMENT_WITH_ACTIVE_SNAPSHOT: true,
       order: ['b', 'c', 'a'],
       type: actions.SET_ROW_ORDER,
     };
@@ -24,7 +24,7 @@ describe('Row actions', () => {
 
   it('should dispatch an action to update the rows', () => {
     const expectedAction = {
-      AUGMENT_WITH_ACTIVE_SELECTION: true,
+      AUGMENT_WITH_ACTIVE_SNAPSHOT: true,
       direction: 'asc',
       order: ['b', 'c', 'a'],
       sortBy: 'c',

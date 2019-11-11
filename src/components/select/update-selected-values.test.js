@@ -54,7 +54,15 @@ describe('Update selected value on change', () => {
       const currentValues = ['a'];
       const newValue = 'a';
       const expected = ['a'];
-      expect(updateMultipleValue(currentValues, newValue, canClear)).toEqual(expected);
+      expect(updateSingleValue(currentValues, newValue, canClear)).toEqual(expected);
+    });
+
+    it('should not remove a value no values have currently been selected', () => {
+      const canClear = false;
+      const currentValues = null;
+      const newValue = 'a';
+      const expected = ['a'];
+      expect(updateSingleValue(currentValues, newValue, canClear)).toEqual(expected);
     });
   });
 

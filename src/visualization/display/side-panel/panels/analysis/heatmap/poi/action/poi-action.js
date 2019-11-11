@@ -1,9 +1,11 @@
 import PropTypes from 'prop-types';
 import React from 'react';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faCamera, faFilter } from '@fortawesome/pro-solid-svg-icons';
+import { faCamera } from '@fortawesome/pro-duotone-svg-icons';
+import { faFilter } from '@fortawesome/pro-solid-svg-icons';
 
 import Button from '../../../../../../../../components/buttons/rectangular/button';
+import Input from '../../../../../../../../components/input/with-button/input-with-button-container';
 
 import './poi-action.css';
 
@@ -18,6 +20,7 @@ const PoiAction = ({
     {filteringComponent}
     <div className="poi__action">
       <Button
+        className="poi__action-filter"
         onClick={handleApply}
         kind="secondary"
         type="button"
@@ -25,14 +28,17 @@ const PoiAction = ({
         <FontAwesomeIcon icon={faFilter} />
         Filter
       </Button>
-      <Button
+      <Input
+        buttonKind="secondary"
+        buttonType="button"
+        id="snapshotName"
+        icon={faCamera}
+        onChange={handleChangeSnapshotName}
         onClick={handleSnapshot}
-        kind="secondary"
-        type="button"
-      >
-        <FontAwesomeIcon icon={faCamera} />
-        Snapshot
-      </Button>
+        placeholder="Snapshot name..."
+        type="text"
+        value={snapshotName}
+      />
     </div>
   </>
 );

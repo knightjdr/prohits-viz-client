@@ -1,12 +1,40 @@
 import reducer from './search-reducer';
 import * as actions from './search-actions';
 import * as fileActions from '../data/interactive-file-actions';
+import * as snapshotActions from '../data/snapshot-actions';
 
 describe('Search status reducer', () => {
   it('should return a default initial state', () => {
     const action = {};
     const expectedState = {};
     expect(reducer(undefined, action)).toEqual(expectedState);
+  });
+
+  it('should handle ADD_HEATMAP_SNAPSHOT action', () => {
+    const currentState = {
+      main: {
+        columns: { a: 2, aa: 4 },
+        match: true,
+        rows: {},
+        term: 'a',
+      },
+    };
+    const snapshotState = {
+      columns: {},
+      match: false,
+      rows: {},
+      term: '',
+    };
+    const action = {
+      searchStatus: snapshotState,
+      name: 'snapshot-1',
+      type: snapshotActions.ADD_HEATMAP_SNAPSHOT,
+    };
+    const expectedState = {
+      ...currentState,
+      'snapshot-1': snapshotState,
+    };
+    expect(reducer(currentState, action)).toEqual(expectedState);
   });
 
   it('should handle CLEAR_SEARCH action', () => {
@@ -19,7 +47,7 @@ describe('Search status reducer', () => {
       },
     };
     const action = {
-      selectionID: 'main',
+      snapshotID: 'main',
       type: actions.CLEAR_SEARCH,
     };
     const expectedState = {
@@ -82,7 +110,7 @@ describe('Search status reducer', () => {
     };
     const action = {
       results,
-      selectionID: 'main',
+      snapshotID: 'main',
       term: 'a',
       type: actions.SET_SEARCH_STATUS,
     };

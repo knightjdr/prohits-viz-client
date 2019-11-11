@@ -1,14 +1,47 @@
-import reducer, { defaultState } from './minimap-reducer';
+import reducer from './minimap-reducer';
 import * as actions from './minimap-actions';
 import * as displayActions from '../settings/display-actions';
 import * as fileActions from '../data/interactive-file-actions';
 import * as rowActions from './rows-actions';
+import * as snapshotActions from '../data/snapshot-actions';
+
+const defaultState = {
+  image: null,
+  isSyncing: false,
+  needSyncing: false,
+  syncError: false,
+  syncedImage: null,
+  updateOriginal: false,
+};
 
 describe('Minimap reducer', () => {
   it('should return an empty initial state', () => {
     const action = {};
     const expectedState = {};
     expect(reducer(undefined, action)).toEqual(expectedState);
+  });
+
+  it('should handle ADD_HEATMAP_SNAPSHOT action', () => {
+    const currentState = {
+      main: {
+        image: 'image',
+        needSyncing: false,
+      },
+    };
+    const snapshotState = {
+      image: null,
+      needSyncing: true,
+    };
+    const action = {
+      minimap: snapshotState,
+      name: 'snapshot-1',
+      type: snapshotActions.ADD_HEATMAP_SNAPSHOT,
+    };
+    const expectedState = {
+      ...currentState,
+      'snapshot-1': snapshotState,
+    };
+    expect(reducer(currentState, action)).toEqual(expectedState);
   });
 
   it('should handle CLEAR_INTERACTIVE_STATE action', () => {
@@ -28,7 +61,7 @@ describe('Minimap reducer', () => {
     };
 
     const action = {
-      selectionID: 'main',
+      snapshotID: 'main',
       syncedImage: 'image',
       type: actions.MINIMAP_SYNCHED,
     };
@@ -55,7 +88,7 @@ describe('Minimap reducer', () => {
     };
 
     const action = {
-      selectionID: 'main',
+      snapshotID: 'main',
       syncedImage: 'image',
       type: actions.MINIMAP_SYNCHED,
     };
@@ -81,7 +114,7 @@ describe('Minimap reducer', () => {
     };
 
     const action = {
-      selectionID: 'main',
+      snapshotID: 'main',
       type: actions.MINIMAP_SYNCHRONIZING,
       updateOriginal: true,
     };
@@ -139,7 +172,7 @@ describe('Minimap reducer', () => {
     };
 
     const action = {
-      selectionID: 'main',
+      snapshotID: 'main',
       type: displayActions.RESET_IMAGE,
     };
     const expectedState = {
@@ -165,7 +198,7 @@ describe('Minimap reducer', () => {
     };
 
     const action = {
-      selectionID: 'main',
+      snapshotID: 'main',
       type: actions.SYNC_ERROR,
     };
     const expectedState = {
@@ -190,7 +223,7 @@ describe('Minimap reducer', () => {
       };
 
       const action = {
-        selectionID: 'main',
+        snapshotID: 'main',
         type: rowActions.SET_ROW_ORDER,
       };
       const expectedState = {
@@ -214,7 +247,7 @@ describe('Minimap reducer', () => {
       };
 
       const action = {
-        selectionID: 'main',
+        snapshotID: 'main',
         type: rowActions.SORT_ROWS,
       };
       const expectedState = {

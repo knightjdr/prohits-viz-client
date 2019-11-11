@@ -1,12 +1,13 @@
 import * as actions from './marker-actions';
 import * as fileActions from '../data/interactive-file-actions';
+import * as snapshotActions from '../data/snapshot-actions';
 
 const reduceAndAddMarker = (state, action) => ({
   ...state,
-  [action.selectionID]: {
-    ...state[action.selectionID],
+  [action.snapshotID]: {
+    ...state[action.snapshotID],
     list: {
-      ...state[action.selectionID].list,
+      ...state[action.snapshotID].list,
       [action.id]: {
         ...action.dimensions,
       },
@@ -14,10 +15,15 @@ const reduceAndAddMarker = (state, action) => ({
   },
 });
 
+const reduceAndAddSnapshot = (state, action) => ({
+  ...state,
+  [action.name]: action.markers,
+});
+
 const reduceAndClearMarkers = (state, action) => ({
   ...state,
-  [action.selectionID]: {
-    ...state[action.selectionID],
+  [action.snapshotID]: {
+    ...state[action.snapshotID],
     list: {},
   },
 });
@@ -28,22 +34,24 @@ const reduceAndLoadState = file => (
 
 const reduceAndUpdateSetting = (state, action) => ({
   ...state,
-  [action.selectionID]: {
-    ...state[action.selectionID],
+  [action.snapshotID]: {
+    ...state[action.snapshotID],
     [action.setting]: action.value,
   },
 });
 
 const reduceAndUpdateList = (state, action) => ({
   ...state,
-  [action.selectionID]: {
-    ...state[action.selectionID],
+  [action.snapshotID]: {
+    ...state[action.snapshotID],
     list: action.list,
   },
 });
 
 const reducer = (state = {}, action) => {
   switch (action.type) {
+    case snapshotActions.ADD_HEATMAP_SNAPSHOT:
+      return reduceAndAddSnapshot(state, action);
     case actions.ADD_MARKER:
       return reduceAndAddMarker(state, action);
     case actions.CHANGE_MARKER_SETTING:

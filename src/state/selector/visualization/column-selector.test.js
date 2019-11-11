@@ -4,7 +4,6 @@ const state = {
   columnDB: ['a', 'b', 'c', 'd'],
   columns: {
     main: {
-      defaultOrder: [0, 1, 2, 3],
       order: [2, 0, 1, 3],
     },
   },

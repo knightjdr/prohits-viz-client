@@ -1,12 +1,34 @@
 import reducer from './marker-reducer';
 import * as actions from './marker-actions';
 import * as fileActions from '../data/interactive-file-actions';
+import * as snapshotActions from '../data/snapshot-actions';
 
 describe('Marker reducer', () => {
   it('should return a default initial state', () => {
     const action = {};
     const expectedState = {};
     expect(reducer(undefined, action)).toEqual(expectedState);
+  });
+
+  it('should handle ADD_HEATMAP_SNAPSHOT action', () => {
+    const currentState = {
+      main: {
+        color: '#000000',
+      },
+    };
+    const snapshotState = {
+      color: '#00ff00',
+    };
+    const action = {
+      markers: snapshotState,
+      name: 'snapshot-1',
+      type: snapshotActions.ADD_HEATMAP_SNAPSHOT,
+    };
+    const expectedState = {
+      ...currentState,
+      'snapshot-1': snapshotState,
+    };
+    expect(reducer(currentState, action)).toEqual(expectedState);
   });
 
   it('should handle ADD_MARKER action', () => {
@@ -21,7 +43,7 @@ describe('Marker reducer', () => {
     const action = {
       id: 'a2',
       dimensions: { height: 30, width: 100, x: 0.5, y: 0.3 },
-      selectionID: 'main',
+      snapshotID: 'main',
       type: actions.ADD_MARKER,
     };
     const expectedState = {
@@ -47,7 +69,7 @@ describe('Marker reducer', () => {
       },
     };
     const action = {
-      selectionID: 'main',
+      snapshotID: 'main',
       type: actions.CLEAR_ALL_MARKERS,
     };
     const expectedState = {
@@ -96,7 +118,7 @@ describe('Marker reducer', () => {
       },
     };
     const action = {
-      selectionID: 'main',
+      snapshotID: 'main',
       setting: 'color',
       type: actions.CHANGE_MARKER_SETTING,
       value: '#ff0000',
@@ -125,7 +147,7 @@ describe('Marker reducer', () => {
     };
     const action = {
       list: newList,
-      selectionID: 'main',
+      snapshotID: 'main',
       type: actions.UPDATE_MARKERS,
     };
     const expectedState = {

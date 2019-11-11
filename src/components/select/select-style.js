@@ -15,6 +15,7 @@ export const SelectContainer = styled.span`
     border-radius: 3px;
     font-size: 1em;
     height: 30px;
+    min-width: 100px;
     overflow-x: hidden;
     padding-left: 10px;
     padding-right: 15px;

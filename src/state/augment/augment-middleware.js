@@ -1,15 +1,15 @@
-const augmentWithSelectionID = (getState, action) => {
-  const { active } = getState().tabs;
+const augmentWithSnapshotID = (getState, action) => {
+  const { activeSnapshot } = getState().tabs;
   return {
     ...action,
-    selectionID: active,
+    snapshotID: activeSnapshot,
   };
 };
 
 const augmentMiddleware = ({ getState }) => next => (action) => {
   let augmentedAction = action;
-  if (action.AUGMENT_WITH_ACTIVE_SELECTION) {
-    augmentedAction = augmentWithSelectionID(getState, augmentedAction);
+  if (action.AUGMENT_WITH_ACTIVE_SNAPSHOT) {
+    augmentedAction = augmentWithSnapshotID(getState, augmentedAction);
   }
   return next(augmentedAction);
 };

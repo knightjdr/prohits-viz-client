@@ -3,7 +3,7 @@ import * as actions from './search-actions';
 describe('Search status actions', () => {
   it('should dispatch an action to clear search status', () => {
     const expectedAction = {
-      AUGMENT_WITH_ACTIVE_SELECTION: true,
+      AUGMENT_WITH_ACTIVE_SNAPSHOT: true,
       type: actions.CLEAR_SEARCH,
     };
     expect(actions.clearSearchStatus()).toEqual(expectedAction);
@@ -17,7 +17,7 @@ describe('Search status actions', () => {
       rows: { aaa: true },
     };
     const expectedAction = {
-      AUGMENT_WITH_ACTIVE_SELECTION: true,
+      AUGMENT_WITH_ACTIVE_SNAPSHOT: true,
       results,
       term: 'a',
       type: actions.SET_SEARCH_STATUS,

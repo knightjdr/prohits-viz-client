@@ -1,10 +1,16 @@
 import * as actions from './poi-actions';
 import * as fileActions from '../data/interactive-file-actions';
+import * as snapshotActions from '../data/snapshot-actions';
+
+const reduceAndAddSnapshot = (state, action) => ({
+  ...state,
+  [action.name]: action.poi,
+});
 
 const reduceAndUpdatePOI = (state, action) => ({
   ...state,
-  [action.selectionID]: {
-    ...state[action.selectionID],
+  [action.snapshotID]: {
+    ...state[action.snapshotID],
     ...action.poi,
   },
 });
@@ -15,6 +21,8 @@ const reduceAndLoadState = file => (
 
 const reducer = (state = {}, action) => {
   switch (action.type) {
+    case snapshotActions.ADD_HEATMAP_SNAPSHOT:
+      return reduceAndAddSnapshot(state, action);
     case fileActions.CLEAR_INTERACTIVE_STATE:
       return {};
     case fileActions.LOAD_INTERACTIVE_STATE:

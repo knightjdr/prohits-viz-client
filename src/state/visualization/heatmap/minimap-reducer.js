@@ -3,104 +3,97 @@ import * as columnActions from './columns-actions';
 import * as displayActions from '../settings/display-actions';
 import * as fileActions from '../data/interactive-file-actions';
 import * as rowActions from './rows-actions';
+import * as snapshotActions from '../data/snapshot-actions';
 
-export const defaultState = {
-  image: null,
-  isSyncing: false,
-  needSyncing: false,
-  syncError: false,
-  syncedImage: null,
-  updateOriginal: false,
-};
+const reduceAndAddSnapshot = (state, action) => ({
+  ...state,
+  [action.name]: action.minimap,
+});
+
+const reduceAndCompleteSync = (state, action) => ({
+  ...state,
+  [action.snapshotID]: {
+    ...state[action.snapshotID],
+    image: state[action.snapshotID].updateOriginal ? action.syncedImage : state[action.snapshotID].image,
+    isSyncing: false,
+    needSyncing: false,
+    syncError: false,
+    syncedImage: state[action.snapshotID].updateOriginal ? null : action.syncedImage,
+    updateOriginal: false,
+  },
+});
+
+const reduceAndError = (state, action) => ({
+  ...state,
+  [action.snapshotID]: {
+    ...state[action.snapshotID],
+    isSyncing: false,
+    syncError: true,
+    syncedImage: null,
+    updateOriginal: false,
+  },
+});
+
+const reduceAndLoadState = action => (
+  action.file.minimap ? action.file.minimap : {}
+);
+
+const reduceAndReset = (state, action) => ({
+  ...state,
+  [action.snapshotID]: {
+    ...state[action.snapshotID],
+    isSyncing: false,
+    needSyncing: false,
+    syncError: false,
+    syncedImage: null,
+    updateOriginal: false,
+  },
+});
+
+const reduceAndSyncronize = (state, action) => ({
+  ...state,
+  [action.snapshotID]: {
+    ...state[action.snapshotID],
+    isSyncing: true,
+    syncError: false,
+    syncedImage: null,
+    updateOriginal: action.updateOriginal,
+  },
+});
+
+const reduceAndUpdateStatus = (state, action) => ({
+  ...state,
+  [action.snapshotID]: {
+    ...state[action.snapshotID],
+    isSyncing: false,
+    needSyncing: true,
+    syncedImage: null,
+    updateOriginal: false,
+  },
+});
 
 const reducer = (state = {}, action) => {
   switch (action.type) {
+    case snapshotActions.ADD_HEATMAP_SNAPSHOT:
+      return reduceAndAddSnapshot(state, action);
     case fileActions.CLEAR_INTERACTIVE_STATE:
       return {};
     case actions.MINIMAP_SYNCHED:
-      return {
-        ...state,
-        [action.selectionID]: {
-          ...state[action.selectionID],
-          image: state[action.selectionID].updateOriginal ? action.syncedImage : state[action.selectionID].image,
-          isSyncing: false,
-          needSyncing: false,
-          syncError: false,
-          syncedImage: state[action.selectionID].updateOriginal ? null : action.syncedImage,
-          updateOriginal: false,
-        },
-      };
+      return reduceAndCompleteSync(state, action);
     case actions.MINIMAP_SYNCHRONIZING:
-      return {
-        ...state,
-        [action.selectionID]: {
-          ...state[action.selectionID],
-          isSyncing: true,
-          syncError: false,
-          syncedImage: null,
-          updateOriginal: action.updateOriginal,
-        },
-      };
+      return reduceAndSyncronize(state, action);
     case fileActions.LOAD_INTERACTIVE_STATE:
-      return action.file.minimap
-        ? action.file.minimap
-        : {};
+      return reduceAndLoadState(action);
     case displayActions.RESET_IMAGE:
-      return {
-        ...state,
-        [action.selectionID]: {
-          ...state[action.selectionID],
-          isSyncing: false,
-          needSyncing: false,
-          syncError: false,
-          syncedImage: null,
-          updateOriginal: false,
-        },
-      };
+      return reduceAndReset(state, action);
     case actions.SYNC_ERROR:
-      return {
-        ...state,
-        [action.selectionID]: {
-          ...state[action.selectionID],
-          isSyncing: false,
-          syncError: true,
-          syncedImage: null,
-          updateOriginal: false,
-        },
-      };
+      return reduceAndError(state, action);
     case columnActions.SET_COLUMN_ORDER:
-      return {
-        ...state,
-        [action.selectionID]: {
-          ...state[action.selectionID],
-          isSyncing: false,
-          needSyncing: true,
-          syncedImage: null,
-          updateOriginal: false,
-        },
-      };
+      return reduceAndUpdateStatus(state, action);
     case rowActions.SET_ROW_ORDER:
-      return {
-        ...state,
-        [action.selectionID]: {
-          ...state[action.selectionID],
-          isSyncing: false,
-          needSyncing: true,
-          syncedImage: null,
-          updateOriginal: false,
-        },
-      };
+      return reduceAndUpdateStatus(state, action);
     case rowActions.SORT_ROWS:
-      return {
-        ...state,
-        [action.selectionID]: {
-          ...state[action.selectionID],
-          isSyncing: false,
-          needSyncing: true,
-          syncedImage: null,
-          updateOriginal: false,
-        },
-      };
+      return reduceAndUpdateStatus(state, action);
     default:
       return state;
   }

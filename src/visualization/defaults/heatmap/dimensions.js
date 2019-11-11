@@ -1,3 +1,4 @@
+import fillSnapshots from '../snapshot';
 import isObject from '../../../utils/is-object';
 
 export const defaultState = {
@@ -12,17 +13,18 @@ export const defaultState = {
   wrapperWidth: 0,
 };
 
-const fillDimensions = (userDimensions) => {
-  if (!userDimensions || !isObject(userDimensions) || Object.keys(userDimensions).length === 0) {
+export const fillSnapshotDimensions = () => ({
+  ...defaultState,
+});
+
+const fillDimensions = (fileDimensions) => {
+  if (!fileDimensions || !isObject(fileDimensions) || Object.keys(fileDimensions).length === 0) {
     return {
       main: { ...defaultState },
     };
   }
 
-  return Object.keys(userDimensions).reduce((accum, selection) => ({
-    ...accum,
-    [selection]: { ...defaultState },
-  }), {});
+  return fillSnapshots(fileDimensions, fillSnapshotDimensions);
 };
 
 export default fillDimensions;

@@ -1,47 +1,63 @@
 import * as actions from './settings-actions';
 import * as displayActions from './display-actions';
 import * as fileActions from '../data/interactive-file-actions';
+import * as snapshotActions from '../data/snapshot-actions';
+
+const reduceAndAddSnapshot = (state, action) => ({
+  ...state,
+  [action.name]: action.settings,
+});
+
+const reduceAndLoad = action => (
+  action.file.settings ? action.file.settings : {}
+);
+
+const reduceAndReset = (state, action) => ({
+  ...state,
+  [action.snapshotID]: {
+    ...state[action.snapshotID],
+    current: {
+      ...state[action.snapshotID].default,
+    },
+  },
+});
+
+const reduceAndUpdateSetting = (state, action) => ({
+  ...state,
+  [action.snapshotID]: {
+    ...state[action.snapshotID],
+    current: {
+      ...state[action.snapshotID].current,
+      [action.setting]: action.value,
+    },
+  },
+});
+
+const reduceAndUpdateSettings = (state, action) => ({
+  ...state,
+  [action.snapshotID]: {
+    ...state[action.snapshotID],
+    current: {
+      ...state[action.snapshotID].current,
+      ...action.settings,
+    },
+  },
+});
 
 const reducer = (state = {}, action) => {
   switch (action.type) {
+    case snapshotActions.ADD_HEATMAP_SNAPSHOT:
+      return reduceAndAddSnapshot(state, action);
     case fileActions.CLEAR_INTERACTIVE_STATE:
       return {};
     case fileActions.LOAD_INTERACTIVE_STATE:
-      return action.file.settings
-        ? action.file.settings
-        : {};
+      return reduceAndLoad(action);
     case displayActions.RESET_IMAGE:
-      return {
-        ...state,
-        [action.selectionID]: {
-          ...state[action.selectionID],
-          current: {
-            ...state[action.selectionID].default,
-          },
-        },
-      };
+      return reduceAndReset(state, action);
     case actions.UPDATE_SETTING:
-      return {
-        ...state,
-        [action.selectionID]: {
-          ...state[action.selectionID],
-          current: {
-            ...state[action.selectionID].current,
-            [action.setting]: action.value,
-          },
-        },
-      };
+      return reduceAndUpdateSetting(state, action);
     case actions.UPDATE_SETTINGS:
-      return {
-        ...state,
-        [action.selectionID]: {
-          ...state[action.selectionID],
-          current: {
-            ...state[action.selectionID].current,
-            ...action.settings,
-          },
-        },
-      };
+      return reduceAndUpdateSettings(state, action);
     default:
       return state;
   }

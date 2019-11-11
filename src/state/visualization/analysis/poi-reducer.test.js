@@ -21,7 +21,7 @@ describe('POI reducer', () => {
         columns: [3],
         rows: [5, 1, 2, 0],
       },
-      selectionID: 'main',
+      snapshotID: 'main',
       type: actions.UPDATE_POI,
     };
     const expectedState = {

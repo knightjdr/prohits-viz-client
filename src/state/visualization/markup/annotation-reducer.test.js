@@ -1,6 +1,7 @@
 import reducer from './annotation-reducer';
 import * as actions from './annotation-actions';
 import * as fileActions from '../data/interactive-file-actions';
+import * as snapshotActions from '../data/snapshot-actions';
 
 describe('Annotation reducer', () => {
   it('should return a default initial state', () => {
@@ -21,7 +22,7 @@ describe('Annotation reducer', () => {
     const action = {
       id: 'a2',
       position: { x: 0.5, y: 0.5 },
-      selectionID: 'main',
+      snapshotID: 'main',
       text: 'test annotation',
       type: actions.ADD_ANNOTATION,
     };
@@ -37,6 +38,27 @@ describe('Annotation reducer', () => {
     expect(reducer(currenState, action)).toEqual(expectedState);
   });
 
+  it('should handle ADD_HEATMAP_SNAPSHOT action', () => {
+    const currentState = {
+      main: {
+        fontSize: 16,
+      },
+    };
+    const snapshotState = {
+      fontSize: 20,
+    };
+    const action = {
+      annotations: snapshotState,
+      name: 'snapshot-1',
+      type: snapshotActions.ADD_HEATMAP_SNAPSHOT,
+    };
+    const expectedState = {
+      ...currentState,
+      'snapshot-1': snapshotState,
+    };
+    expect(reducer(currentState, action)).toEqual(expectedState);
+  });
+
   it('should handle CLEAR_ALL_ANNOTATIONS action', () => {
     const currenState = {
       main: {
@@ -48,7 +70,7 @@ describe('Annotation reducer', () => {
       },
     };
     const action = {
-      selectionID: 'main',
+      snapshotID: 'main',
       type: actions.CLEAR_ALL_ANNOTATIONS,
     };
     const expectedState = {
@@ -97,7 +119,7 @@ describe('Annotation reducer', () => {
       },
     };
     const action = {
-      selectionID: 'main',
+      snapshotID: 'main',
       setting: 'color',
       type: actions.CHANGE_ANNOTATION_SETTING,
       value: '#ff0000',
@@ -119,7 +141,7 @@ describe('Annotation reducer', () => {
       },
     };
     const action = {
-      selectionID: 'main',
+      snapshotID: 'main',
       show: false,
       type: actions.TOGGLE_ANNOTATIONS,
     };
@@ -146,7 +168,7 @@ describe('Annotation reducer', () => {
     const action = {
       id: 'a1',
       position: newPosition,
-      selectionID: 'main',
+      snapshotID: 'main',
       type: actions.UPDATE_ANNOTATION_POSITION,
     };
     const expectedState = {
@@ -176,7 +198,7 @@ describe('Annotation reducer', () => {
     };
     const action = {
       list: newList,
-      selectionID: 'main',
+      snapshotID: 'main',
       type: actions.UPDATE_ANNOTATIONS,
     };
     const expectedState = {

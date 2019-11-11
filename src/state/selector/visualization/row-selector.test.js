@@ -31,7 +31,6 @@ const state = {
   },
   rows: {
     main: {
-      defaultOrder: [0, 1, 2, 3],
       order: [0, 2, 1, 3],
     },
   },

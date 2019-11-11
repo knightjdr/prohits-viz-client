@@ -3,8 +3,8 @@ import { useDispatch, useSelector } from 'react-redux';
 
 import Filter from './filter';
 
+import useFilter from '../../../../../heatmap/filter/use-filter';
 import { selectOrderedColumnNames } from '../../../../../../../state/selector/visualization/column-selector';
-import useFilter from './use-filter';
 import { selectDataProperty } from '../../../../../../../state/selector/visualization/data-selector';
 import { selectStateProperty } from '../../../../../../../state/selector/general';
 import { updateSetting, updateSettings } from '../../../../../../../state/visualization/settings/settings-actions';
@@ -36,7 +36,7 @@ const FilterSettingsContainer = () => {
         minAbundance: value - 0.01,
       };
       dispatch(updateSettings(newSettings));
-      rowFilter.process('minAbundance', value - 0.01);
+      rowFilter.updateState('minAbundance', value - 0.01);
     }
   };
 
@@ -50,7 +50,7 @@ const FilterSettingsContainer = () => {
       };
       dispatch(updateSettings(newSettings));
     }
-    rowFilter.process('minAbundance', value);
+    rowFilter.updateState('minAbundance', value);
   };
 
   const handleChangePrimaryFilter = (e, name, value) => {
@@ -66,7 +66,7 @@ const FilterSettingsContainer = () => {
       };
       dispatch(updateSettings(newSettings));
     }
-    rowFilter.process('primaryFilter', value);
+    rowFilter.updateState('primaryFilter', value);
   };
 
   const handleChangeSecondaryFilter = (e, name, value) => {
@@ -81,12 +81,12 @@ const FilterSettingsContainer = () => {
         secondaryFilter: value,
       };
       dispatch(updateSettings(newSettings));
-      rowFilter.process('primaryFilter', value);
+      rowFilter.updateState('primaryFilter', value);
     }
   };
 
   const handleFilter = (e, name, values) => {
-    rowFilter.process(name, values);
+    rowFilter.updateState(name, values);
   };
 
   return (

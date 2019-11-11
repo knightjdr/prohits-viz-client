@@ -1,4 +1,4 @@
-import convertArrayToObject from '../../../../../../../utils/convert-array-to-object';
+import convertArrayToObject from '../../../../utils/convert-array-to-object';
 
 const defineAvailableIndices = (suppliedOrder, defaultIndices, storedIndices, deleted) => {
   if (suppliedOrder) {

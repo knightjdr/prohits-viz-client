@@ -1,0 +1,7 @@
+.analysis__options-select-wrapper {
+  display: flex;
+  justify-content: center;
+}
+.analysis__options-select-wrapper .select__container {
+  width: 150px;
+}
