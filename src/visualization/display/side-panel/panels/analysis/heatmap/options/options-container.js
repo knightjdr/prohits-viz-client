@@ -3,14 +3,17 @@ import React from 'react';
 import AnalysisOptions from './options';
 
 const AnalysisOptionsContainer = () => {
-  const handleChange = (e, id, value) => {
-    console.log(value);
+  const handleChange = () => {};
+
+  const submitForm = () => {
+
   };
 
   return (
     <AnalysisOptions
+      analysisType="gprofiler"
       handleChange={handleChange}
-      selectedAnalysis="''"
+      submitForm={submitForm}
     />
   );
 };

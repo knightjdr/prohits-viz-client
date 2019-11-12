@@ -89,7 +89,7 @@ const SelectContainer = ({
 
     if (index > -1) {
       const { elements } = getOptionElements(portalRef.current);
-      focusOption(elements[index]).focus();
+      focusOption(elements[index]);
     }
   };
 

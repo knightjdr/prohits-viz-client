@@ -3,8 +3,17 @@ import React from 'react';
 import Gprofiler from './gprofiler';
 
 const GprofilerContainer = () => {
+  const handleSpeciesChange = () => {};
+
+  const form = {
+    organism: 'hsapiens',
+  };
+
   return (
-    <Gprofiler />
+    <Gprofiler
+      form={form}
+      handleSpeciesChange={handleSpeciesChange}
+    />
   );
 };
 

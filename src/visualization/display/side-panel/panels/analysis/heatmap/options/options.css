@@ -3,5 +3,6 @@
   justify-content: center;
 }
 .analysis__options-select-wrapper .select__container {
+  margin-right: 15px;
   width: 150px;
 }

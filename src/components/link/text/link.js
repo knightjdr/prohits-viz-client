@@ -10,7 +10,7 @@ const A = styled.a`
   }
 
   &:visited {
-    color: ${props => (props.visited ? '#1E6C60' : '#2468e5')};
+    color: ${props => (props.visited ? '#673ab7' : '#2468e5')};
   }
 
   &:hover,
