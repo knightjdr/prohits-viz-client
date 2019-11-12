@@ -64,6 +64,30 @@ describe('Position reducer', () => {
     expect(reducer(undefined, action)).toEqual(expectedState);
   });
 
+  it('should handle REMOVE_HEATMAP_SNAPSHOT action', () => {
+    const currentState = {
+      main: {
+        x: 10,
+        y: 5,
+      },
+      snapshot1: {
+        x: 0,
+        y: 0,
+      },
+    };
+    const action = {
+      name: 'snapshot1',
+      type: snapshotActions.REMOVE_HEATMAP_SNAPSHOT,
+    };
+    const expectedState = {
+      main: {
+        x: 10,
+        y: 5,
+      },
+    };
+    expect(reducer(currentState, action)).toEqual(expectedState);
+  });
+
   it('should handle SET_SEARCH_STATUS action', () => {
     const action = {
       snapshotID: 'main',

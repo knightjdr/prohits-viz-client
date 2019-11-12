@@ -94,6 +94,36 @@ describe('Search status reducer', () => {
     expect(reducer(undefined, action)).toEqual(expectedState);
   });
 
+  it('should handle REMOVE_HEATMAP_SNAPSHOT action', () => {
+    const currentState = {
+      main: {
+        columns: { a: 2, aa: 4 },
+        match: true,
+        rows: {},
+        term: 'a',
+      },
+      snapshot1: {
+        columns: {},
+        match: false,
+        rows: {},
+        term: '',
+      },
+    };
+    const action = {
+      name: 'snapshot1',
+      type: snapshotActions.REMOVE_HEATMAP_SNAPSHOT,
+    };
+    const expectedState = {
+      main: {
+        columns: { a: 2, aa: 4 },
+        match: true,
+        rows: {},
+        term: 'a',
+      },
+    };
+    expect(reducer(currentState, action)).toEqual(expectedState);
+  });
+
   it('should handle SET_SEARCH_STATUS action', () => {
     const currenState = {
       main: {

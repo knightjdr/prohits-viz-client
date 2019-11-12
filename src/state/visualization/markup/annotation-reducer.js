@@ -2,6 +2,9 @@ import * as actions from './annotation-actions';
 import * as fileActions from '../data/interactive-file-actions';
 import * as snapshotActions from '../data/snapshot-actions';
 
+import { reduceAndAddSnapshot, reduceAndRemoveSnapshot } from '../data/snapshot-reducer';
+import { reduceAndClearState, reduceAndLoadState } from '../data/interactive-file-reducer';
+
 const reduceAndAdd = (state, action) => ({
   ...state,
   [action.snapshotID]: {
@@ -14,11 +17,6 @@ const reduceAndAdd = (state, action) => ({
       },
     },
   },
-});
-
-const reduceAndAddSnapshot = (state, action) => ({
-  ...state,
-  [action.name]: action.annotations,
 });
 
 const reduceAndChangeSetting = (state, action) => ({
@@ -36,10 +34,6 @@ const reduceAndClear = (state, action) => ({
     list: {},
   },
 });
-
-const reduceAndLoad = file => (
-  file.annotations ? file.annotations : {}
-);
 
 const reduceAndToggle = (state, action) => ({
   ...state,
@@ -76,15 +70,17 @@ const reducer = (state = {}, action) => {
     case actions.ADD_ANNOTATION:
       return reduceAndAdd(state, action);
     case snapshotActions.ADD_HEATMAP_SNAPSHOT:
-      return reduceAndAddSnapshot(state, action);
+      return reduceAndAddSnapshot(state, action, 'annotations');
     case actions.CHANGE_ANNOTATION_SETTING:
       return reduceAndChangeSetting(state, action);
     case actions.CLEAR_ALL_ANNOTATIONS:
       return reduceAndClear(state, action);
     case fileActions.CLEAR_INTERACTIVE_STATE:
-      return {};
+      return reduceAndClearState();
     case fileActions.LOAD_INTERACTIVE_STATE:
-      return reduceAndLoad(action.file);
+      return reduceAndLoadState(action, 'annotations');
+    case snapshotActions.REMOVE_HEATMAP_SNAPSHOT:
+      return reduceAndRemoveSnapshot(state, action);
     case actions.TOGGLE_ANNOTATIONS:
       return reduceAndToggle(state, action);
     case actions.UPDATE_ANNOTATION_POSITION:

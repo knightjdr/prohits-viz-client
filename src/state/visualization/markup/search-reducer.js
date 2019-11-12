@@ -2,10 +2,8 @@ import * as actions from './search-actions';
 import * as fileActions from '../data/interactive-file-actions';
 import * as snapshotActions from '../data/snapshot-actions';
 
-const reduceAndAddSnapshot = (state, action) => ({
-  ...state,
-  [action.name]: action.searchStatus,
-});
+import { reduceAndAddSnapshot, reduceAndRemoveSnapshot } from '../data/snapshot-reducer';
+import { reduceAndClearState, reduceAndLoadState } from '../data/interactive-file-reducer';
 
 const reduceAndClear = (state, action) => ({
   ...state,
@@ -27,20 +25,18 @@ const reduceAndSetSearchStatus = (state, action) => ({
   },
 });
 
-const reduceInteractiveState = file => (
-  file.searchStatus ? file.searchStatus : {}
-);
-
 const reducer = (state = {}, action) => {
   switch (action.type) {
     case snapshotActions.ADD_HEATMAP_SNAPSHOT:
-      return reduceAndAddSnapshot(state, action);
+      return reduceAndAddSnapshot(state, action, 'searchStatus');
     case actions.CLEAR_SEARCH:
       return reduceAndClear(state, action);
     case fileActions.CLEAR_INTERACTIVE_STATE:
-      return {};
+      return reduceAndClearState();
     case fileActions.LOAD_INTERACTIVE_STATE:
-      return reduceInteractiveState(action.file);
+      return reduceAndLoadState(action, 'searchStatus');
+    case snapshotActions.REMOVE_HEATMAP_SNAPSHOT:
+      return reduceAndRemoveSnapshot(state, action);
     case actions.SET_SEARCH_STATUS:
       return reduceAndSetSearchStatus(state, action);
     default:

@@ -1,5 +1,6 @@
 import reducer from './dimension-reducer';
 import * as actions from './dimension-actions';
+import * as fileActions from '../data/interactive-file-actions';
 import * as snapshotActions from '../data/snapshot-actions';
 
 describe('Dimension reducer', () => {
@@ -28,6 +29,73 @@ describe('Dimension reducer', () => {
     const expectedState = {
       ...currentState,
       'snapshot-1': snapshotState,
+    };
+    expect(reducer(currentState, action)).toEqual(expectedState);
+  });
+
+  it('should handle CLEAR_INTERACTIVE_STATE action', () => {
+    const action = {
+      type: fileActions.CLEAR_INTERACTIVE_STATE,
+    };
+    const expectedState = {};
+    expect(reducer(undefined, action)).toEqual(expectedState);
+  });
+
+  it('should handle LOAD_INTERACTIVE_STATE action', () => {
+    const action = {
+      file: {
+        dimensions: {
+          main: {
+            canTranslate: true,
+            columns: 0,
+            height: 0,
+            pageX: 0,
+            pageY: 0,
+            rows: 0,
+            width: 0,
+            wrapperHeight: 0,
+            wrapperWidth: 0,
+          },
+        },
+      },
+      type: fileActions.LOAD_INTERACTIVE_STATE,
+    };
+    const expectedState = {
+      main: {
+        canTranslate: true,
+        columns: 0,
+        height: 0,
+        pageX: 0,
+        pageY: 0,
+        rows: 0,
+        width: 0,
+        wrapperHeight: 0,
+        wrapperWidth: 0,
+      },
+    };
+    expect(reducer(undefined, action)).toEqual(expectedState);
+  });
+
+  it('should handle REMOVE_HEATMAP_SNAPSHOT action', () => {
+    const currentState = {
+      main: {
+        height: 50,
+        width: 100,
+      },
+      snapshot1: {
+        height: 20,
+        width: 20,
+      },
+    };
+    const action = {
+      name: 'snapshot1',
+      type: snapshotActions.REMOVE_HEATMAP_SNAPSHOT,
+    };
+    const expectedState = {
+      main: {
+        height: 50,
+        width: 100,
+      },
     };
     expect(reducer(currentState, action)).toEqual(expectedState);
   });

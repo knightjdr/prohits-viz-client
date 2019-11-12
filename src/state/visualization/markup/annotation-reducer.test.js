@@ -133,6 +133,27 @@ describe('Annotation reducer', () => {
     expect(reducer(currenState, action)).toEqual(expectedState);
   });
 
+  it('should handle REMOVE_HEATMAP_SNAPSHOT action', () => {
+    const currentState = {
+      main: {
+        fontSize: 16,
+      },
+      snapshot1: {
+        fontSize: 20,
+      },
+    };
+    const action = {
+      name: 'snapshot1',
+      type: snapshotActions.REMOVE_HEATMAP_SNAPSHOT,
+    };
+    const expectedState = {
+      main: {
+        fontSize: 16,
+      },
+    };
+    expect(reducer(currentState, action)).toEqual(expectedState);
+  });
+
   it('should handle TOGGLE_ANNOTATIONS action', () => {
     const currenState = {
       main: {

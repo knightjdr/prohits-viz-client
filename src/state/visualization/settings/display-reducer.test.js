@@ -56,6 +56,30 @@ describe('Display reducer', () => {
     expect(reducer(undefined, action)).toEqual(expectedState);
   });
 
+  it('should handle REMOVE_HEATMAP_SNAPSHOT action', () => {
+    const currentState = {
+      main: {
+        plotFixed: false,
+        showTooltips: true,
+      },
+      snapshot1: {
+        plotFixed: false,
+        showTooltips: false,
+      },
+    };
+    const action = {
+      name: 'snapshot1',
+      type: snapshotActions.REMOVE_HEATMAP_SNAPSHOT,
+    };
+    const expectedState = {
+      main: {
+        plotFixed: false,
+        showTooltips: true,
+      },
+    };
+    expect(reducer(currentState, action)).toEqual(expectedState);
+  });
+
   it('should handle UPDATE_DISPLAY_SETTING action', () => {
     const currentState = {
       main: {

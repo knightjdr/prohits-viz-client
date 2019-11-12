@@ -5,10 +5,8 @@ import * as fileActions from '../data/interactive-file-actions';
 import * as rowActions from './rows-actions';
 import * as snapshotActions from '../data/snapshot-actions';
 
-const reduceAndAddSnapshot = (state, action) => ({
-  ...state,
-  [action.name]: action.minimap,
-});
+import { reduceAndAddSnapshot, reduceAndRemoveSnapshot } from '../data/snapshot-reducer';
+import { reduceAndClearState, reduceAndLoadState } from '../data/interactive-file-reducer';
 
 const reduceAndCompleteSync = (state, action) => ({
   ...state,
@@ -33,10 +31,6 @@ const reduceAndError = (state, action) => ({
     updateOriginal: false,
   },
 });
-
-const reduceAndLoadState = action => (
-  action.file.minimap ? action.file.minimap : {}
-);
 
 const reduceAndReset = (state, action) => ({
   ...state,
@@ -75,15 +69,17 @@ const reduceAndUpdateStatus = (state, action) => ({
 const reducer = (state = {}, action) => {
   switch (action.type) {
     case snapshotActions.ADD_HEATMAP_SNAPSHOT:
-      return reduceAndAddSnapshot(state, action);
+      return reduceAndAddSnapshot(state, action, 'minimap');
     case fileActions.CLEAR_INTERACTIVE_STATE:
-      return {};
+      return reduceAndClearState();
     case actions.MINIMAP_SYNCHED:
       return reduceAndCompleteSync(state, action);
     case actions.MINIMAP_SYNCHRONIZING:
       return reduceAndSyncronize(state, action);
     case fileActions.LOAD_INTERACTIVE_STATE:
-      return reduceAndLoadState(action);
+      return reduceAndLoadState(action, 'minimap');
+    case snapshotActions.REMOVE_HEATMAP_SNAPSHOT:
+      return reduceAndRemoveSnapshot(state, action);
     case displayActions.RESET_IMAGE:
       return reduceAndReset(state, action);
     case actions.SYNC_ERROR:

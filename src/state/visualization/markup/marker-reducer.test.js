@@ -1,3 +1,5 @@
+/* eslint-disable object-curly-newline */
+
 import reducer from './marker-reducer';
 import * as actions from './marker-actions';
 import * as fileActions from '../data/interactive-file-actions';
@@ -58,6 +60,28 @@ describe('Marker reducer', () => {
     expect(reducer(currenState, action)).toEqual(expectedState);
   });
 
+  it('should handle CHANGE_MARKER_SETTING action', () => {
+    const currenState = {
+      main: {
+        color: '#0000ff',
+        show: true,
+      },
+    };
+    const action = {
+      snapshotID: 'main',
+      setting: 'color',
+      type: actions.CHANGE_MARKER_SETTING,
+      value: '#ff0000',
+    };
+    const expectedState = {
+      main: {
+        ...currenState.main,
+        color: '#ff0000',
+      },
+    };
+    expect(reducer(currenState, action)).toEqual(expectedState);
+  });
+
   it('should handle CLEAR_ALL_MARKERS action', () => {
     const currenState = {
       main: {
@@ -110,26 +134,25 @@ describe('Marker reducer', () => {
     expect(reducer(undefined, action)).toEqual(expectedState);
   });
 
-  it('should handle CHANGE_MARKER_SETTING action', () => {
-    const currenState = {
+  it('should handle REMOVE_HEATMAP_SNAPSHOT action', () => {
+    const currentState = {
       main: {
-        color: '#0000ff',
-        show: true,
+        color: '#000000',
+      },
+      snapshot1: {
+        color: '#00ff00',
       },
     };
     const action = {
-      snapshotID: 'main',
-      setting: 'color',
-      type: actions.CHANGE_MARKER_SETTING,
-      value: '#ff0000',
+      name: 'snapshot1',
+      type: snapshotActions.REMOVE_HEATMAP_SNAPSHOT,
     };
     const expectedState = {
       main: {
-        ...currenState.main,
-        color: '#ff0000',
+        color: '#000000',
       },
     };
-    expect(reducer(currenState, action)).toEqual(expectedState);
+    expect(reducer(currentState, action)).toEqual(expectedState);
   });
 
   it('should handle UPDATE_MARKERS action', () => {

@@ -163,6 +163,30 @@ describe('Minimap reducer', () => {
     });
   });
 
+  it('should handle REMOVE_HEATMAP_SNAPSHOT action', () => {
+    const currentState = {
+      main: {
+        image: 'image',
+        needSyncing: false,
+      },
+      snapshot1: {
+        image: null,
+        needSyncing: true,
+      },
+    };
+    const action = {
+      name: 'snapshot1',
+      type: snapshotActions.REMOVE_HEATMAP_SNAPSHOT,
+    };
+    const expectedState = {
+      main: {
+        image: 'image',
+        needSyncing: false,
+      },
+    };
+    expect(reducer(currentState, action)).toEqual(expectedState);
+  });
+
   it('should handle RESET_IMAGE action', () => {
     const currentState = {
       main: {

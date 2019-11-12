@@ -3,14 +3,8 @@ import * as displayActions from './display-actions';
 import * as fileActions from '../data/interactive-file-actions';
 import * as snapshotActions from '../data/snapshot-actions';
 
-const reduceAndAddSnapshot = (state, action) => ({
-  ...state,
-  [action.name]: action.settings,
-});
-
-const reduceAndLoad = action => (
-  action.file.settings ? action.file.settings : {}
-);
+import { reduceAndAddSnapshot, reduceAndRemoveSnapshot } from '../data/snapshot-reducer';
+import { reduceAndClearState, reduceAndLoadState } from '../data/interactive-file-reducer';
 
 const reduceAndReset = (state, action) => ({
   ...state,
@@ -47,11 +41,13 @@ const reduceAndUpdateSettings = (state, action) => ({
 const reducer = (state = {}, action) => {
   switch (action.type) {
     case snapshotActions.ADD_HEATMAP_SNAPSHOT:
-      return reduceAndAddSnapshot(state, action);
+      return reduceAndAddSnapshot(state, action, 'settings');
     case fileActions.CLEAR_INTERACTIVE_STATE:
-      return {};
+      return reduceAndClearState();
     case fileActions.LOAD_INTERACTIVE_STATE:
-      return reduceAndLoad(action);
+      return reduceAndLoadState(action, 'settings');
+    case snapshotActions.REMOVE_HEATMAP_SNAPSHOT:
+      return reduceAndRemoveSnapshot(state, action);
     case displayActions.RESET_IMAGE:
       return reduceAndReset(state, action);
     case actions.UPDATE_SETTING:

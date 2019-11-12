@@ -1,10 +1,10 @@
-import reducer, { defaultState } from './parameter-reducer';
+import reducer from './parameter-reducer';
 import * as fileActions from './interactive-file-actions';
 
 describe('Parameters reducer', () => {
   it('should return an empty initial state', () => {
     const action = {};
-    const expectedState = defaultState;
+    const expectedState = {};
     expect(reducer(undefined, action)).toEqual(expectedState);
   });
 
@@ -12,7 +12,7 @@ describe('Parameters reducer', () => {
     const action = {
       type: fileActions.CLEAR_INTERACTIVE_STATE,
     };
-    const expectedState = defaultState;
+    const expectedState = {};
     expect(reducer(undefined, action)).toEqual(expectedState);
   });
 

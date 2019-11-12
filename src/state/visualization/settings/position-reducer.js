@@ -4,14 +4,8 @@ import * as rowActions from '../heatmap/rows-actions';
 import * as searchActions from '../markup/search-actions';
 import * as snapshotActions from '../data/snapshot-actions';
 
-const reduceAndAddSnapshot = (state, action) => ({
-  ...state,
-  [action.name]: action.position,
-});
-
-const reduceAndLoad = (state, action) => (
-  action.file.position ? action.file.position : {}
-);
+import { reduceAndAddSnapshot, reduceAndRemoveSnapshot } from '../data/snapshot-reducer';
+import { reduceAndClearState, reduceAndLoadState } from '../data/interactive-file-reducer';
 
 const reduceAndSort = (state, action) => ({
   ...state,
@@ -32,11 +26,13 @@ const reduceAndUpdate = (state, action) => ({
 const reducer = (state = {}, action) => {
   switch (action.type) {
     case snapshotActions.ADD_HEATMAP_SNAPSHOT:
-      return reduceAndAddSnapshot(state, action);
+      return reduceAndAddSnapshot(state, action, 'position');
     case fileActions.CLEAR_INTERACTIVE_STATE:
-      return {};
+      return reduceAndClearState();
     case fileActions.LOAD_INTERACTIVE_STATE:
-      return reduceAndLoad(state, action);
+      return reduceAndLoadState(action, 'position');
+    case snapshotActions.REMOVE_HEATMAP_SNAPSHOT:
+      return reduceAndRemoveSnapshot(state, action);
     case searchActions.SET_SEARCH_STATUS:
       return reduceAndUpdate(state, action);
     case rowActions.SORT_ROWS:

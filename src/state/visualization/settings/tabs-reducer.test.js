@@ -2,7 +2,7 @@ import reducer from './tabs-reducer';
 import * as fileActions from '../data/interactive-file-actions';
 import * as snapshotActions from '../data/snapshot-actions';
 
-describe('Panel reducer', () => {
+describe('Tab reducer', () => {
   it('should return default initial state', () => {
     const action = {};
     const expectedState = {};
@@ -58,6 +58,71 @@ describe('Panel reducer', () => {
         available: ['tab1', 'tab2'],
       };
       expect(reducer(undefined, action)).toEqual(expectedState);
+    });
+  });
+
+  describe('Remove heat map snapshot', () => {
+    it('should remove a snapshot that is not currently active', () => {
+      const currentState = {
+        active: 'go-1',
+        activeSnapshot: 'main',
+        availableAnalysis: ['go-1'],
+        availableSnapshots: ['main', 'snapshot-1', 'snapshot-2'],
+        snapshotID: 1,
+        tabType: 'analysis',
+      };
+      const action = {
+        name: 'snapshot-1',
+        type: snapshotActions.REMOVE_HEATMAP_SNAPSHOT,
+      };
+      const expectedState = {
+        ...currentState,
+        availableSnapshots: ['main', 'snapshot-2'],
+      };
+      expect(reducer(currentState, action)).toEqual(expectedState);
+    });
+
+    it('should remove a snapshot that is not currently visible (active) but is the active snapshot', () => {
+      const currentState = {
+        active: 'go-1',
+        activeSnapshot: 'snapshot-1',
+        availableAnalysis: ['go-1'],
+        availableSnapshots: ['main', 'snapshot-1', 'snapshot-2'],
+        snapshotID: 1,
+        tabType: 'analysis',
+      };
+      const action = {
+        name: 'snapshot-1',
+        type: snapshotActions.REMOVE_HEATMAP_SNAPSHOT,
+      };
+      const expectedState = {
+        ...currentState,
+        activeSnapshot: 'main',
+        availableSnapshots: ['main', 'snapshot-2'],
+      };
+      expect(reducer(currentState, action)).toEqual(expectedState);
+    });
+
+    it('should remove a snapshot that is visible (active) and is the active snapshot', () => {
+      const currentState = {
+        active: 'snapshot-1',
+        activeSnapshot: 'snapshot-1',
+        availableAnalysis: ['go-1'],
+        availableSnapshots: ['main', 'snapshot-1', 'snapshot-2'],
+        snapshotID: 1,
+        tabType: 'snapshot',
+      };
+      const action = {
+        name: 'snapshot-1',
+        type: snapshotActions.REMOVE_HEATMAP_SNAPSHOT,
+      };
+      const expectedState = {
+        ...currentState,
+        active: 'main',
+        activeSnapshot: 'main',
+        availableSnapshots: ['main', 'snapshot-2'],
+      };
+      expect(reducer(currentState, action)).toEqual(expectedState);
     });
   });
 });

@@ -107,6 +107,30 @@ describe('Columns reducer', () => {
     });
   });
 
+  it('should handle REMOVE_HEATMAP_SNAPSHOT action', () => {
+    const currentState = {
+      main: {
+        defaultOrder: [0, 1, 2, 3, 4],
+        order: [0, 1, 2, 3, 4],
+      },
+      snapshot1: {
+        defaultOrder: [0, 2, 3],
+        order: [0, 2, 3],
+      },
+    };
+    const action = {
+      name: 'snapshot1',
+      type: snapshotActions.REMOVE_HEATMAP_SNAPSHOT,
+    };
+    const expectedState = {
+      main: {
+        defaultOrder: [0, 1, 2, 3, 4],
+        order: [0, 1, 2, 3, 4],
+      },
+    };
+    expect(reducer(currentState, action)).toEqual(expectedState);
+  });
+
   it('should handle RESET_IMAGE action', () => {
     const currentState = {
       main: {

@@ -1,15 +1,13 @@
 import * as fileActions from './interactive-file-actions';
 
-const reduceAndLoad = action => (
-  action.file.columnDB || []
-);
+import { reduceAndClearState, reduceAndLoadState } from './interactive-file-reducer';
 
 const reducer = (state = [], action) => {
   switch (action.type) {
     case fileActions.CLEAR_INTERACTIVE_STATE:
-      return [];
+      return reduceAndClearState([]);
     case fileActions.LOAD_INTERACTIVE_STATE:
-      return reduceAndLoad(action);
+      return reduceAndLoadState(action, 'columnDB', []);
     default:
       return state;
   }

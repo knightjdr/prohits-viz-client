@@ -62,6 +62,30 @@ describe('Settings reducer', () => {
     expect(reducer(undefined, action)).toEqual(expectedState);
   });
 
+  it('should handle REMOVE_HEATMAP_SNAPSHOT action', () => {
+    const currentState = {
+      main: {
+        current: { fillColor: 'blue' },
+        default: { fillColor: 'blue' },
+      },
+      snapshot1: {
+        current: { fillColor: 'red' },
+        default: { fillColor: 'blue' },
+      },
+    };
+    const action = {
+      name: 'snapshot1',
+      type: snapshotActions.REMOVE_HEATMAP_SNAPSHOT,
+    };
+    const expectedState = {
+      main: {
+        current: { fillColor: 'blue' },
+        default: { fillColor: 'blue' },
+      },
+    };
+    expect(reducer(currentState, action)).toEqual(expectedState);
+  });
+
   it('should handle UPDATE_SETTING action', () => {
     const currentState = {
       main: {

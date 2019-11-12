@@ -1,11 +1,11 @@
-import reducer, { defaultState } from './panel-reducer';
+import reducer from './panel-reducer';
 import * as actions from './panel-actions';
 import * as fileActions from '../data/interactive-file-actions';
 
 describe('Panel reducer', () => {
   it('should return default initial state', () => {
     const action = {};
-    const expectedState = defaultState;
+    const expectedState = {};
     expect(reducer(undefined, action)).toEqual(expectedState);
   });
 
@@ -15,21 +15,22 @@ describe('Panel reducer', () => {
       type: actions.CHANGE_PANEL_TAB,
     };
     const expectedState = {
-      ...defaultState,
       tab: 'map',
     };
     expect(reducer(undefined, action)).toEqual(expectedState);
   });
 
   it('should handle TOGGLE_PANEL action', () => {
+    const currentState = {
+      open: true,
+    };
     const action = {
       type: actions.TOGGLE_PANEL,
     };
     const expectedState = {
-      ...defaultState,
       open: false,
     };
-    expect(reducer(undefined, action)).toEqual(expectedState);
+    expect(reducer(currentState, action)).toEqual(expectedState);
   });
 
   describe('file actions', () => {
@@ -37,10 +38,7 @@ describe('Panel reducer', () => {
       const action = {
         type: fileActions.CLEAR_INTERACTIVE_STATE,
       };
-      const expectedState = {
-        ...defaultState,
-        open: true,
-      };
+      const expectedState = {};
       expect(reducer(undefined, action)).toEqual(expectedState);
     });
 
@@ -64,7 +62,7 @@ describe('Panel reducer', () => {
         file: {},
         type: fileActions.LOAD_INTERACTIVE_STATE,
       };
-      const expectedState = defaultState;
+      const expectedState = {};
       expect(reducer(undefined, action)).toEqual(expectedState);
     });
   });

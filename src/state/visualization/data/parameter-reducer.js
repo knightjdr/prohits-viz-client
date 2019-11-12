@@ -1,16 +1,13 @@
 import * as fileActions from './interactive-file-actions';
 
-export const defaultState = {
-  filename: '',
-  id: '',
-};
+import { reduceAndClearState, reduceAndLoadState } from './interactive-file-reducer';
 
-const reducer = (state = { ...defaultState }, action) => {
+const reducer = (state = {}, action) => {
   switch (action.type) {
     case fileActions.CLEAR_INTERACTIVE_STATE:
-      return { ...defaultState };
+      return reduceAndClearState();
     case fileActions.LOAD_INTERACTIVE_STATE:
-      return action.file.parameters;
+      return reduceAndLoadState(action, 'parameters');
     default:
       return state;
   }

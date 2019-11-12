@@ -3,10 +3,8 @@ import * as displayActions from '../settings/display-actions';
 import * as fileActions from '../data/interactive-file-actions';
 import * as snapshotActions from '../data/snapshot-actions';
 
-const reduceAndAddSnapshot = (state, action) => ({
-  ...state,
-  [action.name]: action.columns,
-});
+import { reduceAndAddSnapshot, reduceAndRemoveSnapshot } from '../data/snapshot-reducer';
+import { reduceAndClearState, reduceAndLoadState } from '../data/interactive-file-reducer';
 
 const reduceAndDelete = (state, action) => ({
   ...state,
@@ -34,10 +32,6 @@ const reduceAndReset = (state, action) => ({
   },
 });
 
-const reduceAndLoadState = file => (
-  file.columns ? file.columns : {}
-);
-
 const reduceAndSetRef = (state, action) => ({
   ...state,
   [action.snapshotID]: {
@@ -49,13 +43,15 @@ const reduceAndSetRef = (state, action) => ({
 const reducer = (state = {}, action) => {
   switch (action.type) {
     case snapshotActions.ADD_HEATMAP_SNAPSHOT:
-      return reduceAndAddSnapshot(state, action);
+      return reduceAndAddSnapshot(state, action, 'columns');
     case fileActions.CLEAR_INTERACTIVE_STATE:
-      return {};
+      return reduceAndClearState();
     case actions.DELETE_COLUMN:
       return reduceAndDelete(state, action);
     case fileActions.LOAD_INTERACTIVE_STATE:
-      return reduceAndLoadState(action.file);
+      return reduceAndLoadState(action, 'columns');
+    case snapshotActions.REMOVE_HEATMAP_SNAPSHOT:
+      return reduceAndRemoveSnapshot(state, action);
     case displayActions.RESET_IMAGE:
       return reduceAndReset(state, action);
     case actions.SET_COLUMN_ORDER:

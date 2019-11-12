@@ -3,10 +3,8 @@ import * as displayActions from '../settings/display-actions';
 import * as fileActions from '../data/interactive-file-actions';
 import * as snapshotActions from '../data/snapshot-actions';
 
-const reduceAndAddSnapshot = (state, action) => ({
-  ...state,
-  [action.name]: action.rows,
-});
+import { reduceAndAddSnapshot, reduceAndRemoveSnapshot } from '../data/snapshot-reducer';
+import { reduceAndClearState, reduceAndLoadState } from '../data/interactive-file-reducer';
 
 const reduceAndDelete = (state, action) => ({
   ...state,
@@ -25,10 +23,6 @@ const reduceAndOrder = (state, action) => ({
     sortBy: '',
   },
 });
-
-const reduceAndLoadState = file => (
-  file.rows ? file.rows : {}
-);
 
 const reduceAndReset = (state, action) => ({
   ...state,
@@ -54,17 +48,19 @@ const reduceAndSort = (state, action) => ({
 const reducer = (state = {}, action) => {
   switch (action.type) {
     case snapshotActions.ADD_HEATMAP_SNAPSHOT:
-      return reduceAndAddSnapshot(state, action);
+      return reduceAndAddSnapshot(state, action, 'rows');
     case fileActions.CLEAR_INTERACTIVE_STATE:
-      return {};
+      return reduceAndClearState();
     case actions.DELETE_ROW:
       return reduceAndDelete(state, action);
-    case actions.SET_ROW_ORDER:
-      return reduceAndOrder(state, action);
     case fileActions.LOAD_INTERACTIVE_STATE:
-      return reduceAndLoadState(action.file);
+      return reduceAndLoadState(action, 'rows');
+    case snapshotActions.REMOVE_HEATMAP_SNAPSHOT:
+      return reduceAndRemoveSnapshot(state, action);
     case displayActions.RESET_IMAGE:
       return reduceAndReset(state, action);
+    case actions.SET_ROW_ORDER:
+      return reduceAndOrder(state, action);
     case actions.SORT_ROWS:
       return reduceAndSort(state, action);
     default:

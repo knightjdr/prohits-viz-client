@@ -1,27 +1,28 @@
 import * as actions from './panel-actions';
 import * as fileActions from '../data/interactive-file-actions';
 
-export const defaultState = {
-  open: true,
-  tab: 'info',
-};
+import { reduceAndClearState, reduceAndLoadState } from '../data/interactive-file-reducer';
 
-const reducer = (state = { ...defaultState }, action) => {
+const reduceAndChangeTab = (state, action) => ({
+  ...state,
+  tab: action.tab,
+});
+
+const reduceAndToggle = state => ({
+  ...state,
+  open: !state.open,
+});
+
+const reducer = (state = {}, action) => {
   switch (action.type) {
     case actions.CHANGE_PANEL_TAB:
-      return {
-        ...state,
-        tab: action.tab,
-      };
+      return reduceAndChangeTab(state, action);
     case fileActions.CLEAR_INTERACTIVE_STATE:
-      return { ...defaultState };
+      return reduceAndClearState();
     case fileActions.LOAD_INTERACTIVE_STATE:
-      return action.file.panel || { ...defaultState };
+      return reduceAndLoadState(action, 'panel');
     case actions.TOGGLE_PANEL:
-      return {
-        ...state,
-        open: !state.open,
-      };
+      return reduceAndToggle(state);
     default:
       return state;
   }
