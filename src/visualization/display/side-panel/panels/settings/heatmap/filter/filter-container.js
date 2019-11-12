@@ -23,7 +23,8 @@ const FilterSettingsContainer = () => {
     imageType,
     minAbundance,
     primaryFilter,
-    removeEmptyColumns,
+    removeFailingColumns,
+    removeFailingRows,
     secondaryFilter,
   } = settings;
 
@@ -103,7 +104,8 @@ const FilterSettingsContainer = () => {
       imageType={imageType}
       minAbundance={minAbundance}
       primaryFilter={primaryFilter}
-      removeEmptyColumns={removeEmptyColumns}
+      removeFailingColumns={removeFailingColumns}
+      removeFailingRows={removeFailingRows}
       secondaryFilter={secondaryFilter}
     />
   );

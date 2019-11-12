@@ -6,7 +6,8 @@ describe('Define latest filter settings', () => {
       filterBy: 'a',
       minAbundance: 5,
       primaryFilter: 0.05,
-      removeEmptyColumns: true,
+      removeFailingColumns: true,
+      removeFailingRows: true,
       sortBy: 'a',
       sortByRef: 'A',
     };
@@ -25,7 +26,8 @@ describe('Define latest filter settings', () => {
       filterBy: 'a',
       minAbundance: 5,
       primaryFilter: 0.05,
-      removeEmptyColumns: true,
+      removeFailingColumns: true,
+      removeFailingRows: true,
       sortBy: 'a',
       sortByRef: 'A',
     };

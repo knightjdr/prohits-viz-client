@@ -49,13 +49,16 @@ const filter = (updatedSetting, updatedValue, updatedOrder, filterOptions) => {
     rows: defineAndOrderAvailableIndices(updatedOrder.rows, defaultRowOrder, rowOrder, deletedRows),
   };
 
-  let newRowOrder = filterAndOrderRows(rowDB, subsetIndices, scoreType, latestValues);
+  let newRowOrder = latestValues.removeFailingRows
+    ? filterAndOrderRows(rowDB, subsetIndices, scoreType, latestValues)
+    : subsetIndices.rows;
+
   const resort = canReSort(columnDB, availableColumns, latestValues.sortBy, latestValues.sortByRef);
   if (resort.status) {
     newRowOrder = rowSort(rowDB, newRowOrder, resort.sortByIndex, direction, resort.sortByRefIndex);
   }
 
-  const newColumnOrder = latestValues.removeEmptyColumns
+  const newColumnOrder = latestValues.removeFailingColumns
     ? filterAndOrderColumns(rowDB, newRowOrder, availableColumns, scoreType, latestValues)
     : availableColumns;
 

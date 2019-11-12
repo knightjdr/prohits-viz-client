@@ -12,7 +12,8 @@ export const defaultState = {
   invertColor: false,
   minAbundance: 0,
   primaryFilter: 0.01,
-  removeEmptyColumns: false,
+  removeFailingColumns: false,
+  removeFailingRows: true,
   resetRatios: false,
   secondaryFilter: 0.05,
 };
@@ -55,26 +56,29 @@ export const validateSettings = (userSettings, defaultImageType = 'heatmap') => 
     invertColor,
     minAbundance,
     primaryFilter,
-    removeEmptyColumns,
+    removeFailingColumns,
+    removeFailingRows,
     resetRatios,
     secondaryFilter,
     ...other
   } = userSettings;
 
-  const settings = { ...other };
-
-  settings.abundanceCap = validateNumber(abundanceCap, defaultState.abundanceCap);
-  settings.cellSize = Number.isInteger(cellSize) && cellSize > 0 ? cellSize : defaultState.cellSize;
-  settings.edgeColor = validateColor(edgeColor, defaultState.edgeColor);
-  settings.fillColor = validateColor(fillColor, defaultState.fillColor);
-  settings.filterBy = validateArray(filterBy, defaultState.filterBy);
-  settings.imageType = validateImageType(imageType, defaultImageType);
-  settings.invertColor = validateBoolean(invertColor, defaultState.invertColor);
-  settings.minAbundance = validateNumber(minAbundance, defaultState.minAbundance);
-  settings.primaryFilter = validateNumber(primaryFilter, defaultState.primaryFilter);
-  settings.removeEmptyColumns = validateBoolean(removeEmptyColumns, defaultState.removeEmptyColumns);
-  settings.resetRatios = validateBoolean(resetRatios, defaultState.resetRatios);
-  settings.secondaryFilter = validateNumber(secondaryFilter, defaultState.secondaryFilter);
+  const settings = {
+    ...other,
+    abundanceCap: validateNumber(abundanceCap, defaultState.abundanceCap),
+    cellSize: Number.isInteger(cellSize) && cellSize > 0 ? cellSize : defaultState.cellSize,
+    edgeColor: validateColor(edgeColor, defaultState.edgeColor),
+    fillColor: validateColor(fillColor, defaultState.fillColor),
+    filterBy: validateArray(filterBy, defaultState.filterBy),
+    imageType: validateImageType(imageType, defaultImageType),
+    invertColor: validateBoolean(invertColor, defaultState.invertColor),
+    minAbundance: validateNumber(minAbundance, defaultState.minAbundance),
+    primaryFilter: validateNumber(primaryFilter, defaultState.primaryFilter),
+    removeFailingColumns: validateBoolean(removeFailingColumns, defaultState.removeFailingColumns),
+    removeFailingRows: validateBoolean(removeFailingRows, defaultState.removeFailingRows),
+    resetRatios: validateBoolean(resetRatios, defaultState.resetRatios),
+    secondaryFilter: validateNumber(secondaryFilter, defaultState.secondaryFilter),
+  };
 
   return settings;
 };

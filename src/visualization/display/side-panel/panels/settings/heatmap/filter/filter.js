@@ -19,7 +19,8 @@ const Filter = ({
   imageType,
   minAbundance,
   primaryFilter,
-  removeEmptyColumns,
+  removeFailingColumns,
+  removeFailingRows,
   secondaryFilter,
 }) => (
   <>
@@ -72,9 +73,15 @@ const Filter = ({
         value={filterBy}
       />
       <Switch
-        checked={removeEmptyColumns}
-        id="removeEmptyColumns"
+        checked={removeFailingColumns}
+        id="removeFailingColumns"
         label="Clear failing columns"
+        onChange={handleFilter}
+      />
+      <Switch
+        checked={removeFailingRows}
+        id="removeFailingRows"
+        label="Clear failing rows"
         onChange={handleFilter}
       />
     </Section>
@@ -98,7 +105,8 @@ Filter.propTypes = {
   imageType: PropTypes.string.isRequired,
   minAbundance: PropTypes.number.isRequired,
   primaryFilter: PropTypes.number.isRequired,
-  removeEmptyColumns: PropTypes.bool.isRequired,
+  removeFailingColumns: PropTypes.bool.isRequired,
+  removeFailingRows: PropTypes.bool.isRequired,
   secondaryFilter: PropTypes.number.isRequired,
 };
 
