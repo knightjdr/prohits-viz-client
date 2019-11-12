@@ -13,14 +13,14 @@ export const defaultTooltipState = {
 };
 
 const createTextElement = (column, row, rowDB) => (
-  Object.entries(rowDB[row].data[column]).map(([key, value]) => (
-    <div key={key} style={{ margin: '2px 0' }}>
-      {key}
-      :
-      {' '}
-      {value}
-    </div>
-  ))
+  Object.entries(rowDB[row].data[column]).map(([key, value]) => {
+    const text = `${key}: ${value}`;
+    return (
+      <div key={key} style={{ margin: '2px 0' }}>
+        {text}
+      </div>
+    );
+  })
 );
 
 const createTooltipProperties = (e, options) => {
