@@ -25,26 +25,22 @@ const PoiActionContainer = () => {
     rows: defineNewOrderForSelection(poi.rows, rowOrder),
   });
 
-  const handleChangeSnapshotName = (e, id, value) => {
-    setSnapshotName(value);
-  };
-
   const handleApply = async () => {
     const order = defineNewOrder();
     dispatch(updatePOI({ columns: [], row: [] }));
     filter.updateState(null, null, order);
   };
 
-  const handleSnapshot = () => {
+  const handleSnapshot = (e, id, value) => {
     const order = defineNewOrder();
-    createSnapshot(snapshotName, order);
+    setSnapshotName(value);
+    createSnapshot(value, order);
   };
 
   return (
     <PoiAction
       filteringComponent={filter.Component}
       handleApply={handleApply}
-      handleChangeSnapshotName={handleChangeSnapshotName}
       handleSnapshot={handleSnapshot}
       snapshotName={snapshotName}
     />

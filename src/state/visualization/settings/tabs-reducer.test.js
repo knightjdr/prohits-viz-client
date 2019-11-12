@@ -11,9 +11,12 @@ describe('Panel reducer', () => {
 
   it('should handle ADD_HEATMAP_SNAPSHOT action', () => {
     const currentState = {
-      active: 'main',
+      active: 'go-1',
+      activeSnapshot: 'main',
+      availableAnalysis: ['go-1'],
       availableSnapshots: ['main'],
       snapshotID: 1,
+      tabType: 'analysis',
     };
     const action = {
       id: 2,
@@ -21,10 +24,12 @@ describe('Panel reducer', () => {
       type: snapshotActions.ADD_HEATMAP_SNAPSHOT,
     };
     const expectedState = {
+      ...currentState,
       active: 'snapshot-2',
       activeSnapshot: 'snapshot-2',
       availableSnapshots: ['main', 'snapshot-2'],
       snapshotID: 2,
+      tabType: 'snapshot',
     };
     expect(reducer(currentState, action)).toEqual(expectedState);
   });

@@ -1,16 +1,20 @@
 import PropTypes from 'prop-types';
 import React from 'react';
 
+import getTabComponent from './get-tab-component';
+
 const Tab = ({
-  children,
+  imageType,
+  tabType,
 }) => (
   <>
-    {children}
+    {getTabComponent(tabType, imageType)}
   </>
 );
 
 Tab.propTypes = {
-  children: PropTypes.node.isRequired,
+  imageType: PropTypes.string.isRequired,
+  tabType: PropTypes.string.isRequired,
 };
 
 export default Tab;

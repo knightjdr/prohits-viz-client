@@ -12,7 +12,6 @@ import './poi-action.css';
 const PoiAction = ({
   filteringComponent,
   handleApply,
-  handleChangeSnapshotName,
   handleSnapshot,
   snapshotName,
 }) => (
@@ -33,7 +32,6 @@ const PoiAction = ({
         buttonType="button"
         id="snapshotName"
         icon={faCamera}
-        onChange={handleChangeSnapshotName}
         onClick={handleSnapshot}
         placeholder="Snapshot name..."
         type="text"
@@ -50,7 +48,6 @@ PoiAction.defaultProps = {
 PoiAction.propTypes = {
   filteringComponent: PropTypes.node,
   handleApply: PropTypes.func.isRequired,
-  handleChangeSnapshotName: PropTypes.func.isRequired,
   handleSnapshot: PropTypes.func.isRequired,
   snapshotName: PropTypes.string.isRequired,
 };

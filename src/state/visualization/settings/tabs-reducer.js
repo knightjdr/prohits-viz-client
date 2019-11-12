@@ -7,6 +7,7 @@ const reduceAndAddHeatmapSnapshot = (state, action) => ({
   activeSnapshot: action.name,
   availableSnapshots: [...state.availableSnapshots, action.name],
   snapshotID: action.id,
+  tabType: 'snapshot',
 });
 
 const reduceAndLoad = action => (

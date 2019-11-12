@@ -1,7 +1,7 @@
 import PropTypes from 'prop-types';
 import React, { Fragment } from 'react';
 
-import Display from '../display/display-container';
+import Display from '../display/display';
 import Loading from '../../components/loading/page/loading';
 
 const Process = ({

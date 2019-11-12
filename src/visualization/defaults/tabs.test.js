@@ -9,6 +9,7 @@ describe('Fill tabs', () => {
       availableAnalysis: ['go-1'],
       availableSnapshots: ['main', 'snapshot-1'],
       snapshotID: 1,
+      tabType: 'analysis',
     };
     const expected = userTabs;
     expect(fillTabs(userTabs)).toEqual(expected);
@@ -22,6 +23,7 @@ describe('Fill tabs', () => {
       availableAnalysis: {},
       availableSnapshots: {},
       snapshotID: '1',
+      tabType: 1,
     };
     const expected = {
       active: 'main',
@@ -30,6 +32,7 @@ describe('Fill tabs', () => {
       availableAnalysis: [],
       availableSnapshots: ['main'],
       snapshotID: 0,
+      tabType: 'snapshot',
     };
     expect(fillTabs(userTabs)).toEqual(expected);
   });
@@ -60,6 +63,17 @@ describe('Fill tabs', () => {
     };
     const expected = 'main';
     expect(fillTabs(userTabs).active).toBe(expected);
+  });
+
+  it('should set the tab type to snapshot when the active tab is not found', () => {
+    const userTabs = {
+      active: 'go-2',
+      availableAnalysis: ['go-1'],
+      availableSnapshots: ['main', 'snapshot-1'],
+      tabType: 'analysis',
+    };
+    const expected = 'snapshot';
+    expect(fillTabs(userTabs).tabType).toBe(expected);
   });
 
   it('should set the active snapshot tab to the first available snapshot when it is invalid', () => {

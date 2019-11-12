@@ -1,5 +1,5 @@
 import isObject from '../../utils/is-object';
-import { validateArray, validateNumber } from '../../utils/validate-type';
+import { validateArray, validateNumber, validateString } from '../../utils/validate-type';
 
 export const defaultState = {
   active: 'main',
@@ -8,6 +8,7 @@ export const defaultState = {
   availableAnalysis: [],
   availableSnapshots: ['main'],
   snapshotID: 0,
+  tabType: 'snapshot',
 };
 
 const fillTabs = (userTabs) => {
@@ -26,18 +27,27 @@ const fillTabs = (userTabs) => {
     availableAnalysis,
     availableSnapshots,
     snapshotID,
+    tabType,
   } = userTabs;
 
   const tabs = {
+    active: validateString(active, defaultState.active),
+    activeSnapshot: validateString(activeSnapshot, defaultState.activeSnapshot),
     analysisID: validateNumber(analysisID, defaultState.analysisID),
     availableAnalysis: validateArray(availableAnalysis, defaultState.availableAnalysis),
     availableSnapshots: validateArray(availableSnapshots, defaultState.availableSnapshots),
     snapshotID: validateNumber(snapshotID, defaultState.snapshotID),
+    tabType: validateString(tabType, defaultState.tabType),
   };
 
-  tabs.active = [...tabs.availableAnalysis, ...tabs.availableSnapshots].includes(active)
-    ? active : tabs.availableSnapshots[0];
-  tabs.activeSnapshot = tabs.availableSnapshots.includes(activeSnapshot) ? activeSnapshot : tabs.availableSnapshots[0];
+  if (![...tabs.availableAnalysis, ...tabs.availableSnapshots].includes(tabs.active)) {
+    [tabs.active] = tabs.availableSnapshots;
+    tabs.tabType = 'snapshot';
+  }
+
+  if (!tabs.availableSnapshots.includes(activeSnapshot)) {
+    [tabs.activeSnapshot] = tabs.availableSnapshots;
+  }
 
   return tabs;
 };

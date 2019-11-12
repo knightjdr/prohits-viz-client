@@ -1,24 +1,22 @@
-import PropTypes from 'prop-types';
 import React from 'react';
 import { useSelector } from 'react-redux';
 
 import Tab from './tab';
-import { selectStateProperty } from '../../../state/selector/general';
 
-const TabContainer = ({
-  children,
-}) => {
-  const activeTab = useSelector(state => selectStateProperty(state, 'tabs', 'active'));
+import { selectState, selectStateProperty } from '../../../state/selector/general';
+
+const TabContainer = () => {
+  const imageType = useSelector(state => selectStateProperty(state, 'parameters', 'imageType'));
+  const tabs = useSelector(state => selectState(state, 'tabs'));
+
+  const { tabType } = tabs;
 
   return (
-    <Tab activeTab={activeTab}>
-      {children}
-    </Tab>
+    <Tab
+      imageType={imageType}
+      tabType={tabType}
+    />
   );
-};
-
-TabContainer.propTypes = {
-  children: PropTypes.node.isRequired,
 };
 
 export default TabContainer;
