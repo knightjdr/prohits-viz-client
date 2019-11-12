@@ -1,12 +1,11 @@
 .poi__action {
-  align-items: flex-start;
+  align-items: center;
   display: flex;
-  flex-direction: column;
-  margin-top: 10px;
+  margin-top: 15px;
 }
 
-.poi__action > * {
-  margin: 5px 0;
+.poi__action > *:last-child {
+  margin-left: auto;
 }
 
 .poi__action-filter svg {
