@@ -1,3 +1,4 @@
+import * as actions from './tabs-actions';
 import * as fileActions from '../data/interactive-file-actions';
 import * as snapshotActions from '../data/snapshot-actions';
 import { reduceAndClearState, reduceAndLoadState } from '../data/interactive-file-reducer';
@@ -8,6 +9,13 @@ const reduceAndAddHeatmapSnapshot = (state, action) => ({
   activeSnapshot: action.name,
   availableSnapshots: [...state.availableSnapshots, action.name],
   snapshotID: action.id,
+  tabType: 'snapshot',
+});
+
+const reduceAndChangeSnapshot = (state, action) => ({
+  ...state,
+  active: action.name,
+  activeSnapshot: action.name,
   tabType: 'snapshot',
 });
 
@@ -22,6 +30,8 @@ const reducer = (state = {}, action) => {
   switch (action.type) {
     case snapshotActions.ADD_HEATMAP_SNAPSHOT:
       return reduceAndAddHeatmapSnapshot(state, action);
+    case actions.CHANGE_ACTIVE_SNAPSHOT:
+      return reduceAndChangeSnapshot(state, action);
     case fileActions.CLEAR_INTERACTIVE_STATE:
       return reduceAndClearState();
     case fileActions.LOAD_INTERACTIVE_STATE:

@@ -8,7 +8,7 @@ const Button = styled.button`
   font-family: ${props => props.theme.fontStackSystem};
   transform-origin: center;
   transition-duration: 0.3s;
-  transition-property: all;
+  transition-property: background-color, border-color, color;
   transition-timing-function: ${props => props.theme.timingFunction};
 
   &:focus {

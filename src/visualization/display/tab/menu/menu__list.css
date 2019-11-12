@@ -1,0 +1,46 @@
+.tab__menu-list {
+  background-color: #f2f2f2;
+}
+
+.tab__menu-list h2 {
+  background-color: var(--colorPrimary3);
+  color: var(--fontLight);
+  font-size: 1em;
+  margin: 0;
+  padding: 5px;
+  text-transform: uppercase;
+}
+
+.tab__menu-list ul {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+.tab__menu-list li {
+  display: flex;
+  height: 34px;
+  transition-duration: 0.3s;
+  transition-property: background-color;
+  transition-timing-function: var(--timingFunction);
+}
+.tab__menu-list li:hover {
+  background-color: rgba(0, 0, 0, 0.15);
+}
+.tab__menu-list li:hover .menu-list__button-delete {
+  pointer-events: auto;
+  visibility: visible;
+}
+
+.menu-list__button  {
+  all: unset;
+  padding: 0 8px;
+  min-width: 100px;
+}
+.menu-list__button.active {
+  font-weight: bold;
+}
+
+.menu-list__button-delete {
+  pointer-events: none;
+  visibility: hidden;
+}

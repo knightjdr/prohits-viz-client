@@ -1,4 +1,5 @@
 import reducer from './tabs-reducer';
+import * as actions from './tabs-actions';
 import * as fileActions from '../data/interactive-file-actions';
 import * as snapshotActions from '../data/snapshot-actions';
 
@@ -29,6 +30,28 @@ describe('Tab reducer', () => {
       activeSnapshot: 'snapshot-2',
       availableSnapshots: ['main', 'snapshot-2'],
       snapshotID: 2,
+      tabType: 'snapshot',
+    };
+    expect(reducer(currentState, action)).toEqual(expectedState);
+  });
+
+  it('should handle CHANGE_ACTIVE_SNAPSHOT action', () => {
+    const currentState = {
+      active: 'go-1',
+      activeSnapshot: 'snapshot-1',
+      availableAnalysis: ['go-1'],
+      availableSnapshots: ['main', 'snapshot-1'],
+      snapshotID: 1,
+      tabType: 'analysis',
+    };
+    const action = {
+      name: 'main',
+      type: actions.CHANGE_ACTIVE_SNAPSHOT,
+    };
+    const expectedState = {
+      ...currentState,
+      active: 'main',
+      activeSnapshot: 'main',
       tabType: 'snapshot',
     };
     expect(reducer(currentState, action)).toEqual(expectedState);

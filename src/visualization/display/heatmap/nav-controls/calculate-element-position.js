@@ -1,13 +1,13 @@
 const calculateElementPosition = (direction, height, wrapperHeight, width, windowWidth, offset) => (
   direction === 'horizontal'
     ? {
-      bottom: 40,
-      right: ((windowWidth - width) / 2) - 32,
+      bottom: 30,
+      right: ((windowWidth - width) / 2) - 75,
       transform: 'rotate(-90deg)',
     }
     : {
-      bottom: (wrapperHeight - height - 90) + (offset ? 30 : 0),
-      right: ((windowWidth - width) / 2) - 75,
+      bottom: (wrapperHeight - height - 100) + (offset ? 30 : 0),
+      right: ((windowWidth - width) / 2) - 115,
       transform: null,
     }
 );

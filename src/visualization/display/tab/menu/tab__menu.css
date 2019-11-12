@@ -1,0 +1,6 @@
+.tab__menu {
+  left: 10px;
+  position: absolute;
+  top: 17px;
+  z-index: 5;
+}

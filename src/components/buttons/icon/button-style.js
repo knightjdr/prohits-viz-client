@@ -31,12 +31,10 @@ const Button = styled(DefaultButton)`
     width: 100%;
     z-index: -1;
   }
-
   ${props => (props.kind === 'transparent'
     && css`& {
       background-color: transparent;
       border: none;
-      border-radius: 50%;
     }
 
     &::before {
@@ -55,16 +53,28 @@ const Button = styled(DefaultButton)`
       transform: scale(1);
     }`
   )}
+
+  ${props => (props.square
+    && css`& {
+      border-radius: 0;
+    }
+
+    &::before {
+      border-radius: 0;
+    }`
+  )}
 `;
 
 Button.defaultProps = {
   disabled: false,
   kind: 'transparent',
+  square: false,
 };
 
 Button.propTypes = {
   disabled: PropTypes.bool,
   kind: PropTypes.string,
+  square: PropTypes.bool,
 };
 
 export default Button;

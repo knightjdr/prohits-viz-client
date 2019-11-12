@@ -54,4 +54,27 @@ describe('Icon button style', () => {
       expect(container.firstChild).toHaveStyleRule('color', theme.fontLight, modifier);
     });
   });
+
+  describe('square', () => {
+    let container;
+
+    beforeAll(() => {
+      ({ container } = render(<Button theme={theme} square />));
+    });
+
+    it('should match snapshot', () => {
+      expect(container).toMatchSnapshot();
+    });
+
+    it('should set border-radius', () => {
+      expect(container.firstChild).toHaveStyleRule('border-radius', '0');
+    });
+
+    it('should set before border-radius', () => {
+      const modifier = {
+        modifier: '&::before',
+      };
+      expect(container.firstChild).toHaveStyleRule('border-radius', '0', modifier);
+    });
+  });
 });
