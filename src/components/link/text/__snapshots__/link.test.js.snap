@@ -49,7 +49,7 @@ exports[`Link style with style for :visited should match snapshot 1`] = `
 }
 
 .c0:visited {
-  color: #1E6C60;
+  color: #673ab7;
 }
 
 .c0:hover,

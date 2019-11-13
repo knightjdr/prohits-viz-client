@@ -8,9 +8,9 @@ const useNewPOI = () => {
   const poi = useSelector(state => selectData(state, 'poi'));
   const rowOrder = useSelector(state => selectDataProperty(state, 'rows', 'order'));
 
-  const defineNewPOI = () => ({
-    columns: defineNewOrderForSelection(poi.columns, columnOrder),
-    rows: defineNewOrderForSelection(poi.rows, rowOrder),
+  const defineNewPOI = (canUseUnselected = true) => ({
+    columns: defineNewOrderForSelection(poi.columns, canUseUnselected ? columnOrder : []),
+    rows: defineNewOrderForSelection(poi.rows, canUseUnselected ? rowOrder : []),
   });
 
   return defineNewPOI;

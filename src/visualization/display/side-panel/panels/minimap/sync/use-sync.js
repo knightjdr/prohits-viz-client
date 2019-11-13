@@ -1,8 +1,8 @@
 import { useDispatch, useSelector } from 'react-redux';
 
 import orderArrayBySequence from '../../../../../../utils/order-array-by-sequence';
-import fetch from '../../../../../../utils/fetch';
 import selectActiveTab from '../../../../../../state/selector/visualization/tab-selector';
+import useFetch from '../../../../../../hooks/fetch/use-fetch';
 import { selectDataProperty } from '../../../../../../state/selector/visualization/data-selector';
 import { selectState, selectStateProperty } from '../../../../../../state/selector/general';
 import * as actions from '../../../../../../state/visualization/heatmap/minimap-actions';
@@ -15,8 +15,9 @@ const useSync = () => {
   const rowDB = useSelector(state => selectState(state, 'rowDB'));
   const rowOrder = useSelector(state => selectDataProperty(state, 'rows', 'order'));
   const scoreType = useSelector(state => selectStateProperty(state, 'parameters', 'scoreType'));
-  const session = useSelector(state => selectState(state, 'session'));
   const settings = useSelector(state => selectDataProperty(state, 'settings', 'current'));
+
+  const fetch = useFetch();
 
   const {
     abundanceCap,
@@ -57,9 +58,6 @@ const useSync = () => {
 
     const options = {
       data,
-      headers: {
-        session,
-      },
       method: 'POST',
     };
 

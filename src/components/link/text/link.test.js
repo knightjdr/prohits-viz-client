@@ -19,7 +19,7 @@ describe('Link style', () => {
       const modifier = {
         modifier: '&:visited',
       };
-      expect(container.firstChild).toHaveStyleRule('color', '#1E6C60', modifier);
+      expect(container.firstChild).toHaveStyleRule('color', '#673ab7', modifier);
     });
   });
 

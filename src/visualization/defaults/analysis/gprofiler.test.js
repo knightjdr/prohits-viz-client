@@ -3,7 +3,7 @@ import fillGprofiler, { defaultState } from './gprofiler';
 describe('Fill gprofiler state', () => {
   it('should use default state unless key is defined on input state', () => {
     const fileGprofiler = {
-      ordered_query: true,
+      ordered: true,
       organism: 'mmusculus',
     };
 
