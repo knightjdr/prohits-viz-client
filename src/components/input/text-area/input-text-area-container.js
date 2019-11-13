@@ -9,7 +9,6 @@ const InputTextContainer = ({
   onBlur,
   onChange,
   onFocus,
-  type,
   value,
   warning,
   ...props
@@ -62,7 +61,6 @@ const InputTextContainer = ({
       handleFocus={handleFocus}
       handleKeyDown={handleKeyDown}
       inputID={inputID}
-      type={type}
       value={inputValue}
       warning={inputWarning}
       {...props}
@@ -75,7 +73,6 @@ InputTextContainer.defaultProps = {
   onBlur: null,
   onChange: null,
   onFocus: null,
-  type: 'text',
   value: null,
   warning: '',
 };
@@ -85,7 +82,6 @@ InputTextContainer.propTypes = {
   onBlur: PropTypes.func,
   onChange: PropTypes.func,
   onFocus: PropTypes.func,
-  type: PropTypes.string,
   value: PropTypes.oneOfType([
     PropTypes.number,
     PropTypes.string,

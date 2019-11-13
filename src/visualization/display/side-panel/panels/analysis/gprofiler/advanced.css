@@ -1,0 +1,26 @@
+.gprofiler__advanced {
+  margin-top: 15px;
+}
+.gprofiler__advanced h3 {
+  font-size: 1em;
+  margin-bottom: 10px;
+  text-align: center;
+}
+
+.gprofiler__advanced-checkboxes .input__container {
+  display: flex;
+  flex-direction: row-reverse;
+  font-size: 0.9em;
+  justify-content: flex-end;
+  margin: 5px 0;
+}
+.gprofiler__advanced-checkboxes .input__container label {
+  margin-left: 5px;
+}
+.gprofiler__advanced-checkboxes .input__container .label__separator {
+  display: none;
+}
+
+.gprofiler__advanced-menus > * {
+  margin: 10px 0;
+}

@@ -31,7 +31,7 @@ const Button = styled.button`
     }`
   )};
 
-${props => (props.kind === 'alert'
+  ${props => (props.kind === 'alert'
     && css`& {
       background-color: ${props.theme.alert2};
       color: #421C1A;

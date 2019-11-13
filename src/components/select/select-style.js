@@ -2,6 +2,8 @@ import styled from 'styled-components';
 
 export const SelectContainer = styled.span`
   color: ${props => props.theme.fontDark};
+  display: inline-block;
+  width: 100%;
 
   label {
     padding-right: 8px;
@@ -171,5 +173,8 @@ export const Dropdown = styled.div`
   .select__option:focus {
     background-color: #3271e7;
     color: #fff;
+  }
+  .select__option:hover {
+    background-color: rgba(0, 0, 0, 0.1);
   }
 `;

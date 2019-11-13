@@ -1,4 +1,4 @@
-import styled from 'styled-components';
+import styled, { css } from 'styled-components';
 
 const Span = styled.span`
   align-items: center;
@@ -36,6 +36,7 @@ const Span = styled.span`
   }
 
   label {
+    box-sizing: border-box;
     grid-column: 1 / span 1;
     grid-row: 1 / span 1;
     padding-right: 8px;
@@ -56,6 +57,19 @@ const Span = styled.span`
     height: 25px;
     margin-right: 5px;
   }
+
+  ${props => (props.vertical
+    && css`& {
+      display: flex;
+      flex-direction: column;
+      width: 100%;
+    }
+    input,
+    label,
+    .input__warning {
+      width: 100%;
+    }`
+  )};
 `;
 
 export default Span;

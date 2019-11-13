@@ -6,6 +6,8 @@ import GprofilerContainer from '../../gprofiler/gprofiler-container';
 import Section from '../../../section/section';
 import Select from '../../../../../../../components/select/select-container';
 
+import InputText from '../../../../../../../components/input/text/input-text-container';
+
 import './options.css';
 
 const options = {
@@ -14,26 +16,35 @@ const options = {
 };
 
 const AnalysisOptions = ({
+  analysisName,
   analysisType,
-  handleChange,
+  handleAnalysisNameChange,
+  handleAnalysisTypeChange,
   submitForm,
 }) => (
   <Section
     title="Analysis"
   >
-    <div className="analysis__options-select-wrapper">
+    <div className="analysis__options-definition">
       <Select
-        canClear
-        onChange={handleChange}
+        onChange={handleAnalysisTypeChange}
         options={[
           { label: 'g:Profiler', value: 'gprofiler' },
         ]}
         value={analysisType}
       />
+      <InputText
+        onChange={handleAnalysisNameChange}
+        placeholder="Analysis name..."
+        type="text"
+        value={analysisName}
+      />
+    </div>
+    <div className="analysis__options-submit">
       <Button
         onClick={submitForm}
         kind="success"
-        type="submit"
+        type="button"
       >
         Submit
       </Button>
@@ -43,8 +54,10 @@ const AnalysisOptions = ({
 );
 
 AnalysisOptions.propTypes = {
+  analysisName: PropTypes.string.isRequired,
   analysisType: PropTypes.string.isRequired,
-  handleChange: PropTypes.func.isRequired,
+  handleAnalysisNameChange: PropTypes.func.isRequired,
+  handleAnalysisTypeChange: PropTypes.func.isRequired,
   submitForm: PropTypes.func.isRequired,
 };
 

@@ -5,7 +5,8 @@ import { useDispatch, useSelector } from 'react-redux';
 import TabMenu from './tab__menu';
 
 import { selectState } from '../../../../state/selector/general';
-import { changeActiveSnapshot } from '../../../../state/visualization/settings/tabs-actions';
+import { changeActiveAnalysis, changeActiveSnapshot } from '../../../../state/visualization/settings/tabs-actions';
+import { removeAnalysis } from '../../../../state/visualization/analysis/analysis-actions';
 import { removeHeatmapSnapshot } from '../../../../state/visualization/data/snapshot-actions';
 
 const TabMenuContainer = () => {
@@ -15,7 +16,7 @@ const TabMenuContainer = () => {
 
   const tabs = useSelector(state => selectState(state, 'tabs'));
 
-  const { active: activeTab, availableAnalysis, availableSnapshots } = tabs;
+  const { active: activeTab, availableAnalyses, availableSnapshots } = tabs;
 
   const handleCloseMenu = () => {
     setMenuState({ open: false });
@@ -30,22 +31,36 @@ const TabMenuContainer = () => {
     });
   };
 
+  const handleChangeAnalysis = (e) => {
+    const { item } = e.currentTarget.dataset;
+    handleCloseMenu();
+    dispatch(changeActiveAnalysis(item));
+  };
+
   const handleChangeSnapshot = (e) => {
-    const { snapshot } = e.currentTarget.dataset;
-    dispatch(changeActiveSnapshot(snapshot));
+    const { item } = e.currentTarget.dataset;
+    handleCloseMenu();
+    dispatch(changeActiveSnapshot(item));
+  };
+
+  const handleDeleteAnalysis = (e) => {
+    const { item } = e.currentTarget.dataset;
+    dispatch(removeAnalysis(item));
   };
 
   const handleDeleteSnapshot = (e) => {
-    const { snapshot } = e.currentTarget.dataset;
-    dispatch(removeHeatmapSnapshot(snapshot));
+    const { item } = e.currentTarget.dataset;
+    dispatch(removeHeatmapSnapshot(item));
   };
 
   return (
     <TabMenu
       activeTab={activeTab}
-      analyses={availableAnalysis}
+      analyses={availableAnalyses}
+      handleChangeAnalysis={handleChangeAnalysis}
       handleChangeSnapshot={handleChangeSnapshot}
       handleCloseMenu={handleCloseMenu}
+      handleDeleteAnalysis={handleDeleteAnalysis}
       handleDeleteSnapshot={handleDeleteSnapshot}
       handleToggleMenu={handleToggleMenu}
       menuState={menuState}

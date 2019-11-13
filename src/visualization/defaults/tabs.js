@@ -5,7 +5,7 @@ export const defaultState = {
   active: 'main',
   activeSnapshot: 'main',
   analysisID: 0,
-  availableAnalysis: [],
+  availableAnalyses: [],
   availableSnapshots: ['main'],
   snapshotID: 0,
   tabType: 'snapshot',
@@ -15,7 +15,7 @@ const fillTabs = (userTabs) => {
   if (!userTabs || !isObject(userTabs)) {
     return {
       ...defaultState,
-      availableAnalysis: [],
+      availableAnalyses: [],
       availableSnapshots: ['main'],
     };
   }
@@ -24,7 +24,7 @@ const fillTabs = (userTabs) => {
     active,
     activeSnapshot,
     analysisID,
-    availableAnalysis,
+    availableAnalyses,
     availableSnapshots,
     snapshotID,
     tabType,
@@ -34,13 +34,13 @@ const fillTabs = (userTabs) => {
     active: validateString(active, defaultState.active),
     activeSnapshot: validateString(activeSnapshot, defaultState.activeSnapshot),
     analysisID: validateNumber(analysisID, defaultState.analysisID),
-    availableAnalysis: validateArray(availableAnalysis, defaultState.availableAnalysis),
+    availableAnalyses: validateArray(availableAnalyses, defaultState.availableAnalyses),
     availableSnapshots: validateArray(availableSnapshots, defaultState.availableSnapshots),
     snapshotID: validateNumber(snapshotID, defaultState.snapshotID),
     tabType: validateString(tabType, defaultState.tabType),
   };
 
-  if (![...tabs.availableAnalysis, ...tabs.availableSnapshots].includes(tabs.active)) {
+  if (![...tabs.availableAnalyses, ...tabs.availableSnapshots].includes(tabs.active)) {
     [tabs.active] = tabs.availableSnapshots;
     tabs.tabType = 'snapshot';
   }

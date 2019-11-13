@@ -35,7 +35,7 @@ const state = {
     },
   },
   tabs: {
-    active: 'main',
+    activeSnapshot: 'main',
   },
 };
 

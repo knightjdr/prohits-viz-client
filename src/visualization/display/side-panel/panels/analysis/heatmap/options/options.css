@@ -1,8 +1,17 @@
-.analysis__options-select-wrapper {
+.analysis__options-definition {
   display: flex;
-  justify-content: center;
+  justify-content: flex-start;
 }
-.analysis__options-select-wrapper .select__container {
+.analysis__options-definition .input__container {
+  grid-template-columns: auto 150px;
+}
+.analysis__options-definition .select__container {
   margin-right: 15px;
   width: 150px;
+}
+
+.analysis__options-submit {
+  display: flex;
+  justify-content: flex-end;
+  margin-top: 10px;
 }

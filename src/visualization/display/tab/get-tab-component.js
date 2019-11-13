@@ -1,8 +1,9 @@
 import React from 'react';
 
+import Analysis from '../analysis/analysis-container';
 import Heatmap from '../heatmap/heatmap-container';
 
-const getAnalysisContent = () => {};
+const getAnalysisContent = () => <Analysis />;
 
 const getImageContent = (imageType) => {
   switch (imageType) {

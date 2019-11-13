@@ -7,17 +7,17 @@ const getRowNames = (state) => {
 
 const getOrderedRowNames = (state) => {
   const { rowDB } = state;
-  const { active } = state.tabs;
-  const { order } = state.rows[active];
+  const { activeSnapshot } = state.tabs;
+  const { order } = state.rows[activeSnapshot];
   return order.map(index => rowDB[index].name);
 };
 
 const getVisisbleRowNames = (state) => {
   const { rowDB } = state;
-  const { active } = state.tabs;
-  const { order } = state.rows[active];
-  const dimensions = state.dimensions[active];
-  const position = state.position[active];
+  const { activeSnapshot } = state.tabs;
+  const { order } = state.rows[activeSnapshot];
+  const dimensions = state.dimensions[activeSnapshot];
+  const position = state.position[activeSnapshot];
 
   return order.slice(position.y, position.y + dimensions.pageY).map(index => rowDB[index].name);
 };

@@ -9,7 +9,7 @@ const Label = ({
   && (
     <label htmlFor={id}>
       {label}
-      :
+      <span className="label__separator">:</span>
     </label>
   )
 );

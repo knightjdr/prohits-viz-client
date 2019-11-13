@@ -9,9 +9,9 @@ const TabContainer = () => {
   const imageType = useSelector(state => selectStateProperty(state, 'parameters', 'imageType'));
   const tabs = useSelector(state => selectState(state, 'tabs'));
 
-  const { availableAnalysis, availableSnapshots, tabType } = tabs;
+  const { availableAnalyses, availableSnapshots, tabType } = tabs;
 
-  const showMenu = availableAnalysis.length + availableSnapshots.length > 1;
+  const showMenu = availableAnalyses.length + availableSnapshots.length > 1;
 
   return (
     <Tab

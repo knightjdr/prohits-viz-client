@@ -4,6 +4,7 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faCheck } from '@fortawesome/pro-solid-svg-icons';
 
 import StyledInputText from './input-checkbox-style';
+import Label from '../../label/label';
 
 const InputCheckbox = ({
   checked,
@@ -16,10 +17,10 @@ const InputCheckbox = ({
     {
       label
       && (
-        <label htmlFor={inputID}>
-          {label}
-          :
-        </label>
+        <Label
+          id={inputID}
+          label={label}
+        />
       )
     }
     <span className="input__checkbox">

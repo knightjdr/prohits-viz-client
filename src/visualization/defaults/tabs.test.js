@@ -6,7 +6,7 @@ describe('Fill tabs', () => {
       active: 'go-1',
       analysisID: 1,
       activeSnapshot: 'snapshot-1',
-      availableAnalysis: ['go-1'],
+      availableAnalyses: ['go-1'],
       availableSnapshots: ['main', 'snapshot-1'],
       snapshotID: 1,
       tabType: 'analysis',
@@ -20,7 +20,7 @@ describe('Fill tabs', () => {
       active: 'go-1',
       analysisID: 'a',
       activeSnapshot: 'snapshot-1',
-      availableAnalysis: {},
+      availableAnalyses: {},
       availableSnapshots: {},
       snapshotID: '1',
       tabType: 1,
@@ -29,7 +29,7 @@ describe('Fill tabs', () => {
       active: 'main',
       analysisID: 0,
       activeSnapshot: 'main',
-      availableAnalysis: [],
+      availableAnalyses: [],
       availableSnapshots: ['main'],
       snapshotID: 0,
       tabType: 'snapshot',
@@ -58,7 +58,7 @@ describe('Fill tabs', () => {
   it('should set the active tab to the first available snapshot when it is invalid', () => {
     const userTabs = {
       active: 'snapshot-2',
-      availableAnalysis: ['go-1'],
+      availableAnalyses: ['go-1'],
       availableSnapshots: ['main', 'snapshot-1'],
     };
     const expected = 'main';
@@ -68,7 +68,7 @@ describe('Fill tabs', () => {
   it('should set the tab type to snapshot when the active tab is not found', () => {
     const userTabs = {
       active: 'go-2',
-      availableAnalysis: ['go-1'],
+      availableAnalyses: ['go-1'],
       availableSnapshots: ['main', 'snapshot-1'],
       tabType: 'analysis',
     };
@@ -79,7 +79,7 @@ describe('Fill tabs', () => {
   it('should set the active snapshot tab to the first available snapshot when it is invalid', () => {
     const userTabs = {
       activeSnapshot: 'snapshot-2',
-      availableAnalysis: ['go-1'],
+      availableAnalyses: ['go-1'],
       availableSnapshots: ['main', 'snapshot-1'],
     };
     const expected = 'main';

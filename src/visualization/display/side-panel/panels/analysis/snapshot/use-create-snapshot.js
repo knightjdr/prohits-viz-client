@@ -1,6 +1,6 @@
 import { useDispatch, useSelector } from 'react-redux';
 
-import defineSnapshotName from './define-snapshot-name';
+import defineSnapshotName from '../utils/define-name';
 import useCreateHeatmapSnapshot from './heatmap/use-create-heatmap-snapshot';
 import { addHeatmapSnapshot } from '../../../../../../state/visualization/data/snapshot-actions';
 import { selectState, selectStateProperty } from '../../../../../../state/selector/general';

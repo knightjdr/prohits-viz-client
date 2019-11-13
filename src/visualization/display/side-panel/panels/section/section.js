@@ -12,7 +12,7 @@ const Info = ({
     { border && <div className="panel__section-border" /> }
     {
       title
-      && <h1 className="panel__section-title">{title}</h1>
+      && <h2 className="panel__section-title">{title}</h2>
     }
     {children}
   </Fragment>

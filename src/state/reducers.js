@@ -1,5 +1,6 @@
 import { combineReducers } from 'redux';
 
+import analysis from './visualization/analysis/analysis-reducer';
 import annotations from './visualization/markup/annotation-reducer';
 import article from './news/article-reducer';
 import columnDB from './visualization/data/column-db-reducer';
@@ -7,6 +8,7 @@ import columns from './visualization/heatmap/columns-reducer';
 import cookies from './cookies/cookie-reducer';
 import dimensions from './visualization/settings/dimension-reducer';
 import display from './visualization/settings/display-reducer';
+import gprofiler from './visualization/analysis/gprofiler-reducer';
 import home from './home/home-reducer';
 import markers from './visualization/markup/marker-reducer';
 import minimap from './visualization/heatmap/minimap-reducer';
@@ -23,6 +25,7 @@ import settings from './visualization/settings/settings-reducer';
 import tabs from './visualization/settings/tabs-reducer';
 
 const reducers = combineReducers({
+  analysis,
   annotations,
   article,
   columnDB,
@@ -30,6 +33,7 @@ const reducers = combineReducers({
   cookies,
   dimensions,
   display,
+  gprofiler,
   home,
   markers,
   minimap,

@@ -11,8 +11,11 @@ import './tab__menu.css';
 const TabMenu = forwardRef((
   {
     activeTab,
+    analyses,
+    handleChangeAnalysis,
     handleChangeSnapshot,
     handleCloseMenu,
+    handleDeleteAnalysis,
     handleDeleteSnapshot,
     handleToggleMenu,
     menuState,
@@ -52,14 +55,24 @@ const TabMenu = forwardRef((
         items={snapshots}
         title="snapshots"
       />
+      <MenuList
+        active={activeTab}
+        handleChangeSnapshot={handleChangeAnalysis}
+        handleDeleteSnapshot={handleDeleteAnalysis}
+        items={analyses}
+        title="analyses"
+      />
     </Modal>
   </span>
 ));
 
 TabMenu.propTypes = {
   activeTab: PropTypes.string.isRequired,
+  analyses: PropTypes.arrayOf(PropTypes.string).isRequired,
+  handleChangeAnalysis: PropTypes.func.isRequired,
   handleChangeSnapshot: PropTypes.func.isRequired,
   handleCloseMenu: PropTypes.func.isRequired,
+  handleDeleteAnalysis: PropTypes.func.isRequired,
   handleDeleteSnapshot: PropTypes.func.isRequired,
   handleToggleMenu: PropTypes.func.isRequired,
   menuState: PropTypes.shape({

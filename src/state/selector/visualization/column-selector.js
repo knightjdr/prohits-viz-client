@@ -9,18 +9,18 @@ const getColumnNames = (state) => {
 
 const getOrderedColumnNames = (state) => {
   const { columnDB } = state;
-  const { active } = state.tabs;
-  const { order } = state.columns[active];
+  const { activeSnapshot } = state.tabs;
+  const { order } = state.columns[activeSnapshot];
 
   return orderArrayBySequence(columnDB, order);
 };
 
 const getVisibleColumnNames = (state) => {
   const { columnDB } = state;
-  const { active } = state.tabs;
-  const { order } = state.columns[active];
-  const dimensions = state.dimensions[active];
-  const position = state.position[active];
+  const { activeSnapshot } = state.tabs;
+  const { order } = state.columns[activeSnapshot];
+  const dimensions = state.dimensions[activeSnapshot];
+  const position = state.position[activeSnapshot];
 
   return order.slice(position.x, position.x + dimensions.pageX).map(index => columnDB[index]);
 };

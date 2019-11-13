@@ -1,10 +1,11 @@
-import styled from 'styled-components';
+import styled, { css } from 'styled-components';
 
 const Span = styled.span`
   align-items: center;
   color: ${props => props.theme.fontDark};
   display: inline-grid;
   grid-template-columns: auto auto;
+  width: 100%;
 
   textarea {
     border-color: #cccccc;
@@ -35,6 +36,7 @@ const Span = styled.span`
   }
 
   label {
+    box-sizing: border-box;
     grid-column: 1 / span 1;
     grid-row: 1 / span 1;
     padding-right: 8px;
@@ -55,6 +57,19 @@ const Span = styled.span`
     height: 25px;
     margin-right: 5px;
   }
+
+  ${props => (props.vertical
+    && css`& {
+      display: flex;
+      flex-direction: column;
+      width: 100%;
+    }
+    textarea,
+    label,
+    .input__warning {
+      width: 100%;
+    }`
+  )};
 `;
 
 export default Span;

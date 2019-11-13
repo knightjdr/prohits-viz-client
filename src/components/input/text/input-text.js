@@ -12,10 +12,14 @@ const InputText = ({
   handleKeyDown,
   inputID,
   label,
+  vertical,
   warning,
   ...props
 }) => (
-  <StyledInputText className="input__container">
+  <StyledInputText
+    className="input__container"
+    vertical
+  >
     {
       label
       && (
@@ -47,6 +51,7 @@ const InputText = ({
 
 InputText.defaultProps = {
   label: '',
+  vertical: false,
 };
 
 InputText.propTypes = {
@@ -56,6 +61,7 @@ InputText.propTypes = {
   handleKeyDown: PropTypes.func.isRequired,
   inputID: PropTypes.string.isRequired,
   label: PropTypes.string,
+  vertical: PropTypes.bool,
   warning: PropTypes.string.isRequired,
 };
 

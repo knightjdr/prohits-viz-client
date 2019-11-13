@@ -14,7 +14,7 @@ const MenuListItem = ({
   <li>
     <button
       className={active ? 'menu-list__button active' : 'menu-list__button inactive'}
-      data-snapshot={item}
+      data-item={item}
       onClick={handleChangeSnapshot}
       type="button"
     >
@@ -25,7 +25,7 @@ const MenuListItem = ({
       && (
         <IconButton
           className="menu-list__button-delete"
-          data-snapshot={item}
+          data-item={item}
           icon={faTimes}
           kind="warning"
           onClick={handleDeleteSnapshot}

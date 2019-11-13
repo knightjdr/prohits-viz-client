@@ -5,16 +5,20 @@ import Select from '../../../../../../components/select/select-container';
 
 import species from './species';
 
+import './organism.css';
+
 const Organism = ({
   handleChange,
   organism,
 }) => (
-  <Select
-    label="Organism"
-    onChange={handleChange}
-    options={species}
-    value={organism}
-  />
+  <div className="gprofiler__organism">
+    <Select
+      label="Organism"
+      onChange={handleChange}
+      options={species}
+      value={organism}
+    />
+  </div>
 );
 
 Organism.propTypes = {

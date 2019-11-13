@@ -1,14 +1,16 @@
 import styled from 'styled-components';
 
 const Span = styled.span`
+  align-content: center;
   color: ${props => props.theme.fontDark};
+  display: flex;
 
   input {
     appearance: none;
-    height: 25px;
+    height: 20px;
     opacity: 0;
     margin: 0;
-    width: 25px;
+    width: 20px;
   }
 
   label {
@@ -17,7 +19,7 @@ const Span = styled.span`
 
   .input__checkbox {
     display: inline-block;
-    height: 25px;
+    height: 20px;
     position: relative;
   }
 
@@ -32,8 +34,8 @@ const Span = styled.span`
     color: inherit;
     display: inline-flex;
     font-family: inherit;
-    font-size: 1.2em;
-    height: 25px;
+    font-size: 1em;
+    height: 20px;
     justify-content: center;
     left: 0;
     margin: 0;
@@ -44,7 +46,7 @@ const Span = styled.span`
     transition-duration: 0.3s;
     transition-property: all;
     transition-timing-function: ${props => props.theme.timingFunction};
-    width: 25px;
+    width: 20px;
   }
 
   .input__checkbox svg {
@@ -61,7 +63,7 @@ const Span = styled.span`
   }
 
   input:checked + span > svg {
-    color: ${props => props.theme.success};
+    color: ${props => props.theme.colorPrimary3};
     opacity: 1;
   }
 `;
