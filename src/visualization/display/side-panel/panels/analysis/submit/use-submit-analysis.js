@@ -20,7 +20,7 @@ const useSubmitAnalysis = () => {
     const analysis = defineAnalysisName(analysisName, tabs, 'analysis');
     const poi = mergePOI(defineNewPOI(false), columnNames, rowNames);
 
-    if (analyisType === 'gprofiler') {
+    if (poi.length > 0 && analyisType === 'gprofiler') {
       performGprofilerAnalysis(analysis.id, analysis.name, poi);
     }
   };

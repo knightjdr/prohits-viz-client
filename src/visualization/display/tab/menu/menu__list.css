@@ -24,7 +24,7 @@
   transition-timing-function: var(--timingFunction);
 }
 .tab__menu-list li:hover {
-  background-color: rgba(0, 0, 0, 0.15);
+  background-color: rgba(0, 0, 0, 0.10);
 }
 .tab__menu-list li:hover .menu-list__button-delete {
   pointer-events: auto;

@@ -26,6 +26,7 @@ const Button = styled(DefaultButton)`
     position: absolute;
     top: 0;
     transition: inherit;
+    transition-property: background-color, border-color, color, opacity, transform;
     transform: scale(0);
     transform-origin: center center;
     width: 100%;

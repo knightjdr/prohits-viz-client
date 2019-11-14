@@ -18,7 +18,7 @@ const InputText = ({
 }) => (
   <StyledInputText
     className="input__container"
-    vertical
+    vertical={vertical}
   >
     {
       label

@@ -1,0 +1,16 @@
+.gprofiler-results {
+  box-sizing: border-box;
+  height: 100%;
+  padding: 10px
+}
+
+.gprofiler-results__export {
+  margin-left: 10px;
+}
+.gprofiler-results__export svg {
+  margin-right: 8px;
+}
+
+.gprofiler-results__table {
+  height: calc(100% - 30px);
+}

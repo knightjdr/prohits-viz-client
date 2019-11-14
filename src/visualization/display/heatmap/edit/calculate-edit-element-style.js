@@ -1,5 +1,7 @@
+const CONTAINER_PADDING = 50;
+
 const getContainerDimensions = () => ({
-  width: window.innerWidth,
+  width: window.innerWidth - CONTAINER_PADDING,
 });
 
 const getPadding = (element, side) => (
@@ -21,7 +23,7 @@ const getContainerPadding = (container) => {
 };
 
 const calculateHalfMargin = (windowSize, padding, wrapper) => (
-  (windowSize - padding - wrapper) / 2
+  (windowSize - wrapper) / 2
 );
 
 const calculateEditElementStyle = (svgDimensions, ref) => {

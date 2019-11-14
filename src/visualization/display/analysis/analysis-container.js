@@ -12,6 +12,7 @@ const AnalysisContainer = () => {
   return (
     <Analysis
       analysis={analysis}
+      analysisName={activeTab}
     />
   );
 };

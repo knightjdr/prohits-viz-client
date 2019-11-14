@@ -1,3 +1,4 @@
+import fillAnalysis from '../analysis/analysis';
 import fillAnnotations from './annotations';
 import fillColumns from './columns';
 import fillDimensions from './dimensions';
@@ -16,6 +17,7 @@ import fillTabs from '../tabs';
 
 const validateHeatmap = (file, filename, taskID) => {
   const {
+    analysis,
     annotations,
     columnDB,
     columns,
@@ -36,6 +38,7 @@ const validateHeatmap = (file, filename, taskID) => {
   } = file;
 
   return {
+    analysis: fillAnalysis(analysis),
     annotations: fillAnnotations(annotations),
     columnDB,
     columns: fillColumns(columns, columnDB),
