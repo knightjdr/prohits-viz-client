@@ -170,11 +170,11 @@ export const Dropdown = styled.div`
     border: 0;
   }
 
+  .select__option:hover {
+    background-color: rgba(0, 0, 0, 0.1);
+  }
   .select__option:focus {
     background-color: #3271e7;
     color: #fff;
-  }
-  .select__option:hover {
-    background-color: rgba(0, 0, 0, 0.1);
   }
 `;

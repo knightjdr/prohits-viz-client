@@ -170,7 +170,7 @@ const SelectContainer = ({
   };
 
   const inputID = id || nanoid();
-  const portalID = `${id}-root`;
+  const portalID = `${id || 'dropdown'}-root`;
   const portal = usePortal(portalID);
 
   return (
