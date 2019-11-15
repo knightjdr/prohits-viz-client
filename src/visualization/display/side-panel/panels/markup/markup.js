@@ -9,7 +9,7 @@ import Tooltips from './tooltips/tooltips-container';
 import './markup.css';
 
 const Markup = () => (
-  <div className="panel__markup">
+  <div className="panel panel__markup">
     <Search />
     <Tooltips />
     <Edit />

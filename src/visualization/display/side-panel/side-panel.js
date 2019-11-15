@@ -1,5 +1,5 @@
 import PropTypes from 'prop-types';
-import React, { Fragment } from 'react';
+import React, { forwardRef } from 'react';
 import { faBars } from '@fortawesome/pro-solid-svg-icons';
 
 import Analysis from './panels/analysis/analysis-container';
@@ -13,37 +13,37 @@ import Tabs from './tabs/tabs-container';
 import './side-panel.css';
 
 
-const Panel = {
-  analysis: <Analysis />,
-  info: <Info />,
-  markup: <Markup />,
-  minimap: <Minimap />,
-  settings: <Settings />,
-};
+const visibilityConfig = isOpen => (
+  isOpen ? { className: 'visible' } : { className: 'hidden' }
+);
 
-const visibilityConfig = (isOpen) => {
-  if (isOpen) {
-    return {
-      className: 'visible',
-    };
-  }
-  return {
-    className: 'hidden',
-  };
-};
-
-const SidePanel = ({
-  activeTab,
-  isOpen,
-  togglePanel,
-}) => {
+const SidePanel = forwardRef((
+  {
+    isOpen,
+    togglePanel,
+    translation,
+  },
+  ref,
+) => {
   const settings = visibilityConfig(isOpen);
   return (
-    <Fragment>
-      <div className={`side-panel ${settings.className}`}>
+    <>
+      <div
+        className={`side-panel ${settings.className}`}
+        ref={ref}
+      >
         <Tabs />
-        <div className="panel">
-          {Panel[activeTab]}
+        <div
+          className="panel__container"
+          style={{
+            transform: `translate(${translation}px)`,
+          }}
+        >
+          <Info />
+          <Minimap />
+          <Settings />
+          <Markup />
+          <Analysis />
         </div>
       </div>
       <IconButton
@@ -52,14 +52,14 @@ const SidePanel = ({
         kind="primary"
         onClick={togglePanel}
       />
-    </Fragment>
+    </>
   );
-};
+});
 
 SidePanel.propTypes = {
-  activeTab: PropTypes.string.isRequired,
   isOpen: PropTypes.bool.isRequired,
   togglePanel: PropTypes.func.isRequired,
+  translation: PropTypes.number.isRequired,
 };
 
 export default SidePanel;

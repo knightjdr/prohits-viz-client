@@ -20,7 +20,7 @@ const Settings = ({
   } = settings;
 
   return (
-    <div className="panel__settings">
+    <div className="panel panel__settings">
       <Image
         handleChange={handleChange}
       />

@@ -1,5 +1,5 @@
 import PropTypes from 'prop-types';
-import React, { Fragment } from 'react';
+import React from 'react';
 import { faDownload } from '@fortawesome/pro-duotone-svg-icons';
 
 import IconButton from '../../../../../components/buttons/icon/button';
@@ -15,7 +15,7 @@ const Info = ({
   loadNewFile,
   parameters,
 }) => (
-  <Fragment>
+  <div className="panel">
     <Name
       loadNewFile={loadNewFile}
       name={parameters.filename}
@@ -37,7 +37,7 @@ const Info = ({
         size="1x"
       />
     </div>
-  </Fragment>
+  </div>
 );
 
 Info.propTypes = {

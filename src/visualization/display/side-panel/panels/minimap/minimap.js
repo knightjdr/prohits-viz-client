@@ -6,8 +6,6 @@ import Detached from './detached/detached-container';
 import Image from './image/image-container';
 import Title from './title/title';
 
-import './minimap.css';
-
 const Minimap = ({
   attached,
   minimap,
@@ -25,7 +23,7 @@ const Minimap = ({
   );
 
   return (
-    <div className="panel__minimap">
+    <div className="panel panel__minimap">
       <Title
         attached={attached}
         toggleAttached={toggleAttached}
