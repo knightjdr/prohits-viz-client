@@ -1,6 +1,7 @@
 import PropTypes from 'prop-types';
 import React from 'react';
 
+import Actions from './actions';
 import Results from './results';
 import Warning from './warning';
 
@@ -13,7 +14,8 @@ const Gprofiler = ({
 }) => (
   <div className="gprofiler-results">
     <Warning numberOfResults={data.results.length} />
-    <Results
+    <Results />
+    <Actions
       handleAddAnnotation={handleAddAnnotation}
       handleExportCSV={handleExportCSV}
     />

@@ -12,13 +12,12 @@ import { selectData } from '../../../../state/selector/visualization/data-select
 import { updatePosition } from '../../../../state/visualization/settings/position-actions';
 
 const NavControlsContainer = ({
+  dimensions,
   direction,
   isResizing,
   offsetVertical,
 }) => {
   const dispatch = useDispatch();
-
-  const dimensions = useSelector(state => selectData(state, 'dimensions'));
   const position = useSelector(state => selectData(state, 'position'));
 
   const length = direction === 'horizontal' ? dimensions.columns : dimensions.rows;
@@ -85,6 +84,13 @@ NavControlsContainer.defaultProps = {
 };
 
 NavControlsContainer.propTypes = {
+  dimensions: PropTypes.shape({
+    columns: PropTypes.number,
+    height: PropTypes.number,
+    rows: PropTypes.number,
+    width: PropTypes.number,
+    wrapperHeight: PropTypes.number,
+  }).isRequired,
   direction: PropTypes.string,
   offsetVertical: PropTypes.bool,
   isResizing: PropTypes.bool.isRequired,
@@ -95,6 +101,8 @@ const ShowNavControls = ({
   ...props
 }) => {
   const [isResizing, setIsRisizing] = useState(true);
+
+  const dimensions = useSelector(state => selectData(state, 'dimensions'));
 
   useEffect(() => {
     const makeVisible = debounce(() => {
@@ -110,10 +118,13 @@ const ShowNavControls = ({
     };
   });
 
+  const showControls = show && dimensions.height && dimensions.width;
+
   return (
-    show
+    showControls
     && (
       <NavControlsContainer
+        dimensions={dimensions}
         isResizing={isResizing}
         {...props}
       />
