@@ -14,7 +14,7 @@
     "nanoid": "^2.0.3",
     "normalize-wheel": "^1.0.1",
     "prop-types": "^15.7.2",
-    "react": "^16.11.0",
+    "react": "^16.12.0",
     "react-color": "^2.17.3",
     "react-dom": "^16.8.6",
     "react-redux": "^7.1.3",
