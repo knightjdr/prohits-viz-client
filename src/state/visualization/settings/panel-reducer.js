@@ -8,9 +8,9 @@ const reduceAndChangeTab = (state, action) => ({
   tab: action.tab,
 });
 
-const reduceAndToggle = state => ({
+const reduceAndToggle = (state, action) => ({
   ...state,
-  open: !state.open,
+  open: action.visible !== undefined ? action.visible : !state.open,
 });
 
 const reducer = (state = {}, action) => {
@@ -22,7 +22,7 @@ const reducer = (state = {}, action) => {
     case fileActions.LOAD_INTERACTIVE_STATE:
       return reduceAndLoadState(action, 'panel');
     case actions.TOGGLE_PANEL:
-      return reduceAndToggle(state);
+      return reduceAndToggle(state, action);
     default:
       return state;
   }

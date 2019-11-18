@@ -20,17 +20,33 @@ describe('Panel reducer', () => {
     expect(reducer(undefined, action)).toEqual(expectedState);
   });
 
-  it('should handle TOGGLE_PANEL action', () => {
-    const currentState = {
-      open: true,
-    };
-    const action = {
-      type: actions.TOGGLE_PANEL,
-    };
-    const expectedState = {
-      open: false,
-    };
-    expect(reducer(currentState, action)).toEqual(expectedState);
+  describe('toggle panel', () => {
+    it('should handle TOGGLE_PANEL action when new setting is passed', () => {
+      const currentState = {
+        open: true,
+      };
+      const action = {
+        type: actions.TOGGLE_PANEL,
+        visibility: false,
+      };
+      const expectedState = {
+        open: false,
+      };
+      expect(reducer(currentState, action)).toEqual(expectedState);
+    });
+
+    it('should handle TOGGLE_PANEL action when new setting is undefined', () => {
+      const currentState = {
+        open: false,
+      };
+      const action = {
+        type: actions.TOGGLE_PANEL,
+      };
+      const expectedState = {
+        open: true,
+      };
+      expect(reducer(currentState, action)).toEqual(expectedState);
+    });
   });
 
   describe('file actions', () => {

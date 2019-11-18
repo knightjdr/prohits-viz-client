@@ -6,6 +6,7 @@ export const changePanelTab = tab => ({
   type: CHANGE_PANEL_TAB,
 });
 
-export const togglePanel = () => ({
+export const togglePanel = visible => ({
   type: TOGGLE_PANEL,
+  visible,
 });

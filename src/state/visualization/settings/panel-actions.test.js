@@ -12,7 +12,8 @@ describe('Visualization panel actions', () => {
   it('should dispatch an action to toggle the panel', () => {
     const expectedAction = {
       type: actions.TOGGLE_PANEL,
+      visible: false,
     };
-    expect(actions.togglePanel()).toEqual(expectedAction);
+    expect(actions.togglePanel(false)).toEqual(expectedAction);
   });
 });
