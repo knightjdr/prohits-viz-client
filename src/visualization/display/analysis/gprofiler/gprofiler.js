@@ -8,13 +8,13 @@ import Warning from './warning';
 import './gprofiler.css';
 
 const Gprofiler = ({
-  data,
   handleAddAnnotation,
   handleExportCSV,
+  tableRows,
 }) => (
   <div className="gprofiler-results">
-    <Warning numberOfResults={data.results.length} />
-    <Results />
+    <Warning numberOfResults={tableRows.length} />
+    <Results data={tableRows} />
     <Actions
       handleAddAnnotation={handleAddAnnotation}
       handleExportCSV={handleExportCSV}
@@ -23,13 +23,11 @@ const Gprofiler = ({
 );
 
 Gprofiler.propTypes = {
-  data: PropTypes.shape({
-    results: PropTypes.arrayOf(
-      PropTypes.shape({}),
-    ).isRequired,
-  }).isRequired,
   handleAddAnnotation: PropTypes.func.isRequired,
   handleExportCSV: PropTypes.func.isRequired,
+  tableRows: PropTypes.arrayOf(
+    PropTypes.shape({}),
+  ).isRequired,
 };
 
 export default Gprofiler;

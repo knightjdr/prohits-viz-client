@@ -32,7 +32,6 @@ const GprofilerContainer = ({
 
   return (
     <Gprofiler
-      data={data}
       handleAddAnnotation={handleAddAnnotation}
       handleExportCSV={handleExportCSV}
       tableRows={tableRows}
