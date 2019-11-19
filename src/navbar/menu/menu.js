@@ -3,6 +3,7 @@ import React, { forwardRef } from 'react';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faBars } from '@fortawesome/pro-solid-svg-icons';
 
+import Link from '../../components/link/text/link';
 import Div from './menu-style';
 
 const Menu = forwardRef((
@@ -30,7 +31,19 @@ const Menu = forwardRef((
       ref={ref}
       style={{ transform: open ? 'scale(1)' : 'scale(0)' }}
     >
-      { links.map(link => <li key={link}><a href={`/${link}`}>{link}</a></li>) }
+      {
+        links.map(link => (
+          <li key={link}>
+            <Link
+              className="nav__link"
+              href={`/${link}`}
+              visited={false}
+            >
+              {link}
+            </Link>
+          </li>
+        ))
+      }
     </ul>
   </Div>
 ));

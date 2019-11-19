@@ -15,11 +15,11 @@ const UL = styled.ul`
     display: flex;
     padding: 0 8px;
   }
-  & a {
+  & a.nav__link {
     color: ${props => props.theme.fontLight};
     text-decoration: none;
   }
-  & a:after {
+  & a.nav__link:after {
     background: ${props => props.theme.fontLight};
     content: '';
     display: block;
@@ -29,12 +29,12 @@ const UL = styled.ul`
     transition-timing-function: ${props => props.theme.timingFunction};
     width: 0px;
   }
-  & a:focus {
+  & a.nav__link:focus {
     outline: none;
   }
-  & a:focus:after,
-  & a:hover:after,
-  & a:active:after {
+  & a.nav__link:focus:after,
+  & a.nav__link:hover:after,
+  & a.nav__link:active:after {
     width: 100%;
   }
 

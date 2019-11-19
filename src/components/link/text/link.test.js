@@ -27,7 +27,12 @@ describe('Link style', () => {
     let container;
 
     beforeAll(() => {
-      ({ container } = render(<Link href="/" />));
+      ({ container } = render(
+        <Link
+          href="/"
+          outline
+        />,
+      ));
     });
 
     it('should add outline on focus', () => {

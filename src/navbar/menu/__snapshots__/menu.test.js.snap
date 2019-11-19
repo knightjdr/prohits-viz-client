@@ -1,6 +1,32 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
 exports[`Navbar menu closed should match snapshot 1`] = `
+.c0 {
+  -webkit-text-decoration: none;
+  text-decoration: none;
+  white-space: nowrap;
+}
+
+.c0:link {
+  color: #2468e5;
+}
+
+.c0:visited {
+  color: #2468e5;
+}
+
+.c0:hover,
+.c0:active {
+  -webkit-text-decoration: underline;
+  text-decoration: underline;
+}
+
+.c0:focus {
+  outline: none;
+  -webkit-text-decoration: underline;
+  text-decoration: underline;
+}
+
 <div>
   <div>
     <button
@@ -28,6 +54,7 @@ exports[`Navbar menu closed should match snapshot 1`] = `
     >
       <li>
         <a
+          class="c0 nav__link"
           href="/analysis"
         >
           analysis
@@ -35,6 +62,7 @@ exports[`Navbar menu closed should match snapshot 1`] = `
       </li>
       <li>
         <a
+          class="c0 nav__link"
           href="/help"
         >
           help
@@ -46,6 +74,32 @@ exports[`Navbar menu closed should match snapshot 1`] = `
 `;
 
 exports[`Navbar menu open should match snapshot 1`] = `
+.c0 {
+  -webkit-text-decoration: none;
+  text-decoration: none;
+  white-space: nowrap;
+}
+
+.c0:link {
+  color: #2468e5;
+}
+
+.c0:visited {
+  color: #2468e5;
+}
+
+.c0:hover,
+.c0:active {
+  -webkit-text-decoration: underline;
+  text-decoration: underline;
+}
+
+.c0:focus {
+  outline: none;
+  -webkit-text-decoration: underline;
+  text-decoration: underline;
+}
+
 <div>
   <div>
     <button
@@ -73,6 +127,7 @@ exports[`Navbar menu open should match snapshot 1`] = `
     >
       <li>
         <a
+          class="c0 nav__link"
           href="/analysis"
         >
           analysis
@@ -80,6 +135,7 @@ exports[`Navbar menu open should match snapshot 1`] = `
       </li>
       <li>
         <a
+          class="c0 nav__link"
           href="/help"
         >
           help

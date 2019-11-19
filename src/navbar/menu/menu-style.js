@@ -50,13 +50,13 @@ const Div = styled.div`
     text-transform: uppercase;
   }
 
-  & a {
+  & a.nav__link {
     color: ${props => props.theme.fontDark};
     display: block;
     text-decoration: none;
     width: 100%;
   }
-  & a:after {
+  & a.nav__link:after {
     background: ${props => props.theme.fontDark};
     content: '';
     display: block;
@@ -66,12 +66,12 @@ const Div = styled.div`
     transition-timing-function: ${props => props.theme.timingFunction};
     width: 0px;
   }
-  & a:focus {
+  & a.nav__link:focus {
     outline: none;
   }
-  & a:focus:after,
-  & a:hover:after,
-  & a:active:after {
+  & a.nav__link:focus:after,
+  & a.nav__link:hover:after,
+  & a.nav__link:active:after {
     width: 100%;
   }
 `;

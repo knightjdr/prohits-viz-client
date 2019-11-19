@@ -22,11 +22,9 @@ exports[`Link style with no style for :visited should match snapshot 1`] = `
 }
 
 .c0:focus {
-  outline: auto;
-  outline-color: #4D90FE;
-  outline-offset: 2px;
-  outline-style: dashed;
-  outline-width: 2px;
+  outline: none;
+  -webkit-text-decoration: underline;
+  text-decoration: underline;
 }
 
 <div>
@@ -59,11 +57,9 @@ exports[`Link style with style for :visited should match snapshot 1`] = `
 }
 
 .c0:focus {
-  outline: auto;
-  outline-color: #4D90FE;
-  outline-offset: 2px;
-  outline-style: dashed;
-  outline-width: 2px;
+  outline: none;
+  -webkit-text-decoration: underline;
+  text-decoration: underline;
 }
 
 <div>

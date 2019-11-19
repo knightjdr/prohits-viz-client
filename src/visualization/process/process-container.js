@@ -26,6 +26,7 @@ const ProcessContainer = ({
       )
     ) {
       const getFile = async () => {
+        status.setLoading(true);
         const response = await fetch(`/task/${id}/${filename}`);
         if (response.error) {
           status.setError(true);
@@ -37,7 +38,7 @@ const ProcessContainer = ({
         status.setLoading(false);
       };
       getFile();
-    } else if (id === 'userfile') {
+    } else {
       status.setLoading(false);
     }
   }, [dispatch, filename, id, parameters, status]);

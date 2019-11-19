@@ -43,6 +43,7 @@ const Footer = () => {
       className="footer__funding-link"
       href={agency.url}
       key={agency.name}
+      outline
     >
       <img
         alt={agency.name}
@@ -65,7 +66,6 @@ const Footer = () => {
         &copy; 2019,
         <Link
           href="http://gingraslab.lunenfeld.ca/"
-          outline={false}
         >
           Gingras lab
         </Link>

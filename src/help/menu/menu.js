@@ -3,6 +3,7 @@ import React, { Fragment } from 'react';
 import { faBars } from '@fortawesome/pro-solid-svg-icons';
 
 import IconButton from '../../components/buttons/icon/button';
+import Link from '../../components/link/text/link';
 import links from '../links';
 
 import './menu.css';
@@ -22,12 +23,13 @@ const Menu = ({
           links.map(link => (
             <Fragment key={link.route}>
               <h2>
-                <a
+                <Link
                   className={route === link.route ? 'active' : 'inactive'}
                   href={link.route}
+                  visited={false}
                 >
                   {link.text}
-                </a>
+                </Link>
               </h2>
               {
                 link.children
@@ -36,12 +38,13 @@ const Menu = ({
                     className="help__menu-links_indent"
                     key={childLink.route}
                   >
-                    <a
+                    <Link
                       className={route === childLink.route ? 'active' : 'inactive'}
                       href={childLink.route}
+                      visited={false}
                     >
                       {childLink.text}
-                    </a>
+                    </Link>
                   </h3>
                 ))
               }

@@ -1,10 +1,9 @@
-.toolbox {
+a.toolbox {
   background-color: white;
   box-shadow: 0 3px 6px rgba(0, 0, 0, 0.16), 0 3px 6px rgba(0, 0, 0, 0.23);
   box-sizing: border-box;
-  color: var(--accentPrimary2);
   cursor: pointer;
-  display: flex;
+  display: inline-flex;
   flex-direction: column;
   height: auto;
   margin: 20px;
@@ -14,10 +13,15 @@
   transition: all 0.3s cubic-bezier(.25,.8,.25,1);
   width: 360px;
 }
-.toolbox:focus,
-.toolbox:hover {
+a.toolbox:link,
+a.toolbox:visited {
+  color: var(--accentPrimary2);
+}
+a.toolbox:focus,
+a.toolbox:hover {
   box-shadow: 0 14px 28px rgba(0,0,0,0.25), 0 10px 10px rgba(0,0,0,0.22);
   outline: none;
+  text-decoration: none;
 }
 
 .toolbox__description {
@@ -26,10 +30,11 @@
   flex-grow: 1;
 }
 .toolbox__description > p {
+  color: var(--fontDark);
   font-size: 0.9em;
   margin: 0;
   padding: 15px 0 5px 0;
-  text-align: justify;
+  white-space: normal;
 }
 
 .toolbox__image {

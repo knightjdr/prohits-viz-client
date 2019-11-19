@@ -1,7 +1,9 @@
 import PropTypes from 'prop-types';
+import React from 'react';
 import styled, { css } from 'styled-components';
+import { A } from 'hookrouter';
 
-const A = styled.a`
+const Link = styled(({ outline, visited, ...props }) => <A {...props} />)`
   text-decoration: none;
   white-space: nowrap;
 
@@ -36,14 +38,14 @@ const A = styled.a`
   )}
 `;
 
-A.defaultProps = {
-  outline: true,
+Link.defaultProps = {
+  outline: false,
   visited: true,
 };
 
-A.propTypes = {
+Link.propTypes = {
   outline: PropTypes.bool,
   visited: PropTypes.bool,
 };
 
-export default A;
+export default Link;

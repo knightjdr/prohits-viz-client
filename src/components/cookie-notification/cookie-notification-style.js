@@ -30,7 +30,6 @@ const Div = styled.div`
   }
   p {
     margin: 0;
-    text-align: justify;
   }
   button {
     margin-left: 10px;

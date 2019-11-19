@@ -57,9 +57,6 @@
   margin-top: 20px;
   text-transform: capitalize;
 }
-.help__inner p {
-  text-align: justify;
-}
 .help__inner ul li {
   margin: 3px 0;
 }

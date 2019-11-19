@@ -18,7 +18,6 @@ const Navbar = ({
       <Link
         className="nav__icon"
         href="/"
-        outline={false}
         visited={false}
       >
         <svg

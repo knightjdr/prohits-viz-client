@@ -22,7 +22,6 @@
 }
 
 .help__menu a {
-  color: var(--fontDark);
   cursor: pointer;
   display: block;
   padding: 5px;
@@ -30,8 +29,18 @@
   transition-property: background-color;
   transition-timing-function: inherit;
 }
-.help__menu a.active {
-  background-color: var(--colorPrimary2);
+.help__menu a:after {
+  background: #2468e5;
+  content: '';
+  display: block;
+  height: 2px;
+  transition-duration: 0.3s;
+  transition-property: width;
+  transition-timing-function: var(--timingFunction);
+  width: 0px;
+}
+.help__menu a.active:after {
+  width: 100%;
 }
 .help__menu a:link,
 .help nav a:visited {

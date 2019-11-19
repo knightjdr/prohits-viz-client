@@ -31,9 +31,6 @@
   color: var(--accentPrimary1);
   margin-right: 10px;
 }
-.article p {
-  text-align: justify;
-}
 .article time {
   font-weight: bold;
 }

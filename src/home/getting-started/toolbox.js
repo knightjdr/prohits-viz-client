@@ -1,6 +1,8 @@
 import PropTypes from 'prop-types';
 import React from 'react';
 
+import Link from '../../components/link/text/link';
+
 import './toolbox.css';
 
 const ToolBox = ({
@@ -9,9 +11,10 @@ const ToolBox = ({
   text,
   title,
 }) => (
-  <a
+  <Link
     className="toolbox"
     href={link}
+    visited={false}
   >
     <div className="toolbox__title">
       <div className="toolbox__image">
@@ -22,7 +25,7 @@ const ToolBox = ({
     <div className="toolbox__description">
       <p>{text}</p>
     </div>
-  </a>
+  </Link>
 );
 
 ToolBox.propTypes = {
