@@ -3,7 +3,7 @@ import React, { forwardRef } from 'react';
 
 import StyledTable from './table-style';
 import TableHeader from './head/table-header';
-import TableBody from './body/table-body';
+import TableBody from './body/table-body-container';
 
 const Table = forwardRef((
   {
@@ -16,14 +16,10 @@ const Table = forwardRef((
     rows,
     sortDirection,
     sortField,
-    tableHeight,
   },
   ref,
 ) => (
-  <StyledTable
-    ref={ref.table}
-    style={{ height: tableHeight }}
-  >
+  <StyledTable>
     <TableHeader
       gridTemplateColumns={gridTemplateColumns}
       handleSortRows={handleSortRows}
@@ -58,7 +54,6 @@ Table.propTypes = {
   ).isRequired,
   sortDirection: PropTypes.string.isRequired,
   sortField: PropTypes.string.isRequired,
-  tableHeight: PropTypes.number.isRequired,
 };
 
 export default Table;

@@ -14,7 +14,7 @@ const Span = styled.span`
   font-size: 0.9em;
   opacity: 0;
   overflow-wrap: anywhere;
-  padding: 5px;
+  padding: ${props => (props.padding ? '5px' : 0)};
   pointer-events: none;
   position: fixed;
   z-index: 2147483647;
@@ -57,10 +57,12 @@ const Span = styled.span`
 `;
 
 Span.defaultProps = {
+  padding: true,
   shadow: true,
 };
 
 Span.propTypes = {
+  padding: PropTypes.bool,
   shadow: PropTypes.bool,
 };
 

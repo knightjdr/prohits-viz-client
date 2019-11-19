@@ -1,4 +1,4 @@
-const setHeadWidth = (tableBody, tableHeader) => {
+const setHeadPadding = (tableBody, tableHeader) => {
   const { clientWidth, offsetWidth } = tableBody;
   const scrollBarWidth = offsetWidth - clientWidth;
   if (scrollBarWidth > 0) {
@@ -8,4 +8,4 @@ const setHeadWidth = (tableBody, tableHeader) => {
   }
 };
 
-export default setHeadWidth;
+export default setHeadPadding;

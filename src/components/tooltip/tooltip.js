@@ -9,12 +9,14 @@ const Tooltip = forwardRef((
     children,
     className,
     portal,
+    ...props
   },
   ref,
 ) => createPortal(
   <StyledTooltip
     className={className}
     ref={ref}
+    {...props}
   >
     {children}
   </StyledTooltip>,

@@ -1,6 +1,5 @@
 import PropTypes from 'prop-types';
 import React, {
-  useCallback,
   useMemo,
   useEffect,
   useRef,
@@ -9,10 +8,9 @@ import React, {
 
 import Table from './table';
 
-import calculateHeight from './calculate-height';
 import createGridTemplateColumns from './create-grid-template-columns';
 import defineSortDirection, { DEFAULT_SORT_DIRECTION } from './define-sort-direction';
-import setHeadWidth from './set-head-width';
+import setHeadPadding from './set-head-padding';
 import sortRows from './sort-rows';
 import useWindowDimension from '../../hooks/window-size/use-window-dimension';
 
@@ -27,10 +25,8 @@ const TableContainer = ({
 }) => {
   const bodyRef = useRef();
   const headerRef = useRef();
-  const tableRef = useRef();
   const [sortDirection, setSortDirection] = useState(sortByDirection);
   const [sortField, setSortField] = useState(sortBy);
-  const [tableHeight, setTableHeight] = useState(0);
 
   const windowResized = useWindowDimension();
 
@@ -44,25 +40,9 @@ const TableContainer = ({
     [rows, sortField, sortDirection, header],
   );
 
-  const setHeaderWidth = useCallback(
-    () => {
-      setHeadWidth(bodyRef.current, headerRef.current);
-    },
-    [],
-  );
-
-  const setHeight = useCallback(
-    () => {
-      const height = calculateHeight(tableRef.current, rows, rowHeight);
-      setTableHeight(height);
-    },
-    [rows, rowHeight],
-  );
-
   useEffect(() => {
-    setHeaderWidth();
-    setHeight();
-  }, [setHeaderWidth, setHeight, windowResized]);
+    setHeadPadding(bodyRef.current, headerRef.current);
+  }, [windowResized]);
 
   const handleSortRows = (e) => {
     const { sortKey } = e.currentTarget.dataset;
@@ -73,7 +53,6 @@ const TableContainer = ({
   const refs = {
     body: bodyRef,
     header: headerRef,
-    table: tableRef,
   };
 
   return (
@@ -88,7 +67,6 @@ const TableContainer = ({
       rows={sortedRows}
       sortDirection={sortDirection}
       sortField={sortField}
-      tableHeight={tableHeight}
     />
   );
 };

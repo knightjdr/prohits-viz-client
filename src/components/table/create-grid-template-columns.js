@@ -1,5 +1,9 @@
-const createGridColumnTemplate = cells => (
-  cells.map(cell => cell.width).join(' ')
+const getCellWidth = column => (
+  column.width || 'auto'
+);
+
+const createGridColumnTemplate = columns => (
+  columns.map(column => getCellWidth(column)).join(' ')
 );
 
 export default createGridColumnTemplate;

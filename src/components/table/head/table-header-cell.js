@@ -3,13 +3,25 @@ import React from 'react';
 
 import SortArrow from './sort-arrow';
 
+const addTooltip = cell => (
+  cell.tooltip
+    ? {
+      'data-tooltip': cell.tooltip,
+      'data-tooltip-position': 'bottom',
+    }
+    : {}
+);
+
 const HeaderCell = ({
   cell,
   handleSortRows,
   sortDirection,
   sortField,
 }) => (
-  <div className="table__header-cell">
+  <div
+    className="table__header-cell"
+    {...addTooltip(cell)}
+  >
     { cell.name }
     <SortArrow
       direction={sortDirection}

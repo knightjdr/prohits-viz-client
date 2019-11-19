@@ -7,6 +7,7 @@ import StyledButton from './button-style';
 const IconButton = ({
   icon,
   rotation,
+  size,
   ...props
 }) => (
   <StyledButton
@@ -15,17 +16,20 @@ const IconButton = ({
     <FontAwesomeIcon
       icon={icon}
       rotation={rotation}
+      size={size}
     />
   </StyledButton>
 );
 
 IconButton.defaultProps = {
   rotation: null,
+  size: '1x',
 };
 
 IconButton.propTypes = {
   icon: PropTypes.shape({}).isRequired,
   rotation: PropTypes.number,
+  size: PropTypes.string,
 };
 
 export default IconButton;

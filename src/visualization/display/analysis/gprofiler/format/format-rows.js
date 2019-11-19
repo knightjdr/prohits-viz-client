@@ -6,8 +6,8 @@ const formatRows = results => (
   results.map(term => ({
     genes: {
       align: 'left',
-      canOverflow: true,
       content: term.genes,
+      showOverflow: true,
     },
     id: {
       content: createSourceLink(term.id, term.sourceURL),
@@ -27,8 +27,8 @@ const formatRows = results => (
     },
     term: {
       align: 'left',
-      canOverflow: true,
       content: term.term,
+      showOverflow: true,
     },
     termSize: {
       content: term.termSize,
