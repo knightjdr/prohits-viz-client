@@ -1,9 +1,11 @@
 import PropTypes from 'prop-types';
-import React, { useEffect } from 'react';
+import React, { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 
+import LoadArticle from './load-article';
+
 import fetch from '../../utils/fetch';
-import Article from './article';
+import isArticleLoaded from './is-article-loaded';
 import { fillArticle, getArticle, articleError } from '../../state/news/article-actions';
 import { selectState } from '../../state/selector/general';
 
@@ -12,6 +14,7 @@ const ArticleContainer = ({
 }) => {
   const dispatch = useDispatch();
   const article = useSelector(state => selectState(state, 'article'));
+  const [isLoaded, setLoaded] = useState(isArticleLoaded(id, article.id));
 
   useEffect(() => {
     const fetchContent = async () => {
@@ -19,20 +22,23 @@ const ArticleContainer = ({
       const response = await fetch(`/news/${id}`);
       if (!response.error) {
         dispatch(fillArticle(id, response.data.article));
+        setLoaded(true);
       } else {
         dispatch(articleError());
       }
     };
-    if (!article.isLoaded) {
+
+    if (!isLoaded) {
       fetchContent();
     }
-  }, [dispatch, article.isLoaded, id]);
+  }, [dispatch, id, isLoaded]);
+
 
   return (
-    <Article
+    <LoadArticle
       article={article.details}
       error={article.error}
-      isLoaded={article.isLoaded}
+      isLoaded={isLoaded}
     />
   );
 };

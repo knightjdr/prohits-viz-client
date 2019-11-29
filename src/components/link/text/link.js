@@ -1,7 +1,8 @@
 import PropTypes from 'prop-types';
 import React from 'react';
 import styled, { css } from 'styled-components';
-import { A } from 'hookrouter';
+
+import A from './a';
 
 const Link = styled(({ outline, visited, ...props }) => <A {...props} />)`
   text-decoration: none;

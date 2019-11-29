@@ -5,14 +5,18 @@
   max-width: 350px;
   overflow-x: hidden;
   overflow-y: auto;
-  padding: 0 15px;
+  padding: 10px 15px;
   width: 90vw;
 }
+.panel:after {
+  content: "";
+  display: block;
+  height: 10px;
+  width: 100%;
+}
 .panel__container {
-  box-sizing: border-box;
   display: flex;
   height: calc(100% - 50px);
-  padding: 10px 0;
 }
 
 .side-panel {

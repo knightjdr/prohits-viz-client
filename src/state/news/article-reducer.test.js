@@ -17,8 +17,6 @@ describe('Article reducer', () => {
       details: {},
       error: false,
       id: 'id',
-      isLoaded: false,
-      isLoading: true,
     };
     expect(articleReducer(undefined, action)).toEqual(expectedState);
   });
@@ -33,8 +31,6 @@ describe('Article reducer', () => {
       details: { headline: 'headline' },
       error: false,
       id: 'id',
-      isLoaded: true,
-      isLoading: false,
     };
     expect(articleReducer(undefined, action)).toEqual(expectedState);
   });
@@ -48,8 +44,6 @@ describe('Article reducer', () => {
       details: {},
       error: true,
       id: 'id',
-      isLoaded: false,
-      isLoading: false,
     };
     expect(articleReducer(undefined, action)).toEqual(expectedState);
   });

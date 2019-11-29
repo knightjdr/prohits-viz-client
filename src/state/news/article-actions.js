@@ -1,6 +1,11 @@
+export const ARTICLE_ERROR = 'ARTICLE_ERROR';
 export const FILL_ARTICLE = 'FILL_ARTICLE';
 export const GET_ARTICLE = 'GET_ARTICLE';
-export const ARTICLE_ERROR = 'ARTICLE_ERROR';
+
+export const articleError = id => ({
+  id,
+  type: ARTICLE_ERROR,
+});
 
 export const fillArticle = (id, details) => ({
   details,
@@ -11,9 +16,4 @@ export const fillArticle = (id, details) => ({
 export const getArticle = id => ({
   id,
   type: GET_ARTICLE,
-});
-
-export const articleError = id => ({
-  id,
-  type: ARTICLE_ERROR,
 });
