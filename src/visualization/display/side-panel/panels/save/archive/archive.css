@@ -1,0 +1,13 @@
+.panel__save-archive p svg {
+  color: var(--warning);
+  margin-right: 5px;
+}
+
+.panel__save-archive-container-button {
+  align-items: center;
+  display: flex;
+  justify-content: center;
+}
+.panel__save-archive-container-button > span {
+  margin-right: 5px;
+}

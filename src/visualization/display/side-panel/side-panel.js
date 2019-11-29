@@ -7,11 +7,11 @@ import IconButton from '../../../components/buttons/icon/button';
 import Info from './panels/info/info-container';
 import Markup from './panels/markup/markup';
 import Minimap from './panels/minimap/minimap-container';
+import Save from './panels/save/save';
 import Settings from './panels/settings/settings-container';
 import Tabs from './tabs/tabs-container';
 
 import './side-panel.css';
-
 
 const visibilityConfig = isOpen => (
   isOpen ? { className: 'visible' } : { className: 'hidden' }
@@ -44,6 +44,7 @@ const SidePanel = forwardRef((
           <Settings />
           <Markup />
           <Analysis />
+          <Save />
         </div>
       </div>
       <IconButton
