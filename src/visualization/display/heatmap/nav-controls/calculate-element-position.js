@@ -1,15 +1,22 @@
-const calculateElementPosition = (direction, height, wrapperHeight, width, windowWidth, offset) => (
-  direction === 'horizontal'
+const getMarginSize = (wrapper, heatmap) => (
+  wrapper - heatmap
+);
+
+const calculateElementPosition = (direction, height, wrapperHeight, width, windowWidth, offset) => {
+  const wrapperHorizontalMargin = getMarginSize(windowWidth, width);
+  const wrapperVerticalMargin = getMarginSize(wrapperHeight, height);
+
+  return direction === 'horizontal'
     ? {
-      bottom: 33,
-      right: ((windowWidth - width) / 2) - 40,
+      bottom: (wrapperVerticalMargin - 73),
+      right: (wrapperHorizontalMargin / 2) - 40,
       transform: 'rotate(-90deg)',
     }
     : {
-      bottom: (wrapperHeight - height - 100) + (offset ? 30 : 0),
-      right: ((windowWidth - width) / 2) - 80,
+      bottom: (wrapperVerticalMargin - 100) + (offset ? 30 : 0),
+      right: (wrapperHorizontalMargin / 2) - 83,
       transform: null,
-    }
-);
+    };
+};
 
 export default calculateElementPosition;
