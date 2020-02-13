@@ -1,6 +1,5 @@
 import { useDispatch, useSelector } from 'react-redux';
 
-import orderArrayBySequence from '../../../../../../utils/order-array-by-sequence';
 import selectActiveTab from '../../../../../../state/selector/visualization/tab-selector';
 import useFetch from '../../../../../../hooks/fetch/use-fetch';
 import { selectDataProperty } from '../../../../../../state/selector/visualization/data-selector';
@@ -11,6 +10,7 @@ const useSync = () => {
   const dispatch = useDispatch();
 
   const activeTab = useSelector(state => selectActiveTab(state));
+  const columnDB = useSelector(state => selectState(state, 'columnDB'));
   const columnOrder = useSelector(state => selectDataProperty(state, 'columns', 'order'));
   const rowDB = useSelector(state => selectState(state, 'rowDB'));
   const rowOrder = useSelector(state => selectDataProperty(state, 'rows', 'order'));
@@ -33,17 +33,15 @@ const useSync = () => {
   const syncMinimap = async (updateOriginal = false) => {
     dispatch(actions.synchronizeMinimap(updateOriginal));
 
-    const orderedRows = orderArrayBySequence(rowDB, rowOrder).map(row => ({
-      data: orderArrayBySequence(row.data, columnOrder),
-      name: row.name,
-    }));
-
     const data = {
       abundanceCap,
+      columnDB,
+      columnOrder,
       fillColor,
       invertColor,
       minAbundance,
-      rows: orderedRows,
+      rowDB,
+      rowOrder,
       scoreType,
     };
 
