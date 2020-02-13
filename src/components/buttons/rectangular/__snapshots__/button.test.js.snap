@@ -44,10 +44,8 @@ exports[`Rectangular button style should match snapshot 1`] = `
   color: #111;
 }
 
-<div>
-  <button
-    class="c0"
-    kind="primary"
-  />
-</div>
+<button
+  class="sc-AxjAm c0"
+  kind="primary"
+/>
 `;

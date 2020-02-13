@@ -101,31 +101,29 @@ exports[`Icon button style primary button should match snapshot 1`] = `
   transform: scale(1);
 }
 
-<div>
-  <button
-    aria-label="test-button"
-    class="c0"
-    fill="primary"
-    kind="transparent"
-    type="button"
+<button
+  aria-label="test-button"
+  class="sc-AxjAm c0"
+  fill="primary"
+  kind="transparent"
+  type="button"
+>
+  <svg
+    aria-hidden="true"
+    class="svg-inline--fa fa-plus fa-w-14 fa-1x "
+    data-icon="plus"
+    data-prefix="fas"
+    focusable="false"
+    role="img"
+    viewBox="0 0 448 512"
+    xmlns="http://www.w3.org/2000/svg"
   >
-    <svg
-      aria-hidden="true"
-      class="svg-inline--fa fa-plus fa-w-14 fa-1x fa-rotate-null fa-pull-null "
-      data-icon="plus"
-      data-prefix="fas"
-      focusable="false"
-      role="img"
-      viewBox="0 0 448 512"
-      xmlns="http://www.w3.org/2000/svg"
-    >
-      <path
-        d="M416 208H272V64c0-17.67-14.33-32-32-32h-32c-17.67 0-32 14.33-32 32v144H32c-17.67 0-32 14.33-32 32v32c0 17.67 14.33 32 32 32h144v144c0 17.67 14.33 32 32 32h32c17.67 0 32-14.33 32-32V304h144c17.67 0 32-14.33 32-32v-32c0-17.67-14.33-32-32-32z"
-        fill="currentColor"
-      />
-    </svg>
-  </button>
-</div>
+    <path
+      d="M416 208H272V64c0-17.67-14.33-32-32-32h-32c-17.67 0-32 14.33-32 32v144H32c-17.67 0-32 14.33-32 32v32c0 17.67 14.33 32 32 32h144v144c0 17.67 14.33 32 32 32h32c17.67 0 32-14.33 32-32V304h144c17.67 0 32-14.33 32-32v-32c0-17.67-14.33-32-32-32z"
+      fill="currentColor"
+    />
+  </svg>
+</button>
 `;
 
 exports[`Icon button style transparent (default) button should match snapshot 1`] = `
@@ -229,28 +227,26 @@ exports[`Icon button style transparent (default) button should match snapshot 1`
   transform: scale(1);
 }
 
-<div>
-  <button
-    aria-label="test-button"
-    class="c0"
-    kind="transparent"
-    type="button"
+<button
+  aria-label="test-button"
+  class="sc-AxjAm c0"
+  kind="transparent"
+  type="button"
+>
+  <svg
+    aria-hidden="true"
+    class="svg-inline--fa fa-plus fa-w-14 fa-1x "
+    data-icon="plus"
+    data-prefix="fas"
+    focusable="false"
+    role="img"
+    viewBox="0 0 448 512"
+    xmlns="http://www.w3.org/2000/svg"
   >
-    <svg
-      aria-hidden="true"
-      class="svg-inline--fa fa-plus fa-w-14 fa-1x fa-rotate-null fa-pull-null "
-      data-icon="plus"
-      data-prefix="fas"
-      focusable="false"
-      role="img"
-      viewBox="0 0 448 512"
-      xmlns="http://www.w3.org/2000/svg"
-    >
-      <path
-        d="M416 208H272V64c0-17.67-14.33-32-32-32h-32c-17.67 0-32 14.33-32 32v144H32c-17.67 0-32 14.33-32 32v32c0 17.67 14.33 32 32 32h144v144c0 17.67 14.33 32 32 32h32c17.67 0 32-14.33 32-32V304h144c17.67 0 32-14.33 32-32v-32c0-17.67-14.33-32-32-32z"
-        fill="currentColor"
-      />
-    </svg>
-  </button>
-</div>
+    <path
+      d="M416 208H272V64c0-17.67-14.33-32-32-32h-32c-17.67 0-32 14.33-32 32v144H32c-17.67 0-32 14.33-32 32v32c0 17.67 14.33 32 32 32h144v144c0 17.67 14.33 32 32 32h32c17.67 0 32-14.33 32-32V304h144c17.67 0 32-14.33 32-32v-32c0-17.67-14.33-32-32-32z"
+      fill="currentColor"
+    />
+  </svg>
+</button>
 `;

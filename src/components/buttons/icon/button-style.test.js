@@ -8,39 +8,38 @@ const theme = {
   fontLight: '#fff',
 };
 
+const renderElement = props => render(<Button {...props} />);
+
 describe('Icon button style', () => {
   describe('default', () => {
-    let container;
-
-    beforeAll(() => {
-      ({ container } = render(<Button theme={theme} />));
-    });
+    const props = { theme };
 
     it('should match snapshot', () => {
-      expect(container).toMatchSnapshot();
+      const { container } = renderElement(props);
+      expect(container.firstChild).toMatchSnapshot();
     });
   });
 
   describe('transparent', () => {
-    let container;
-
-    beforeAll(() => {
-      ({ container } = render(<Button theme={theme} />));
-    });
+    const props = { theme };
 
     it('should match snapshot', () => {
-      expect(container).toMatchSnapshot();
+      const { container } = renderElement(props);
+      expect(container.firstChild).toMatchSnapshot();
     });
 
     it('should set background color', () => {
+      const { container } = renderElement(props);
       expect(container.firstChild).toHaveStyleRule('background-color', 'transparent');
     });
 
     it('should set color', () => {
+      const { container } = renderElement(props);
       expect(container.firstChild).toHaveStyleRule('color', theme.colorPrimary1);
     });
 
     it('should set before background color', () => {
+      const { container } = renderElement(props);
       const modifier = {
         modifier: '&::before',
       };
@@ -48,6 +47,7 @@ describe('Icon button style', () => {
     });
 
     it('should set icon color on focus', () => {
+      const { container } = renderElement(props);
       const modifier = {
         modifier: '&:focus:not([disabled])',
       };
@@ -56,21 +56,23 @@ describe('Icon button style', () => {
   });
 
   describe('square', () => {
-    let container;
-
-    beforeAll(() => {
-      ({ container } = render(<Button theme={theme} square />));
-    });
+    const props = {
+      theme,
+      square: true,
+    };
 
     it('should match snapshot', () => {
-      expect(container).toMatchSnapshot();
+      const { container } = renderElement(props);
+      expect(container.firstChild).toMatchSnapshot();
     });
 
     it('should set border-radius', () => {
+      const { container } = renderElement(props);
       expect(container.firstChild).toHaveStyleRule('border-radius', '0');
     });
 
     it('should set before border-radius', () => {
+      const { container } = renderElement(props);
       const modifier = {
         modifier: '&::before',
       };

@@ -1,5 +1,5 @@
 import React from 'react';
-import { cleanup, render } from '@testing-library/react';
+import { render } from '@testing-library/react';
 
 import Navbar from './navbar';
 
@@ -8,52 +8,36 @@ jest.mock('../components/link/text/link');
 jest.mock('./menu/menu-style');
 jest.mock('./text-links/text-links-style');
 
+const renderElement = props => render(<Navbar {...props} />);
+
 describe('Navbar', () => {
   describe('normal screen size', () => {
-    let container;
-
-    afterAll(() => {
-      cleanup();
-    });
-
-    beforeAll(() => {
-      ({ container } = render(
-        <Navbar
-          smallScreen={false}
-          route="home"
-          uri={undefined}
-        />,
-      ));
-    });
+    const props = {
+      smallScreen: false,
+      route: 'home',
+      uri: undefined,
+    };
 
     it('should match snapshot', () => {
-      expect(container).toMatchSnapshot();
+      const { container } = renderElement(props);
+      expect(container.firstChild).toMatchSnapshot();
     });
   });
 
   describe('small screen size', () => {
-    let container;
-    let getByLabelText;
-
-    afterAll(() => {
-      cleanup();
-    });
-
-    beforeAll(() => {
-      ({ container, getByLabelText } = render(
-        <Navbar
-          smallScreen
-          route="home"
-          uri={undefined}
-        />,
-      ));
-    });
+    const props = {
+      smallScreen: true,
+      route: 'home',
+      uri: undefined,
+    };
 
     it('should match snapshot', () => {
-      expect(container).toMatchSnapshot();
+      const { container } = renderElement(props);
+      expect(container.firstChild).toMatchSnapshot();
     });
 
     it('should render hamburger menu', () => {
+      const { getByLabelText } = renderElement(props);
       expect(getByLabelText('navigation menu')).toBeInTheDocument();
     });
   });

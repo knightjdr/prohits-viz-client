@@ -27,26 +27,24 @@ exports[`Navbar text links should match snapshot 1`] = `
   text-decoration: underline;
 }
 
-<div>
-  <ul>
-    <li
-      class="nav__link_active"
+<ul>
+  <li
+    class="nav__link_active"
+  >
+    <a
+      class="c0 nav__link"
+      href="/analysis"
     >
-      <a
-        class="c0 nav__link"
-        href="/analysis"
-      >
-        analysis
-      </a>
-    </li>
-    <li>
-      <a
-        class="c0 nav__link"
-        href="/help"
-      >
-        help
-      </a>
-    </li>
-  </ul>
-</div>
+      analysis
+    </a>
+  </li>
+  <li>
+    <a
+      class="c0 nav__link"
+      href="/help"
+    >
+      help
+    </a>
+  </li>
+</ul>
 `;

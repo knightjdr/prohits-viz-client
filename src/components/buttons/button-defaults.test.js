@@ -13,23 +13,24 @@ const theme = {
   warning: '#ff0000',
 };
 
+const renderElement = props => render(<Button {...props} />);
+
 describe('Default button style', () => {
   describe('default', () => {
-    let container;
-
-    beforeAll(() => {
-      ({ container } = render(<Button theme={theme} />));
-    });
+    const props = { theme };
 
     it('should match snapshot', () => {
-      expect(container).toMatchSnapshot();
+      const { container } = renderElement(props);
+      expect(container.firstChild).toMatchSnapshot();
     });
 
     it('should set transition timing function', () => {
+      const { container } = renderElement(props);
       expect(container.firstChild).toHaveStyleRule('transition-timing-function', theme.timingFunction);
     });
 
     it('should set animation timing function on active', () => {
+      const { container } = renderElement(props);
       const modifier = {
         modifier: '&:active',
       };
@@ -38,85 +39,78 @@ describe('Default button style', () => {
   });
 
   describe('optional props', () => {
-    let container;
-
-    beforeAll(() => {
-      ({ container } = render(
-        <Button
-          disabled
-          shadow
-          theme={theme}
-        />,
-      ));
-    });
+    const props = {
+      disabled: true,
+      shadow: true,
+      theme,
+    };
 
     it('should match snapshot', () => {
-      expect(container).toMatchSnapshot();
+      const { container } = renderElement(props);
+      expect(container.firstChild).toMatchSnapshot();
     });
 
     it('should set box-shadow', () => {
+      const { container } = renderElement(props);
       expect(container.firstChild).toHaveStyleRule('box-shadow', '0 2px 5px 0 rgba(0,0,0,0.26)');
     });
 
     it('should set cursor', () => {
+      const { container } = renderElement(props);
       expect(container.firstChild).toHaveStyleRule('cursor', 'not-allowed');
     });
 
     it('should set opacity', () => {
+      const { container } = renderElement(props);
       expect(container.firstChild).toHaveStyleRule('opacity', '0.6');
     });
   });
 
   describe('grey button', () => {
-    let container;
-
-    beforeAll(() => {
-      ({ container } = render(
-        <Button
-          kind="grey"
-          theme={theme}
-        />,
-      ));
-    });
+    const props = {
+      kind: 'grey',
+      theme,
+    };
 
     it('should match snapshot', () => {
-      expect(container).toMatchSnapshot();
+      const { container } = renderElement(props);
+      expect(container.firstChild).toMatchSnapshot();
     });
 
     it('should set background color', () => {
+      const { container } = renderElement(props);
       expect(container.firstChild).toHaveStyleRule('background-color', 'rgba(0,0,0,0.2)');
     });
 
     it('should set color', () => {
+      const { container } = renderElement(props);
       expect(container.firstChild).toHaveStyleRule('color', theme.fontDark);
     });
   });
 
   describe('primary', () => {
-    let container;
-
-    beforeAll(() => {
-      ({ container } = render(
-        <Button
-          kind="primary"
-          theme={theme}
-        />,
-      ));
-    });
+    const props = {
+      kind: 'primary',
+      theme,
+    };
 
     it('should match snapshot', () => {
-      expect(container).toMatchSnapshot();
+      const { container } = renderElement(props);
+      expect(container.firstChild).toMatchSnapshot();
     });
 
     it('should set background color', () => {
+      const { container } = renderElement(props);
       expect(container.firstChild).toHaveStyleRule('background-color', theme.colorPrimary1);
     });
 
     it('should set color', () => {
+      const { container } = renderElement(props);
       expect(container.firstChild).toHaveStyleRule('color', theme.fontLight);
     });
 
     it('should set background color on focus', () => {
+      const { container } = renderElement(props);
       const modifier = {
         modifier: '&:focus:not([disabled])',
       };
@@ -124,6 +118,7 @@ describe('Default button style', () => {
     });
 
     it('should set border color on focus', () => {
+      const { container } = renderElement(props);
       const modifier = {
         modifier: '&:focus:not([disabled])',
       };
@@ -131,6 +126,7 @@ describe('Default button style', () => {
     });
 
     it('should set color on focus', () => {
+      const { container } = renderElement(props);
       const modifier = {
         modifier: '&:focus:not([disabled])',
       };
@@ -139,30 +135,28 @@ describe('Default button style', () => {
   });
 
   describe('secondary', () => {
-    let container;
-
-    beforeAll(() => {
-      ({ container } = render(
-        <Button
-          kind="secondary"
-          theme={theme}
-        />,
-      ));
-    });
+    const props = {
+      kind: 'secondary',
+      theme,
+    };
 
     it('should match snapshot', () => {
-      expect(container).toMatchSnapshot();
+      const { container } = renderElement(props);
+      expect(container.firstChild).toMatchSnapshot();
     });
 
     it('should set background color', () => {
+      const { container } = renderElement(props);
       expect(container.firstChild).toHaveStyleRule('background-color', theme.colorSecondary1);
     });
 
     it('should set color', () => {
+      const { container } = renderElement(props);
       expect(container.firstChild).toHaveStyleRule('color', theme.fontLight);
     });
 
     it('should set background color on focus', () => {
+      const { container } = renderElement(props);
       const modifier = {
         modifier: '&:focus:not([disabled])',
       };
@@ -170,6 +164,7 @@ describe('Default button style', () => {
     });
 
     it('should set border color on focus', () => {
+      const { container } = renderElement(props);
       const modifier = {
         modifier: '&:focus:not([disabled])',
       };
@@ -177,6 +172,7 @@ describe('Default button style', () => {
     });
 
     it('should set color on focus', () => {
+      const { container } = renderElement(props);
       const modifier = {
         modifier: '&:focus:not([disabled])',
       };
@@ -185,26 +181,23 @@ describe('Default button style', () => {
   });
 
   describe('success', () => {
-    let container;
-
-    beforeAll(() => {
-      ({ container } = render(
-        <Button
-          kind="success"
-          theme={theme}
-        />,
-      ));
-    });
+    const props = {
+      kind: 'success',
+      theme,
+    };
 
     it('should match snapshot', () => {
-      expect(container).toMatchSnapshot();
+      const { container } = renderElement(props);
+      expect(container.firstChild).toMatchSnapshot();
     });
 
     it('should set background color', () => {
+      const { container } = renderElement(props);
       expect(container.firstChild).toHaveStyleRule('background-color', theme.success);
     });
 
     it('should set background color on focus', () => {
+      const { container } = renderElement(props);
       const modifier = {
         modifier: '&:focus:not([disabled])',
       };
@@ -212,6 +205,7 @@ describe('Default button style', () => {
     });
 
     it('should set border color on focus', () => {
+      const { container } = renderElement(props);
       const modifier = {
         modifier: '&:focus:not([disabled])',
       };
@@ -220,26 +214,23 @@ describe('Default button style', () => {
   });
 
   describe('warning', () => {
-    let container;
-
-    beforeAll(() => {
-      ({ container } = render(
-        <Button
-          kind="warning"
-          theme={theme}
-        />,
-      ));
-    });
+    const props = {
+      kind: 'warning',
+      theme,
+    };
 
     it('should match snapshot', () => {
-      expect(container).toMatchSnapshot();
+      const { container } = renderElement(props);
+      expect(container.firstChild).toMatchSnapshot();
     });
 
     it('should set background color', () => {
+      const { container } = renderElement(props);
       expect(container.firstChild).toHaveStyleRule('background-color', theme.warning);
     });
 
     it('should set background color on focus', () => {
+      const { container } = renderElement(props);
       const modifier = {
         modifier: '&:focus:not([disabled])',
       };
@@ -247,6 +238,7 @@ describe('Default button style', () => {
     });
 
     it('should set border color on focus', () => {
+      const { container } = renderElement(props);
       const modifier = {
         modifier: '&:focus:not([disabled])',
       };
@@ -254,6 +246,7 @@ describe('Default button style', () => {
     });
 
     it('should set color on focus', () => {
+      const { container } = renderElement(props);
       const modifier = {
         modifier: '&:focus:not([disabled])',
       };

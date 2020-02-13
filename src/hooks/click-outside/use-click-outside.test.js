@@ -30,16 +30,16 @@ beforeAll(() => {
 
 describe('Use click oustide hook', () => {
   describe('element must be visible for a click outside to occur', () => {
-    let clear;
-
-    afterAll(() => {
-      clear();
-    });
+    let renderHookForTest;
 
     beforeAll(() => {
-      renderHook(() => {
-        clear = useClickedOutside(ref, clickedOusideFunc);
-      });
+      renderHookForTest = () => {
+        let clear;
+        renderHook(() => {
+          clear = useClickedOutside(ref, clickedOusideFunc);
+        });
+        return clear;
+      };
     });
 
     describe('element is not visible', () => {
@@ -48,27 +48,33 @@ describe('Use click oustide hook', () => {
       });
 
       it('should return false when a click occurs inside target div', () => {
+        const clear = renderHookForTest();
         clickedOusideFunc.mockClear();
         act(() => {
           simulant.fire(document.body.querySelector('#child'), 'click');
         });
         expect(clickedOusideFunc).not.toHaveBeenCalled();
+        clear();
       });
 
       it('should return false when a click occurs outside target div', () => {
+        const clear = renderHookForTest();
         clickedOusideFunc.mockClear();
         act(() => {
           simulant.fire(document.body.querySelector('#div2'), 'click');
         });
         expect(clickedOusideFunc).not.toHaveBeenCalled();
+        clear();
       });
 
       it('should return false when pressing the escape key', () => {
+        const clear = renderHookForTest();
         clickedOusideFunc.mockClear();
         act(() => {
           simulant.fire(document.body, 'keydown', { key: 'Escape' });
         });
         expect(clickedOusideFunc).not.toHaveBeenCalled();
+        clear();
       });
     });
 
@@ -78,97 +84,117 @@ describe('Use click oustide hook', () => {
       });
 
       it('should return false when a click occurs inside target div', () => {
+        const clear = renderHookForTest();
         clickedOusideFunc.mockClear();
         act(() => {
           simulant.fire(document.body.querySelector('#child'), 'click');
         });
         expect(clickedOusideFunc).not.toHaveBeenCalled();
+        clear();
       });
 
       it('should return false when a click occurs on target div', () => {
+        const clear = renderHookForTest();
         clickedOusideFunc.mockClear();
         act(() => {
           simulant.fire(document.body.querySelector('#div1'), 'click');
         });
         expect(clickedOusideFunc).not.toHaveBeenCalled();
+        clear();
       });
 
       it('should return true when a click occurs outside target div', () => {
+        const clear = renderHookForTest();
         clickedOusideFunc.mockClear();
         act(() => {
           simulant.fire(document.body.querySelector('#div2'), 'click');
         });
         expect(clickedOusideFunc).toHaveBeenCalled();
+        clear();
       });
 
       it('should return true when pressing the escape key', () => {
+        const clear = renderHookForTest();
         clickedOusideFunc.mockClear();
         act(() => {
           simulant.fire(document.body, 'keydown', { key: 'Escape' });
         });
         expect(clickedOusideFunc).toHaveBeenCalled();
+        clear();
       });
     });
   });
 
   describe('escape key should not be considered an outside click', () => {
-    let clear;
+    let renderHookForTest;
 
-    afterAll(() => {
-      clear();
+    beforeAll(() => {
+      renderHookForTest = () => {
+        let clear;
+        renderHook(() => {
+          clear = useClickedOutside(ref, clickedOusideFunc, false);
+        });
+        return clear;
+      };
     });
+
 
     beforeAll(() => {
       isVisible.mockReturnValue(true);
-      renderHook(() => {
-        clear = useClickedOutside(ref, clickedOusideFunc, false);
-      });
     });
 
     it('should return false when pressing the escape key', () => {
+      const clear = renderHookForTest();
       clickedOusideFunc.mockClear();
       act(() => {
         simulant.fire(document.body, 'keydown', { key: 'Escape' });
       });
       expect(clickedOusideFunc).not.toHaveBeenCalled();
+      clear();
     });
   });
 
   describe('ignore element visibility', () => {
-    let clear;
-
-    afterAll(() => {
-      clear();
-    });
+    let renderHookForTest;
 
     beforeAll(() => {
-      renderHook(() => {
-        useClickedOutside(ref, clickedOusideFunc, true, true);
-      });
+      renderHookForTest = () => {
+        let clear;
+        renderHook(() => {
+          clear = useClickedOutside(ref, clickedOusideFunc, true, true);
+        });
+        return clear;
+      };
     });
 
     it('should return false when a click occurs inside target div', () => {
+      const clear = renderHookForTest();
       clickedOusideFunc.mockClear();
       act(() => {
         simulant.fire(document.body.querySelector('#child'), 'click');
       });
       expect(clickedOusideFunc).not.toHaveBeenCalled();
+      clear();
     });
 
     it('should return false when a click occurs on target div', () => {
+      const clear = renderHookForTest();
       clickedOusideFunc.mockClear();
       act(() => {
         simulant.fire(document.body.querySelector('#div1'), 'click');
       });
       expect(clickedOusideFunc).not.toHaveBeenCalled();
+      clear();
     });
 
     it('should return true when a click occurs outside target div', () => {
+      const clear = renderHookForTest();
       clickedOusideFunc.mockClear();
       act(() => {
         simulant.fire(document.body.querySelector('#div2'), 'click');
       });
       expect(clickedOusideFunc).toHaveBeenCalled();
+      clear();
     });
   });
 });

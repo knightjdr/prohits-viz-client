@@ -5,21 +5,22 @@ import { act, renderHook } from '../../test-utils/test-hook';
 jest.mock('../../utils/debounce');
 debounce.mockImplementation(func => () => { func(); });
 
-let dimensions;
-beforeAll(() => {
+const renderHookForTest = () => {
+  let dimensions;
   renderHook(() => {
     dimensions = useWindowDimension(0);
   });
-});
+  return dimensions;
+};
 
 describe('Use window dimensions hook', () => {
   it('should return window size', () => {
-    // JSDOM defaults are 1024 x
+    // JSDOM defaults are 1024 x 768
     const expected = {
       height: 768,
       width: 1024,
     };
-    expect(dimensions).toEqual(expected);
+    expect(renderHookForTest()).toEqual(expected);
   });
 
   it('should return current window size on resize', () => {
@@ -32,6 +33,6 @@ describe('Use window dimensions hook', () => {
       height: 500,
       width: 800,
     };
-    expect(dimensions).toEqual(expected);
+    expect(renderHookForTest()).toEqual(expected);
   });
 });

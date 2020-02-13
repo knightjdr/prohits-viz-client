@@ -1,81 +1,215 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
 exports[`Navbar normal screen size should match snapshot 1`] = `
-<div>
-  <nav>
-    <a
-      class="nav__icon"
-      href="/"
+<nav>
+  <a
+    class="nav__icon"
+    href="/"
+  >
+    <svg
+      aria-label="ProHits-viz icon"
+      height="30"
+      role="img"
+      viewBox="0 0 252.072 248.163"
+      xmlns="http://www.w3.org/2000/svg"
     >
-      <svg
-        aria-label="ProHits-viz icon"
-        height="30"
-        role="img"
-        viewBox="0 0 252.072 248.163"
-        xmlns="http://www.w3.org/2000/svg"
+      <title>
+        ProHits-viz
+      </title>
+      <desc>
+        icon
+      </desc>
+      <lineargradient
+        gradientTransform="matrix(0.8634 -0.5044 0.6326 1.0828 -55.1724 54.1383)"
+        gradientUnits="userSpaceOnUse"
+        id="SVGID_1_"
+        x1="75.4634"
+        x2="75.4634"
+        y1="184.9697"
+        y2="-15.0835"
       >
-        <title>
-          ProHits-viz
-        </title>
-        <desc>
-          icon
-        </desc>
-        <lineargradient
-          gradientTransform="matrix(0.8634 -0.5044 0.6326 1.0828 -55.1724 54.1383)"
-          gradientUnits="userSpaceOnUse"
-          id="SVGID_1_"
-          x1="75.4634"
-          x2="75.4634"
-          y1="184.9697"
-          y2="-15.0835"
+        <stop
+          offset="0.386"
+          style="stop-color: rgb(238, 238, 238);"
+        />
+        <stop
+          offset="1"
+          style="stop-color: rgb(238, 238, 238); stop-opacity: 0;"
+        />
+      </lineargradient>
+      <polygon
+        fill="url(#SVGID_1_)"
+        points="101.026,231.381 0,0 152.898,201.226 "
+      />
+      <circle
+        cx="128.036"
+        cy="218.163"
+        fill="#eee"
+        r="30"
+      />
+      <lineargradient
+        gradientTransform="matrix(0.8686 0.4955 -0.6214 1.0892 153.9728 -22.0796)"
+        gradientUnits="userSpaceOnUse"
+        id="SVGID_2_"
+        x1="96.6611"
+        x2="96.6611"
+        y1="176.5947"
+        y2="-23.4688"
+      >
+        <stop
+          offset="0.386"
+          style="stop-color: rgb(238, 238, 238);"
+        />
+        <stop
+          offset="1"
+          style="stop-color: rgb(238, 238, 238); stop-opacity: 0;"
+        />
+      </lineargradient>
+      <polygon
+        fill="url(#SVGID_2_)"
+        points="102.204,203.182 252.072,0 154.256,233.027"
+      />
+    </svg>
+  </a>
+  <div
+    class="nav__right"
+  >
+    <ul>
+      <li>
+        <a
+          class="nav__link"
+          href="/analysis"
         >
-          <stop
-            offset="0.386"
-            style="stop-color: rgb(238, 238, 238);"
-          />
-          <stop
-            offset="1"
-            style="stop-color: rgb(238, 238, 238); stop-opacity: 0;"
-          />
-        </lineargradient>
-        <polygon
-          fill="url(#SVGID_1_)"
-          points="101.026,231.381 0,0 152.898,201.226 "
-        />
-        <circle
-          cx="128.036"
-          cy="218.163"
-          fill="#eee"
-          r="30"
-        />
-        <lineargradient
-          gradientTransform="matrix(0.8686 0.4955 -0.6214 1.0892 153.9728 -22.0796)"
-          gradientUnits="userSpaceOnUse"
-          id="SVGID_2_"
-          x1="96.6611"
-          x2="96.6611"
-          y1="176.5947"
-          y2="-23.4688"
+          analysis
+        </a>
+      </li>
+      <li>
+        <a
+          class="nav__link"
+          href="/visualization"
         >
-          <stop
-            offset="0.386"
-            style="stop-color: rgb(238, 238, 238);"
-          />
-          <stop
-            offset="1"
-            style="stop-color: rgb(238, 238, 238); stop-opacity: 0;"
-          />
-        </lineargradient>
-        <polygon
-          fill="url(#SVGID_2_)"
-          points="102.204,203.182 252.072,0 154.256,233.027"
-        />
-      </svg>
-    </a>
-    <div
-      class="nav__right"
+          visualization
+        </a>
+      </li>
+      <li>
+        <a
+          class="nav__link"
+          href="/news"
+        >
+          news
+        </a>
+      </li>
+      <li>
+        <a
+          class="nav__link"
+          href="/help"
+        >
+          help
+        </a>
+      </li>
+    </ul>
+  </div>
+</nav>
+`;
+
+exports[`Navbar small screen size should match snapshot 1`] = `
+<nav>
+  <a
+    class="nav__icon"
+    href="/"
+  >
+    <svg
+      aria-label="ProHits-viz icon"
+      height="30"
+      role="img"
+      viewBox="0 0 252.072 248.163"
+      xmlns="http://www.w3.org/2000/svg"
     >
-      <ul>
+      <title>
+        ProHits-viz
+      </title>
+      <desc>
+        icon
+      </desc>
+      <lineargradient
+        gradientTransform="matrix(0.8634 -0.5044 0.6326 1.0828 -55.1724 54.1383)"
+        gradientUnits="userSpaceOnUse"
+        id="SVGID_1_"
+        x1="75.4634"
+        x2="75.4634"
+        y1="184.9697"
+        y2="-15.0835"
+      >
+        <stop
+          offset="0.386"
+          style="stop-color: rgb(238, 238, 238);"
+        />
+        <stop
+          offset="1"
+          style="stop-color: rgb(238, 238, 238); stop-opacity: 0;"
+        />
+      </lineargradient>
+      <polygon
+        fill="url(#SVGID_1_)"
+        points="101.026,231.381 0,0 152.898,201.226 "
+      />
+      <circle
+        cx="128.036"
+        cy="218.163"
+        fill="#eee"
+        r="30"
+      />
+      <lineargradient
+        gradientTransform="matrix(0.8686 0.4955 -0.6214 1.0892 153.9728 -22.0796)"
+        gradientUnits="userSpaceOnUse"
+        id="SVGID_2_"
+        x1="96.6611"
+        x2="96.6611"
+        y1="176.5947"
+        y2="-23.4688"
+      >
+        <stop
+          offset="0.386"
+          style="stop-color: rgb(238, 238, 238);"
+        />
+        <stop
+          offset="1"
+          style="stop-color: rgb(238, 238, 238); stop-opacity: 0;"
+        />
+      </lineargradient>
+      <polygon
+        fill="url(#SVGID_2_)"
+        points="102.204,203.182 252.072,0 154.256,233.027"
+      />
+    </svg>
+  </a>
+  <div
+    class="nav__right"
+  >
+    <div>
+      <button
+        aria-label="navigation menu"
+        type="button"
+      >
+        <svg
+          aria-hidden="true"
+          class="svg-inline--fa fa-bars fa-w-14 fa-lg nav__menu"
+          data-icon="bars"
+          data-prefix="fas"
+          focusable="false"
+          role="img"
+          viewBox="0 0 448 512"
+          xmlns="http://www.w3.org/2000/svg"
+        >
+          <path
+            d="M16 132h416c8.837 0 16-7.163 16-16V76c0-8.837-7.163-16-16-16H16C7.163 60 0 67.163 0 76v40c0 8.837 7.163 16 16 16zm0 160h416c8.837 0 16-7.163 16-16v-40c0-8.837-7.163-16-16-16H16c-8.837 0-16 7.163-16 16v40c0 8.837 7.163 16 16 16zm0 160h416c8.837 0 16-7.163 16-16v-40c0-8.837-7.163-16-16-16H16c-8.837 0-16 7.163-16 16v40c0 8.837 7.163 16 16 16z"
+            fill="currentColor"
+          />
+        </svg>
+      </button>
+      <ul
+        style="transform: scale(0);"
+      >
         <li>
           <a
             class="nav__link"
@@ -110,144 +244,6 @@ exports[`Navbar normal screen size should match snapshot 1`] = `
         </li>
       </ul>
     </div>
-  </nav>
-</div>
-`;
-
-exports[`Navbar small screen size should match snapshot 1`] = `
-<div>
-  <nav>
-    <a
-      class="nav__icon"
-      href="/"
-    >
-      <svg
-        aria-label="ProHits-viz icon"
-        height="30"
-        role="img"
-        viewBox="0 0 252.072 248.163"
-        xmlns="http://www.w3.org/2000/svg"
-      >
-        <title>
-          ProHits-viz
-        </title>
-        <desc>
-          icon
-        </desc>
-        <lineargradient
-          gradientTransform="matrix(0.8634 -0.5044 0.6326 1.0828 -55.1724 54.1383)"
-          gradientUnits="userSpaceOnUse"
-          id="SVGID_1_"
-          x1="75.4634"
-          x2="75.4634"
-          y1="184.9697"
-          y2="-15.0835"
-        >
-          <stop
-            offset="0.386"
-            style="stop-color: rgb(238, 238, 238);"
-          />
-          <stop
-            offset="1"
-            style="stop-color: rgb(238, 238, 238); stop-opacity: 0;"
-          />
-        </lineargradient>
-        <polygon
-          fill="url(#SVGID_1_)"
-          points="101.026,231.381 0,0 152.898,201.226 "
-        />
-        <circle
-          cx="128.036"
-          cy="218.163"
-          fill="#eee"
-          r="30"
-        />
-        <lineargradient
-          gradientTransform="matrix(0.8686 0.4955 -0.6214 1.0892 153.9728 -22.0796)"
-          gradientUnits="userSpaceOnUse"
-          id="SVGID_2_"
-          x1="96.6611"
-          x2="96.6611"
-          y1="176.5947"
-          y2="-23.4688"
-        >
-          <stop
-            offset="0.386"
-            style="stop-color: rgb(238, 238, 238);"
-          />
-          <stop
-            offset="1"
-            style="stop-color: rgb(238, 238, 238); stop-opacity: 0;"
-          />
-        </lineargradient>
-        <polygon
-          fill="url(#SVGID_2_)"
-          points="102.204,203.182 252.072,0 154.256,233.027"
-        />
-      </svg>
-    </a>
-    <div
-      class="nav__right"
-    >
-      <div>
-        <button
-          aria-label="navigation menu"
-          type="button"
-        >
-          <svg
-            aria-hidden="true"
-            class="svg-inline--fa fa-bars fa-w-14 fa-lg fa-rotate-null fa-pull-null nav__menu"
-            data-icon="bars"
-            data-prefix="fas"
-            focusable="false"
-            role="img"
-            viewBox="0 0 448 512"
-            xmlns="http://www.w3.org/2000/svg"
-          >
-            <path
-              d="M16 132h416c8.837 0 16-7.163 16-16V76c0-8.837-7.163-16-16-16H16C7.163 60 0 67.163 0 76v40c0 8.837 7.163 16 16 16zm0 160h416c8.837 0 16-7.163 16-16v-40c0-8.837-7.163-16-16-16H16c-8.837 0-16 7.163-16 16v40c0 8.837 7.163 16 16 16zm0 160h416c8.837 0 16-7.163 16-16v-40c0-8.837-7.163-16-16-16H16c-8.837 0-16 7.163-16 16v40c0 8.837 7.163 16 16 16z"
-              fill="currentColor"
-            />
-          </svg>
-        </button>
-        <ul
-          style="transform: scale(0);"
-        >
-          <li>
-            <a
-              class="nav__link"
-              href="/analysis"
-            >
-              analysis
-            </a>
-          </li>
-          <li>
-            <a
-              class="nav__link"
-              href="/visualization"
-            >
-              visualization
-            </a>
-          </li>
-          <li>
-            <a
-              class="nav__link"
-              href="/news"
-            >
-              news
-            </a>
-          </li>
-          <li>
-            <a
-              class="nav__link"
-              href="/help"
-            >
-              help
-            </a>
-          </li>
-        </ul>
-      </div>
-    </div>
-  </nav>
-</div>
+  </div>
+</nav>
 `;

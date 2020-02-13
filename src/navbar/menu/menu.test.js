@@ -1,5 +1,5 @@
 import React from 'react';
-import { cleanup, render } from '@testing-library/react';
+import { render } from '@testing-library/react';
 
 import Menu from './menu';
 
@@ -7,32 +7,24 @@ jest.mock('./menu-style');
 
 const toggleMenu = jest.fn();
 
+const renderElement = props => render(<Menu {...props} />);
+
 describe('Navbar menu', () => {
   describe('closed', () => {
-    let container;
-    let getByLabelText;
-
-    afterAll(() => {
-      cleanup();
-    });
-
-    beforeAll(() => {
-      const links = ['analysis', 'help'];
-      ({ container, getByLabelText } = render(
-        <Menu
-          links={links}
-          open={false}
-          route="home"
-          toggleMenu={toggleMenu}
-        />,
-      ));
-    });
+    const props = {
+      links: ['analysis', 'help'],
+      open: false,
+      route: 'home',
+      toggleMenu,
+    };
 
     it('should match snapshot', () => {
-      expect(container).toMatchSnapshot();
+      const { container } = renderElement(props);
+      expect(container.firstChild).toMatchSnapshot();
     });
 
     it('should toggle menu on button click', () => {
+      const { getByLabelText } = renderElement(props);
       toggleMenu.mockClear();
       getByLabelText('navigation menu').click();
       expect(toggleMenu).toHaveBeenCalled();
@@ -40,34 +32,25 @@ describe('Navbar menu', () => {
   });
 
   describe('open', () => {
-    let container;
-    let getByText;
-
-    afterAll(() => {
-      cleanup();
-    });
-
-    beforeAll(() => {
-      const links = ['analysis', 'help'];
-      ({ container, getByText } = render(
-        <Menu
-          links={links}
-          open
-          route="home"
-          toggleMenu={toggleMenu}
-        />,
-      ));
-    });
+    const props = {
+      links: ['analysis', 'help'],
+      open: true,
+      route: 'home',
+      toggleMenu,
+    };
 
     it('should match snapshot', () => {
-      expect(container).toMatchSnapshot();
+      const { container } = renderElement(props);
+      expect(container.firstChild).toMatchSnapshot();
     });
 
     it('should render analysis link', () => {
+      const { getByText } = renderElement(props);
       expect(getByText(/analysis/i)).toBeInTheDocument();
     });
 
     it('should render help link', () => {
+      const { getByText } = renderElement(props);
       expect(getByText(/help/i)).toBeInTheDocument();
     });
   });

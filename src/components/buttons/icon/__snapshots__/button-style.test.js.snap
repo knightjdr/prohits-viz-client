@@ -97,12 +97,10 @@ exports[`Icon button style default should match snapshot 1`] = `
   transform: scale(1);
 }
 
-<div>
-  <button
-    class="c0"
-    kind="transparent"
-  />
-</div>
+<button
+  class="sc-AxjAm c0"
+  kind="transparent"
+/>
 `;
 
 exports[`Icon button style square should match snapshot 1`] = `
@@ -210,12 +208,10 @@ exports[`Icon button style square should match snapshot 1`] = `
   border-radius: 0;
 }
 
-<div>
-  <button
-    class="c0"
-    kind="transparent"
-  />
-</div>
+<button
+  class="sc-AxjAm c0"
+  kind="transparent"
+/>
 `;
 
 exports[`Icon button style transparent should match snapshot 1`] = `
@@ -315,10 +311,8 @@ exports[`Icon button style transparent should match snapshot 1`] = `
   transform: scale(1);
 }
 
-<div>
-  <button
-    class="c0"
-    kind="transparent"
-  />
-</div>
+<button
+  class="sc-AxjAm c0"
+  kind="transparent"
+/>
 `;

@@ -7,18 +7,18 @@ const theme = {
   fontDark: '#111',
 };
 
-describe('Rectangular button style', () => {
-  let container;
+const renderElement = props => render(<Button {...props} />);
 
-  beforeAll(() => {
-    ({ container } = render(<Button theme={theme} />));
-  });
+describe('Rectangular button style', () => {
+  const props = { theme };
 
   it('should match snapshot', () => {
-    expect(container).toMatchSnapshot();
+    const { container } = renderElement(props);
+    expect(container.firstChild).toMatchSnapshot();
   });
 
   it('should set color on focus', () => {
+    const { container } = renderElement(props);
     const modifier = {
       modifier: '&:focus:not([disabled])',
     };
@@ -26,6 +26,7 @@ describe('Rectangular button style', () => {
   });
 
   it('should set color on hover', () => {
+    const { container } = renderElement(props);
     const modifier = {
       modifier: '&:hover:not([disabled])',
     };

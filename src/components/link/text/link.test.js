@@ -3,19 +3,19 @@ import { render } from '@testing-library/react';
 
 import Link from './link';
 
+const renderElement = props => render(<Link {...props} />);
+
 describe('Link style', () => {
   describe('with style for :visited', () => {
-    let container;
-
-    beforeAll(() => {
-      ({ container } = render(<Link href="/" />));
-    });
+    const props = { href: '/' };
 
     it('should match snapshot', () => {
-      expect(container).toMatchSnapshot();
+      const { container } = renderElement(props);
+      expect(container.firstChild).toMatchSnapshot();
     });
 
     it('should set :visited color', () => {
+      const { container } = renderElement(props);
       const modifier = {
         modifier: '&:visited',
       };
@@ -24,18 +24,13 @@ describe('Link style', () => {
   });
 
   describe('show outline on :focus', () => {
-    let container;
-
-    beforeAll(() => {
-      ({ container } = render(
-        <Link
-          href="/"
-          outline
-        />,
-      ));
-    });
+    const props = {
+      href: '/',
+      outline: true,
+    };
 
     it('should add outline on focus', () => {
+      const { container } = renderElement(props);
       const modifier = {
         modifier: '&:focus',
       };
@@ -43,6 +38,7 @@ describe('Link style', () => {
     });
 
     it('should set outline properties on focus', () => {
+      const { container } = renderElement(props);
       const modifier = {
         modifier: '&:focus',
       };
@@ -51,22 +47,18 @@ describe('Link style', () => {
   });
 
   describe('with no style for :visited', () => {
-    let container;
-
-    beforeAll(() => {
-      ({ container } = render(
-        <Link
-          href="/"
-          visited={false}
-        />,
-      ));
-    });
+    const props = {
+      href: '/',
+      visited: false,
+    };
 
     it('should match snapshot', () => {
-      expect(container).toMatchSnapshot();
+      const { container } = renderElement(props);
+      expect(container.firstChild).toMatchSnapshot();
     });
 
     it('should unset :visited color', () => {
+      const { container } = renderElement(props);
       const modifier = {
         modifier: '&:visited',
       };
@@ -75,18 +67,13 @@ describe('Link style', () => {
   });
 
   describe('no outline on :focus', () => {
-    let container;
-
-    beforeAll(() => {
-      ({ container } = render(
-        <Link
-          href="/"
-          outline={false}
-        />,
-      ));
-    });
+    const props = {
+      href: '/',
+      outline: false,
+    };
 
     it('should add outline on focus', () => {
+      const { container } = renderElement(props);
       const modifier = {
         modifier: '&:focus',
       };
@@ -94,6 +81,7 @@ describe('Link style', () => {
     });
 
     it('should set outline properties on focus', () => {
+      const { container } = renderElement(props);
       const modifier = {
         modifier: '&:focus',
       };

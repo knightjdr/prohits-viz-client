@@ -28,48 +28,46 @@ exports[`Navbar menu closed should match snapshot 1`] = `
 }
 
 <div>
-  <div>
-    <button
-      aria-label="navigation menu"
-      type="button"
+  <button
+    aria-label="navigation menu"
+    type="button"
+  >
+    <svg
+      aria-hidden="true"
+      class="svg-inline--fa fa-bars fa-w-14 fa-lg nav__menu"
+      data-icon="bars"
+      data-prefix="fas"
+      focusable="false"
+      role="img"
+      viewBox="0 0 448 512"
+      xmlns="http://www.w3.org/2000/svg"
     >
-      <svg
-        aria-hidden="true"
-        class="svg-inline--fa fa-bars fa-w-14 fa-lg fa-rotate-null fa-pull-null nav__menu"
-        data-icon="bars"
-        data-prefix="fas"
-        focusable="false"
-        role="img"
-        viewBox="0 0 448 512"
-        xmlns="http://www.w3.org/2000/svg"
+      <path
+        d="M16 132h416c8.837 0 16-7.163 16-16V76c0-8.837-7.163-16-16-16H16C7.163 60 0 67.163 0 76v40c0 8.837 7.163 16 16 16zm0 160h416c8.837 0 16-7.163 16-16v-40c0-8.837-7.163-16-16-16H16c-8.837 0-16 7.163-16 16v40c0 8.837 7.163 16 16 16zm0 160h416c8.837 0 16-7.163 16-16v-40c0-8.837-7.163-16-16-16H16c-8.837 0-16 7.163-16 16v40c0 8.837 7.163 16 16 16z"
+        fill="currentColor"
+      />
+    </svg>
+  </button>
+  <ul
+    style="transform: scale(0);"
+  >
+    <li>
+      <a
+        class="c0 nav__link"
+        href="/analysis"
       >
-        <path
-          d="M16 132h416c8.837 0 16-7.163 16-16V76c0-8.837-7.163-16-16-16H16C7.163 60 0 67.163 0 76v40c0 8.837 7.163 16 16 16zm0 160h416c8.837 0 16-7.163 16-16v-40c0-8.837-7.163-16-16-16H16c-8.837 0-16 7.163-16 16v40c0 8.837 7.163 16 16 16zm0 160h416c8.837 0 16-7.163 16-16v-40c0-8.837-7.163-16-16-16H16c-8.837 0-16 7.163-16 16v40c0 8.837 7.163 16 16 16z"
-          fill="currentColor"
-        />
-      </svg>
-    </button>
-    <ul
-      style="transform: scale(0);"
-    >
-      <li>
-        <a
-          class="c0 nav__link"
-          href="/analysis"
-        >
-          analysis
-        </a>
-      </li>
-      <li>
-        <a
-          class="c0 nav__link"
-          href="/help"
-        >
-          help
-        </a>
-      </li>
-    </ul>
-  </div>
+        analysis
+      </a>
+    </li>
+    <li>
+      <a
+        class="c0 nav__link"
+        href="/help"
+      >
+        help
+      </a>
+    </li>
+  </ul>
 </div>
 `;
 
@@ -101,47 +99,45 @@ exports[`Navbar menu open should match snapshot 1`] = `
 }
 
 <div>
-  <div>
-    <button
-      aria-label="navigation menu"
-      type="button"
+  <button
+    aria-label="navigation menu"
+    type="button"
+  >
+    <svg
+      aria-hidden="true"
+      class="svg-inline--fa fa-bars fa-w-14 fa-lg nav__menu"
+      data-icon="bars"
+      data-prefix="fas"
+      focusable="false"
+      role="img"
+      viewBox="0 0 448 512"
+      xmlns="http://www.w3.org/2000/svg"
     >
-      <svg
-        aria-hidden="true"
-        class="svg-inline--fa fa-bars fa-w-14 fa-lg fa-rotate-null fa-pull-null nav__menu"
-        data-icon="bars"
-        data-prefix="fas"
-        focusable="false"
-        role="img"
-        viewBox="0 0 448 512"
-        xmlns="http://www.w3.org/2000/svg"
+      <path
+        d="M16 132h416c8.837 0 16-7.163 16-16V76c0-8.837-7.163-16-16-16H16C7.163 60 0 67.163 0 76v40c0 8.837 7.163 16 16 16zm0 160h416c8.837 0 16-7.163 16-16v-40c0-8.837-7.163-16-16-16H16c-8.837 0-16 7.163-16 16v40c0 8.837 7.163 16 16 16zm0 160h416c8.837 0 16-7.163 16-16v-40c0-8.837-7.163-16-16-16H16c-8.837 0-16 7.163-16 16v40c0 8.837 7.163 16 16 16z"
+        fill="currentColor"
+      />
+    </svg>
+  </button>
+  <ul
+    style="transform: scale(1);"
+  >
+    <li>
+      <a
+        class="c0 nav__link"
+        href="/analysis"
       >
-        <path
-          d="M16 132h416c8.837 0 16-7.163 16-16V76c0-8.837-7.163-16-16-16H16C7.163 60 0 67.163 0 76v40c0 8.837 7.163 16 16 16zm0 160h416c8.837 0 16-7.163 16-16v-40c0-8.837-7.163-16-16-16H16c-8.837 0-16 7.163-16 16v40c0 8.837 7.163 16 16 16zm0 160h416c8.837 0 16-7.163 16-16v-40c0-8.837-7.163-16-16-16H16c-8.837 0-16 7.163-16 16v40c0 8.837 7.163 16 16 16z"
-          fill="currentColor"
-        />
-      </svg>
-    </button>
-    <ul
-      style="transform: scale(1);"
-    >
-      <li>
-        <a
-          class="c0 nav__link"
-          href="/analysis"
-        >
-          analysis
-        </a>
-      </li>
-      <li>
-        <a
-          class="c0 nav__link"
-          href="/help"
-        >
-          help
-        </a>
-      </li>
-    </ul>
-  </div>
+        analysis
+      </a>
+    </li>
+    <li>
+      <a
+        class="c0 nav__link"
+        href="/help"
+      >
+        help
+      </a>
+    </li>
+  </ul>
 </div>
 `;

@@ -1,5 +1,5 @@
 import React from 'react';
-import { cleanup, render } from '@testing-library/react';
+import { render } from '@testing-library/react';
 import { faPlus } from '@fortawesome/pro-solid-svg-icons';
 
 import Button from './button';
@@ -12,54 +12,38 @@ const theme = {
   timingFunction: 'ease',
 };
 
+const renderElement = props => render(<Button {...props} />);
+
 describe('Icon button', () => {
   describe('style', () => {
     describe('primary button', () => {
-      let container;
-
-      afterAll(() => {
-        cleanup();
-      });
-
-      beforeAll(() => {
-        ({ container } = render(
-          <Button
-            aria-label="test-button"
-            fill="primary"
-            onClick={onClick}
-            icon={faPlus}
-            theme={theme}
-            type="button"
-          />,
-        ));
-      });
+      const props = {
+        'aria-label': 'test-button',
+        fill: 'primary',
+        onClick,
+        icon: faPlus,
+        theme,
+        type: 'button',
+      };
 
       it('should match snapshot', () => {
-        expect(container).toMatchSnapshot();
+        const { container } = renderElement(props);
+        expect(container.firstChild).toMatchSnapshot();
       });
     });
 
     describe('transparent (default) button', () => {
-      let container;
-
-      afterAll(() => {
-        cleanup();
-      });
-
-      beforeAll(() => {
-        ({ container } = render(
-          <Button
-            aria-label="test-button"
-            onClick={onClick}
-            icon={faPlus}
-            theme={theme}
-            type="button"
-          />,
-        ));
-      });
+      const props = {
+        'aria-label': 'test-button',
+        onClick,
+        icon: faPlus,
+        theme,
+        type: 'button',
+      };
 
       it('should match snapshot', () => {
-        expect(container).toMatchSnapshot();
+        const { container } = renderElement(props);
+        expect(container.firstChild).toMatchSnapshot();
       });
     });
   });
