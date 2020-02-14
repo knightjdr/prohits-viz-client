@@ -29,12 +29,12 @@ const ImageContainer = () => {
       const fetchFile = async () => {
         const param = encodeURIComponent(exporter.file);
         const response = await fetch(`/file/${param}`, {}, 'blob');
-        download(response.data, `image.${exporter.format}`);
+        download(response.data, `image.${exporter}`);
       };
       fetchFile();
       dispatch(clearExportImage());
     }
-  }, [dispatch, exporter.file]);
+  }, [dispatch, exporter]);
 
   return (
     <Image
