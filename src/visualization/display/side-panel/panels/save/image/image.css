@@ -18,3 +18,19 @@
   height: 30px;
   width: 30px;
 }
+
+.panel__save-message_error,
+.panel__save-message_exporting {
+  text-align: center;
+}
+.panel__save-message_error svg,
+.panel__save-message_exporting svg {
+  margin-right: 5px;
+}
+
+.panel__save-message_error svg {
+  color: var(--warning);
+}
+.panel__save-message_exporting svg {
+  color: var(--success);
+}

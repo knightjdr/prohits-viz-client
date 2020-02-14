@@ -5,6 +5,7 @@
 }
 
 .panel__save-session-grid {
+  align-items: center;
   column-gap: 10px;
   display: grid;
   grid-template-columns: auto auto;

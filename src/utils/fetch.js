@@ -26,7 +26,7 @@ const fillOptions = (options) => {
   return fetchOptions;
 };
 
-const fetchWrapper = async (route, options = {}) => {
+const fetchWrapper = async (route, options = {}, responseType = 'json') => {
   try {
     const url = `${process.env.REACT_APP_API}${route}`;
     const fetchOptions = fillOptions(options);
@@ -35,9 +35,9 @@ const fetchWrapper = async (route, options = {}) => {
     if (!response.ok) {
       throw new Error(response.statusText);
     }
-    const json = await response.json();
+    const data = await response[responseType]();
     return {
-      data: json,
+      data,
     };
   } catch (error) {
     return {

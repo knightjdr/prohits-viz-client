@@ -5,7 +5,7 @@ import Session from './session';
 
 import { selectDataProperty } from '../../../../../../state/selector/visualization/data-selector';
 import { selectStateProperty } from '../../../../../../state/selector/general';
-import { setSessionName } from '../../../../../../state/visualization/settings/save-actions';
+import { setSessionName } from '../../../../../../state/visualization/export/save-actions';
 
 const SessionContainer = () => {
   const dispatch = useDispatch();

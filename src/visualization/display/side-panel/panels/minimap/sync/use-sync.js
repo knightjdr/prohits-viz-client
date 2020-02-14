@@ -19,40 +19,17 @@ const useSync = () => {
 
   const fetch = useFetch();
 
-  const {
-    abundanceCap,
-    edgeColor,
-    fillColor,
-    imageType,
-    invertColor,
-    minAbundance,
-    primaryFilter,
-    secondaryFilter,
-  } = settings;
-
   const syncMinimap = async (updateOriginal = false) => {
     dispatch(actions.synchronizeMinimap(updateOriginal));
 
     const data = {
-      abundanceCap,
       columnDB,
       columnOrder,
-      fillColor,
-      invertColor,
-      minAbundance,
       rowDB,
       rowOrder,
       scoreType,
+      ...settings,
     };
-
-    if (imageType === 'dotplot') {
-      data.imageType = 'dotplot';
-      data.edgeColor = edgeColor;
-      data.primaryFilter = primaryFilter;
-      data.secondaryFilter = secondaryFilter;
-    } else {
-      data.imageType = 'heatmap';
-    }
 
     const options = {
       data,
