@@ -9,6 +9,7 @@ import cookies from './cookies/cookie-reducer';
 import dimensions from './visualization/settings/dimension-reducer';
 import display from './visualization/settings/display-reducer';
 import exporter from './visualization/export/export-reducer';
+import form from './analysis/form-reducer';
 import gprofiler from './visualization/analysis/gprofiler-reducer';
 import home from './home/home-reducer';
 import markers from './visualization/markup/marker-reducer';
@@ -35,6 +36,7 @@ const reducers = combineReducers({
   dimensions,
   display,
   exporter,
+  form,
   gprofiler,
   home,
   markers,

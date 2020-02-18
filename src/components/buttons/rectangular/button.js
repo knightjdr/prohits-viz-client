@@ -7,6 +7,7 @@ const Button = styled(DefaultButton)`
   border-radius: 3px;
   border-style: solid;
   border-width: 2px;
+  box-sizing: border-box;
   font-size: inherit;
   padding: 0.2em 0.5em;
 

@@ -16,7 +16,7 @@ export const SelectContainer = styled.span`
     border-width: 1px;
     border-radius: 3px;
     font-size: 1em;
-    height: 30px;
+    height: inherit;
     min-width: 100px;
     overflow-x: hidden;
     padding-left: 10px;
@@ -68,11 +68,12 @@ export const SelectContainer = styled.span`
   }
 
   .select__placeholder {
+    align-items: center;
     box-sizing: border-box;
+    display: flex;
     font-size: 1em;
-    height: 30px;
+    height: inherit;
     left: 0;
-    line-height: 30px;
     opacity: 0.7;
     padding-left: 10px;
     padding-right: 15px;

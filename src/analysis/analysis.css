@@ -1,0 +1,9 @@
+.analysis {
+  display: flex;
+  justify-content: center;
+  padding: 20px;
+}
+.analysis__inner {
+  max-width: calc(100% - 40px);
+  width: 950px;
+}

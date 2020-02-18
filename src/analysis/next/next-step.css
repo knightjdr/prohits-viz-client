@@ -1,0 +1,18 @@
+.analysis__next-step {
+  display: flex;
+  justify-content: flex-end;
+  margin: 15px 0;
+}
+
+.analysis__next-step button {
+  animation: pulse 1.5s 2 cubic-bezier(0.66, 0, 0, 1);
+}
+
+@keyframes pulse {
+  from {
+    box-shadow: 0 0 0 0 rgba(63, 116, 143, 0.7);
+  }
+  to {
+    box-shadow: 0 0 0 10px rgba(63, 116, 143, 0);
+  }
+}

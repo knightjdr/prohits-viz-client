@@ -1,0 +1,11 @@
+.analysis__file-selection-inputs {
+  align-items: flex-start;
+  display: flex;
+}
+.analysis__file-selection-inputs .select__container {
+  margin-right: 30px;
+  width: 150px;
+}
+.analysis__file-selection-inputs .select__input-container {
+  height: 33px;
+}

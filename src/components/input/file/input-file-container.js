@@ -1,14 +1,15 @@
 import nanoid from 'nanoid';
 import PropTypes from 'prop-types';
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 
 import InputFile from './input-file';
 
 const InputFileContainer = ({
   onChange,
+  value,
   ...props
 }) => {
-  const [inputFiles, setInputFiles] = useState([]);
+  const [inputFiles, setInputFiles] = useState(value);
 
   const removeFile = (e) => {
     const { name } = e.currentTarget.dataset;
@@ -16,17 +17,24 @@ const InputFileContainer = ({
     const updatedFiles = [...inputFiles];
     updatedFiles.splice(index, 1);
     setInputFiles(updatedFiles);
+    if (onChange) {
+      onChange(e, updatedFiles);
+    }
   };
 
   const handleChange = (e) => {
     const files = Array.from(e.currentTarget.files);
     setInputFiles(files);
     if (onChange) {
-      onChange(e);
+      onChange(e, files);
     }
   };
 
   const inputID = nanoid();
+
+  useEffect(() => {
+    setInputFiles(value);
+  }, [value]);
 
   return (
     <InputFile
@@ -41,10 +49,14 @@ const InputFileContainer = ({
 
 InputFileContainer.defaultProps = {
   onChange: undefined,
+  value: [],
 };
 
 InputFileContainer.propTypes = {
   onChange: PropTypes.func,
+  value: PropTypes.arrayOf(
+    PropTypes.shape({}),
+  ),
 };
 
 export default InputFileContainer;

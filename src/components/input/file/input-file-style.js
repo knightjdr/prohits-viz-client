@@ -3,6 +3,10 @@ import styled from 'styled-components';
 import Button from '../../buttons/rectangular/button';
 
 const Span = styled.span`
+  box-sizing: border-box;
+  display: inline-block;
+  position: relative;
+
   input {
     opacity: 0;
     overflow: hidden;
@@ -57,6 +61,7 @@ const Span = styled.span`
   ul {
     font-size: 0.9em;
     list-style: none;
+    margin-top: 10px;
     padding-left: 0;
   }
   ul > li:not(:last-child) {
@@ -67,8 +72,9 @@ const Span = styled.span`
 export const Label = styled(Button).attrs({
   as: 'label',
 })`
+  display: inline-block;
+
   svg {
-    display: inline-block;
     margin-right: 8px;
   }
 `;
