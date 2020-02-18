@@ -2,7 +2,7 @@ import fillDisplay, { defaultState } from './display';
 
 describe('Fill display', () => {
   it('should return user-defined display when valid', () => {
-    const userMinimap = {
+    const userDisplay = {
       main: {
         deleteFromImage: true,
         reorderImage: true,
@@ -13,14 +13,14 @@ describe('Fill display', () => {
     const expected = {
       main: {
         ...defaultState,
-        ...userMinimap.main,
+        ...userDisplay.main,
       },
     };
-    expect(fillDisplay(userMinimap)).toEqual(expected);
+    expect(fillDisplay(userDisplay)).toEqual(expected);
   });
 
   it('should return defaults when user-defined display options invalid', () => {
-    const userMinimap = {
+    const userDisplay = {
       main: {
         deleteFromImage: 'true',
         reorderImage: 'true',
@@ -31,23 +31,23 @@ describe('Fill display', () => {
     const expected = {
       main: defaultState,
     };
-    expect(fillDisplay(userMinimap)).toEqual(expected);
+    expect(fillDisplay(userDisplay)).toEqual(expected);
   });
 
   it('should return defaults when no selections are defined', () => {
-    const userMinimap = {};
+    const userDisplay = {};
     const expected = {
       main: defaultState,
     };
-    expect(fillDisplay(userMinimap)).toEqual(expected);
+    expect(fillDisplay(userDisplay)).toEqual(expected);
   });
 
   it('should return defaults when user-defined minimap is not an object', () => {
-    const userMinimap = [];
+    const userDisplay = [];
     const expected = {
       main: defaultState,
     };
-    expect(fillDisplay(userMinimap)).toEqual(expected);
+    expect(fillDisplay(userDisplay)).toEqual(expected);
   });
 
   it('should return defaults when user-defined minimap undefined', () => {

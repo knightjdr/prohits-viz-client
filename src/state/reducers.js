@@ -20,7 +20,6 @@ import poi from './visualization/analysis/poi-reducer';
 import position from './visualization/settings/position-reducer';
 import rowDB from './visualization/data/row-db-reducer';
 import rows from './visualization/heatmap/rows-reducer';
-import save from './visualization/export/save-reducer';
 import searchStatus from './visualization/markup/search-reducer';
 import session from './session/session-reducer';
 import settings from './visualization/settings/settings-reducer';
@@ -47,7 +46,6 @@ const reducers = combineReducers({
   position,
   rowDB,
   rows,
-  save,
   searchStatus,
   session,
   settings,

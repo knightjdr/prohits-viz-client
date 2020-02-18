@@ -25,7 +25,7 @@ export const validateRowDB = (rowDB) => {
 
   if (
     !Array.isArray(rowDB[0].data)
-    || !rowDB[0].data[0].value
+    || rowDB[0].data[0].value === undefined
   ) {
     throw new Error('The row data should be an array with at least a "value" property');
   }
