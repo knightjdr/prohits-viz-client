@@ -44,7 +44,7 @@ const Div = styled.div`
   & h1 {
     font-family: ${props => props.theme.fontStackSecondary};
     font-size: 1.3em;
-    font-weight: 400;
+    font-weight: 800;
     margin: 0;
     text-transform: uppercase;
   }
