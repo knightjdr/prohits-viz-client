@@ -8,6 +8,19 @@ describe('Form reducer', () => {
     expect(reducer(defaultState, action)).toEqual(expectedState);
   });
 
+  it('should handle RESET_FORM action', () => {
+    const currentState = {
+      ...defaultState,
+      field1: 'value',
+    };
+
+    const action = {
+      type: actions.RESET_FORM,
+    };
+    const expectedState = defaultState;
+    expect(reducer(currentState, action)).toEqual(expectedState);
+  });
+
   it('should handle SET_FORM_FIELD action', () => {
     const currentState = defaultState;
     const action = {

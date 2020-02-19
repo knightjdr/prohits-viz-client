@@ -4,7 +4,7 @@ const columnDefinitions = {
   header: [
     {
       name: 'Term',
-      sort: sort.sortByString,
+      sort: sort.character,
       sortable: true,
       sortKey: 'term',
       width: '175px',
@@ -16,14 +16,14 @@ const columnDefinitions = {
     },
     {
       name: 'Source',
-      sort: sort.sortByString,
+      sort: sort.numeric,
       sortable: true,
       sortKey: 'source',
       width: 'minmax(73px, 10%)',
     },
     {
       name: 'T',
-      sort: sort.sortByNumber,
+      sort: sort.numeric,
       sortable: true,
       sortKey: 'termSize',
       tooltip: 'Term size',
@@ -31,7 +31,7 @@ const columnDefinitions = {
     },
     {
       name: 'Q',
-      sort: sort.sortByNumber,
+      sort: sort.numeric,
       sortable: true,
       sortKey: 'querySize',
       tooltip: 'Query size',
@@ -39,7 +39,7 @@ const columnDefinitions = {
     },
     {
       name: 'I',
-      sort: sort.sortByNumber,
+      sort: sort.numeric,
       sortable: true,
       sortKey: 'intersectionSize',
       tooltip: 'Intersection Q ∩ T',
@@ -47,7 +47,7 @@ const columnDefinitions = {
     },
     {
       name: 'p-value',
-      sort: sort.sortBySciNotation,
+      sort: sort.sciNotation,
       sortable: true,
       sortKey: 'pValue',
       width: 'minmax(76px, 15%)',

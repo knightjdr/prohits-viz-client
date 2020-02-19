@@ -4,11 +4,13 @@
 }
 
 .analysis__tool-description {
-  background-color: #ffffe6;
-  border: 1px solid #b3b300;
+  background-color: #e6f7ff;
+  border: 1px solid #91d5ff;
   border-radius: 3px;
+  color: rgba(0, 0, 0, 0.65);
   display: flex;
   flex-grow: 1;
+  font-size: 0.9em;
   margin-left: 30px;
   padding: 10px 15px;
 }
@@ -18,7 +20,7 @@
   padding: 0;
 }
 .analysis__tool-description svg {
-  color: #b3b300;
+  color: #1890ff;
 }
 
 .analysis__tool-select {

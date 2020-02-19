@@ -6,24 +6,25 @@ import Button from '../../components/buttons/rectangular/button';
 import './next-step.css';
 
 const NextStep = ({
-  onClick,
+  goToNextStep,
   show,
 }) => (
-  show
-  && (
-    <div className="analysis__next-step">
-      <Button
-        onClick={onClick}
-        kind="secondary"
-      >
-        Next
-      </Button>
-    </div>
-  )
+  <div
+    className="analysis__next-step"
+    style={{ visibility: show ? 'visible' : 'hidden' }}
+  >
+    <Button
+      onClick={goToNextStep}
+      kind="secondary"
+      type="button"
+    >
+      Next
+    </Button>
+  </div>
 );
 
 NextStep.propTypes = {
-  onClick: PropTypes.func.isRequired,
+  goToNextStep: PropTypes.func.isRequired,
   show: PropTypes.bool.isRequired,
 };
 

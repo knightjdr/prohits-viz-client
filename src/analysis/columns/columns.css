@@ -1,0 +1,3 @@
+.analysis__column-selectors > *:not(:last-child) {
+  margin-bottom: 15px;
+}

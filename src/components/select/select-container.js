@@ -32,6 +32,7 @@ const SelectContainer = ({
   openDirection,
   options,
   value,
+  warning,
   ...props
 }) => {
   const inputRef = useRef(null);
@@ -39,6 +40,7 @@ const SelectContainer = ({
   const [dropdownDirection, setDropdownDirection] = useState('down');
   const [dropdownLayout, setDropdownLayout] = useState({});
   const [focusedOption, setFocusedOption] = useState();
+  const [inputWarning, setInputWarning] = useState(warning);
   const [isDropdownVisible, setDropdownVisibility] = useState(false);
   const [searchText, setSearchText] = useState('');
 
@@ -51,8 +53,13 @@ const SelectContainer = ({
   );
 
   useEffect(() => {
+    setInputWarning('');
     setSelectedValues(parseValue(optionSettings.selectableOptions, value));
   }, [optionSettings.selectableOptions, value]);
+
+  useEffect(() => {
+    setInputWarning(warning);
+  }, [warning]);
 
   const returnFocus = (e, onlyOnEscape) => {
     if (!onlyOnEscape || keyCodes.pressedEscape(e)) {
@@ -109,6 +116,10 @@ const SelectContainer = ({
     }
   };
 
+  const handleFocus = () => {
+    setInputWarning('');
+  };
+
   const handleKeyDown = (e) => {
     const { target } = e;
     const context = getOptionElements(portalRef.current, target);
@@ -157,6 +168,7 @@ const SelectContainer = ({
     setDropdownDirection(direction);
     setDropdownLayout(layout);
     setDropdownVisibility(!isDropdownVisible);
+    setInputWarning('');
     setSearchText('');
     const focusIndex = findFocusIndex(optionSettings.selectableOptions, selectedValues);
     focusOption(portalRef.current.querySelectorAll('.select__option')[focusIndex]);
@@ -178,6 +190,7 @@ const SelectContainer = ({
       <Select
         canClear={canClear}
         clearOption={clearOption}
+        handleFocus={handleFocus}
         handleKeyUp={handleKeyUp}
         inputID={inputID}
         isDropdownVisible={isDropdownVisible}
@@ -185,6 +198,7 @@ const SelectContainer = ({
         selectedText={selectedText}
         toggleOnClick={toggleDropdown}
         toggleOnKeydown={toggleOnKeydown}
+        warning={inputWarning}
         {...props}
       />
       <DropdownPortal
@@ -214,6 +228,7 @@ SelectContainer.defaultProps = {
   multiple: false,
   openDirection: '',
   value: [],
+  warning: '',
 };
 
 SelectContainer.propTypes = {
@@ -249,6 +264,7 @@ SelectContainer.propTypes = {
     PropTypes.number,
     PropTypes.string,
   ]),
+  warning: PropTypes.string,
 };
 
 export default SelectContainer;

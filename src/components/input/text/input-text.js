@@ -1,9 +1,8 @@
 import PropTypes from 'prop-types';
 import React from 'react';
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faExclamationTriangle } from '@fortawesome/pro-duotone-svg-icons';
 
 import StyledInputText from './input-text-style';
+import Warning from '../warning/warning';
 
 const InputText = ({
   handleBlur,
@@ -37,15 +36,7 @@ const InputText = ({
       onKeyDown={handleKeyDown}
       {...props}
     />
-    {
-      warning
-      && (
-        <div className="input__warning">
-          <FontAwesomeIcon icon={faExclamationTriangle} />
-          {warning}
-        </div>
-      )
-    }
+    <Warning warning={warning} />
   </StyledInputText>
 );
 

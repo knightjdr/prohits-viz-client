@@ -12,6 +12,7 @@ import toolDescription from './tool-description';
 import './tool.css';
 
 const Tool = ({
+  errors,
   selectedtool,
   setTool,
 }) => (
@@ -30,6 +31,7 @@ const Tool = ({
     </p>
     <div className="analysis__tool-select">
       <Select
+        id="type"
         onChange={setTool}
         options={[
           { label: 'Dot plot', value: 'dotplot' },
@@ -37,6 +39,7 @@ const Tool = ({
         ]}
         placeholder="Select tool..."
         value={selectedtool}
+        warning={errors.type}
       />
       {
         selectedtool
@@ -56,6 +59,9 @@ Tool.defaultProps = {
 };
 
 Tool.propTypes = {
+  errors: PropTypes.shape({
+    type: PropTypes.string,
+  }).isRequired,
   selectedtool: PropTypes.string,
   setTool: PropTypes.func.isRequired,
 };

@@ -1,6 +1,13 @@
 import * as actions from './form-actions';
 
 describe('Form actions', () => {
+  it('should dispatch an action to reset the form', () => {
+    const expectedAction = {
+      type: actions.RESET_FORM,
+    };
+    expect(actions.resetForm()).toEqual(expectedAction);
+  });
+
   it('should dispatch an action to update a form field', () => {
     const expectedAction = {
       field: 'field1',

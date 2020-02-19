@@ -1,0 +1,53 @@
+const commonValues = {
+  ctrlSub: true,
+  logBase: 'none',
+  minConditions: 0,
+  mockConditionAbundance: false,
+  normalization: 'none',
+  normalizationReadout: '',
+  readoutLengthNorm: false,
+  scoreType: 'lte',
+  png: false,
+};
+
+const defaultFormValues = {
+  correlation: {
+    ...commonValues,
+    clustering: 'hierarchical',
+    clusteringMethod: 'ward',
+    clusteringOptimize: true,
+    conditionAbundanceFilter: 20,
+    conditionScoreFilter: 0.1,
+    correlation: 'pearson',
+    cytoscapeCutoff: 0.7,
+    distance: 'canberra',
+    fillColor: 'redBlue',
+    ignoreSourceTargetPairs: false,
+    parsimoniousReadoutFiltering: false,
+    readoutAbundanceFilter: 20,
+    readoutScoreFilter: 0.01,
+    useReplicates: true,
+  },
+  dotplot: {
+    ...commonValues,
+    abundanceCap: 50,
+    biclusteringApprox: false,
+    clustering: 'hierarchical',
+    clusteringMethod: 'ward',
+    clusteringOptimize: true,
+    conditionClustering: 'conditions',
+    conditionList: '',
+    distance: 'canberra',
+    edgeColor: 'blue',
+    fillColor: 'blue',
+    minAbundance: 0,
+    readoutClustering: 'readouts',
+    readoutList: '',
+    primaryFilter: 0.01,
+    secondaryFilter: 0.05,
+    writeDistance: false,
+    writeHeatmap: false,
+  },
+};
+
+export default defaultFormValues;

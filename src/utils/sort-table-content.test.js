@@ -1,4 +1,4 @@
-import { sortByNumber, sortBySciNotation, sortByString } from './sort-table-content';
+import * as sort from './sort-table-content';
 
 describe('Sort functions for table content', () => {
   it('should sort by number', () => {
@@ -8,7 +8,7 @@ describe('Sort functions for table content', () => {
       { a: { content: 1 }, b: { content: 1 }, expected: 0 },
     ];
     tests.forEach((test) => {
-      expect(sortByNumber(test.a, test.b)).toBe(test.expected);
+      expect(sort.numeric(test.a, test.b)).toBe(test.expected);
     });
   });
 
@@ -19,7 +19,7 @@ describe('Sort functions for table content', () => {
       { a: { content: '1.00e-1' }, b: { content: '1.00e-1' }, expected: 0 },
     ];
     tests.forEach((test) => {
-      expect(sortBySciNotation(test.a, test.b)).toBe(test.expected);
+      expect(sort.sciNotation(test.a, test.b)).toBe(test.expected);
     });
   });
 
@@ -30,7 +30,7 @@ describe('Sort functions for table content', () => {
       { a: { content: 'a' }, b: { content: 'a' }, expected: 0 },
     ];
     tests.forEach((test) => {
-      expect(sortByString(test.a, test.b)).toBe(test.expected);
+      expect(sort.character(test.a, test.b)).toBe(test.expected);
     });
   });
 });

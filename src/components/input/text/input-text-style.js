@@ -42,22 +42,6 @@ const Span = styled.span`
     padding-right: 8px;
   }
 
-  .input__warning {
-    align-items: center;
-    border-bottom: 1px dashed ${props => props.theme.warning};
-    border-left: 1px dashed ${props => props.theme.warning};
-    border-right: 1px dashed ${props => props.theme.warning};
-    display: flex;
-    grid-column: 2 / span 1;
-    grid-row: 2 / span 1;
-    justify-content: center;
-  }
-  .input__warning svg {
-    color: ${props => props.theme.warning};
-    height: 25px;
-    margin-right: 5px;
-  }
-
   ${props => (props.vertical
     && css`& {
       display: flex;

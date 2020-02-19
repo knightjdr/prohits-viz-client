@@ -1,7 +1,7 @@
-import * as sort from './sort';
+import sort from './sort';
 
-export const sortByNumber = (a, b) => sort.sortByNumber(a.content, b.content);
+export const numeric = (a, b) => sort.numeric(a.content, b.content);
 
-export const sortBySciNotation = (a, b) => sort.sortBySciNotation(a.content, b.content);
+export const sciNotation = (a, b) => sort.sciNotation(a.content, b.content);
 
-export const sortByString = (a, b) => sort.sortByString(a.content, b.content);
+export const character = (a, b) => sort.character(a.content, b.content);

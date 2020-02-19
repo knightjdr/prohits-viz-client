@@ -7,9 +7,11 @@ import InputFile from './input-file';
 const InputFileContainer = ({
   onChange,
   value,
+  warning,
   ...props
 }) => {
   const [inputFiles, setInputFiles] = useState(value);
+  const [inputWarning, setInputWarning] = useState(warning);
 
   const removeFile = (e) => {
     const { name } = e.currentTarget.dataset;
@@ -25,6 +27,7 @@ const InputFileContainer = ({
   const handleChange = (e) => {
     const files = Array.from(e.currentTarget.files);
     setInputFiles(files);
+    setInputWarning('');
     if (onChange) {
       onChange(e, files);
     }
@@ -34,7 +37,12 @@ const InputFileContainer = ({
 
   useEffect(() => {
     setInputFiles(value);
+    setInputWarning('');
   }, [value]);
+
+  useEffect(() => {
+    setInputWarning(warning);
+  }, [warning]);
 
   return (
     <InputFile
@@ -42,6 +50,7 @@ const InputFileContainer = ({
       inputID={inputID}
       handleChange={handleChange}
       removeFile={removeFile}
+      warning={inputWarning}
       {...props}
     />
   );
@@ -50,6 +59,7 @@ const InputFileContainer = ({
 InputFileContainer.defaultProps = {
   onChange: undefined,
   value: [],
+  warning: '',
 };
 
 InputFileContainer.propTypes = {
@@ -57,6 +67,7 @@ InputFileContainer.propTypes = {
   value: PropTypes.arrayOf(
     PropTypes.shape({}),
   ),
+  warning: PropTypes.string,
 };
 
 export default InputFileContainer;

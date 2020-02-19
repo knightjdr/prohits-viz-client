@@ -4,6 +4,7 @@ import React, { forwardRef } from 'react';
 import Clear from './clear';
 import Label from '../label/label';
 import Placeholder from './placeholder';
+import Warning from '../input/warning/warning';
 import { SelectContainer } from './select-style';
 import { ReactComponent as AngleDown } from './angle-down.svg';
 
@@ -11,6 +12,7 @@ const CustomSelect = forwardRef((
   {
     canClear,
     clearOption,
+    handleFocus,
     handleKeyUp,
     inputID,
     isDropdownVisible,
@@ -19,6 +21,7 @@ const CustomSelect = forwardRef((
     selectedText,
     toggleOnClick,
     toggleOnKeydown,
+    warning,
   },
   ref,
 ) => (
@@ -34,6 +37,7 @@ const CustomSelect = forwardRef((
       <input
         id={inputID}
         onClick={toggleOnClick}
+        onFocus={handleFocus}
         onKeyDown={toggleOnKeydown}
         onKeyUp={handleKeyUp}
         ref={ref}
@@ -53,6 +57,7 @@ const CustomSelect = forwardRef((
         className={isDropdownVisible ? 'select__arrow select__arrow_up' : 'select__arrow select__arrow_down'}
       />
     </div>
+    <Warning warning={warning} />
   </SelectContainer>
 ));
 
@@ -60,11 +65,13 @@ CustomSelect.defaultProps = {
   label: '',
   placeholder: 'Select...',
   selectedText: '',
+  warning: '',
 };
 
 CustomSelect.propTypes = {
   canClear: PropTypes.bool.isRequired,
   clearOption: PropTypes.func.isRequired,
+  handleFocus: PropTypes.func.isRequired,
   handleKeyUp: PropTypes.func.isRequired,
   inputID: PropTypes.string.isRequired,
   isDropdownVisible: PropTypes.bool.isRequired,
@@ -73,6 +80,7 @@ CustomSelect.propTypes = {
   selectedText: PropTypes.string,
   toggleOnClick: PropTypes.func.isRequired,
   toggleOnKeydown: PropTypes.func.isRequired,
+  warning: PropTypes.string,
 };
 
 export default CustomSelect;

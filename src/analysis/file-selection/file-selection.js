@@ -10,6 +10,7 @@ import './file-selection.css';
 import Link from '../../components/link/text/link';
 
 const FileSelection = ({
+  errors,
   files,
   fileType,
   loadSampleFile,
@@ -34,6 +35,7 @@ const FileSelection = ({
       <Button
         onClick={loadSampleFile}
         outline={false}
+        type="button"
       >
         sample input file
       </Button>
@@ -41,6 +43,7 @@ const FileSelection = ({
     </p>
     <div className="analysis__file-selection-inputs">
       <Select
+        id="fileType"
         onChange={selectFileType}
         options={[
           { label: 'SAINT', value: 'saint' },
@@ -48,11 +51,13 @@ const FileSelection = ({
         ]}
         placeholder="File type..."
         value={fileType}
+        warning={errors.fileType}
       />
       <Input
         multiple
         onChange={selectFile}
         value={files}
+        warning={errors.files}
       />
     </div>
   </div>
@@ -63,6 +68,10 @@ FileSelection.defaultProps = {
 };
 
 FileSelection.propTypes = {
+  errors: PropTypes.shape({
+    fileType: PropTypes.string,
+    files: PropTypes.string,
+  }).isRequired,
   files: PropTypes.arrayOf(
     PropTypes.shape({}),
   ).isRequired,

@@ -1,7 +1,7 @@
 .analysis__next-step {
   display: flex;
   justify-content: flex-end;
-  margin: 15px 0;
+  margin: 10px 0;
 }
 
 .analysis__next-step button {

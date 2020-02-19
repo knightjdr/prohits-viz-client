@@ -6,6 +6,9 @@ export const SelectContainer = styled.span`
   width: 100%;
 
   label {
+    display: inline-block;
+    margin-bottom: 5px;
+    margin-left: 3px;
     padding-right: 8px;
   }
 

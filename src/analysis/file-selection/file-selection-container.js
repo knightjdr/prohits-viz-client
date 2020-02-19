@@ -1,4 +1,5 @@
-import React from 'react';
+import PropTypes from 'prop-types';
+import React, { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 
 import FileSelection from './file-selection';
@@ -9,7 +10,9 @@ import { selectState } from '../../state/selector/general';
 import { setFormField, setFormFields } from '../../state/analysis/form-actions';
 
 
-const FileSelectionContainer = () => {
+const FileSelectionContainer = ({
+  errors,
+}) => {
   const dispatch = useDispatch();
 
   const form = useSelector(state => selectState(state, 'form'));
@@ -23,9 +26,7 @@ const FileSelectionContainer = () => {
         type: 'text/plain',
       },
     );
-    const header = await parseHeader(file);
     dispatch(setFormFields({
-      header,
       files: [file],
       fileType: 'saint',
     }));
@@ -39,8 +40,20 @@ const FileSelectionContainer = () => {
     dispatch(setFormField('fileType', value));
   };
 
+  useEffect(() => {
+    const getHeader = async () => {
+      const header = await parseHeader(form.files[0]);
+      dispatch(setFormFields({ header }));
+    };
+
+    if (form.fileType && form.files.length > 0) {
+      getHeader();
+    }
+  }, [dispatch, form.files, form.fileType]);
+
   return (
     <FileSelection
+      errors={errors}
       files={form.files}
       fileType={form.fileType}
       loadSampleFile={loadSampleFile}
@@ -48,6 +61,13 @@ const FileSelectionContainer = () => {
       selectFileType={selectFileType}
     />
   );
+};
+
+FileSelectionContainer.propTypes = {
+  errors: PropTypes.shape({
+    fileType: PropTypes.string,
+    files: PropTypes.string,
+  }).isRequired,
 };
 
 export default FileSelectionContainer;
