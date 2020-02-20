@@ -17,20 +17,21 @@ export const defineDirectionToOpen = (directionToOpen, distanceToBottom, element
 
 export const defineDropdownPosition = (direction, distanceToBottom, rect) => {
   const { bottom, left, height } = rect;
+  const { scrollX, scrollY } = window;
 
   let position = {
-    left,
+    left: scrollX + left,
   };
   if (direction === 'down') {
     position = {
       ...position,
-      top: bottom + 5,
+      top: scrollY + bottom + 5,
       transformOrigin: 'center top',
     };
   } else {
     position = {
       ...position,
-      bottom: distanceToBottom + height + 5,
+      bottom: scrollY + distanceToBottom + height + 5,
       transformOrigin: 'center bottom',
     };
   }
