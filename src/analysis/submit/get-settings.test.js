@@ -6,7 +6,7 @@ describe('Analysis settings', () => {
 
     beforeAll(() => {
       const form = {
-        type: 'dotplot',
+        tool: 'dotplot',
         clustering: 'hierarchical',
         primaryFilter: 0.01,
         secondaryFilter: 0.05,
@@ -41,7 +41,7 @@ describe('Analysis settings', () => {
 
     beforeAll(() => {
       const form = {
-        type: 'dotplot',
+        tool: 'dotplot',
       };
       settings = getSettings(form);
     });
@@ -72,7 +72,7 @@ describe('Analysis settings', () => {
 
     beforeAll(() => {
       const form = {
-        type: 'dotplot',
+        tool: 'dotplot',
         ctrlSub: true,
         readoutLengthNorm: true,
       };
@@ -96,7 +96,7 @@ describe('Analysis settings', () => {
 
       beforeAll(() => {
         settings = getSettings({
-          type: 'dotplot',
+          tool: 'dotplot',
           normalization: 'total',
         });
       });
@@ -112,7 +112,7 @@ describe('Analysis settings', () => {
 
       beforeAll(() => {
         settings = getSettings({
-          type: 'dotplot',
+          tool: 'dotplot',
           normalization: 'readout',
         });
       });
@@ -130,7 +130,7 @@ describe('Analysis settings', () => {
 
       beforeAll(() => {
         settings = getSettings({
-          type: 'dotplot',
+          tool: 'dotplot',
           logBase: 2,
         });
       });

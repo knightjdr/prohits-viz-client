@@ -18,6 +18,7 @@ body {
   --warning: #C2352A;
   color: var(--fontDark);
   font-family: var(--fontStackPrimary);
+  line-height: 1.4em;
 }
 
 noscript {

@@ -13,7 +13,7 @@ const ModalHeader = ({
 );
 
 ModalHeader.propTypes = {
-  title: PropTypes.string.isRequired,
+  title: PropTypes.node.isRequired,
 };
 
 export default ModalHeader;

@@ -85,7 +85,7 @@ const getDotplotSettings = (form) => {
 const getSettings = (form) => {
   const tagArray = getCommonSettings(form);
 
-  switch (form.type) {
+  switch (form.tool) {
     case 'correlation':
       tagArray.push(...getCorrelationSettings(form));
       break;

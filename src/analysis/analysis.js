@@ -17,17 +17,14 @@ const Analysis = ({
   submit,
 }) => (
   <main className="analysis">
-    <form
-      className="analysis__inner"
-      onSubmit={submit}
-    >
+    <form className="analysis__inner">
       <FileSelection errors={errors} />
       <Next show={currentStep === 1} />
       <Tool errors={errors} show={currentStep > 1} />
       <Next show={currentStep === 3} />
       <Columns errors={errors} show={currentStep > 3} />
       <Next show={currentStep === 5} />
-      <Submit errors={errors} show={currentStep > 5} />
+      <Submit errors={errors} show={currentStep > 5} submit={submit} />
       <Advanced errors={errors} show={currentStep > 5 && showAdvanced} />
     </form>
   </main>

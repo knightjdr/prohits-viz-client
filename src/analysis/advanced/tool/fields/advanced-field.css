@@ -1,0 +1,14 @@
+.analysis__advanced-field_help {
+  display: flex;
+}
+.analysis__advanced-field_help > :first-child {
+  flex-grow: 1;
+}
+.analysis__advanced-field_help > :nth-child(2) {
+  margin-left: 15px;
+  margin-top: 24px;
+}
+
+.analysis__advanced-field-modal-header svg {
+  margin-right: 8px;
+}

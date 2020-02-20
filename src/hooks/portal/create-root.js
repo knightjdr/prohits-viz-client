@@ -1,9 +1,10 @@
 const createRootElement = (id) => {
-  let root = document.querySelector(`#${id}`);
+  let root = document.getElementById(id);
   if (!root) {
     root = document.createElement('div');
     root.setAttribute('id', id);
-    document.body.appendChild(root);
+    const app = document.querySelector('.app');
+    app.appendChild(root);
   }
   return root;
 };

@@ -15,6 +15,7 @@ const Submit = ({
   reset,
   settings,
   showAdvanced,
+  submit,
   toggleAdvanced,
 }) => (
   <div>
@@ -28,7 +29,8 @@ const Submit = ({
       <div className="analysis__submit-buttons">
         <Button
           kind="success"
-          type="submit"
+          onClick={submit}
+          type="button"
         >
           Submit
         </Button>
@@ -61,6 +63,7 @@ Submit.propTypes = {
     }),
   ).isRequired,
   showAdvanced: PropTypes.bool.isRequired,
+  submit: PropTypes.func.isRequired,
   toggleAdvanced: PropTypes.func.isRequired,
 };
 

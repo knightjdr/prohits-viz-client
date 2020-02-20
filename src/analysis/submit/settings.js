@@ -5,7 +5,7 @@ const Settings = ({
   settings,
 }) => (
   <>
-    <h3 className="analysis__form-settings-header">Current settings:</h3>
+    <h2 className="analysis__form-settings-header">Current settings:</h2>
     <ul className="analysis__form-settings-list">
       {
         settings.map(setting => (

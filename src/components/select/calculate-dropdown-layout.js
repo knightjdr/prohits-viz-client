@@ -31,7 +31,7 @@ export const defineDropdownPosition = (direction, distanceToBottom, rect) => {
   } else {
     position = {
       ...position,
-      bottom: scrollY + distanceToBottom + height + 5,
+      bottom: distanceToBottom + height + 5 - scrollY,
       transformOrigin: 'center bottom',
     };
   }

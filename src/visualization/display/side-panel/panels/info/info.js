@@ -35,6 +35,7 @@ const Info = ({
         onClick={downloadLegend}
         icon={faDownload}
         size="1x"
+        type="button"
       />
     </div>
   </div>

@@ -10,6 +10,7 @@ import { resetForm, setFormField } from '../../state/analysis/form-actions';
 
 const SubmitContainer = ({
   errors,
+  submit,
 }) => {
   const dispatch = useDispatch();
 
@@ -31,6 +32,7 @@ const SubmitContainer = ({
       reset={reset}
       settings={settings}
       showAdvanced={form.showAdvanced}
+      submit={submit}
       toggleAdvanced={toggleAdvanced}
     />
   );
@@ -38,6 +40,7 @@ const SubmitContainer = ({
 
 SubmitContainer.propTypes = {
   errors: PropTypes.shape({}).isRequired,
+  submit: PropTypes.func.isRequired,
 };
 
 const ShowWrapper = ({

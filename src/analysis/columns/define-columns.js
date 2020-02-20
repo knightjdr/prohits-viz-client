@@ -3,11 +3,11 @@ import recommendedColumns from './recommended-columns';
 
 const defaultColumns = ['abundance', 'condition', 'readout', 'score'];
 
-const defineColumns = ({ fileType, header, type }, columns = defaultColumns) => (
+const defineColumns = ({ fileType, header, tool }, columns = defaultColumns) => (
   columns.reduce((accum, column) => ({
     ...accum,
     [column]: filterHeader(
-      recommendedColumns[type][fileType][column],
+      recommendedColumns[tool][fileType][column],
       header,
     ),
   }), {})

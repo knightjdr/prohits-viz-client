@@ -47,7 +47,7 @@ Modal.propTypes = {
   className: PropTypes.string,
   footer: PropTypes.node,
   portal: PropTypes.shape({}).isRequired,
-  title: PropTypes.string,
+  title: PropTypes.node,
 };
 
 export default Modal;

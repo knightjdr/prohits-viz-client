@@ -4,6 +4,26 @@ import React, { useEffect, useState } from 'react';
 
 import InputText from './input-text';
 
+const setInitialValue = (type, value) => {
+  if (type === 'number' && value === '') {
+    return 0;
+  }
+  return value;
+};
+
+const setOptionalProps = (type, props) => {
+  const optionalProps = { ...props };
+  if (type !== 'number') {
+    delete optionalProps.step;
+  }
+
+  return optionalProps;
+};
+
+const setParsedValue = (type, value) => (
+  type === 'number' ? Number(value) : value
+);
+
 const InputTextContainer = ({
   id,
   onBlur,
@@ -14,7 +34,7 @@ const InputTextContainer = ({
   warning,
   ...props
 }) => {
-  const [inputValue, setInputValue] = useState(value);
+  const [inputValue, setInputValue] = useState(setInitialValue(type, value));
   const [inputWarning, setInputWarning] = useState(warning);
 
   useEffect(() => {
@@ -30,15 +50,13 @@ const InputTextContainer = ({
       onBlur(e);
     }
     if (onChange) {
-      onChange(e, id, inputValue);
+      onChange(e, id, setParsedValue(type, inputValue));
     }
   };
 
   const handleChange = (e) => {
     const { target } = e;
-
-    const parsedValue = target.type === 'number' ? Number(target.value) : target.value;
-    setInputValue(parsedValue);
+    setInputValue(target.value);
   };
 
   const handleFocus = (e) => {
@@ -52,13 +70,13 @@ const InputTextContainer = ({
     const { keyCode, which } = e;
 
     if (onChange && (keyCode === 13 || which === 13)) {
-      onChange(e, id, inputValue);
+      onChange(e, id, setParsedValue(type, inputValue));
     }
   };
 
   const inputID = id || nanoid();
-
-  const parsedValue = type === 'number' ? Number(inputValue).toString() : inputValue;
+  const parsedValue = setParsedValue(type, inputValue);
+  const optionalProps = setOptionalProps(type, props);
 
   return (
     <InputText
@@ -70,7 +88,7 @@ const InputTextContainer = ({
       type={type}
       value={parsedValue}
       warning={inputWarning}
-      {...props}
+      {...optionalProps}
     />
   );
 };
@@ -80,8 +98,9 @@ InputTextContainer.defaultProps = {
   onBlur: undefined,
   onChange: undefined,
   onFocus: undefined,
+  step: 'any',
   type: 'text',
-  value: undefined,
+  value: '',
   warning: '',
 };
 
@@ -90,6 +109,10 @@ InputTextContainer.propTypes = {
   onBlur: PropTypes.func,
   onChange: PropTypes.func,
   onFocus: PropTypes.func,
+  step: PropTypes.oneOfType([
+    PropTypes.number,
+    PropTypes.string,
+  ]),
   type: PropTypes.string,
   value: PropTypes.oneOfType([
     PropTypes.number,

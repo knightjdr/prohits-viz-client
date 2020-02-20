@@ -68,6 +68,9 @@ const Span = styled.span`
     label,
     .input__warning {
       width: 100%;
+    }
+    label {
+      margin-bottom: 5px;
     }`
   )};
 `;

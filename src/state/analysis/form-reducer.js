@@ -6,7 +6,7 @@ export const defaultState = {
   files: [],
   readout: '',
   score: '',
-  type: '',
+  tool: '',
 
   fileType: '',
   header: [],

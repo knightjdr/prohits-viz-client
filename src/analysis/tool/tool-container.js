@@ -13,12 +13,12 @@ const ToolContainer = ({
 }) => {
   const dispatch = useDispatch();
 
-  const selectedtool = useSelector(state => selectStateProperty(state, 'form', 'type'));
+  const selectedtool = useSelector(state => selectStateProperty(state, 'form', 'tool'));
 
   const setTool = (e, id, value) => {
     dispatch(
       setFormFields({
-        type: value,
+        tool: value,
         ...defaultFormValues[value],
       }),
     );
@@ -35,7 +35,7 @@ const ToolContainer = ({
 
 ToolContainer.propTypes = {
   errors: PropTypes.shape({
-    type: PropTypes.string,
+    tool: PropTypes.string,
   }).isRequired,
 };
 

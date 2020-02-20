@@ -1,11 +1,12 @@
 import React, { useEffect } from 'react';
-import { useSelector, useDispatch } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 
 import Analysis from './analysis';
 
+import defaultFormValues from './tool/default-form-values';
 import getStep from './next/get-step';
 import { selectState } from '../state/selector/general';
-import { setFormField } from '../state/analysis/form-actions';
+import { setFormField, setFormFields } from '../state/analysis/form-actions';
 
 const AnalysisContainer = () => {
   const dispatch = useDispatch();
@@ -23,6 +24,15 @@ const AnalysisContainer = () => {
       dispatch(setFormField('step', currentStep));
     }
   }, [dispatch, form]);
+
+  // REMOVE
+  useEffect(() => {
+    dispatch(
+      setFormFields({
+        ...defaultFormValues.dotplot,
+      }),
+    );
+  }, [dispatch]);
 
   return (
     <Analysis

@@ -1,0 +1,12 @@
+.analysis__advanced {
+  margin-top: 20px;
+}
+
+.analysis__advanced h2 {
+  font-size: 1.1em;
+  margin-top: 30px;
+}
+
+.analysis__advanced section > *:not(:last-child) {
+  margin-bottom: 15px;
+}

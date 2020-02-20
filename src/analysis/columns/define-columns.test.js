@@ -5,7 +5,7 @@ describe('Define Columns', () => {
     const form = {
       fileType: 'saint',
       header: ['avgSpec', 'spec', 'bfdr', 'baits', 'columnX'],
-      type: 'correlation',
+      tool: 'correlation',
     };
 
     const expected = {
@@ -64,7 +64,7 @@ describe('Define Columns', () => {
     const form = {
       fileType: 'saint',
       header: ['avgSpec', 'bfdr', 'baits', 'columnX'],
-      type: 'dotplot',
+      tool: 'dotplot',
     };
 
     const expected = {

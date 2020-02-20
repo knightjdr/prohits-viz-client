@@ -84,7 +84,7 @@ const SelectContainer = ({
   const focusOption = (option) => {
     if (option) {
       setFocusedOption(option.id);
-      option.focus();
+      option.focus({ preventScroll: true });
     }
   };
 

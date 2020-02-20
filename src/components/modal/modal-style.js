@@ -12,10 +12,10 @@ const Div = styled.div`
   left: 0;
   opacity: 0;
   pointer-events: none;
-  position: absolute;
+  position: fixed;
   text-transform: none;
   top: 0;
-  width: 100vw;
+  width: 100%;
   z-index: 2147483647;
 
   & > section {
