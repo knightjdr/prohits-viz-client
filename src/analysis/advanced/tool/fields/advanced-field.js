@@ -10,6 +10,7 @@ import './advanced-field.css';
 
 const AdvancedField = ({
   children,
+  id,
   isModalOpen,
   message,
   title,
@@ -27,7 +28,7 @@ const AdvancedField = ({
     <Modal
       handleClose={toggleModal}
       isOpen={isModalOpen}
-      name="help-modal"
+      name={id}
       placement={{
         horizontal: 'center',
         vertical: 'center',
@@ -46,6 +47,7 @@ const AdvancedField = ({
 
 AdvancedField.propTypes = {
   children: PropTypes.node.isRequired,
+  id: PropTypes.string.isRequired,
   isModalOpen: PropTypes.bool.isRequired,
   message: PropTypes.node.isRequired,
   title: PropTypes.string.isRequired,

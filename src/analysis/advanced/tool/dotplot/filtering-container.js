@@ -2,13 +2,14 @@ import PropTypes from 'prop-types';
 import React from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 
-import Dotplot from './dotplot';
+import Filtering from './filtering';
 
 import { selectState } from '../../../../state/selector/general';
 import { setFormField, setFormFields } from '../../../../state/analysis/form-actions';
 
-const DotplotContainer = ({
+const FilteringContainer = ({
   errors,
+  help,
 }) => {
   const dispatch = useDispatch();
 
@@ -94,16 +95,18 @@ const DotplotContainer = ({
   };
 
   return (
-    <Dotplot
+    <Filtering
       errors={errors}
       form={form}
       handleChange={handleChange}
+      help={help}
     />
   );
 };
 
-DotplotContainer.propTypes = {
+FilteringContainer.propTypes = {
   errors: PropTypes.shape({}).isRequired,
+  help: PropTypes.shape({}).isRequired,
 };
 
-export default DotplotContainer;
+export default FilteringContainer;

@@ -8,9 +8,13 @@ const Switch = ({
   handleChange,
   inputID,
   label,
+  vertical,
   ...props
 }) => (
-  <StyledSwitch className="input__container">
+  <StyledSwitch
+    className="input__container"
+    vertical={vertical}
+  >
     {
       label
       && (
@@ -36,6 +40,7 @@ const Switch = ({
 Switch.defaultProps = {
   checked: false,
   label: '',
+  vertical: false,
 };
 
 Switch.propTypes = {
@@ -43,6 +48,7 @@ Switch.propTypes = {
   handleChange: PropTypes.func.isRequired,
   inputID: PropTypes.string.isRequired,
   label: PropTypes.string,
+  vertical: PropTypes.bool,
 };
 
 export default Switch;

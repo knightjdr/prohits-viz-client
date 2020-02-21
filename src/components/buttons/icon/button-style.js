@@ -17,6 +17,7 @@ const Button = styled(DefaultButton)`
   padding: 2px;
   position: relative;
   width: 34px;
+  z-index: 1;
 
   &::before {
     border-radius: 50%;

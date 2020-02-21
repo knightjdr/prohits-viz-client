@@ -26,3 +26,9 @@
 .footer > small a {
   margin-left: 4px;
 }
+.footer__year::after {
+  content: ', ';
+}
+.footer__year::before {
+  content: ' ';
+}

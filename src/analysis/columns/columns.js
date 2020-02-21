@@ -18,7 +18,6 @@ const Columns = ({
     <p>
       Specify the columns to use if they have not been preselected. See the
       {' '}
-      {' '}
       <Link
         href="/help"
         visited={false}

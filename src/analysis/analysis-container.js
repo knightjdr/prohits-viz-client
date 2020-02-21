@@ -7,6 +7,7 @@ import defaultFormValues from './tool/default-form-values';
 import getStep from './next/get-step';
 import { selectState } from '../state/selector/general';
 import { setFormField, setFormFields } from '../state/analysis/form-actions';
+import validate from './validation/validate';
 
 const AnalysisContainer = () => {
   const dispatch = useDispatch();
@@ -15,7 +16,12 @@ const AnalysisContainer = () => {
 
   const submit = (e) => {
     e.preventDefault();
-    console.log('submit');
+    const status = validate(form);
+    if (status.valid) {
+      console.log('submit');
+    } else {
+      dispatch(setFormField('errors', status.errors));
+    }
   };
 
   useEffect(() => {
@@ -26,6 +32,7 @@ const AnalysisContainer = () => {
   }, [dispatch, form]);
 
   // REMOVE
+  console.log('remove the following useEffect');
   useEffect(() => {
     dispatch(
       setFormFields({
@@ -37,7 +44,7 @@ const AnalysisContainer = () => {
   return (
     <Analysis
       currentStep={form.step}
-      errors={{}}
+      errors={form.errors}
       showAdvanced={form.showAdvanced}
       submit={submit}
     />

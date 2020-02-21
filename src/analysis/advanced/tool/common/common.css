@@ -1,0 +1,15 @@
+.analysis__advanced-switch-input {
+  display: flex;
+  width: 100%;
+}
+.analysis__advanced-switch-input > .input__container {
+  margin-right: 40px;
+  width: 250px;
+}
+.analysis__advanced-select-input {
+  display: flex;
+  width: 100%;
+}
+.analysis__advanced-select-input > *:nth-child(2) {
+  margin-left: 50px;
+}

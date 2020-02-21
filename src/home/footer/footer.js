@@ -63,7 +63,10 @@ const Footer = () => {
         </div>
       </div>
       <small>
-        &copy; 2019,
+        &copy;
+        <span className="footer__year">
+          {new Date().getFullYear()}
+        </span>
         <Link
           href="http://gingraslab.lunenfeld.ca/"
         >

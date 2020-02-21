@@ -1,10 +1,16 @@
 .analysis__advanced {
-  margin-top: 20px;
+  margin-top: 50px;
 }
 
 .analysis__advanced h2 {
   font-size: 1.1em;
-  margin-top: 30px;
+  padding-bottom: 5px;
+  text-decoration: underline rgba(0, 0, 0, 0.2) 1px;
+  text-underline-offset: 0.1em;
+}
+
+.analysis__advanced section:not(:first-of-type) {
+  margin-top: 50px;
 }
 
 .analysis__advanced section > *:not(:last-child) {

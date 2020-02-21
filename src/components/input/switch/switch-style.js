@@ -1,4 +1,4 @@
-import styled from 'styled-components';
+import styled, { css } from 'styled-components';
 
 const Span = styled.span`
   align-items: center;
@@ -70,6 +70,15 @@ const Span = styled.span`
   input:disabled {
     cursor: not-allowed;
   }
+
+  ${props => (props.vertical
+    && css`& {
+      flex-direction: column;
+    }
+    label {
+      margin-bottom: 5px;
+    }`
+  )};
 `;
 
 export default Span;

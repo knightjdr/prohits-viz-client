@@ -3,8 +3,9 @@ const recommendedColumns = {
     saint: {
       abundance: ['spec', 'avgspec', 'specsum', 'avgintensity', 'intensitysum'],
       condition: ['bait', 'baits'],
-      control: ['ctrlCounts'],
+      control: ['ctrlcounts', 'control', 'controls'],
       readout: ['preygene', 'prey', 'preygenes', 'preys'],
+      readoutLength: ['preysequencelength'],
       score: ['bfdr', 'fdr', 'saintscore', 'avgp', 'maxp'],
     },
   },
@@ -12,8 +13,9 @@ const recommendedColumns = {
     saint: {
       abundance: ['avgspec', 'specsum', 'avgintensity', 'intensitysum'],
       condition: ['bait', 'baits'],
-      control: ['ctrlCounts'],
+      control: ['ctrlcounts', 'control', 'controls'],
       readout: ['preygene', 'prey', 'preygenes', 'preys'],
+      readoutLength: ['preysequencelength'],
       score: ['bfdr', 'fdr', 'saintscore', 'avgp', 'maxp'],
     },
   },

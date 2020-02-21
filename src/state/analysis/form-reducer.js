@@ -3,6 +3,7 @@ import * as actions from './form-actions';
 export const defaultState = {
   abundance: '',
   condition: '',
+  errors: {},
   files: [],
   readout: '',
   score: '',

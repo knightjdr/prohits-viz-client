@@ -24,7 +24,7 @@ const Analysis = ({
       <Next show={currentStep === 3} />
       <Columns errors={errors} show={currentStep > 3} />
       <Next show={currentStep === 5} />
-      <Submit errors={errors} show={currentStep > 5} submit={submit} />
+      <Submit errors={errors} show={currentStep > 4} submit={submit} />
       <Advanced errors={errors} show={currentStep > 5 && showAdvanced} />
     </form>
   </main>

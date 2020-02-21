@@ -1,3 +1,7 @@
 .analysis__advanced-field-modal-img {
-  text-align: center;
+  display: flex;
+  justify-content: center;
+}
+.analysis__advanced-field-modal-img_padding {
+  padding: 20px 0;
 }

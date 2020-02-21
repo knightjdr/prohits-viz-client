@@ -18,7 +18,7 @@ const Submit = ({
   submit,
   toggleAdvanced,
 }) => (
-  <div>
+  <div className="analysis__submit">
     <Divider>Submit</Divider>
     <p>
       Hit the submit button when ready or customize advanced options.

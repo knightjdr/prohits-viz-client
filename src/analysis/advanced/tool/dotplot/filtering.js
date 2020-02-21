@@ -4,12 +4,11 @@ import React from 'react';
 import Input from '../fields/input';
 import Select from '../fields/select';
 
-import help from '../help/help-dotplot';
-
 const Filtering = ({
   errors,
   form,
   handleChange,
+  help,
 }) => (
   <section>
     <h2>Filtering</h2>
@@ -85,6 +84,13 @@ Filtering.propTypes = {
     secondaryFilter: PropTypes.number,
   }).isRequired,
   handleChange: PropTypes.func.isRequired,
+  help: PropTypes.shape({
+    abundanceCap: PropTypes.node,
+    minAbundance: PropTypes.node,
+    primaryFilter: PropTypes.node,
+    scoreType: PropTypes.node,
+    secondaryFilter: PropTypes.node,
+  }).isRequired,
 };
 
 export default Filtering;
