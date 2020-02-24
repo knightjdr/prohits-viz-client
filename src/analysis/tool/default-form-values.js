@@ -29,7 +29,7 @@ const defaultFormValues = {
     cytoscapeCutoff: 0.7,
     distance: 'euclidean',
     fillColor: 'blueRed',
-    ignoreSourceTargetPairs: false,
+    ignoreSourceTargetMatches: false,
     readoutAbundanceFilter: 20,
     readoutScoreFilter: 0.01,
     useReplicates: true,

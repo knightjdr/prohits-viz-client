@@ -5,6 +5,9 @@ import ReadoutLengthNormalization from './images/length-normalization.svg';
 import './help.css';
 
 const help = {
+  clusteringOptimize: `The leaf order of clusters can be optimized by selecting this option.
+    For large datasets (approximately 1000 conditions or readouts), this can significantly slow
+    done the analysis.`,
   control: `The average value of a readout across control samples will be subtracted
     from the detected value for the condition if this is selected. The quantitative value
     for the readout becomes the value above and beyond what is seen across the control

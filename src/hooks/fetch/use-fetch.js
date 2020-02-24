@@ -6,7 +6,7 @@ import { selectState } from '../../state/selector/general';
 const useFetch = () => {
   const session = useSelector(state => selectState(state, 'session'));
 
-  const fetchWrapper = async (route, options = {}) => {
+  const fetchWrapper = async (route, options = {}, responseType = 'json') => {
     const optionsWithSession = {
       ...options,
       headers: {
@@ -14,7 +14,7 @@ const useFetch = () => {
         session,
       },
     };
-    return fetch(route, optionsWithSession);
+    return fetch(route, optionsWithSession, responseType);
   };
 
   return fetchWrapper;

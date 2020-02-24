@@ -1,18 +1,18 @@
 import PropTypes from 'prop-types';
 import React from 'react';
 
-import Hierarchical from './hierarchical';
+import CorrelationOptions from './corr-options';
 
-import useFormUpdate from '../../common/use-form-update';
+import useFormUpdate from '../common/use-form-update';
 
-const HierarchicalContainer = ({
+const CorrelationOptionsContainer = ({
   errors,
   help,
 }) => {
   const [form, handleChange] = useFormUpdate();
 
   return (
-    <Hierarchical
+    <CorrelationOptions
       errors={errors}
       form={form}
       handleChange={handleChange}
@@ -21,9 +21,9 @@ const HierarchicalContainer = ({
   );
 };
 
-HierarchicalContainer.propTypes = {
+CorrelationOptionsContainer.propTypes = {
   errors: PropTypes.shape({}).isRequired,
   help: PropTypes.shape({}).isRequired,
 };
 
-export default HierarchicalContainer;
+export default CorrelationOptionsContainer;

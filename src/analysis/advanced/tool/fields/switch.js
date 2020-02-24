@@ -10,6 +10,7 @@ const AdvancedSwitch = ({
   ...props
 }) => (
   <AdvancedField
+    iconMargin={false}
     message={helpMessage}
     title={helpTitle}
   >

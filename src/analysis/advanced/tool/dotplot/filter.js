@@ -2,7 +2,9 @@ import PropTypes from 'prop-types';
 import React from 'react';
 
 import Input from '../fields/input';
-import Select from '../fields/select';
+import MinimumConditions from '../common/minimum-conditions-container';
+import ParsimoniousFiltering from '../common/parsimonious-filtering-container';
+import ScoreType from '../common/score-type-container';
 
 const Filtering = ({
   errors,
@@ -12,18 +14,9 @@ const Filtering = ({
 }) => (
   <section>
     <h2>Filtering</h2>
-    <Select
-      helpMessage={help.scoreType}
-      helpTitle="Score type"
-      id="scoreType"
-      label="Score type"
-      onChange={handleChange}
-      options={[
-        { label: 'smaller scores are better', value: 'lte' },
-        { label: 'large scores are better', value: 'gte' },
-      ]}
-      value={form.scoreType}
-      warning={errors.scoreType}
+    <ScoreType
+      errors={errors}
+      help={help}
     />
     <Input
       helpMessage={help.primaryFilter}
@@ -65,6 +58,8 @@ const Filtering = ({
       value={form.abundanceCap}
       warning={errors.abundanceCap}
     />
+    <MinimumConditions errors={errors} help={help} />
+    <ParsimoniousFiltering help={help} />
   </section>
 );
 

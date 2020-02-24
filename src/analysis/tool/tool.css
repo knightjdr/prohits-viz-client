@@ -26,3 +26,18 @@
 .analysis__tool-select {
   display: flex;
 }
+
+@media (max-width: 550px) {
+  .analysis__tool .select__container {
+    width: 100%;
+  }
+
+  .analysis__tool-description {
+    margin-left: 0;
+    margin-top: 20px;
+  }
+
+  .analysis__tool-select {
+    flex-direction: column;
+  }
+}

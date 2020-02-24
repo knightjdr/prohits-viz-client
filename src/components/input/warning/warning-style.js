@@ -5,9 +5,11 @@ const Div = styled.div`
   border-bottom: 1px dashed ${props => props.theme.warning};
   border-left: 1px dashed ${props => props.theme.warning};
   border-right: 1px dashed ${props => props.theme.warning};
+  box-sizing: border-box;
   display: flex;
   justify-content: center;
   padding: 2px 5px;
+  width: 100%;
 
   & > div {
     align-items: flex-start;

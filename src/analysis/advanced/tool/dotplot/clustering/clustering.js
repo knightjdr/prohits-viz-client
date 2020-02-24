@@ -2,7 +2,7 @@ import PropTypes from 'prop-types';
 import React from 'react';
 
 import Biclustering from './biclustering-container';
-import Hierarchical from './hierarchical-container';
+import Hierarchical from '../../common/hierarchical-clustering-container';
 import Noclustering from './noclustering-container';
 import Select from '../../fields/select';
 

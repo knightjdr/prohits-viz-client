@@ -10,6 +10,7 @@ const createModalID = modalID => (
 
 const AdvancedFieldContainer = ({
   children,
+  iconMargin,
   message,
   modalID,
   title,
@@ -23,9 +24,10 @@ const AdvancedFieldContainer = ({
 
   return (
     <AdvancedField
-      message={message}
+      iconMargin={iconMargin}
       id={id}
       isModalOpen={isModalOpen}
+      message={message}
       title={title}
       toggleModal={toggleModal}
     >
@@ -35,11 +37,13 @@ const AdvancedFieldContainer = ({
 };
 
 AdvancedFieldContainer.defaultProps = {
+  iconMargin: true,
   modalID: '',
 };
 
 AdvancedFieldContainer.propTypes = {
   children: PropTypes.node.isRequired,
+  iconMargin: PropTypes.bool,
   message: PropTypes.node.isRequired,
   modalID: PropTypes.string,
   title: PropTypes.string.isRequired,

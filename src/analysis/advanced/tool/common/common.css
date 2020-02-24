@@ -13,3 +13,18 @@
 .analysis__advanced-select-input > *:nth-child(2) {
   margin-left: 50px;
 }
+
+@media (max-width: 550px) {
+  .analysis__advanced-switch-input {
+    border: 1px dashed #cccccc;
+    border-radius: 3px;
+    box-sizing: border-box;
+    flex-direction: column;
+    padding: 5px;
+  }
+  .analysis__advanced-switch-input > .input__container {
+    margin-bottom: 20px;
+    margin-right: 0;
+    width: 100%;
+  }
+}

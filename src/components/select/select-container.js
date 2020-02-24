@@ -40,6 +40,7 @@ const SelectContainer = ({
   const [dropdownDirection, setDropdownDirection] = useState('down');
   const [dropdownLayout, setDropdownLayout] = useState({});
   const [focusedOption, setFocusedOption] = useState();
+  const [inputID] = useState(id || nanoid());
   const [inputWarning, setInputWarning] = useState(warning);
   const [isDropdownVisible, setDropdownVisibility] = useState(false);
   const [searchText, setSearchText] = useState('');
@@ -181,9 +182,7 @@ const SelectContainer = ({
     }
   };
 
-  const inputID = id || nanoid();
-  const portalID = `${id || 'dropdown'}-root`;
-  const portal = usePortal(portalID);
+  const portal = usePortal(`${inputID}-root`);
 
   return (
     <>

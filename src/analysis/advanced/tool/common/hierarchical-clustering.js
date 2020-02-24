@@ -1,8 +1,8 @@
 import PropTypes from 'prop-types';
 import React from 'react';
 
-import Select from '../../../../../components/select/select-container';
-import Switch from '../../fields/switch';
+import Select from '../../../../components/select/select-container';
+import Switch from '../fields/switch';
 
 const Hierarchical = ({
   errors,

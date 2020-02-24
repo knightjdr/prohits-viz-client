@@ -4,8 +4,20 @@
 }
 .analysis__file-selection-inputs .select__container {
   margin-right: 30px;
+  min-width: 150px;
   width: 150px;
 }
 .analysis__file-selection-inputs .select__input-container {
   height: 33px;
+}
+
+@media (max-width: 550px) {
+  .analysis__file-selection-inputs {
+    flex-direction: column;
+  }
+  .analysis__file-selection-inputs .select__container {
+    margin-bottom: 20px;
+    margin-right: 0px;
+    width: 100%;
+  }
 }

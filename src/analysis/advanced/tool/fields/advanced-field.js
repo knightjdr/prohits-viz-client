@@ -10,6 +10,7 @@ import './advanced-field.css';
 
 const AdvancedField = ({
   children,
+  iconMargin,
   id,
   isModalOpen,
   message,
@@ -17,9 +18,10 @@ const AdvancedField = ({
   toggleModal,
 }) => (
   <>
-    <div className="analysis__advanced-field_help">
+    <div className="analysis__advanced-field-help">
       {children}
       <IconButton
+        className={iconMargin ? 'analysis__advanced-field-help-icon_margin' : 'analysis__advanced-field-help-icon'}
         icon={faQuestion}
         onClick={toggleModal}
         type="button"
@@ -47,6 +49,7 @@ const AdvancedField = ({
 
 AdvancedField.propTypes = {
   children: PropTypes.node.isRequired,
+  iconMargin: PropTypes.bool.isRequired,
   id: PropTypes.string.isRequired,
   isModalOpen: PropTypes.bool.isRequired,
   message: PropTypes.node.isRequired,

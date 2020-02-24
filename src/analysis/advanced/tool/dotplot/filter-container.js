@@ -2,7 +2,7 @@ import PropTypes from 'prop-types';
 import React from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 
-import Filtering from './filtering';
+import Filtering from './filter';
 
 import { selectState } from '../../../../state/selector/general';
 import { setFormField, setFormFields } from '../../../../state/analysis/form-actions';

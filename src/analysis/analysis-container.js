@@ -3,22 +3,25 @@ import { useDispatch, useSelector } from 'react-redux';
 
 import Analysis from './analysis';
 
-import defaultFormValues from './tool/default-form-values';
 import getStep from './next/get-step';
-import { selectState } from '../state/selector/general';
-import { setFormField, setFormFields } from '../state/analysis/form-actions';
 import validate from './validation/validate';
+import { selectState } from '../state/selector/general';
+import { setFormField } from '../state/analysis/form-actions';
+import useFetch from '../hooks/fetch/use-fetch';
 
 const AnalysisContainer = () => {
   const dispatch = useDispatch();
 
   const form = useSelector(state => selectState(state, 'form'));
 
-  const submit = (e) => {
+  const fetch = useFetch();
+
+  const submit = async (e) => {
     e.preventDefault();
     const status = validate(form);
     if (status.valid) {
-      console.log('submit');
+      const options = { data: form, method: 'POST' };
+      await fetch(`/analysis/${status.tool}`, options);
     } else {
       dispatch(setFormField('errors', status.errors));
     }
@@ -30,16 +33,6 @@ const AnalysisContainer = () => {
       dispatch(setFormField('step', currentStep));
     }
   }, [dispatch, form]);
-
-  // REMOVE
-  console.log('remove the following useEffect');
-  useEffect(() => {
-    dispatch(
-      setFormFields({
-        ...defaultFormValues.dotplot,
-      }),
-    );
-  }, [dispatch]);
 
   return (
     <Analysis
