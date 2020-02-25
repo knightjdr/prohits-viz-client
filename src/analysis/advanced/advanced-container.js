@@ -8,6 +8,7 @@ import { selectStateProperty } from '../../state/selector/general';
 
 const AdvancedContainer = ({
   errors,
+  visible,
 }) => {
   const tool = useSelector(state => selectStateProperty(state, 'form', 'tool'));
 
@@ -15,12 +16,14 @@ const AdvancedContainer = ({
     <Advanced
       errors={errors}
       tool={tool}
+      visible={visible}
     />
   );
 };
 
 AdvancedContainer.propTypes = {
   errors: PropTypes.shape({}).isRequired,
+  visible: PropTypes.bool.isRequired,
 };
 
 const ShowWrapper = ({

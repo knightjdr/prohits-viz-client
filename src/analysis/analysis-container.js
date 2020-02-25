@@ -20,7 +20,7 @@ const AnalysisContainer = () => {
     e.preventDefault();
     const status = validate(form);
     if (status.valid) {
-      const options = { data: form, method: 'POST' };
+      const options = { data: status.form, method: 'POST' };
       await fetch(`/analysis/${status.tool}`, options);
     } else {
       dispatch(setFormField('errors', status.errors));

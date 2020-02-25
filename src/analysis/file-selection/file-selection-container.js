@@ -21,19 +21,20 @@ const FileSelectionContainer = ({
     const file = new File(
       [sampleHeader],
       'samplefile.txt',
-      {
-        lastModified: Date.now(),
-        type: 'text/plain',
-      },
+      { type: 'text/plain' },
     );
     dispatch(setFormFields({
       files: [file],
       fileType: 'saint',
+      sampleFile: true,
     }));
   };
 
   const selectFile = (e, selectedFiles) => {
-    dispatch(setFormField('files', selectedFiles));
+    dispatch(setFormFields({
+      files: selectedFiles,
+      sampleFile: false,
+    }));
   };
 
   const selectFileType = (e, id, value) => {

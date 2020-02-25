@@ -6,6 +6,7 @@ export const defaultState = {
   errors: {},
   files: [],
   readout: '',
+  sampleFile: false,
   score: '',
   tool: '',
 

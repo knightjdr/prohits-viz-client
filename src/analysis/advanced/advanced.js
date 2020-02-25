@@ -21,8 +21,14 @@ const loadToolOptions = (tool, errors) => {
 const Advanced = ({
   errors,
   tool,
+  visible,
 }) => (
-  <div className="analysis__advanced">
+  <div
+    className="analysis__advanced"
+    style={{
+      display: visible ? 'block' : 'none',
+    }}
+  >
     <Divider>Advanced options</Divider>
     {loadToolOptions(tool, errors)}
   </div>
@@ -35,6 +41,7 @@ Advanced.defaultProps = {
 Advanced.propTypes = {
   errors: PropTypes.shape({}).isRequired,
   tool: PropTypes.string,
+  visible: PropTypes.bool.isRequired,
 };
 
 export default Advanced;

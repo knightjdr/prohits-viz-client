@@ -12,7 +12,6 @@ const fillOptions = (options) => {
 
   if (fetchOptions.method === 'POST' && fetchOptions.data instanceof FormData) {
     fetchOptions.body = fetchOptions.data;
-    fetchOptions.headers['Content-Type'] = 'multipart/form-data';
   } else if (fetchOptions.method === 'POST') {
     fetchOptions.body = JSON.stringify(fetchOptions.data);
     fetchOptions.headers['Content-Type'] = 'application/json';

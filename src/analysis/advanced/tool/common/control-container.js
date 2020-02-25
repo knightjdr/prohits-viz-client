@@ -35,12 +35,6 @@ const ControlContainer = ({
     }
   }, [columns, dispatch, form]);
 
-  useEffect(() => {
-    if (!form.control && form.ctrlSub) {
-      dispatch(setFormField('ctrlSub', false));
-    }
-  }, [dispatch, form]);
-
   return (
     <Control
       errors={errors}
