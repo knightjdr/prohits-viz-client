@@ -1,15 +1,18 @@
-import React, { useEffect } from 'react';
+import React, { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 
 import Analysis from './analysis';
 
 import getStep from './next/get-step';
-import validate from './validation/validate';
+import processForm from './validation/process-form';
+import useFetch from '../hooks/fetch/use-fetch';
+import { createTask } from '../state/task/task-actions';
 import { selectState } from '../state/selector/general';
 import { setFormField } from '../state/analysis/form-actions';
-import useFetch from '../hooks/fetch/use-fetch';
 
 const AnalysisContainer = () => {
+  const [taskID, setTaskID] = useState('');
+
   const dispatch = useDispatch();
 
   const form = useSelector(state => selectState(state, 'form'));
@@ -18,13 +21,23 @@ const AnalysisContainer = () => {
 
   const submit = async (e) => {
     e.preventDefault();
-    const status = validate(form);
-    if (status.valid) {
-      const options = { data: status.form, method: 'POST' };
-      await fetch(`/analysis/${status.tool}`, options);
-    } else {
+    const status = processForm(form);
+    if (status.errors) {
       dispatch(setFormField('errors', status.errors));
+    } else {
+      const options = { data: status.form, method: 'POST' };
+      const response = await fetch(`/analysis/${status.tool}`, options);
+      if (response.error) {
+        dispatch(setFormField('errors', response.data.errors));
+      } else {
+        dispatch(createTask(response.data.id));
+        setTaskID(response.data.id);
+      }
     }
+  };
+
+  const handleModalClose = () => {
+    setTaskID('');
   };
 
   useEffect(() => {
@@ -38,8 +51,10 @@ const AnalysisContainer = () => {
     <Analysis
       currentStep={form.step}
       errors={form.errors}
+      handleModalClose={handleModalClose}
       showAdvanced={form.showAdvanced}
       submit={submit}
+      taskID={taskID}
     />
   );
 };

@@ -31,13 +31,16 @@ const fetchWrapper = async (route, options = {}, responseType = 'json') => {
     const fetchOptions = fillOptions(options);
     const response = await fetch(url, fetchOptions);
 
-    if (!response.ok) {
-      throw new Error(response.statusText);
+    const [ok, data] = await Promise.all([response.ok, response[responseType]()]);
+
+    if (!ok) {
+      return {
+        data,
+        error: true,
+        message: response.statusText,
+      };
     }
-    const data = await response[responseType]();
-    return {
-      data,
-    };
+    return { data };
   } catch (error) {
     return {
       error: true,

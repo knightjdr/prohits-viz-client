@@ -24,6 +24,8 @@ const Div = styled.div`
     box-shadow: ${props => (props.shadow ? 'rgba(0, 0, 0, 0.25) 0px 5px 10px, rgba(0, 0, 0, 0.22) 0px 5px 10px' : 'none')};
     box-sizing: border-box;
     color: ${props => props.theme.fontDark};
+    display: flex;
+    flex-direction: column;
     max-height: calc(100vh - 90px);
     max-width: calc(100vw - 90px);
     opacity: inherit;
@@ -36,12 +38,12 @@ const Div = styled.div`
     padding: ${props => (props.padding ? '10px' : '0')};
   }
 
-  & header {
+  .modal__header {
     border-bottom: 1px solid #e0e0e0;
     padding-bottom: 10px;
     padding-top: 5px;
   }
-  & h1 {
+  .modal__header h1 {
     font-family: ${props => props.theme.fontStackSecondary};
     font-size: 1.3em;
     font-weight: 800;
@@ -49,7 +51,17 @@ const Div = styled.div`
     text-transform: uppercase;
   }
 
-  & footer {
+  .modal__content {
+    overflow: auto;
+  }
+  .modal__content:after {
+    content: "";
+    display: block;
+    height: 10px;
+    width: 100%;
+  }
+
+  .modal__footer {
     border-top: 1px solid #e0e0e0;
   }
 

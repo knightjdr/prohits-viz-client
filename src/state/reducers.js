@@ -25,6 +25,7 @@ import searchStatus from './visualization/markup/search-reducer';
 import session from './session/session-reducer';
 import settings from './visualization/settings/settings-reducer';
 import tabs from './visualization/settings/tabs-reducer';
+import tasks from './task/task-reducer';
 
 const reducers = combineReducers({
   analysis,
@@ -52,6 +53,7 @@ const reducers = combineReducers({
   session,
   settings,
   tabs,
+  tasks,
 });
 
 export default reducers;

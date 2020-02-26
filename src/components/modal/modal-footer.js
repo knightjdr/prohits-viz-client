@@ -6,7 +6,7 @@ const ModalFooter = ({
 }) => (
   footer
   && (
-    <footer>
+    <footer className="modal__footer">
       {footer}
     </footer>
   )

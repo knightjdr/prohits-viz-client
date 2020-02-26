@@ -6,7 +6,7 @@ const ModalHeader = ({
 }) => (
   title
   && (
-    <header>
+    <header className="modal__header">
       <h1>{title}</h1>
     </header>
   )

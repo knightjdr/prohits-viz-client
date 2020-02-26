@@ -23,7 +23,7 @@ const Modal = forwardRef((
   >
     <section ref={ref}>
       <ModalHeader title={title} />
-      <div>
+      <div className="modal__content">
         {children}
       </div>
       <ModalFooter footer={footer} />
