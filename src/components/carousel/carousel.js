@@ -1,4 +1,4 @@
-import nanoid from 'nanoid';
+
 import PropTypes from 'prop-types';
 import React from 'react';
 import { faAngleLeft, faAngleRight } from '@fortawesome/pro-solid-svg-icons';
@@ -21,7 +21,7 @@ const Carousel = ({
         className="carousel__slider-active"
         style={{ animationName: activeAnimation }}
       >
-        {children[activeIndex]}
+        {children[activeIndex].element}
       </div>
     </div>
     <div className="carousel__buttons">
@@ -36,7 +36,7 @@ const Carousel = ({
             aria-label={`jump to carousel item ${index + 1}`}
             className={`carousel__grid-button ${index === activeIndex ? 'active' : 'inactive'}`}
             data-index={index}
-            key={nanoid()}
+            key={child.key}
             onClick={setIndex}
             type="button"
           />
@@ -56,7 +56,10 @@ Carousel.propTypes = {
   activeIndex: PropTypes.number.isRequired,
   animationDuration: PropTypes.number.isRequired,
   children: PropTypes.arrayOf(
-    PropTypes.node,
+    PropTypes.shape({
+      element: PropTypes.node,
+      key: PropTypes.string,
+    }),
   ).isRequired,
   nextItem: PropTypes.func.isRequired,
   previousItem: PropTypes.func.isRequired,

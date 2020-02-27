@@ -71,10 +71,21 @@ const getModalElements = {
             From this link:
             {' '}
             <Link
-              href={`/visualization/${options.taskID}`}
+              href={`/tasks/${options.taskID}`}
             >
-              {`${process.env.REACT_APP_URI}/visualization/${options.taskID}`}
+              {`${process.env.REACT_APP_URI}/task/${options.taskID}`}
             </Link>
+          </li>
+          <li>
+            By clicking the
+            {' '}
+            <Link
+              href="/tasks"
+            >
+              Tasks
+            </Link>
+            {' '}
+            link on the navigation menu at the top of the page
           </li>
         </ol>
         <p>The task results will be available for 24 hours.</p>

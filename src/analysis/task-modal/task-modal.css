@@ -5,6 +5,7 @@
 }
 .task__modal-complete-container > .select__container {
   margin-right: 15px;
+  min-width: 200px;
 }
 
 .task__modal-footer {

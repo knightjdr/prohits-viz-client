@@ -51,7 +51,7 @@ const TaskModalContainer = ({
     const file = selectedFile || status.primaryFile;
     if (file === 'error' || file === 'log') {
       fetchText(file);
-    } if (file) {
+    } else {
       navigate(`/visualization/${taskID}/${file}`);
     }
   };

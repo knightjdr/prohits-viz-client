@@ -6,9 +6,9 @@ import Menu from './menu/menu-container';
 import Nav from './navbar-style';
 import TextLinks from './text-links/text-links';
 
-const links = ['analysis', 'visualization', 'news', 'help'];
 
 const Navbar = ({
+  links,
   route,
   smallScreen,
 }) => {
@@ -74,6 +74,7 @@ Navbar.defaultProps = {
 };
 
 Navbar.propTypes = {
+  links: PropTypes.arrayOf(PropTypes.string).isRequired,
   route: PropTypes.string.isRequired,
   smallScreen: PropTypes.bool,
 };

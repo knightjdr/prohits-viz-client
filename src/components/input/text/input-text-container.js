@@ -34,6 +34,7 @@ const InputTextContainer = ({
   warning,
   ...props
 }) => {
+  const [inputID] = useState(id || `id-${nanoid()}`);
   const [inputValue, setInputValue] = useState(setInitialValue(type, value));
   const [inputWarning, setInputWarning] = useState(warning);
 
@@ -74,7 +75,6 @@ const InputTextContainer = ({
     }
   };
 
-  const inputID = id || nanoid();
   const parsedValue = setParsedValue(type, inputValue);
   const optionalProps = setOptionalProps(type, props);
 

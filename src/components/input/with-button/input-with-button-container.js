@@ -9,6 +9,7 @@ const InputWithButtonContainer = ({
   onClick,
   ...props
 }) => {
+  const [inputID] = useState(id || `id-${nanoid()}`);
   const [newValue, setNewValue] = useState('');
 
   const handleChange = (e, elementID, inputValue) => {
@@ -23,8 +24,6 @@ const InputWithButtonContainer = ({
   const handleClick = (e, elementID) => {
     onClick(e, elementID, newValue);
   };
-
-  const inputID = id || nanoid();
 
   return (
     <InputWithButton

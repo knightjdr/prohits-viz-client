@@ -1,6 +1,6 @@
 import nanoid from 'nanoid';
 import PropTypes from 'prop-types';
-import React from 'react';
+import React, { useState } from 'react';
 
 import Switch from './switch';
 
@@ -9,14 +9,14 @@ const SwitchContainer = ({
   onChange,
   ...props
 }) => {
+  const [inputID] = useState(id || `id-${nanoid()}`);
+
   const handleChange = (e) => {
     if (onChange) {
       const { checked } = e.target;
       onChange(e, id, checked);
     }
   };
-
-  const inputID = id || nanoid();
 
   return (
     <Switch

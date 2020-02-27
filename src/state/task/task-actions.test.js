@@ -9,6 +9,27 @@ describe('Task actions', () => {
     expect(actions.createTask('taskID')).toEqual(expectedAction);
   });
 
+  it('should dispatch an action to update tasks', () => {
+    const tasks = {
+      task1: {
+        primaryFile: 'dotplot',
+        status: 'complete',
+        tool: 'dotplot',
+      },
+      task2: {
+        primaryFile: 'dotplot',
+        status: 'error',
+        tool: 'dotplot',
+      },
+    };
+
+    const expectedAction = {
+      tasks,
+      type: actions.UPDATE_TASKS,
+    };
+    expect(actions.updateTasks(tasks)).toEqual(expectedAction);
+  });
+
   it('should dispatch an action to update a task', () => {
     const status = {
       primaryFile: 'dotplot',

@@ -48,6 +48,7 @@ const sort = {
     }
     return difference;
   },
+  date: (a, b) => new Date(a) - new Date(b),
   numeric: (a, b) => {
     let difference = checkNumbersDefined(a, b);
     if (difference === null) {

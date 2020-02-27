@@ -1,3 +1,4 @@
+import nanoid from 'nanoid';
 import PropTypes from 'prop-types';
 import React, { useState } from 'react';
 
@@ -57,6 +58,11 @@ const CarouselContainer = ({
     });
   };
 
+  const carouselElements = children.map(child => ({
+    element: child,
+    key: nanoid(),
+  }));
+
   return (
     <Carousel
       activeAnimation={activeAnimation}
@@ -66,7 +72,7 @@ const CarouselContainer = ({
       previousItem={previousItem}
       setIndex={setIndex}
     >
-      {children}
+      {carouselElements}
     </Carousel>
   );
 };

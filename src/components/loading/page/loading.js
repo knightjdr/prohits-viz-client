@@ -34,7 +34,7 @@ const Loading = ({
 Loading.defaultProps = {
   error: false,
   isLoading: false,
-  message: 'An unknown error occured',
+  message: 'An unknown error occurred',
 };
 
 Loading.propTypes = {

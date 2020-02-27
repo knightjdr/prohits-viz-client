@@ -5,11 +5,13 @@ import React, { useEffect, useState } from 'react';
 import InputFile from './input-file';
 
 const InputFileContainer = ({
+  id,
   onChange,
   value,
   warning,
   ...props
 }) => {
+  const [inputID] = useState(id || `id-${nanoid()}`);
   const [inputFiles, setInputFiles] = useState(value);
   const [inputWarning, setInputWarning] = useState(warning);
 
@@ -33,8 +35,6 @@ const InputFileContainer = ({
     }
   };
 
-  const inputID = nanoid();
-
   useEffect(() => {
     setInputFiles(value);
     setInputWarning('');
@@ -57,12 +57,14 @@ const InputFileContainer = ({
 };
 
 InputFileContainer.defaultProps = {
+  id: '',
   onChange: undefined,
   value: [],
   warning: '',
 };
 
 InputFileContainer.propTypes = {
+  id: PropTypes.string,
   onChange: PropTypes.func,
   value: PropTypes.arrayOf(
     PropTypes.shape({}),

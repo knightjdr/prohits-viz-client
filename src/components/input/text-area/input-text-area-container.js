@@ -13,6 +13,7 @@ const InputTextContainer = ({
   warning,
   ...props
 }) => {
+  const [inputID] = useState(id || `id-${nanoid()}`);
   const [inputValue, setInputValue] = useState(value);
   const [inputWarning, setInputWarning] = useState(warning);
 
@@ -51,8 +52,6 @@ const InputTextContainer = ({
       onChange(e, id, inputValue);
     }
   };
-
-  const inputID = id || nanoid();
 
   return (
     <InputTextArea

@@ -14,6 +14,14 @@ describe('Sort', () => {
     expect(sort.character(2, 12)).toBe(1);
   });
 
+  it('should sort dates', () => {
+    expect(sort.date('1:13 pm, Feb 27, 2020', '1:12 pm, Feb 27, 2020')).toBeGreaterThan(0);
+    expect(sort.date('1:13 pm, Feb 27, 2020', '1:13 pm, Feb 26, 2020')).toBeGreaterThan(0);
+    expect(sort.date('1:13 pm, Mar 27, 2020', '1:13 pm, Feb 27, 2020')).toBeGreaterThan(0);
+    expect(sort.date('1:12 pm, Feb 27, 2020', '1:13 pm, Feb 27, 2020')).toBeLessThan(0);
+    expect(sort.date('1:13 pm, Feb 27, 2020', '1:13 pm, Mar 27, 2020')).toBeLessThan(0);
+  });
+
   it('should sort numbers', () => {
     expect(sort.numeric(1, 2)).toBe(-1);
     expect(sort.numeric(2, 1)).toBe(1);

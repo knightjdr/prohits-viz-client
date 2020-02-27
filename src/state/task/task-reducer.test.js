@@ -21,6 +21,35 @@ describe('Task reducer', () => {
     expect(reducer(currentState, action)).toEqual(expectedState);
   });
 
+  it('should handle UPDATE_TASKS action', () => {
+    const currentState = {
+      task1: {
+        status: 'running',
+        tool: 'dotplot',
+      },
+    };
+
+    const tasks = {
+      task1: {
+        primaryFile: 'dotplot',
+        status: 'complete',
+        tool: 'dotplot',
+      },
+      task2: {
+        primaryFile: 'dotplot',
+        status: 'error',
+        tool: 'dotplot',
+      },
+    };
+
+    const action = {
+      tasks,
+      type: actions.UPDATE_TASKS,
+    };
+    const expectedState = tasks;
+    expect(reducer(currentState, action)).toEqual(expectedState);
+  });
+
   it('should handle UPDATE_TASK_STATUS action', () => {
     const currentState = {
       taskID: { status: 'running' },

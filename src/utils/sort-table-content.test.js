@@ -12,6 +12,16 @@ describe('Sort functions for table content', () => {
     });
   });
 
+  it('should sort by date', () => {
+    const tests = [
+      { a: { content: '1:13 pm, Feb 27, 2020' }, b: { content: '1:12 pm, Feb 27, 2020' }, expected: 60000 },
+      { a: { content: '1:12 pm, Feb 27, 2020' }, b: { content: '1:13 pm, Feb 27, 2020' }, expected: -60000 },
+    ];
+    tests.forEach((test) => {
+      expect(sort.date(test.a, test.b)).toBe(test.expected);
+    });
+  });
+
   it('should sort by scientific notation', () => {
     const tests = [
       { a: { content: '1.00e-1' }, b: { content: '2.00e-1' }, expected: -0.1 },

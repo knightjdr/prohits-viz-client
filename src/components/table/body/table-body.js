@@ -34,6 +34,9 @@ const TableBody = forwardRef((
       onFocus={handleMouseOver}
       onMouseOut={handleMouseOut}
       onMouseOver={handleMouseOver}
+      style={{
+        minWidth,
+      }}
     >
       <div
         className="table__body"
@@ -41,7 +44,6 @@ const TableBody = forwardRef((
         style={{
           gridTemplateColumns,
           gridTemplateRows: `repeat(${rows.length}, ${rowHeight}px)`,
-          minWidth,
         }}
       >
         {

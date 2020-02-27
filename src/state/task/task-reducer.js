@@ -1,11 +1,17 @@
 import * as actions from './task-actions';
 
+const defaultState = {};
+
 const reduceAndCreate = (state, action) => ({
   ...state,
   [action.id]: { status: 'running' },
 });
 
 const reduceAndUpdate = (state, action) => ({
+  ...action.tasks,
+});
+
+const reduceAndUpdateStatus = (state, action) => ({
   ...state,
   [action.id]: {
     ...state[action.id],
@@ -13,12 +19,14 @@ const reduceAndUpdate = (state, action) => ({
   },
 });
 
-const reducer = (state = {}, action) => {
+const reducer = (state = defaultState, action) => {
   switch (action.type) {
     case actions.CREATE_TASK:
       return reduceAndCreate(state, action);
-    case actions.UPDATE_TASK_STATUS:
+    case actions.UPDATE_TASKS:
       return reduceAndUpdate(state, action);
+    case actions.UPDATE_TASK_STATUS:
+      return reduceAndUpdateStatus(state, action);
     default:
       return state;
   }
