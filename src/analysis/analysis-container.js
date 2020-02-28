@@ -26,7 +26,9 @@ const AnalysisContainer = () => {
       dispatch(setFormField('errors', status.errors));
     } else {
       const options = { data: status.form, method: 'POST' };
+      dispatch(setFormField('uploading', true));
       const response = await fetch(`/analysis/${status.tool}`, options);
+      dispatch(setFormField('uploading', false));
       if (response.error) {
         dispatch(setFormField('errors', response.data.errors));
       } else {
@@ -55,6 +57,7 @@ const AnalysisContainer = () => {
       showAdvanced={form.showAdvanced}
       submit={submit}
       taskID={taskID}
+      uploading={form.uploading}
     />
   );
 };

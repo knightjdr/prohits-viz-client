@@ -1,5 +1,42 @@
+.tasks__refresh-button {
+  left: 25px;
+  position: absolute;
+  top: 27px;
+}
+
 .tasks__table {
   box-sizing: border-box;
   height: calc(100% - 35px);
   padding: 20px;
+  position: relative;
+}
+
+.tasks__table-file-selector {
+  align-items: center;
+  display: flex;
+}
+.tasks__table-file-selector > * {
+  margin-right: 8px;
+}
+.tasks__table-file-selector > button:first-of-type {
+  height: 30px;
+}
+.tasks__table-file-selector .select__container {
+  width: 150px;
+}
+
+.tasks__table-status_complete > svg,
+.tasks__table-status_error > svg,
+.tasks__table-status_running > svg,
+.tasks__table-status_unknown > svg {
+  margin-right: 5px;
+}
+.tasks__table-status_complete > svg {
+  color: var(--success);
+}
+.tasks__table-status_error > svg {
+  color: var(--warning);
+}
+.tasks__table-status_unknown > svg {
+  color: var(--warning);
 }

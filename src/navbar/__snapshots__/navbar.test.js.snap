@@ -74,7 +74,40 @@ exports[`Navbar normal screen size should match snapshot 1`] = `
   <div
     class="nav__right"
   >
-    <ul />
+    <ul>
+      <li>
+        <a
+          class="nav__link"
+          href="/analysis"
+        >
+          analysis
+        </a>
+      </li>
+      <li>
+        <a
+          class="nav__link"
+          href="/visualization"
+        >
+          visualization
+        </a>
+      </li>
+      <li>
+        <a
+          class="nav__link"
+          href="/news"
+        >
+          news
+        </a>
+      </li>
+      <li>
+        <a
+          class="nav__link"
+          href="/help"
+        >
+          help
+        </a>
+      </li>
+    </ul>
   </div>
 </nav>
 `;
@@ -176,7 +209,40 @@ exports[`Navbar small screen size should match snapshot 1`] = `
       </button>
       <ul
         style="transform: scale(0);"
-      />
+      >
+        <li>
+          <a
+            class="nav__link"
+            href="/analysis"
+          >
+            analysis
+          </a>
+        </li>
+        <li>
+          <a
+            class="nav__link"
+            href="/visualization"
+          >
+            visualization
+          </a>
+        </li>
+        <li>
+          <a
+            class="nav__link"
+            href="/news"
+          >
+            news
+          </a>
+        </li>
+        <li>
+          <a
+            class="nav__link"
+            href="/help"
+          >
+            help
+          </a>
+        </li>
+      </ul>
     </div>
   </div>
 </nav>

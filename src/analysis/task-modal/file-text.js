@@ -9,7 +9,7 @@ const FileText = ({
 }) => (
   <code
     className="task__modal-text-container"
-    style={{ display: text ? 'block' : 'none'}}
+    style={{ display: text ? 'block' : 'none' }}
   >
     {
       fetchingText

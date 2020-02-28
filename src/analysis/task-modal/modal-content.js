@@ -6,7 +6,7 @@ import { faCheck, faExclamationTriangle, faSpinner } from '@fortawesome/pro-duot
 import Button from '../../components/buttons/rectangular/button';
 import ButtonLink from '../../components/buttons/link/button';
 import Link from '../../components/link/text/link';
-import SelectContainer from '../../components/select/select-container';
+import Select from '../../components/select/select-container';
 
 const getModalElements = {
   complete: options => ({
@@ -16,14 +16,17 @@ const getModalElements = {
     link: true,
     description: (
       <div className="task__modal-complete-container">
-        <SelectContainer
+        <Select
           id="select_image"
           label="Available files"
           onChange={options.handleChangeFile}
           options={options.status.files}
+          placeholder="Select file..."
           value={options.status.primaryFile}
         />
         <Button
+          data-primaryfile={options.status.primaryFile}
+          data-taskid={options.taskID}
           kind="success"
           onClick={options.viewImage}
           type="button"
@@ -81,6 +84,7 @@ const getModalElements = {
             {' '}
             <Link
               href="/tasks"
+              visited={false}
             >
               Tasks
             </Link>

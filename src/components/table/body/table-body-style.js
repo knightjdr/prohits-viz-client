@@ -19,9 +19,13 @@ export const TableBody = styled.div`
   }
 
   .table__body-cell {
+    align-items: center;
+    box-sizing: border-box;
+    display: flex;
+    height: 100%;
+    justifyContent: center;
     overflow: hidden;
     padding: 5px 2px;
-    text-align: center;
     text-overflow: ellipsis;
     white-space: nowrap;
   }

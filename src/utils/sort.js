@@ -49,6 +49,11 @@ const sort = {
     return difference;
   },
   date: (a, b) => new Date(a) - new Date(b),
+  innerText: (a, b) => {
+    const textA = a.props.children.find(child => typeof child === 'string');
+    const textB = b.props.children.find(child => typeof child === 'string');
+    return sort.character(textA, textB);
+  },
   numeric: (a, b) => {
     let difference = checkNumbersDefined(a, b);
     if (difference === null) {

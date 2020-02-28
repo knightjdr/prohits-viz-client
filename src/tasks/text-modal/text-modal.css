@@ -1,0 +1,13 @@
+.tasks__modal-footer {
+  display: flex;
+  justify-content: flex-end;
+}
+.tasks__modal-text {
+  background-color: #eff0f1;
+  border-radius: 3px;
+  box-sizing: border-box;
+  display: block;
+  margin-top: 10px;
+  padding: 10px;
+  white-space: pre-line;
+}

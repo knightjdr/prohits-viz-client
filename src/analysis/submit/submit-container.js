@@ -11,6 +11,7 @@ import { resetForm, setFormField } from '../../state/analysis/form-actions';
 const SubmitContainer = ({
   errors,
   submit,
+  uploading,
 }) => {
   const dispatch = useDispatch();
 
@@ -34,6 +35,7 @@ const SubmitContainer = ({
       showAdvanced={form.showAdvanced}
       submit={submit}
       toggleAdvanced={toggleAdvanced}
+      uploading={uploading}
     />
   );
 };

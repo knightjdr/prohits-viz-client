@@ -13,6 +13,7 @@ const renderElement = props => render(<Navbar {...props} />);
 describe('Navbar', () => {
   describe('normal screen size', () => {
     const props = {
+      links: ['analysis', 'visualization', 'news', 'help'],
       smallScreen: false,
       route: 'home',
       uri: undefined,
@@ -26,6 +27,7 @@ describe('Navbar', () => {
 
   describe('small screen size', () => {
     const props = {
+      links: ['analysis', 'visualization', 'news', 'help'],
       smallScreen: true,
       route: 'home',
       uri: undefined,

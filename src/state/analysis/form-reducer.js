@@ -9,6 +9,7 @@ export const defaultState = {
   sampleFile: false,
   score: '',
   tool: '',
+  uploading: false,
 
   fileType: '',
   header: [],

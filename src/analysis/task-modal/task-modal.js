@@ -10,6 +10,7 @@ import './task-modal.css';
 
 const TaskModal = ({
   download,
+  downloading,
   fetchingText,
   handleChangeFile,
   handleClose,
@@ -23,8 +24,11 @@ const TaskModal = ({
     footer={(
       <ModalFooter
         download={download}
+        downloading={downloading}
         handleClose={handleClose}
         status={status.status}
+        taskID={taskID}
+        tool={status.tool}
       />
     )}
     isOpen
@@ -51,6 +55,7 @@ TaskModal.defaultProps = {
 
 TaskModal.propTypes = {
   download: PropTypes.func.isRequired,
+  downloading: PropTypes.bool.isRequired,
   fetchingText: PropTypes.bool.isRequired,
   handleChangeFile: PropTypes.func.isRequired,
   handleClose: PropTypes.func.isRequired,
@@ -58,6 +63,7 @@ TaskModal.propTypes = {
     files: PropTypes.arrayOf(PropTypes.string),
     primaryFile: PropTypes.string,
     status: PropTypes.string,
+    tool: PropTypes.string,
   }),
   taskID: PropTypes.string.isRequired,
   text: PropTypes.string.isRequired,

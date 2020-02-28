@@ -22,6 +22,13 @@ describe('Sort', () => {
     expect(sort.date('1:13 pm, Feb 27, 2020', '1:13 pm, Mar 27, 2020')).toBeLessThan(0);
   });
 
+  describe('Inner text', () => {
+    it('should sort by first children string', () => {
+      expect(sort.innerText({ props: { children: ['a'] } }, { props: { children: ['b'] } })).toBe(-1);
+      expect(sort.innerText({ props: { children: ['b'] } }, { props: { children: [{}, 'a'] } })).toBe(1);
+    });
+  });
+
   it('should sort numbers', () => {
     expect(sort.numeric(1, 2)).toBe(-1);
     expect(sort.numeric(2, 1)).toBe(1);

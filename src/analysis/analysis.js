@@ -18,6 +18,7 @@ const Analysis = ({
   showAdvanced,
   submit,
   taskID,
+  uploading,
 }) => (
   <main className="analysis">
     <form className="analysis__inner">
@@ -27,7 +28,7 @@ const Analysis = ({
       <Next show={currentStep === 3} />
       <Columns errors={errors} show={currentStep > 3} />
       <Next show={currentStep === 5} />
-      <Submit errors={errors} show={currentStep > 5} submit={submit} />
+      <Submit errors={errors} show={currentStep > 5} submit={submit} uploading={uploading} />
       <Advanced errors={errors} show={currentStep > 5} visible={showAdvanced} />
     </form>
     <TaskModal
@@ -44,6 +45,7 @@ Analysis.propTypes = {
   showAdvanced: PropTypes.bool.isRequired,
   submit: PropTypes.func.isRequired,
   taskID: PropTypes.string.isRequired,
+  uploading: PropTypes.bool.isRequired,
 };
 
 export default Analysis;

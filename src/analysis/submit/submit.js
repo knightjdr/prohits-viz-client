@@ -1,7 +1,7 @@
 import PropTypes from 'prop-types';
 import React from 'react';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faMinus, faPlus } from '@fortawesome/pro-solid-svg-icons';
+import { faMinus, faPlus, faSpinner } from '@fortawesome/pro-solid-svg-icons';
 
 import Button from '../../components/buttons/rectangular/button';
 import Divider from '../../components/divider/divider';
@@ -17,6 +17,7 @@ const Submit = ({
   showAdvanced,
   submit,
   toggleAdvanced,
+  uploading,
 }) => (
   <div className="analysis__submit">
     <Divider>Submit</Divider>
@@ -28,11 +29,21 @@ const Submit = ({
       <Settings settings={settings} />
       <div className="analysis__submit-buttons">
         <Button
+          disabled={uploading}
           kind="success"
           onClick={submit}
           type="button"
         >
-          Submit
+          {
+            uploading
+              ? (
+                <>
+                  <FontAwesomeIcon icon={faSpinner} spin />
+                  Uploading
+                </>
+              )
+              : 'Submit'
+          }
         </Button>
         <Button
           kind="warning"
@@ -65,6 +76,7 @@ Submit.propTypes = {
   showAdvanced: PropTypes.bool.isRequired,
   submit: PropTypes.func.isRequired,
   toggleAdvanced: PropTypes.func.isRequired,
+  uploading: PropTypes.bool.isRequired,
 };
 
 export default Submit;

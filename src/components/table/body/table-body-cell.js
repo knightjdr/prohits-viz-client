@@ -10,7 +10,7 @@ const BodyCell = ({
   <div
     className={`table__body-cell ${className}`}
     data-overflow={showOverflow}
-    style={{ textAlign: alignment }}
+    style={{ justifyContent: alignment }}
   >
     { content }
   </div>

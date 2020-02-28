@@ -1,72 +1,43 @@
 import PropTypes from 'prop-types';
 import React, { useState } from 'react';
-import { navigate } from 'hookrouter';
 import { useSelector } from 'react-redux';
 
 import TaskModal from './task-modal';
 
-import getFile from '../../utils/get-file';
-import fetch from '../../utils/fetch';
+import useTask from '../../hooks/tasks/use-task';
 import { selectStateProperty } from '../../state/selector/general';
 
 const TaskModalContainer = ({
   handleClose,
   taskID,
 }) => {
-  const [fetchingText, setFetchingText] = useState(false);
-  const [text, setText] = useState('');
-  const [selectedFile, setSelectedFile] = useState('');
+  const [downloading, setDownloadingStatus] = useState(false);
   const status = useSelector(state => selectStateProperty(state, 'tasks', taskID));
 
-  const download = () => {
-    const options = {
-      ext: 'zip',
-      name: `${status.tool}-${taskID}`,
-    };
-    getFile(`/task/${taskID}`, options);
-  };
+  const taskHandlers = useTask();
 
-  const fetchText = async (file) => {
-    setFetchingText(true);
-    const route = `/task/${taskID}/${file}`;
-    const response = await fetch(route, {}, 'text');
-    setFetchingText(false);
-    if (!response.error) {
-      setText(response.data);
-    } else {
-      setText(`There was a problem retrieving the ${file} file`);
-    }
-  };
-
-  const handleChangeFile = (e, id, value) => {
-    setSelectedFile(value);
-    setText('');
+  const download = async (e) => {
+    setDownloadingStatus(true);
+    await taskHandlers.download(e);
+    setDownloadingStatus(false);
   };
 
   const viewText = (e) => {
-    fetchText(e.target.dataset.file);
-  };
-
-  const viewImage = () => {
-    const file = selectedFile || status.primaryFile;
-    if (file === 'error' || file === 'log') {
-      fetchText(file);
-    } else {
-      navigate(`/visualization/${taskID}/${file}`);
-    }
+    taskHandlers.fetchText(taskID, e.target.dataset.file);
   };
 
   return (
     <TaskModal
       download={download}
-      fetchingText={fetchingText}
-      handleChangeFile={handleChangeFile}
+      downloading={downloading}
+      fetchingText={taskHandlers.fetchingText}
+      handleChangeFile={taskHandlers.handleChangeFile}
       handleClose={handleClose}
       status={status}
       taskID={taskID}
-      text={text}
+      text={taskHandlers.text}
       viewText={viewText}
-      viewImage={viewImage}
+      viewImage={taskHandlers.viewImage}
     />
   );
 };

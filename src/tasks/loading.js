@@ -3,22 +3,28 @@ import React from 'react';
 
 import Loading from '../components/loading/page/loading';
 
+const messages = [
+  '',
+  'There was an error updating task status',
+  'There are no recently processed tasks. Tasks are only available for 24 hours.',
+];
+
 const LoadingTasks = ({
-  error,
+  errorStatus,
   isLoading,
 }) => (
-  (error || isLoading)
+  (errorStatus > 0 || isLoading)
   && (
     <Loading
-      error={error}
+      error={errorStatus > 0}
       isLoading={isLoading}
-      message={error ? 'There was an error updating the task status' : ''}
+      message={messages[errorStatus]}
     />
   )
 );
 
 LoadingTasks.propTypes = {
-  error: PropTypes.bool.isRequired,
+  errorStatus: PropTypes.number.isRequired,
   isLoading: PropTypes.bool.isRequired,
 };
 
