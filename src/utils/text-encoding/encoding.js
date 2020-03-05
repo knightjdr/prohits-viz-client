@@ -969,7 +969,7 @@ let big5_index_no_hkscs;
  *     defaults to 'utf-8'.
  * @param {Object=} options
  */
-function TextDecoder(label, options) {
+export function TextDecoder(label, options) {
   // Web IDL conventions
   if (!(this instanceof TextDecoder)) { throw TypeError('Called as a function. Did you forget \'new\'?'); }
   label = label !== undefined ? String(label) : DEFAULT_ENCODING;
@@ -3159,5 +3159,3 @@ encoders['x-user-defined'] = function (options) {
 decoders['x-user-defined'] = function (options) {
   return new XUserDefinedDecoder(options);
 };
-
-export { TextDecoder };
