@@ -54,12 +54,6 @@ const Div = styled.div`
   .modal__content {
     overflow: auto;
   }
-  .modal__content:after {
-    content: "";
-    display: block;
-    height: 10px;
-    width: 100%;
-  }
 
   .modal__footer {
     border-top: 1px solid #e0e0e0;
