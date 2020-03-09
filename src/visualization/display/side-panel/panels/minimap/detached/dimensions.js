@@ -14,16 +14,16 @@ export const intialContainerDimensions = (imageHeight, imageWidth, maxHeight, ma
   if (imageHeight > maxHeight && imageWidth > maxWidth) {
     if (imageHeight / maxHeight > imageWidth / maxWidth) {
       height = maxHeight;
-      width *= (imageHeight / maxHeight);
+      width *= (maxHeight / imageHeight);
     } else {
-      height *= (imageWidth / maxWidth);
+      height *= (maxWidth / imageWidth);
       width = maxWidth;
     }
   } else if (imageHeight > maxHeight) {
     height = maxHeight;
-    width *= (imageHeight / maxHeight);
+    width *= (maxHeight / imageHeight);
   } else if (imageWidth > maxWidth) {
-    height *= (imageWidth / maxWidth);
+    height *= (maxWidth / imageWidth);
     width = maxWidth;
   }
 
