@@ -26,6 +26,7 @@ const InputWithButton = ({
       placeholder={placeholder}
       type={inputType}
       value={value}
+      vertical
       warning={warning}
     />
     <IconButton
