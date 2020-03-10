@@ -9,7 +9,7 @@ const Canvas = forwardRef((
   },
   ref,
 ) => (
-  <g transform="translate(100 100)">
+  <g transform="translate(100, 100)">
     <foreignObject
       height={pageDimensions.height}
       width={pageDimensions.width}
