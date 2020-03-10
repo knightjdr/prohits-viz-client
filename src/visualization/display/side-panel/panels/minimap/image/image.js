@@ -7,6 +7,7 @@ import SearchResult from './search-results/search-results-container';
 import SynchingStatus from '../sync/synching-status';
 
 import './image.css';
+import './search-results/search-results.css';
 
 const Image = ({
   handleClick,
