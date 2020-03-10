@@ -18,6 +18,7 @@ const Landing = ({
         ProHits-viz
         <img
           alt="ProHits-viz"
+          height={36}
           src={TitleImage}
         />
       </h1>
@@ -36,21 +37,23 @@ const Landing = ({
         <FontAwesomeIcon icon={faVideo} />
         Demo
       </LinkButton>
-      {
-        article.link
-        && (
-          <div className="landing__news">
-            <LinkText
-              href={`/news/${article.link}`}
-              outline={false}
-            >
-              Latest news:
-              {' '}
-              {article.headline}
-            </LinkText>
-          </div>
-        )
-      }
+      <div className="landing__news">
+        {
+          article.link
+          && (
+            <div className="landing__news-inner">
+              <LinkText
+                href={`/news/${article.link}`}
+                outline={false}
+              >
+                Latest news:
+                {' '}
+                {article.headline}
+              </LinkText>
+            </div>
+          )
+        }
+      </div>
     </div>
   </section>
 );

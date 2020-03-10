@@ -46,6 +46,12 @@
   text-align: center;
 }
 .landing__news {
+  align-items: center;
+  display: flex;
+  justify-content: center;
+  min-height: 35px;
+}
+.landing__news-inner {
   background-color: rgba(255, 255, 255, 0.85);
   border-radius: 3px;
   bottom: 25px;
