@@ -3,6 +3,8 @@ import React from 'react';
 
 import SearchResult from './search-result';
 
+import './search-results.css';
+
 const renderMatches = (matches, limit, vertex) => (
   Object.keys(matches).length > 0
   && Object.entries(matches).map(([name, index]) => {

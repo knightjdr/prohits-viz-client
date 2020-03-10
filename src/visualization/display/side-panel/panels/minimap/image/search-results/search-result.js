@@ -1,8 +1,6 @@
 import PropTypes from 'prop-types';
 import React from 'react';
 
-import './search-result.css';
-
 const calculateCooridinate = x => (
   x ? `calc(${x * 100}% - 5px)` : -5
 );
