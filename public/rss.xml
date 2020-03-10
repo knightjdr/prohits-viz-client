@@ -3,7 +3,7 @@
     <title>ProHits-viz</title>
     <description>News and tutorials on visualizing data at ProHits-viz.</description>
     <link>https://prohits-viz.org/news</link>
-    <lastBuildDate>Fri, 02 Aug 2019 14:44:54 -0400</lastBuildDate>
+    <lastBuildDate>Tue, 10 Mar 2020 14:43:02 -0400</lastBuildDate>
     <item>
       <title>2.0 alpha test begins</title>
       <description>Learn about the first stage of testing for the new ProHits-viz interface.</description>
@@ -22,6 +22,16 @@
       <pubDate>Friday, 2 Aug 2019 12:00:00 GMT</pubDate>
       <content:encoded>
         &lt;p&gt;GIX (Gene Information eXtension) is a browser extension we developed that can retrieve gene information directly on any website. It is a great companion tool for ProHits-viz as it allows you to quickly retrieve gene information when browsing images on the interactive viewer.&lt;/p&gt;&lt;p&gt;You can learn more about it at &lt;a href=&quot;https://gene-info.org&quot;&gt;gene-info.org&lt;/a&gt; and read our article at &lt;a href=&quot;https://www.nature.com/articles/s41592-019-0477-9&quot;&gt;Nature Methods&lt;/a&gt;.&lt;/p&gt;
+      </content:encoded>
+    </item>
+    <item>
+      <title>2.0 beta test of dot plot and correlation tools</title>
+      <description>Learn about the next stage of testing for the new ProHits-viz interface.</description>
+      <link>https://prohits-viz.org/news/2.0-beta-test-of-dot-plot-and-correlation-tools</link>
+      <guid>https://prohits-viz.org/news/2.0-beta-test-of-dot-plot-and-correlation-tools</guid>
+      <pubDate>Friday, 6 Mar 2020 12:00:00 GMT</pubDate>
+      <content:encoded>
+        &lt;p&gt;The beta test for the 2.0 version of ProHits-viz has begun. It can be accessed at: &lt;a href=&quot;https://prohits-viz.org&quot;&gt;prohits-viz.org&lt;/a&gt;.&lt;/p&gt;&lt;p&gt;We are currently testing the correlation and dot plot tools with their associated interactive viewer.&lt;/p&gt;&lt;p&gt;In addition to the features mentioned in the alpha test and further bug fixes, you can now filter interactive images by conditions (e.g. baits) to limit the readouts (e.g. preys) displayed on the image. This is particular useful when combined with sorting to provide a more focused look at two conditions. You can also open as many snapshots and analyses of your image as you would like. You can try out the new features with an &lt;a href=&quot;https://prohits-viz.org/visualization/samplefile/dotplot&quot;&gt;example dataset&lt;/a&gt;.&lt;/p&gt;&lt;p&gt;If you would like to provide feedback, report bugs or request new features, please use GitHub. If your issue has already been created on GitHub by someone else, you do not need to do anything unless you would like to provide additional comments or context.&lt;/p&gt;&lt;strong&gt;Using GitHub&lt;/strong&gt;&lt;ol&gt;&lt;li&gt;Create an account on GitHub: &lt;a href=&quot;https://github.com&quot;&gt;github.com&lt;/a&gt;&lt;/li&gt;&lt;li&gt;Skip the tutorial (unless you plan on coding)&lt;/li&gt;&lt;li&gt;Go to &lt;a href=&quot;https://github.com/knightjdr/prohits-viz-client/issues&quot;&gt;https://github.com/knightjdr/prohits-viz-client/issues&lt;/a&gt;&lt;/li&gt;&lt;li&gt;Click on the green &quot;New issue&quot; button to create a new issue and describe the issue, bug or feature.&lt;/li&gt;&lt;li&gt;Alternatively, browse and comment on issues created by others&lt;/li&gt;&lt;/ol&gt;
       </content:encoded>
     </item>
   </channel>
