@@ -16,16 +16,16 @@ const Scroll = (ref, wait = 50) => {
 
 
   const onScroll = (e) => {
-    const horizontal = e.pixelX;
+    const scrollAmount = e.spinX ? e.pixelX : e.pixelY;
     const normalizedScrollPixels = 40;
-    const direction = Math.sign(e.pixelY);
-    const cells = Math.max(1, Math.round(Math.abs(e.pixelY / normalizedScrollPixels)));
+    const direction = Math.sign(scrollAmount);
+    const cells = Math.max(1, Math.round(Math.abs(scrollAmount / normalizedScrollPixels)));
 
     const newPosition = {
       x: position.x,
       y: position.y,
     };
-    if (horizontal) {
+    if (e.spinX) {
       newPosition.x = position.x + (direction * cells);
       if (newPosition.x < 0) {
         newPosition.x = 0;

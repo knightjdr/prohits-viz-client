@@ -20,7 +20,6 @@
     "@fortawesome/react-fontawesome": "^0.1.8",
     "hookrouter": "^1.2.3",
     "nanoid": "^2.1.11",
-    "normalize-wheel": "^1.0.1",
     "prop-types": "^15.7.2",
     "react": "^16.13.0",
     "react-color": "^2.18.0",
