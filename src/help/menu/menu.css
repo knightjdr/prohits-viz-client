@@ -5,6 +5,7 @@
   height: calc(100vh - 40px);
   min-width: 200px;
   padding: 10px;
+  position: relative;
   transform: translateX(0px);
   transition-duration: 0.3s;
   transition-timing-function: var(--timingFunction);
@@ -70,7 +71,7 @@
 .help__menu-toggle {
   display: none;
   position: absolute;
-  right: 5px;
+  right: -35px;
   top: 5px;
   z-index: 3;
 }
@@ -82,19 +83,13 @@
     top: 40px;
   }
   .help__menu.closed {
-    transform: translateX(-210px);
+    transform: translateX(-200px);
   }
   .help__menu.open {
     transform: translateX(0px);
   }
   .help__menu .help__menu-toggle {
     display: inline-block;
-  }
-  .help__menu.closed .help__menu-toggle {
-    transform: translateX(55px);
-  }
-  .help__menu.open .help__menu-toggle {
-    transform: translateX(0px);
   }
 }
 

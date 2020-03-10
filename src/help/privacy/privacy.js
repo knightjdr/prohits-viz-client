@@ -33,15 +33,17 @@ const Privacy = ({
         disabled={!canConsent}
         onChange={handleChange}
       />
-      You are currently
-      <strong className="help__privacy-status">
-        {haveConsent ? 'opted in to' : 'opted out of'}
-      </strong>
-      usage tracking
-      {
-        !canConsent
-        && ' and cannot opt in due to your browser configuration'
-      }
+      <span>
+        You are currently
+        <strong className="help__privacy-status">
+          {haveConsent ? 'opted in to' : 'opted out of'}
+        </strong>
+        usage tracking
+        {
+          !canConsent
+          && ' and cannot opt in due to your browser configuration'
+        }
+      </span>
     </div>
   </div>
 );
