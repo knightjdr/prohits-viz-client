@@ -1,5 +1,5 @@
 import React, { useEffect, useMemo, useRef } from 'react';
-import { useDispatch, useSelector } from 'react-redux';
+import { batch, useDispatch, useSelector } from 'react-redux';
 
 import Heatmap from './heatmap';
 
@@ -11,6 +11,7 @@ import useWindowDimension from '../../../hooks/window-size/use-window-dimension'
 import { setDimensions } from '../../../state/visualization/settings/dimension-actions';
 import { selectDataProperty } from '../../../state/selector/visualization/data-selector';
 import { selectStateProperty } from '../../../state/selector/general';
+import { updatePosition } from '../../../state/visualization/settings/position-actions';
 
 const HeatmapContainer = () => {
   const dispatch = useDispatch();
@@ -62,19 +63,22 @@ const HeatmapContainer = () => {
 
   useEffect(() => {
     const { height, width } = dimensions;
-    dispatch(setDimensions(
-      {
-        canTranslate: width.canTranslate,
-        columns: width.columns,
-        height: height.heatmap,
-        pageX: width.pageX,
-        pageY: height.pageY,
-        rows: height.rows,
-        width: width.heatmap,
-        wrapperHeight: dimensions.height.wrapper,
-        wrapperWidth: dimensions.width.wrapper,
-      },
-    ));
+    batch(() => {
+      dispatch(setDimensions(
+        {
+          canTranslate: width.canTranslate,
+          columns: width.columns,
+          height: height.heatmap,
+          pageX: width.pageX,
+          pageY: height.pageY,
+          rows: height.rows,
+          width: width.heatmap,
+          wrapperHeight: dimensions.height.wrapper,
+          wrapperWidth: dimensions.width.wrapper,
+        },
+      ));
+      dispatch(updatePosition(0, 0));
+    });
   }, [dimensions, dispatch]);
 
   return (
