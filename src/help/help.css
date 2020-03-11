@@ -7,7 +7,18 @@
 .help h2,
 .help h3 {
   font-family: var(--fontStackPrimary);
+  margin: 0;
+  margin-bottom: 15px;
   text-transform: uppercase;
+}
+.help h1 {
+  font-size: 1.5em;
+}
+.help h2 {
+  font-size: 1.3em;
+}
+.help h3 {
+  font-size: 1.2em;
 }
 
 .help__inner {
@@ -36,26 +47,6 @@
 .help__inner figcaption {
   font-weight: bold;
   margin-top: 5px;
-}
-.help__inner h1 {
-  font-size: 1.5em;
-  margin: 0;
-  margin-bottom: 15px;
-}
-.help__inner h2 {
-  font-size: 1.3em;
-  margin: 0;
-  margin-bottom: 15px;
-}
-.help__inner h2.help__dataset-version {
-  margin-top: 20px;
-}
-.help__inner h3 {
-  font-size: 1.2em;
-  margin: 0;
-  margin-bottom: 10px;
-  margin-top: 20px;
-  text-transform: capitalize;
 }
 .help__inner ul li {
   margin: 3px 0;

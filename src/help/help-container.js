@@ -5,12 +5,14 @@ import Citation from './citation/citation';
 import Help from './help';
 import Main from './help-main';
 import Privacy from './privacy/privacy-container';
+import Visualization from './visualization/visualization-container';
 import { linkOrder } from './links';
 
 const routes = {
   '/': () => <Main />,
   '/citation': () => <Citation />,
   '/privacy': () => <Privacy />,
+  '/visualization*': () => <Visualization />,
 };
 
 const HelpContainer = () => {

@@ -1,5 +1,18 @@
 const links = [
   { route: '/help', text: 'Introduction' },
+  {
+    route: '/help/visualization',
+    text: 'Visualization',
+    children: [
+      {
+        route: '/help/visualization/heatmap',
+        text: 'Dot plot/heat map',
+        children: [
+          { route: '/help/visualization/heatmap/settings', text: 'Settings' },
+        ],
+      },
+    ],
+  },
   { route: '/help/privacy', text: 'Privacy' },
 ];
 
