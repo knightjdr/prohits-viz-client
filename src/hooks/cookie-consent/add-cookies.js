@@ -1,6 +1,6 @@
 const addCookies = () => {
   if (process.env.NODE_ENV === 'production') {
-    window[process.env.REACT_APP_GOOGLE_ANALYTICS] = false;
+    window[`ga-disable-${process.env.REACT_APP_GOOGLE_ANALYTICS}`] = false;
     /* eslint-disable */
     (function (i, s, o, g, r, a, m) {
       i['GoogleAnalyticsObject'] = r;
@@ -13,7 +13,7 @@ const addCookies = () => {
       a.src = g;
       m.parentNode.insertBefore(a, m)
     })(window, document, 'script', 'https://www.google-analytics.com/analytics.js', 'ga');
-    ga('create', 'UA-104406982-1', 'auto');
+    ga('create', process.env.REACT_APP_GOOGLE_ANALYTICS, 'auto');
     ga('set', 'anonymizeIp', true);
     ga('send', 'pageview');
     /* eslint-enable */
