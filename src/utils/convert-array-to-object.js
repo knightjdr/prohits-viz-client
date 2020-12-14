@@ -1,4 +1,4 @@
-const convertArrayToObject = arr => (
+const convertArrayToObject = (arr) => (
   arr.reduce(((accum, item) => ({
     ...accum,
     [item]: true,

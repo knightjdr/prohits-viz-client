@@ -19,9 +19,9 @@ const parseDimensions = (data) => {
   return parsedDimensions;
 };
 
-const parseExporter = data => ({ format: data.format });
+const parseExporter = (data) => ({ format: data.format });
 
-const parseMinimap = data => (
+const parseMinimap = (data) => (
   Object.entries(data).reduce((accum, [key, datum]) => ({
     ...accum,
     [key]: {
@@ -37,7 +37,7 @@ const parseTabs = (data, blacklist) => {
   const parsedTabs = {
     ...data,
     active: activeBlacklisted ? 'main' : data.active,
-    availableAnalyses: data.availableAnalyses.filter(value => !blacklist.includes(value)),
+    availableAnalyses: data.availableAnalyses.filter((value) => !blacklist.includes(value)),
     tabType: activeBlacklisted ? 'snapshot' : data.tabType,
   };
 

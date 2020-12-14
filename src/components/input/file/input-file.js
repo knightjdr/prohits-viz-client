@@ -37,7 +37,7 @@ const InputFile = ({
       && (
         <ul className="file-input__list">
           {
-            files.map(file => (
+            files.map((file) => (
               <li
                 key={file.name}
               >

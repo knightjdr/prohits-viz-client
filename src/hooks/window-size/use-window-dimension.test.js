@@ -3,7 +3,7 @@ import useWindowDimension from './use-window-dimension';
 import { act, renderHook } from '../../test-utils/test-hook';
 
 jest.mock('../../utils/debounce');
-debounce.mockImplementation(func => () => { func(); });
+debounce.mockImplementation((func) => () => { func(); });
 
 const renderHookForTest = () => {
   let dimensions;

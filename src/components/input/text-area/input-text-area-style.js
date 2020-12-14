@@ -2,7 +2,7 @@ import styled, { css } from 'styled-components';
 
 const Span = styled.span`
   align-items: center;
-  color: ${props => props.theme.fontDark};
+  color: ${(props) => props.theme.fontDark};
   display: inline-grid;
   grid-template-columns: auto auto;
   width: 100%;
@@ -21,13 +21,13 @@ const Span = styled.span`
     padding: 5px 10px;
     transition-duration: 0.3s;
     transition-property: all;
-    transition-timing-function: ${props => props.theme.timingFunction};
+    transition-timing-function: ${(props) => props.theme.timingFunction};
     width: 200px;
   }
 
   textarea:focus,
   textarea:hover {
-    border-color: ${props => props.theme.colorPrimary1};
+    border-color: ${(props) => props.theme.colorPrimary1};
   }
 
   textarea:focus {
@@ -44,21 +44,21 @@ const Span = styled.span`
 
   .textarea__warning {
     align-items: center;
-    border-bottom: 1px dashed ${props => props.theme.warning};
-    border-left: 1px dashed ${props => props.theme.warning};
-    border-right: 1px dashed ${props => props.theme.warning};
+    border-bottom: 1px dashed ${(props) => props.theme.warning};
+    border-left: 1px dashed ${(props) => props.theme.warning};
+    border-right: 1px dashed ${(props) => props.theme.warning};
     display: flex;
     grid-column: 2 / span 1;
     grid-row: 2 / span 1;
     justify-content: center;
   }
   .textarea__warning svg {
-    color: ${props => props.theme.warning};
+    color: ${(props) => props.theme.warning};
     height: 25px;
     margin-right: 5px;
   }
 
-  ${props => (props.vertical
+  ${(props) => (props.vertical
     && css`& {
       display: flex;
       flex-direction: column;

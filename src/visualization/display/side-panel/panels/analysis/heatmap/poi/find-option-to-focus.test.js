@@ -20,5 +20,5 @@ describe('Find closest item in an array', () => {
     const indicesForFocus = [3];
     const startIndex = 1;
     expect(findOptionToFocus(allIndices, indicesForFocus, startIndex)).toBe(0);
-  }); 
+  });
 });

@@ -1,3 +1,4 @@
+/* eslint-disable max-len */
 const theme = {
   // Accenting dark colors, e.g. colorPrimary1
   accentPrimary1: '#AC867C', // rgb(172, 134, 124)

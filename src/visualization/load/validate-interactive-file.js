@@ -1,4 +1,3 @@
-
 import validateParameters from './validate-parameters';
 import validateHeatmapFields from './validate-heatmap-fields';
 import readInteractiveFile from './read-interactive-file';

@@ -10,7 +10,7 @@ const GettingStarted = () => (
     <h3>Getting started</h3>
     <div className="getting-started__tools">
       {
-        tools.map(tool => (
+        tools.map((tool) => (
           <Toolbox
             image={tool.image}
             key={tool.title}
@@ -23,6 +23,5 @@ const GettingStarted = () => (
     </div>
   </section>
 );
-
 
 export default GettingStarted;

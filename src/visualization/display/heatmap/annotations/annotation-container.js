@@ -31,7 +31,7 @@ const AnnotationContainer = ({
     [cellSize, height, width],
   );
 
-  const calculateDelta = cursorPosition => ({
+  const calculateDelta = (cursorPosition) => ({
     x: (cursorPosition.x - cursorReference.current.x) / width,
     y: (cursorPosition.y - cursorReference.current.y) / height,
   });

@@ -1,4 +1,4 @@
-const deepCopy = obj => (
+const deepCopy = (obj) => (
   obj ? JSON.parse(JSON.stringify(obj)) : null
 );
 

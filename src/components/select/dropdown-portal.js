@@ -49,7 +49,7 @@ const DropdownPortal = forwardRef((
     tabIndex={isDropdownVisible ? 0 : -1}
   >
     {
-      options.map(option => (
+      options.map((option) => (
         option.optGroup
           ? (
             <OptGroup

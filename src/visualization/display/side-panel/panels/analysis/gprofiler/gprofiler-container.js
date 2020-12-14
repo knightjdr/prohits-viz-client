@@ -13,7 +13,7 @@ const GprofilerContainer = () => {
   const dispatch = useDispatch();
   const [showAdvanced, setShowAdvanced] = useState(false);
 
-  const settings = useSelector(state => selectState(state, 'gprofiler'));
+  const settings = useSelector((state) => selectState(state, 'gprofiler'));
 
   const handleChange = (e, id, value) => {
     dispatch(changeGprofilerSetting(id, value));

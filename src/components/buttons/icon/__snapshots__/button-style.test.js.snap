@@ -12,6 +12,24 @@ exports[`Icon button style default should match snapshot 1`] = `
   transition-duration: 0.3s;
   -webkit-transition-property: background-color,border-color,color;
   transition-property: background-color,border-color,color;
+}
+
+.c0:focus {
+  outline: none;
+}
+
+.c0::-moz-focus-inner {
+  border: 0;
+}
+
+.c0:active {
+  -webkit-animation-duration: 0.3s;
+  animation-duration: 0.3s;
+  -webkit-animation-name: click;
+  animation-name: click;
+}
+
+.c1 {
   -webkit-align-items: center;
   -webkit-box-align: center;
   -ms-flex-align: center;
@@ -37,22 +55,7 @@ exports[`Icon button style default should match snapshot 1`] = `
   z-index: 1;
 }
 
-.c0:focus {
-  outline: none;
-}
-
-.c0::-moz-focus-inner {
-  border: 0;
-}
-
-.c0:active {
-  -webkit-animation-duration: 0.3s;
-  animation-duration: 0.3s;
-  -webkit-animation-name: click;
-  animation-name: click;
-}
-
-.c0::before {
+.c1::before {
   border-radius: 50%;
   content: '';
   height: 100%;
@@ -74,24 +77,24 @@ exports[`Icon button style default should match snapshot 1`] = `
   z-index: -1;
 }
 
-.c0 {
+.c1 {
   background-color: transparent;
   border: none;
 }
 
-.c0::before {
+.c1::before {
   background-color: #0000ff;
   opacity: 0;
 }
 
-.c0:focus:not([disabled]),
-.c0:hover:not([disabled]) {
+.c1:focus:not([disabled]),
+.c1:hover:not([disabled]) {
   box-shadow: none;
   color: #fff;
 }
 
-.c0:focus:not([disabled])::before,
-.c0:hover:not([disabled])::before {
+.c1:focus:not([disabled])::before,
+.c1:hover:not([disabled])::before {
   opacity: 1;
   -webkit-transform: scale(1);
   -ms-transform: scale(1);
@@ -99,7 +102,7 @@ exports[`Icon button style default should match snapshot 1`] = `
 }
 
 <button
-  class="sc-AxjAm c0"
+  class="c0 c1"
   kind="transparent"
 />
 `;
@@ -116,6 +119,24 @@ exports[`Icon button style square should match snapshot 1`] = `
   transition-duration: 0.3s;
   -webkit-transition-property: background-color,border-color,color;
   transition-property: background-color,border-color,color;
+}
+
+.c0:focus {
+  outline: none;
+}
+
+.c0::-moz-focus-inner {
+  border: 0;
+}
+
+.c0:active {
+  -webkit-animation-duration: 0.3s;
+  animation-duration: 0.3s;
+  -webkit-animation-name: click;
+  animation-name: click;
+}
+
+.c1 {
   -webkit-align-items: center;
   -webkit-box-align: center;
   -ms-flex-align: center;
@@ -141,22 +162,7 @@ exports[`Icon button style square should match snapshot 1`] = `
   z-index: 1;
 }
 
-.c0:focus {
-  outline: none;
-}
-
-.c0::-moz-focus-inner {
-  border: 0;
-}
-
-.c0:active {
-  -webkit-animation-duration: 0.3s;
-  animation-duration: 0.3s;
-  -webkit-animation-name: click;
-  animation-name: click;
-}
-
-.c0::before {
+.c1::before {
   border-radius: 50%;
   content: '';
   height: 100%;
@@ -178,40 +184,40 @@ exports[`Icon button style square should match snapshot 1`] = `
   z-index: -1;
 }
 
-.c0 {
+.c1 {
   background-color: transparent;
   border: none;
 }
 
-.c0::before {
+.c1::before {
   background-color: #0000ff;
   opacity: 0;
 }
 
-.c0:focus:not([disabled]),
-.c0:hover:not([disabled]) {
+.c1:focus:not([disabled]),
+.c1:hover:not([disabled]) {
   box-shadow: none;
   color: #fff;
 }
 
-.c0:focus:not([disabled])::before,
-.c0:hover:not([disabled])::before {
+.c1:focus:not([disabled])::before,
+.c1:hover:not([disabled])::before {
   opacity: 1;
   -webkit-transform: scale(1);
   -ms-transform: scale(1);
   transform: scale(1);
 }
 
-.c0 {
+.c1 {
   border-radius: 0;
 }
 
-.c0::before {
+.c1::before {
   border-radius: 0;
 }
 
 <button
-  class="sc-AxjAm c0"
+  class="c0 c1"
   kind="transparent"
 />
 `;
@@ -228,6 +234,24 @@ exports[`Icon button style transparent should match snapshot 1`] = `
   transition-duration: 0.3s;
   -webkit-transition-property: background-color,border-color,color;
   transition-property: background-color,border-color,color;
+}
+
+.c0:focus {
+  outline: none;
+}
+
+.c0::-moz-focus-inner {
+  border: 0;
+}
+
+.c0:active {
+  -webkit-animation-duration: 0.3s;
+  animation-duration: 0.3s;
+  -webkit-animation-name: click;
+  animation-name: click;
+}
+
+.c1 {
   -webkit-align-items: center;
   -webkit-box-align: center;
   -ms-flex-align: center;
@@ -253,22 +277,7 @@ exports[`Icon button style transparent should match snapshot 1`] = `
   z-index: 1;
 }
 
-.c0:focus {
-  outline: none;
-}
-
-.c0::-moz-focus-inner {
-  border: 0;
-}
-
-.c0:active {
-  -webkit-animation-duration: 0.3s;
-  animation-duration: 0.3s;
-  -webkit-animation-name: click;
-  animation-name: click;
-}
-
-.c0::before {
+.c1::before {
   border-radius: 50%;
   content: '';
   height: 100%;
@@ -290,24 +299,24 @@ exports[`Icon button style transparent should match snapshot 1`] = `
   z-index: -1;
 }
 
-.c0 {
+.c1 {
   background-color: transparent;
   border: none;
 }
 
-.c0::before {
+.c1::before {
   background-color: #0000ff;
   opacity: 0;
 }
 
-.c0:focus:not([disabled]),
-.c0:hover:not([disabled]) {
+.c1:focus:not([disabled]),
+.c1:hover:not([disabled]) {
   box-shadow: none;
   color: #fff;
 }
 
-.c0:focus:not([disabled])::before,
-.c0:hover:not([disabled])::before {
+.c1:focus:not([disabled])::before,
+.c1:hover:not([disabled])::before {
   opacity: 1;
   -webkit-transform: scale(1);
   -ms-transform: scale(1);
@@ -315,7 +324,7 @@ exports[`Icon button style transparent should match snapshot 1`] = `
 }
 
 <button
-  class="sc-AxjAm c0"
+  class="c0 c1"
   kind="transparent"
 />
 `;

@@ -22,6 +22,7 @@ const Header = ({
   visibility,
 }) => (
   <div
+    // eslint-disable-next-line max-len
     className={`minimap__detached-header ${visibility ? 'minimap__detached-header_border' : 'minimap__detached-header_no-border'}`}
   >
     <span className="minimap__detached-header-buttons_left">

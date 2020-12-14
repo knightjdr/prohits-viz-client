@@ -5,11 +5,11 @@ const Button = styled.button`
   background-color: transparent;
   border-color: transparent;
   box-sizing: border-box;
-  font-family: ${props => props.theme.fontStackSystem};
+  font-family: ${(props) => props.theme.fontStackSystem};
   transform-origin: center;
   transition-duration: 0.3s;
   transition-property: background-color, border-color, color;
-  transition-timing-function: ${props => props.theme.timingFunction};
+  transition-timing-function: ${(props) => props.theme.timingFunction};
 
   &:focus {
     outline: none;
@@ -18,20 +18,20 @@ const Button = styled.button`
     border: 0;
   }
 
-  ${props => (props.disabled
+  ${(props) => (props.disabled
     && css`& {
       cursor: not-allowed;
       opacity: 0.6;
     }`
   )};
 
-  ${props => (props.shadow
+  ${(props) => (props.shadow
     && css`& {
       box-shadow: 0 2px 5px 0 rgba(0, 0, 0, 0.26);
     }`
   )};
 
-  ${props => (props.kind === 'alert'
+  ${(props) => (props.kind === 'alert'
     && css`& {
       background-color: ${props.theme.alert2};
       color: #421C1A;
@@ -43,7 +43,7 @@ const Button = styled.button`
     }`
   )};
 
-  ${props => (props.kind === 'grey'
+  ${(props) => (props.kind === 'grey'
     && css`& {
       background-color: rgba(0, 0, 0, 0.2);
       color: ${props.theme.fontDark};
@@ -55,7 +55,7 @@ const Button = styled.button`
     }`
   )};
   
-  ${props => (props.kind === 'primary'
+  ${(props) => (props.kind === 'primary'
     && css`& {
       background-color: ${props.theme.colorPrimary1};
       color: ${props.theme.fontLight};
@@ -68,7 +68,7 @@ const Button = styled.button`
     }`
   )};
 
-  ${props => (props.kind === 'secondary'
+  ${(props) => (props.kind === 'secondary'
     && css`&{
       background-color: ${props.theme.colorSecondary1};
       color: ${props.theme.fontLight};
@@ -82,7 +82,7 @@ const Button = styled.button`
     }`
   )}
 
-  ${props => (props.kind === 'success'
+  ${(props) => (props.kind === 'success'
     && css`& {
       background-color: ${props.theme.success};
       color: ${props.theme.fontLight};
@@ -95,7 +95,7 @@ const Button = styled.button`
     }`
   )};
 
-  ${props => (props.kind === 'warning'
+  ${(props) => (props.kind === 'warning'
     && css`&{
       background-color: ${props.theme.warning};
       color: ${props.theme.fontLight};
@@ -112,7 +112,7 @@ const Button = styled.button`
   &:active {
     animation-duration: 0.3s;
     animation-name: click;
-    animation-timing-function: ${props => props.theme.timingFunction}
+    animation-timing-function: ${(props) => props.theme.timingFunction}
   }
 
   @keyframes click {

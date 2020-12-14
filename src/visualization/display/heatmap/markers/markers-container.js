@@ -12,9 +12,9 @@ import { updateMarkers } from '../../../../state/visualization/markup/marker-act
 const MarkersContainer = () => {
   const dispatch = useDispatch();
 
-  const dimensions = useSelector(state => selectData(state, 'dimensions'));
-  const markers = useSelector(state => selectData(state, 'markers'));
-  const settings = useSelector(state => selectDataProperty(state, 'settings', 'current'));
+  const dimensions = useSelector((state) => selectData(state, 'dimensions'));
+  const markers = useSelector((state) => selectData(state, 'markers'));
+  const settings = useSelector((state) => selectDataProperty(state, 'settings', 'current'));
 
   const clipPathID = 'annotationClipPath';
   const translation = useTranslation('markerClipPath');
@@ -49,7 +49,7 @@ const MarkersContainer = () => {
 };
 
 const ShowComponent = () => {
-  const show = useSelector(state => selectDataProperty(state, 'markers', 'show'));
+  const show = useSelector((state) => selectDataProperty(state, 'markers', 'show'));
 
   return show && <MarkersContainer />;
 };

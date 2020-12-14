@@ -1,3 +1,5 @@
+/* eslint-disable max-len */
+
 import initializeColorGradient from './initialize-color-gradient';
 
 const gradients = {

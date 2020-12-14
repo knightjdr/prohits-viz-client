@@ -18,7 +18,7 @@ const Div = styled.div`
     margin-left: 5px;
   }
   .carousel__grid-button {
-    background-color: ${props => props.theme.colorPrimary2};
+    background-color: ${(props) => props.theme.colorPrimary2};
     border: none;
     cursor: pointer;
     height: 10px;
@@ -26,15 +26,15 @@ const Div = styled.div`
     padding: 0;
     transition-duration: 0.3s;
     transition-property: background-color;
-    transition-timing-function: ${props => props.theme.timingFunction};
+    transition-timing-function: ${(props) => props.theme.timingFunction};
     width: 20px;
   }
   .carousel__grid-button.active {
-    background-color: ${props => props.theme.accentPrimary1};
+    background-color: ${(props) => props.theme.accentPrimary1};
   }
   .carousel__grid-button:focus,
   .carousel__grid-button:hover {
-    background-color: ${props => props.theme.colorPrimary1};
+    background-color: ${(props) => props.theme.colorPrimary1};
     outline: none;
   }
   .carousel__grid-button::-moz-focus-inner {
@@ -44,7 +44,7 @@ const Div = styled.div`
     position: relative;
   }
   .carousel__slider-active {
-    animation-duration: ${props => `${props.animationDuration}ms`};
+    animation-duration: ${(props) => `${props.animationDuration}ms`};
   }
   @keyframes slideActiveLeft {
     from {

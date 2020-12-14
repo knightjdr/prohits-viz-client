@@ -1,5 +1,5 @@
 import PropTypes from 'prop-types';
-import React, { Fragment } from 'react';
+import React from 'react';
 import { faSearch } from '@fortawesome/pro-solid-svg-icons';
 import { faTrash } from '@fortawesome/pro-duotone-svg-icons';
 
@@ -36,14 +36,14 @@ const Search = ({
       {
         term
         && (
-          <Fragment>
+          <>
             <span className="panel-markup__label">
               Current query:
             </span>
             <span className="panel-search__query">
               {term}
             </span>
-          </Fragment>
+          </>
         )
       }
       <span className="panel-markup__label">

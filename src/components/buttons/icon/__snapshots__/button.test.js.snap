@@ -14,6 +14,26 @@ exports[`Icon button style primary button should match snapshot 1`] = `
   transition-property: background-color,border-color,color;
   -webkit-transition-timing-function: ease;
   transition-timing-function: ease;
+}
+
+.c0:focus {
+  outline: none;
+}
+
+.c0::-moz-focus-inner {
+  border: 0;
+}
+
+.c0:active {
+  -webkit-animation-duration: 0.3s;
+  animation-duration: 0.3s;
+  -webkit-animation-name: click;
+  animation-name: click;
+  -webkit-animation-timing-function: ease;
+  animation-timing-function: ease;
+}
+
+.c1 {
   -webkit-align-items: center;
   -webkit-box-align: center;
   -ms-flex-align: center;
@@ -39,24 +59,7 @@ exports[`Icon button style primary button should match snapshot 1`] = `
   z-index: 1;
 }
 
-.c0:focus {
-  outline: none;
-}
-
-.c0::-moz-focus-inner {
-  border: 0;
-}
-
-.c0:active {
-  -webkit-animation-duration: 0.3s;
-  animation-duration: 0.3s;
-  -webkit-animation-name: click;
-  animation-name: click;
-  -webkit-animation-timing-function: ease;
-  animation-timing-function: ease;
-}
-
-.c0::before {
+.c1::before {
   border-radius: 50%;
   content: '';
   height: 100%;
@@ -78,24 +81,24 @@ exports[`Icon button style primary button should match snapshot 1`] = `
   z-index: -1;
 }
 
-.c0 {
+.c1 {
   background-color: transparent;
   border: none;
 }
 
-.c0::before {
+.c1::before {
   background-color: #00f;
   opacity: 0;
 }
 
-.c0:focus:not([disabled]),
-.c0:hover:not([disabled]) {
+.c1:focus:not([disabled]),
+.c1:hover:not([disabled]) {
   box-shadow: none;
   color: #fff;
 }
 
-.c0:focus:not([disabled])::before,
-.c0:hover:not([disabled])::before {
+.c1:focus:not([disabled])::before,
+.c1:hover:not([disabled])::before {
   opacity: 1;
   -webkit-transform: scale(1);
   -ms-transform: scale(1);
@@ -104,7 +107,7 @@ exports[`Icon button style primary button should match snapshot 1`] = `
 
 <button
   aria-label="test-button"
-  class="sc-AxjAm c0"
+  class="c0 c1"
   fill="primary"
   kind="transparent"
   type="button"
@@ -141,6 +144,26 @@ exports[`Icon button style transparent (default) button should match snapshot 1`
   transition-property: background-color,border-color,color;
   -webkit-transition-timing-function: ease;
   transition-timing-function: ease;
+}
+
+.c0:focus {
+  outline: none;
+}
+
+.c0::-moz-focus-inner {
+  border: 0;
+}
+
+.c0:active {
+  -webkit-animation-duration: 0.3s;
+  animation-duration: 0.3s;
+  -webkit-animation-name: click;
+  animation-name: click;
+  -webkit-animation-timing-function: ease;
+  animation-timing-function: ease;
+}
+
+.c1 {
   -webkit-align-items: center;
   -webkit-box-align: center;
   -ms-flex-align: center;
@@ -166,24 +189,7 @@ exports[`Icon button style transparent (default) button should match snapshot 1`
   z-index: 1;
 }
 
-.c0:focus {
-  outline: none;
-}
-
-.c0::-moz-focus-inner {
-  border: 0;
-}
-
-.c0:active {
-  -webkit-animation-duration: 0.3s;
-  animation-duration: 0.3s;
-  -webkit-animation-name: click;
-  animation-name: click;
-  -webkit-animation-timing-function: ease;
-  animation-timing-function: ease;
-}
-
-.c0::before {
+.c1::before {
   border-radius: 50%;
   content: '';
   height: 100%;
@@ -205,24 +211,24 @@ exports[`Icon button style transparent (default) button should match snapshot 1`
   z-index: -1;
 }
 
-.c0 {
+.c1 {
   background-color: transparent;
   border: none;
 }
 
-.c0::before {
+.c1::before {
   background-color: #00f;
   opacity: 0;
 }
 
-.c0:focus:not([disabled]),
-.c0:hover:not([disabled]) {
+.c1:focus:not([disabled]),
+.c1:hover:not([disabled]) {
   box-shadow: none;
   color: #fff;
 }
 
-.c0:focus:not([disabled])::before,
-.c0:hover:not([disabled])::before {
+.c1:focus:not([disabled])::before,
+.c1:hover:not([disabled])::before {
   opacity: 1;
   -webkit-transform: scale(1);
   -ms-transform: scale(1);
@@ -231,7 +237,7 @@ exports[`Icon button style transparent (default) button should match snapshot 1`
 
 <button
   aria-label="test-button"
-  class="sc-AxjAm c0"
+  class="c0 c1"
   kind="transparent"
   type="button"
 >

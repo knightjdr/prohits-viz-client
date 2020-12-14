@@ -17,7 +17,7 @@ const getState = () => ({
   },
   other: {},
 });
-const next = action => ({
+const next = (action) => ({
   type: action.type,
 });
 

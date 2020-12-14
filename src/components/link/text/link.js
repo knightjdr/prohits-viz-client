@@ -13,7 +13,7 @@ const Link = styled(({ outline, visited, ...props }) => <A {...props} />)`
   }
 
   &:visited {
-    color: ${props => (props.visited ? '#673ab7' : '#2468e5')};
+    color: ${(props) => (props.visited ? '#673ab7' : '#2468e5')};
   }
 
   &:hover,
@@ -21,14 +21,14 @@ const Link = styled(({ outline, visited, ...props }) => <A {...props} />)`
     text-decoration: underline;
   }
 
-  ${props => (!props.outline
+  ${(props) => (!props.outline
     && css`&:focus {
       outline: none;
       text-decoration: underline;
     }`
   )}
 
-  ${props => (props.outline
+  ${(props) => (props.outline
     && css`&:focus {
       outline: auto;
       outline-color: #4D90FE;

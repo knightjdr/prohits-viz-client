@@ -12,7 +12,7 @@ const TaskModalContainer = ({
   taskID,
 }) => {
   const [downloading, setDownloadingStatus] = useState(false);
-  const status = useSelector(state => selectStateProperty(state, 'tasks', taskID));
+  const status = useSelector((state) => selectStateProperty(state, 'tasks', taskID));
 
   const taskHandlers = useTask();
 

@@ -6,34 +6,34 @@ const pressedKeyCode = (e, key) => {
   return keyCode === key || which === key;
 };
 
-export const pressedArrowDown = e => (
+export const pressedArrowDown = (e) => (
   pressedKeyCode(e, 40)
 );
 
-export const pressedArrowUp = e => (
+export const pressedArrowUp = (e) => (
   pressedKeyCode(e, 38)
 );
 
-export const pressedBackspace = e => (
+export const pressedBackspace = (e) => (
   pressedKeyCode(e, 8)
 );
 
-export const pressedEnd = e => (
+export const pressedEnd = (e) => (
   pressedKeyCode(e, 35)
 );
 
-export const pressedEnter = e => (
+export const pressedEnter = (e) => (
   pressedKeyCode(e, 13)
 );
 
-export const pressedEscape = e => (
+export const pressedEscape = (e) => (
   pressedKeyCode(e, 27)
 );
 
-export const pressedHome = e => (
+export const pressedHome = (e) => (
   pressedKeyCode(e, 36)
 );
 
-export const pressedSpace = e => (
+export const pressedSpace = (e) => (
   pressedKeyCode(e, 32)
 );

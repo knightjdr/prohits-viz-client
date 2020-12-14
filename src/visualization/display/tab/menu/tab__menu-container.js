@@ -14,7 +14,7 @@ const TabMenuContainer = () => {
   const ref = useRef();
   const [menuState, setMenuState] = useState({ open: false });
 
-  const tabs = useSelector(state => selectState(state, 'tabs'));
+  const tabs = useSelector((state) => selectState(state, 'tabs'));
 
   const { active: activeTab, availableAnalyses, availableSnapshots } = tabs;
 

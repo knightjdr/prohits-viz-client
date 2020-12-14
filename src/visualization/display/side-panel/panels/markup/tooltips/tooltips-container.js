@@ -8,7 +8,7 @@ import { updateDisplaySetting } from '../../../../../../state/visualization/sett
 
 const TooltipsContainer = () => {
   const dispatch = useDispatch();
-  const showTooltips = useSelector(state => selectDataProperty(state, 'display', 'showTooltips'));
+  const showTooltips = useSelector((state) => selectDataProperty(state, 'display', 'showTooltips'));
 
   const handleToggleTooltips = () => {
     dispatch(updateDisplaySetting('showTooltips', !showTooltips));

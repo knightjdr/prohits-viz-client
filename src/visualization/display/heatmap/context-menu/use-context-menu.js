@@ -19,7 +19,7 @@ const useContextMenu = (name = 'contextMenu', containerType = 'columns') => {
     y: 0,
   });
 
-  const reference = useSelector(state => selectDataProperty(state, 'columns', 'ref'));
+  const reference = useSelector((state) => selectDataProperty(state, 'columns', 'ref'));
 
   const poi = usePOI(containerType);
   const rowSort = useSortRows();

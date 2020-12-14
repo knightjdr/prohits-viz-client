@@ -8,7 +8,7 @@ import { selectState } from '../../state/selector/general';
 
 const ListContainer = () => {
   const dispatch = useDispatch();
-  const news = useSelector(state => selectState(state, 'news'));
+  const news = useSelector((state) => selectState(state, 'news'));
 
   useEffect(() => {
     const fetchContent = async () => {

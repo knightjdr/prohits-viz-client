@@ -13,7 +13,7 @@ import Tabs from './tabs/tabs-container';
 
 import './side-panel.css';
 
-const visibilityConfig = isOpen => (
+const visibilityConfig = (isOpen) => (
   isOpen ? { className: 'visible' } : { className: 'hidden' }
 );
 

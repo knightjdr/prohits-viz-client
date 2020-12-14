@@ -13,7 +13,7 @@ const theme = {
   warning: '#ff0000',
 };
 
-const renderElement = props => render(<Button {...props} />);
+const renderElement = (props) => render(<Button {...props} />);
 
 describe('Default button style', () => {
   describe('default', () => {

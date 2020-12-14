@@ -8,8 +8,8 @@ import { selectState, selectStateProperty } from '../../../../../../state/select
 const useCreateSnapshot = () => {
   const dispatch = useDispatch();
 
-  const imageType = useSelector(state => selectStateProperty(state, 'parameters', 'imageType'));
-  const tabs = useSelector(state => selectState(state, 'tabs'));
+  const imageType = useSelector((state) => selectStateProperty(state, 'parameters', 'imageType'));
+  const tabs = useSelector((state) => selectState(state, 'tabs'));
 
   const createHeatmapSnapshot = useCreateHeatmapSnapshot();
 

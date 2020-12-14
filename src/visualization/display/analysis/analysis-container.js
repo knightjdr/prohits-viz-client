@@ -6,8 +6,8 @@ import Analysis from './analysis';
 import { selectStateProperty } from '../../../state/selector/general';
 
 const AnalysisContainer = () => {
-  const activeTab = useSelector(state => selectStateProperty(state, 'tabs', 'active'));
-  const analysis = useSelector(state => selectStateProperty(state, 'analysis', activeTab));
+  const activeTab = useSelector((state) => selectStateProperty(state, 'tabs', 'active'));
+  const analysis = useSelector((state) => selectStateProperty(state, 'analysis', activeTab));
 
   return (
     <Analysis

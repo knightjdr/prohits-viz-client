@@ -20,7 +20,7 @@ const Menu = ({
     <div className="help__menu-inner">
       <div className="help__menu-scroll-content">
         {
-          links.map(link => (
+          links.map((link) => (
             <Fragment key={link.route}>
               <h2>
                 <Link
@@ -33,7 +33,7 @@ const Menu = ({
               </h2>
               {
                 link.children
-                && link.children.map(childLink => (
+                && link.children.map((childLink) => (
                   <h3
                     className="help__menu-links_indent"
                     key={childLink.route}

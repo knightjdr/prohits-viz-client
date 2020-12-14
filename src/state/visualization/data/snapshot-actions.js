@@ -8,7 +8,7 @@ export const addHeatmapSnapshot = (id, name, content) => ({
   type: ADD_HEATMAP_SNAPSHOT,
 });
 
-export const removeHeatmapSnapshot = name => ({
+export const removeHeatmapSnapshot = (name) => ({
   name,
   type: REMOVE_HEATMAP_SNAPSHOT,
 });

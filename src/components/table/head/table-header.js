@@ -23,7 +23,7 @@ const TableHeader = forwardRef((
     }}
   >
     {
-      header.map(cell => (
+      header.map((cell) => (
         <HeaderCell
           cell={cell}
           handleSortRows={handleSortRows}

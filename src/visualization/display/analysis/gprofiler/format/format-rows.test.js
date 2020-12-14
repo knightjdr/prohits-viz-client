@@ -1,7 +1,9 @@
 import createSourceLink from './create-source-link';
 import formatRows from './format-rows';
 
-jest.mock('nanoid', () => () => 'abc123');
+jest.mock('nanoid', () => ({
+  nanoid: () => 'abc123',
+}));
 jest.mock('./create-source-link');
 
 describe('Format gProfiler response data for table', () => {

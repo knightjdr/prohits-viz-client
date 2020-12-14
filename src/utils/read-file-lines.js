@@ -59,4 +59,5 @@ const ReadFileLines = (inputFile, maxLines = 1) => (
     seek();
   })
 );
+
 export default ReadFileLines;

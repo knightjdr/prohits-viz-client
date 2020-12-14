@@ -7,7 +7,7 @@ jest.mock('./menu-style');
 
 const toggleMenu = jest.fn();
 
-const renderElement = props => render(<Menu {...props} />);
+const renderElement = (props) => render(<Menu {...props} />);
 
 describe('Navbar menu', () => {
   describe('closed', () => {

@@ -21,12 +21,12 @@ const ColumnsContainer = () => {
     text: '',
   });
 
-  const columnRef = useSelector(state => selectDataProperty(state, 'columns', 'ref'));
-  const columnSearchMatches = useSelector(state => selectDataProperty(state, 'searchStatus', 'columns'));
-  const names = useSelector(state => selectVisibleColumnNames(state));
-  const settings = useSelector(state => selectDataProperty(state, 'settings', 'current'));
-  const sortBy = useSelector(state => selectDataProperty(state, 'rows', 'sortBy'));
-  const sortDirection = useSelector(state => selectDataProperty(state, 'rows', 'direction'));
+  const columnRef = useSelector((state) => selectDataProperty(state, 'columns', 'ref'));
+  const columnSearchMatches = useSelector((state) => selectDataProperty(state, 'searchStatus', 'columns'));
+  const names = useSelector((state) => selectVisibleColumnNames(state));
+  const settings = useSelector((state) => selectDataProperty(state, 'settings', 'current'));
+  const sortBy = useSelector((state) => selectDataProperty(state, 'rows', 'sortBy'));
+  const sortDirection = useSelector((state) => selectDataProperty(state, 'rows', 'direction'));
 
   const contextMenu = useContextMenu('context-columns', 'columns');
 

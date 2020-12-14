@@ -20,9 +20,9 @@ const RowsContainer = () => {
     text: '',
   });
 
-  const names = useSelector(state => selectVisibleRowNames(state));
-  const rowSearchMatches = useSelector(state => selectDataProperty(state, 'searchStatus', 'rows'));
-  const settings = useSelector(state => selectDataProperty(state, 'settings', 'current'));
+  const names = useSelector((state) => selectVisibleRowNames(state));
+  const rowSearchMatches = useSelector((state) => selectDataProperty(state, 'searchStatus', 'rows'));
+  const settings = useSelector((state) => selectDataProperty(state, 'settings', 'current'));
 
   const contextMenu = useContextMenu('context-rows', 'rows');
 

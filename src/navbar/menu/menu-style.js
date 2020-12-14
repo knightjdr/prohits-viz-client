@@ -15,7 +15,7 @@ const Div = styled.div`
   }
   & button:focus *,
   & button:hover * {
-    fill: ${props => (props.route === 'home' ? props.theme.colorPrimary1 : props.theme.accentPrimary1)};
+    fill: ${(props) => (props.route === 'home' ? props.theme.colorPrimary1 : props.theme.accentPrimary1)};
   }
 
   & .nav__menu {
@@ -24,14 +24,14 @@ const Div = styled.div`
   }
   & .nav__menu > * {
     transition: fill 0.3s ease;
-    fill: ${props => props.theme.fontLight};
+    fill: ${(props) => props.theme.fontLight};
   }
 
   & ul {
     background-color: #fff;
     border-radius: 2px;
     box-shadow: 0 2px 5px 0 rgba(0, 0, 0, .3);
-    font-family: ${props => props.theme.fontStackPrimary};
+    font-family: ${(props) => props.theme.fontStackPrimary};
     margin: 0;
     list-style: none;
     padding: 10px;
@@ -42,7 +42,7 @@ const Div = styled.div`
     transform-origin: 97% 2%;
     transition-duration: 0.3s;
     transition-property: all;
-    transition-timing-function: ${props => props.theme.timingFunction};
+    transition-timing-function: ${(props) => props.theme.timingFunction};
   }
 
   & li {
@@ -51,19 +51,19 @@ const Div = styled.div`
   }
 
   & a.nav__link {
-    color: ${props => props.theme.fontDark};
+    color: ${(props) => props.theme.fontDark};
     display: block;
     text-decoration: none;
     width: 100%;
   }
   & a.nav__link:after {
-    background: ${props => props.theme.fontDark};
+    background: ${(props) => props.theme.fontDark};
     content: '';
     display: block;
     height: 1px;
     transition-duration: 0.3s;
     transition-property: width;
-    transition-timing-function: ${props => props.theme.timingFunction};
+    transition-timing-function: ${(props) => props.theme.timingFunction};
     width: 0px;
   }
   & a.nav__link:focus {

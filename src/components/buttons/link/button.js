@@ -21,13 +21,13 @@ const Button = styled.button`
     text-decoration: underline;
   }
 
-  ${props => (!props.outline
+  ${(props) => (!props.outline
     && css`&:focus {
       text-decoration: underline;
     }`
   )}
 
-  ${props => (props.outline
+  ${(props) => (props.outline
     && css`&:focus {
       outline: auto;
       outline-color: #4D90FE;

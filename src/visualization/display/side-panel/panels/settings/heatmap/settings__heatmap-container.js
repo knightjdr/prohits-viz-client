@@ -10,8 +10,8 @@ import { updateSetting } from '../../../../../../state/visualization/settings/se
 
 const SettingsHeatmapContainer = () => {
   const dispatch = useDispatch();
-  const columns = useSelector(state => selectOrderedColumnNames(state));
-  const settings = useSelector(state => selectDataProperty(state, 'settings', 'current'));
+  const columns = useSelector((state) => selectOrderedColumnNames(state));
+  const settings = useSelector((state) => selectDataProperty(state, 'settings', 'current'));
 
   const handleChange = (e, name, value) => {
     dispatch(updateSetting(name, value));

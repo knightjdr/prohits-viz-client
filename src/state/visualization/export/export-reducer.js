@@ -3,7 +3,7 @@ import * as fileActions from '../data/interactive-file-actions';
 
 import { reduceAndClearState, reduceAndLoadState } from '../data/interactive-file-reducer';
 
-const reduceAndClear = state => ({
+const reduceAndClear = (state) => ({
   ...state,
   file: '',
 });
@@ -15,7 +15,7 @@ const reduceAndDownload = (state, action) => ({
   file: action.file,
 });
 
-const reduceAndError = state => ({
+const reduceAndError = (state) => ({
   ...state,
   error: true,
   exporting: false,
@@ -27,7 +27,7 @@ const reduceAndFormat = (state, action) => ({
   format: action.format,
 });
 
-const reduceAndExport = state => ({
+const reduceAndExport = (state) => ({
   ...state,
   error: false,
   exporting: true,

@@ -1,4 +1,3 @@
-
 import PropTypes from 'prop-types';
 import React from 'react';
 import { faAngleLeft, faAngleRight } from '@fortawesome/pro-solid-svg-icons';

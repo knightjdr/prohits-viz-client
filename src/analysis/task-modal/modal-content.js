@@ -9,7 +9,7 @@ import Link from '../../components/link/text/link';
 import Select from '../../components/select/select-container';
 
 const getModalElements = {
-  complete: options => ({
+  complete: (options) => ({
     alertMessage: 'The task is complete.',
     icon: faCheck,
     iconClass: 'task__modal-status_green',
@@ -36,7 +36,7 @@ const getModalElements = {
       </div>
     ),
   }),
-  error: options => ({
+  error: (options) => ({
     alertMessage: 'There was an error running the task.',
     icon: faExclamationTriangle,
     iconClass: 'task__modal-status-icon_red',
@@ -60,7 +60,7 @@ const getModalElements = {
     iconClass: 'task__modal-status-icon',
     spinIcon: true,
   }),
-  running: options => ({
+  running: (options) => ({
     alertMessage: 'The task is running....',
     icon: faSpinner,
     iconClass: 'task__modal-status-icon',

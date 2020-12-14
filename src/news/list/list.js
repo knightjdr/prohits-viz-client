@@ -32,7 +32,7 @@ const List = ({
             News
           </h1>
           {
-            articles.map(article => (
+            articles.map((article) => (
               <ListItem
                 article={article}
                 key={article.headline}

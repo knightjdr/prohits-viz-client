@@ -18,7 +18,7 @@ const TasksContainer = ({
   const [errorStatus, setErrorStatus] = useState(0);
   const [isLoading, setLoadingState] = useState(true);
 
-  const tasks = useSelector(state => selectState(state, 'tasks'));
+  const tasks = useSelector((state) => selectState(state, 'tasks'));
 
   const taskHandlers = useTask();
 

@@ -1,7 +1,6 @@
 import NewsReducer, { defaultState } from './news-reducer';
 import * as actions from './news-actions';
 
-
 describe('News reducer', () => {
   it('should return the initial state', () => {
     const action = {};

@@ -8,7 +8,7 @@ import { selectData } from '../../../../../../state/selector/visualization/data-
 
 const MarkerContainer = () => {
   const dispatch = useDispatch();
-  const markers = useSelector(state => selectData(state, 'markers'));
+  const markers = useSelector((state) => selectData(state, 'markers'));
 
   const { color, record, show } = markers;
 

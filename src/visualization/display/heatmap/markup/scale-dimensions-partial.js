@@ -1,5 +1,5 @@
-const scaleDimensions = imageDimensions => (
-  markerDimensions => ({
+const scaleDimensions = (imageDimensions) => (
+  (markerDimensions) => ({
     height: markerDimensions.height * imageDimensions.height,
     width: markerDimensions.width * imageDimensions.width,
     x: markerDimensions.x * imageDimensions.width,

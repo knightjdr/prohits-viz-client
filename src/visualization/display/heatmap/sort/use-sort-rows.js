@@ -8,15 +8,14 @@ import { selectData } from '../../../../state/selector/visualization/data-select
 import { selectState } from '../../../../state/selector/general';
 import { sortRows } from '../../../../state/visualization/heatmap/rows-actions';
 
-
 const useSortRows = () => {
   const [isSorting, setSorting] = useState(false);
 
   const dispatch = useDispatch();
 
-  const columns = useSelector(state => selectState(state, 'columnDB'));
-  const rows = useSelector(state => selectData(state, 'rows'));
-  const rowDB = useSelector(state => selectState(state, 'rowDB'));
+  const columns = useSelector((state) => selectState(state, 'columnDB'));
+  const rows = useSelector((state) => selectData(state, 'rows'));
+  const rowDB = useSelector((state) => selectState(state, 'rowDB'));
 
   const {
     direction,

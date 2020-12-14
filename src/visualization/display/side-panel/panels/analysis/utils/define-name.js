@@ -1,4 +1,4 @@
-import nanoID from 'nanoid';
+import { nanoid } from 'nanoid';
 
 const validateName = (name, tabs, id, prefix) => {
   if (!name) {
@@ -14,7 +14,7 @@ const validateName = (name, tabs, id, prefix) => {
     return nameWithID;
   }
 
-  return `${name}-${nanoID()}`;
+  return `${name}-${nanoid()}`;
 };
 
 const defineName = (inputName, tabs, prefix = 'snapshot') => {

@@ -13,11 +13,11 @@ const TooltipOverlayContainer = ({
 }) => {
   const [tooltip, setTooltip] = useState(defaultTooltipState);
 
-  const columnOrder = useSelector(state => selectDataProperty(state, 'columns', 'order'));
-  const pagePosition = useSelector(state => selectData(state, 'position'));
-  const rowDB = useSelector(state => selectState(state, 'rowDB'));
-  const rowOrder = useSelector(state => selectDataProperty(state, 'rows', 'order'));
-  const settings = useSelector(state => selectDataProperty(state, 'settings', 'current'));
+  const columnOrder = useSelector((state) => selectDataProperty(state, 'columns', 'order'));
+  const pagePosition = useSelector((state) => selectData(state, 'position'));
+  const rowDB = useSelector((state) => selectState(state, 'rowDB'));
+  const rowOrder = useSelector((state) => selectDataProperty(state, 'rows', 'order'));
+  const settings = useSelector((state) => selectDataProperty(state, 'settings', 'current'));
 
   const { cellSize } = settings;
   const moveOptions = {
@@ -75,5 +75,9 @@ const ShowContainer = ({
   show
   && <TooltipOverlayContainer {...props} />
 );
+
+ShowContainer.propTypes = {
+  show: PropTypes.bool.isRequired,
+};
 
 export default ShowContainer;

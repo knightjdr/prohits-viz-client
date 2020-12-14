@@ -17,12 +17,12 @@ const HeatmapContainer = () => {
   const dispatch = useDispatch();
   const ref = useRef();
 
-  const activeSnapshotTab = useSelector(state => selectStateProperty(state, 'tabs', 'activeSnapshot'));
-  const columns = useSelector(state => selectDataProperty(state, 'columns', 'order'));
-  const panelOpen = useSelector(state => selectStateProperty(state, 'panel', 'open'));
-  const plotFixed = useSelector(state => selectDataProperty(state, 'display', 'plotFixed'));
-  const rowOrder = useSelector(state => selectDataProperty(state, 'rows', 'order'));
-  const settings = useSelector(state => selectDataProperty(state, 'settings', 'current'));
+  const activeSnapshotTab = useSelector((state) => selectStateProperty(state, 'tabs', 'activeSnapshot'));
+  const columns = useSelector((state) => selectDataProperty(state, 'columns', 'order'));
+  const panelOpen = useSelector((state) => selectStateProperty(state, 'panel', 'open'));
+  const plotFixed = useSelector((state) => selectDataProperty(state, 'display', 'plotFixed'));
+  const rowOrder = useSelector((state) => selectDataProperty(state, 'rows', 'order'));
+  const settings = useSelector((state) => selectDataProperty(state, 'settings', 'current'));
 
   const windowDimensions = useWindowDimension(50);
   usePlotScroll(ref, 50);

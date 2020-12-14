@@ -9,7 +9,6 @@ import SelectContainer from '../../../../../../components/select/select-containe
 
 import './advanced.css';
 
-
 const Advanced = ({
   handleChange,
   settings,

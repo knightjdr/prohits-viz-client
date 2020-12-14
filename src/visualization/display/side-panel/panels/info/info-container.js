@@ -9,7 +9,7 @@ import { selectState } from '../../../../../state/selector/general';
 
 const InfoContainer = () => {
   const dispatch = useDispatch();
-  const parameters = useSelector(state => selectState(state, 'parameters'));
+  const parameters = useSelector((state) => selectState(state, 'parameters'));
 
   const downloadLegend = () => {
     const svg = document.getElementById('legend').outerHTML;

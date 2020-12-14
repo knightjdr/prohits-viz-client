@@ -3,7 +3,7 @@ import React from 'react';
 
 import SortArrow from './sort-arrow';
 
-const addTooltip = cell => (
+const addTooltip = (cell) => (
   cell.tooltip
     ? {
       'data-tooltip': cell.tooltip,

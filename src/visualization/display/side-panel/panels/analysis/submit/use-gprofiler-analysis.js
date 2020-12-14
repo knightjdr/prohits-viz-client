@@ -6,7 +6,7 @@ import { selectState } from '../../../../../../state/selector/general';
 
 const useGprofilerAnalysis = () => {
   const dispatch = useDispatch();
-  const gprofiler = useSelector(state => selectState(state, 'gprofiler'));
+  const gprofiler = useSelector((state) => selectState(state, 'gprofiler'));
 
   const fetch = useFetch();
 

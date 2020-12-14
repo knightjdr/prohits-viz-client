@@ -23,7 +23,6 @@ const Markers = ({
   </>
 );
 
-
 Markers.propTypes = {
   markers: PropTypes.shape({
     color: PropTypes.string.isRequired,

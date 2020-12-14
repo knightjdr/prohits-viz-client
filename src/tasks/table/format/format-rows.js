@@ -5,7 +5,7 @@ import convertIsoDate from '../../../utils/convert-iso-date';
 import getStatus from './get-status';
 
 const formatRows = (tasks, handleChangeFile, viewImage, download) => (
-  tasks.map(task => ({
+  tasks.map((task) => ({
     date: {
       content: convertIsoDate(task.date, true),
     },

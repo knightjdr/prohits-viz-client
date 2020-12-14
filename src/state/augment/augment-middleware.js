@@ -6,7 +6,7 @@ const augmentWithSnapshotID = (getState, action) => {
   };
 };
 
-const augmentMiddleware = ({ getState }) => next => (action) => {
+const augmentMiddleware = ({ getState }) => (next) => (action) => {
   let augmentedAction = action;
   if (action.AUGMENT_WITH_ACTIVE_SNAPSHOT) {
     augmentedAction = augmentWithSnapshotID(getState, augmentedAction);

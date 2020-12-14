@@ -7,7 +7,7 @@ import NotFoundPage from '../routes/not-found';
 
 const routes = {
   '/': () => <List />,
-  '/:id': props => <Article {...props} />,
+  '/:id': (props) => <Article {...props} />,
 };
 
 const NewsContainer = () => {

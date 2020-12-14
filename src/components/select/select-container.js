@@ -1,4 +1,4 @@
-import nanoid from 'nanoid';
+import { nanoid } from 'nanoid';
 import PropTypes from 'prop-types';
 import React, {
   useEffect,
@@ -91,7 +91,7 @@ const SelectContainer = ({
 
   const findOption = (queryText) => {
     const text = queryText.toLowerCase();
-    const index = optionSettings.selectableOptions.findIndex(option => (
+    const index = optionSettings.selectableOptions.findIndex((option) => (
       option.label.toLowerCase().startsWith(text)
     ));
 

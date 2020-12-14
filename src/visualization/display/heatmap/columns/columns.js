@@ -24,7 +24,7 @@ const Columns = ({
 }) => {
   const textOffset = Math.round((cellSize / 2) - (fontSize / 3));
   return (
-    <Fragment>
+    <>
       {contextMenu}
       {sortingNotification}
       <Tooltip
@@ -83,7 +83,7 @@ const Columns = ({
           })
         }
       </g>
-    </Fragment>
+    </>
   );
 };
 

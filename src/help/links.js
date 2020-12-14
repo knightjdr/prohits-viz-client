@@ -26,7 +26,6 @@ export const getLinkOrder = (list) => {
     return accum;
   }, []);
 
-
   const numLinks = leveledList.length;
   const linkMap = {};
   let previous = {};

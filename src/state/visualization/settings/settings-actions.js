@@ -8,7 +8,7 @@ export const updateSetting = (setting, value) => ({
   value,
 });
 
-export const updateSettings = settings => ({
+export const updateSettings = (settings) => ({
   AUGMENT_WITH_ACTIVE_SNAPSHOT: true,
   settings,
   type: UPDATE_SETTINGS,

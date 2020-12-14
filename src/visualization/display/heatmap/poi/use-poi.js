@@ -24,9 +24,9 @@ const findIndices = (items, arr) => {
 
 const usePOI = (poiType) => {
   const dispatch = useDispatch();
-  const columnNames = useSelector(state => selectOrderedColumnNames(state));
-  const poi = useSelector(state => selectData(state, 'poi'));
-  const rowNames = useSelector(state => selectRows(state));
+  const columnNames = useSelector((state) => selectOrderedColumnNames(state));
+  const poi = useSelector((state) => selectData(state, 'poi'));
+  const rowNames = useSelector((state) => selectRows(state));
 
   const names = {
     columns: columnNames,

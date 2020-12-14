@@ -8,7 +8,7 @@ const convertToOptions = (suggested, other) => {
       optGroup: true,
     };
     options.push(group);
-    options.push(...suggested.map(option => ({ label: option, value: option })));
+    options.push(...suggested.map((option) => ({ label: option, value: option })));
   }
 
   if (other.length > 0) {
@@ -18,7 +18,7 @@ const convertToOptions = (suggested, other) => {
       optGroup: true,
     };
     options.push(group);
-    options.push(...other.map(option => ({ label: option, value: option })));
+    options.push(...other.map((option) => ({ label: option, value: option })));
   }
   return options;
 };

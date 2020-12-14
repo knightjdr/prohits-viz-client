@@ -57,7 +57,7 @@ const Settings = (params) => {
             && Array.isArray(params[key])
             && params[key].length > 0
           ) {
-            const values = params[key].map(value => (
+            const values = params[key].map((value) => (
               <div key={value}>
                 {value}
               </div>

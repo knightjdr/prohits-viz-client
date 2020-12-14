@@ -4,7 +4,7 @@ import exportFields from './export-fields';
 import parseFields from './parse-fields';
 
 const useSessionData = () => {
-  const session = useSelector(state => state);
+  const session = useSelector((state) => state);
 
   const { analysisType } = session.parameters;
 

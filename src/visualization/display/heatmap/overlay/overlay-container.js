@@ -8,8 +8,8 @@ import { selectData, selectDataProperty } from '../../../../state/selector/visua
 const OverlayContainer = () => {
   const ref = useRef();
 
-  const dimensions = useSelector(state => selectData(state, 'dimensions'));
-  const showTooltips = useSelector(state => selectDataProperty(state, 'display', 'showTooltips'));
+  const dimensions = useSelector((state) => selectData(state, 'dimensions'));
+  const showTooltips = useSelector((state) => selectDataProperty(state, 'display', 'showTooltips'));
 
   const { height, width } = dimensions;
 

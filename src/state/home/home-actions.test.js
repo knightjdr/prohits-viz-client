@@ -5,7 +5,7 @@ describe('Home actions', () => {
     const data = { news: ['a', 'b'], spotlight: ['a', 'b'] };
     const action = data;
     const expectedAction = {
-      data: data,
+      data,
       type: actions.FILL_HOME,
     };
     expect(actions.fillHome(action)).toEqual(expectedAction);

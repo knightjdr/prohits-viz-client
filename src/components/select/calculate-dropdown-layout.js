@@ -4,7 +4,7 @@ export const calculateAvailableHeight = (direction, distanceToBottom, elementTop
   direction === 'down' ? distanceToBottom - PADDING : elementTop - PADDING
 );
 
-export const calculateDistanceToViewportBottom = elementBottom => (
+export const calculateDistanceToViewportBottom = (elementBottom) => (
   window.innerHeight - elementBottom
 );
 

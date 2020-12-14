@@ -1,6 +1,8 @@
 import defineName from './define-name';
 
-jest.mock('nanoid', () => () => 'abcd');
+jest.mock('nanoid', () => ({
+  nanoid: () => 'abc123',
+}));
 
 describe('Define analysis/snapshot name', () => {
   describe('snapshot', () => {
@@ -60,7 +62,7 @@ describe('Define analysis/snapshot name', () => {
       const prefix = 'snapshot';
       const expected = {
         id: 2,
-        name: 'snapshot-1-abcd',
+        name: 'snapshot-1-abc123',
       };
       expect(defineName(inputName, tabs, prefix)).toEqual(expected);
     });

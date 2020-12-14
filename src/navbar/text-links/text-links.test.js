@@ -5,7 +5,7 @@ import TextLinks from './text-links';
 
 jest.mock('./text-links-style');
 
-const renderElement = props => render(<TextLinks {...props} />);
+const renderElement = (props) => render(<TextLinks {...props} />);
 
 describe('Navbar text links', () => {
   const props = {

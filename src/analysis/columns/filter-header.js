@@ -1,6 +1,6 @@
 import convertToOptions from './convert-to-options';
 
-const hasRecommendColumns = recommended => (
+const hasRecommendColumns = (recommended) => (
   recommended
   && Array.isArray(recommended)
   && recommended.length > 0
@@ -20,7 +20,7 @@ const filterHeader = (recommended, headers) => {
   }
 
   let initialValue = '';
-  const lowercaseHeader = headers.map(header => (header.toLowerCase()));
+  const lowercaseHeader = headers.map((header) => (header.toLowerCase()));
   const suggestedOptions = [];
   const otherOptions = [];
 

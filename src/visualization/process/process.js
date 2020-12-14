@@ -1,5 +1,5 @@
 import PropTypes from 'prop-types';
-import React, { Fragment } from 'react';
+import React from 'react';
 
 import Display from '../display/display';
 import Loading from '../../components/loading/page/loading';
@@ -9,7 +9,7 @@ const Process = ({
   errorMessage,
   isLoading,
 }) => (
-  <Fragment>
+  <>
     {
       error
       || isLoading
@@ -23,7 +23,7 @@ const Process = ({
         )
         : <Display />
     }
-  </Fragment>
+  </>
 );
 
 Process.propTypes = {

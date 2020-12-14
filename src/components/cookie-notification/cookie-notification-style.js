@@ -3,7 +3,7 @@ import styled from 'styled-components';
 const Div = styled.div`
   box-sizing: border-box;
   bottom: 0;
-  font-family: ${props => props.theme.fontStackPrimary};
+  font-family: ${(props) => props.theme.fontStackPrimary};
   justify-content: center;
   padding: 0 10px;
   position: fixed;

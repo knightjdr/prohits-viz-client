@@ -5,7 +5,7 @@ import Analysis from './analysis';
 import { selectStateProperty } from '../../../../../state/selector/general';
 
 const AnalysisContainer = () => {
-  const imageType = useSelector(state => selectStateProperty(state, 'parameters', 'imageType'));
+  const imageType = useSelector((state) => selectStateProperty(state, 'parameters', 'imageType'));
 
   return (
     <Analysis

@@ -13,7 +13,7 @@ import { selectState } from '../../state/selector/general';
 
 const LoadContainer = () => {
   const dispatch = useDispatch();
-  const parameters = useSelector(state => selectState(state, 'parameters'));
+  const parameters = useSelector((state) => selectState(state, 'parameters'));
 
   const status = useLoading();
 
@@ -51,6 +51,5 @@ const LoadContainer = () => {
     />
   );
 };
-
 
 export default LoadContainer;

@@ -5,7 +5,7 @@ import trimText from './trim-text';
 Object.defineProperty(document, 'createElement', {
   value: () => ({
     getContext: () => ({
-      measureText: text => ({
+      measureText: (text) => ({
         width: text.length,
       }),
     }),

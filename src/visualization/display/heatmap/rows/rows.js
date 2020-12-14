@@ -18,7 +18,7 @@ const Rows = ({
 }) => {
   const textOffset = Math.round((cellSize / 2) - (fontSize / 3));
   return (
-    <Fragment>
+    <>
       {contextMenu}
       <Tooltip
         isOpen={tooltip.open}
@@ -62,7 +62,7 @@ const Rows = ({
           })
         }
       </g>
-    </Fragment>
+    </>
   );
 };
 

@@ -1,8 +1,8 @@
-const formatMultipleReturnValue = values => (
+const formatMultipleReturnValue = (values) => (
   Array.isArray(values) ? values : [values]
 );
 
-const formatSingleReturnValue = values => (
+const formatSingleReturnValue = (values) => (
   Array.isArray(values) ? values.join(', ') : values
 );
 

@@ -7,13 +7,12 @@ import { updatePosition } from '../../../../state/visualization/settings/positio
 
 const Scroll = (ref, wait = 50) => {
   const dispatch = useDispatch();
-  const dimensions = useSelector(state => selectData(state, 'dimensions'));
-  const position = useSelector(state => selectData(state, 'position'));
+  const dimensions = useSelector((state) => selectData(state, 'dimensions'));
+  const position = useSelector((state) => selectData(state, 'position'));
 
   const update = debounce((x, y) => {
     dispatch(updatePosition(x, y));
   }, wait);
-
 
   const onScroll = (e) => {
     const scrollAmount = e.spinX ? e.pixelX : e.pixelY;

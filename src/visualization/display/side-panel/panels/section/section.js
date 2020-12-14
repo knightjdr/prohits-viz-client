@@ -1,5 +1,5 @@
 import PropTypes from 'prop-types';
-import React, { Fragment } from 'react';
+import React from 'react';
 
 import './section.css';
 
@@ -8,14 +8,14 @@ const Info = ({
   children,
   title,
 }) => (
-  <Fragment>
+  <>
     { border && <div className="panel__section-border" /> }
     {
       title
       && <h2 className="panel__section-title">{title}</h2>
     }
     {children}
-  </Fragment>
+  </>
 );
 
 Info.defaultProps = {

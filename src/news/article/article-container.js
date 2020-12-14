@@ -13,7 +13,7 @@ const ArticleContainer = ({
   id,
 }) => {
   const dispatch = useDispatch();
-  const article = useSelector(state => selectState(state, 'article'));
+  const article = useSelector((state) => selectState(state, 'article'));
   const [isLoaded, setLoaded] = useState(isArticleLoaded(id, article.id));
 
   useEffect(() => {
@@ -32,7 +32,6 @@ const ArticleContainer = ({
       fetchContent();
     }
   }, [dispatch, id, isLoaded]);
-
 
   return (
     <LoadArticle

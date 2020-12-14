@@ -6,7 +6,7 @@ import IconButton from '../../../../../components/buttons/icon/button';
 
 import './deletion.css';
 
-const defineClassName = type => (
+const defineClassName = (type) => (
   type === 'column'
     ? 'heatmap__deletion heatmap__deletion-column'
     : 'heatmap__deletion heatmap__deletion-row'

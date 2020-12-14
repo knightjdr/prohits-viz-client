@@ -15,21 +15,21 @@ const Loading = ({
   let content;
   if (error) {
     content = (
-      <Fragment>
+      <>
         <span className="loading__icon loading__error">
           <FontAwesomeIcon icon={faExclamationTriangle} size="lg" />
         </span>
         <span>{message}</span>
-      </Fragment>
+      </>
     );
   } else if (isLoading) {
     content = (
-      <Fragment>
+      <>
         <span className="loading__icon">
           <FontAwesomeIcon icon={faSpinner} size="lg" pulse spin />
         </span>
         <span>{message}</span>
-      </Fragment>
+      </>
     );
   }
   return (

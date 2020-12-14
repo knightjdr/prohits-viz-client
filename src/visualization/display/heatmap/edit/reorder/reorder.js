@@ -5,7 +5,7 @@ import Input from '../../../../../components/input/text/input-text-container';
 
 import './reorder.css';
 
-const defineClassName = type => (
+const defineClassName = (type) => (
   type === 'column'
     ? 'heatmap__reorder heatmap__reorder-column'
     : 'heatmap__reorder heatmap__reorder-row'

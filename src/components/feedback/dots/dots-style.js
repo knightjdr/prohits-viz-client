@@ -4,7 +4,7 @@ import styled from 'styled-components';
 const Div = styled.div`
   & > span {
     animation: dot-scale-fade 1.5s linear infinite;
-    background-color: ${props => (props.color ? props.color : props.theme.colorPrimary1)};
+    background-color: ${(props) => (props.color ? props.color : props.theme.colorPrimary1)};
     border-radius: 50%;
     display: inline-block;
     height: 20px;

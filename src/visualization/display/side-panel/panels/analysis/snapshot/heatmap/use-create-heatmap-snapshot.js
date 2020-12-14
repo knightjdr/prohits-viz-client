@@ -7,10 +7,10 @@ import useFilter from '../../../../../heatmap/filter/use-filter';
 import { selectData } from '../../../../../../../state/selector/visualization/data-selector';
 
 const useCreateHeatmapSnapshot = () => {
-  const annotations = useSelector(state => selectData(state, 'annotations'));
-  const display = useSelector(state => selectData(state, 'display'));
-  const markers = useSelector(state => selectData(state, 'markers'));
-  const settings = useSelector(state => selectData(state, 'settings'));
+  const annotations = useSelector((state) => selectData(state, 'annotations'));
+  const display = useSelector((state) => selectData(state, 'display'));
+  const markers = useSelector((state) => selectData(state, 'markers'));
+  const settings = useSelector((state) => selectData(state, 'settings'));
 
   const filter = useFilter();
 

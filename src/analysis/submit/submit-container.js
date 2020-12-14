@@ -15,7 +15,7 @@ const SubmitContainer = ({
 }) => {
   const dispatch = useDispatch();
 
-  const form = useSelector(state => selectState(state, 'form'));
+  const form = useSelector((state) => selectState(state, 'form'));
 
   const settings = useMemo(() => getSettings(form), [form]);
 
@@ -43,6 +43,7 @@ const SubmitContainer = ({
 SubmitContainer.propTypes = {
   errors: PropTypes.shape({}).isRequired,
   submit: PropTypes.func.isRequired,
+  uploading: PropTypes.bool.isRequired,
 };
 
 const ShowWrapper = ({

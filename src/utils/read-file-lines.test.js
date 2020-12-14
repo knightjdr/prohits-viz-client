@@ -1,5 +1,5 @@
-import TextEnconding from './text-encoding/encoding';
 import ReadFileLines from './read-file-lines';
+import * as Encoding from './text-encoding/encoding';
 
 afterAll(() => {
   jest.clearAllMocks();
@@ -66,7 +66,8 @@ describe('ReadFileLines', () => {
   });
 
   it('should return one line when decoder reads more than one', () => {
-    TextEnconding.TextDecoder = jest.fn().mockImplementation(() => (
+    // eslint-disable-next-line import/no-named-as-default-member
+    Encoding.TextDecoder = jest.fn().mockImplementation(() => (
       {
         decode: () => ('col1\tcol2\na\tb\n1\t2'),
       }

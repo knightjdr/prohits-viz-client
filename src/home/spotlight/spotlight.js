@@ -15,7 +15,7 @@ const Spotlight = ({
         <h3>Spotlight</h3>
         <Carousel>
           {
-            manuscripts.map(manuscript => (
+            manuscripts.map((manuscript) => (
               <div
                 className="carousel__item"
                 key={manuscript.title}
@@ -29,8 +29,7 @@ const Spotlight = ({
                   <h4>{manuscript.title}</h4>
                   <p>
                     { `${manuscript.authorLastName} and colleagues used the ${manuscript.tool}
-                      tool at ProHits-viz to ${manuscript.description}.`
-                    }
+                      tool at ProHits-viz to ${manuscript.description}.`}
                   </p>
                   <div className="carousel__links">
                     <Link

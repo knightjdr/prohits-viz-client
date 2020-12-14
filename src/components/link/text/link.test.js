@@ -3,7 +3,7 @@ import { render } from '@testing-library/react';
 
 import Link from './link';
 
-const renderElement = props => render(<Link {...props} />);
+const renderElement = (props) => render(<Link {...props} />);
 
 describe('Link style', () => {
   describe('with style for :visited', () => {

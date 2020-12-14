@@ -9,13 +9,12 @@ import sampleHeader from './sample-header';
 import { selectState } from '../../state/selector/general';
 import { setFormField, setFormFields } from '../../state/analysis/form-actions';
 
-
 const FileSelectionContainer = ({
   errors,
 }) => {
   const dispatch = useDispatch();
 
-  const form = useSelector(state => selectState(state, 'form'));
+  const form = useSelector((state) => selectState(state, 'form'));
 
   const loadSampleFile = async () => {
     const file = new File(

@@ -9,7 +9,7 @@ const Button = styled(DefaultButton)`
   border-radius: 50%;
   border-style: solid;
   border-width: 2px;
-  color: ${props => props.theme.colorPrimary1};
+  color: ${(props) => props.theme.colorPrimary1};
   display: flex;
   font-size: 1.3em;
   justify-content: center;
@@ -33,7 +33,7 @@ const Button = styled(DefaultButton)`
     width: 100%;
     z-index: -1;
   }
-  ${props => (props.kind === 'transparent'
+  ${(props) => (props.kind === 'transparent'
     && css`& {
       background-color: transparent;
       border: none;
@@ -56,7 +56,7 @@ const Button = styled(DefaultButton)`
     }`
   )}
 
-  ${props => (props.square
+  ${(props) => (props.square
     && css`& {
       border-radius: 0;
     }

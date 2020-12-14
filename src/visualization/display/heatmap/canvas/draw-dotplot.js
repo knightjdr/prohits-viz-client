@@ -4,7 +4,7 @@ const RADIUS_SCALE = 0.9;
 
 export const calculateRadiusPartial = (resetRatios, rowOrder, columnOrder, rowDB, pageStart, pageEnd) => {
   if (resetRatios) {
-    const rowMaximums = rowOrder.slice(pageStart.y, pageEnd.y).map(rowIndex => (
+    const rowMaximums = rowOrder.slice(pageStart.y, pageEnd.y).map((rowIndex) => (
       columnOrder.slice(pageStart.x, pageEnd.x).reduce((max, columnIndex) => (
         rowDB[rowIndex].data[columnIndex].value > max ? rowDB[rowIndex].data[columnIndex].value : max
       ), 0)
@@ -18,7 +18,7 @@ export const calculateRadiusPartial = (resetRatios, rowOrder, columnOrder, rowDB
   );
 };
 
-export const validateScore = score => (
+export const validateScore = (score) => (
   typeof score === 'number' ? score : 0
 );
 

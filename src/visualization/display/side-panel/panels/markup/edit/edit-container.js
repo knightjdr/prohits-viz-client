@@ -7,7 +7,7 @@ import { updateDisplaySetting } from '../../../../../../state/visualization/sett
 
 const EditContainer = () => {
   const dispatch = useDispatch();
-  const display = useSelector(state => selectData(state, 'display'));
+  const display = useSelector((state) => selectData(state, 'display'));
 
   const { deleteFromImage, reorderImage } = display;
 

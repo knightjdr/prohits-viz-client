@@ -13,7 +13,7 @@ const ToolContainer = ({
 }) => {
   const dispatch = useDispatch();
 
-  const selectedtool = useSelector(state => selectStateProperty(state, 'form', 'tool'));
+  const selectedtool = useSelector((state) => selectStateProperty(state, 'form', 'tool'));
 
   const setTool = (e, id, value) => {
     dispatch(

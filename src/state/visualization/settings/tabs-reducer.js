@@ -37,7 +37,7 @@ const reduceAndChangeSnapshot = (state, action) => ({
 const reduceAndRemoveAnalysis = (state, action) => ({
   ...state,
   active: action.name !== state.active ? state.active : state.availableSnapshots[0],
-  availableAnalyses: state.availableAnalyses.filter(analysis => analysis !== action.name),
+  availableAnalyses: state.availableAnalyses.filter((analysis) => analysis !== action.name),
   tabType: action.name !== state.active ? state.tabType : 'snapshot',
 });
 
@@ -45,7 +45,7 @@ const reduceAndRemoveHeatmapSnapshot = (state, action) => ({
   ...state,
   active: action.name !== state.active ? state.active : state.availableSnapshots[0],
   activeSnapshot: action.name !== state.activeSnapshot ? state.activeSnapshot : state.availableSnapshots[0],
-  availableSnapshots: state.availableSnapshots.filter(snapshot => snapshot !== action.name),
+  availableSnapshots: state.availableSnapshots.filter((snapshot) => snapshot !== action.name),
 });
 
 const reducer = (state = {}, action) => {

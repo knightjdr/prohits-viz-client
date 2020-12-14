@@ -4,7 +4,7 @@ import validateMinCondition from '../../field-validation/min-conditions';
 import validateNormalization from '../../field-validation/normalization';
 import validateScoreType from '../../field-validation/score-type';
 
-export const getFieldValidator = value => (validator, warning) => {
+export const getFieldValidator = (value) => (validator, warning) => {
   const [valid, validatedValue] = validator(value);
   if (valid) {
     return { value: validatedValue };

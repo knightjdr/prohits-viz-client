@@ -1,3 +1,4 @@
+/* eslint-disable import/no-extraneous-dependencies */
 import React from 'react';
 import { act } from 'react-dom/test-utils';
 import { render } from '@testing-library/react';

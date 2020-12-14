@@ -138,7 +138,6 @@ describe('Use click oustide hook', () => {
       };
     });
 
-
     beforeAll(() => {
       isVisible.mockReturnValue(true);
     });

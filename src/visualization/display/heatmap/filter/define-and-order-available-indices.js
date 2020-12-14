@@ -6,9 +6,9 @@ const defineAvailableIndices = (suppliedOrder, defaultIndices, storedIndices, de
   }
 
   const deletedIndexLookup = convertArrayToObject(deleted);
-  const filteredIndices = defaultIndices.filter(x => !storedIndices.includes(x));
+  const filteredIndices = defaultIndices.filter((x) => !storedIndices.includes(x));
   const orderedIndices = [...storedIndices, ...filteredIndices];
-  return orderedIndices.filter(index => !deletedIndexLookup[index]);
+  return orderedIndices.filter((index) => !deletedIndexLookup[index]);
 };
 
 export default defineAvailableIndices;

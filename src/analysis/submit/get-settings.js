@@ -1,7 +1,7 @@
 import arrSortByKey from '../../utils/arr-sort-by-key';
 import isFalsyButNotZero from '../../utils/falsy-but-not-zero';
 
-const getNumber = value => (
+const getNumber = (value) => (
   isFalsyButNotZero(value) ? 'not set' : value
 );
 
@@ -95,7 +95,6 @@ const getSettings = (form) => {
     default:
       break;
   }
-
 
   return arrSortByKey(tagArray, 'text');
 };

@@ -7,7 +7,7 @@ import NotFoundPage from '../routes/not-found';
 
 const routes = {
   '/': () => <Load />,
-  '/:id/:filename': props => <Process {...props} />,
+  '/:id/:filename': (props) => <Process {...props} />,
 };
 
 const VisualizationContainer = () => {

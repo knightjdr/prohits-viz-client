@@ -19,13 +19,13 @@ const ReorderContainer = ({
 }) => {
   const dispatch = useDispatch();
 
-  const columnOrder = useSelector(state => selectDataProperty(state, 'columns', 'order'));
-  const columns = useSelector(state => selectVisibleColumnNames(state));
-  const dimensions = useSelector(state => selectData(state, 'dimensions'));
-  const pagePosition = useSelector(state => selectData(state, 'position'));
-  const rowOrder = useSelector(state => selectDataProperty(state, 'rows', 'order'));
-  const rows = useSelector(state => selectVisibleRowNames(state));
-  const settings = useSelector(state => selectDataProperty(state, 'settings', 'current'));
+  const columnOrder = useSelector((state) => selectDataProperty(state, 'columns', 'order'));
+  const columns = useSelector((state) => selectVisibleColumnNames(state));
+  const dimensions = useSelector((state) => selectData(state, 'dimensions'));
+  const pagePosition = useSelector((state) => selectData(state, 'position'));
+  const rowOrder = useSelector((state) => selectDataProperty(state, 'rows', 'order'));
+  const rows = useSelector((state) => selectVisibleRowNames(state));
+  const settings = useSelector((state) => selectDataProperty(state, 'settings', 'current'));
 
   const { cellSize } = settings;
   const defaultFontSize = cellSize / 1.75;
@@ -123,7 +123,7 @@ ReorderContainer.propTypes = {
 const ShowComponent = ({
   heatmapRef,
 }) => {
-  const reorderImage = useSelector(state => selectDataProperty(state, 'display', 'reorderImage'));
+  const reorderImage = useSelector((state) => selectDataProperty(state, 'display', 'reorderImage'));
   return (
     heatmapRef.current
     && reorderImage

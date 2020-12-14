@@ -6,7 +6,7 @@ import Markers from './markers';
 import { selectData } from '../../../../../../../state/selector/visualization/data-selector';
 
 const MarkerContainer = () => {
-  const markers = useSelector(state => selectData(state, 'markers'));
+  const markers = useSelector((state) => selectData(state, 'markers'));
 
   return (
     <Markers

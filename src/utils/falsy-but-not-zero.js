@@ -1,4 +1,4 @@
-const isFalsyButNotZero = val => (
+const isFalsyButNotZero = (val) => (
   !val && val !== 0
 );
 

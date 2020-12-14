@@ -22,7 +22,7 @@ export const clearAllMarkers = () => ({
   type: CLEAR_ALL_MARKERS,
 });
 
-export const updateMarkers = list => ({
+export const updateMarkers = (list) => ({
   AUGMENT_WITH_ACTIVE_SNAPSHOT: true,
   list,
   type: UPDATE_MARKERS,

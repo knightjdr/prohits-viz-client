@@ -9,7 +9,7 @@ export const deleteRow = (index, order) => ({
   type: DELETE_ROW,
 });
 
-export const setRowOrder = order => ({
+export const setRowOrder = (order) => ({
   AUGMENT_WITH_ACTIVE_SNAPSHOT: true,
   order,
   type: SET_ROW_ORDER,

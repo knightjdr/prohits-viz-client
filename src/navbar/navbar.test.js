@@ -8,7 +8,7 @@ jest.mock('../components/link/text/link');
 jest.mock('./menu/menu-style');
 jest.mock('./text-links/text-links-style');
 
-const renderElement = props => render(<Navbar {...props} />);
+const renderElement = (props) => render(<Navbar {...props} />);
 
 describe('Navbar', () => {
   describe('normal screen size', () => {

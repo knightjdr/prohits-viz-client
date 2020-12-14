@@ -8,7 +8,6 @@ import { useDispatch, useSelector } from 'react-redux';
 
 import Poi from './poi';
 
-
 import defineNewPOI from './define-new-poi';
 import definePoiOptions from './define-poi-options';
 import getHighlightedAttribute from './get-highlighted-attribute';
@@ -35,12 +34,12 @@ const PoiContainer = () => {
     },
   };
 
-  const columnNames = useSelector(state => selectColumnNames(state));
-  const columnOrder = useSelector(state => selectDataProperty(state, 'columns', 'order'));
-  const poi = useSelector(state => selectData(state, 'poi'));
-  const position = useSelector(state => selectData(state, 'position'));
-  const rowNames = useSelector(state => selectRowNames(state));
-  const rowOrder = useSelector(state => selectDataProperty(state, 'rows', 'order'));
+  const columnNames = useSelector((state) => selectColumnNames(state));
+  const columnOrder = useSelector((state) => selectDataProperty(state, 'columns', 'order'));
+  const poi = useSelector((state) => selectData(state, 'poi'));
+  const position = useSelector((state) => selectData(state, 'position'));
+  const rowNames = useSelector((state) => selectRowNames(state));
+  const rowOrder = useSelector((state) => selectDataProperty(state, 'rows', 'order'));
 
   const columnOptions = useMemo(
     () => definePoiOptions(columnNames, columnOrder, poi.columns),

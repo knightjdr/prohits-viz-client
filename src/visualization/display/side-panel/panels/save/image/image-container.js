@@ -9,10 +9,9 @@ import useExportImage from './use-export-image';
 import { selectState } from '../../../../../../state/selector/general';
 import { clearExportImage, setExportFormat } from '../../../../../../state/visualization/export/export-actions';
 
-
 const ImageContainer = () => {
   const dispatch = useDispatch();
-  const exporter = useSelector(state => selectState(state, 'exporter'));
+  const exporter = useSelector((state) => selectState(state, 'exporter'));
 
   const exportImage = useExportImage();
 

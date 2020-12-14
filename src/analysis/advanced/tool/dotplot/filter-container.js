@@ -13,7 +13,7 @@ const FilteringContainer = ({
 }) => {
   const dispatch = useDispatch();
 
-  const form = useSelector(state => selectState(state, 'form'));
+  const form = useSelector((state) => selectState(state, 'form'));
 
   const handleChangeAbundanceCap = (value) => {
     if (value >= form.minAbundance) {

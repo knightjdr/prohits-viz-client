@@ -18,7 +18,7 @@ const NavControlsContainer = ({
   offsetVertical,
 }) => {
   const dispatch = useDispatch();
-  const position = useSelector(state => selectData(state, 'position'));
+  const position = useSelector((state) => selectData(state, 'position'));
 
   const length = direction === 'horizontal' ? dimensions.columns : dimensions.rows;
   const pageType = direction === 'horizontal' ? 'pageX' : 'pageY';
@@ -102,7 +102,7 @@ const ShowNavControls = ({
 }) => {
   const [isResizing, setIsRisizing] = useState(true);
 
-  const dimensions = useSelector(state => selectData(state, 'dimensions'));
+  const dimensions = useSelector((state) => selectData(state, 'dimensions'));
 
   useEffect(() => {
     const makeVisible = debounce(() => {

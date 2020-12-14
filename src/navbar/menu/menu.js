@@ -32,7 +32,7 @@ const Menu = forwardRef((
       style={{ transform: open ? 'scale(1)' : 'scale(0)' }}
     >
       {
-        links.map(link => (
+        links.map((link) => (
           <li key={link}>
             <Link
               className="nav__link"

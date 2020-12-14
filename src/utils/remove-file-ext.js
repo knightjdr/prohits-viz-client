@@ -1,3 +1,3 @@
-const removeFileExtension = file => file.replace(/\.[^/.]+$/, '');
+const removeFileExtension = (file) => file.replace(/\.[^/.]+$/, '');
 
 export default removeFileExtension;

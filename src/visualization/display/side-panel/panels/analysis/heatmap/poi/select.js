@@ -23,7 +23,7 @@ const Select = forwardRef((
       ref={ref}
     >
       {
-        options.map(item => (
+        options.map((item) => (
           <option
             key={item.name}
             value={item.index}

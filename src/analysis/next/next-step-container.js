@@ -12,7 +12,7 @@ const NextStepContainer = ({
 }) => {
   const dispatch = useDispatch();
 
-  const form = useSelector(state => selectState(state, 'form'));
+  const form = useSelector((state) => selectState(state, 'form'));
 
   const goToNextStep = () => {
     dispatch(setFormField('step', form.step + 1));

@@ -1,12 +1,12 @@
 import PropTypes from 'prop-types';
-import React, { Fragment } from 'react';
+import React from 'react';
 
 import Button from '../../../../../../components/buttons/rectangular/button';
 
 const NeedSynching = ({
   syncMinimap,
 }) => (
-  <Fragment>
+  <>
     <p>Map not in sync with image</p>
     <Button
       kind="secondary"
@@ -16,7 +16,7 @@ const NeedSynching = ({
     >
       Sync
     </Button>
-  </Fragment>
+  </>
 );
 
 NeedSynching.propTypes = {

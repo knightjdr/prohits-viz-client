@@ -6,7 +6,7 @@ import Tasks from './tasks-container';
 
 const routes = {
   '/': () => <Tasks />,
-  '/:id': props => <Tasks {...props} />,
+  '/:id': (props) => <Tasks {...props} />,
 };
 
 const TasksRouter = () => {

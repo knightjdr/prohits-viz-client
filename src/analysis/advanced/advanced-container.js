@@ -10,7 +10,7 @@ const AdvancedContainer = ({
   errors,
   visible,
 }) => {
-  const tool = useSelector(state => selectStateProperty(state, 'form', 'tool'));
+  const tool = useSelector((state) => selectStateProperty(state, 'form', 'tool'));
 
   return (
     <Advanced

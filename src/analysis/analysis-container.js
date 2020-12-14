@@ -15,7 +15,7 @@ const AnalysisContainer = () => {
 
   const dispatch = useDispatch();
 
-  const form = useSelector(state => selectState(state, 'form'));
+  const form = useSelector((state) => selectState(state, 'form'));
 
   const fetch = useFetch();
 

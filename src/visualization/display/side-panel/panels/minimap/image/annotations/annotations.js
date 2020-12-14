@@ -23,7 +23,6 @@ const Annotations = ({
   </>
 );
 
-
 Annotations.propTypes = {
   annotations: PropTypes.shape({
     color: PropTypes.string.isRequired,

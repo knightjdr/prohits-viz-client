@@ -16,13 +16,13 @@ const DeletionContainer = ({
 }) => {
   const dispatch = useDispatch();
 
-  const columnOrder = useSelector(state => selectDataProperty(state, 'columns', 'order'));
-  const columns = useSelector(state => selectVisibleColumnNames(state));
-  const dimensions = useSelector(state => selectData(state, 'dimensions'));
-  const pagePosition = useSelector(state => selectData(state, 'position'));
-  const rowOrder = useSelector(state => selectDataProperty(state, 'rows', 'order'));
-  const rows = useSelector(state => selectVisibleRowNames(state));
-  const settings = useSelector(state => selectDataProperty(state, 'settings', 'current'));
+  const columnOrder = useSelector((state) => selectDataProperty(state, 'columns', 'order'));
+  const columns = useSelector((state) => selectVisibleColumnNames(state));
+  const dimensions = useSelector((state) => selectData(state, 'dimensions'));
+  const pagePosition = useSelector((state) => selectData(state, 'position'));
+  const rowOrder = useSelector((state) => selectDataProperty(state, 'rows', 'order'));
+  const rows = useSelector((state) => selectVisibleRowNames(state));
+  const settings = useSelector((state) => selectDataProperty(state, 'settings', 'current'));
 
   const position = useMemo(
     () => calculateEditElementStyle(dimensions, heatmapRef),
@@ -84,7 +84,7 @@ DeletionContainer.propTypes = {
 const ShowComponent = ({
   heatmapRef,
 }) => {
-  const deleteFromImage = useSelector(state => selectDataProperty(state, 'display', 'deleteFromImage'));
+  const deleteFromImage = useSelector((state) => selectDataProperty(state, 'display', 'deleteFromImage'));
   return (
     heatmapRef.current
     && deleteFromImage

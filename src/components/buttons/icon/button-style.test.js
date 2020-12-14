@@ -8,7 +8,7 @@ const theme = {
   fontLight: '#fff',
 };
 
-const renderElement = props => render(<Button {...props} />);
+const renderElement = (props) => render(<Button {...props} />);
 
 describe('Icon button style', () => {
   describe('default', () => {

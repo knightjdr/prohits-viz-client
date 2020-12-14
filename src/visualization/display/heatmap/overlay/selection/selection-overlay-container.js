@@ -1,4 +1,4 @@
-import nanoid from 'nanoid';
+import { nanoid } from 'nanoid';
 import PropTypes from 'prop-types';
 import React, {
   useCallback,
@@ -39,13 +39,13 @@ const SelectionOverlayContainer = ({
   const [selectionCoordinates, setSelectionCoordinates] = useState({ ...defaultSelection.position });
   const [selectionSize, setSelectionSize] = useState({ ...defaultSelection.dimensions });
 
-  const activeSnapshot = useSelector(state => selectStateProperty(state, 'tabs', 'activeSnapshot'));
-  const columnOrder = useSelector(state => selectDataProperty(state, 'columns', 'order'));
-  const dimensions = useSelector(state => selectData(state, 'dimensions'));
-  const position = useSelector(state => selectData(state, 'position'));
-  const recordSelections = useSelector(state => selectDataProperty(state, 'markers', 'record'));
-  const rowOrder = useSelector(state => selectDataProperty(state, 'rows', 'order'));
-  const settings = useSelector(state => selectDataProperty(state, 'settings', 'current'));
+  const activeSnapshot = useSelector((state) => selectStateProperty(state, 'tabs', 'activeSnapshot'));
+  const columnOrder = useSelector((state) => selectDataProperty(state, 'columns', 'order'));
+  const dimensions = useSelector((state) => selectData(state, 'dimensions'));
+  const position = useSelector((state) => selectData(state, 'position'));
+  const recordSelections = useSelector((state) => selectDataProperty(state, 'markers', 'record'));
+  const rowOrder = useSelector((state) => selectDataProperty(state, 'rows', 'order'));
+  const settings = useSelector((state) => selectDataProperty(state, 'settings', 'current'));
 
   const poi = usePOI();
 

@@ -16,7 +16,7 @@ const Tabs = ({
 }) => (
   <div className="side-panel__tabs">
     {
-      tabs.map(tab => (
+      tabs.map((tab) => (
         <Tab
           activeTab={activeTab}
           key={tab}

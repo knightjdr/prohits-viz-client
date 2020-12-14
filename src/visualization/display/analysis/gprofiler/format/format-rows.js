@@ -1,9 +1,9 @@
-import nanoid from 'nanoid';
+import { nanoid } from 'nanoid';
 
 import createSourceLink from './create-source-link';
 
-const formatRows = results => (
-  results.map(term => ({
+const formatRows = (results) => (
+  results.map((term) => ({
     genes: {
       align: 'left',
       content: term.genes,

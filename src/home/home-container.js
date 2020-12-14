@@ -8,7 +8,7 @@ import { selectStateProperty } from '../state/selector/general';
 
 const HomeContainer = () => {
   const dispatch = useDispatch();
-  const homeContentLoaded = useSelector(state => selectStateProperty(state, 'home', 'isLoaded'));
+  const homeContentLoaded = useSelector((state) => selectStateProperty(state, 'home', 'isLoaded'));
 
   useEffect(() => {
     const fetchContent = async () => {
@@ -25,6 +25,5 @@ const HomeContainer = () => {
     <Home />
   );
 };
-
 
 export default HomeContainer;

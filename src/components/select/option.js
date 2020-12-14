@@ -1,7 +1,7 @@
 import PropTypes from 'prop-types';
 import React from 'react';
 
-const setTabIndex = visible => (visible ? 0 : -1);
+const setTabIndex = (visible) => (visible ? 0 : -1);
 
 const Option = ({
   id,

@@ -8,14 +8,14 @@ import { fillSnapshotPosition } from '../../../../../../defaults/heatmap/positio
 import { fillSnapshotSearchStatus } from '../../../../../../defaults/heatmap/search-status';
 import { fillSnapshotSettings } from '../../../../../../defaults/heatmap/settings';
 
-const fillColumns = order => ({
+const fillColumns = (order) => ({
   defaultOrder: [...order],
   deleted: [],
   order: [...order],
   ref: null,
 });
 
-const fillRows = order => ({
+const fillRows = (order) => ({
   defaultOrder: [...order],
   deleted: [],
   direction: null,

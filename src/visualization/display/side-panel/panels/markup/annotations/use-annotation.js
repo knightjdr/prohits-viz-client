@@ -1,4 +1,4 @@
-import nanoID from 'nanoid';
+import { nanoid } from 'nanoid';
 import { useMemo } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 
@@ -9,8 +9,8 @@ import { selectData } from '../../../../../../state/selector/visualization/data-
 const useAnnotation = () => {
   const dispatch = useDispatch();
 
-  const dimensions = useSelector(state => selectData(state, 'dimensions'));
-  const position = useSelector(state => selectData(state, 'position'));
+  const dimensions = useSelector((state) => selectData(state, 'dimensions'));
+  const position = useSelector((state) => selectData(state, 'position'));
 
   const defaultPosition = useMemo(
     () => calculateNewPosition(dimensions, position),
@@ -19,7 +19,7 @@ const useAnnotation = () => {
 
   const handleAddAnnotation = (text) => {
     if (text) {
-      const annotationID = nanoID();
+      const annotationID = nanoid();
       dispatch(addAnnotation(annotationID, text, defaultPosition));
     }
   };

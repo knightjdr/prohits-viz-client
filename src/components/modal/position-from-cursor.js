@@ -66,7 +66,7 @@ const calculateTopRight = (elementDimensions, x, y) => ({
   top: calculateTop(elementDimensions.height, y),
 });
 
-export const createStyleString = style => (
+export const createStyleString = (style) => (
   Object.entries(style).reduce((accum, [key, value]) => (
     `${accum} ${key}: ${value};`
   ), '')

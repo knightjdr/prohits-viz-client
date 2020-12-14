@@ -11,9 +11,9 @@ const ImageSettingsContainer = ({
   handleChange,
 }) => {
   const dispatch = useDispatch();
-  const canTranslate = useSelector(state => selectDataProperty(state, 'dimensions', 'canTranslate'));
-  const plotFixed = useSelector(state => selectDataProperty(state, 'display', 'plotFixed'));
-  const settings = useSelector(state => selectDataProperty(state, 'settings', 'current'));
+  const canTranslate = useSelector((state) => selectDataProperty(state, 'dimensions', 'canTranslate'));
+  const plotFixed = useSelector((state) => selectDataProperty(state, 'display', 'plotFixed'));
+  const settings = useSelector((state) => selectDataProperty(state, 'settings', 'current'));
 
   const {
     cellSize,
@@ -24,7 +24,6 @@ const ImageSettingsContainer = ({
   const fixPlotLeft = () => {
     dispatch(updateDisplaySetting('plotFixed', !plotFixed));
   };
-
 
   return (
     <Image

@@ -1,5 +1,5 @@
 const defineSortFunction = (sortField, header) => {
-  const headerIndex = header.findIndex(column => column.sortKey === sortField);
+  const headerIndex = header.findIndex((column) => column.sortKey === sortField);
   if (headerIndex > -1 && header[headerIndex].sort) {
     return header[headerIndex].sort;
   } if (headerIndex > -1) {
@@ -8,7 +8,7 @@ const defineSortFunction = (sortField, header) => {
   return () => 0;
 };
 
-const defineSortMultiplier = direction => (
+const defineSortMultiplier = (direction) => (
   direction === 'ascending' ? 1 : -1
 );
 

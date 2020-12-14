@@ -9,9 +9,8 @@ import parseURI from './parse-uri';
 import useSmallScreen from '../hooks/small-screen/use-small-screen';
 import { selectState } from '../state/selector/general';
 
-
 const NavbarContainer = () => {
-  const tasks = useSelector(state => selectState(state, 'tasks'));
+  const tasks = useSelector((state) => selectState(state, 'tasks'));
 
   const path = usePath();
   const smallScreen = useSmallScreen(0, 800);

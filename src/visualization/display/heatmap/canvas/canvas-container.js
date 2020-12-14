@@ -22,13 +22,13 @@ const CanvasContainer = () => {
   const dispatch = useDispatch();
   const ref = useRef();
 
-  const columnOrder = useSelector(state => selectDataProperty(state, 'columns', 'order'));
-  const dimensions = useSelector(state => selectData(state, 'dimensions'));
-  const position = useSelector(state => selectData(state, 'position'));
-  const rowDB = useSelector(state => selectState(state, 'rowDB'));
-  const rowOrder = useSelector(state => selectDataProperty(state, 'rows', 'order'));
-  const scoreType = useSelector(state => selectStateProperty(state, 'parameters', 'scoreType'));
-  const settings = useSelector(state => selectDataProperty(state, 'settings', 'current'));
+  const columnOrder = useSelector((state) => selectDataProperty(state, 'columns', 'order'));
+  const dimensions = useSelector((state) => selectData(state, 'dimensions'));
+  const position = useSelector((state) => selectData(state, 'position'));
+  const rowDB = useSelector((state) => selectState(state, 'rowDB'));
+  const rowOrder = useSelector((state) => selectDataProperty(state, 'rows', 'order'));
+  const scoreType = useSelector((state) => selectStateProperty(state, 'parameters', 'scoreType'));
+  const settings = useSelector((state) => selectDataProperty(state, 'settings', 'current'));
 
   const {
     abundanceCap,

@@ -13,7 +13,7 @@ const ProcessContainer = ({
   filename,
   id,
 }) => {
-  const parameters = useSelector(state => selectState(state, 'parameters'));
+  const parameters = useSelector((state) => selectState(state, 'parameters'));
   const dispatch = useDispatch();
   const status = useLoading(true);
 

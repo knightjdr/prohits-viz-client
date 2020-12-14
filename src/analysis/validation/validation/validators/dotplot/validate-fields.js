@@ -6,7 +6,7 @@ import validateClusteringMetric from '../../field-validation/clustering-metric';
 import validateClusteringType,
 { validateConditionClustering, validateReadoutClustering } from '../../field-validation/clustering-type';
 
-const validateNoClusteringType = value => (
+const validateNoClusteringType = (value) => (
   criteria.isString(value) || Array.isArray(value)
 );
 

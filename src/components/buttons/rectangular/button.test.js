@@ -7,7 +7,7 @@ const theme = {
   fontDark: '#111',
 };
 
-const renderElement = props => render(<Button {...props} />);
+const renderElement = (props) => render(<Button {...props} />);
 
 describe('Rectangular button style', () => {
   const props = { theme };

@@ -1,10 +1,10 @@
 import PropTypes from 'prop-types';
 import React, { useState } from 'react';
-import nanoid from 'nanoid';
+import { nanoid } from 'nanoid';
 
 import AdvancedField from './advanced-field';
 
-const createModalID = modalID => (
+const createModalID = (modalID) => (
   modalID ? `help-modal-${modalID}` : `help-modal-${nanoid()}`
 );
 

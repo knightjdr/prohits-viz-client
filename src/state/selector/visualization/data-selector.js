@@ -12,14 +12,14 @@ const getStateProperty = (state, element, property) => {
 
 export const selectData = createSelector(
   [getState],
-  state => (
+  (state) => (
     state
   ),
 );
 
 export const selectDataProperty = createSelector(
   [getStateProperty],
-  prop => (
+  (prop) => (
     prop
   ),
 );

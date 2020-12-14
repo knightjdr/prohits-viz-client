@@ -25,7 +25,7 @@ const GprofilerContainer = ({
   };
 
   const handleExportCSV = () => {
-    const header = columnDefinitions.header.map(column => column.name);
+    const header = columnDefinitions.header.map((column) => column.name);
     const csv = convertToCsv(header, columnDefinitions.order, data.results, '\t');
     download(csv, `${analysisID}.txt`);
   };

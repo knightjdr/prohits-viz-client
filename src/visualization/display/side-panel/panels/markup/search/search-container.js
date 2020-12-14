@@ -9,7 +9,7 @@ import { clearSearchStatus, setSearchStatus } from '../../../../../../state/visu
 
 const SearchContainer = () => {
   const dispatch = useDispatch();
-  const searchStatus = useSelector(state => selectData(state, 'searchStatus'));
+  const searchStatus = useSelector((state) => selectData(state, 'searchStatus'));
   const search = useSearch();
 
   const { match, term } = searchStatus;

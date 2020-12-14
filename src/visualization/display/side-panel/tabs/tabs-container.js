@@ -15,8 +15,8 @@ const tabLabels = (imageType) => {
 };
 
 const TabsContainer = () => {
-  const imageType = useSelector(state => selectStateProperty(state, 'parameters', 'imageType'));
-  const panel = useSelector(state => selectState(state, 'panel'));
+  const imageType = useSelector((state) => selectStateProperty(state, 'parameters', 'imageType'));
+  const panel = useSelector((state) => selectState(state, 'panel'));
   const dispatch = useDispatch();
 
   const handleClick = (e) => {

@@ -25,7 +25,7 @@ export const changeAnnotationSetting = (setting, value) => ({
   value,
 });
 
-export const toggleAnnotations = show => ({
+export const toggleAnnotations = (show) => ({
   AUGMENT_WITH_ACTIVE_SNAPSHOT: true,
   show,
   type: TOGGLE_ANNOTATIONS,
@@ -38,7 +38,7 @@ export const updateAnnotationPosition = (id, position) => ({
   type: UPDATE_ANNOTATION_POSITION,
 });
 
-export const updateAnnotations = list => ({
+export const updateAnnotations = (list) => ({
   AUGMENT_WITH_ACTIVE_SNAPSHOT: true,
   list,
   type: UPDATE_ANNOTATIONS,

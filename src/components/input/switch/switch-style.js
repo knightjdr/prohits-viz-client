@@ -2,7 +2,7 @@ import styled, { css } from 'styled-components';
 
 const Span = styled.span`
   align-items: center;
-  color: ${props => props.theme.fontDark};
+  color: ${(props) => props.theme.fontDark};
   display: flex;
 
   input {
@@ -39,7 +39,7 @@ const Span = styled.span`
     top: 0;
     transition-duration: 0.3s;
     transition-property: all;
-    transition-timing-function: ${props => props.theme.timingFunction};
+    transition-timing-function: ${(props) => props.theme.timingFunction};
     width: 100%;
   }
   .input__switch-slider::after {
@@ -51,12 +51,12 @@ const Span = styled.span`
     position: absolute;
     transition-duration: 0.3s;
     transition-property: left;
-    transition-timing-function: ${props => props.theme.timingFunction};
+    transition-timing-function: ${(props) => props.theme.timingFunction};
     width: 20px;
   }
 
   input:checked + div {
-    background-color: ${props => props.theme.colorPrimary3};
+    background-color: ${(props) => props.theme.colorPrimary3};
   }
   input:checked + div::after {
     left: 18px;
@@ -64,14 +64,14 @@ const Span = styled.span`
 
   input:focus:not(:disabled) + div,
   input:hover:not(:disabled) + div {
-    background-color: ${props => props.theme.colorPrimary1};
+    background-color: ${(props) => props.theme.colorPrimary1};
   }
 
   input:disabled {
     cursor: not-allowed;
   }
 
-  ${props => (props.vertical
+  ${(props) => (props.vertical
     && css`& {
       flex-direction: column;
     }

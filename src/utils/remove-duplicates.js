@@ -1,4 +1,4 @@
-const removeDuplicates = arr => (
+const removeDuplicates = (arr) => (
   [...new Set(arr)]
 );
 

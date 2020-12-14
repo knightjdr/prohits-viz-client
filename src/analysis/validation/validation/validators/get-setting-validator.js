@@ -6,7 +6,7 @@ const validateImageType = {
   dotplot: validateDotplot,
 };
 
-const getValidator = imageType => (
+const getValidator = (imageType) => (
   validateImageType[imageType] ? validateImageType[imageType] : () => {}
 );
 

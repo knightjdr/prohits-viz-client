@@ -12,13 +12,13 @@ import './App.css';
 const App = () => (
   <Store>
     <ThemeProvider theme={theme}>
-      <Fragment>
+      <>
         <Navbar />
         <main className="app">
           <Routing />
         </main>
         <CookieNotification />
-      </Fragment>
+      </>
     </ThemeProvider>
   </Store>
 );

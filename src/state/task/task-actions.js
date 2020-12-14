@@ -8,7 +8,7 @@ export const createTask = (id, tool) => ({
   type: CREATE_TASK,
 });
 
-export const updateTasks = tasks => ({
+export const updateTasks = (tasks) => ({
   tasks,
   type: UPDATE_TASKS,
 });

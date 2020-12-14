@@ -1,4 +1,4 @@
-import nanoid from 'nanoid';
+import { nanoid } from 'nanoid';
 import PropTypes from 'prop-types';
 import React, { useState } from 'react';
 
@@ -58,7 +58,7 @@ const CarouselContainer = ({
     });
   };
 
-  const carouselElements = children.map(child => ({
+  const carouselElements = children.map((child) => ({
     element: child,
     key: nanoid(),
   }));

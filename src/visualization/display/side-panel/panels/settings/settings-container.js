@@ -5,7 +5,7 @@ import Settings from './settings';
 import { selectStateProperty } from '../../../../../state/selector/general';
 
 const SettingsContainer = () => {
-  const imageType = useSelector(state => selectStateProperty(state, 'parameters', 'imageType'));
+  const imageType = useSelector((state) => selectStateProperty(state, 'parameters', 'imageType'));
 
   return (
     <Settings

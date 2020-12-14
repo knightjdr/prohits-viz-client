@@ -1,4 +1,4 @@
-import nanoid from 'nanoid';
+import { nanoid } from 'nanoid';
 import PropTypes from 'prop-types';
 import React, { useEffect, useState } from 'react';
 
@@ -17,7 +17,7 @@ const InputFileContainer = ({
 
   const removeFile = (e) => {
     const { name } = e.currentTarget.dataset;
-    const index = inputFiles.findIndex(file => file.name === name);
+    const index = inputFiles.findIndex((file) => file.name === name);
     const updatedFiles = [...inputFiles];
     updatedFiles.splice(index, 1);
     setInputFiles(updatedFiles);

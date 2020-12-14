@@ -5,7 +5,7 @@ import Landing from './landing';
 import { selectStateProperty } from '../../state/selector/general';
 
 const LandingContainer = () => {
-  const news = useSelector(state => selectStateProperty(state, 'home', 'news'));
+  const news = useSelector((state) => selectStateProperty(state, 'home', 'news'));
 
   const article = news && news[0]
     ? {
@@ -18,6 +18,5 @@ const LandingContainer = () => {
     <Landing article={article} />
   );
 };
-
 
 export default LandingContainer;

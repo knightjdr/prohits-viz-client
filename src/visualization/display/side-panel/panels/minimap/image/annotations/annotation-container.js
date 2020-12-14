@@ -6,7 +6,7 @@ import Annotation from './annotations';
 import { selectData } from '../../../../../../../state/selector/visualization/data-selector';
 
 const AnnotationContainer = () => {
-  const annotations = useSelector(state => selectData(state, 'annotations'));
+  const annotations = useSelector((state) => selectData(state, 'annotations'));
 
   return (
     <Annotation

@@ -2,7 +2,7 @@ import styled, { css } from 'styled-components';
 
 const Span = styled.span`
   align-items: center;
-  color: ${props => props.theme.fontDark};
+  color: ${(props) => props.theme.fontDark};
   display: inline-grid;
   grid-template-columns: auto 200px;
 
@@ -21,13 +21,13 @@ const Span = styled.span`
     padding: 0 10px;
     transition-duration: 0.3s;
     transition-property: all;
-    transition-timing-function: ${props => props.theme.timingFunction};
+    transition-timing-function: ${(props) => props.theme.timingFunction};
     width: auto;
   }
 
   input:focus,
   input:hover {
-    border-color: ${props => props.theme.colorPrimary1};
+    border-color: ${(props) => props.theme.colorPrimary1};
   }
 
   input:focus {
@@ -42,7 +42,7 @@ const Span = styled.span`
     padding-right: 8px;
   }
 
-  ${props => (props.vertical
+  ${(props) => (props.vertical
     && css`& {
       display: flex;
       flex-direction: column;

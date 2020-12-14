@@ -9,7 +9,7 @@ export const addAnalysis = (id, name, analysis) => ({
   type: ADD_ANALYSIS,
 });
 
-export const removeAnalysis = name => ({
+export const removeAnalysis = (name) => ({
   name,
   type: REMOVE_ANALYSIS,
 });

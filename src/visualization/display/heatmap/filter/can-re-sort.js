@@ -1,8 +1,8 @@
 const canReSort = (columnDB, availableColumns, sortBy, sortByRef) => {
-  const findIndex = term => (
+  const findIndex = (term) => (
     term ? columnDB.indexOf(term) : null
   );
-  const defineStatus = sortIndex => (
+  const defineStatus = (sortIndex) => (
     sortIndex >= 0 && availableColumns.includes(sortIndex)
   );
 

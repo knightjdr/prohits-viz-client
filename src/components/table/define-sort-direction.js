@@ -1,6 +1,6 @@
 export const DEFAULT_SORT_DIRECTION = 'ascending';
 
-const swapDirection = direction => (
+const swapDirection = (direction) => (
   direction === 'ascending' ? 'descending' : 'ascending'
 );
 

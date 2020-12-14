@@ -8,7 +8,7 @@ export const clearExportImage = () => ({
   type: CLEAR_EXPORT_IMAGE,
 });
 
-export const downloadExportImage = file => ({
+export const downloadExportImage = (file) => ({
   file,
   type: DOWNLOAD_EXPORT_IMAGE,
 });
@@ -21,7 +21,7 @@ export const exportImage = () => ({
   type: EXPORT_IMAGE,
 });
 
-export const setExportFormat = format => ({
+export const setExportFormat = (format) => ({
   format,
   type: EXPORT_FORMAT,
 });

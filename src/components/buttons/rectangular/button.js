@@ -13,7 +13,7 @@ const Button = styled(DefaultButton)`
 
   &:focus:not([disabled]),
   &:hover:not([disabled]) {
-    color: ${props => props.theme.fontDark};
+    color: ${(props) => props.theme.fontDark};
   }
 `;
 

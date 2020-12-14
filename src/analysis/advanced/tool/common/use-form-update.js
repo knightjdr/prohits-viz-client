@@ -6,7 +6,7 @@ import { setFormField } from '../../../../state/analysis/form-actions';
 const useFormUpdate = () => {
   const dispatch = useDispatch();
 
-  const form = useSelector(state => selectState(state, 'form'));
+  const form = useSelector((state) => selectState(state, 'form'));
 
   const handleChange = (e, id, value) => {
     dispatch(setFormField(id, value));

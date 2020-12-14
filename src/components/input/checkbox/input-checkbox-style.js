@@ -2,7 +2,7 @@ import styled from 'styled-components';
 
 const Span = styled.span`
   align-content: center;
-  color: ${props => props.theme.fontDark};
+  color: ${(props) => props.theme.fontDark};
   display: flex;
 
   input {
@@ -45,7 +45,7 @@ const Span = styled.span`
     top: 0;
     transition-duration: 0.3s;
     transition-property: all;
-    transition-timing-function: ${props => props.theme.timingFunction};
+    transition-timing-function: ${(props) => props.theme.timingFunction};
     width: 20px;
   }
 
@@ -53,17 +53,17 @@ const Span = styled.span`
     opacity: 0;
     transition-duration: 0.3s;
     transition-property: opacity;
-    transition-timing-function: ${props => props.theme.timingFunction};
+    transition-timing-function: ${(props) => props.theme.timingFunction};
   }
 
   input:focus + span,
   input:hover + span,
   .input__checkbox span:hover {
-    border-color: ${props => props.theme.colorPrimary1};
+    border-color: ${(props) => props.theme.colorPrimary1};
   }
 
   input:checked + span > svg {
-    color: ${props => props.theme.colorPrimary3};
+    color: ${(props) => props.theme.colorPrimary3};
     opacity: 1;
   }
 `;

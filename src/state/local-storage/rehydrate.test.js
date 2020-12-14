@@ -3,7 +3,7 @@ import rehydrate, { filterTasks } from './rehydrate';
 const localStorageMock = (() => {
   const store = {};
   return {
-    getItem: key => store[key] || null,
+    getItem: (key) => store[key] || null,
     removeItem: (key) => {
       delete store[key];
     },

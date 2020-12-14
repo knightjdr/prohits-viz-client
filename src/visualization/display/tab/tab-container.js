@@ -6,8 +6,8 @@ import Tab from './tab';
 import { selectState, selectStateProperty } from '../../../state/selector/general';
 
 const TabContainer = () => {
-  const imageType = useSelector(state => selectStateProperty(state, 'parameters', 'imageType'));
-  const tabs = useSelector(state => selectState(state, 'tabs'));
+  const imageType = useSelector((state) => selectStateProperty(state, 'parameters', 'imageType'));
+  const tabs = useSelector((state) => selectState(state, 'tabs'));
 
   const { availableAnalyses, availableSnapshots, tabType } = tabs;
 

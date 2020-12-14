@@ -11,9 +11,9 @@ import { updateSetting, updateSettings } from '../../../../../../../state/visual
 
 const FilterSettingsContainer = () => {
   const dispatch = useDispatch();
-  const columns = useSelector(state => selectOrderedColumnNames(state));
-  const scoreType = useSelector(state => selectStateProperty(state, 'parameters', 'scoreType'));
-  const settings = useSelector(state => selectDataProperty(state, 'settings', 'current'));
+  const columns = useSelector((state) => selectOrderedColumnNames(state));
+  const scoreType = useSelector((state) => selectStateProperty(state, 'parameters', 'scoreType'));
+  const settings = useSelector((state) => selectDataProperty(state, 'settings', 'current'));
 
   const rowFilter = useFilter();
 

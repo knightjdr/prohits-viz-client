@@ -5,14 +5,14 @@ const getStateProp = (state, element, property) => state[element][property];
 
 export const selectState = createSelector(
   [getState],
-  state => (
+  (state) => (
     state
   ),
 );
 
 export const selectStateProperty = createSelector(
   [getStateProp],
-  prop => (
+  (prop) => (
     prop
   ),
 );

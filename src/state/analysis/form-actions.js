@@ -6,7 +6,7 @@ export const resetForm = () => ({
   type: RESET_FORM,
 });
 
-export const setFormFields = fields => ({
+export const setFormFields = (fields) => ({
   fields,
   type: SET_FORM_FIELDS,
 });

@@ -15,12 +15,12 @@ const useFilter = () => {
 
   const dispatch = useDispatch();
 
-  const columnDB = useSelector(state => selectState(state, 'columnDB'));
-  const columns = useSelector(state => selectData(state, 'columns'));
-  const scoreType = useSelector(state => selectStateProperty(state, 'parameters', 'scoreType'));
-  const settings = useSelector(state => selectDataProperty(state, 'settings', 'current'));
-  const rows = useSelector(state => selectData(state, 'rows'));
-  const rowDB = useSelector(state => selectState(state, 'rowDB'));
+  const columnDB = useSelector((state) => selectState(state, 'columnDB'));
+  const columns = useSelector((state) => selectData(state, 'columns'));
+  const scoreType = useSelector((state) => selectStateProperty(state, 'parameters', 'scoreType'));
+  const settings = useSelector((state) => selectDataProperty(state, 'settings', 'current'));
+  const rows = useSelector((state) => selectData(state, 'rows'));
+  const rowDB = useSelector((state) => selectState(state, 'rowDB'));
 
   const filterOptions = {
     columnDB,

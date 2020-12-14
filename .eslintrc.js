@@ -22,15 +22,16 @@ module.exports = {
     'react',
   ],
   rules: {
-    "jsx-a11y/label-has-for": [0],
-    "jsx-a11y/label-has-associated-control": [2],
+    'jsx-a11y/label-has-for': [0],
+    'jsx-a11y/label-has-associated-control': [2],
     'max-len': [
-      "error",
+      'error',
       {
-        "code": 120
-      }
+        code: 120,
+      },
     ],
-    "no-underscore-dangle": ["error", { "allow": ["__REDUX_DEVTOOLS_EXTENSION__"] }],
-    "react/jsx-filename-extension": [1, { "extensions": [".js", ".jsx"] }],
+    'no-underscore-dangle': ['error', { allow: ['__REDUX_DEVTOOLS_EXTENSION__'] }],
+    'react/jsx-filename-extension': [1, { extensions: ['.js', '.jsx'] }],
+    'react/jsx-props-no-spreading': 'off',
   },
 };

@@ -1,4 +1,4 @@
-const isNumber = x => (
+const isNumber = (x) => (
   !Number.isNaN(Number(x))
 );
 

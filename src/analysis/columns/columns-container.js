@@ -16,7 +16,7 @@ const ColumnsContainer = ({
 }) => {
   const dispatch = useDispatch();
 
-  const form = useSelector(state => selectState(state, 'form'));
+  const form = useSelector((state) => selectState(state, 'form'));
 
   const columns = useColumns(fields);
 

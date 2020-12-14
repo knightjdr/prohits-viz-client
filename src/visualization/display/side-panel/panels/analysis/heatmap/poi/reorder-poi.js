@@ -11,7 +11,7 @@ const applyDirection = (direction, indices) => {
 };
 
 const mapHighlightedValuesToArrayIndices = (arr, highlighted) => (
-  highlighted.map(item => arr.indexOf(item))
+  highlighted.map((item) => arr.indexOf(item))
 );
 
 const validateDestinationIndex = (arr, destinationIndex) => {
@@ -36,7 +36,6 @@ const reorderElements = (arr, indices, increment) => {
 
   return newOrder;
 };
-
 
 const reorderPOI = (direction, currentOrder, highlighted) => {
   const indices = mapHighlightedValuesToArrayIndices(currentOrder, highlighted);

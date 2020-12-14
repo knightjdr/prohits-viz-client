@@ -22,27 +22,26 @@ const getVisibleColumnNames = (state) => {
   const dimensions = state.dimensions[activeSnapshot];
   const position = state.position[activeSnapshot];
 
-  return order.slice(position.x, position.x + dimensions.pageX).map(index => columnDB[index]);
+  return order.slice(position.x, position.x + dimensions.pageX).map((index) => columnDB[index]);
 };
 
 export const selectColumnNames = createSelector(
   [getColumnNames],
-  state => (
+  (state) => (
     state
   ),
 );
 
-
 export const selectOrderedColumnNames = createSelector(
   [getOrderedColumnNames],
-  state => (
+  (state) => (
     state
   ),
 );
 
 export const selectVisibleColumnNames = createSelector(
   [getVisibleColumnNames],
-  state => (
+  (state) => (
     state
   ),
 );

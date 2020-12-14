@@ -13,7 +13,7 @@ import { selectData } from '../../../../../../state/selector/visualization/data-
 
 const AnnotationContainer = () => {
   const dispatch = useDispatch();
-  const annotations = useSelector(state => selectData(state, 'annotations'));
+  const annotations = useSelector((state) => selectData(state, 'annotations'));
   const addAnnotation = useAnnotation();
 
   const { fontSize, show } = annotations;

@@ -25,7 +25,7 @@ const TableHeader = styled.div`
     position: relative;
     transition-duration: 0.3s;
     transition-property: all;
-    transition-timing-function: ${props => props.theme.timingFunction};
+    transition-timing-function: ${(props) => props.theme.timingFunction};
   }
   .table__header-sort-button > :not(:first-child) {
     margin-top: -5px;
@@ -38,8 +38,8 @@ const TableHeader = styled.div`
   }
   .table__header-sort-button:focus,
   .table__header-sort-button:hover {
-    background-color: ${props => props.theme.colorPrimary3};
-    color: ${props => props.theme.fontLight};
+    background-color: ${(props) => props.theme.colorPrimary3};
+    color: ${(props) => props.theme.fontLight};
   }
 `;
 

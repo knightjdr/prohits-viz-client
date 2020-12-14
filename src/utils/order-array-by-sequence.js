@@ -8,7 +8,7 @@ const orderArrayBySequence = (arr, sequence) => {
       return accum;
     }, []);
   }
-  return sequence.map(element => arr[element]);
+  return sequence.map((element) => arr[element]);
 };
 
 export default orderArrayBySequence;

@@ -5,6 +5,7 @@ import { A } from 'hookrouter';
 import Button from '../../buttons/rectangular/button';
 
 const Link = styled(Button).attrs(() => ({
+  // eslint-disable-next-line react/prop-types
   as: ({ shadow, ...props }) => <A {...props} />,
 }))`
   text-decoration: none;

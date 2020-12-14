@@ -9,9 +9,9 @@ import { selectRowNames } from '../../../../../../state/selector/visualization/r
 import { selectState } from '../../../../../../state/selector/general';
 
 const useSubmitAnalysis = () => {
-  const columnNames = useSelector(state => selectColumnNames(state));
-  const rowNames = useSelector(state => selectRowNames(state));
-  const tabs = useSelector(state => selectState(state, 'tabs'));
+  const columnNames = useSelector((state) => selectColumnNames(state));
+  const rowNames = useSelector((state) => selectRowNames(state));
+  const tabs = useSelector((state) => selectState(state, 'tabs'));
 
   const defineNewPOI = useNewPOI();
   const performGprofilerAnalysis = useGprofilerAnalysis();

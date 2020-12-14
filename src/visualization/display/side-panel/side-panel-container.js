@@ -12,7 +12,7 @@ const SidePanelContainer = () => {
   const ref = useRef();
   const dispatch = useDispatch();
   const [translation, setTranslation] = useState(0);
-  const panel = useSelector(state => selectState(state, 'panel'));
+  const panel = useSelector((state) => selectState(state, 'panel'));
 
   const isSmallScreen = useSmallScreen();
 

@@ -1,5 +1,5 @@
 import PropTypes from 'prop-types';
-import React, { Fragment } from 'react';
+import React from 'react';
 
 import convertCamel from '../../../../../../utils/convert-camel';
 
@@ -7,14 +7,14 @@ const Setting = ({
   field,
   value,
 }) => (
-  <Fragment>
+  <>
     <div>
       {convertCamel(field)}
     </div>
     <div>
       {value}
     </div>
-  </Fragment>
+  </>
 );
 
 Setting.propTypes = {

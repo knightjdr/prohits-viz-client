@@ -7,7 +7,7 @@ export const changeGprofilerSetting = (setting, value) => ({
   value,
 });
 
-export const changeGprofilerSettings = settings => ({
+export const changeGprofilerSettings = (settings) => ({
   settings,
   type: CHANGE_GPROFILER_SETTINGS,
 });

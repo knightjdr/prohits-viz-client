@@ -3,7 +3,7 @@ import useSmallScreen from './use-small-screen';
 import { act, renderHook } from '../../test-utils/test-hook';
 
 jest.mock('../../utils/debounce');
-debounce.mockImplementation(func => () => { func(); });
+debounce.mockImplementation((func) => () => { func(); });
 
 const renderHookForTest = () => {
   let isSmallScreen;

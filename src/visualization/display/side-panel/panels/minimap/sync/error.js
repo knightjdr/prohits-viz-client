@@ -1,5 +1,5 @@
 import PropTypes from 'prop-types';
-import React, { Fragment } from 'react';
+import React from 'react';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faExclamationTriangle } from '@fortawesome/pro-duotone-svg-icons';
 
@@ -8,7 +8,7 @@ import Button from '../../../../../../components/buttons/rectangular/button';
 const Error = ({
   syncMinimap,
 }) => (
-  <Fragment>
+  <>
     <p className="minimap__synching_error">
       <FontAwesomeIcon icon={faExclamationTriangle} />
       There was an error synchronizing the image
@@ -21,7 +21,7 @@ const Error = ({
     >
       Sync
     </Button>
-  </Fragment>
+  </>
 );
 
 Error.propTypes = {

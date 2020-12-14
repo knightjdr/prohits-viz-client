@@ -1,4 +1,4 @@
-const readFile = file => (
+const readFile = (file) => (
   new Promise((resolve, reject) => {
     if (file) {
       const reader = new FileReader();

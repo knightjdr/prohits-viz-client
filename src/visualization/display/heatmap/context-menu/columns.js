@@ -11,7 +11,7 @@ const Columns = ({
   target,
   unsetReference,
 }) => (
-  <Fragment>
+  <>
     <li>
       <button
         onClick={sortAscending}
@@ -51,7 +51,7 @@ const Columns = ({
           </li>
         )
     }
-  </Fragment>
+  </>
 );
 
 Columns.defaultProps = {

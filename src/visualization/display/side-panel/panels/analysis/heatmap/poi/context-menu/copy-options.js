@@ -4,7 +4,7 @@ const copyOptions = (options) => {
   if (options.length > 0) {
     const arr = typeof options[0] === 'string'
       ? options
-      : options.map(item => item.name);
+      : options.map((item) => item.name);
     copyToClipboard(arr.join('\r\n'));
   }
 };

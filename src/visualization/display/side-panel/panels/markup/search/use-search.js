@@ -4,15 +4,15 @@ import { selectOrderedColumnNames } from '../../../../../../state/selector/visua
 import selectRows from '../../../../../../state/selector/visualization/row-selector';
 import { selectData } from '../../../../../../state/selector/visualization/data-selector';
 
-const createRegex = searchTerm => (
+const createRegex = (searchTerm) => (
   new RegExp(searchTerm, 'i')
 );
 
-const findFirstMatch = matches => (
+const findFirstMatch = (matches) => (
   Object.keys(matches).length > 0 ? Math.min(...Object.values(matches)) : -1
 );
 
-const findFirstMatches = matches => ({
+const findFirstMatches = (matches) => ({
   column: findFirstMatch(matches.columns),
   row: findFirstMatch(matches.rows),
 });
@@ -42,7 +42,7 @@ const findNewPosition = (firstMatches, position, dimensions) => {
   };
 };
 
-const hasMatch = firstMatches => (
+const hasMatch = (firstMatches) => (
   firstMatches.column >= 0 || firstMatches.row >= 0
 );
 
@@ -64,10 +64,10 @@ export const searchElements = (regex, columns, rows) => ({
 });
 
 const useSearch = () => {
-  const columns = useSelector(state => selectOrderedColumnNames(state));
-  const dimensions = useSelector(state => selectData(state, 'dimensions'));
-  const rows = useSelector(state => selectRows(state));
-  const position = useSelector(state => selectData(state, 'position'));
+  const columns = useSelector((state) => selectOrderedColumnNames(state));
+  const dimensions = useSelector((state) => selectData(state, 'dimensions'));
+  const rows = useSelector((state) => selectRows(state));
+  const position = useSelector((state) => selectData(state, 'position'));
 
   const search = (searchTerm) => {
     const searchRegex = createRegex(searchTerm);

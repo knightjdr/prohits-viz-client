@@ -6,8 +6,8 @@ import { selectDataProperty } from '../../../../../../state/selector/visualizati
 import { selectState } from '../../../../../../state/selector/general';
 
 const LegendContainer = () => {
-  const parameters = useSelector(state => selectState(state, 'parameters'));
-  const settings = useSelector(state => selectDataProperty(state, 'settings', 'current'));
+  const parameters = useSelector((state) => selectState(state, 'parameters'));
+  const settings = useSelector((state) => selectDataProperty(state, 'settings', 'current'));
 
   return (
     <Legend

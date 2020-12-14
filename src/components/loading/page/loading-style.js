@@ -9,7 +9,7 @@ const Div = styled.div`
   padding: 20px;
 
   .loading__icon {
-    color: ${props => props.theme.warning};
+    color: ${(props) => props.theme.warning};
     margin-right: 10px;
   }
 `;

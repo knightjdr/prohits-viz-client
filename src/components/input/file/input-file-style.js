@@ -17,8 +17,8 @@ const Span = styled.span`
   }
   input:focus + label {
     background-color: #fff;
-    border-color: ${props => props.theme.colorPrimary1};
-    color: ${props => props.theme.fontDark};
+    border-color: ${(props) => props.theme.colorPrimary1};
+    color: ${(props) => props.theme.fontDark};
   }
   li {
     align-items: center;
@@ -29,7 +29,7 @@ const Span = styled.span`
     padding: 3px 8px;
     transition-duration: 0.4s;
     transition-property: all;
-    transition-timing-function: ${props => props.theme.timingFunction};
+    transition-timing-function: ${(props) => props.theme.timingFunction};
   }
   li > button {
     background-color: transparent;

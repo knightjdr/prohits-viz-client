@@ -12,5 +12,4 @@ describe('Parse URI for navbar', () => {
   it('should parse URI for nested route', () => {
     expect(parseURI('/analysis/something')).toEqual('analysis');
   });
-
 });

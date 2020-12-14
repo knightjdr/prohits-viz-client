@@ -35,4 +35,3 @@ describe('Convert ISO date', () => {
     expect(convertIsoDate(isoDate, true)).toBe('12:56 pm, Mar 12, 2018');
   });
 });
-

@@ -1,7 +1,7 @@
 import PropTypes from 'prop-types';
 import React from 'react';
 
-const calculateCooridinate = x => (
+const calculateCooridinate = (x) => (
   x ? `calc(${x * 100}% - 5px)` : -5
 );
 

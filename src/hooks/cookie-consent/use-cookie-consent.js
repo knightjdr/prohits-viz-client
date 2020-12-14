@@ -9,7 +9,7 @@ import { updateConsent } from '../../state/cookies/cookie-actions';
 
 const useCookieConsent = () => {
   const dispatch = useDispatch();
-  const consent = useSelector(state => selectStateProperty(state, 'cookies', 'consent'));
+  const consent = useSelector((state) => selectStateProperty(state, 'cookies', 'consent'));
 
   useEffect(() => {
     if (consent) {

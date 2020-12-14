@@ -2,7 +2,7 @@ import styled from 'styled-components';
 
 const UL = styled.ul`
   display: inline-flex;
-  font-family: ${props => props.theme.fontStackPrimary};
+  font-family: ${(props) => props.theme.fontStackPrimary};
   font-size: 1em;
   font-weight: 700;
   height: 40px;
@@ -16,17 +16,17 @@ const UL = styled.ul`
     padding: 0 8px;
   }
   & a.nav__link {
-    color: ${props => props.theme.fontLight};
+    color: ${(props) => props.theme.fontLight};
     text-decoration: none;
   }
   & a.nav__link:after {
-    background: ${props => props.theme.fontLight};
+    background: ${(props) => props.theme.fontLight};
     content: '';
     display: block;
     height: 2px;
     transition-duration: 0.3s;
     transition-property: width;
-    transition-timing-function: ${props => props.theme.timingFunction};
+    transition-timing-function: ${(props) => props.theme.timingFunction};
     width: 0px;
   }
   & a.nav__link:focus {
@@ -39,13 +39,13 @@ const UL = styled.ul`
   }
 
   .nav__link_active {
-    background-color: ${props => props.theme.accentPrimary1}; 
+    background-color: ${(props) => props.theme.accentPrimary1}; 
   }
   .nav__link_active a {
     color: #1A1A1A; 
   }
   .nav__link_active a:after {
-    background: ${props => props.theme.fontDark};
+    background: ${(props) => props.theme.fontDark};
   }
 `;
 

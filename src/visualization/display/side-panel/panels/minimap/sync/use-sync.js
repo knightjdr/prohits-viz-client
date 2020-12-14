@@ -9,13 +9,13 @@ import * as actions from '../../../../../../state/visualization/heatmap/minimap-
 const useSync = () => {
   const dispatch = useDispatch();
 
-  const activeTab = useSelector(state => selectActiveTab(state));
-  const columnDB = useSelector(state => selectState(state, 'columnDB'));
-  const columnOrder = useSelector(state => selectDataProperty(state, 'columns', 'order'));
-  const rowDB = useSelector(state => selectState(state, 'rowDB'));
-  const rowOrder = useSelector(state => selectDataProperty(state, 'rows', 'order'));
-  const scoreType = useSelector(state => selectStateProperty(state, 'parameters', 'scoreType'));
-  const settings = useSelector(state => selectDataProperty(state, 'settings', 'current'));
+  const activeTab = useSelector((state) => selectActiveTab(state));
+  const columnDB = useSelector((state) => selectState(state, 'columnDB'));
+  const columnOrder = useSelector((state) => selectDataProperty(state, 'columns', 'order'));
+  const rowDB = useSelector((state) => selectState(state, 'rowDB'));
+  const rowOrder = useSelector((state) => selectDataProperty(state, 'rows', 'order'));
+  const scoreType = useSelector((state) => selectStateProperty(state, 'parameters', 'scoreType'));
+  const settings = useSelector((state) => selectDataProperty(state, 'settings', 'current'));
 
   const fetch = useFetch();
 

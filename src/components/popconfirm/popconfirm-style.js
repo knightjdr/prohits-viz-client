@@ -7,7 +7,7 @@ const Div = styled.div`
     font-weight: 400;
   }
   h1 svg {
-    color: ${props => props.theme.warning};
+    color: ${(props) => props.theme.warning};
     margin-right: 8px;
   }
   .popconfirm__buttons {

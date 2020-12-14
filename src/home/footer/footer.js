@@ -38,7 +38,7 @@ const fundingDetails = [
 ];
 
 const Footer = () => {
-  const fundingLinks = fundingDetails.map(agency => (
+  const fundingLinks = fundingDetails.map((agency) => (
     <Link
       className="footer__funding-link"
       href={agency.url}

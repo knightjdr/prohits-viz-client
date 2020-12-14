@@ -4,17 +4,20 @@ import styled from 'styled-components';
 const Span = styled.span`
   animation-duration: 0.3s;
   animation-fill-mode: forwards;
-  animation-timing-function: ${props => props.theme.timingFunction};
+  animation-timing-function: ${(props) => props.theme.timingFunction};
   background-color: white;
   border-radius: 3px;
-  box-shadow: ${props => (props.shadow ? 'rgba(0, 0, 0, 0.25) 0px 5px 10px, rgba(0, 0, 0, 0.22) 0px 5px 10px' : 'none')};
+  box-shadow: ${(props) => (props.shadow
+    ? 'rgba(0, 0, 0, 0.25) 0px 5px 10px, rgba(0, 0, 0, 0.22) 0px 5px 10px'
+    : 'none'
+  )};
   box-sizing: border-box;
-  color: ${props => props.theme.fontDark};
-  font-family: ${props => props.theme.fontStackPrimary};
+  color: ${(props) => props.theme.fontDark};
+  font-family: ${(props) => props.theme.fontStackPrimary};
   font-size: 0.9em;
   opacity: 0;
   overflow-wrap: anywhere;
-  padding: ${props => (props.padding ? '5px' : 0)};
+  padding: ${(props) => (props.padding ? '5px' : 0)};
   pointer-events: none;
   position: fixed;
   z-index: 2147483647;

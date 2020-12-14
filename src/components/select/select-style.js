@@ -1,7 +1,7 @@
 import styled from 'styled-components';
 
 export const SelectContainer = styled.span`
-  color: ${props => props.theme.fontDark};
+  color: ${(props) => props.theme.fontDark};
   display: inline-block;
   width: 100%;
 
@@ -28,7 +28,7 @@ export const SelectContainer = styled.span`
     text-overflow: ellipsis;
     transition-duration: 0.3s;
     transition-property: all;
-    transition-timing-function: ${props => props.theme.timingFunction};
+    transition-timing-function: ${(props) => props.theme.timingFunction};
     white-space: nowrap;
     width: 100%;
   }
@@ -41,7 +41,7 @@ export const SelectContainer = styled.span`
     top: 8px;
     transition-duration: 0.3s;
     transition-property: transform;
-    transition-timing-function: ${props => props.theme.timingFunction};
+    transition-timing-function: ${(props) => props.theme.timingFunction};
   }
   .select__arrow_up {
     transform: rotate(180deg);
@@ -53,7 +53,7 @@ export const SelectContainer = styled.span`
     right: 22px;
     transition-duration: 0.3s;
     transition-property: opacity;
-    transition-timing-function: ${props => props.theme.timingFunction};
+    transition-timing-function: ${(props) => props.theme.timingFunction};
   }
   .select__clear > button {
     height: 18px;
@@ -88,7 +88,7 @@ export const SelectContainer = styled.span`
 
   input:focus,
   input:hover {
-    border-color: ${props => props.theme.colorPrimary1};
+    border-color: ${(props) => props.theme.colorPrimary1};
   }
 
   input:focus {
@@ -106,8 +106,8 @@ export const SelectContainer = styled.span`
 `;
 
 export const Dropdown = styled.div`
-  color: ${props => props.theme.fontDark};
-  transition-timing-function: ${props => props.theme.timingFunction};
+  color: ${(props) => props.theme.fontDark};
+  transition-timing-function: ${(props) => props.theme.timingFunction};
   background-color: #fff;
   border-radius: 3px;
   box-shadow: rgba(0, 0, 0, 0.2) 0px 2px 8px 0px;
@@ -149,7 +149,7 @@ export const Dropdown = styled.div`
     text-overflow: ellipsis;
     transition-duration: 0.3s;
     transition-property: all;
-    transition-timing-function: ${props => props.theme.timingFunction};
+    transition-timing-function: ${(props) => props.theme.timingFunction};
     white-space: nowrap;
   }
   .select__option[aria-selected="true"] {

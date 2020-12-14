@@ -7,7 +7,7 @@ import Tooltip from './table-body-tooltip';
 
 import isOdd from '../../../utils/is-odd';
 
-const getRowStyle = index => (
+const getRowStyle = (index) => (
   isOdd(index) ? 'table__body-row_odd' : 'table__body-row_even'
 );
 
@@ -49,7 +49,7 @@ const TableBody = forwardRef((
         {
           rows.map((row, rowIndex) => {
             const rowStyle = getRowStyle(rowIndex);
-            return fieldOrder.map(key => (
+            return fieldOrder.map((key) => (
               <BodyCell
                 alignment={row[key].align}
                 className={rowStyle}

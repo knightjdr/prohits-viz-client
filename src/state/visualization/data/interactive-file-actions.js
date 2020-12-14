@@ -5,7 +5,7 @@ export const clearInteractiveState = () => ({
   type: CLEAR_INTERACTIVE_STATE,
 });
 
-export const loadInteractiveState = file => ({
+export const loadInteractiveState = (file) => ({
   file,
   type: LOAD_INTERACTIVE_STATE,
 });

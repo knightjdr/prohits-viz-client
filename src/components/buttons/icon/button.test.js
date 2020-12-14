@@ -12,7 +12,7 @@ const theme = {
   timingFunction: 'ease',
 };
 
-const renderElement = props => render(<Button {...props} />);
+const renderElement = (props) => render(<Button {...props} />);
 
 describe('Icon button', () => {
   describe('style', () => {
