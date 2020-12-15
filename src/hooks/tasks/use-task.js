@@ -48,6 +48,7 @@ const useTask = () => {
   return {
     download,
     handleChangeFile,
+    fetchText,
     fetchingText,
     selectedFile,
     text,
