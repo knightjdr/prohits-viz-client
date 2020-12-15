@@ -9,7 +9,6 @@ const Button = styled(DefaultButton)`
   border-radius: 50%;
   border-style: solid;
   border-width: 2px;
-  color: ${(props) => props.theme.colorPrimary1};
   display: flex;
   font-size: 1.3em;
   justify-content: center;
