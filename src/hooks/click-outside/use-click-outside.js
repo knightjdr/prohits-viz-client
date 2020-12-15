@@ -1,6 +1,5 @@
-import { useEffect } from 'react';
-
 import isVisible from './is-visible';
+import useOnMount from '../on-mount/use-on-mount';
 
 /* Detect click outside element specified by ref.current. If the visibility
 ** of the element is irrelevant, set ignoreVisibility argument to true. The
@@ -17,8 +16,10 @@ const useClickOutside = (ref, func, esc = true, ignoreVisibility = false) => {
 
   const clickListener = (e) => {
     const element = ref.current;
-    const outside = !element.contains(e.target) && (ignoreVisibility || isVisible(element));
-    clickedOutside(outside, e);
+    if (element) {
+      const outside = !element.contains(e.target) && (ignoreVisibility || isVisible(element));
+      clickedOutside(outside, e);
+    }
   };
 
   const escListener = (e) => {
@@ -28,18 +29,13 @@ const useClickOutside = (ref, func, esc = true, ignoreVisibility = false) => {
     }
   };
 
-  useEffect(() => {
+  useOnMount(() => {
     window.addEventListener('click', clickListener);
-    return () => {
-      window.removeEventListener('click', clickListener);
-    };
-  });
-
-  useEffect(() => {
     if (esc) {
       window.addEventListener('keydown', escListener);
     }
     return () => {
+      window.removeEventListener('click', clickListener);
       if (esc) {
         window.removeEventListener('keydown', escListener);
       }
