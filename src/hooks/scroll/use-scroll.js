@@ -1,7 +1,7 @@
+import normalizeWheel from 'normalize-wheel';
 import { useEffect } from 'react';
 
 import debounce from '../../utils/debounce';
-import normalizeWheel from './normalize-wheel';
 
 const useScroll = (ref, callback, wait = 50) => {
   const listener = debounce((e) => {
