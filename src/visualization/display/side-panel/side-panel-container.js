@@ -3,15 +3,20 @@ import { useDispatch, useSelector } from 'react-redux';
 
 import SidePanel from './side-panel';
 import useSmallScreen from '../../../hooks/small-screen/use-small-screen';
-import { selectState } from '../../../state/selector/general';
+import { selectState, selectStateProperty } from '../../../state/selector/general';
 import { togglePanel } from '../../../state/visualization/settings/panel-actions';
 
-const tabs = ['info', 'minimap', 'settings', 'markup', 'analysis', 'save'];
+const tabs = {
+  dotplot: ['info', 'minimap', 'settings', 'markup', 'analysis', 'save'],
+  heatmap: ['info', 'minimap', 'settings', 'markup', 'analysis', 'save'],
+  scatter: ['info'],
+};
 
 const SidePanelContainer = () => {
   const ref = useRef();
   const dispatch = useDispatch();
   const [translation, setTranslation] = useState(0);
+  const imageType = useSelector((state) => selectStateProperty(state, 'parameters', 'imageType'));
   const panel = useSelector((state) => selectState(state, 'panel'));
 
   const isSmallScreen = useSmallScreen();
@@ -28,12 +33,13 @@ const SidePanelContainer = () => {
 
   useEffect(() => {
     const { width: panelWidth } = ref.current.getBoundingClientRect();
-    const panelTranslation = -(tabs.indexOf(panel.tab)) * panelWidth;
+    const panelTranslation = -(tabs[imageType].indexOf(panel.tab)) * panelWidth;
     setTranslation(panelTranslation);
-  }, [panel.tab]);
+  }, [imageType, panel.tab]);
 
   return (
     <SidePanel
+      imageType={imageType}
       isOpen={panel.open}
       ref={ref}
       translation={translation}

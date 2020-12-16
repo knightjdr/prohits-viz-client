@@ -43,14 +43,24 @@ const Load = ({
         help
       </Link>
       {' '}
-      for information on the input format. You can also test a
+      for information on the input format. You can also test a sample
       {' '}
       <Link
         href="/visualization/samplefile/dotplot"
         outline={false}
         visited={false}
       >
-        sample file
+        dot plot
+      </Link>
+      {' '}
+      or a sample
+      {' '}
+      <Link
+        href="/visualization/samplefile/scatter"
+        outline={false}
+        visited={false}
+      >
+        scatter plot
       </Link>
       .
     </p>

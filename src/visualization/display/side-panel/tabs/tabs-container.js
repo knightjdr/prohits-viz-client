@@ -6,12 +6,12 @@ import { selectState, selectStateProperty } from '../../../../state/selector/gen
 import { changePanelTab, togglePanel } from '../../../../state/visualization/settings/panel-actions';
 
 const tabLabels = (imageType) => {
-  switch (imageType) {
-    case 'circ-heatmap':
-      return ['info', 'settings'];
-    default:
-      return ['info', 'minimap', 'settings', 'markup', 'analysis', 'save'];
+  if (imageType === 'dotplot' || imageType === 'heatmap') {
+    return ['info', 'minimap', 'settings', 'markup', 'analysis', 'save'];
+  } if (imageType === 'scatter') {
+    return ['info'];
   }
+  return ['info'];
 };
 
 const TabsContainer = () => {

@@ -1,7 +1,7 @@
 import { useCallback, useEffect } from 'react';
 import { useDispatch } from 'react-redux';
 
-import { resetImage } from '../../../../state/visualization/settings/display-actions';
+import { resetImage } from '../../state/visualization/settings/display-actions';
 
 const useShortCuts = () => {
   const dispatch = useDispatch();

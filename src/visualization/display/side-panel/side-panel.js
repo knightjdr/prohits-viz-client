@@ -17,8 +17,31 @@ const visibilityConfig = (isOpen) => (
   isOpen ? { className: 'visible' } : { className: 'hidden' }
 );
 
+const panels = (imageType) => {
+  if (imageType === 'dotplot' || imageType === 'heatmap') {
+    return (
+      <>
+        <Info />
+        <Minimap />
+        <Settings />
+        <Markup />
+        <Analysis />
+        <Save />
+      </>
+    );
+  } if (imageType === 'scatter') {
+    return (
+      <>
+        <Info />
+      </>
+    );
+  }
+  return null;
+};
+
 const SidePanel = forwardRef((
   {
+    imageType,
     isOpen,
     togglePanel,
     translation,
@@ -39,12 +62,7 @@ const SidePanel = forwardRef((
             transform: `translate(${translation}px)`,
           }}
         >
-          <Info />
-          <Minimap />
-          <Settings />
-          <Markup />
-          <Analysis />
-          <Save />
+          {panels(imageType)}
         </div>
       </div>
       <IconButton
@@ -58,6 +76,7 @@ const SidePanel = forwardRef((
 });
 
 SidePanel.propTypes = {
+  imageType: PropTypes.string.isRequired,
   isOpen: PropTypes.bool.isRequired,
   togglePanel: PropTypes.func.isRequired,
   translation: PropTypes.number.isRequired,

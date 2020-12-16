@@ -1,7 +1,7 @@
-import reducer from './row-db-reducer';
+import reducer from './plots-reducer';
 import * as fileActions from './interactive-file-actions';
 
-describe('Row DB reducer', () => {
+describe('Plots reducer', () => {
   it('should return an empty initial state', () => {
     const action = {};
     const expectedState = [];
@@ -17,26 +17,32 @@ describe('Row DB reducer', () => {
   });
 
   describe('parse file', () => {
-    it('should handle LOAD_INTERACTIVE_STATE action when rowDB field present', () => {
+    it('should handle LOAD_INTERACTIVE_STATE action when plots field present', () => {
       const action = {
         file: {
-          rowDB: [
-            { name: 'a' },
-            { name: 'b' },
-            { name: 'c' },
+          plots: [
+            {
+              labels: { x: 'bait1', y: 'bait2' },
+              points: [
+                { label: 'gene1', x: 10, y: 15 },
+              ],
+            },
           ],
         },
         type: fileActions.LOAD_INTERACTIVE_STATE,
       };
       const expectedState = [
-        { name: 'a' },
-        { name: 'b' },
-        { name: 'c' },
+        {
+          labels: { x: 'bait1', y: 'bait2' },
+          points: [
+            { label: 'gene1', x: 10, y: 15 },
+          ],
+        },
       ];
       expect(reducer(undefined, action)).toEqual(expectedState);
     });
 
-    it('should handle LOAD_INTERACTIVE_STATE action when rowDB field missing', () => {
+    it('should handle LOAD_INTERACTIVE_STATE action when plots field missing', () => {
       const action = {
         file: {},
         type: fileActions.LOAD_INTERACTIVE_STATE,

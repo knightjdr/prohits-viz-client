@@ -2,18 +2,17 @@ import React from 'react';
 
 import Analysis from '../analysis/analysis-container';
 import Heatmap from '../heatmap/heatmap-container';
+import Scatter from '../scatter/scatter-container';
 
 const getAnalysisContent = () => <Analysis />;
 
 const getImageContent = (imageType) => {
-  switch (imageType) {
-    case 'dotplot':
-      return <Heatmap />;
-    case 'heatmap':
-      return <Heatmap />;
-    default:
-      return null;
+  if (imageType === 'dotplot' || imageType === 'heatmap') {
+    return <Heatmap />;
+  } if (imageType === 'scatter') {
+    return <Scatter />;
   }
+  return null;
 };
 
 const getTabComponent = (tabType, imageType) => (
