@@ -4,8 +4,10 @@ describe('Fill display', () => {
   it('should return user-defined display when valid', () => {
     const userDisplay = {
       main: {
+        logTransform: true,
         plotFixed: true,
         selectedPlot: 1,
+        transform: {},
       },
     };
     const expected = {
@@ -20,8 +22,10 @@ describe('Fill display', () => {
   it('should return defaults when user-defined display options invalid', () => {
     const userDisplay = {
       main: {
+        logTransfrom: 'true',
         plotFixed: 'true',
         selectedPlot: '1',
+        transform: 'translate(1 2)',
       },
     };
     const expected = {

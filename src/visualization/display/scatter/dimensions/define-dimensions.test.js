@@ -7,7 +7,7 @@ describe('define scatter plot dimensions', () => {
 
     const expected = {
       canTranslate: false,
-      plot: 850,
+      plot: 830,
       wrapper: 950,
     };
     expect(defineDimensions(windowHeight, windowWidth)).toEqual(expected);
@@ -19,7 +19,7 @@ describe('define scatter plot dimensions', () => {
 
     const expected = {
       canTranslate: true,
-      plot: 810,
+      plot: 790,
       wrapper: 910,
     };
     expect(defineDimensions(windowHeight, windowWidth)).toEqual(expected);

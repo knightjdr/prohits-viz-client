@@ -1,7 +1,7 @@
 import PropTypes from 'prop-types';
 import React, { forwardRef } from 'react';
 
-import Axes from './axes/axes-container';
+import Plot from './plot/plot-container';
 
 import './scatter.css';
 
@@ -26,7 +26,7 @@ const Scatter = forwardRef((
       width={wrapperWidth}
       xmlns="http://www.w3.org/2000/svg"
     >
-      <Axes />
+      <Plot />
     </svg>
   </div>
 ));

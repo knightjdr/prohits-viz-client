@@ -39,7 +39,7 @@
   "scripts": {
     "build": "react-scripts build",
     "start": "react-scripts start",
-    "lint": "node_modules/eslint/bin/eslint.js -c .eslintrc.js './src/**/*.js'",
+    "lint": "node_modules/.bin/eslint -c .eslintrc.js './src/**/*.js'",
     "test": "react-scripts test"
   },
   "eslintConfig": {
