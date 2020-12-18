@@ -10,16 +10,16 @@ describe('Snapshot actions', () => {
       ...content,
       id: 1,
       name: 'snapshot-1',
-      type: actions.ADD_HEATMAP_SNAPSHOT,
+      type: actions.ADD_SNAPSHOT,
     };
-    expect(actions.addHeatmapSnapshot(1, 'snapshot-1', content)).toEqual(expectedAction);
+    expect(actions.addSnapshot(1, 'snapshot-1', content)).toEqual(expectedAction);
   });
 
   it('should dispatch an action to remove a snapshot', () => {
     const expectedAction = {
       name: 'snapshot-1',
-      type: actions.REMOVE_HEATMAP_SNAPSHOT,
+      type: actions.REMOVE_SNAPSHOT,
     };
-    expect(actions.removeHeatmapSnapshot('snapshot-1')).toEqual(expectedAction);
+    expect(actions.removeSnapshot('snapshot-1')).toEqual(expectedAction);
   });
 });

@@ -1,7 +1,9 @@
 import fillSnapshots from '../snapshot';
 import isObject from '../../../utils/is-object';
+import { validateBoolean } from '../../../utils/validate-type';
 
 export const defaultState = {
+  logTransform: false,
 };
 
 export const validateSettings = (userSettings) => {
@@ -10,11 +12,13 @@ export const validateSettings = (userSettings) => {
   }
 
   const {
+    logTransform,
     ...other
   } = userSettings;
 
   const settings = {
     ...other,
+    logTransform: validateBoolean(logTransform, defaultState.logTransform),
   };
 
   return settings;
@@ -24,10 +28,7 @@ export const fillSnapshotSettings = (inputSettings) => {
   const settings = {};
   settings.current = validateSettings(inputSettings.current);
   settings.default = inputSettings.default
-    ? validateSettings(
-      inputSettings.default,
-      settings.current.imageType,
-    )
+    ? validateSettings(inputSettings.default)
     : settings.current;
 
   return settings;

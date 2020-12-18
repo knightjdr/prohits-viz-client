@@ -14,13 +14,13 @@ const reduceAndSetDimeneions = (state, action) => ({
 
 const reducer = (state = {}, action) => {
   switch (action.type) {
-    case snapshotActions.ADD_HEATMAP_SNAPSHOT:
+    case snapshotActions.ADD_SNAPSHOT:
       return reduceAndAddSnapshot(state, action, 'dimensions');
     case fileActions.CLEAR_INTERACTIVE_STATE:
       return reduceAndClearState();
     case fileActions.LOAD_INTERACTIVE_STATE:
       return reduceAndLoadState(action, 'dimensions');
-    case snapshotActions.REMOVE_HEATMAP_SNAPSHOT:
+    case snapshotActions.REMOVE_SNAPSHOT:
       return reduceAndRemoveSnapshot(state, action);
     case actions.SET_DIMENSIONS:
       return reduceAndSetDimeneions(state, action);

@@ -2,18 +2,19 @@ import PropTypes from 'prop-types';
 import React from 'react';
 
 import Heatmap from './heatmap/settings__heatmap-container';
+import Scatter from './scatter/settings__scatter-container';
+
+import './settings.css';
 
 const Settings = ({
   imageType,
 }) => {
-  switch (imageType) {
-    case 'dotplot':
-      return <Heatmap />;
-    case 'heatmap':
-      return <Heatmap />;
-    default:
-      return <Heatmap />;
+  if (imageType === 'dotplot' || imageType === 'heatmap') {
+    return <Heatmap />;
+  } if (imageType === 'scatter') {
+    return <Scatter />;
   }
+  return null;
 };
 
 Settings.propTypes = {

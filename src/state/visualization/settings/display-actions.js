@@ -1,9 +1,16 @@
-export const RESET_IMAGE = 'RESET_IMAGE';
+export const RESET_HEATMAP = 'RESET_HEATMAP';
+export const RESET_SCATTER = 'RESET_SCATTER';
 export const UPDATE_DISPLAY_SETTING = 'UPDATE_DISPLAY_SETTING';
 
-export const resetImage = () => ({
+export const resetHeatmap = () => ({
   AUGMENT_WITH_ACTIVE_SNAPSHOT: true,
-  type: RESET_IMAGE,
+  type: RESET_HEATMAP,
+});
+
+export const resetScatter = (value) => ({
+  AUGMENT_WITH_ACTIVE_SNAPSHOT: true,
+  type: RESET_SCATTER,
+  value,
 });
 
 export const updateDisplaySetting = (setting, value) => ({

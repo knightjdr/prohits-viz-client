@@ -25,13 +25,13 @@ const reduceAndUpdate = (state, action) => ({
 
 const reducer = (state = {}, action) => {
   switch (action.type) {
-    case snapshotActions.ADD_HEATMAP_SNAPSHOT:
+    case snapshotActions.ADD_SNAPSHOT:
       return reduceAndAddSnapshot(state, action, 'position');
     case fileActions.CLEAR_INTERACTIVE_STATE:
       return reduceAndClearState();
     case fileActions.LOAD_INTERACTIVE_STATE:
       return reduceAndLoadState(action, 'position');
-    case snapshotActions.REMOVE_HEATMAP_SNAPSHOT:
+    case snapshotActions.REMOVE_SNAPSHOT:
       return reduceAndRemoveSnapshot(state, action);
     case searchActions.SET_SEARCH_STATUS:
       return reduceAndUpdate(state, action);

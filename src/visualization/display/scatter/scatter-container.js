@@ -5,9 +5,10 @@ import Scatter from './scatter';
 
 import defineDimensions from './dimensions/define-dimensions';
 import defineTranslation from '../common/dimensions/define-translation';
-import useShortCuts from '../../../hooks/shortcuts/use-shortcuts';
+import formatData from './data/format-data';
+import useShortCuts from './hooks/use-shortcuts';
 import useWindowDimension from '../../../hooks/window-size/use-window-dimension';
-import { selectDataProperty } from '../../../state/selector/visualization/data-selector';
+import { selectData, selectDataProperty } from '../../../state/selector/visualization/data-selector';
 import { selectStateProperty } from '../../../state/selector/general';
 import { setDimensions } from '../../../state/visualization/settings/dimension-actions';
 
@@ -16,7 +17,9 @@ const ScatterContainer = () => {
   const ref = useRef();
 
   const panelOpen = useSelector((state) => selectStateProperty(state, 'panel', 'open'));
-  const plotFixed = useSelector((state) => selectDataProperty(state, 'display', 'plotFixed'));
+  const { plotFixed, selectedPlot, transform } = useSelector((state) => selectData(state, 'display'));
+  const { logTransform } = useSelector((state) => selectDataProperty(state, 'settings', 'current'));
+  const plot = useSelector((state) => selectStateProperty(state, 'plots', selectedPlot));
 
   const windowDimensions = useWindowDimension(50);
   useShortCuts();
@@ -46,6 +49,18 @@ const ScatterContainer = () => {
     ],
   );
 
+  const data = useMemo(
+    () => {
+      const options = {
+        axisLength: dimensions.plot,
+        logTransform,
+        scale: transform.scale,
+      };
+      return formatData(plot.points, options);
+    },
+    [dimensions.height, logTransform, plot, transform.scale],
+  );
+
   useEffect(() => {
     dispatch(setDimensions(
       {
@@ -60,7 +75,9 @@ const ScatterContainer = () => {
 
   return (
     <Scatter
+      points={data.points}
       ref={ref}
+      ticks={data.ticks}
       translation={translation}
       wrapperHeight={dimensions.wrapper}
       wrapperWidth={dimensions.wrapper}

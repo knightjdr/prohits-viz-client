@@ -1,5 +1,5 @@
 import { nanoid } from 'nanoid';
-import round from '../../../../../utils/round';
+import round from '../../../../utils/round';
 
 const scaleData = (points, ticks, options) => {
   const { axisLength, logTransform } = options;

@@ -42,7 +42,7 @@ describe('Fill display', () => {
     expect(fillDisplay(userDisplay)).toEqual(expected);
   });
 
-  it('should return defaults when user-defined minimap is not an object', () => {
+  it('should return defaults when user-defined display is not an object', () => {
     const userDisplay = [];
     const expected = {
       main: defaultState,
@@ -50,7 +50,7 @@ describe('Fill display', () => {
     expect(fillDisplay(userDisplay)).toEqual(expected);
   });
 
-  it('should return defaults when user-defined minimap undefined', () => {
+  it('should return defaults when user-defined display undefined', () => {
     const expected = {
       main: defaultState,
     };

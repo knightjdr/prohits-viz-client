@@ -33,6 +33,7 @@ const panels = (imageType) => {
     return (
       <>
         <Info />
+        <Settings />
       </>
     );
   }

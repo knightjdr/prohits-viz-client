@@ -42,7 +42,6 @@ exports[`Icon button style primary button should match snapshot 1`] = `
   border-radius: 50%;
   border-style: solid;
   border-width: 2px;
-  color: #00f;
   display: -webkit-box;
   display: -webkit-flex;
   display: -ms-flexbox;
@@ -172,7 +171,6 @@ exports[`Icon button style transparent (default) button should match snapshot 1`
   border-radius: 50%;
   border-style: solid;
   border-width: 2px;
-  color: #00f;
   display: -webkit-box;
   display: -webkit-flex;
   display: -ms-flexbox;

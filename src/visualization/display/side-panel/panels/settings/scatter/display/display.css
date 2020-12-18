@@ -1,0 +1,21 @@
+.settings__display-zoom {
+  align-items: center;
+  display: grid;
+  grid-template-columns: 50% 50%;
+  grid-template-rows: auto auto;
+  margin-bottom: 12px;
+  width: 100%;
+}
+
+.settings__display-zoom .label {
+  padding-right: 8px;
+  text-align: right;
+}
+
+.scatterplot__controls-zoom-buttons {
+  display: inline-flex;
+  justify-content: flex-start;
+}
+.scatterplot__controls-zoom-buttons > *:not(:last-child) {
+  margin-right: 0.5rem;
+}

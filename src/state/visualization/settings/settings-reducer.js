@@ -40,15 +40,17 @@ const reduceAndUpdateSettings = (state, action) => ({
 
 const reducer = (state = {}, action) => {
   switch (action.type) {
-    case snapshotActions.ADD_HEATMAP_SNAPSHOT:
+    case snapshotActions.ADD_SNAPSHOT:
       return reduceAndAddSnapshot(state, action, 'settings');
     case fileActions.CLEAR_INTERACTIVE_STATE:
       return reduceAndClearState();
     case fileActions.LOAD_INTERACTIVE_STATE:
       return reduceAndLoadState(action, 'settings');
-    case snapshotActions.REMOVE_HEATMAP_SNAPSHOT:
+    case snapshotActions.REMOVE_SNAPSHOT:
       return reduceAndRemoveSnapshot(state, action);
-    case displayActions.RESET_IMAGE:
+    case displayActions.RESET_HEATMAP:
+      return reduceAndReset(state, action);
+    case displayActions.RESET_SCATTER:
       return reduceAndReset(state, action);
     case actions.UPDATE_SETTING:
       return reduceAndUpdateSetting(state, action);

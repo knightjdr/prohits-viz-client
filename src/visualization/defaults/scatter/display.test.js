@@ -4,7 +4,6 @@ describe('Fill display', () => {
   it('should return user-defined display when valid', () => {
     const userDisplay = {
       main: {
-        logTransform: true,
         plotFixed: true,
         selectedPlot: 1,
         transform: {},
@@ -22,7 +21,6 @@ describe('Fill display', () => {
   it('should return defaults when user-defined display options invalid', () => {
     const userDisplay = {
       main: {
-        logTransfrom: 'true',
         plotFixed: 'true',
         selectedPlot: '1',
         transform: 'translate(1 2)',
@@ -42,7 +40,7 @@ describe('Fill display', () => {
     expect(fillDisplay(userDisplay)).toEqual(expected);
   });
 
-  it('should return defaults when user-defined minimap is not an object', () => {
+  it('should return defaults when user-defined display is not an object', () => {
     const userDisplay = [];
     const expected = {
       main: defaultState,
@@ -50,7 +48,7 @@ describe('Fill display', () => {
     expect(fillDisplay(userDisplay)).toEqual(expected);
   });
 
-  it('should return defaults when user-defined minimap undefined', () => {
+  it('should return defaults when user-defined display undefined', () => {
     const expected = {
       main: defaultState,
     };

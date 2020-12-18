@@ -1,14 +1,14 @@
-export const ADD_HEATMAP_SNAPSHOT = 'ADD_HEATMAP_SNAPSHOT';
-export const REMOVE_HEATMAP_SNAPSHOT = 'REMOVE_HEATMAP_SNAPSHOT';
+export const ADD_SNAPSHOT = 'ADD_SNAPSHOT';
+export const REMOVE_SNAPSHOT = 'REMOVE_SNAPSHOT';
 
-export const addHeatmapSnapshot = (id, name, content) => ({
+export const addSnapshot = (id, name, content) => ({
   ...content,
   id,
   name,
-  type: ADD_HEATMAP_SNAPSHOT,
+  type: ADD_SNAPSHOT,
 });
 
-export const removeHeatmapSnapshot = (name) => ({
+export const removeSnapshot = (name) => ({
   name,
-  type: REMOVE_HEATMAP_SNAPSHOT,
+  type: REMOVE_SNAPSHOT,
 });

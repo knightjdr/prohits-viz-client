@@ -2,7 +2,7 @@ import { useDispatch, useSelector } from 'react-redux';
 
 import defineSnapshotName from '../utils/define-name';
 import useCreateHeatmapSnapshot from './heatmap/use-create-heatmap-snapshot';
-import { addHeatmapSnapshot } from '../../../../../../state/visualization/data/snapshot-actions';
+import { addSnapshot } from '../../../../../../state/visualization/data/snapshot-actions';
 import { selectState, selectStateProperty } from '../../../../../../state/selector/general';
 
 const useCreateSnapshot = () => {
@@ -21,7 +21,7 @@ const useCreateSnapshot = () => {
 
     const name = defineSnapshotName(snapshotName, tabs);
 
-    dispatch(addHeatmapSnapshot(name.id, name.name, snapshot));
+    dispatch(addSnapshot(name.id, name.name, snapshot));
   };
 
   return createSnapshot;

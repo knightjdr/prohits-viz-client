@@ -36,6 +36,7 @@ const Button = styled(DefaultButton)`
     && css`& {
       background-color: transparent;
       border: none;
+      color: ${props.theme.colorPrimary1};
     }
 
     &::before {

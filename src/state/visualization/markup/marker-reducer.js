@@ -44,7 +44,7 @@ const reduceAndUpdateList = (state, action) => ({
 
 const reducer = (state = {}, action) => {
   switch (action.type) {
-    case snapshotActions.ADD_HEATMAP_SNAPSHOT:
+    case snapshotActions.ADD_SNAPSHOT:
       return reduceAndAddSnapshot(state, action, 'markers');
     case actions.ADD_MARKER:
       return reduceAndAddMarker(state, action);
@@ -56,7 +56,7 @@ const reducer = (state = {}, action) => {
       return reduceAndClearState();
     case fileActions.LOAD_INTERACTIVE_STATE:
       return reduceAndLoadState(action, 'markers');
-    case snapshotActions.REMOVE_HEATMAP_SNAPSHOT:
+    case snapshotActions.REMOVE_SNAPSHOT:
       return reduceAndRemoveSnapshot(state, action);
     case actions.UPDATE_MARKERS:
       return reduceAndUpdateList(state, action);

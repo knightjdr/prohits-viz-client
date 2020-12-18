@@ -68,7 +68,7 @@ const reduceAndUpdateStatus = (state, action) => ({
 
 const reducer = (state = {}, action) => {
   switch (action.type) {
-    case snapshotActions.ADD_HEATMAP_SNAPSHOT:
+    case snapshotActions.ADD_SNAPSHOT:
       return reduceAndAddSnapshot(state, action, 'minimap');
     case fileActions.CLEAR_INTERACTIVE_STATE:
       return reduceAndClearState();
@@ -78,9 +78,9 @@ const reducer = (state = {}, action) => {
       return reduceAndSyncronize(state, action);
     case fileActions.LOAD_INTERACTIVE_STATE:
       return reduceAndLoadState(action, 'minimap');
-    case snapshotActions.REMOVE_HEATMAP_SNAPSHOT:
+    case snapshotActions.REMOVE_SNAPSHOT:
       return reduceAndRemoveSnapshot(state, action);
-    case displayActions.RESET_IMAGE:
+    case displayActions.RESET_HEATMAP:
       return reduceAndReset(state, action);
     case actions.SYNC_ERROR:
       return reduceAndError(state, action);

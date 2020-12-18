@@ -36,7 +36,7 @@ describe('Tab reducer', () => {
     expect(reducer(currentState, action)).toEqual(expectedState);
   });
 
-  it('should handle ADD_HEATMAP_SNAPSHOT action', () => {
+  it('should handle ADD_SNAPSHOT action', () => {
     const currentState = {
       active: 'analysis-1',
       activeSnapshot: 'main',
@@ -48,7 +48,7 @@ describe('Tab reducer', () => {
     const action = {
       id: 2,
       name: 'snapshot-2',
-      type: snapshotActions.ADD_HEATMAP_SNAPSHOT,
+      type: snapshotActions.ADD_SNAPSHOT,
     };
     const expectedState = {
       ...currentState,
@@ -190,7 +190,7 @@ describe('Tab reducer', () => {
       };
       const action = {
         name: 'snapshot-1',
-        type: snapshotActions.REMOVE_HEATMAP_SNAPSHOT,
+        type: snapshotActions.REMOVE_SNAPSHOT,
       };
       const expectedState = {
         ...currentState,
@@ -210,7 +210,7 @@ describe('Tab reducer', () => {
       };
       const action = {
         name: 'snapshot-1',
-        type: snapshotActions.REMOVE_HEATMAP_SNAPSHOT,
+        type: snapshotActions.REMOVE_SNAPSHOT,
       };
       const expectedState = {
         ...currentState,
@@ -231,7 +231,7 @@ describe('Tab reducer', () => {
       };
       const action = {
         name: 'snapshot-1',
-        type: snapshotActions.REMOVE_HEATMAP_SNAPSHOT,
+        type: snapshotActions.REMOVE_SNAPSHOT,
       };
       const expectedState = {
         ...currentState,

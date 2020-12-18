@@ -38,7 +38,7 @@ describe('Annotation reducer', () => {
     expect(reducer(currenState, action)).toEqual(expectedState);
   });
 
-  it('should handle ADD_HEATMAP_SNAPSHOT action', () => {
+  it('should handle ADD_SNAPSHOT action', () => {
     const currentState = {
       main: {
         fontSize: 16,
@@ -50,7 +50,7 @@ describe('Annotation reducer', () => {
     const action = {
       annotations: snapshotState,
       name: 'snapshot-1',
-      type: snapshotActions.ADD_HEATMAP_SNAPSHOT,
+      type: snapshotActions.ADD_SNAPSHOT,
     };
     const expectedState = {
       ...currentState,
@@ -133,7 +133,7 @@ describe('Annotation reducer', () => {
     expect(reducer(currenState, action)).toEqual(expectedState);
   });
 
-  it('should handle REMOVE_HEATMAP_SNAPSHOT action', () => {
+  it('should handle REMOVE_SNAPSHOT action', () => {
     const currentState = {
       main: {
         fontSize: 16,
@@ -144,7 +144,7 @@ describe('Annotation reducer', () => {
     };
     const action = {
       name: 'snapshot1',
-      type: snapshotActions.REMOVE_HEATMAP_SNAPSHOT,
+      type: snapshotActions.REMOVE_SNAPSHOT,
     };
     const expectedState = {
       main: {

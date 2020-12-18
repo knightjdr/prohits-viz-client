@@ -69,7 +69,7 @@ const reducer = (state = {}, action) => {
   switch (action.type) {
     case actions.ADD_ANNOTATION:
       return reduceAndAdd(state, action);
-    case snapshotActions.ADD_HEATMAP_SNAPSHOT:
+    case snapshotActions.ADD_SNAPSHOT:
       return reduceAndAddSnapshot(state, action, 'annotations');
     case actions.CHANGE_ANNOTATION_SETTING:
       return reduceAndChangeSetting(state, action);
@@ -79,7 +79,7 @@ const reducer = (state = {}, action) => {
       return reduceAndClearState();
     case fileActions.LOAD_INTERACTIVE_STATE:
       return reduceAndLoadState(action, 'annotations');
-    case snapshotActions.REMOVE_HEATMAP_SNAPSHOT:
+    case snapshotActions.REMOVE_SNAPSHOT:
       return reduceAndRemoveSnapshot(state, action);
     case actions.TOGGLE_ANNOTATIONS:
       return reduceAndToggle(state, action);

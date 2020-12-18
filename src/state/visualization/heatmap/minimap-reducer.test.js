@@ -21,7 +21,7 @@ describe('Minimap reducer', () => {
     expect(reducer(undefined, action)).toEqual(expectedState);
   });
 
-  it('should handle ADD_HEATMAP_SNAPSHOT action', () => {
+  it('should handle ADD_SNAPSHOT action', () => {
     const currentState = {
       main: {
         image: 'image',
@@ -35,7 +35,7 @@ describe('Minimap reducer', () => {
     const action = {
       minimap: snapshotState,
       name: 'snapshot-1',
-      type: snapshotActions.ADD_HEATMAP_SNAPSHOT,
+      type: snapshotActions.ADD_SNAPSHOT,
     };
     const expectedState = {
       ...currentState,
@@ -163,7 +163,7 @@ describe('Minimap reducer', () => {
     });
   });
 
-  it('should handle REMOVE_HEATMAP_SNAPSHOT action', () => {
+  it('should handle REMOVE_SNAPSHOT action', () => {
     const currentState = {
       main: {
         image: 'image',
@@ -176,7 +176,7 @@ describe('Minimap reducer', () => {
     };
     const action = {
       name: 'snapshot1',
-      type: snapshotActions.REMOVE_HEATMAP_SNAPSHOT,
+      type: snapshotActions.REMOVE_SNAPSHOT,
     };
     const expectedState = {
       main: {
@@ -187,7 +187,7 @@ describe('Minimap reducer', () => {
     expect(reducer(currentState, action)).toEqual(expectedState);
   });
 
-  it('should handle RESET_IMAGE action', () => {
+  it('should handle RESET_HEATMAP action', () => {
     const currentState = {
       main: {
         ...defaultState,
@@ -197,7 +197,7 @@ describe('Minimap reducer', () => {
 
     const action = {
       snapshotID: 'main',
-      type: displayActions.RESET_IMAGE,
+      type: displayActions.RESET_HEATMAP,
     };
     const expectedState = {
       ...currentState,

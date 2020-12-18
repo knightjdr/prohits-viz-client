@@ -1,17 +1,18 @@
 import { useCallback, useEffect } from 'react';
 import { useDispatch } from 'react-redux';
 
-import { resetImage } from '../../state/visualization/settings/display-actions';
+import { defaultState as defaultDisplayState } from '../../../defaults/scatter/display';
+import { resetScatter } from '../../../../state/visualization/settings/display-actions';
 
 const useShortCuts = () => {
   const dispatch = useDispatch();
 
   const handleKeyDown = useCallback(
     (e) => {
-      const { key, metaKey } = e;
-      if (metaKey && key === 'r') {
+      const { key, shiftKey } = e;
+      if (shiftKey && key === 'R') {
         e.preventDefault();
-        dispatch(resetImage());
+        dispatch(resetScatter(defaultDisplayState));
       }
     },
     [dispatch],

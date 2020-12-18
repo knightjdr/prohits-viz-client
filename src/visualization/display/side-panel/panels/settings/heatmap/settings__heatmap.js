@@ -6,8 +6,6 @@ import Filter from './filter/filter-container';
 import Image from './image/image-container';
 import Reset from '../reset/reset';
 
-import './settings__heatmap.css';
-
 const Settings = ({
   handleChange,
   handleImageReset,

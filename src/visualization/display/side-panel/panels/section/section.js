@@ -3,7 +3,7 @@ import React from 'react';
 
 import './section.css';
 
-const Info = ({
+const Section = ({
   border,
   children,
   title,
@@ -18,15 +18,15 @@ const Info = ({
   </>
 );
 
-Info.defaultProps = {
+Section.defaultProps = {
   border: true,
   title: null,
 };
 
-Info.propTypes = {
+Section.propTypes = {
   border: PropTypes.bool,
   children: PropTypes.node.isRequired,
   title: PropTypes.node,
 };
 
-export default Info;
+export default Section;

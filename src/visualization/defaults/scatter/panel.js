@@ -7,6 +7,7 @@ export const defaultState = {
 
 const validTabs = {
   info: true,
+  settings: true,
 };
 
 const fillPanel = (userPanel) => {

@@ -6,7 +6,7 @@ import Heatmap from './heatmap';
 import defineDimensions from './dimensions/define-dimensions';
 import defineTranslation from '../common/dimensions/define-translation';
 import usePlotScroll from './dimensions/use-plot-scroll';
-import useShortCuts from '../../../hooks/shortcuts/use-shortcuts';
+import useShortCuts from './hooks/use-shortcuts';
 import useWindowDimension from '../../../hooks/window-size/use-window-dimension';
 import { setDimensions } from '../../../state/visualization/settings/dimension-actions';
 import { selectDataProperty } from '../../../state/selector/visualization/data-selector';

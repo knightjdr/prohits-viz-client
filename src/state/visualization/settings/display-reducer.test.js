@@ -12,7 +12,7 @@ describe('Display reducer', () => {
     expect(reducer(undefined, action)).toEqual(expectedState);
   });
 
-  it('should handle ADD_HEATMAP_SNAPSHOT action', () => {
+  it('should handle ADD_SNAPSHOT action', () => {
     const currentState = {
       main: {
         plotFixed: false,
@@ -26,7 +26,7 @@ describe('Display reducer', () => {
     const action = {
       display: snapshotState,
       name: 'snapshot-1',
-      type: snapshotActions.ADD_HEATMAP_SNAPSHOT,
+      type: snapshotActions.ADD_SNAPSHOT,
     };
     const expectedState = {
       ...currentState,
@@ -56,7 +56,7 @@ describe('Display reducer', () => {
     expect(reducer(undefined, action)).toEqual(expectedState);
   });
 
-  it('should handle REMOVE_HEATMAP_SNAPSHOT action', () => {
+  it('should handle REMOVE_SNAPSHOT action', () => {
     const currentState = {
       main: {
         plotFixed: false,
@@ -69,12 +69,47 @@ describe('Display reducer', () => {
     };
     const action = {
       name: 'snapshot1',
-      type: snapshotActions.REMOVE_HEATMAP_SNAPSHOT,
+      type: snapshotActions.REMOVE_SNAPSHOT,
     };
     const expectedState = {
       main: {
         plotFixed: false,
         showTooltips: true,
+      },
+    };
+    expect(reducer(currentState, action)).toEqual(expectedState);
+  });
+
+  it('should handle RESET_SCATTER action', () => {
+    const currentState = {
+      main: {
+        plotFixed: false,
+        transform: {
+          matrix: { plot: 'translate(10 10)' },
+          scale: 2,
+        },
+      },
+    };
+
+    const action = {
+      snapshotID: 'main',
+      type: actions.RESET_SCATTER,
+      value: {
+        transform: {
+          matrix: { plot: '' },
+          scale: 1,
+        },
+      },
+    };
+    const expectedState = {
+      ...currentState,
+      main: {
+        ...currentState.main,
+        plotFixed: false,
+        transform: {
+          matrix: { plot: '' },
+          scale: 1,
+        },
       },
     };
     expect(reducer(currentState, action)).toEqual(expectedState);

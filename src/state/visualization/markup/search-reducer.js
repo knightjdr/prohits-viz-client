@@ -27,7 +27,7 @@ const reduceAndSetSearchStatus = (state, action) => ({
 
 const reducer = (state = {}, action) => {
   switch (action.type) {
-    case snapshotActions.ADD_HEATMAP_SNAPSHOT:
+    case snapshotActions.ADD_SNAPSHOT:
       return reduceAndAddSnapshot(state, action, 'searchStatus');
     case actions.CLEAR_SEARCH:
       return reduceAndClear(state, action);
@@ -35,7 +35,7 @@ const reducer = (state = {}, action) => {
       return reduceAndClearState();
     case fileActions.LOAD_INTERACTIVE_STATE:
       return reduceAndLoadState(action, 'searchStatus');
-    case snapshotActions.REMOVE_HEATMAP_SNAPSHOT:
+    case snapshotActions.REMOVE_SNAPSHOT:
       return reduceAndRemoveSnapshot(state, action);
     case actions.SET_SEARCH_STATUS:
       return reduceAndSetSearchStatus(state, action);

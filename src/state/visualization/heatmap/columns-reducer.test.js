@@ -19,7 +19,7 @@ describe('Columns reducer', () => {
     expect(reducer(undefined, action)).toEqual(expectedState);
   });
 
-  it('should handle ADD_HEATMAP_SNAPSHOT action', () => {
+  it('should handle ADD_SNAPSHOT action', () => {
     const currentState = {
       main: {
         defaultOrder: [0, 1, 2, 3, 4],
@@ -33,7 +33,7 @@ describe('Columns reducer', () => {
     const action = {
       columns: snapshotState,
       name: 'snapshot-1',
-      type: snapshotActions.ADD_HEATMAP_SNAPSHOT,
+      type: snapshotActions.ADD_SNAPSHOT,
     };
     const expectedState = {
       ...currentState,
@@ -107,7 +107,7 @@ describe('Columns reducer', () => {
     });
   });
 
-  it('should handle REMOVE_HEATMAP_SNAPSHOT action', () => {
+  it('should handle REMOVE_SNAPSHOT action', () => {
     const currentState = {
       main: {
         defaultOrder: [0, 1, 2, 3, 4],
@@ -120,7 +120,7 @@ describe('Columns reducer', () => {
     };
     const action = {
       name: 'snapshot1',
-      type: snapshotActions.REMOVE_HEATMAP_SNAPSHOT,
+      type: snapshotActions.REMOVE_SNAPSHOT,
     };
     const expectedState = {
       main: {
@@ -131,7 +131,7 @@ describe('Columns reducer', () => {
     expect(reducer(currentState, action)).toEqual(expectedState);
   });
 
-  it('should handle RESET_IMAGE action', () => {
+  it('should handle RESET_HEATMAP action', () => {
     const currentState = {
       main: {
         defaultOrder: [0, 1, 2],
@@ -143,7 +143,7 @@ describe('Columns reducer', () => {
 
     const action = {
       snapshotID: 'main',
-      type: displayActions.RESET_IMAGE,
+      type: displayActions.RESET_HEATMAP,
     };
     const expectedState = {
       ...currentState,

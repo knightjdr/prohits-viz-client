@@ -1,5 +1,6 @@
 import reducer from './settings-reducer';
 import * as actions from './settings-actions';
+import * as displayActions from './display-actions';
 import * as fileActions from '../data/interactive-file-actions';
 import * as snapshotActions from '../data/snapshot-actions';
 
@@ -10,7 +11,7 @@ describe('Settings reducer', () => {
     expect(reducer(undefined, action)).toEqual(expectedState);
   });
 
-  it('should handle ADD_HEATMAP_SNAPSHOT action', () => {
+  it('should handle ADD_SNAPSHOT action', () => {
     const currentState = {
       main: {
         current: { fillColor: 'blue' },
@@ -24,7 +25,7 @@ describe('Settings reducer', () => {
     const action = {
       settings: snapshotState,
       name: 'snapshot-1',
-      type: snapshotActions.ADD_HEATMAP_SNAPSHOT,
+      type: snapshotActions.ADD_SNAPSHOT,
     };
     const expectedState = {
       ...currentState,
@@ -62,7 +63,7 @@ describe('Settings reducer', () => {
     expect(reducer(undefined, action)).toEqual(expectedState);
   });
 
-  it('should handle REMOVE_HEATMAP_SNAPSHOT action', () => {
+  it('should handle REMOVE_SNAPSHOT action', () => {
     const currentState = {
       main: {
         current: { fillColor: 'blue' },
@@ -75,12 +76,52 @@ describe('Settings reducer', () => {
     };
     const action = {
       name: 'snapshot1',
-      type: snapshotActions.REMOVE_HEATMAP_SNAPSHOT,
+      type: snapshotActions.REMOVE_SNAPSHOT,
     };
     const expectedState = {
       main: {
         current: { fillColor: 'blue' },
         default: { fillColor: 'blue' },
+      },
+    };
+    expect(reducer(currentState, action)).toEqual(expectedState);
+  });
+
+  it('should handle RESET_HEATMAP action', () => {
+    const currentState = {
+      main: {
+        current: { fillColor: 'red' },
+        default: { fillColor: 'blue' },
+      },
+    };
+    const action = {
+      snapshotID: 'main',
+      type: displayActions.RESET_HEATMAP,
+    };
+    const expectedState = {
+      main: {
+        current: { fillColor: 'blue' },
+        default: { fillColor: 'blue' },
+      },
+    };
+    expect(reducer(currentState, action)).toEqual(expectedState);
+  });
+
+  it('should handle RESET_SCATTER action', () => {
+    const currentState = {
+      main: {
+        current: { logTransform: true },
+        default: { logTransform: false },
+      },
+    };
+    const action = {
+      snapshotID: 'main',
+      type: displayActions.RESET_SCATTER,
+    };
+    const expectedState = {
+      main: {
+        current: { logTransform: false },
+        default: { logTransform: false },
       },
     };
     expect(reducer(currentState, action)).toEqual(expectedState);

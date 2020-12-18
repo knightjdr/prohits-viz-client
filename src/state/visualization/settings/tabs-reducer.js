@@ -12,7 +12,7 @@ const reduceAndAddAnalysis = (state, action) => ({
   tabType: 'analysis',
 });
 
-const reduceAndAddHeatmapSnapshot = (state, action) => ({
+const reduceAndaddSnapshot = (state, action) => ({
   ...state,
   active: action.name,
   activeSnapshot: action.name,
@@ -41,7 +41,7 @@ const reduceAndRemoveAnalysis = (state, action) => ({
   tabType: action.name !== state.active ? state.tabType : 'snapshot',
 });
 
-const reduceAndRemoveHeatmapSnapshot = (state, action) => ({
+const reduceAndremoveSnapshot = (state, action) => ({
   ...state,
   active: action.name !== state.active ? state.active : state.availableSnapshots[0],
   activeSnapshot: action.name !== state.activeSnapshot ? state.activeSnapshot : state.availableSnapshots[0],
@@ -52,8 +52,8 @@ const reducer = (state = {}, action) => {
   switch (action.type) {
     case analysisActions.ADD_ANALYSIS:
       return reduceAndAddAnalysis(state, action);
-    case snapshotActions.ADD_HEATMAP_SNAPSHOT:
-      return reduceAndAddHeatmapSnapshot(state, action);
+    case snapshotActions.ADD_SNAPSHOT:
+      return reduceAndaddSnapshot(state, action);
     case actions.CHANGE_ACTIVE_ANALYSIS:
       return reduceAndChangeAnalysis(state, action);
     case actions.CHANGE_ACTIVE_SNAPSHOT:
@@ -64,8 +64,8 @@ const reducer = (state = {}, action) => {
       return reduceAndLoadState(action, 'tabs');
     case analysisActions.REMOVE_ANALYSIS:
       return reduceAndRemoveAnalysis(state, action);
-    case snapshotActions.REMOVE_HEATMAP_SNAPSHOT:
-      return reduceAndRemoveHeatmapSnapshot(state, action);
+    case snapshotActions.REMOVE_SNAPSHOT:
+      return reduceAndremoveSnapshot(state, action);
     default:
       return state;
   }

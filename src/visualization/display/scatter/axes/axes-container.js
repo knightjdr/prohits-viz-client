@@ -5,9 +5,9 @@ import { useDispatch, useSelector } from 'react-redux';
 import Axes from './axes';
 
 import handlers from '../transform/event-handlers';
-import { selectData } from '../../../../../state/selector/visualization/data-selector';
-import { selectStateProperty } from '../../../../../state/selector/general';
-import { updateDisplaySetting } from '../../../../../state/visualization/settings/display-actions';
+import { selectData } from '../../../../state/selector/visualization/data-selector';
+import { selectStateProperty } from '../../../../state/selector/general';
+import { updateDisplaySetting } from '../../../../state/visualization/settings/display-actions';
 
 const AxesContainer = ({
   ticks,

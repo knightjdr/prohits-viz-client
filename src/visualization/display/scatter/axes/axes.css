@@ -1,7 +1,9 @@
 .scatter__axes line {
   stroke: var(--fontDark);
-  stroke-width: 2px;
 }
 .scatter__axes text {
   fill: var(--fontDark);
+}
+.scatterplot__axis {
+  stroke-width: 2px;
 }

@@ -7,7 +7,7 @@ import TabMenu from './tab__menu';
 import { selectState } from '../../../../state/selector/general';
 import { changeActiveAnalysis, changeActiveSnapshot } from '../../../../state/visualization/settings/tabs-actions';
 import { removeAnalysis } from '../../../../state/visualization/analysis/analysis-actions';
-import { removeHeatmapSnapshot } from '../../../../state/visualization/data/snapshot-actions';
+import { removeSnapshot } from '../../../../state/visualization/data/snapshot-actions';
 
 const TabMenuContainer = () => {
   const dispatch = useDispatch();
@@ -50,7 +50,7 @@ const TabMenuContainer = () => {
 
   const handleDeleteSnapshot = (e) => {
     const { item } = e.currentTarget.dataset;
-    dispatch(removeHeatmapSnapshot(item));
+    dispatch(removeSnapshot(item));
   };
 
   return (

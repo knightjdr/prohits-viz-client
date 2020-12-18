@@ -1,6 +1,7 @@
 import fillAnalysis from '../analysis/analysis';
 import fillDimensions from './dimensions';
 import fillDisplay from './display';
+import fillLabels from './labels';
 import fillPanel from './panel';
 import fillParameters from './parameters';
 import fillSettings from './settings';
@@ -11,6 +12,7 @@ const validateScatter = (file, filename, taskID) => {
     analysis,
     dimensions,
     display,
+    labels,
     panel,
     parameters,
     plots,
@@ -22,6 +24,7 @@ const validateScatter = (file, filename, taskID) => {
     analysis: fillAnalysis(analysis),
     dimensions: fillDimensions(dimensions),
     display: fillDisplay(display),
+    labels: fillLabels(labels),
     panel: fillPanel(panel),
     parameters: fillParameters(parameters, filename, taskID),
     plots,

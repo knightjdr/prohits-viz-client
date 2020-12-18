@@ -1,4 +1,4 @@
-import round from '../../../../../utils/round';
+import round from '../../../../utils/round';
 
 export const getDelta = (e, start) => {
   const { pageX, pageY } = e;
