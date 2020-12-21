@@ -5,7 +5,7 @@ import { faBars } from '@fortawesome/pro-solid-svg-icons';
 import Analysis from './panels/analysis/analysis-container';
 import IconButton from '../../../components/buttons/icon/button';
 import Info from './panels/info/info-container';
-import Markup from './panels/markup/markup';
+import Markup from './panels/markup/markup-container';
 import Minimap from './panels/minimap/minimap-container';
 import Save from './panels/save/save';
 import Settings from './panels/settings/settings-container';
@@ -34,6 +34,7 @@ const panels = (imageType) => {
       <>
         <Info />
         <Settings />
+        <Markup />
       </>
     );
   }

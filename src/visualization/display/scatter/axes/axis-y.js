@@ -5,6 +5,7 @@ const X_START = 100;
 
 const Yaxis = ({
   axisLength,
+  fontSize,
   handleMouseDown,
   handleWheel,
   label,
@@ -13,7 +14,7 @@ const Yaxis = ({
   transform,
 }) => {
   const axisLabelY = (axisLength) / 2;
-  const tickFontSize = 12 / scale;
+  const tickFontSize = fontSize / scale;
   const tickLabelPosition = 13 / scale;
   const tickLength = 10 / scale;
   const tickStart = X_START / scale;
@@ -120,6 +121,7 @@ const Yaxis = ({
 
 Yaxis.propTypes = {
   axisLength: PropTypes.number.isRequired,
+  fontSize: PropTypes.number.isRequired,
   handleMouseDown: PropTypes.func.isRequired,
   handleWheel: PropTypes.func.isRequired,
   label: PropTypes.string.isRequired,

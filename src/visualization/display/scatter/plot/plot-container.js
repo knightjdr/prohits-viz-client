@@ -5,7 +5,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import Plot from './plot';
 
 import handlers from '../transform/event-handlers';
-import { selectData, selectDataProperty } from '../../../../state/selector/visualization/data-selector';
+import { selectDataProperty } from '../../../../state/selector/visualization/data-selector';
 import { updateDisplaySetting } from '../../../../state/visualization/settings/display-actions';
 import { updateLabel } from '../../../../state/visualization/scatter/label-actions';
 
@@ -15,8 +15,10 @@ const PlotContainer = ({
   const dispatch = useDispatch();
 
   const axisLength = useSelector((state) => selectDataProperty(state, 'dimensions', 'height'));
-  const labels = useSelector((state) => selectData(state, 'labels'));
+  const labels = useSelector((state) => selectDataProperty(state, 'labels', 'status'));
+  const searchLabels = useSelector((state) => selectDataProperty(state, 'searchStatus', 'labels'));
   const transform = useSelector((state) => selectDataProperty(state, 'display', 'transform'));
+  const { fontSize } = useSelector((state) => selectDataProperty(state, 'settings', 'current'));
 
   const setTransform = (value) => {
     dispatch(updateDisplaySetting('transform', value));
@@ -44,11 +46,13 @@ const PlotContainer = ({
   return (
     <Plot
       axisLength={axisLength}
+      fontSize={fontSize}
       handleClickLabel={handleClickLabel}
       handleMouseDown={handleMouseDown}
       handleWheel={handleWheel}
       labels={labels}
       points={points}
+      searchLabels={searchLabels}
       transform={transform}
     />
   );

@@ -1,10 +1,22 @@
 import fillSnapshots from '../snapshot';
 import isObject from '../../../utils/is-object';
-import { validateBoolean } from '../../../utils/validate-type';
+import { validateBoolean, validateNumber } from '../../../utils/validate-type';
 
 export const defaultState = {
-  logTransform: false,
+  equalScaleAxes: false,
+  fontSize: 12,
+  logBase: 'none',
 };
+
+const acceptedLogBase = {
+  none: true,
+  2: true,
+  10: true,
+};
+
+const validateLogBase = (base, defaultBase) => (
+  acceptedLogBase[base] ? base : defaultBase
+);
 
 export const validateSettings = (userSettings) => {
   if (!userSettings) {
@@ -12,13 +24,17 @@ export const validateSettings = (userSettings) => {
   }
 
   const {
-    logTransform,
+    equalScaleAxes,
+    fontSize,
+    logBase,
     ...other
   } = userSettings;
 
   const settings = {
     ...other,
-    logTransform: validateBoolean(logTransform, defaultState.logTransform),
+    equalScaleAxes: validateBoolean(equalScaleAxes, defaultState.equalScaleAxes),
+    fontSize: validateNumber(fontSize, defaultState.fontSize),
+    logBase: validateLogBase(logBase, defaultState.logBase),
   };
 
   return settings;

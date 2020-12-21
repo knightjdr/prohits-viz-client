@@ -1,6 +1,16 @@
 import * as actions from './display-actions';
 
 describe('Display actions', () => {
+  it('should dispatch an action to change plot', () => {
+    const expectedAction = {
+      AUGMENT_WITH_ACTIVE_SNAPSHOT: true,
+      setting: 'selectedPlot',
+      type: actions.CHANGE_PLOT,
+      value: 2,
+    };
+    expect(actions.changePlot(2)).toEqual(expectedAction);
+  });
+
   it('should dispatch an action to reset heatmap image', () => {
     const expectedAction = {
       AUGMENT_WITH_ACTIVE_SNAPSHOT: true,

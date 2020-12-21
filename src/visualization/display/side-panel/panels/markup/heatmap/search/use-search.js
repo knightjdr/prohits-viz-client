@@ -1,8 +1,8 @@
 import { useSelector } from 'react-redux';
 
-import { selectOrderedColumnNames } from '../../../../../../state/selector/visualization/column-selector';
-import selectRows from '../../../../../../state/selector/visualization/row-selector';
-import { selectData } from '../../../../../../state/selector/visualization/data-selector';
+import { selectOrderedColumnNames } from '../../../../../../../state/selector/visualization/column-selector';
+import selectRows from '../../../../../../../state/selector/visualization/row-selector';
+import { selectData } from '../../../../../../../state/selector/visualization/data-selector';
 
 const createRegex = (searchTerm) => (
   new RegExp(searchTerm, 'i')

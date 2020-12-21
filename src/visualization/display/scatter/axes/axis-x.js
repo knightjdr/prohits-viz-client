@@ -3,6 +3,7 @@ import React from 'react';
 
 const AxisX = ({
   axisLength,
+  fontSize,
   handleMouseDown,
   handleWheel,
   label,
@@ -10,7 +11,7 @@ const AxisX = ({
   ticks,
   transform,
 }) => {
-  const tickFontSize = 12 / scale;
+  const tickFontSize = fontSize / scale;
   const tickLabelPosition = 28 / scale;
   const tickLength = 10 / scale;
   const tickWidth = 2 / scale;
@@ -108,6 +109,7 @@ const AxisX = ({
 
 AxisX.propTypes = {
   axisLength: PropTypes.number.isRequired,
+  fontSize: PropTypes.number.isRequired,
   handleMouseDown: PropTypes.func.isRequired,
   handleWheel: PropTypes.func.isRequired,
   label: PropTypes.string.isRequired,

@@ -1,21 +1,24 @@
+import PropTypes from 'prop-types';
 import React from 'react';
 
-import Annotations from './annotations/annotation-container';
-import Edit from './edit/edit-container';
-import Markers from './markers/marker-container';
-import Search from './search/search-container';
-import Tooltips from './tooltips/tooltips-container';
+import Heatmap from './heatmap/markup__heatmap';
+import Scatter from './scatter/markup__scatter-container';
 
 import './markup.css';
 
-const Markup = () => (
-  <div className="panel panel__markup">
-    <Search />
-    <Tooltips />
-    <Edit />
-    <Annotations />
-    <Markers />
-  </div>
-);
+const Markup = ({
+  imageType,
+}) => {
+  if (imageType === 'dotplot' || imageType === 'heatmap') {
+    return <Heatmap />;
+  } if (imageType === 'scatter') {
+    return <Scatter />;
+  }
+  return null;
+};
+
+Markup.propTypes = {
+  imageType: PropTypes.string.isRequired,
+};
 
 export default Markup;

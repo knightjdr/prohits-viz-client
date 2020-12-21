@@ -4,8 +4,11 @@ describe('Fill labels', () => {
   it('should return user-defined labels when valid', () => {
     const userLabels = {
       main: {
-        labelA: true,
-        labelB: false,
+        showAll: true,
+        status: {
+          labelA: true,
+          labelB: false,
+        },
       },
     };
     const expected = {
@@ -19,7 +22,10 @@ describe('Fill labels', () => {
 
   it('should return defaults when user-defined labels options invalid', () => {
     const userLabels = {
-      main: 'labelA',
+      main: {
+        showAll: 'true',
+        status: 'labelA',
+      },
     };
     const expected = {
       main: defaultState,

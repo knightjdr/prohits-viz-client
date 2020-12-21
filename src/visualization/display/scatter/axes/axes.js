@@ -7,6 +7,7 @@ import AxisY from './axis-y';
 import './axes.css';
 
 const Axes = ({
+  fontSize,
   handleMouseDownX,
   handleMouseDownY,
   handleWheelX,
@@ -20,6 +21,7 @@ const Axes = ({
   <g className="scatter__axes">
     <AxisX
       axisLength={width}
+      fontSize={fontSize}
       handleMouseDown={handleMouseDownX}
       handleWheel={handleWheelX}
       label={labels.x}
@@ -29,6 +31,7 @@ const Axes = ({
     />
     <AxisY
       axisLength={height}
+      fontSize={fontSize}
       handleMouseDown={handleMouseDownY}
       handleWheel={handleWheelY}
       label={labels.y}
@@ -40,6 +43,7 @@ const Axes = ({
 );
 
 Axes.propTypes = {
+  fontSize: PropTypes.number.isRequired,
   handleMouseDownX: PropTypes.func.isRequired,
   handleMouseDownY: PropTypes.func.isRequired,
   handleWheelX: PropTypes.func.isRequired,

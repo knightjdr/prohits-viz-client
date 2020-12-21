@@ -1,4 +1,4 @@
-.settings__display-zoom {
+.settings__image-zoom {
   align-items: center;
   display: grid;
   grid-template-columns: 50% 50%;
@@ -7,15 +7,15 @@
   width: 100%;
 }
 
-.settings__display-zoom .label {
+.settings__image-zoom .label {
   padding-right: 8px;
   text-align: right;
 }
 
-.scatterplot__controls-zoom-buttons {
+.settings__image-zoom-buttons {
   display: inline-flex;
   justify-content: flex-start;
 }
-.scatterplot__controls-zoom-buttons > *:not(:last-child) {
+.settings__image-zoom-buttons > *:not(:last-child) {
   margin-right: 0.5rem;
 }

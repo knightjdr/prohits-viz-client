@@ -9,7 +9,7 @@ import { togglePanel } from '../../../state/visualization/settings/panel-actions
 const tabs = {
   dotplot: ['info', 'minimap', 'settings', 'markup', 'analysis', 'save'],
   heatmap: ['info', 'minimap', 'settings', 'markup', 'analysis', 'save'],
-  scatter: ['info', 'settings'],
+  scatter: ['info', 'settings', 'markup'],
 };
 
 const SidePanelContainer = () => {

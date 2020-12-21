@@ -5,7 +5,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import Axes from './axes';
 
 import handlers from '../transform/event-handlers';
-import { selectData } from '../../../../state/selector/visualization/data-selector';
+import { selectData, selectDataProperty } from '../../../../state/selector/visualization/data-selector';
 import { selectStateProperty } from '../../../../state/selector/general';
 import { updateDisplaySetting } from '../../../../state/visualization/settings/display-actions';
 
@@ -17,6 +17,7 @@ const AxesContainer = ({
   const dimensions = useSelector((state) => selectData(state, 'dimensions'));
   const { selectedPlot, transform } = useSelector((state) => selectData(state, 'display'));
   const plot = useSelector((state) => selectStateProperty(state, 'plots', selectedPlot));
+  const { fontSize } = useSelector((state) => selectDataProperty(state, 'settings', 'current'));
 
   const setTransform = (value) => {
     dispatch(updateDisplaySetting('transform', value));
@@ -62,6 +63,7 @@ const AxesContainer = ({
 
   return (
     <Axes
+      fontSize={fontSize}
       handleMouseDownX={handleMouseDownX}
       handleMouseDownY={handleMouseDownY}
       handleWheelX={handleWheelX}

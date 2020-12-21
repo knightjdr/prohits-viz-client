@@ -3,8 +3,8 @@ import { useDispatch, useSelector } from 'react-redux';
 
 import Marker from './marker';
 
-import { changeMarkerSetting, clearAllMarkers } from '../../../../../../state/visualization/markup/marker-actions';
-import { selectData } from '../../../../../../state/selector/visualization/data-selector';
+import { changeMarkerSetting, clearAllMarkers } from '../../../../../../../state/visualization/markup/marker-actions';
+import { selectData } from '../../../../../../../state/selector/visualization/data-selector';
 
 const MarkerContainer = () => {
   const dispatch = useDispatch();

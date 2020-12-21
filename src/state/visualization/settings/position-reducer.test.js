@@ -88,10 +88,10 @@ describe('Position reducer', () => {
     expect(reducer(currentState, action)).toEqual(expectedState);
   });
 
-  it('should handle SET_SEARCH_STATUS action', () => {
+  it('should handle SET_SEARCH_STATUS_HEATMAP action', () => {
     const action = {
       snapshotID: 'main',
-      type: searchActions.SET_SEARCH_STATUS,
+      type: searchActions.SET_SEARCH_STATUS_HEATMAP,
       x: 5,
       y: 10,
     };

@@ -35,6 +35,29 @@ describe('Display reducer', () => {
     expect(reducer(currentState, action)).toEqual(expectedState);
   });
 
+  it('should handle CHANGE_PLOT action', () => {
+    const currentState = {
+      main: {
+        selectedPlot: 0,
+      },
+    };
+
+    const action = {
+      snapshotID: 'main',
+      setting: 'selectedPlot',
+      type: actions.CHANGE_PLOT,
+      value: 1,
+    };
+    const expectedState = {
+      ...currentState,
+      main: {
+        ...currentState.main,
+        selectedPlot: 1,
+      },
+    };
+    expect(reducer(currentState, action)).toEqual(expectedState);
+  });
+
   it('should handle CLEAR_INTERACTIVE_STATE action', () => {
     const action = {
       type: fileActions.CLEAR_INTERACTIVE_STATE,

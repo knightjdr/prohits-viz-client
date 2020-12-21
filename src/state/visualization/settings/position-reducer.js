@@ -33,7 +33,7 @@ const reducer = (state = {}, action) => {
       return reduceAndLoadState(action, 'position');
     case snapshotActions.REMOVE_SNAPSHOT:
       return reduceAndRemoveSnapshot(state, action);
-    case searchActions.SET_SEARCH_STATUS:
+    case searchActions.SET_SEARCH_STATUS_HEATMAP:
       return reduceAndUpdate(state, action);
     case rowActions.SORT_ROWS:
       return reduceAndSort(state, action);

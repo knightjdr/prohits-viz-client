@@ -18,7 +18,7 @@ const ScatterContainer = () => {
 
   const panelOpen = useSelector((state) => selectStateProperty(state, 'panel', 'open'));
   const { plotFixed, selectedPlot, transform } = useSelector((state) => selectData(state, 'display'));
-  const { logTransform } = useSelector((state) => selectDataProperty(state, 'settings', 'current'));
+  const { logBase, equalScaleAxes } = useSelector((state) => selectDataProperty(state, 'settings', 'current'));
   const plot = useSelector((state) => selectStateProperty(state, 'plots', selectedPlot));
 
   const windowDimensions = useWindowDimension(50);
@@ -53,12 +53,13 @@ const ScatterContainer = () => {
     () => {
       const options = {
         axisLength: dimensions.plot,
-        logTransform,
+        logBase,
         scale: transform.scale,
+        equalScaleAxes,
       };
       return formatData(plot.points, options);
     },
-    [dimensions.height, logTransform, plot, transform.scale],
+    [dimensions.height, logBase, plot, equalScaleAxes, transform.scale],
   );
 
   useEffect(() => {

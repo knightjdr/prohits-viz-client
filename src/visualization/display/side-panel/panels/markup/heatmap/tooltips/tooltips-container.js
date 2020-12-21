@@ -3,8 +3,8 @@ import { useDispatch, useSelector } from 'react-redux';
 
 import Tooltips from './tooltips';
 
-import { selectDataProperty } from '../../../../../../state/selector/visualization/data-selector';
-import { updateDisplaySetting } from '../../../../../../state/visualization/settings/display-actions';
+import { selectDataProperty } from '../../../../../../../state/selector/visualization/data-selector';
+import { updateDisplaySetting } from '../../../../../../../state/visualization/settings/display-actions';
 
 const TooltipsContainer = () => {
   const dispatch = useDispatch();

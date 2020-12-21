@@ -9,7 +9,7 @@ describe('Search status actions', () => {
     expect(actions.clearSearchStatus()).toEqual(expectedAction);
   });
 
-  it('should dispatch an action to set search status', () => {
+  it('should dispatch an action to set search status for heatmaps', () => {
     const results = {
       columns: { a: true, aa: true },
       match: true,
@@ -20,10 +20,24 @@ describe('Search status actions', () => {
       AUGMENT_WITH_ACTIVE_SNAPSHOT: true,
       results,
       term: 'a',
-      type: actions.SET_SEARCH_STATUS,
+      type: actions.SET_SEARCH_STATUS_HEATMAP,
       x: results.position.x,
       y: results.position.y,
     };
-    expect(actions.setSearchStatus('a', results)).toEqual(expectedAction);
+    expect(actions.setSearchStatusHeatmap('a', results)).toEqual(expectedAction);
+  });
+
+  it('should dispatch an action to set search status for scatter plots', () => {
+    const results = {
+      labels: { a: true, ab: true },
+      match: true,
+    };
+    const expectedAction = {
+      AUGMENT_WITH_ACTIVE_SNAPSHOT: true,
+      results,
+      term: 'a',
+      type: actions.SET_SEARCH_STATUS_SCATTER,
+    };
+    expect(actions.setSearchStatusScatter('a', results)).toEqual(expectedAction);
   });
 });

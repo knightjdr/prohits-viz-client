@@ -3,11 +3,11 @@ import React from 'react';
 import { faTrash } from '@fortawesome/pro-duotone-svg-icons';
 import { faPlus } from '@fortawesome/pro-solid-svg-icons';
 
-import IconButton from '../../../../../../components/buttons/icon/button';
-import Input from '../../../../../../components/input/text/input-text-container';
-import InputWithButton from '../../../../../../components/input/with-button/input-with-button-container';
-import Section from '../../section/section';
-import Switch from '../../../../../../components/input/switch/switch-container';
+import IconButton from '../../../../../../../components/buttons/icon/button';
+import Input from '../../../../../../../components/input/text/input-text-container';
+import InputWithButton from '../../../../../../../components/input/with-button/input-with-button-container';
+import Section from '../../../section/section';
+import Switch from '../../../../../../../components/input/switch/switch-container';
 
 const Annotation = ({
   fontSize,

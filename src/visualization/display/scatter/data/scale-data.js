@@ -2,15 +2,16 @@ import { nanoid } from 'nanoid';
 import round from '../../../../utils/round';
 
 const scaleData = (points, ticks, options) => {
-  const { axisLength, logTransform } = options;
+  const { axisLength, logBase } = options;
 
   const getScaler = (vertex) => {
     const max = ticks[vertex][ticks[vertex].length - 1];
-    if (logTransform) {
+    if (logBase !== 'none') {
+      const logFunc = logBase === '2' ? Math.log10 : Math.log2;
       const min = ticks[vertex][0];
-      const k = axisLength / (Math.log10(max) - Math.log10(min));
-      const c = -1 * k * Math.log10(min);
-      return (point) => k * Math.log10(point) + c;
+      const k = axisLength / (logFunc(max) - logFunc(min));
+      const c = -1 * k * logFunc(min);
+      return (point) => k * logFunc(point) + c;
     }
     return (point) => (point / max) * axisLength;
   };

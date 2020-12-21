@@ -25,6 +25,8 @@ const reducer = (state = {}, action) => {
   switch (action.type) {
     case snapshotActions.ADD_SNAPSHOT:
       return reduceAndAddSnapshot(state, action, 'display');
+    case actions.CHANGE_PLOT:
+      return reduceSetting(state, action);
     case fileActions.CLEAR_INTERACTIVE_STATE:
       return reduceAndClearState();
     case fileActions.LOAD_INTERACTIVE_STATE:

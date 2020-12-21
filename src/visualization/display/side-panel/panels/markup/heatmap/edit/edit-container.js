@@ -2,8 +2,9 @@ import React from 'react';
 import { batch, useDispatch, useSelector } from 'react-redux';
 
 import Edit from './edit';
-import { selectData } from '../../../../../../state/selector/visualization/data-selector';
-import { updateDisplaySetting } from '../../../../../../state/visualization/settings/display-actions';
+
+import { selectData } from '../../../../../../../state/selector/visualization/data-selector';
+import { updateDisplaySetting } from '../../../../../../../state/visualization/settings/display-actions';
 
 const EditContainer = () => {
   const dispatch = useDispatch();

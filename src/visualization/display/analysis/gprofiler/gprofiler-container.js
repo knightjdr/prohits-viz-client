@@ -7,7 +7,7 @@ import columnDefinitions from './column-definitions';
 import convertToCsv from '../../../../utils/convert-to-csv';
 import download from '../../../../utils/download';
 import formatRows from './format/format-rows';
-import useAnnotation from '../../side-panel/panels/markup/annotations/use-annotation';
+import useAnnotation from '../../side-panel/panels/markup/heatmap/annotations/use-annotation';
 
 const GprofilerContainer = ({
   analysisID,

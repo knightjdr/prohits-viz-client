@@ -7,11 +7,13 @@ import './plot.css';
 
 const Plot = ({
   axisLength,
+  fontSize,
   handleClickLabel,
   handleMouseDown,
   handleWheel,
   labels,
   points,
+  searchLabels,
   transform,
 }) => (
   <g
@@ -43,8 +45,10 @@ const Plot = ({
       <g transform={transform.matrix.plot}>
         <Points
           axisLength={axisLength}
+          fontSize={fontSize}
           handleClickLabel={handleClickLabel}
           labels={labels}
+          searchLabels={searchLabels}
           points={points}
           scale={transform.scale}
         />
@@ -55,6 +59,7 @@ const Plot = ({
 
 Plot.propTypes = {
   axisLength: PropTypes.number.isRequired,
+  fontSize: PropTypes.number.isRequired,
   handleClickLabel: PropTypes.func.isRequired,
   handleMouseDown: PropTypes.func.isRequired,
   handleWheel: PropTypes.func.isRequired,
@@ -67,6 +72,7 @@ Plot.propTypes = {
       y: PropTypes.number,
     }),
   ).isRequired,
+  searchLabels: PropTypes.shape({}).isRequired,
   transform: PropTypes.shape({
     matrix: PropTypes.shape({
       plot: PropTypes.string,

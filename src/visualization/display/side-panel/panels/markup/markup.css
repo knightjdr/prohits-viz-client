@@ -18,6 +18,9 @@
 .panel-markup__grid .input__container > input {
   width: 60px;
 }
+.panel-markup__grid-label {
+  text-align: right;
+}
 
 .panel-markup__input {
   display: flex;
@@ -33,4 +36,9 @@
 
 .panel-markup__label {
   justify-self: right;
+}
+
+.panel-search__query {
+  overflow: hidden;
+  word-wrap: break-word;
 }

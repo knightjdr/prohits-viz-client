@@ -1,16 +1,21 @@
+import PropTypes from 'prop-types';
 import React from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 
-import Search from './search';
+import Search from '../../search/search';
 
-import useSearch from './use-search';
-import { selectData } from '../../../../../../state/selector/visualization/data-selector';
-import { clearSearchStatus, setSearchStatus } from '../../../../../../state/visualization/markup/search-actions';
+import searchLabels from './search-labels';
+import { selectData } from '../../../../../../../state/selector/visualization/data-selector';
+import {
+  clearSearchStatus,
+  setSearchStatusScatter,
+} from '../../../../../../../state/visualization/markup/search-actions';
 
-const SearchContainer = () => {
+const SearchContainer = ({
+  labels,
+}) => {
   const dispatch = useDispatch();
   const searchStatus = useSelector((state) => selectData(state, 'searchStatus'));
-  const search = useSearch();
 
   const { match, term } = searchStatus;
 
@@ -19,8 +24,8 @@ const SearchContainer = () => {
   };
 
   const handleSearch = (e, elementID, searchTerm) => {
-    const searchResult = search(searchTerm);
-    dispatch(setSearchStatus(searchTerm, searchResult));
+    const searchResult = searchLabels(labels, searchTerm);
+    dispatch(setSearchStatusScatter(searchTerm, searchResult));
   };
 
   const warning = term && !match ? 'No match found' : '';
@@ -33,6 +38,10 @@ const SearchContainer = () => {
       warning={warning}
     />
   );
+};
+
+SearchContainer.propTypes = {
+  labels: PropTypes.arrayOf(PropTypes.string).isRequired,
 };
 
 export default SearchContainer;

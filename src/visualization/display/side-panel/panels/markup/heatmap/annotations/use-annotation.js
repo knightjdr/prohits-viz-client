@@ -3,8 +3,8 @@ import { useMemo } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 
 import calculateNewPosition from './calculate-new-position';
-import { addAnnotation } from '../../../../../../state/visualization/markup/annotation-actions';
-import { selectData } from '../../../../../../state/selector/visualization/data-selector';
+import { addAnnotation } from '../../../../../../../state/visualization/markup/annotation-actions';
+import { selectData } from '../../../../../../../state/selector/visualization/data-selector';
 
 const useAnnotation = () => {
   const dispatch = useDispatch();

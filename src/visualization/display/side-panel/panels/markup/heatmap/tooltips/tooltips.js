@@ -1,8 +1,8 @@
 import PropTypes from 'prop-types';
 import React from 'react';
 
-import Section from '../../section/section';
-import Switch from '../../../../../../components/input/switch/switch-container';
+import Section from '../../../section/section';
+import Switch from '../../../../../../../components/input/switch/switch-container';
 
 const Tooltip = ({
   handleToggleTooltips,

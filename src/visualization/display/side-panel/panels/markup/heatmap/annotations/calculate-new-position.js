@@ -1,4 +1,4 @@
-import round from '../../../../../../utils/round';
+import round from '../../../../../../../utils/round';
 
 const calculateNewPosition = (dimensions, position) => {
   const x = round((position.x + (dimensions.pageX / 2)) / dimensions.columns, 2);

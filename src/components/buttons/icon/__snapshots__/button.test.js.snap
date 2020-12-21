@@ -83,6 +83,7 @@ exports[`Icon button style primary button should match snapshot 1`] = `
 .c1 {
   background-color: transparent;
   border: none;
+  color: #00f;
 }
 
 .c1::before {
@@ -212,6 +213,7 @@ exports[`Icon button style transparent (default) button should match snapshot 1`
 .c1 {
   background-color: transparent;
   border: none;
+  color: #00f;
 }
 
 .c1::before {

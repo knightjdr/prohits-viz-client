@@ -7,8 +7,6 @@ import IconButton from '../../../../../../components/buttons/icon/button';
 import InputWithButton from '../../../../../../components/input/with-button/input-with-button-container';
 import Section from '../../section/section';
 
-import './search.css';
-
 const Search = ({
   handleClear,
   handleSearch,

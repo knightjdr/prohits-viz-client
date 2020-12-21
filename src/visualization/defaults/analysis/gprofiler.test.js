@@ -20,7 +20,7 @@ describe('Fill gprofiler state', () => {
     expect(fillGprofiler(fileGprofiler)).toEqual(expected);
   });
 
-  it('should return defaults when file-defined annotations undefined', () => {
+  it('should return defaults when file-defined gprofiler variable undefined', () => {
     const expected = defaultState;
     expect(fillGprofiler()).toEqual(expected);
   });

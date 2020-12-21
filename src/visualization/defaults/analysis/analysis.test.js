@@ -12,13 +12,13 @@ describe('Fill analysis state', () => {
     expect(fillAnalysis(fileAnalysis)).toEqual(expected);
   });
 
-  it('should return defaults when file-defined gprofiler variable is not an object', () => {
+  it('should return defaults when file-defined analysis variable is not an object', () => {
     const fileAnalysis = [];
     const expected = {};
     expect(fillAnalysis(fileAnalysis)).toEqual(expected);
   });
 
-  it('should return defaults when file-defined annotations undefined', () => {
+  it('should return defaults when file-defined analysis variable undefined', () => {
     const expected = {};
     expect(fillAnalysis()).toEqual(expected);
   });

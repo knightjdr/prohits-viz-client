@@ -2,6 +2,7 @@ import React from 'react';
 import { useSelector } from 'react-redux';
 
 import Settings from './settings';
+
 import { selectStateProperty } from '../../../../../state/selector/general';
 
 const SettingsContainer = () => {

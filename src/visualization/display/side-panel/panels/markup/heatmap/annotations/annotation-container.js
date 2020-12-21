@@ -8,8 +8,8 @@ import {
   changeAnnotationSetting,
   clearAllAnnotations,
   toggleAnnotations,
-} from '../../../../../../state/visualization/markup/annotation-actions';
-import { selectData } from '../../../../../../state/selector/visualization/data-selector';
+} from '../../../../../../../state/visualization/markup/annotation-actions';
+import { selectData } from '../../../../../../../state/selector/visualization/data-selector';
 
 const AnnotationContainer = () => {
   const dispatch = useDispatch();

@@ -21,12 +21,14 @@ const calculateLinearTicks = (max, scale) => {
   return ticks;
 };
 
-const getMaxLogTick = (max) => (
-  10 ** Math.ceil(Math.log10(max))
+const getMaxLogTick = (logBase, max) => (
+  logBase === '2'
+    ? 2 ** Math.ceil(Math.log2(max))
+    : 10 ** Math.ceil(Math.log10(max))
 );
 
-const getMinLogTick = (min) => {
-  const logValue = Math.log10(min);
+const getMinLogTick = (logBase, min) => {
+  const logValue = logBase === '2' ? Math.log2(min) : Math.log10(min);
   if (logValue < 0.1) {
     return 0.01;
   } if (logValue < 1) {
@@ -35,14 +37,14 @@ const getMinLogTick = (min) => {
   return 1;
 };
 
-const calculateLogTicks = (max, min, scale) => {
+const calculateLogTicks = (logBase, max, min, scale) => {
   const scaleFactor = getScaleFactor(scale, 1);
   const ticks = [];
-  const base = getMinLogTick(min);
-  const lastTick = getMaxLogTick(max);
-  for (let i = base; i < lastTick; i *= 10) {
+  const base = getMinLogTick(logBase, min);
+  const lastTick = getMaxLogTick(logBase, max);
+  for (let i = base; i < lastTick; i *= logBase) {
     ticks.push(i);
-    const minorTick = (i * 10) / scaleFactor;
+    const minorTick = (i * logBase) / scaleFactor;
     for (let j = 1; j < scaleFactor; j += 1) {
       const tick = j * minorTick;
       ticks.push(tick);
@@ -55,10 +57,10 @@ const calculateLogTicks = (max, min, scale) => {
 };
 
 const defineTicks = (data, options) => {
-  const { logTransform, scale, vertex } = options;
+  const { logBase, scale, vertex } = options;
   const max = data.reduce((maxValue, datum) => (datum[vertex] > maxValue ? datum[vertex] : maxValue), 0);
   const min = data.reduce((minValue, datum) => (datum[vertex] < minValue ? datum[vertex] : minValue), 1000);
-  return logTransform ? calculateLogTicks(max, min, scale) : calculateLinearTicks(max, scale);
+  return logBase !== 'none' ? calculateLogTicks(logBase, max, min, scale) : calculateLinearTicks(max, scale);
 };
 
 export default defineTicks;

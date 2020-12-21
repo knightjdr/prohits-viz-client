@@ -3,7 +3,9 @@ import fillSettings, { defaultState, validateSettings } from './settings';
 describe('Validate settings', () => {
   it('should return user-defined settings when valid', () => {
     const userSettings = {
-      logTransform: true,
+      equalScaleAxes: true,
+      fontSize: 14,
+      logBase: '2',
       otherfield: 1,
     };
     const expected = userSettings;
@@ -12,7 +14,9 @@ describe('Validate settings', () => {
 
   it('should return defaults when user-defined settings invalid', () => {
     const userSettings = {
-      logTransform: 'true',
+      equalScaleAxes: 'true',
+      fontSize: '14',
+      logBase: '3',
     };
     const expected = defaultState;
     expect(validateSettings(userSettings)).toEqual(expected);
@@ -22,7 +26,9 @@ describe('Validate settings', () => {
 describe('Fill settings', () => {
   it('should return user-defined settings when valid', () => {
     const settings = {
-      logTransform: true,
+      equalScaleAxes: true,
+      fontSize: 14,
+      logBase: '2',
       otherfield: 1,
     };
     const userSettings = {
