@@ -1,6 +1,6 @@
 import PropTypes from 'prop-types';
 import React from 'react';
-import { faTrash } from '@fortawesome/pro-solid-svg-icons';
+import { faTrash } from '@fortawesome/pro-duotone-svg-icons';
 
 import IconButton from '../../../../../../../components/buttons/icon/button';
 import Section from '../../../section/section';

@@ -18,8 +18,14 @@ const ScatterContainer = () => {
 
   const panelOpen = useSelector((state) => selectStateProperty(state, 'panel', 'open'));
   const { plotFixed, selectedPlot, transform } = useSelector((state) => selectData(state, 'display'));
-  const { logBase, equalScaleAxes } = useSelector((state) => selectDataProperty(state, 'settings', 'current'));
   const plot = useSelector((state) => selectStateProperty(state, 'plots', selectedPlot));
+  const settings = useSelector((state) => selectDataProperty(state, 'settings', 'current'));
+  const {
+    equalScaleAxes,
+    logBase,
+    xFilter,
+    yFilter,
+  } = settings;
 
   const windowDimensions = useWindowDimension(50);
   useShortCuts();
@@ -49,6 +55,11 @@ const ScatterContainer = () => {
     ],
   );
 
+  const filtered = useMemo(
+    () => plot.points.filter((point) => point.x >= xFilter && point.y >= yFilter),
+    [plot.points, xFilter, yFilter],
+  );
+
   const data = useMemo(
     () => {
       const options = {
@@ -57,9 +68,9 @@ const ScatterContainer = () => {
         scale: transform.scale,
         equalScaleAxes,
       };
-      return formatData(plot.points, options);
+      return formatData(filtered, options);
     },
-    [dimensions.height, logBase, plot, equalScaleAxes, transform.scale],
+    [dimensions.height, logBase, filtered, equalScaleAxes, transform.scale],
   );
 
   useEffect(() => {

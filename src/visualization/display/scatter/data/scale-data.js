@@ -11,9 +11,9 @@ const scaleData = (points, ticks, options) => {
       const min = ticks[vertex][0];
       const k = axisLength / (logFunc(max) - logFunc(min));
       const c = -1 * k * logFunc(min);
-      return (point) => k * logFunc(point) + c;
+      return (point) => round(k * logFunc(point) + c, 2);
     }
-    return (point) => (point / max) * axisLength;
+    return (point) => round((point / max) * axisLength, 2);
   };
 
   const scaleXValue = getScaler('x');

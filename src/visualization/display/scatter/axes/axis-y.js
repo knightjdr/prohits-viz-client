@@ -27,10 +27,10 @@ const Yaxis = ({
       <defs>
         <clipPath id="plot_yaxis_text_clip">
           <rect
-            height={axisLength + 10}
+            height={axisLength + 50}
             width={100}
             x={0}
-            y={-5}
+            y={-25}
           />
         </clipPath>
         <clipPath id="plot_yaxis_tick_clip">

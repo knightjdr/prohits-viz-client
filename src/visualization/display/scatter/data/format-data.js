@@ -24,15 +24,7 @@ const formatData = (data, options) => {
   }
 
   const scaleOptions = { axisLength, logBase };
-  const scaledData = scaleData(data, ticks, scaleOptions);
-
-  return {
-    points: scaledData.points,
-    ticks: {
-      x: scaledData.ticks.x,
-      y: scaledData.ticks.y,
-    },
-  };
+  return scaleData(data, ticks, scaleOptions);
 };
 
 export default formatData;

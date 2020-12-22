@@ -1,5 +1,5 @@
 import {
-  getMatrices,
+  defineMatrices,
   getPanOrigin,
   getScale,
   getWheelOrigin,
@@ -21,7 +21,7 @@ const handleMouseMove = (options) => (e) => {
 
     setTransform({
       ...transform,
-      matrix: getMatrices(transform.scale, newOrigin.x, newOrigin.y),
+      matrix: defineMatrices(transform.scale, newOrigin.x, newOrigin.y),
     });
   }
 };
@@ -37,7 +37,7 @@ const handleMouseUp = (options) => (e) => {
     setTransform({
       ...transform,
       origin: newOrigin,
-      matrix: getMatrices(transform.scale, newOrigin.x, newOrigin.y),
+      matrix: defineMatrices(transform.scale, newOrigin.x, newOrigin.y),
     });
 
     window.removeEventListener('mousemove', mouse.handlers.move);
@@ -77,7 +77,7 @@ export const handleWheel = (e, options) => {
   setTransform({
     origin: newOrigin,
     scale: scale.scale,
-    matrix: getMatrices(scale.scale, newOrigin.x, newOrigin.y),
+    matrix: defineMatrices(scale.scale, newOrigin.x, newOrigin.y),
   });
 };
 

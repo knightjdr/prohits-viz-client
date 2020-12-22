@@ -25,8 +25,8 @@ const AxisX = ({
         <clipPath id="plot_xaxis_text_clip">
           <rect
             height={100}
-            width={axisLength + 26}
-            x={-13}
+            width={axisLength + 50}
+            x={-25}
             y={0}
           />
         </clipPath>

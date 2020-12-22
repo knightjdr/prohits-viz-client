@@ -6,6 +6,8 @@ describe('Validate settings', () => {
       equalScaleAxes: true,
       fontSize: 14,
       logBase: '2',
+      xFilter: 1,
+      yFilter: 1,
       otherfield: 1,
     };
     const expected = userSettings;
@@ -17,6 +19,8 @@ describe('Validate settings', () => {
       equalScaleAxes: 'true',
       fontSize: '14',
       logBase: '3',
+      xFilter: '1',
+      yFilter: '1',
     };
     const expected = defaultState;
     expect(validateSettings(userSettings)).toEqual(expected);
@@ -29,6 +33,8 @@ describe('Fill settings', () => {
       equalScaleAxes: true,
       fontSize: 14,
       logBase: '2',
+      xFilter: 1,
+      yFilter: 1,
       otherfield: 1,
     };
     const userSettings = {

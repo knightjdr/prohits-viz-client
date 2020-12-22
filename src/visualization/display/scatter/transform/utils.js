@@ -8,14 +8,14 @@ export const getDelta = (e, start) => {
   };
 };
 
-export const getMatrix = (scale, x, y) => (
+export const defineMatrix = (scale, x, y) => (
   `matrix(${scale}, 0, 0, ${scale}, ${x}, ${y})`
 );
 
-export const getMatrices = (scale, x, y) => ({
-  plot: getMatrix(scale, x, y),
-  xAxis: getMatrix(scale, x, 0),
-  yAxis: getMatrix(scale, 0, y),
+export const defineMatrices = (scale, x, y) => ({
+  plot: defineMatrix(scale, x, y),
+  xAxis: defineMatrix(scale, x, 0),
+  yAxis: defineMatrix(scale, 0, y),
 });
 
 export const getMouseStart = (e, start, vertex) => {
@@ -48,7 +48,7 @@ export const getScale = (e, scale) => {
   const zoom = Math.exp(-Math.sign(deltaY) * 0.05);
   return {
     scale: round(scale * zoom, 5),
-    zoom,
+    zoom: round(zoom, 5),
   };
 };
 

@@ -6,6 +6,8 @@ export const defaultState = {
   equalScaleAxes: false,
   fontSize: 12,
   logBase: 'none',
+  xFilter: 0,
+  yFilter: 0,
 };
 
 const acceptedLogBase = {
@@ -27,6 +29,8 @@ export const validateSettings = (userSettings) => {
     equalScaleAxes,
     fontSize,
     logBase,
+    xFilter,
+    yFilter,
     ...other
   } = userSettings;
 
@@ -35,6 +39,8 @@ export const validateSettings = (userSettings) => {
     equalScaleAxes: validateBoolean(equalScaleAxes, defaultState.equalScaleAxes),
     fontSize: validateNumber(fontSize, defaultState.fontSize),
     logBase: validateLogBase(logBase, defaultState.logBase),
+    xFilter: validateNumber(xFilter, defaultState.xFilter),
+    yFilter: validateNumber(yFilter, defaultState.yFilter),
   };
 
   return settings;

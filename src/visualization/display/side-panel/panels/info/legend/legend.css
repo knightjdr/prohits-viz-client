@@ -10,3 +10,21 @@
 .panel__info-legend text {
   fill: var(--fontDark);
 }
+
+.panel__info-legend-download {
+  align-items: center;
+  display: flex;
+  justify-content: center;
+  margin-bottom: 1rem;
+  margin-top: 0.8rem;
+}
+.panel__info-legend-download > div::after {
+  content: ':';
+  margin-right: 10px;
+}
+.panel__info-legend-download-button {
+  border-radius: 4px;
+  font-size: 18px;
+  height: 32px;
+  width: 32px;
+}

@@ -29,7 +29,7 @@ const Scatter = forwardRef((
       width={wrapperWidth}
       xmlns="http://www.w3.org/2000/svg"
     >
-      <g transform="translate(0 20)">
+      <g transform="translate(0 50)">
         <Plot points={points} />
         <Axes ticks={ticks} />
       </g>
