@@ -48,25 +48,32 @@ export const validateSettings = (userSettings) => {
 
 export const fillSnapshotSettings = (inputSettings) => {
   const settings = {};
-  settings.current = validateSettings(inputSettings.current);
-  settings.default = inputSettings.default
-    ? validateSettings(inputSettings.default)
-    : settings.current;
+  settings.default = validateSettings(inputSettings.default);
+  settings.current = inputSettings.current
+    ? validateSettings(inputSettings.current)
+    : settings.default;
 
   return settings;
 };
 
 const fillSettings = (fileSettings) => {
-  if (!fileSettings || !isObject(fileSettings) || Object.keys(fileSettings).length === 0) {
+  let settings = fileSettings;
+  if (!settings || !isObject(settings) || Object.keys(settings).length === 0) {
     return {
       main: {
         current: { ...defaultState },
         default: { ...defaultState },
       },
     };
+  } if (isObject(settings) && Object.keys(settings).length > 0 && !settings.main) {
+    settings = {
+      main: {
+        default: settings,
+      },
+    };
   }
 
-  return fillSnapshots(fileSettings, fillSnapshotSettings);
+  return fillSnapshots(settings, fillSnapshotSettings);
 };
 
 export default fillSettings;

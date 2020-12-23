@@ -71,6 +71,64 @@ describe('Fill settings', () => {
     expect(fillSettings(userSettings)).toEqual(expected);
   });
 
+  it('should return set current settings to defaults when current key is missing', () => {
+    const settings = {
+      abundanceCap: 40,
+      cellSize: 10,
+      edgeColor: 'yellow',
+      fillColor: 'yellow',
+      filterBy: ['a'],
+      imageType: 'dotplot',
+      invertColor: true,
+      minAbundance: 1,
+      primaryFilter: 0.02,
+      removeFailingColumns: true,
+      removeFailingRows: false,
+      resetRatios: true,
+      secondaryFilter: 0.06,
+      otherfield: 1,
+    };
+    const userSettings = {
+      main: {
+        default: settings,
+      },
+    };
+    const expected = {
+      main: {
+        current: settings,
+        default: settings,
+      },
+    };
+    expect(fillSettings(userSettings)).toEqual(expected);
+  });
+
+  it('should fill settings when main snapshot is missing', () => {
+    const settings = {
+      abundanceCap: 40,
+      cellSize: 10,
+      edgeColor: 'yellow',
+      fillColor: 'yellow',
+      filterBy: ['a'],
+      imageType: 'dotplot',
+      invertColor: true,
+      minAbundance: 1,
+      primaryFilter: 0.02,
+      removeFailingColumns: true,
+      removeFailingRows: false,
+      resetRatios: true,
+      secondaryFilter: 0.06,
+      otherfield: 1,
+    };
+    const userSettings = settings;
+    const expected = {
+      main: {
+        current: settings,
+        default: settings,
+      },
+    };
+    expect(fillSettings(userSettings)).toEqual(expected);
+  });
+
   it('should return defaults when no selections are defined', () => {
     const userSettings = {};
     const expected = {
@@ -96,10 +154,9 @@ describe('Fill settings', () => {
   it('should return current imageType as default when default not defined', () => {
     const userSettings = {
       main: {
-        current: {
+        default: {
           imageType: 'dotplot',
         },
-        default: {},
       },
     };
     const actual = fillSettings(userSettings);

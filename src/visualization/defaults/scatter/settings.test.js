@@ -47,6 +47,48 @@ describe('Fill settings', () => {
     expect(fillSettings(userSettings)).toEqual(expected);
   });
 
+  it('should return set current settings to defaults when current key is missing', () => {
+    const settings = {
+      equalScaleAxes: true,
+      fontSize: 14,
+      logBase: '2',
+      xFilter: 1,
+      yFilter: 1,
+      otherfield: 1,
+    };
+    const userSettings = {
+      main: {
+        default: settings,
+      },
+    };
+    const expected = {
+      main: {
+        current: settings,
+        default: settings,
+      },
+    };
+    expect(fillSettings(userSettings)).toEqual(expected);
+  });
+
+  it('should fill settings when main snapshot is missing', () => {
+    const settings = {
+      equalScaleAxes: true,
+      fontSize: 14,
+      logBase: '2',
+      xFilter: 1,
+      yFilter: 1,
+      otherfield: 1,
+    };
+    const userSettings = settings;
+    const expected = {
+      main: {
+        current: settings,
+        default: settings,
+      },
+    };
+    expect(fillSettings(userSettings)).toEqual(expected);
+  });
+
   it('should return defaults when no selections are defined', () => {
     const userSettings = {};
     const expected = {

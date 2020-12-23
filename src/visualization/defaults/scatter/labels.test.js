@@ -20,6 +20,23 @@ describe('Fill labels', () => {
     expect(fillLabels(userLabels)).toEqual(expected);
   });
 
+  it('should return user-defined labels when valid', () => {
+    const userLabels = {
+      labelA: true,
+      labelB: false,
+    };
+    const expected = {
+      main: {
+        showAll: false,
+        status: {
+          labelA: true,
+          labelB: false,
+        },
+      },
+    };
+    expect(fillLabels(userLabels)).toEqual(expected);
+  });
+
   it('should return defaults when user-defined labels options invalid', () => {
     const userLabels = {
       main: {

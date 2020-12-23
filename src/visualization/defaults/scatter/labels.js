@@ -20,13 +20,20 @@ export const fillSnapshotLabels = (inputDisplay) => {
 };
 
 const fillLabels = (fileLabels) => {
-  if (!fileLabels || !isObject(fileLabels) || Object.keys(fileLabels).length === 0) {
+  let labels = fileLabels;
+  if (!labels || !isObject(labels) || Object.keys(labels).length === 0) {
     return {
       main: { ...defaultState },
     };
+  } if (isObject(labels) && Object.keys(labels).length > 0 && !labels.main) {
+    labels = {
+      main: {
+        status: { ...labels },
+      },
+    };
   }
 
-  return fillSnapshots(fileLabels, fillSnapshotLabels);
+  return fillSnapshots(labels, fillSnapshotLabels);
 };
 
 export default fillLabels;
