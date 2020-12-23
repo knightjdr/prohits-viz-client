@@ -4,7 +4,7 @@ import { selectOrderedColumnNames } from '../../../../../../../state/selector/vi
 import selectRows from '../../../../../../../state/selector/visualization/row-selector';
 import { selectData } from '../../../../../../../state/selector/visualization/data-selector';
 
-const createRegex = (searchTerm) => (
+export const createRegex = (searchTerm) => (
   new RegExp(searchTerm, 'i')
 );
 
@@ -12,12 +12,12 @@ const findFirstMatch = (matches) => (
   Object.keys(matches).length > 0 ? Math.min(...Object.values(matches)) : -1
 );
 
-const findFirstMatches = (matches) => ({
+export const findFirstMatches = (matches) => ({
   column: findFirstMatch(matches.columns),
   row: findFirstMatch(matches.rows),
 });
 
-const findNewPosition = (firstMatches, position, dimensions) => {
+export const findNewPosition = (firstMatches, position, dimensions) => {
   const { column: firstColumn, row: firstRow } = firstMatches;
 
   let newX;
@@ -42,7 +42,7 @@ const findNewPosition = (firstMatches, position, dimensions) => {
   };
 };
 
-const hasMatch = (firstMatches) => (
+export const hasMatch = (firstMatches) => (
   firstMatches.column >= 0 || firstMatches.row >= 0
 );
 

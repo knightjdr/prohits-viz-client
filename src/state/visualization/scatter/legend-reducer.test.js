@@ -12,7 +12,7 @@ describe('Legend reducer', () => {
     const action = {
       type: fileActions.CLEAR_INTERACTIVE_STATE,
     };
-    const expectedState = {};
+    const expectedState = [];
     expect(reducer(undefined, action)).toEqual(expectedState);
   });
 
