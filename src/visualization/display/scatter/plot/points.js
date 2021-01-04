@@ -34,8 +34,29 @@ const drawLabel = (labels, searchLabels, point, options) => {
   return null;
 };
 
+const getCustomization = (point, scale) => {
+  let color = null;
+  let radius = 4;
+  let textGap = 8;
+  if (point) {
+    if (point.color) {
+      ({ color } = point);
+    }
+    if (point.radius) {
+      ({ radius } = point);
+      textGap = radius + 4;
+    }
+  }
+  return {
+    color,
+    radius: radius / scale,
+    textGap: textGap / scale,
+  };
+};
+
 const Points = ({
   axisLength,
+  customization,
   fontSize,
   handleClickLabel,
   labels,
@@ -43,14 +64,13 @@ const Points = ({
   points,
   scale,
 }) => {
-  const radius = 4 / scale;
   const textProperties = {
     scaledFontSize: fontSize / scale,
-    textGap: 8 / scale,
   };
   return (
     points.map((point) => {
       const y = axisLength - point.y;
+      const { color, radius, textGap } = getCustomization(customization[point.label], scale);
       return (
         <Fragment key={point.label}>
           <circle
@@ -60,7 +80,7 @@ const Points = ({
             onClick={handleClickLabel}
             r={radius}
             style={{
-              fill: point.color,
+              fill: color,
             }}
           >
             <title>{point.label}</title>
@@ -72,6 +92,7 @@ const Points = ({
               point,
               {
                 ...textProperties,
+                textGap,
                 x: point.x,
                 y,
               },
@@ -85,6 +106,7 @@ const Points = ({
 
 Points.propTypes = {
   axisLength: PropTypes.number.isRequired,
+  customization: PropTypes.shape({}).isRequired,
   fontSize: PropTypes.number.isRequired,
   handleClickLabel: PropTypes.func.isRequired,
   labels: PropTypes.shape({}).isRequired,

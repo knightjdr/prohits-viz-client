@@ -5,7 +5,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import Plot from './plot';
 
 import handlers from '../transform/event-handlers';
-import { selectDataProperty } from '../../../../state/selector/visualization/data-selector';
+import { selectData, selectDataProperty } from '../../../../state/selector/visualization/data-selector';
 import { updateDisplaySetting } from '../../../../state/visualization/settings/display-actions';
 import { updateLabel } from '../../../../state/visualization/scatter/label-actions';
 
@@ -15,6 +15,7 @@ const PlotContainer = ({
   const dispatch = useDispatch();
 
   const axisLength = useSelector((state) => selectDataProperty(state, 'dimensions', 'height'));
+  const customization = useSelector((state) => selectData(state, 'customization'));
   const labels = useSelector((state) => selectDataProperty(state, 'labels', 'status'));
   const searchLabels = useSelector((state) => selectDataProperty(state, 'searchStatus', 'labels'));
   const transform = useSelector((state) => selectDataProperty(state, 'display', 'transform'));
@@ -46,6 +47,7 @@ const PlotContainer = ({
   return (
     <Plot
       axisLength={axisLength}
+      customization={customization}
       fontSize={fontSize}
       handleClickLabel={handleClickLabel}
       handleMouseDown={handleMouseDown}

@@ -7,6 +7,7 @@ import './plot.css';
 
 const Plot = ({
   axisLength,
+  customization,
   fontSize,
   handleClickLabel,
   handleMouseDown,
@@ -45,6 +46,7 @@ const Plot = ({
       <g transform={transform.matrix.plot}>
         <Points
           axisLength={axisLength}
+          customization={customization}
           fontSize={fontSize}
           handleClickLabel={handleClickLabel}
           labels={labels}
@@ -59,6 +61,7 @@ const Plot = ({
 
 Plot.propTypes = {
   axisLength: PropTypes.number.isRequired,
+  customization: PropTypes.shape({}).isRequired,
   fontSize: PropTypes.number.isRequired,
   handleClickLabel: PropTypes.func.isRequired,
   handleMouseDown: PropTypes.func.isRequired,

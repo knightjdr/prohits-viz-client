@@ -5,13 +5,15 @@ import {
   faCog,
   faGlobeAmericas,
   faInfoCircle,
+  faObjectUngroup,
   faPenSquare,
   faSave,
-  faObjectUngroup,
+  faUserEdit,
 } from '@fortawesome/pro-light-svg-icons';
 
 const icons = {
   analysis: faObjectUngroup,
+  customization: faUserEdit,
   info: faInfoCircle,
   markup: faPenSquare,
   minimap: faGlobeAmericas,

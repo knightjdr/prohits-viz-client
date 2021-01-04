@@ -1,4 +1,5 @@
 import fillAnalysis from '../analysis/analysis';
+import fillCustomization from './customization';
 import fillDimensions from './dimensions';
 import fillDisplay from './display';
 import fillLabels from './labels';
@@ -12,6 +13,7 @@ import fillTabs from '../tabs';
 const validateScatter = (file, filename, taskID) => {
   const {
     analysis,
+    customization,
     dimensions,
     display,
     labels,
@@ -26,6 +28,7 @@ const validateScatter = (file, filename, taskID) => {
 
   return {
     analysis: fillAnalysis(analysis),
+    customization: fillCustomization(customization),
     dimensions: fillDimensions(dimensions),
     display: fillDisplay(display),
     labels: fillLabels(labels),

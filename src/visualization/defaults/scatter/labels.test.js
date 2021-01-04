@@ -20,7 +20,7 @@ describe('Fill labels', () => {
     expect(fillLabels(userLabels)).toEqual(expected);
   });
 
-  it('should return user-defined labels when valid', () => {
+  it('should return user-defined labels when valid  but without snapshot identifiers', () => {
     const userLabels = {
       labelA: true,
       labelB: false,

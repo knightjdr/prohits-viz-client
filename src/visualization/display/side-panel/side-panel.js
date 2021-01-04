@@ -3,6 +3,7 @@ import React, { forwardRef } from 'react';
 import { faBars } from '@fortawesome/pro-solid-svg-icons';
 
 import Analysis from './panels/analysis/analysis-container';
+import Customization from './panels/customization/customization-container';
 import IconButton from '../../../components/buttons/icon/button';
 import Info from './panels/info/info-container';
 import Markup from './panels/markup/markup-container';
@@ -35,6 +36,7 @@ const panels = (imageType) => {
         <Info />
         <Settings />
         <Markup />
+        <Customization />
       </>
     );
   }

@@ -6,6 +6,7 @@ import article from './news/article-reducer';
 import columnDB from './visualization/data/column-db-reducer';
 import columns from './visualization/heatmap/columns-reducer';
 import cookies from './cookies/cookie-reducer';
+import customization from './visualization/scatter/customization-reducer';
 import dimensions from './visualization/settings/dimension-reducer';
 import display from './visualization/settings/display-reducer';
 import exporter from './visualization/export/export-reducer';
@@ -37,6 +38,7 @@ const reducers = combineReducers({
   columnDB,
   columns,
   cookies,
+  customization,
   dimensions,
   display,
   exporter,

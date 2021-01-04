@@ -7,11 +7,11 @@ export const defaultState = {
   status: {},
 };
 
-export const fillSnapshotLabels = (inputDisplay) => {
+export const fillSnapshotLabels = (inputLabels) => {
   const {
     showAll,
     status,
-  } = inputDisplay;
+  } = inputLabels;
 
   return {
     showAll: validateBoolean(showAll, defaultState.showAll),
