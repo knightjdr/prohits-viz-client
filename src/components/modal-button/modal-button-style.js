@@ -1,6 +1,9 @@
 import styled from 'styled-components';
 
 export const ModalButtonWrapper = styled.span`
+  display: inline-block;
+  line-height: 0;
+
   .modal-button__button:focus {
     outline: none;
   }

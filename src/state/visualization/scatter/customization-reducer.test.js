@@ -1,4 +1,5 @@
 import reducer from './customization-reducer';
+import * as actions from './customization-actions';
 import * as displayActions from '../settings/display-actions';
 import * as fileActions from '../data/interactive-file-actions';
 import * as snapshotActions from '../data/snapshot-actions';
@@ -63,7 +64,44 @@ describe('Customization reducer', () => {
     expect(reducer(undefined, action)).toEqual(expectedState);
   });
 
-  it('should handle LOAD_INTERACTIVE_STATE action when panel state is not defined', () => {
+  it('should handle DELETE_ALL_POINTS action', () => {
+    const currentState = {
+      main: {
+        labelA: { color: '#ff0000', radius: 10 },
+        labelB: { color: '#000000', radius: 5 },
+      },
+    };
+    const action = {
+      snapshotID: 'main',
+      type: actions.DELETE_ALL_POINTS,
+    };
+    const expectedState = {
+      main: {},
+    };
+    expect(reducer(currentState, action)).toEqual(expectedState);
+  });
+
+  it('should handle DELETE_POINT action', () => {
+    const currentState = {
+      main: {
+        labelA: { color: '#ff0000', radius: 10 },
+        labelB: { color: '#000000', radius: 5 },
+      },
+    };
+    const action = {
+      label: 'labelA',
+      snapshotID: 'main',
+      type: actions.DELETE_POINT,
+    };
+    const expectedState = {
+      main: {
+        labelB: { color: '#000000', radius: 5 },
+      },
+    };
+    expect(reducer(currentState, action)).toEqual(expectedState);
+  });
+
+  it('should handle LOAD_INTERACTIVE_STATE action when label state is not defined', () => {
     const action = {
       file: {
         customization: {
@@ -83,16 +121,12 @@ describe('Customization reducer', () => {
   it('should handle REMOVE_SNAPSHOT action', () => {
     const currentState = {
       main: {
-        labels: {
-          labelA: { color: '#ff0000', radius: 10 },
-          labelB: { color: '#000000', radius: 5 },
-        },
+        labelA: { color: '#ff0000', radius: 10 },
+        labelB: { color: '#000000', radius: 5 },
       },
       snapshot1: {
-        labels: {
-          labelA: { color: '#ff0000', radius: 10 },
-          labelB: { color: '#000000', radius: 5 },
-        },
+        labelA: { color: '#ff0000', radius: 10 },
+        labelB: { color: '#000000', radius: 5 },
       },
     };
     const action = {
@@ -101,10 +135,30 @@ describe('Customization reducer', () => {
     };
     const expectedState = {
       main: {
-        labels: {
-          labelA: { color: '#ff0000', radius: 10 },
-          labelB: { color: '#000000', radius: 5 },
-        },
+        labelA: { color: '#ff0000', radius: 10 },
+        labelB: { color: '#000000', radius: 5 },
+      },
+    };
+    expect(reducer(currentState, action)).toEqual(expectedState);
+  });
+
+  it('should handle UPDATE_POINT action', () => {
+    const currentState = {
+      main: {
+        labelA: { color: '#ff0000', radius: 10 },
+        labelB: { color: '#000000', radius: 5 },
+      },
+    };
+    const action = {
+      label: 'labelA',
+      parameters: { color: '#00ff00', radius: 7 },
+      snapshotID: 'main',
+      type: actions.UPDATE_POINT,
+    };
+    const expectedState = {
+      main: {
+        labelA: { color: '#00ff00', radius: 7 },
+        labelB: { color: '#000000', radius: 5 },
       },
     };
     expect(reducer(currentState, action)).toEqual(expectedState);
