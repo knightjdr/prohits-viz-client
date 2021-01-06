@@ -7,7 +7,7 @@ import PasteInput from './paste-input';
 
 import convertTextToPOI from './convert-text-to-poi';
 import copyOptions from './copy-options';
-import { updatePOI } from '../../../../../../../../state/visualization/analysis/poi-actions';
+import { updatePOI } from '../../../../../../../state/visualization/analysis/poi-actions';
 
 const ContextMenuContainer = ({
   handleMenuClose,

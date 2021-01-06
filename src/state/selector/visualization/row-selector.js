@@ -2,7 +2,7 @@ import { createSelector } from 'reselect';
 
 const getRowNames = (state) => {
   const { rowDB } = state;
-  return rowDB.map((row) => row.name);
+  return rowDB ? rowDB.map((row) => row.name) : [];
 };
 
 const getOrderedRowNames = (state) => {

@@ -6,9 +6,11 @@ export const defaultState = {
 };
 
 const validTabs = {
+  analysis: true,
   customization: true,
   info: true,
   markup: true,
+  save: true,
   settings: true,
 };
 

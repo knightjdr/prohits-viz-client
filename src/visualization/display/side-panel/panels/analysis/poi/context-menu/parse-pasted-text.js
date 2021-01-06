@@ -1,4 +1,4 @@
-import removeDuplicates from '../../../../../../../../utils/remove-duplicates';
+import removeDuplicates from '../../../../../../../utils/remove-duplicates';
 
 const reQuotes = new RegExp(/['"]+/g);
 const reSeparator = new RegExp(/[\s,]+/);

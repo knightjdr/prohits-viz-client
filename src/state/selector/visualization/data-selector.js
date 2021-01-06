@@ -2,12 +2,12 @@ import { createSelector } from 'reselect';
 
 const getState = (state, element) => {
   const { activeSnapshot } = state.tabs;
-  return state[element][activeSnapshot];
+  return state[element]?.[activeSnapshot];
 };
 
 const getStateProperty = (state, element, property) => {
   const { activeSnapshot } = state.tabs;
-  return state[element][activeSnapshot][property];
+  return state[element]?.[activeSnapshot]?.[property];
 };
 
 export const selectData = createSelector(

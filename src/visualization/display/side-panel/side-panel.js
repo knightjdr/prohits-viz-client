@@ -37,6 +37,7 @@ const panels = (imageType) => {
         <Settings />
         <Markup />
         <Customization />
+        <Analysis />
       </>
     );
   }

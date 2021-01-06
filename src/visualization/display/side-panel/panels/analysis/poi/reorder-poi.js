@@ -1,4 +1,4 @@
-import reorderArrayItem from '../../../../../../../utils/reorder-array-item';
+import reorderArrayItem from '../../../../../../utils/reorder-array-item';
 
 const applyDirection = (direction, indices) => {
   let increment = -1;

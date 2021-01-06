@@ -2,7 +2,7 @@ import PropTypes from 'prop-types';
 import React from 'react';
 import { faArrowRight } from '@fortawesome/pro-solid-svg-icons';
 
-import IconButton from '../../../../../../../components/buttons/icon/button';
+import IconButton from '../../../../../../components/buttons/icon/button';
 
 import './list-swap.css';
 

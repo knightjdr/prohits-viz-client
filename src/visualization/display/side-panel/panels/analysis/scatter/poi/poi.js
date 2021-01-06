@@ -1,7 +1,6 @@
 import PropTypes from 'prop-types';
 import React, { forwardRef } from 'react';
 
-import Action from './action/poi-action-container';
 import ContextMenu from '../../poi/context-menu/context-menu-container';
 import ListReorder from '../../poi/list-reorder';
 import ListSwap from '../../poi/list-swap';
@@ -13,12 +12,11 @@ import './poi.css';
 const Poi = forwardRef((
   {
     closeContextMenu,
-    columns,
     contextMenuState,
     handleContextMenu,
     handleReorder,
     handleSwap,
-    rows,
+    points,
   },
   ref,
 ) => (
@@ -31,82 +29,43 @@ const Poi = forwardRef((
       border={false}
       title="Selection"
     >
-      <div className="poi__grid-heatmap">
+      <div className="poi__grid-scatter">
         <Select
           handleContextMenu={handleContextMenu}
-          options={columns.unselected}
-          ref={ref.columns.unselected}
+          options={points.unselected}
+          ref={ref.points.unselected}
           selectedType="unselected"
-          type="columns"
-          title="Columns"
+          type="points"
+          title="Label"
         />
         <ListSwap
           handleSwap={handleSwap}
-          type="columns"
+          type="points"
         />
         <Select
           handleContextMenu={handleContextMenu}
-          options={columns.poi}
-          ref={ref.columns.poi}
+          options={points.poi}
+          ref={ref.points.poi}
           selectedType="poi"
-          type="columns"
+          type="points"
           title="Selected"
         />
         <ListReorder
           handleReorder={handleReorder}
-          type="columns"
-        />
-        <Select
-          handleContextMenu={handleContextMenu}
-          options={rows.unselected}
-          ref={ref.rows.unselected}
-          selectedType="unselected"
-          type="rows"
-          title="Rows"
-        />
-        <ListSwap
-          handleSwap={handleSwap}
-          type="rows"
-        />
-        <Select
-          handleContextMenu={handleContextMenu}
-          options={rows.poi}
-          ref={ref.rows.poi}
-          selectedType="poi"
-          type="rows"
-          title="Selected"
-        />
-        <ListReorder
-          handleReorder={handleReorder}
-          type="rows"
+          type="points"
         />
       </div>
-      <Action />
     </Section>
   </>
 ));
 
 Poi.propTypes = {
   closeContextMenu: PropTypes.func.isRequired,
-  columns: PropTypes.shape({
-    unselected: PropTypes.arrayOf(
-      PropTypes.shape({
-        index: PropTypes.number,
-        name: PropTypes.string,
-      }),
-    ).isRequired,
-    poi: PropTypes.arrayOf(
-      PropTypes.shape({
-        index: PropTypes.number,
-        name: PropTypes.string,
-      }),
-    ).isRequired,
-  }).isRequired,
   contextMenuState: PropTypes.shape({}).isRequired,
   handleContextMenu: PropTypes.func.isRequired,
   handleReorder: PropTypes.func.isRequired,
   handleSwap: PropTypes.func.isRequired,
-  rows: PropTypes.shape({
+  points: PropTypes.shape({
     unselected: PropTypes.arrayOf(
       PropTypes.shape({
         index: PropTypes.number,

@@ -2,10 +2,12 @@ import fillAnalysis from '../analysis/analysis';
 import fillCustomization from './customization';
 import fillDimensions from './dimensions';
 import fillDisplay from './display';
+import fillGprofiler from '../analysis/gprofiler';
 import fillLabels from './labels';
 import fillLegend from './legend';
 import fillPanel from './panel';
 import fillParameters from './parameters';
+import fillPOI from './poi';
 import fillSearchStatus from './search-status';
 import fillSettings from './settings';
 import fillTabs from '../tabs';
@@ -16,11 +18,13 @@ const validateScatter = (file, filename, taskID) => {
     customization,
     dimensions,
     display,
+    gprofiler,
     labels,
     legend,
     panel,
     parameters,
     plots,
+    poi,
     searchStatus,
     settings,
     tabs,
@@ -31,11 +35,13 @@ const validateScatter = (file, filename, taskID) => {
     customization: fillCustomization(customization),
     dimensions: fillDimensions(dimensions),
     display: fillDisplay(display),
+    gprofiler: fillGprofiler(gprofiler),
     labels: fillLabels(labels),
     legend: fillLegend(legend),
     panel: fillPanel(panel),
     parameters: fillParameters(parameters, filename, taskID),
     plots,
+    poi: fillPOI(poi),
     searchStatus: fillSearchStatus(searchStatus),
     settings: fillSettings(settings),
     tabs: fillTabs(tabs),

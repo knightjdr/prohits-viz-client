@@ -1,5 +1,5 @@
 import parsePastedText from './parse-pasted-text';
-import removeDuplicates from '../../../../../../../../utils/remove-duplicates';
+import removeDuplicates from '../../../../../../../utils/remove-duplicates';
 
 const convertTextToPOI = (text, availableNames, currentOrder) => {
   const pastedNames = parsePastedText(text);

@@ -1,7 +1,7 @@
 import copyOptions from './copy-options';
-import copyToClipboard from '../../../../../../../../utils/copy-to-clipboard';
+import copyToClipboard from '../../../../../../../utils/copy-to-clipboard';
 
-jest.mock('../../../../../../../../utils/copy-to-clipboard');
+jest.mock('../../../../../../../utils/copy-to-clipboard');
 
 describe('Copy option text to clipboard', () => {
   it('should not copy if there are no options', () => {

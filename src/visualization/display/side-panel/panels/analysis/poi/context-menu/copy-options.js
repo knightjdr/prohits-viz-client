@@ -1,4 +1,4 @@
-import copyToClipboard from '../../../../../../../../utils/copy-to-clipboard';
+import copyToClipboard from '../../../../../../../utils/copy-to-clipboard';
 
 const copyOptions = (options) => {
   if (options.length > 0) {

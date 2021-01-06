@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 
 import AnalysisOptions from './options';
 
-import useSubmitAnalysis from '../../submit/use-submit-analysis';
+import useSubmitAnalysis from '../submit/use-submit-analysis';
 
 const AnalysisOptionsContainer = () => {
   const [analysisName, setAnalysisName] = useState('');

@@ -4,8 +4,8 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faInfoCircle } from '@fortawesome/pro-duotone-svg-icons';
 
 import Footer from './paste-input-footer';
-import Modal from '../../../../../../../../components/modal/modal-container';
-import TextArea from '../../../../../../../../components/input/text-area/input-text-area-container';
+import Modal from '../../../../../../../components/modal/modal-container';
+import TextArea from '../../../../../../../components/input/text-area/input-text-area-container';
 
 import './paste-input.css';
 

@@ -9,6 +9,7 @@ import formatData from './data/format-data';
 import useShortCuts from './hooks/use-shortcuts';
 import useWindowDimension from '../../../hooks/window-size/use-window-dimension';
 import { selectData, selectDataProperty } from '../../../state/selector/visualization/data-selector';
+import { selectPlot } from '../../../state/selector/visualization/plot-selector';
 import { selectStateProperty } from '../../../state/selector/general';
 import { setDimensions } from '../../../state/visualization/settings/dimension-actions';
 
@@ -17,8 +18,8 @@ const ScatterContainer = () => {
   const ref = useRef();
 
   const panelOpen = useSelector((state) => selectStateProperty(state, 'panel', 'open'));
-  const { plotFixed, selectedPlot, transform } = useSelector((state) => selectData(state, 'display'));
-  const plot = useSelector((state) => selectStateProperty(state, 'plots', selectedPlot));
+  const plot = useSelector((state) => selectPlot(state));
+  const { plotFixed, transform } = useSelector((state) => selectData(state, 'display'));
   const settings = useSelector((state) => selectDataProperty(state, 'settings', 'current'));
   const {
     equalScaleAxes,

@@ -1,7 +1,7 @@
 import PropTypes from 'prop-types';
 import React from 'react';
 
-import Modal from '../../../../../../../../components/modal/modal-container';
+import Modal from '../../../../../../../components/modal/modal-container';
 
 import './context-menu.css';
 

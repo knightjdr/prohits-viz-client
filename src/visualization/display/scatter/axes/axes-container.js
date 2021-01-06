@@ -6,7 +6,7 @@ import Axes from './axes';
 
 import handlers from '../transform/event-handlers';
 import { selectData, selectDataProperty } from '../../../../state/selector/visualization/data-selector';
-import { selectStateProperty } from '../../../../state/selector/general';
+import { selectPlot } from '../../../../state/selector/visualization/plot-selector';
 import { updateDisplaySetting } from '../../../../state/visualization/settings/display-actions';
 
 const AxesContainer = ({
@@ -15,8 +15,8 @@ const AxesContainer = ({
   const dispatch = useDispatch();
 
   const dimensions = useSelector((state) => selectData(state, 'dimensions'));
-  const { selectedPlot, transform } = useSelector((state) => selectData(state, 'display'));
-  const plot = useSelector((state) => selectStateProperty(state, 'plots', selectedPlot));
+  const plot = useSelector((state) => selectPlot(state));
+  const transform = useSelector((state) => selectDataProperty(state, 'display', 'transform'));
   const { fontSize } = useSelector((state) => selectDataProperty(state, 'settings', 'current'));
 
   const setTransform = (value) => {

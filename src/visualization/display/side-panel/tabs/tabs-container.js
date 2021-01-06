@@ -9,7 +9,7 @@ const tabLabels = (imageType) => {
   if (imageType === 'dotplot' || imageType === 'heatmap') {
     return ['info', 'minimap', 'settings', 'markup', 'analysis', 'save'];
   } if (imageType === 'scatter') {
-    return ['info', 'settings', 'markup', 'customization'];
+    return ['info', 'settings', 'markup', 'customization', 'analysis', 'save'];
   }
   return ['info'];
 };

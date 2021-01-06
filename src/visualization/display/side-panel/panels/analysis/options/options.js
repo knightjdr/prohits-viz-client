@@ -1,12 +1,12 @@
 import PropTypes from 'prop-types';
 import React from 'react';
 
-import Button from '../../../../../../../components/buttons/rectangular/button';
-import GprofilerContainer from '../../gprofiler/gprofiler-container';
-import Section from '../../../section/section';
-import Select from '../../../../../../../components/select/select-container';
+import Button from '../../../../../../components/buttons/rectangular/button';
+import GprofilerContainer from '../gprofiler/gprofiler-container';
+import Section from '../../section/section';
+import Select from '../../../../../../components/select/select-container';
 
-import InputText from '../../../../../../../components/input/text/input-text-container';
+import InputText from '../../../../../../components/input/text/input-text-container';
 
 import './options.css';
 
