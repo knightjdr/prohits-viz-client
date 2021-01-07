@@ -4,13 +4,14 @@ import { useSelector } from 'react-redux';
 import Legend from './legend';
 
 import download from '../../../../../../utils/download';
-import { selectDataProperty } from '../../../../../../state/selector/visualization/data-selector';
+import { selectData, selectDataProperty } from '../../../../../../state/selector/visualization/data-selector';
 import { selectState } from '../../../../../../state/selector/general';
 
 const LegendContainer = () => {
   const legend = useSelector((state) => selectState(state, 'legend'));
   const parameters = useSelector((state) => selectState(state, 'parameters'));
   const settings = useSelector((state) => selectDataProperty(state, 'settings', 'current'));
+  const { points: customizations } = useSelector((state) => selectData(state, 'customization'));
 
   const downloadLegend = () => {
     const svg = document.getElementById('legend').outerHTML;
@@ -19,6 +20,7 @@ const LegendContainer = () => {
 
   return (
     <Legend
+      customizations={customizations}
       downloadLegend={downloadLegend}
       legend={legend}
       parameters={parameters}

@@ -1,6 +1,5 @@
-import PropTypes from 'prop-types';
 import React, { useMemo } from 'react';
-import { useDispatch } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 
 import PointList from './point-list';
 
@@ -10,11 +9,12 @@ import {
   deletePoint,
   updatePoint,
 } from '../../../../../../state/visualization/scatter/customization-actions';
+import { selectDataProperty } from '../../../../../../state/selector/visualization/data-selector';
 
-const PointListContainer = ({
-  customization,
-}) => {
+const PointListContainer = () => {
   const dispatch = useDispatch();
+
+  const customization = useSelector((state) => selectDataProperty(state, 'customization', 'points'));
 
   const labelOrder = useMemo(
     () => {
@@ -63,10 +63,6 @@ const PointListContainer = ({
       labelOrder={labelOrder}
     />
   );
-};
-
-PointListContainer.propTypes = {
-  customization: PropTypes.shape({}).isRequired,
 };
 
 export default PointListContainer;

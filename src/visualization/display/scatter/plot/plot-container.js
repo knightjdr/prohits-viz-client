@@ -1,6 +1,6 @@
 import PropTypes from 'prop-types';
 import React from 'react';
-import { useDispatch, useSelector } from 'react-redux';
+import { batch, useDispatch, useSelector } from 'react-redux';
 
 import Plot from './plot';
 
@@ -8,6 +8,8 @@ import handlers from '../transform/event-handlers';
 import { selectData, selectDataProperty } from '../../../../state/selector/visualization/data-selector';
 import { updateDisplaySetting } from '../../../../state/visualization/settings/display-actions';
 import { updateLabel } from '../../../../state/visualization/scatter/label-actions';
+import { updatePOI } from '../../../../state/visualization/analysis/poi-actions';
+import removeDuplicates from '../../../../utils/remove-duplicates';
 
 const PlotContainer = ({
   points,
@@ -15,8 +17,9 @@ const PlotContainer = ({
   const dispatch = useDispatch();
 
   const axisLength = useSelector((state) => selectDataProperty(state, 'dimensions', 'height'));
-  const customization = useSelector((state) => selectData(state, 'customization'));
+  const customization = useSelector((state) => selectDataProperty(state, 'customization', 'points'));
   const labels = useSelector((state) => selectDataProperty(state, 'labels', 'status'));
+  const poi = useSelector((state) => selectData(state, 'poi'));
   const searchLabels = useSelector((state) => selectDataProperty(state, 'searchStatus', 'labels'));
   const transform = useSelector((state) => selectDataProperty(state, 'display', 'transform'));
   const { fontSize } = useSelector((state) => selectDataProperty(state, 'settings', 'current'));
@@ -26,8 +29,18 @@ const PlotContainer = ({
   };
 
   const handleClickLabel = (e) => {
-    const { label } = e.target.dataset;
-    dispatch(updateLabel(label));
+    const { index, label } = e.target.dataset;
+    const numIndex = Number(index);
+    const removePoi = Boolean(labels[label]);
+    const updatedPOI = {
+      points: removePoi
+        ? poi.points.filter((point) => point !== numIndex)
+        : removeDuplicates([...poi.points, numIndex]),
+    };
+    batch(() => {
+      dispatch(updateLabel(label));
+      dispatch(updatePOI(updatedPOI));
+    });
   };
 
   const handleMouseDown = (e) => {

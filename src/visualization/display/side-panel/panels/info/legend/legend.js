@@ -10,7 +10,7 @@ import Section from '../../section/section';
 
 import './legend.css';
 
-const drawLegend = (parameters, settings, legend) => {
+const drawLegend = (parameters, settings, scatterOptions) => {
   if (parameters.imageType === 'dotplot') {
     return (
       <Dotplot
@@ -30,34 +30,39 @@ const drawLegend = (parameters, settings, legend) => {
   } if (parameters.imageType === 'scatter') {
     return (
       <Scatter
-        legend={legend}
+        customizations={scatterOptions.customizations}
+        legend={scatterOptions.legend}
       />
     );
   }
   return null;
 };
 
-const showLegend = (imageType, legend) => (
+const showLegend = (imageType, scatterOptions) => (
   imageType === 'dotplot'
   || imageType === 'heatmap'
   || (
     imageType === 'scatter'
-    && legend.length > 0
+    && (
+      scatterOptions.legend.length > 0
+      || Object.keys(scatterOptions.customizations).length > 0
+    )
   )
 );
 
 const Legend = ({
+  customizations,
   downloadLegend,
   legend,
   parameters,
   settings,
 }) => (
-  showLegend(parameters.imageType, legend)
+  showLegend(parameters.imageType, { customizations, legend })
   && (
     <>
       <Section title="Legend">
         <div className="panel__info-legend">
-          {drawLegend(parameters, settings, legend)}
+          {drawLegend(parameters, settings, { customizations, legend })}
         </div>
       </Section>
       <div className="panel__info-legend-download">
@@ -76,7 +81,12 @@ const Legend = ({
   )
 );
 
+Legend.defaultProps = {
+  customizations: {},
+};
+
 Legend.propTypes = {
+  customizations: PropTypes.shape({}),
   downloadLegend: PropTypes.func.isRequired,
   legend: PropTypes.arrayOf(
     PropTypes.shape({

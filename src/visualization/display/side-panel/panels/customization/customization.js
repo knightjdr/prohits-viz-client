@@ -1,22 +1,15 @@
-import PropTypes from 'prop-types';
 import React from 'react';
 
 import Poi from '../analysis/scatter/poi/poi-container';
+import PoiCustomization from './poi-customization/poi-customization-container';
 import PointList from './point-list/point-list-container';
 
-const Customization = ({
-  customization,
-}) => (
+const Customization = () => (
   <div className="panel panel__customization">
     <Poi />
-    <PointList
-      customization={customization}
-    />
+    <PoiCustomization />
+    <PointList />
   </div>
 );
-
-Customization.propTypes = {
-  customization: PropTypes.shape({}).isRequired,
-};
 
 export default Customization;

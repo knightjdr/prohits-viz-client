@@ -1,6 +1,14 @@
+export const ADD_POINTS = 'ADD_POINTS';
 export const DELETE_ALL_POINTS = 'DELETE_ALL_POINTS';
 export const DELETE_POINT = 'DELETE_POINT';
 export const UPDATE_POINT = 'UPDATE_POINT';
+export const UPDATE_CUSTOMIZATION_SETTING = 'UPDATE_CUSTOMIZATION_SETTING';
+
+export const addPoints = (points) => ({
+  AUGMENT_WITH_ACTIVE_SNAPSHOT: true,
+  points,
+  type: ADD_POINTS,
+});
 
 export const deleteAllPoints = () => ({
   AUGMENT_WITH_ACTIVE_SNAPSHOT: true,
@@ -18,4 +26,11 @@ export const updatePoint = (label, parameters) => ({
   label,
   parameters,
   type: UPDATE_POINT,
+});
+
+export const updateCustomizationSetting = (setting, value) => ({
+  AUGMENT_WITH_ACTIVE_SNAPSHOT: true,
+  setting,
+  type: UPDATE_CUSTOMIZATION_SETTING,
+  value,
 });

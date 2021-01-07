@@ -8,6 +8,7 @@ const ColorPickerContainer = ({
   button,
   color,
   id,
+  modalID,
   onChange,
   placement,
 }) => {
@@ -21,11 +22,14 @@ const ColorPickerContainer = ({
     }
   };
 
+  const modalName = modalID ? `color-picker-${modalID}` : 'color-picker';
+
   return (
     <ColorPicker
       button={button}
       color={pickerColor}
       handleChangeComplete={handleChangeComplete}
+      modalName={modalName}
       placement={placement}
     />
   );
@@ -35,6 +39,7 @@ ColorPickerContainer.defaultProps = {
   button: ColorPickerButton,
   color: '#000',
   id: null,
+  modalID: null,
   onChange: undefined,
   placement: ['center', 'bottom'],
 };
@@ -43,6 +48,7 @@ ColorPickerContainer.propTypes = {
   button: PropTypes.node,
   color: PropTypes.string,
   id: PropTypes.string,
+  modalID: PropTypes.string,
   onChange: PropTypes.func,
   placement: PropTypes.arrayOf(PropTypes.string),
 };

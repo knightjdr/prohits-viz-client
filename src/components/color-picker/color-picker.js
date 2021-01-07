@@ -8,11 +8,12 @@ const ColorPicker = ({
   button,
   color,
   handleChangeComplete,
+  modalName,
   placement,
 }) => (
   <ModalButton
     button={button}
-    name="color-picker"
+    name={modalName}
     placement={placement}
   >
     <ChromePicker
@@ -27,6 +28,7 @@ ColorPicker.propTypes = {
   button: PropTypes.node.isRequired,
   color: PropTypes.string.isRequired,
   handleChangeComplete: PropTypes.func.isRequired,
+  modalName: PropTypes.string.isRequired,
   placement: PropTypes.arrayOf(PropTypes.string).isRequired,
 };
 

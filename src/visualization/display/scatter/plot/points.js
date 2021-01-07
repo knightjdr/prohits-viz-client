@@ -68,7 +68,7 @@ const Points = ({
     scaledFontSize: fontSize / scale,
   };
   return (
-    points.map((point) => {
+    points.map((point, index) => {
       const y = axisLength - point.y;
       const { color, radius, textGap } = getCustomization(point, customization[point.label], scale);
       return (
@@ -76,6 +76,7 @@ const Points = ({
           <circle
             cx={point.x}
             cy={y}
+            data-index={index}
             data-label={point.label}
             onClick={handleClickLabel}
             r={radius}

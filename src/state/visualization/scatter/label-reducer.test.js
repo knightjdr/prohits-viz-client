@@ -85,7 +85,7 @@ describe('Label reducer', () => {
     expect(reducer(undefined, action)).toEqual(expectedState);
   });
 
-  it('should handle LOAD_INTERACTIVE_STATE action when panel state is not defined', () => {
+  it('should handle LOAD_INTERACTIVE_STATE action when label state is defined', () => {
     const action = {
       file: {
         labels: {

@@ -4,8 +4,12 @@ describe('Fill customization', () => {
   it('should return user-defined customization when valid', () => {
     const userCustomization = {
       main: {
-        labelA: { color: '#ff0000', radius: 10 },
-        labelB: { color: '#000000', radius: 5 },
+        color: '#ff0000',
+        points: {
+          labelA: { color: '#ff0000', radius: 10 },
+          labelB: { color: '#000000', radius: 5 },
+        },
+        radius: 5,
       },
     };
     const expected = {
@@ -19,14 +23,15 @@ describe('Fill customization', () => {
 
   it('should return user-defined customization when valid but without snapshot identifiers', () => {
     const userCustomization = {
-      labelA: { color: '#ff0000', radius: 10 },
-      labelB: { color: '#000000', radius: 5 },
-    };
-    const expected = {
-      main: {
+      color: '#ff0000',
+      points: {
         labelA: { color: '#ff0000', radius: 10 },
         labelB: { color: '#000000', radius: 5 },
       },
+      radius: 5,
+    };
+    const expected = {
+      main: userCustomization,
     };
     expect(fillCustomization(userCustomization)).toEqual(expected);
   });

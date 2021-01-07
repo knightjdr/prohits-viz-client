@@ -7,30 +7,60 @@ import deepCopy from '../../../utils/deep-copy';
 import { reduceAndAddSnapshot, reduceAndRemoveSnapshot } from '../data/snapshot-reducer';
 import { reduceAndClearState, reduceAndLoadState } from '../data/interactive-file-reducer';
 
-const reduceAndClear = (state, action) => ({
-  ...state,
-  [action.snapshotID]: {},
-});
-
-const reduceAndDelete = (state, action) => {
-  const updatedList = deepCopy(state[action.snapshotID]);
-  delete updatedList[action.label];
-  return {
-    ...state,
-    [action.snapshotID]: updatedList,
-  };
-};
-
-const reduceAndUpdate = (state, action) => ({
+const reduceAndAdd = (state, action) => ({
   ...state,
   [action.snapshotID]: {
     ...state[action.snapshotID],
-    [action.label]: { ...action.parameters },
+    points: {
+      ...state[action.snapshotID].points,
+      ...action.points,
+    },
+  },
+});
+
+const reduceAndClear = (state, action) => ({
+  ...state,
+  [action.snapshotID]: {
+    ...state[action.snapshotID],
+    points: {},
+  },
+});
+
+const reduceAndDelete = (state, action) => {
+  const updatedList = deepCopy(state[action.snapshotID].points);
+  delete updatedList[action.label];
+  return {
+    ...state,
+    [action.snapshotID]: {
+      ...state[action.snapshotID],
+      points: updatedList,
+    },
+  };
+};
+
+const reduceAndUpdatePoint = (state, action) => ({
+  ...state,
+  [action.snapshotID]: {
+    ...state[action.snapshotID],
+    points: {
+      ...state[action.snapshotID].points,
+      [action.label]: { ...action.parameters },
+    },
+  },
+});
+
+const reduceAndUpdateSetting = (state, action) => ({
+  ...state,
+  [action.snapshotID]: {
+    ...state[action.snapshotID],
+    [action.setting]: action.value,
   },
 });
 
 const reducer = (state = {}, action) => {
   switch (action.type) {
+    case actions.ADD_POINTS:
+      return reduceAndAdd(state, action);
     case snapshotActions.ADD_SNAPSHOT:
       return reduceAndAddSnapshot(state, action, 'customization');
     case displayActions.CHANGE_PLOT:
@@ -46,7 +76,9 @@ const reducer = (state = {}, action) => {
     case snapshotActions.REMOVE_SNAPSHOT:
       return reduceAndRemoveSnapshot(state, action);
     case actions.UPDATE_POINT:
-      return reduceAndUpdate(state, action);
+      return reduceAndUpdatePoint(state, action);
+    case actions.UPDATE_CUSTOMIZATION_SETTING:
+      return reduceAndUpdateSetting(state, action);
     default:
       return state;
   }
