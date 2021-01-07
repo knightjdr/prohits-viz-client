@@ -1,6 +1,6 @@
 import fillSnapshots from '../snapshot';
 import isObject from '../../../utils/is-object';
-import { validateBoolean, validateNumber } from '../../../utils/validate-type';
+import { validateBoolean, validateNumber, validateObject } from '../../../utils/validate-type';
 
 export const defaultState = {
   plotFixed: false,
@@ -29,7 +29,7 @@ export const fillSnapshotDisplay = (inputDisplay) => {
   return {
     plotFixed: validateBoolean(plotFixed, defaultState.plotFixed),
     selectedPlot: validateNumber(selectedPlot, defaultState.selectedPlot),
-    transform: isObject(transform) ? transform : defaultState.transform,
+    transform: validateObject(transform, defaultState.transform),
   };
 };
 

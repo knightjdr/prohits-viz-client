@@ -36,7 +36,7 @@ describe('Fill customization', () => {
     expect(fillCustomization(userCustomization)).toEqual(expected);
   });
 
-  it('should return defaults when no selections are defined', () => {
+  it('should return defaults when no properties are defined', () => {
     const userCustomization = {};
     const expected = {
       main: defaultState,
@@ -44,7 +44,7 @@ describe('Fill customization', () => {
     expect(fillCustomization(userCustomization)).toEqual(expected);
   });
 
-  it('should return defaults when user-defined display is not an object', () => {
+  it('should return defaults when user-defined customizations is not an object', () => {
     const userCustomization = [];
     const expected = {
       main: defaultState,
@@ -52,7 +52,7 @@ describe('Fill customization', () => {
     expect(fillCustomization(userCustomization)).toEqual(expected);
   });
 
-  it('should return defaults when user-defined display undefined', () => {
+  it('should return defaults when user-defined customizations undefined', () => {
     const expected = {
       main: defaultState,
     };

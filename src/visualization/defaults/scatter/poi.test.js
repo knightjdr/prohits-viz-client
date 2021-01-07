@@ -23,7 +23,7 @@ describe('Fill POI', () => {
     expect(fillPOI(filePOI)).toEqual(expected);
   });
 
-  it('should return defaults when no selections are defined', () => {
+  it('should return defaults when no properties are defined', () => {
     const filePOI = {};
     const expected = {
       main: defaultState,

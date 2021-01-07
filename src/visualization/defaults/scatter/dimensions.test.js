@@ -13,7 +13,7 @@ describe('Fill dimensions', () => {
     expect(fillDimensions(userDimensions)).toEqual(expected);
   });
 
-  it('should return defaults when no selections are defined', () => {
+  it('should return defaults when no properties are defined', () => {
     const userDimensions = {};
     const expected = {
       main: defaultState,

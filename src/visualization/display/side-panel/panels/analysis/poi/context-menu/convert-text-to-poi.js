@@ -1,4 +1,4 @@
-import parsePastedText from './parse-pasted-text';
+import parsePastedText from '../../../../../../../utils/split-comma-white-space';
 import removeDuplicates from '../../../../../../../utils/remove-duplicates';
 
 const convertTextToPOI = (text, availableNames, currentOrder) => {

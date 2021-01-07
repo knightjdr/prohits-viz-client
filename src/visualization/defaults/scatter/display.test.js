@@ -32,7 +32,7 @@ describe('Fill display', () => {
     expect(fillDisplay(userDisplay)).toEqual(expected);
   });
 
-  it('should return defaults when no selections are defined', () => {
+  it('should return defaults when no properties are defined', () => {
     const userDisplay = {};
     const expected = {
       main: defaultState,

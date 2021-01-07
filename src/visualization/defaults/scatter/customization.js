@@ -1,7 +1,7 @@
 import fillSnapshots from '../snapshot';
 import isObject from '../../../utils/is-object';
 import validateHex from '../../../utils/validate-hex';
-import { validateNumber } from '../../../utils/validate-type';
+import { validateNumber, validateObject } from '../../../utils/validate-type';
 
 export const defaultState = {
   color: '#333333',
@@ -18,7 +18,7 @@ export const fillSnapshotCustomization = (inputCustomization) => {
 
   return {
     color: validateHex(color, defaultState.color),
-    points: isObject(points) ? points : { ...defaultState.points },
+    points: validateObject(points, defaultState.points),
     radius: validateNumber(radius, defaultState.radius),
   };
 };

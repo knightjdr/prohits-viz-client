@@ -20,7 +20,10 @@ describe('Label reducer', () => {
         status: { labelA: true },
       },
     };
-    const snapshotState = { labelA: false };
+    const snapshotState = {
+      showAll: false,
+      status: { labelA: false },
+    };
     const action = {
       labels: snapshotState,
       name: 'snapshot-1',

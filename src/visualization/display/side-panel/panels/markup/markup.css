@@ -3,7 +3,7 @@
   display: grid;
   grid-column-gap: 10px;
   grid-row-gap: 12px;
-  grid-template-columns: 200px auto;
+  grid-template-columns: 200px 1fr;
   justify-content: flex;
 }
 .panel-markup__grid .input__container {

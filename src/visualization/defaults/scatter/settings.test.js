@@ -89,7 +89,7 @@ describe('Fill settings', () => {
     expect(fillSettings(userSettings)).toEqual(expected);
   });
 
-  it('should return defaults when no selections are defined', () => {
+  it('should return defaults when no properties are defined', () => {
     const userSettings = {};
     const expected = {
       main: {

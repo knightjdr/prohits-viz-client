@@ -13,12 +13,19 @@ describe('Format scatter plot data', () => {
     ];
     const options = {
       axisLength: 100,
+      equalScaleAxes: false,
       logBase: 'none',
       scale: 1,
-      equalScaleAxes: false,
+      showMidline: true,
     };
 
     const expected = {
+      midline: {
+        x1: 0,
+        x2: 100,
+        y1: 100,
+        y2: 33.33,
+      },
       points: [
         { label: 'a', x: 25, y: 33.33 },
         { label: 'b', x: 75, y: 16.67 },
@@ -49,12 +56,19 @@ describe('Format scatter plot data', () => {
     ];
     const options = {
       axisLength: 100,
+      equalScaleAxes: true,
       logBase: 'none',
       scale: 1,
-      equalScaleAxes: true,
+      showMidline: true,
     };
 
     const expected = {
+      midline: {
+        x1: 0,
+        x2: 100,
+        y1: 100,
+        y2: 0,
+      },
       points: [
         { label: 'a', x: 16.67, y: 33.33 },
         { label: 'b', x: 50, y: 16.67 },

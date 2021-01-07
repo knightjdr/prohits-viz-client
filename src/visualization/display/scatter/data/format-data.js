@@ -1,3 +1,4 @@
+import defineMidline from './define-midline';
 import defineTicks from './define-ticks';
 import removeDuplicates from '../../../../utils/remove-duplicates';
 import scaleData from './scale-data';
@@ -8,6 +9,7 @@ const formatData = (data, options) => {
     axisLength,
     logBase,
     scale,
+    showMidline,
     equalScaleAxes,
   } = options;
 
@@ -24,7 +26,14 @@ const formatData = (data, options) => {
   }
 
   const scaleOptions = { axisLength, logBase };
-  return scaleData(data, ticks, scaleOptions);
+  const scaledData = scaleData(data, ticks, scaleOptions);
+
+  const midline = showMidline ? defineMidline(scaledData.ticks, axisLength) : null;
+
+  return {
+    ...scaledData,
+    midline,
+  };
 };
 
 export default formatData;

@@ -27,7 +27,7 @@ describe('Fill search term', () => {
     expect(fillSearchStatus(fileSearchStatus)).toEqual(expected);
   });
 
-  it('should return defaults when no selections are defined', () => {
+  it('should return defaults when no properties are defined', () => {
     const fileSearchStatus = {};
     const expected = {
       main: defaultState,

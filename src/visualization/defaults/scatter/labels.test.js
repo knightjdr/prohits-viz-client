@@ -20,7 +20,7 @@ describe('Fill labels', () => {
     expect(fillLabels(userLabels)).toEqual(expected);
   });
 
-  it('should return user-defined labels when valid  but without snapshot identifiers', () => {
+  it('should return user-defined labels when valid but without snapshot identifiers', () => {
     const userLabels = {
       labelA: true,
       labelB: false,
@@ -50,7 +50,7 @@ describe('Fill labels', () => {
     expect(fillLabels(userLabels)).toEqual(expected);
   });
 
-  it('should return defaults when no selections are defined', () => {
+  it('should return defaults when no properties are defined', () => {
     const userLabels = {};
     const expected = {
       main: defaultState,
@@ -58,7 +58,7 @@ describe('Fill labels', () => {
     expect(fillLabels(userLabels)).toEqual(expected);
   });
 
-  it('should return defaults when user-defined display is not an object', () => {
+  it('should return defaults when user-defined labels is not an object', () => {
     const userLabels = [];
     const expected = {
       main: defaultState,
@@ -66,7 +66,7 @@ describe('Fill labels', () => {
     expect(fillLabels(userLabels)).toEqual(expected);
   });
 
-  it('should return defaults when user-defined display undefined', () => {
+  it('should return defaults when user-defined labels undefined', () => {
     const expected = {
       main: defaultState,
     };

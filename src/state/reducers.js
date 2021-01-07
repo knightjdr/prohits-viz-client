@@ -14,6 +14,7 @@ import form from './analysis/form-reducer';
 import gprofiler from './visualization/analysis/gprofiler-reducer';
 import home from './home/home-reducer';
 import labels from './visualization/scatter/label-reducer';
+import lines from './visualization/scatter/line-reducer';
 import legend from './visualization/scatter/legend-reducer';
 import markers from './visualization/markup/marker-reducer';
 import minimap from './visualization/heatmap/minimap-reducer';
@@ -46,6 +47,7 @@ const reducers = combineReducers({
   gprofiler,
   home,
   labels,
+  lines,
   legend,
   markers,
   minimap,

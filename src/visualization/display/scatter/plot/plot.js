@@ -1,6 +1,7 @@
 import PropTypes from 'prop-types';
 import React from 'react';
 
+import Lines from './lines/lines-container';
 import Points from './points';
 
 import './plot.css';
@@ -13,6 +14,7 @@ const Plot = ({
   handleMouseDown,
   handleWheel,
   labels,
+  midline,
   points,
   searchLabels,
   transform,
@@ -44,6 +46,10 @@ const Plot = ({
     </g>
     <g clipPath="url(#plot_points_clip)">
       <g transform={transform.matrix.plot}>
+        <Lines
+          midline={midline}
+          scale={transform.scale}
+        />
         <Points
           axisLength={axisLength}
           customization={customization}
@@ -67,6 +73,12 @@ Plot.propTypes = {
   handleMouseDown: PropTypes.func.isRequired,
   handleWheel: PropTypes.func.isRequired,
   labels: PropTypes.shape({}).isRequired,
+  midline: PropTypes.shape({
+    x1: PropTypes.number,
+    x2: PropTypes.number,
+    y1: PropTypes.number,
+    y2: PropTypes.number,
+  }).isRequired,
   points: PropTypes.arrayOf(
     PropTypes.shape({
       color: PropTypes.string,

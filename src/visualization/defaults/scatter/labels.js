@@ -1,6 +1,6 @@
 import fillSnapshots from '../snapshot';
 import isObject from '../../../utils/is-object';
-import { validateBoolean } from '../../../utils/validate-type';
+import { validateBoolean, validateObject } from '../../../utils/validate-type';
 
 export const defaultState = {
   showAll: false,
@@ -15,7 +15,7 @@ export const fillSnapshotLabels = (inputLabels) => {
 
   return {
     showAll: validateBoolean(showAll, defaultState.showAll),
-    status: isObject(status) ? status : defaultState.status,
+    status: validateObject(status, defaultState.status),
   };
 };
 

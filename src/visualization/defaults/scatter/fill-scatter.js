@@ -5,6 +5,7 @@ import fillDisplay from './display';
 import fillGprofiler from '../analysis/gprofiler';
 import fillLabels from './labels';
 import fillLegend from './legend';
+import fillLines from './lines';
 import fillPanel from './panel';
 import fillParameters from './parameters';
 import fillPOI from './poi';
@@ -21,6 +22,7 @@ const validateScatter = (file, filename, taskID) => {
     gprofiler,
     labels,
     legend,
+    lines,
     panel,
     parameters,
     plots,
@@ -38,6 +40,7 @@ const validateScatter = (file, filename, taskID) => {
     gprofiler: fillGprofiler(gprofiler),
     labels: fillLabels(labels),
     legend: fillLegend(legend),
+    lines: fillLines(lines),
     panel: fillPanel(panel),
     parameters: fillParameters(parameters, filename, taskID),
     plots,

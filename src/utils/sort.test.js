@@ -33,6 +33,8 @@ describe('Sort', () => {
     expect(sort.numeric(1, 2)).toBe(-1);
     expect(sort.numeric(2, 1)).toBe(1);
     expect(sort.numeric(1, 1)).toBe(0);
+    expect(sort.numeric(-1, -2)).toBe(1);
+    expect(sort.numeric(-2, -1)).toBe(-1);
     expect(sort.numeric(1, null)).toBe(-1);
     expect(sort.numeric(null, 1)).toBe(1);
     expect(sort.numeric(null, null)).toBe(0);

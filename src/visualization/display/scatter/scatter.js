@@ -8,6 +8,7 @@ import './scatter.css';
 
 const Scatter = forwardRef((
   {
+    midline,
     points,
     ticks,
     translation,
@@ -30,7 +31,10 @@ const Scatter = forwardRef((
       xmlns="http://www.w3.org/2000/svg"
     >
       <g transform="translate(0 50)">
-        <Plot points={points} />
+        <Plot
+          midline={midline}
+          points={points}
+        />
         <Axes ticks={ticks} />
       </g>
     </svg>
@@ -38,6 +42,12 @@ const Scatter = forwardRef((
 ));
 
 Scatter.propTypes = {
+  midline: PropTypes.shape({
+    x1: PropTypes.number,
+    x2: PropTypes.number,
+    y1: PropTypes.number,
+    y2: PropTypes.number,
+  }).isRequired,
   points: PropTypes.arrayOf(
     PropTypes.shape({
       x: PropTypes.number,

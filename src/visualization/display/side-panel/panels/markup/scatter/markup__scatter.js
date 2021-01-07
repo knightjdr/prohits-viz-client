@@ -2,6 +2,7 @@ import PropTypes from 'prop-types';
 import React from 'react';
 
 import Labels from './labels/label-container';
+import Lines from './lines/line-container';
 import Search from './search/search-container';
 
 const Markup = ({
@@ -10,6 +11,7 @@ const Markup = ({
   <div className="panel panel__markup">
     <Search labels={labels} />
     <Labels labels={labels} />
+    <Lines />
   </div>
 );
 

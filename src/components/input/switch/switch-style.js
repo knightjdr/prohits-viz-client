@@ -16,6 +16,7 @@ const Span = styled.span`
   }
 
   label {
+    box-sizing: border-box;
     padding-right: 8px;
   }
 

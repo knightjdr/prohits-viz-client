@@ -20,6 +20,7 @@ const ScatterContainer = () => {
   const panelOpen = useSelector((state) => selectStateProperty(state, 'panel', 'open'));
   const plot = useSelector((state) => selectPlot(state));
   const { plotFixed, transform } = useSelector((state) => selectData(state, 'display'));
+  const showMidline = useSelector((state) => selectDataProperty(state, 'lines', 'showMidline'));
   const settings = useSelector((state) => selectDataProperty(state, 'settings', 'current'));
   const {
     equalScaleAxes,
@@ -67,6 +68,7 @@ const ScatterContainer = () => {
         axisLength: dimensions.plot,
         logBase,
         scale: transform.scale,
+        showMidline,
         equalScaleAxes,
       };
       return formatData(filtered, options);
@@ -88,6 +90,7 @@ const ScatterContainer = () => {
 
   return (
     <Scatter
+      midline={data.midline}
       points={data.points}
       ref={ref}
       ticks={data.ticks}
