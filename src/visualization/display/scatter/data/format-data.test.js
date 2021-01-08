@@ -14,17 +14,36 @@ describe('Format scatter plot data', () => {
     const options = {
       axisLength: 100,
       equalScaleAxes: false,
+      fcLines: [-10, 2],
       logBase: 'none',
       scale: 1,
+      showFcLines: true,
       showMidline: true,
     };
-
     const expected = {
-      midline: {
-        x1: 0,
-        x2: 100,
-        y1: 100,
-        y2: 33.33,
+      lines: {
+        fcLines: [
+          {
+            key: '-10',
+            x1: 5,
+            x2: 15,
+            y1: 66.67,
+            y2: 0,
+          },
+          {
+            key: '2',
+            x1: 10,
+            x2: 100,
+            y1: 96.67,
+            y2: 66.67,
+          },
+        ],
+        midline: {
+          x1: 0,
+          x2: 100,
+          y1: 100,
+          y2: 33.33,
+        },
       },
       points: [
         { label: 'a', x: 25, y: 33.33 },
@@ -57,17 +76,37 @@ describe('Format scatter plot data', () => {
     const options = {
       axisLength: 100,
       equalScaleAxes: true,
+      fcLines: [-10, 2],
       logBase: 'none',
       scale: 1,
+      showFcLines: true,
       showMidline: true,
     };
 
     const expected = {
-      midline: {
-        x1: 0,
-        x2: 100,
-        y1: 100,
-        y2: 0,
+      lines: {
+        fcLines: [
+          {
+            key: '-10',
+            x1: 3.33,
+            x2: 10,
+            y1: 66.67,
+            y2: 0,
+          },
+          {
+            key: '2',
+            x1: 6.67,
+            x2: 100,
+            y1: 96.67,
+            y2: 50,
+          },
+        ],
+        midline: {
+          x1: 0,
+          x2: 100,
+          y1: 100,
+          y2: 0,
+        },
       },
       points: [
         { label: 'a', x: 16.67, y: 33.33 },

@@ -1,7 +1,7 @@
 import { nanoid } from 'nanoid';
 import round from '../../../../utils/round';
 
-const scaleData = (points, ticks, options) => {
+const scaleData = (points, ticks, lines, options) => {
   const { axisLength, logBase } = options;
 
   const getScaler = (vertex) => {
@@ -19,7 +19,19 @@ const scaleData = (points, ticks, options) => {
   const scaleXValue = getScaler('x');
   const scaleYValue = getScaler('y');
 
+  const scaleLine = (line) => ({
+    ...line,
+    x1: scaleXValue(line.x1),
+    x2: scaleXValue(line.x2),
+    y1: axisLength - scaleYValue(line.y1),
+    y2: axisLength - scaleYValue(line.y2),
+  });
+
   return {
+    lines: {
+      fcLines: lines.fcLines.map((line) => scaleLine(line)),
+      midline: scaleLine(lines.midline),
+    },
     points: points.map((point) => ({
       ...point,
       x: scaleXValue(Math.max(point.x, ticks.x[0])),

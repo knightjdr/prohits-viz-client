@@ -8,7 +8,7 @@ import './scatter.css';
 
 const Scatter = forwardRef((
   {
-    midline,
+    lines,
     points,
     ticks,
     translation,
@@ -32,7 +32,7 @@ const Scatter = forwardRef((
     >
       <g transform="translate(0 50)">
         <Plot
-          midline={midline}
+          lines={lines}
           points={points}
         />
         <Axes ticks={ticks} />
@@ -42,11 +42,22 @@ const Scatter = forwardRef((
 ));
 
 Scatter.propTypes = {
-  midline: PropTypes.shape({
-    x1: PropTypes.number,
-    x2: PropTypes.number,
-    y1: PropTypes.number,
-    y2: PropTypes.number,
+  lines: PropTypes.shape({
+    fcLines: PropTypes.arrayOf(
+      PropTypes.shape({
+        key: PropTypes.string,
+        x1: PropTypes.number,
+        x2: PropTypes.number,
+        y1: PropTypes.number,
+        y2: PropTypes.number,
+      }),
+    ),
+    midline: PropTypes.shape({
+      x1: PropTypes.number,
+      x2: PropTypes.number,
+      y1: PropTypes.number,
+      y2: PropTypes.number,
+    }),
   }).isRequired,
   points: PropTypes.arrayOf(
     PropTypes.shape({

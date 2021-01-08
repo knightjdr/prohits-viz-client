@@ -10,6 +10,23 @@ describe('Scale data', () => {
       axisLength: 100,
       logBase: 'none',
     };
+    const lines = {
+      fcLines: [
+        {
+          key: '-10',
+          x1: 1,
+          x2: 3,
+          y1: 10,
+          y2: 30,
+        },
+      ],
+      midline: {
+        x1: 0,
+        x2: 20,
+        y1: 0,
+        y2: 20,
+      },
+    };
     const points = [
       { label: 'a', x: 5, y: 10 },
       { label: 'b', x: 15, y: 5 },
@@ -21,6 +38,23 @@ describe('Scale data', () => {
     };
 
     const expected = {
+      lines: {
+        fcLines: [
+          {
+            key: '-10',
+            x1: 5,
+            x2: 15,
+            y1: 66.67,
+            y2: 0,
+          },
+        ],
+        midline: {
+          x1: 0,
+          x2: 100,
+          y1: 100,
+          y2: 33.33,
+        },
+      },
       points: [
         { label: 'a', x: 25, y: 33.33 },
         { label: 'b', x: 75, y: 16.67 },
@@ -40,13 +74,30 @@ describe('Scale data', () => {
         ],
       },
     };
-    expect(scaleData(points, ticks, options)).toEqual(expected);
+    expect(scaleData(points, ticks, lines, options)).toEqual(expected);
   });
 
   it('should scale log base 2 data', () => {
     const options = {
       axisLength: 100,
       logBase: '2',
+    };
+    const lines = {
+      fcLines: [
+        {
+          key: '-10',
+          x1: 1,
+          x2: 3.2,
+          y1: 10,
+          y2: 32,
+        },
+      ],
+      midline: {
+        x1: 1,
+        x2: 16,
+        y1: 1,
+        y2: 16,
+      },
     };
     const points = [
       { label: 'a', x: 8, y: 8 },
@@ -59,6 +110,23 @@ describe('Scale data', () => {
     };
 
     const expected = {
+      lines: {
+        fcLines: [
+          {
+            key: '-10',
+            x1: 0,
+            x2: 41.95,
+            y1: 33.56,
+            y2: 0,
+          },
+        ],
+        midline: {
+          x1: 0,
+          x2: 100,
+          y1: 100,
+          y2: 20,
+        },
+      },
       points: [
         { label: 'a', x: 75, y: 60 },
         { label: 'b', x: 100, y: 40 },
@@ -82,13 +150,30 @@ describe('Scale data', () => {
         ],
       },
     };
-    expect(scaleData(points, ticks, options)).toEqual(expected);
+    expect(scaleData(points, ticks, lines, options)).toEqual(expected);
   });
 
   it('should scale log base 10 data', () => {
     const options = {
       axisLength: 100,
       logBase: '10',
+    };
+    const lines = {
+      fcLines: [
+        {
+          key: '-10',
+          x1: 1,
+          x2: 100,
+          y1: 10,
+          y2: 1000,
+        },
+      ],
+      midline: {
+        x1: 1,
+        x2: 100,
+        y1: 1,
+        y2: 100,
+      },
     };
     const points = [
       { label: 'a', x: 10, y: 1 },
@@ -101,6 +186,23 @@ describe('Scale data', () => {
     };
 
     const expected = {
+      lines: {
+        fcLines: [
+          {
+            key: '-10',
+            x1: 0,
+            x2: 100,
+            y1: 66.67,
+            y2: 0,
+          },
+        ],
+        midline: {
+          x1: 0,
+          x2: 100,
+          y1: 100,
+          y2: 33.33,
+        },
+      },
       points: [
         { label: 'a', x: 50, y: 0 },
         { label: 'b', x: 100, y: 66.67 },
@@ -120,6 +222,6 @@ describe('Scale data', () => {
         ],
       },
     };
-    expect(scaleData(points, ticks, options)).toEqual(expected);
+    expect(scaleData(points, ticks, lines, options)).toEqual(expected);
   });
 });

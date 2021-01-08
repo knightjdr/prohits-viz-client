@@ -14,7 +14,7 @@ const Plot = ({
   handleMouseDown,
   handleWheel,
   labels,
-  midline,
+  lines,
   points,
   searchLabels,
   transform,
@@ -47,7 +47,8 @@ const Plot = ({
     <g clipPath="url(#plot_points_clip)">
       <g transform={transform.matrix.plot}>
         <Lines
-          midline={midline}
+          fcLines={lines.fcLines}
+          midline={lines.midline}
           scale={transform.scale}
         />
         <Points
@@ -73,11 +74,22 @@ Plot.propTypes = {
   handleMouseDown: PropTypes.func.isRequired,
   handleWheel: PropTypes.func.isRequired,
   labels: PropTypes.shape({}).isRequired,
-  midline: PropTypes.shape({
-    x1: PropTypes.number,
-    x2: PropTypes.number,
-    y1: PropTypes.number,
-    y2: PropTypes.number,
+  lines: PropTypes.shape({
+    fcLines: PropTypes.arrayOf(
+      PropTypes.shape({
+        key: PropTypes.string,
+        x1: PropTypes.number,
+        x2: PropTypes.number,
+        y1: PropTypes.number,
+        y2: PropTypes.number,
+      }),
+    ),
+    midline: PropTypes.shape({
+      x1: PropTypes.number,
+      x2: PropTypes.number,
+      y1: PropTypes.number,
+      y2: PropTypes.number,
+    }),
   }).isRequired,
   points: PropTypes.arrayOf(
     PropTypes.shape({

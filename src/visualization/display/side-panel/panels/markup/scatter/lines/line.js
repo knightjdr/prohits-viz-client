@@ -10,19 +10,19 @@ import './line.css';
 
 const Line = ({
   dashLength,
-  fclines,
+  fcLines,
   handleSetFcLines,
   handleSettingChange,
   isDashed,
   showFcLines,
   showMidline,
 }) => (
-  <Section title="Labels">
+  <Section title="Lines">
     <div className="panel-markup__grid">
       <Switch
         checked={showMidline}
         id="showMidline"
-        label="Show midline"
+        label="Show x=y line"
         onChange={handleSettingChange}
       />
       <Switch
@@ -48,16 +48,16 @@ const Line = ({
       />
       <div className="panel-markup__lines-fc">
         <InputTextArea
-          id="fclines"
+          id="fcLines"
           label="Fold change lines"
           onChange={handleSetFcLines}
           placeholder="-10, -2, 2, 10"
-          value={fclines.join(', ')}
+          value={fcLines.join(', ')}
         />
         <p>
           Enter a comma-, space- or newline-separated list of numbers indicating
-          the fold-change lines you would like drawn. This should generally only be
-          done with log-transformed axes.
+          the fold-change lines you would like drawn. Positive fold refers to
+          the x axis and negative fold to the y axis.
         </p>
       </div>
     </div>
@@ -66,7 +66,7 @@ const Line = ({
 
 Line.propTypes = {
   dashLength: PropTypes.number.isRequired,
-  fclines: PropTypes.arrayOf(PropTypes.number).isRequired,
+  fcLines: PropTypes.arrayOf(PropTypes.number).isRequired,
   handleSetFcLines: PropTypes.func.isRequired,
   handleSettingChange: PropTypes.func.isRequired,
   isDashed: PropTypes.bool.isRequired,

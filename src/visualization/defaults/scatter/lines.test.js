@@ -5,7 +5,7 @@ describe('Fill lines', () => {
     const userLines = {
       main: {
         dashLength: 10,
-        fclines: [-10, 10],
+        fcLines: [-10, 10],
         isDashed: false,
         showFcLines: true,
         showMidline: true,
@@ -23,7 +23,7 @@ describe('Fill lines', () => {
   it('should return user-defined lines when valid but without snapshot identifiers', () => {
     const userLines = {
       dashLength: 10,
-      fclines: [-10, 10],
+      fcLines: [-10, 10],
       isDashed: false,
       showFcLines: true,
       showMidline: true,
@@ -38,7 +38,7 @@ describe('Fill lines', () => {
     const userLabels = {
       main: {
         dashLength: '10',
-        fclines: {},
+        fcLines: {},
         isDashed: 'false',
         showFcLines: 'true',
         showMidline: 'true',

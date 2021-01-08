@@ -12,7 +12,7 @@ import { updatePOI } from '../../../../state/visualization/analysis/poi-actions'
 import removeDuplicates from '../../../../utils/remove-duplicates';
 
 const PlotContainer = ({
-  midline,
+  lines,
   points,
 }) => {
   const dispatch = useDispatch();
@@ -67,7 +67,7 @@ const PlotContainer = ({
       handleMouseDown={handleMouseDown}
       handleWheel={handleWheel}
       labels={labels}
-      midline={midline}
+      lines={lines}
       points={points}
       searchLabels={searchLabels}
       transform={transform}
@@ -76,11 +76,22 @@ const PlotContainer = ({
 };
 
 PlotContainer.propTypes = {
-  midline: PropTypes.shape({
-    x1: PropTypes.number,
-    x2: PropTypes.number,
-    y1: PropTypes.number,
-    y2: PropTypes.number,
+  lines: PropTypes.shape({
+    fcLines: PropTypes.arrayOf(
+      PropTypes.shape({
+        key: PropTypes.string,
+        x1: PropTypes.number,
+        x2: PropTypes.number,
+        y1: PropTypes.number,
+        y2: PropTypes.number,
+      }),
+    ),
+    midline: PropTypes.shape({
+      x1: PropTypes.number,
+      x2: PropTypes.number,
+      y1: PropTypes.number,
+      y2: PropTypes.number,
+    }),
   }).isRequired,
   points: PropTypes.arrayOf(
     PropTypes.shape({

@@ -4,7 +4,7 @@ import { validateArray, validateBoolean, validateNumber } from '../../../utils/v
 
 export const defaultState = {
   dashLength: 4,
-  fclines: [],
+  fcLines: [],
   isDashed: true,
   showFcLines: false,
   showMidline: false,
@@ -13,7 +13,7 @@ export const defaultState = {
 export const fillSnapshotLines = (inputLines) => {
   const {
     dashLength,
-    fclines,
+    fcLines,
     isDashed,
     showFcLines,
     showMidline,
@@ -21,7 +21,7 @@ export const fillSnapshotLines = (inputLines) => {
 
   return {
     dashLength: validateNumber(dashLength, defaultState.dashLength),
-    fclines: validateArray(fclines, defaultState.fclines),
+    fcLines: validateArray(fcLines, defaultState.fcLines),
     isDashed: validateBoolean(isDashed, defaultState.isDashed),
     showFcLines: validateBoolean(showFcLines, defaultState.showFcLines),
     showMidline: validateBoolean(showMidline, defaultState.showMidline),

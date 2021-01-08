@@ -19,7 +19,7 @@ const LineContainer = () => {
     const validElements = elements.filter((element) => isNumber(element));
     const numbers = validElements.map((element) => Number(element));
     numbers.sort(sort.numeric);
-    dispatch(updateLineSetting('fclines', numbers));
+    dispatch(updateLineSetting('fcLines', numbers));
   };
 
   const handleSettingChange = (e, id, value) => {
@@ -29,7 +29,7 @@ const LineContainer = () => {
   return (
     <Line
       dashLength={lines.dashLength}
-      fclines={lines.fclines}
+      fcLines={lines.fcLines}
       handleSetFcLines={handleSetFcLines}
       handleSettingChange={handleSettingChange}
       isDashed={lines.isDashed}

@@ -1,4 +1,4 @@
-import defineMidline from './define-midline';
+import { defineFcLines, defineMidline } from './define-lines';
 import defineTicks from './define-ticks';
 import removeDuplicates from '../../../../utils/remove-duplicates';
 import scaleData from './scale-data';
@@ -7,10 +7,12 @@ import sort from '../../../../utils/sort';
 const formatData = (data, options) => {
   const {
     axisLength,
+    equalScaleAxes,
+    fcLines,
     logBase,
     scale,
+    showFcLines,
     showMidline,
-    equalScaleAxes,
   } = options;
 
   const ticks = {
@@ -25,15 +27,15 @@ const formatData = (data, options) => {
     ticks.y = tickList;
   }
 
-  const scaleOptions = { axisLength, logBase };
-  const scaledData = scaleData(data, ticks, scaleOptions);
-
-  const midline = showMidline ? defineMidline(scaledData.ticks, axisLength) : null;
-
-  return {
-    ...scaledData,
-    midline,
+  const lines = {
+    fcLines: showFcLines ? defineFcLines(fcLines, ticks) : [],
+    midline: showMidline ? defineMidline(ticks) : {},
   };
+
+  const scaleOptions = { axisLength, logBase };
+  const scaledData = scaleData(data, ticks, lines, scaleOptions);
+
+  return scaledData;
 };
 
 export default formatData;
