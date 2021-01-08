@@ -38,6 +38,7 @@ const panels = (imageType) => {
         <Markup />
         <Customization />
         <Analysis />
+        <Save />
       </>
     );
   }

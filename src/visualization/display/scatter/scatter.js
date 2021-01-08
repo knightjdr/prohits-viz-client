@@ -30,6 +30,7 @@ const Scatter = forwardRef((
       width={wrapperWidth}
       xmlns="http://www.w3.org/2000/svg"
     >
+      <rect width="100%" height="100%" fill="white" />
       <g transform="translate(0 50)">
         <Plot
           lines={lines}

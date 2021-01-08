@@ -30,8 +30,8 @@ const Message = ({
 
 Message.propTypes = {
   exporter: PropTypes.shape({
-    error: PropTypes.bool.isRequired,
-    exporting: PropTypes.bool.isRequired,
+    error: PropTypes.bool,
+    exporting: PropTypes.bool,
   }).isRequired,
 };
 

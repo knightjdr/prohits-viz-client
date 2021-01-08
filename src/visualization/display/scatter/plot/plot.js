@@ -4,8 +4,6 @@ import React from 'react';
 import Lines from './lines/lines-container';
 import Points from './points';
 
-import './plot.css';
-
 const Plot = ({
   axisLength,
   customization,

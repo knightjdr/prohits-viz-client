@@ -15,6 +15,7 @@ const Yaxis = ({
 }) => {
   const axisLabelY = (axisLength) / 2;
   const tickFontSize = fontSize / scale;
+  const tickFontSizeDy = tickFontSize / 3;
   const tickLabelPosition = 13 / scale;
   const tickLength = 10 / scale;
   const tickStart = X_START / scale;
@@ -52,7 +53,8 @@ const Yaxis = ({
         />
       </g>
       <line
-        className="scatterplot__axis"
+        stroke="#333333"
+        strokeWidth="2"
         x1={X_START}
         x2={X_START}
         y1={0}
@@ -69,6 +71,7 @@ const Yaxis = ({
                   key={`y-tick-${tick.key}`}
                 >
                   <line
+                    stroke="#333333"
                     strokeWidth={tickWidth}
                     x1={tickStart}
                     x2={tickStart - tickLength}
@@ -92,7 +95,7 @@ const Yaxis = ({
                   key={`y-text-${tick.key}`}
                 >
                   <text
-                    dominantBaseline="central"
+                    dy={tickFontSizeDy}
                     fontSize={`${tickFontSize}px`}
                     textAnchor="end"
                     x={tickStart - tickLabelPosition}
@@ -107,7 +110,7 @@ const Yaxis = ({
         </g>
       </g>
       <text
-        dominantBaseline="central"
+        dy={5}
         textAnchor="middle"
         transform={`rotate(-90, 10, ${axisLabelY})`}
         x={10}

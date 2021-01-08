@@ -49,7 +49,8 @@ const AxisX = ({
         />
       </g>
       <line
-        className="scatterplot__axis"
+        stroke="#333333"
+        strokeWidth="2"
         x1={0}
         x2={axisLength}
         y1={0}
@@ -64,6 +65,7 @@ const AxisX = ({
                 key={`x-tick-${tick.key}`}
               >
                 <line
+                  stroke="#333333"
                   strokeWidth={tickWidth}
                   x1={tick.x}
                   x2={tick.x}

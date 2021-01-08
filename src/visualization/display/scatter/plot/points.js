@@ -3,10 +3,11 @@ import React, { Fragment } from 'react';
 
 const drawLabel = (labels, searchLabels, point, options) => {
   const { scaledFontSize, textGap, y } = options;
+
   if (searchLabels[point.label]) {
     return (
       <text
-        dominantBaseline="middle"
+        dy={(scaledFontSize * 1.2) / 3}
         fontSize={scaledFontSize * 1.2}
         style={{
           fontWeight: 'bold',
@@ -21,7 +22,7 @@ const drawLabel = (labels, searchLabels, point, options) => {
   } if (labels[point.label]) {
     return (
       <text
-        dominantBaseline="middle"
+        dy={scaledFontSize / 3}
         fontSize={scaledFontSize}
         textAnchor="start"
         x={point.x + textGap}
@@ -35,7 +36,7 @@ const drawLabel = (labels, searchLabels, point, options) => {
 };
 
 const getCustomization = (point, customization, scale) => {
-  let color = point.color || null;
+  let color = point.color || '#333333';
   let radius = point.radius || 4;
   let textGap = 8;
   if (customization) {

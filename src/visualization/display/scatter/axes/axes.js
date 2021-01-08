@@ -4,8 +4,6 @@ import React from 'react';
 import AxisX from './axis-x';
 import AxisY from './axis-y';
 
-import './axes.css';
-
 const Axes = ({
   fontSize,
   handleMouseDownX,
