@@ -12,8 +12,8 @@ import SelectionOverlay from './selection-overlay';
 
 import calculateGridCoordinatesFromCursor from './calculate-grid-coordinates-from-cursor';
 import calculateFractionalSelection from './calculate-fractional-selection';
-import calculateSelectionCoordinates from './calculate-selection-coordinates';
-import calculateSelectionSize from './calculate-selection-size';
+import calculateSelectionCoordinates from '../../../common/overlay/calculate-selection-coordinates';
+import calculateSelectionSize from '../../../common/overlay/calculate-selection-size';
 import extractSelectedData from './extract-selected-data';
 import { addMarker } from '../../../../../state/visualization/markup/marker-actions';
 import { selectData, selectDataProperty } from '../../../../../state/selector/visualization/data-selector';

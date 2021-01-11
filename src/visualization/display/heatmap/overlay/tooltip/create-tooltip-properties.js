@@ -1,6 +1,6 @@
 import React from 'react';
 
-import calculateCursorPosition from '../calculate-cursor-position';
+import calculateCursorPosition from '../../../common/overlay/calculate-cursor-position';
 import mapCursorToGrid from '../map-cursor-to-grid';
 
 export const defaultTooltipState = {

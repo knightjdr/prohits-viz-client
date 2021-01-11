@@ -45,8 +45,11 @@ const PlotContainer = ({
   };
 
   const handleMouseDown = (e) => {
-    const options = { setTransform, transform };
-    handlers.pan(e, options);
+    const { shiftKey } = e;
+    if (!shiftKey) {
+      const options = { setTransform, transform };
+      handlers.pan(e, options);
+    }
   };
 
   const handleWheel = (e) => {

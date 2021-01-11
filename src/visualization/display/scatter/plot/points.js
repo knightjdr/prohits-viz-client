@@ -75,6 +75,7 @@ const Points = ({
       return (
         <Fragment key={point.label}>
           <circle
+            className="scatter-point"
             cx={point.x}
             cy={y}
             data-index={index}

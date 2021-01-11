@@ -20,6 +20,23 @@ const exportFields = {
     'settings',
     'tabs',
   ],
+  scatter: [
+    'analysis',
+    'customization',
+    'dimensions',
+    'display',
+    'gprofiler',
+    'labels',
+    'legend',
+    'lines',
+    'panel',
+    'parameters',
+    'plots',
+    'poi',
+    'searchStatus',
+    'settings',
+    'tabs',
+  ],
 };
 
 export default exportFields;

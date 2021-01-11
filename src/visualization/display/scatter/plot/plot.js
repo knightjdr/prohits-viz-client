@@ -1,5 +1,6 @@
 import PropTypes from 'prop-types';
 import React from 'react';
+import OverlayContainer from '../overlay/overlay-container';
 
 import Lines from './lines/lines-container';
 import Points from './points';
@@ -44,6 +45,7 @@ const Plot = ({
     </g>
     <g clipPath="url(#plot_points_clip)">
       <g transform={transform.matrix.plot}>
+        <OverlayContainer />
         <Lines
           fcLines={lines.fcLines}
           midline={lines.midline}

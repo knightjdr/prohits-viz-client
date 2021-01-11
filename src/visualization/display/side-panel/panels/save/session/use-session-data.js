@@ -6,17 +6,15 @@ import parseFields from './parse-fields';
 const useSessionData = () => {
   const session = useSelector((state) => state);
 
-  const { analysisType } = session.parameters;
+  const { imageType } = session.parameters;
 
   const exportData = () => {
-    switch (analysisType) {
-      case 'correlation':
-        return parseFields(session, exportFields.heatmap);
-      case 'dotplot':
-        return parseFields(session, exportFields.heatmap);
-      default:
-        return {};
+    if (imageType === 'dotplot' || imageType === 'heatmap') {
+      return parseFields(session, exportFields.heatmap);
+    } if (imageType === 'scatter') {
+      return parseFields(session, exportFields.scatter);
     }
+    return {};
   };
 
   return exportData;

@@ -1,4 +1,4 @@
-import calculateCursorPosition from '../calculate-cursor-position';
+import calculateCursorPosition from '../../../common/overlay/calculate-cursor-position';
 import convertPositionToCell from './convert-position-to-cell';
 
 export const calculateCellIndex = (position, cellSize, pageSize) => {
