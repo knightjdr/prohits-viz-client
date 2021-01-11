@@ -34,8 +34,10 @@ const Tool = ({
         id="tool"
         onChange={setTool}
         options={[
+          { label: 'Condition-condition', value: 'condition-condition' },
           { label: 'Dot plot', value: 'dotplot' },
           { label: 'Correlation', value: 'correlation' },
+          { label: 'Specificity', value: 'specificity' },
         ]}
         placeholder="Select tool..."
         value={selectedtool}

@@ -54,6 +54,19 @@ const defaultFormValues = {
     writeDistance: false,
     writeHeatmap: false,
   },
+  'condition-condition': {
+    ...commonValues,
+    conditionX: '',
+    conditionY: '',
+    primaryFilter: 0.01,
+    secondaryFilter: 0.05,
+  },
+  specificity: {
+    ...commonValues,
+    markExpression: false,
+    metric: 'fold-enrichment',
+    removeContaminants: false,
+  },
 };
 
 export default defaultFormValues;
