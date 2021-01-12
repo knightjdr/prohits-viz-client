@@ -36,6 +36,25 @@ const getCommonSettings = (form) => {
   return tagArray;
 };
 
+const getConditionConditionSettings = (form) => {
+  const tagArray = [];
+
+  tagArray.push({
+    key: 'minAbundance',
+    text: `Minimum abundance: ${getNumber(form.minAbundance)}`,
+  });
+  tagArray.push({
+    key: 'primaryFilter',
+    text: `Primary filter: ${getNumber(form.primaryFilter)}`,
+  });
+  tagArray.push({
+    key: 'secondaryFilter',
+    text: `Secondary filter: ${getNumber(form.secondaryFilter)}`,
+  });
+
+  return tagArray;
+};
+
 const getCorrelationSettings = (form) => {
   const tagArray = [];
 
@@ -53,7 +72,7 @@ const getCorrelationSettings = (form) => {
   });
   tagArray.push({
     key: 'readoutScoreFilter',
-    text: `Readout abundance filter: ${getNumber(form.readoutScoreFilter)}`,
+    text: `Readout score filter: ${getNumber(form.readoutScoreFilter)}`,
   });
 
   return tagArray;
@@ -82,18 +101,32 @@ const getDotplotSettings = (form) => {
   return tagArray;
 };
 
+const getSpecificitySettings = (form) => {
+  const tagArray = [];
+
+  tagArray.push({
+    key: 'minAbundance',
+    text: `Minimum abundance: ${getNumber(form.minAbundance)}`,
+  });
+  tagArray.push({
+    key: 'specificityMetric',
+    text: `Metric: ${getNumber(form.specificityMetric)}`,
+  });
+
+  return tagArray;
+};
+
 const getSettings = (form) => {
   const tagArray = getCommonSettings(form);
 
-  switch (form.tool) {
-    case 'correlation':
-      tagArray.push(...getCorrelationSettings(form));
-      break;
-    case 'dotplot':
-      tagArray.push(...getDotplotSettings(form));
-      break;
-    default:
-      break;
+  if (form.tool === 'condition-condition') {
+    tagArray.push(...getConditionConditionSettings(form));
+  } if (form.tool === 'correlation') {
+    tagArray.push(...getCorrelationSettings(form));
+  } if (form.tool === 'dotplot') {
+    tagArray.push(...getDotplotSettings(form));
+  } if (form.tool === 'specificity') {
+    tagArray.push(...getSpecificitySettings(form));
   }
 
   return arrSortByKey(tagArray, 'text');

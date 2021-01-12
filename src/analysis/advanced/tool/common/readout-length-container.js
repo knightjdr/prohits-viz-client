@@ -4,8 +4,8 @@ import { useDispatch, useSelector } from 'react-redux';
 
 import ReadoutLength from './readout-length';
 
-import checkColumnValues from '../../../columns/check-column-values';
-import useColumns from '../../../columns/use-columns';
+import checkColumnValues from '../../../file-parameters/check-column-values';
+import useColumns from '../../../file-parameters/use-columns';
 import { selectState } from '../../../../state/selector/general';
 import { setFormField, setFormFields } from '../../../../state/analysis/form-actions';
 

@@ -87,7 +87,7 @@ const help = {
   ),
   secondaryFilter: `Readouts that do no pass the primary score filter but
     pass this secondary filter will be marked with an intermediate intensity
-    edge in the dot plot. Interactions that do not pass either filter will be
+    edge in the dot plot. Readouts that do not pass either filter will be
     marked with a low intensity edge. The secondary filter can be adjusted
     depending on the dataset to allow a greater or lesser number of readouts
     into this 'medium' confidence range.`,

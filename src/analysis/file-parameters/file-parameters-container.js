@@ -2,8 +2,7 @@ import PropTypes from 'prop-types';
 import React, { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 
-import Columns from './columns';
-import Conditions from './conditions';
+import FileParameters from './file-parameters';
 
 import checkColumnValues from './check-column-values';
 import readConditions from './read-conditions';
@@ -44,33 +43,19 @@ const ColumnsContainer = ({
   }, [form.condition, form.files, selectedtool]);
 
   return (
-    <>
-      <Columns
-        errors={errors}
-        form={form}
-        options={{
-          abundance: columns.abundance.options,
-          condition: columns.condition.options,
-          conditions,
-          readout: columns.readout.options,
-          score: columns.score.options,
-        }}
-        selectedtool={selectedtool}
-        setColumn={setColumn}
-      />
-      {
-        selectedtool === 'condition-condition'
-        && (
-          <Conditions
-            errors={errors}
-            form={form}
-            loading={conditions.loading}
-            options={conditions.options}
-            setColumn={setColumn}
-          />
-        )
-      }
-    </>
+    <FileParameters
+      conditions={conditions}
+      errors={errors}
+      form={form}
+      options={{
+        abundance: columns.abundance.options,
+        condition: columns.condition.options,
+        readout: columns.readout.options,
+        score: columns.score.options,
+      }}
+      selectedtool={selectedtool}
+      setColumn={setColumn}
+    />
   );
 };
 

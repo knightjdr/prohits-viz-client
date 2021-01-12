@@ -1,7 +1,7 @@
 const recommendedColumns = {
   'condition-condition': {
     saint: {
-      abundance: ['avgspec', 'specsum', 'avgintensity', 'intensitysum', 'spec'],
+      abundance: ['avgspec', 'specsum', 'avgintensity', 'intensitysum'],
       condition: ['bait', 'baits'],
       control: ['ctrlcounts', 'control', 'controls'],
       readout: ['preygene', 'prey', 'preygenes', 'preys'],
@@ -31,7 +31,7 @@ const recommendedColumns = {
   },
   specificity: {
     saint: {
-      abundance: ['avgspec', 'specsum', 'avgintensity', 'intensitysum', 'spec'],
+      abundance: ['avgspec', 'specsum', 'avgintensity', 'intensitysum'],
       condition: ['bait', 'baits'],
       control: ['ctrlcounts', 'control', 'controls'],
       readout: ['preygene', 'prey', 'preygenes', 'preys'],

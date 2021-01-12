@@ -7,11 +7,13 @@ import Switch from '../../../../components/input/switch/switch-container';
 const AdvancedSwitch = ({
   helpMessage,
   helpTitle,
+  id,
   ...props
 }) => (
   <AdvancedField
     iconMargin={false}
     message={helpMessage}
+    modalID={id}
     title={helpTitle}
   >
     <Switch
@@ -23,6 +25,7 @@ const AdvancedSwitch = ({
 AdvancedSwitch.propTypes = {
   helpMessage: PropTypes.node.isRequired,
   helpTitle: PropTypes.string.isRequired,
+  id: PropTypes.string.isRequired,
 };
 
 export default AdvancedSwitch;

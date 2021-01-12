@@ -18,12 +18,17 @@ const AdvancedFieldContainer = ({
   const [id] = useState(createModalID(modalID));
   const [isModalOpen, setModalState] = useState(false);
 
+  const handleModalClose = () => {
+    setModalState(false);
+  };
+
   const toggleModal = () => {
     setModalState(!isModalOpen);
   };
 
   return (
     <AdvancedField
+      handleModalClose={handleModalClose}
       iconMargin={iconMargin}
       id={id}
       isModalOpen={isModalOpen}

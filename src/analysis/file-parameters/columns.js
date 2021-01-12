@@ -5,8 +5,6 @@ import Divider from '../../components/divider/divider';
 import Link from '../../components/link/text/link';
 import Select from '../../components/select/select-container';
 
-import './columns.css';
-
 const Columns = ({
   errors,
   form,

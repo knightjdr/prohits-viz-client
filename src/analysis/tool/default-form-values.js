@@ -18,6 +18,14 @@ const commonValues = {
 };
 
 const defaultFormValues = {
+  'condition-condition': {
+    ...commonValues,
+    conditionX: '',
+    conditionY: '',
+    minAbundance: 0,
+    primaryFilter: 0.01,
+    secondaryFilter: 0.05,
+  },
   correlation: {
     ...commonValues,
     clustering: 'hierarchical',
@@ -54,18 +62,12 @@ const defaultFormValues = {
     writeDistance: false,
     writeHeatmap: false,
   },
-  'condition-condition': {
-    ...commonValues,
-    conditionX: '',
-    conditionY: '',
-    primaryFilter: 0.01,
-    secondaryFilter: 0.05,
-  },
   specificity: {
     ...commonValues,
     markExpression: false,
-    metric: 'fold-enrichment',
+    minAbundance: 0,
     removeContaminants: false,
+    specificityMetric: 'fe',
   },
 };
 
