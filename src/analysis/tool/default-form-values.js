@@ -68,7 +68,6 @@ const defaultFormValues = {
     ...commonValues,
     markExpression: false,
     minAbundance: 0,
-    minConditions: 1,
     primaryFilter: 0.01,
     removeContaminants: false,
     specificityMetric: 'fe',
