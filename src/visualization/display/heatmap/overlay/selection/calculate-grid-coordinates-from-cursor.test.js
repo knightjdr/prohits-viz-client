@@ -1,6 +1,6 @@
 import calculateGridCoordinatesFromCursor, { calculateCellIndex } from './calculate-grid-coordinates-from-cursor';
 
-jest.mock('../calculate-cursor-position', () => () => ({ x: 90, y: 140 }));
+jest.mock('../../../common/overlay/calculate-cursor-position', () => () => ({ x: 90, y: 140 }));
 
 describe('Calculate cell index', () => {
   it('should return index within bounds', () => {

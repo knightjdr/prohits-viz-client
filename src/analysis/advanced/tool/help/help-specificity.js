@@ -13,6 +13,10 @@ const help = {
     value at or above this minimum to be included in the analysis.
     As with the primary filter, once a readout passes this threshold for one condition,
     values for it are returned across both conditions.`,
+  minConditions: `A readout must pass filtering criteria for at least one condition to be
+    included in the analysis. You can increase this value to apply additional stringency,
+    requiring the readout to satisfy filtering criteria in more than one condition to be
+    included in the analysis.`,
   primaryFilter: (
     <div>
       <p>

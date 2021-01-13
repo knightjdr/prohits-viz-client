@@ -2,6 +2,7 @@ import PropTypes from 'prop-types';
 import React from 'react';
 
 import CommonTransformations from '../common/transformations-container';
+import MockConditionAbundance from '../common/mock-abundance-container';
 
 const Transformations = ({
   errors,
@@ -10,6 +11,7 @@ const Transformations = ({
   <section>
     <h2>Data transformation</h2>
     <CommonTransformations errors={errors} help={help} />
+    <MockConditionAbundance help={help} />
   </section>
 );
 

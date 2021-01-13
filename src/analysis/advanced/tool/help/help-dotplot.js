@@ -65,6 +65,16 @@ const help = {
     As with the primary filter, once a readout passes this threshold for one condition,
     all the values for it are returned across all conditions and used in the analysis
     unless parsimonious readout filtering is enabled.`,
+  minConditions: `A readout must pass filtering criteria for at least one condition to be
+    included in the analysis. You can increase this value to apply additional stringency,
+    requiring the readout to satisfy filtering criteria in more than one condition to be
+    included in the analysis.`,
+  parsimoniousReadoutFiltering: `All readouts that satisfy the filters for at least one
+    condition will be used in the analysis. If a readout satisfies the filters
+    for at least one condition, all the quantitative values for this readout – even
+    those that did not satisfy the cutoff in particular condition-readout pairs -
+    will also be included unless parsimonious readout filtering is enabled. When this
+    option is enabled, only quantitative values that explicility pass the filters will be used.`,
   primaryFilter: (
     <div>
       <p>

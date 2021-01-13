@@ -2,7 +2,7 @@ import React from 'react';
 
 import createTooltipProperties from './create-tooltip-properties';
 
-jest.mock('../calculate-cursor-position', () => () => ({
+jest.mock('../../../common/overlay/calculate-cursor-position', () => () => ({
   clientX: 100,
   clientY: 50,
   x: 10,

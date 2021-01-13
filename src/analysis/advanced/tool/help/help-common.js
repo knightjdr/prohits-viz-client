@@ -18,22 +18,32 @@ const help = {
   logBase: `Log-transform abundance values by base 2, e or base 10. If you are applying multiple
     transformations to your data, log transformation will always occur last (after control subtraction,
     readout length normalization and condition normalization).`,
-  minConditions: `A readout must pass filtering criteria for at least one condition to be
-    included in the analysis. You can increase this value to apply additional stringency
-    requiring the readout to satisfy filtering criteria in more than one condition to be
-    included in the analysis.`,
+  mockConditionAbundance: (
+    <div>
+      <p>
+        Enable this option if for each condition you would like to create an identical readout
+        with a simulated abundance value. The simulated abundance will be equal to the highest detected
+        readout abundance satisfying the filter cutoffs for the condition in question.
+      </p>
+      <h2 className="analysis__advanced-help-header">
+        Motivation
+      </h2>
+      <p>
+        The protein-protein interaction scoring tool SAINT automatically filters out peptides
+        detected for the bait protein (condition) due to quantification artifacts from overexpressing
+        the bait. If this option is enabled, the highest detected prey (readout) abundance satisfying
+        the filter cutoffs will be used for the bait abundance. The absence of a bait gene
+        can negatively affect correlation analysis for smaller clusters making it necessary to
+        simulate this value when not available.
+      </p>
+    </div>
+  ),
   normalization: `No normalization is applied by default but data can be normalized by the total
     abundance between conditions or by a specific readout. If you are applying multiple
     transformations to your data, normalization will always occur after control subtraction
     and readout length normalization but before log transformation.`,
   normalizationReadout: `The readout to use for normalization. Enter the readout name exactly
     as is it appears in the input file as this option is case sensitive.`,
-  parsimoniousReadoutFiltering: `All readouts that satisfy the filters for at least one
-    condition will be used in the analysis. If a readout satisfies the filters
-    for at least one condition, all the quantitative values for this readout – even
-    those that did not satisfy the cutoff in particular condition-readout pairs -
-    will also be included unless parsimonious readout filtering is enabled. When this
-    option is enabled, only quantitative values that explicility pass the filters will be used.`,
   png: `SVG images will always be generated but images in PNG format can also be created if
     this option is selected.`,
   readoutLength: (

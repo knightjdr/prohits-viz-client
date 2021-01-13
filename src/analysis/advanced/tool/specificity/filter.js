@@ -2,6 +2,7 @@ import PropTypes from 'prop-types';
 import React from 'react';
 
 import Input from '../fields/input';
+import MinimumConditions from '../common/minimum-conditions-container';
 import ScoreType from '../common/score-type-container';
 
 const Filtering = ({
@@ -36,6 +37,7 @@ const Filtering = ({
       value={form.minAbundance}
       warning={errors.minAbundance}
     />
+    <MinimumConditions errors={errors} help={help} />
   </section>
 );
 

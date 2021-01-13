@@ -5,6 +5,7 @@ import validateClusteringMethod from '../../field-validation/clustering-method';
 import validateClusteringMetric from '../../field-validation/clustering-metric';
 import validateClusteringType,
 { validateConditionClustering, validateReadoutClustering } from '../../field-validation/clustering-type';
+import validateMinCondition from '../../field-validation/min-conditions';
 
 const validateNoClusteringType = (value) => (
   criteria.isString(value) || Array.isArray(value)
@@ -38,6 +39,10 @@ const validateFields = (type, value) => {
         return validateField(validateColor, 'invalid color');
       case 'minAbundance':
         return validateField(criteria.isNumber, 'should be a number');
+      case 'minConditions':
+        return validateField(validateMinCondition, 'should be a number > 0');
+      case 'parsimoniousReadoutFiltering':
+        return validateField(criteria.isBoolean, 'should be a boolean');
       case 'primaryFilter':
         return validateField(criteria.isNumber, 'should be a number');
       case 'readoutClustering':

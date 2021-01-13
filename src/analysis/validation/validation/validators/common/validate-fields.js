@@ -1,6 +1,5 @@
 import criteria from '../../field-validation/criteria';
 import validateLogBase from '../../field-validation/log-base';
-import validateMinCondition from '../../field-validation/min-conditions';
 import validateNormalization from '../../field-validation/normalization';
 import validateScoreType from '../../field-validation/score-type';
 
@@ -26,16 +25,12 @@ const validateCommon = (type, value) => {
       return validateField(criteria.isBoolean, 'should be a boolean');
     case 'logBase':
       return validateField(validateLogBase, `invalid base: ${value}`);
-    case 'minConditions':
-      return validateField(validateMinCondition, 'should be a number > 0');
     case 'mockConditionAbundance':
       return validateField(criteria.isBoolean, 'should be a boolean');
     case 'normalization':
       return validateField(validateNormalization, 'invalid value');
     case 'normalizationReadout':
       return validateField(criteria.isString, 'invalid value');
-    case 'parsimoniousReadoutFiltering':
-      return validateField(criteria.isBoolean, 'should be a boolean');
     case 'readout':
       return validateField(criteria.requiredString, 'missing column name');
     case 'readoutLength':
