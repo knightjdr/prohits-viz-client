@@ -1,6 +1,7 @@
 export const CHANGE_PLOT = 'CHANGE_PLOT';
 export const RESET_HEATMAP = 'RESET_HEATMAP';
 export const RESET_SCATTER = 'RESET_SCATTER';
+export const RESET_SCATTER_TRANSFORMATIONS = 'RESET_SCATTER_TRANSFORMATIONS';
 export const UPDATE_DISPLAY_SETTING = 'UPDATE_DISPLAY_SETTING';
 
 export const changePlot = (value) => ({
@@ -18,6 +19,12 @@ export const resetHeatmap = () => ({
 export const resetScatter = (value) => ({
   AUGMENT_WITH_ACTIVE_SNAPSHOT: true,
   type: RESET_SCATTER,
+  value,
+});
+
+export const resetScatterTransformations = (value) => ({
+  AUGMENT_WITH_ACTIVE_SNAPSHOT: true,
+  type: RESET_SCATTER_TRANSFORMATIONS,
   value,
 });
 

@@ -28,19 +28,19 @@ const ScatterLegend = ({
     >
       {
         [...legend, ...customizationColors].map((dot, index) => {
-          const y = (index * 30) + 15;
+          const yCircle = (index * 30) + 15;
+          const yText = (index * 30) + 15 + 4;
           return (
             <Fragment key={dot.color}>
               <circle
                 cx={20}
-                cy={y}
+                cy={yCircle}
                 fill={dot.color}
                 r={6}
               />
               <text
-                dominantBaseline="middle"
                 x={35}
-                y={y + 1}
+                y={yText}
               >
                 {dot.text}
               </text>

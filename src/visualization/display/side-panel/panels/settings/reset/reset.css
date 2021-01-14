@@ -1,9 +1,11 @@
 .settings__reset {
   align-items: center;
-  display: flex;
-  justify-content: center;
+  column-gap: 0.8rem;
+  display: grid;
+  grid-template-columns: 1fr 60px;
+  row-gap: 0.8rem;
 }
 
-.settings__reset > button {
-  margin: 0 10px;
+.settings__reset > :nth-child(odd) {
+  justify-self: end;
 }

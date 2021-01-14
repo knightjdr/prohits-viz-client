@@ -8,17 +8,17 @@ export const defineFcLines = (fcLines, ticks) => {
     if (sign >= 0) {
       return {
         key: String(fc),
-        x1: magnitude,
+        x1: magnitude / 100,
         x2: xMax,
-        y1: 1,
+        y1: 0.01,
         y2: xMax / magnitude,
       };
     }
     return {
       key: String(fc),
-      x1: 1,
+      x1: 0.01,
       x2: yMax / magnitude,
-      y1: magnitude,
+      y1: magnitude / 100,
       y2: yMax,
     };
   });

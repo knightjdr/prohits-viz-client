@@ -138,6 +138,41 @@ describe('Display reducer', () => {
     expect(reducer(currentState, action)).toEqual(expectedState);
   });
 
+  it('should handle RESET_SCATTER_TRANSFORMATIONS action', () => {
+    const currentState = {
+      main: {
+        plotFixed: false,
+        transform: {
+          matrix: { plot: 'translate(10 10)' },
+          scale: 2,
+        },
+      },
+    };
+
+    const action = {
+      snapshotID: 'main',
+      type: actions.RESET_SCATTER_TRANSFORMATIONS,
+      value: {
+        transform: {
+          matrix: { plot: '' },
+          scale: 1,
+        },
+      },
+    };
+    const expectedState = {
+      ...currentState,
+      main: {
+        ...currentState.main,
+        plotFixed: false,
+        transform: {
+          matrix: { plot: '' },
+          scale: 1,
+        },
+      },
+    };
+    expect(reducer(currentState, action)).toEqual(expectedState);
+  });
+
   it('should handle UPDATE_DISPLAY_SETTING action', () => {
     const currentState = {
       main: {

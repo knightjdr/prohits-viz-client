@@ -4,20 +4,30 @@ import { useDispatch } from 'react-redux';
 import SettingsScatter from './settings__scatter';
 
 import { defaultState as defaultDisplayState } from '../../../../../defaults/scatter/display';
-import { resetScatter } from '../../../../../../state/visualization/settings/display-actions';
+import {
+  resetScatter,
+  resetScatterTransformations,
+} from '../../../../../../state/visualization/settings/display-actions';
 
 const SettingsScatterContainer = () => {
   const dispatch = useDispatch();
 
-  const handleImageReset = () => {
+  const handleReset = () => {
     dispatch(resetScatter({
+      transform: defaultDisplayState.transform,
+    }));
+  };
+
+  const handleTransformationReset = () => {
+    dispatch(resetScatterTransformations({
       transform: defaultDisplayState.transform,
     }));
   };
 
   return (
     <SettingsScatter
-      handleImageReset={handleImageReset}
+      handleReset={handleReset}
+      handleTransformationReset={handleTransformationReset}
     />
   );
 };

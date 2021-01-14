@@ -19,6 +19,7 @@
   width: 60px;
 }
 .panel-markup__grid-label {
+  padding-right: 8px;
   text-align: right;
 }
 

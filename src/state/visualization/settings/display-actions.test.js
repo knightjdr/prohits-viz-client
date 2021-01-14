@@ -19,13 +19,22 @@ describe('Display actions', () => {
     expect(actions.resetHeatmap()).toEqual(expectedAction);
   });
 
-  it('should dispatch an action to reset scatter image', () => {
+  it('should dispatch an action to reset scatter', () => {
     const expectedAction = {
       AUGMENT_WITH_ACTIVE_SNAPSHOT: true,
       type: actions.RESET_SCATTER,
       value: {},
     };
     expect(actions.resetScatter({})).toEqual(expectedAction);
+  });
+
+  it('should dispatch an action to reset scatter transformations', () => {
+    const expectedAction = {
+      AUGMENT_WITH_ACTIVE_SNAPSHOT: true,
+      type: actions.RESET_SCATTER_TRANSFORMATIONS,
+      value: {},
+    };
+    expect(actions.resetScatterTransformations({})).toEqual(expectedAction);
   });
 
   it('should dispatch an action to update a display setting', () => {

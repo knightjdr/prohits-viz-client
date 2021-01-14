@@ -35,6 +35,8 @@ const reducer = (state = {}, action) => {
       return reduceAndRemoveSnapshot(state, action);
     case actions.RESET_SCATTER:
       return resetScatter(state, action);
+    case actions.RESET_SCATTER_TRANSFORMATIONS:
+      return resetScatter(state, action);
     case actions.UPDATE_DISPLAY_SETTING:
       return reduceSetting(state, action);
     default:

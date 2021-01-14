@@ -1,6 +1,6 @@
 import PropTypes from 'prop-types';
 import React from 'react';
-import { faImage } from '@fortawesome/pro-duotone-svg-icons';
+import { faExpandAlt, faRedoAlt } from '@fortawesome/pro-duotone-svg-icons';
 
 import Button from '../../../../../../components/buttons/icon/button';
 import Section from '../../section/section';
@@ -8,24 +8,49 @@ import Section from '../../section/section';
 import './reset.css';
 
 const Reset = ({
-  handleImageReset,
+  handleReset,
+  handleTransformationReset,
+  resetText,
 }) => (
   <>
     <Section title="Reset">
       <div className="settings__reset">
-        <span>Reset image and settings:</span>
+        <span>
+          {resetText}
+          :
+        </span>
         <Button
-          icon={faImage}
+          icon={faRedoAlt}
           kind="warning"
-          onClick={handleImageReset}
+          onClick={handleReset}
         />
+        {
+          handleTransformationReset
+          && (
+            <>
+              <span>Reset scale and zoom:</span>
+              <Button
+                icon={faExpandAlt}
+                kind="warning"
+                onClick={handleTransformationReset}
+              />
+            </>
+          )
+        }
       </div>
     </Section>
   </>
 );
 
+Reset.defaultProps = {
+  handleTransformationReset: null,
+  resetText: 'Reset image and settings',
+};
+
 Reset.propTypes = {
-  handleImageReset: PropTypes.func.isRequired,
+  handleReset: PropTypes.func.isRequired,
+  handleTransformationReset: PropTypes.func,
+  resetText: PropTypes.string,
 };
 
 export default Reset;

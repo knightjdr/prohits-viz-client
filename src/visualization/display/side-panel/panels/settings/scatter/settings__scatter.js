@@ -6,17 +6,23 @@ import Image from './image/image-container';
 import Reset from '../reset/reset';
 
 const Settings = ({
-  handleImageReset,
+  handleReset,
+  handleTransformationReset,
 }) => (
   <div className="panel panel__settings">
     <Image />
     <Filter />
-    <Reset handleImageReset={handleImageReset} />
+    <Reset
+      handleReset={handleReset}
+      handleTransformationReset={handleTransformationReset}
+      resetText="Reset settings, scale and zoom"
+    />
   </div>
 );
 
 Settings.propTypes = {
-  handleImageReset: PropTypes.func.isRequired,
+  handleReset: PropTypes.func.isRequired,
+  handleTransformationReset: PropTypes.func.isRequired,
 };
 
 export default Settings;
