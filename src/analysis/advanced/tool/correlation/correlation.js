@@ -5,7 +5,7 @@ import CorrelationOptionsContainer from './corr-option-container';
 import Clustering from './clustering';
 import Filtering from './filter-container';
 import Output from './output-container';
-import Transformations from './transformations';
+import Transformations from './transformations-container';
 
 import help from '../help/help-correlation';
 

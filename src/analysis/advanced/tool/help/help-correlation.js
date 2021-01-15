@@ -57,6 +57,9 @@ const help = {
       </p>
     </div>
   ),
+  logBase: `Log-transform abundance values by base 2, e or base 10. If you are applying multiple
+    transformations to your data, log transformation will always occur last (after control subtraction,
+    readout length normalization and condition normalization).`,
   minConditions: `A readout must pass filtering criteria for at least one condition to be
     included in the analysis. You can increase this value to apply additional stringency,
     requiring the readout to satisfy filtering criteria in more than one condition to be

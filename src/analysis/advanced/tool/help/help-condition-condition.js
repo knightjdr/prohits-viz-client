@@ -6,6 +6,7 @@ import './help.css';
 
 const help = {
   ...helpCommon,
+  logBase: 'Log-transform axes by base 2, e or base 10.',
   minAbundance: `In addition to the score filter requirement, a readout must have an abundance
     value at or above this minimum to be included in the analysis.
     As with the score filter, once a readout passes this threshold for one condition,

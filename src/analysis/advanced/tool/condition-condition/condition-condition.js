@@ -3,7 +3,7 @@ import React from 'react';
 
 import Filtering from './filter-container';
 import Output from './output-container';
-import Transformations from './transformations';
+import Transformations from './transformations-container';
 
 import help from '../help/help-condition-condition';
 

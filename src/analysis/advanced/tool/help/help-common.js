@@ -15,9 +15,6 @@ const help = {
     field. If you are applying multiple transformations to your data, control subtraction
     will always occur first (before readout length normalization, condition normalization
     and log transformation).`,
-  logBase: `Log-transform abundance values by base 2, e or base 10. If you are applying multiple
-    transformations to your data, log transformation will always occur last (after control subtraction,
-    readout length normalization and condition normalization).`,
   mockConditionAbundance: (
     <div>
       <p>

@@ -5,7 +5,7 @@ import Clustering from './clustering/clustering-container';
 import Display from './display-container';
 import Filtering from './filter-container';
 import Output from './output-container';
-import Transformations from './transformations';
+import Transformations from './transformations-container';
 
 import help from '../help/help-dotplot';
 

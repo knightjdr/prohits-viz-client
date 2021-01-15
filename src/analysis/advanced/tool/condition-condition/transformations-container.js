@@ -3,7 +3,7 @@ import React from 'react';
 
 import Transformations from './transformations';
 
-import useFormUpdate from './use-form-update';
+import useFormUpdate from '../common/use-form-update';
 
 const TransformationsContainer = ({
   errors,
