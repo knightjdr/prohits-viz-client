@@ -16,6 +16,7 @@ const AdvancedSelect = ({
     title={helpTitle}
   >
     <Select
+      id={id}
       {...props}
     />
   </AdvancedField>
