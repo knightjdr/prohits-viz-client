@@ -31,7 +31,7 @@ const recommendedColumns = {
   },
   specificity: {
     saint: {
-      abundance: ['avgspec', 'specsum', 'avgintensity', 'intensitysum'],
+      abundance: ['avgspec', 'specsum', 'avgintensity', 'intensitysum', 'spec'],
       condition: ['bait', 'baits'],
       control: ['ctrlcounts', 'control', 'controls'],
       readout: ['preygene', 'prey', 'preygenes', 'preys'],

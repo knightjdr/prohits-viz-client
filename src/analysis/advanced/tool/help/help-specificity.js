@@ -79,8 +79,9 @@ const help = {
         <li>
           D-score: the D-score is calculated in the same was as the S-score, except reproducibility is
           incorporated into it, i.e. a reproducibly found readout will score higher than one that is not.
-          This score should only be selected when abundance information is available for two or more
-          replicates. This abundance column must contain the replicate values as a pipe-separated
+          This score should only be selected when abundance information is available for two replicates.
+          It will work for more than two replicates, although the applicability of this metric is not as clear
+          in that situation. This abundance column must contain the replicate values as a pipe-separated
           list. See the &quot;Spec&quot; column from the example SAINT file to see how this should be formatted.
         </li>
         <li>
