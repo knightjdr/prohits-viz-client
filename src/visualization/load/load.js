@@ -56,7 +56,7 @@ const Load = ({
       or a sample
       {' '}
       <Link
-        href="/visualization/samplefile/scatter"
+        href="/visualization/samplefile/specificity"
         outline={false}
         visited={false}
       >

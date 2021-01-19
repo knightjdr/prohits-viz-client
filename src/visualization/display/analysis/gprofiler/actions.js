@@ -9,18 +9,24 @@ import InputWithButton from '../../../../components/input/with-button/input-with
 const Actions = ({
   handleAddAnnotation,
   handleExportCSV,
+  imageType,
 }) => (
-  <div>
-    <InputWithButton
-      buttonKind="success"
-      buttonType="button"
-      icon={faPenSquare}
-      inputType="text"
-      label="Annotation"
-      onClick={handleAddAnnotation}
-      placeholder="Add annotation..."
-      value=""
-    />
+  <div className="gprofiler-results__actions">
+    {
+      (imageType === 'dotplot' || imageType === 'heatmap')
+      && (
+        <InputWithButton
+          buttonKind="success"
+          buttonType="button"
+          icon={faPenSquare}
+          inputType="text"
+          label="Annotation"
+          onClick={handleAddAnnotation}
+          placeholder="Add annotation..."
+          value=""
+        />
+      )
+    }
     <Button
       className="gprofiler-results__export"
       kind="secondary"
@@ -36,6 +42,7 @@ const Actions = ({
 Actions.propTypes = {
   handleAddAnnotation: PropTypes.func.isRequired,
   handleExportCSV: PropTypes.func.isRequired,
+  imageType: PropTypes.string.isRequired,
 };
 
 export default Actions;

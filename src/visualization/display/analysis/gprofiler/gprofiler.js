@@ -10,6 +10,7 @@ import './gprofiler.css';
 const Gprofiler = ({
   handleAddAnnotation,
   handleExportCSV,
+  imageType,
   tableRows,
 }) => (
   <div className="gprofiler-results">
@@ -18,6 +19,7 @@ const Gprofiler = ({
     <Actions
       handleAddAnnotation={handleAddAnnotation}
       handleExportCSV={handleExportCSV}
+      imageType={imageType}
     />
   </div>
 );
@@ -25,6 +27,7 @@ const Gprofiler = ({
 Gprofiler.propTypes = {
   handleAddAnnotation: PropTypes.func.isRequired,
   handleExportCSV: PropTypes.func.isRequired,
+  imageType: PropTypes.string.isRequired,
   tableRows: PropTypes.arrayOf(
     PropTypes.shape({}),
   ).isRequired,

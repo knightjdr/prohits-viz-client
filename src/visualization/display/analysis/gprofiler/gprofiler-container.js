@@ -1,5 +1,7 @@
 import PropTypes from 'prop-types';
 import React, { useMemo } from 'react';
+import { useSelector } from 'react-redux';
+
 import Gprofiler from './gprofiler';
 
 import columnDefinitions from './column-definitions';
@@ -8,12 +10,14 @@ import convertToCsv from '../../../../utils/convert-to-csv';
 import download from '../../../../utils/download';
 import formatRows from './format/format-rows';
 import useAnnotation from '../../side-panel/panels/markup/heatmap/annotations/use-annotation';
+import { selectStateProperty } from '../../../../state/selector/general';
 
 const GprofilerContainer = ({
   analysisID,
   data,
 }) => {
   const addAnnotation = useAnnotation();
+  const imageType = useSelector((state) => selectStateProperty(state, 'parameters', 'imageType'));
 
   const tableRows = useMemo(
     () => formatRows(data.results),
@@ -34,6 +38,7 @@ const GprofilerContainer = ({
     <Gprofiler
       handleAddAnnotation={handleAddAnnotation}
       handleExportCSV={handleExportCSV}
+      imageType={imageType}
       tableRows={tableRows}
     />
   );
