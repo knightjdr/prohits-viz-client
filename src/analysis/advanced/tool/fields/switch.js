@@ -17,6 +17,7 @@ const AdvancedSwitch = ({
     title={helpTitle}
   >
     <Switch
+      id={id}
       {...props}
     />
   </AdvancedField>
