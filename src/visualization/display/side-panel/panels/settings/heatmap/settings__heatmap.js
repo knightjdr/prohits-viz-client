@@ -30,7 +30,7 @@ const Settings = ({
       />
       <Filter />
       <Reset
-        handleImageReset={handleImageReset}
+        handleReset={handleImageReset}
       />
     </div>
   );
