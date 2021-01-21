@@ -67,7 +67,6 @@ export const handleMouseDown = (e, options) => {
 };
 
 export const handleWheel = (e, options) => {
-  e.preventDefault();
   const { setTransform, transform } = options;
 
   const position = getWheelPosition(e, options);
