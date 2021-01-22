@@ -8,12 +8,6 @@
   justify-items: center;
 }
 
-@media (max-width: 800px) {
-  .poi__grid-scatter {
-    grid-template-rows: auto auto;
-  }
-}
-
 @media (max-width: 374px) {
   .poi__grid-scatter {
     grid-column-gap: 4px;

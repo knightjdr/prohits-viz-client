@@ -16,28 +16,32 @@ const Axes = ({
   transform,
   width,
 }) => (
-  <g className="scatter__axes">
-    <AxisX
-      axisLength={width}
-      fontSize={fontSize}
-      handleMouseDown={handleMouseDownX}
-      handleWheel={handleWheelX}
-      label={labels.x}
-      scale={transform.scale}
-      ticks={ticks.x}
-      transform={transform.matrix.xAxis}
-    />
-    <AxisY
-      axisLength={height}
-      fontSize={fontSize}
-      handleMouseDown={handleMouseDownY}
-      handleWheel={handleWheelY}
-      label={labels.y}
-      scale={transform.scale}
-      ticks={ticks.y}
-      transform={transform.matrix.yAxis}
-    />
-  </g>
+  height > 0
+  && width > 0
+  && (
+    <g className="scatter__axes">
+      <AxisX
+        axisLength={width}
+        fontSize={fontSize}
+        handleMouseDown={handleMouseDownX}
+        handleWheel={handleWheelX}
+        label={labels.x}
+        scale={transform.scale}
+        ticks={ticks.x}
+        transform={transform.matrix.xAxis}
+      />
+      <AxisY
+        axisLength={height}
+        fontSize={fontSize}
+        handleMouseDown={handleMouseDownY}
+        handleWheel={handleWheelY}
+        label={labels.y}
+        scale={transform.scale}
+        ticks={ticks.y}
+        transform={transform.matrix.yAxis}
+      />
+    </g>
+  )
 );
 
 Axes.propTypes = {

@@ -25,7 +25,7 @@
 
 @media (max-width: 800px) {
   .poi__select select {
-    height: auto;
+    height: 100px;
   }
 }
 

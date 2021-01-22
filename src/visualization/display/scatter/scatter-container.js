@@ -75,7 +75,17 @@ const ScatterContainer = () => {
       };
       return formatData(filtered, options);
     },
-    [dimensions.height, fcLines, logBase, filtered, equalScaleAxes, showFcLines, showMidline, transform.scale],
+    [
+      dimensions.height,
+      fcLines,
+      logBase,
+      filtered,
+      equalScaleAxes,
+      showFcLines,
+      showMidline,
+      transform.scale,
+      windowDimensions,
+    ],
   );
 
   useEffect(() => {

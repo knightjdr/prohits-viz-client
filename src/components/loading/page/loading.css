@@ -1,0 +1,13 @@
+.loading-page {
+  align-items: center;
+  box-sizing: border-box;
+  display: flex;
+  height: calc(100vh - 60px);
+  justify-content: center;
+  padding: 20px;
+}
+
+.loading-page__icon {
+  color: var(--warning);
+  margin-right: 10px;
+}

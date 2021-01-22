@@ -18,52 +18,55 @@ const Plot = ({
   searchLabels,
   transform,
 }) => (
-  <g
-    className="scatter__plot"
-    onMouseDown={handleMouseDown}
-    onWheel={handleWheel}
-    transform="translate(100 0)"
-  >
-    <defs>
-      <clipPath id="plot_points_clip">
+  axisLength > 0
+  && (
+    <g
+      className="scatter__plot"
+      onMouseDown={handleMouseDown}
+      onWheel={handleWheel}
+      transform="translate(100 0)"
+    >
+      <defs>
+        <clipPath id="plot_points_clip">
+          <rect
+            height={axisLength + 20}
+            width={axisLength + 20}
+            x={0}
+            y={-20}
+          />
+        </clipPath>
+      </defs>
+      <g id="plot_points_wheel">
         <rect
-          height={axisLength + 20}
-          width={axisLength + 20}
+          height={axisLength}
+          opacity={0}
+          width={axisLength}
           x={0}
-          y={-20}
-        />
-      </clipPath>
-    </defs>
-    <g id="plot_points_wheel">
-      <rect
-        height={axisLength}
-        opacity={0}
-        width={axisLength}
-        x={0}
-        y={0}
-      />
-    </g>
-    <g clipPath="url(#plot_points_clip)">
-      <g transform={transform.matrix.plot}>
-        <OverlayContainer />
-        <Lines
-          fcLines={lines.fcLines}
-          midline={lines.midline}
-          scale={transform.scale}
-        />
-        <Points
-          axisLength={axisLength}
-          customization={customization}
-          fontSize={fontSize}
-          handleClickLabel={handleClickLabel}
-          labels={labels}
-          searchLabels={searchLabels}
-          points={points}
-          scale={transform.scale}
+          y={0}
         />
       </g>
+      <g clipPath="url(#plot_points_clip)">
+        <g transform={transform.matrix.plot}>
+          <OverlayContainer />
+          <Lines
+            fcLines={lines.fcLines}
+            midline={lines.midline}
+            scale={transform.scale}
+          />
+          <Points
+            axisLength={axisLength}
+            customization={customization}
+            fontSize={fontSize}
+            handleClickLabel={handleClickLabel}
+            labels={labels}
+            searchLabels={searchLabels}
+            points={points}
+            scale={transform.scale}
+          />
+        </g>
+      </g>
     </g>
-  </g>
+  )
 );
 
 Plot.propTypes = {

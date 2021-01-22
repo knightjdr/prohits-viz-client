@@ -4,7 +4,8 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faExclamationTriangle } from '@fortawesome/pro-duotone-svg-icons';
 
 import Dots from '../../feedback/dots/dots';
-import StyledLoading from './loading-style';
+
+import './loading.css';
 
 const Loading = ({
   error,
@@ -15,7 +16,7 @@ const Loading = ({
   if (error) {
     content = (
       <span>
-        <span className="loading__icon">
+        <span className="loading-page__icon">
           <FontAwesomeIcon icon={faExclamationTriangle} size="lg" />
         </span>
         <span>{message}</span>
@@ -25,9 +26,9 @@ const Loading = ({
     content = <Dots />;
   }
   return (
-    <StyledLoading>
+    <div className="loading-page">
       {content}
-    </StyledLoading>
+    </div>
   );
 };
 
