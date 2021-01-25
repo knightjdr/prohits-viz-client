@@ -3,11 +3,11 @@ import fillLegend from './legend';
 describe('Fill legend state', () => {
   it('should use return valid input state', () => {
     const fileLegend = [
-      { color: '#000000', text: 'text' },
+      { color: '#000000', min: 0, max: 50 },
     ];
 
     const expected = [
-      { color: '#000000', text: 'text' },
+      { color: '#000000', min: 0, max: 50 },
     ];
     expect(fillLegend(fileLegend)).toEqual(expected);
   });

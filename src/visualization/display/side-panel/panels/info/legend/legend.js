@@ -2,6 +2,7 @@ import PropTypes from 'prop-types';
 import React from 'react';
 import { faDownload } from '@fortawesome/pro-duotone-svg-icons';
 
+import CircHeatmap from './legend__circheatmap';
 import Dotplot from './legend__dotplot';
 import Heatmap from './legend__heatmap';
 import IconButton from '../../../../../../components/buttons/icon/button';
@@ -10,8 +11,16 @@ import Section from '../../section/section';
 
 import './legend.css';
 
-const drawLegend = (parameters, settings, scatterOptions) => {
-  if (parameters.imageType === 'dotplot') {
+const drawLegend = (parameters, settings, options) => {
+  if (parameters.imageType === 'circheatmap') {
+    return (
+      <CircHeatmap
+        legend={options.legend}
+        segmentOrder={settings.segmentOrder}
+        showKnown={settings.showKnown}
+      />
+    );
+  } if (parameters.imageType === 'dotplot') {
     return (
       <Dotplot
         abundanceColumn={parameters.abundanceColumn}
@@ -30,22 +39,25 @@ const drawLegend = (parameters, settings, scatterOptions) => {
   } if (parameters.imageType === 'scatter') {
     return (
       <Scatter
-        customizations={scatterOptions.customizations}
-        legend={scatterOptions.legend}
+        customizations={options.customizations}
+        legend={options.legend}
       />
     );
   }
   return null;
 };
 
-const showLegend = (imageType, scatterOptions) => (
+const showLegend = (imageType, options) => (
   imageType === 'dotplot'
   || imageType === 'heatmap'
   || (
-    imageType === 'scatter'
+    (
+      imageType === 'circheatmap'
+      || imageType === 'scatter'
+    )
     && (
-      scatterOptions.legend.length > 0
-      || Object.keys(scatterOptions.customizations).length > 0
+      options.legend.length > 0
+      || Object.keys(options.customizations).length > 0
     )
   )
 );

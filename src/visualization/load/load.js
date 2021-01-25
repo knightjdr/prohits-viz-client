@@ -52,8 +52,7 @@ const Load = ({
       >
         dot plot
       </Link>
-      {' '}
-      or a sample
+      , sample
       {' '}
       <Link
         href="/visualization/samplefile/specificity"
@@ -61,6 +60,16 @@ const Load = ({
         visited={false}
       >
         scatter plot
+      </Link>
+      {' '}
+      or a sample
+      {' '}
+      <Link
+        href="/visualization/samplefile/circheatmap"
+        outline={false}
+        visited={false}
+      >
+        circular heatmap
       </Link>
       .
     </p>

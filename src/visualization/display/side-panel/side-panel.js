@@ -19,7 +19,13 @@ const visibilityConfig = (isOpen) => (
 );
 
 const panels = (imageType) => {
-  if (imageType === 'dotplot' || imageType === 'heatmap') {
+  if (imageType === 'circheatmap') {
+    return (
+      <>
+        <Info />
+      </>
+    );
+  } if (imageType === 'dotplot' || imageType === 'heatmap') {
     return (
       <>
         <Info />

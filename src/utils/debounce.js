@@ -3,10 +3,13 @@
 ** 'wait' milliseconds. If 'immediate' is passed, trigger the function on the
 ** leading edge, instead of the trailing. */
 
-function debounce(func, wait, immediate) {
+function debounce(func, wait, immediate, start) {
   let timeout;
   return function debounced(...args) {
     const context = this;
+    if (start) {
+      start.apply(context);
+    }
     const later = function delayedFunc() {
       timeout = null;
       if (!immediate) {

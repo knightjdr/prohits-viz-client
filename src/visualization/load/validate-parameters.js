@@ -1,6 +1,6 @@
 import isObject from '../../utils/is-object';
 
-const validTypes = ['dotplot', 'heatmap', 'circ-heatmap', 'scatter'];
+const validTypes = ['dotplot', 'heatmap', 'circheatmap', 'scatter'];
 
 const validateFileParameters = (parameters) => {
   if (
