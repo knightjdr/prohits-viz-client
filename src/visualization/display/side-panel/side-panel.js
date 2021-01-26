@@ -23,6 +23,7 @@ const panels = (imageType) => {
     return (
       <>
         <Info />
+        <Settings />
       </>
     );
   } if (imageType === 'dotplot' || imageType === 'heatmap') {

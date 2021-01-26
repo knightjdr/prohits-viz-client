@@ -16,7 +16,6 @@ const drawLegend = (parameters, settings, options) => {
     return (
       <CircHeatmap
         legend={options.legend}
-        segmentOrder={settings.segmentOrder}
         showKnown={settings.showKnown}
       />
     );

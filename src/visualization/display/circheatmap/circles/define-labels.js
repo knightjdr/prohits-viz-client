@@ -1,6 +1,6 @@
 import percToCoord from '../utils/percent-to-coordinate';
 import roundNearest from '../../../../utils/round-nearest';
-import textLimits from '../text/text-limits';
+import textLimits from './text-limits';
 import textSize from '../../../../utils/text-size';
 
 /* The plot is being rotated -90 in main-circHeatmap-svg, so the "x" and

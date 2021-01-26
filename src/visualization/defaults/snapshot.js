@@ -1,7 +1,7 @@
-const fillSnapshot = (file, func) => (
+const fillSnapshot = (file, func, ...args) => (
   Object.entries(file).reduce((accum, [id, snapshot]) => ({
     ...accum,
-    [id]: func(snapshot),
+    [id]: func(snapshot, ...args),
   }), {})
 );
 

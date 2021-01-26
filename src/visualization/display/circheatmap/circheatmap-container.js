@@ -15,11 +15,10 @@ const CircHeatmapContainer = () => {
   const dispatch = useDispatch();
   const ref = useRef();
 
+  const circles = useSelector((state) => selectDataProperty(state, 'circles', 'order'));
   const panelOpen = useSelector((state) => selectStateProperty(state, 'panel', 'open'));
   const plot = useSelector((state) => selectPlot(state));
   const plotFixed = useSelector((state) => selectStateProperty(state, 'display', 'plotFixed'));
-  const settings = useSelector((state) => selectDataProperty(state, 'settings', 'current'));
-  const { segmentOrder } = settings;
 
   const windowDimensions = useWindowDimension(50);
 
@@ -27,9 +26,9 @@ const CircHeatmapContainer = () => {
     () => defineDimensions(
       windowDimensions.height,
       windowDimensions.width,
-      segmentOrder.length,
+      circles.length,
     ),
-    [segmentOrder, windowDimensions.height, windowDimensions.width],
+    [circles, windowDimensions.height, windowDimensions.width],
   );
 
   const translation = useMemo(

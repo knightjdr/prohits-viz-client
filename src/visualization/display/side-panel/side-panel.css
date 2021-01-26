@@ -1,7 +1,7 @@
 .panel {
   box-sizing: border-box;
   flex-shrink: 0;
-  font-size: 0.9em;
+  font-size: 0.9rem;
   max-width: 350px;
   overflow-x: hidden;
   overflow-y: auto;

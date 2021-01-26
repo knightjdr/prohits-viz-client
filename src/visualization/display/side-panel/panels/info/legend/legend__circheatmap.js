@@ -5,33 +5,31 @@ import colorGradient from '../../../../../../utils/color/initialize-color-gradie
 
 const CircHeatmapLegend = ({
   legend,
-  segmentOrder,
   showKnown,
 }) => {
-  const height = (segmentOrder.length * 70) + 70;
+  const height = (legend.length * 50) + 80;
   return (
     <svg
       id="legend"
       xmlns="http://www.w3.org/2000/svg"
       height={height}
-      width="200"
-      viewBox={`0 0 200 ${height}`}
+      width="210"
+      viewBox={`0 0 210 ${height}`}
     >
       <g transform="translate(0 10)">
 
         {
-          legend.map((setting, index) => {
-            const gradientFill = colorGradient(setting.color, 101, false);
-            const name = segmentOrder[index];
+          legend.map((circle, index) => {
+            const gradientFill = colorGradient(circle.color, 101, false);
             const numColors = gradientFill.length;
             const halfColorIndex = Math.floor(numColors / 2);
             return (
               <g
-                key={name}
-                transform={`translate(0 ${index * 70})`}
+                key={circle.name}
+                transform={`translate(0 ${index * 50})`}
               >
                 <defs>
-                  <linearGradient id={`${name}-legendGradient`}>
+                  <linearGradient id={`${circle.name}-legendGradient`}>
                     <stop offset="0%" stopColor={gradientFill[0]} />
                     <stop offset="50%" stopColor={gradientFill[halfColorIndex]} />
                     <stop offset="100%" stopColor={gradientFill[numColors - 1]} />
@@ -39,14 +37,14 @@ const CircHeatmapLegend = ({
                 </defs>
                 <g>
                   <text x="100" y="20" textAnchor="middle">
-                    {setting.name}
+                    {circle.name}
                   </text>
-                  <rect x="25" y="30" height="20" width="150" fill={`url('#${name}-legendGradient')`} />
-                  <text x="25" y="65" textAnchor="middle">
-                    {setting.min}
+                  <rect x="25" y="30" height="20" width="150" fill={`url('#${circle.name}-legendGradient')`} />
+                  <text x="13" y="45" textAnchor="right">
+                    {circle.min}
                   </text>
-                  <text x="175" y="65" textAnchor="middle">
-                    {setting.max}
+                  <text x="180" y="45" textAnchor="left">
+                    {circle.max}
                   </text>
                 </g>
               </g>
@@ -86,10 +84,8 @@ CircHeatmapLegend.propTypes = {
       color: PropTypes.string,
       max: PropTypes.number,
       min: PropTypes.number,
+      name: PropTypes.string,
     }),
-  ).isRequired,
-  segmentOrder: PropTypes.arrayOf(
-    PropTypes.string,
   ).isRequired,
   showKnown: PropTypes.bool.isRequired,
 };

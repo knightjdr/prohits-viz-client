@@ -8,6 +8,7 @@ import { selectDataProperty } from '../../../../../../state/selector/visualizati
 import { selectState } from '../../../../../../state/selector/general';
 
 const LegendContainer = () => {
+  const circles = useSelector((state) => selectDataProperty(state, 'circles', 'order'));
   const customizations = useSelector((state) => selectDataProperty(state, 'customization', 'points'));
   const legend = useSelector((state) => selectState(state, 'legend'));
   const parameters = useSelector((state) => selectState(state, 'parameters'));
@@ -22,7 +23,7 @@ const LegendContainer = () => {
     <Legend
       customizations={customizations}
       downloadLegend={downloadLegend}
-      legend={legend}
+      legend={legend.length > 0 ? legend : circles}
       parameters={parameters}
       settings={settings}
     />

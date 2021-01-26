@@ -1,5 +1,5 @@
+import fillCircles from './circles';
 import fillDisplay from './display';
-import fillLegend from './legend';
 import fillPanel from './panel';
 import fillParameters from './parameters';
 import fillSettings from './settings';
@@ -7,8 +7,8 @@ import fillTabs from '../tabs';
 
 const validateCircHeatmap = (file, filename, taskID) => {
   const {
+    circles,
     display,
-    legend,
     panel,
     parameters,
     plots,
@@ -17,8 +17,8 @@ const validateCircHeatmap = (file, filename, taskID) => {
   } = file;
 
   return {
+    circles: fillCircles(circles, plots),
     display: fillDisplay(display),
-    legend: fillLegend(legend),
     panel: fillPanel(panel),
     parameters: fillParameters(parameters, filename, taskID),
     plots,

@@ -11,6 +11,14 @@ describe('Display actions', () => {
     expect(actions.changePlot(2)).toEqual(expectedAction);
   });
 
+  it('should dispatch an action to reset circheatmap image', () => {
+    const expectedAction = {
+      AUGMENT_WITH_ACTIVE_SNAPSHOT: true,
+      type: actions.RESET_CIRCHEATMAP,
+    };
+    expect(actions.resetCircheatmap()).toEqual(expectedAction);
+  });
+
   it('should dispatch an action to reset heatmap image', () => {
     const expectedAction = {
       AUGMENT_WITH_ACTIVE_SNAPSHOT: true,

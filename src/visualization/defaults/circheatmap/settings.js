@@ -1,11 +1,9 @@
 import fillSnapshots from '../snapshot';
 import isObject from '../../../utils/is-object';
-import { validateArray, validateBoolean } from '../../../utils/validate-type';
+import { validateBoolean } from '../../../utils/validate-type';
 
 export const defaultState = {
-  segmentOrder: [],
   showKnown: false,
-  showText: false,
 };
 
 export const validateSettings = (userSettings) => {
@@ -14,17 +12,13 @@ export const validateSettings = (userSettings) => {
   }
 
   const {
-    segmentOrder,
     showKnown,
-    showText,
     ...other
   } = userSettings;
 
   const settings = {
     ...other,
-    segmentOrder: validateArray(segmentOrder, defaultState.segmentOrder),
     showKnown: validateBoolean(showKnown, defaultState.showKnown),
-    showText: validateBoolean(showText, defaultState.showText),
   };
 
   return settings;

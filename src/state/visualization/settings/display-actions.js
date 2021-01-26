@@ -1,4 +1,5 @@
 export const CHANGE_PLOT = 'CHANGE_PLOT';
+export const RESET_CIRCHEATMAP = 'RESET_CIRCHEATMAP';
 export const RESET_HEATMAP = 'RESET_HEATMAP';
 export const RESET_SCATTER = 'RESET_SCATTER';
 export const RESET_SCATTER_TRANSFORMATIONS = 'RESET_SCATTER_TRANSFORMATIONS';
@@ -9,6 +10,11 @@ export const changePlot = (value) => ({
   setting: 'selectedPlot',
   type: CHANGE_PLOT,
   value,
+});
+
+export const resetCircheatmap = () => ({
+  AUGMENT_WITH_ACTIVE_SNAPSHOT: true,
+  type: RESET_CIRCHEATMAP,
 });
 
 export const resetHeatmap = () => ({

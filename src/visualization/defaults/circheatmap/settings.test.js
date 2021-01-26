@@ -3,9 +3,7 @@ import fillSettings, { defaultState, validateSettings } from './settings';
 describe('Validate settings', () => {
   it('should return user-defined settings when valid', () => {
     const userSettings = {
-      segmentOrder: [{ color: 'blue' }],
       showKnown: true,
-      showText: true,
     };
     const expected = userSettings;
     expect(validateSettings(userSettings)).toEqual(expected);
@@ -13,9 +11,7 @@ describe('Validate settings', () => {
 
   it('should return defaults when user-defined settings invalid', () => {
     const userSettings = {
-      segmentOrder: {},
       showKnown: 'true',
-      showText: 'true',
     };
     const expected = defaultState;
     expect(validateSettings(userSettings)).toEqual(expected);
@@ -25,9 +21,7 @@ describe('Validate settings', () => {
 describe('Fill settings', () => {
   it('should return user-defined settings when valid', () => {
     const settings = {
-      segmentOrder: [{ color: 'blue' }],
       showKnown: true,
-      showText: true,
     };
     const userSettings = {
       main: {
@@ -41,9 +35,7 @@ describe('Fill settings', () => {
 
   it('should return set current settings to defaults when current key is missing', () => {
     const settings = {
-      segmentOrder: [{ color: 'blue' }],
       showKnown: true,
-      showText: true,
     };
     const userSettings = {
       main: {
@@ -61,9 +53,7 @@ describe('Fill settings', () => {
 
   it('should fill settings when main snapshot is missing', () => {
     const settings = {
-      segmentOrder: [{ color: 'blue' }],
       showKnown: true,
-      showText: true,
     };
     const userSettings = settings;
     const expected = {

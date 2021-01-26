@@ -34,7 +34,7 @@ const CircleContainer = ({
 
   const range = useMemo(
     () => setRangePartial(min, max, 0, NUM_COLORS),
-    [color],
+    [max, min],
   );
 
   const segments = useMemo(

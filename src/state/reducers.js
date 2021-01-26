@@ -3,6 +3,7 @@ import { combineReducers } from 'redux';
 import analysis from './visualization/analysis/analysis-reducer';
 import annotations from './visualization/markup/annotation-reducer';
 import article from './news/article-reducer';
+import circles from './visualization/circheatmap/circle-reducer';
 import columnDB from './visualization/data/column-db-reducer';
 import columns from './visualization/heatmap/columns-reducer';
 import cookies from './cookies/cookie-reducer';
@@ -36,6 +37,7 @@ const reducers = combineReducers({
   analysis,
   annotations,
   article,
+  circles,
   columnDB,
   columns,
   cookies,

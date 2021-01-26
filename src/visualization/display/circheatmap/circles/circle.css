@@ -7,3 +7,9 @@
 .circheatmap__segment-backdrop:hover + .circheatmap__segment-path  {
   transform: scale(1.05);
 }
+
+.circheatmap__text,
+.circheatmap__text_hovered {
+  pointer-events: none;
+}
+

@@ -22,6 +22,7 @@ const CustomSelect = forwardRef((
     toggleOnClick,
     toggleOnKeydown,
     warning,
+    ...props
   },
   ref,
 ) => (
@@ -35,6 +36,7 @@ const CustomSelect = forwardRef((
       ref={ref}
     >
       <input
+        {...props}
         id={inputID}
         onClick={toggleOnClick}
         onFocus={handleFocus}
