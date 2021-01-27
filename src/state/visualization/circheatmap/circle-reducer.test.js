@@ -1,5 +1,6 @@
 import reducer from './circle-reducer';
 import * as actions from './circle-actions';
+import * as displayActions from '../settings/display-actions';
 import * as fileActions from '../data/interactive-file-actions';
 import * as snapshotActions from '../data/snapshot-actions';
 
@@ -15,10 +16,20 @@ describe('Circle reducer', () => {
   it('should handle ADD_SNAPSHOT action', () => {
     const currentState = {
       main: {
-        order: [0, 1, 2],
+        order: [
+          { name: 'attribute1', color: 'blue' },
+          { name: 'attribute2', color: 'blue' },
+          { name: 'attribute3', color: 'blue' },
+        ],
       },
     };
-    const snapshotState = { order: [0, 1, 2] };
+    const snapshotState = {
+      order: [
+        { name: 'attribute1', color: 'blue' },
+        { name: 'attribute2', color: 'blue' },
+        { name: 'attribute3', color: 'blue' },
+      ],
+    };
     const action = {
       circles: snapshotState,
       name: 'snapshot-1',
@@ -45,13 +56,21 @@ describe('Circle reducer', () => {
     const action = {
       file: {
         circles: {
-          order: [0, 1, 2],
+          order: [
+            { name: 'attribute1', color: 'blue' },
+            { name: 'attribute2', color: 'blue' },
+            { name: 'attribute3', color: 'blue' },
+          ],
         },
       },
       type: fileActions.LOAD_INTERACTIVE_STATE,
     };
     const expectedState = {
-      order: [0, 1, 2],
+      order: [
+        { name: 'attribute1', color: 'blue' },
+        { name: 'attribute2', color: 'blue' },
+        { name: 'attribute3', color: 'blue' },
+      ],
     };
     expect(reducer(undefined, action)).toEqual(expectedState);
   });
@@ -59,10 +78,18 @@ describe('Circle reducer', () => {
   it('should handle REMOVE_SNAPSHOT action', () => {
     const currentState = {
       main: {
-        order: [0, 1, 2],
+        order: [
+          { name: 'attribute1', color: 'blue' },
+          { name: 'attribute2', color: 'blue' },
+          { name: 'attribute3', color: 'blue' },
+        ],
       },
       snapshot1: {
-        order: [2, 1, 0],
+        order: [
+          { name: 'attribute2', color: 'blue' },
+          { name: 'attribute1', color: 'blue' },
+          { name: 'attribute3', color: 'blue' },
+        ],
       },
     };
     const action = {
@@ -71,7 +98,50 @@ describe('Circle reducer', () => {
     };
     const expectedState = {
       main: {
-        order: [0, 1, 2],
+        order: [
+          { name: 'attribute1', color: 'blue' },
+          { name: 'attribute2', color: 'blue' },
+          { name: 'attribute3', color: 'blue' },
+        ],
+      },
+    };
+    expect(reducer(currentState, action)).toEqual(expectedState);
+  });
+
+  it('should handle RESET_CIRCHEATMAP action', () => {
+    const currentState = {
+      main: {
+        defaultOrder: [
+          { name: 'attribute1', color: 'blue' },
+          { name: 'attribute2', color: 'blue' },
+          { name: 'attribute3', color: 'blue' },
+        ],
+        hidden: [
+          { name: 'attribute2', color: 'blue' },
+        ],
+        order: [
+          { name: 'attribute3', color: 'blue' },
+          { name: 'attribute1', color: 'blue' },
+        ],
+      },
+    };
+    const action = {
+      snapshotID: 'main',
+      type: displayActions.RESET_CIRCHEATMAP,
+    };
+    const expectedState = {
+      main: {
+        defaultOrder: [
+          { name: 'attribute1', color: 'blue' },
+          { name: 'attribute2', color: 'blue' },
+          { name: 'attribute3', color: 'blue' },
+        ],
+        hidden: [],
+        order: [
+          { name: 'attribute1', color: 'blue' },
+          { name: 'attribute2', color: 'blue' },
+          { name: 'attribute3', color: 'blue' },
+        ],
       },
     };
     expect(reducer(currentState, action)).toEqual(expectedState);
@@ -80,19 +150,40 @@ describe('Circle reducer', () => {
   it('should handle UPDATE_CIRCLE_ORDER action', () => {
     const currentState = {
       main: {
-        defaultOrder: [0, 1, 2],
-        order: [0, 1, 2],
+        defaultOrder: [
+          { name: 'attribute1', color: 'blue' },
+          { name: 'attribute2', color: 'blue' },
+          { name: 'attribute3', color: 'blue' },
+        ],
+        order: [
+          { name: 'attribute1', color: 'blue' },
+          { name: 'attribute2', color: 'blue' },
+          { name: 'attribute3', color: 'blue' },
+        ],
       },
     };
     const action = {
-      order: [2, 0, 1],
+      key: 'order',
+      order: [
+        { name: 'attribute2', color: 'blue' },
+        { name: 'attribute1', color: 'blue' },
+        { name: 'attribute3', color: 'blue' },
+      ],
       snapshotID: 'main',
       type: actions.UPDATE_CIRCLE_ORDER,
     };
     const expectedState = {
       main: {
-        defaultOrder: [0, 1, 2],
-        order: [2, 0, 1],
+        defaultOrder: [
+          { name: 'attribute1', color: 'blue' },
+          { name: 'attribute2', color: 'blue' },
+          { name: 'attribute3', color: 'blue' },
+        ],
+        order: [
+          { name: 'attribute2', color: 'blue' },
+          { name: 'attribute1', color: 'blue' },
+          { name: 'attribute3', color: 'blue' },
+        ],
       },
     };
     expect(reducer(currentState, action)).toEqual(expectedState);
@@ -120,6 +211,41 @@ describe('Circle reducer', () => {
         order: [
           { name: 'attribute1', color: 'blue' },
           { name: 'attribute2', color: 'red' },
+          { name: 'attribute3', color: 'blue' },
+        ],
+      },
+    };
+    expect(reducer(currentState, action)).toEqual(expectedState);
+  });
+
+  it('should handle UPDATE_CIRCLE_VISIBILITY action', () => {
+    const currentState = {
+      main: {
+        order: [
+          { name: 'attribute1', color: 'blue' },
+          { name: 'attribute2', color: 'blue' },
+          { name: 'attribute3', color: 'blue' },
+        ],
+      },
+    };
+    const action = {
+      snapshotID: 'main',
+      hidden: [
+        { name: 'attribute2', color: 'blue' },
+      ],
+      order: [
+        { name: 'attribute1', color: 'blue' },
+        { name: 'attribute3', color: 'blue' },
+      ],
+      type: actions.UPDATE_CIRCLE_VISIBILITY,
+    };
+    const expectedState = {
+      main: {
+        hidden: [
+          { name: 'attribute2', color: 'blue' },
+        ],
+        order: [
+          { name: 'attribute1', color: 'blue' },
           { name: 'attribute3', color: 'blue' },
         ],
       },

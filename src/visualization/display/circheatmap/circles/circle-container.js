@@ -47,7 +47,7 @@ const CircleContainer = ({
         range,
       },
     ),
-    [color, gradient, range, readouts, values],
+    [color, gradient, radii, range, readouts, values],
   );
 
   return (

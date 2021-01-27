@@ -6,8 +6,8 @@ import Circle from './circle-container';
 import Text from './text';
 
 import debounce from '../../../../utils/debounce';
+import defineCircles from './define-circles';
 import defineLabels from './define-labels';
-import sortReadouts from './sort-readouts';
 import textLimits from './text-limits';
 import textSize from '../../../../utils/text-size';
 import { selectDataProperty } from '../../../../state/selector/visualization/data-selector';
@@ -20,24 +20,22 @@ const CirclesContainer = ({
   const ref = useRef({ mouseOver: false, segmentEntered: false });
 
   const circles = useSelector((state) => selectDataProperty(state, 'circles', 'order'));
-  const thickness = useSelector((state) => selectDataProperty(state, 'dimensions', 'thickness'));
-  const settings = useSelector((state) => selectDataProperty(state, 'settings', 'current'));
-  const { showKnown } = settings;
+  const { thickness } = useSelector((state) => selectDataProperty(state, 'settings', 'current'));
 
-  const sortedReadouts = useMemo(
-    () => sortReadouts(readouts, { byKnown: showKnown, sortBy: circles[0].name }),
-    [readouts, circles, showKnown],
+  const formatedCircles = useMemo(
+    () => defineCircles(readouts),
+    [readouts],
   );
 
   const labels = useMemo(
-    () => defineLabels(sortedReadouts.names, radius),
-    [radius, sortedReadouts.names],
+    () => defineLabels(formatedCircles.names, radius),
+    [radius, formatedCircles.names],
   );
 
   const handleMouseEnter = (e) => {
     ref.current.segmentEntered = true;
     const { attribute, segmentIndex } = e.target.dataset;
-    const { circles: sortedCircles, names } = sortedReadouts;
+    const { circles: sortedCircles, names } = formatedCircles;
     const abundance = sortedCircles[attribute][segmentIndex];
     const position = labels[segmentIndex];
     const readout = names[segmentIndex];
@@ -82,10 +80,10 @@ const CirclesContainer = ({
               key={circle.name}
               max={circle.max}
               min={circle.min}
-              readouts={sortedReadouts.names}
+              readouts={formatedCircles.names}
               radius={radius - (index * (thickness + space))}
               thickness={thickness}
-              values={sortedReadouts.circles[circle.name]}
+              values={formatedCircles.circles[circle.name]}
             />
           ))
         }

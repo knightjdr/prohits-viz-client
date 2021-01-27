@@ -3,7 +3,9 @@ import isObject from '../../../utils/is-object';
 import sort from '../../../utils/sort';
 import { validateArray } from '../../../utils/validate-type';
 
-export const defaultState = {};
+export const defaultState = {
+  hidden: [],
+};
 
 const defineCirclesFromAttributes = (attributes) => {
   attributes.sort(sort.character);
@@ -18,12 +20,14 @@ const defineCirclesFromAttributes = (attributes) => {
 export const fillSnapshotCircles = (inputCircles, attributes) => {
   const {
     defaultOrder,
+    hidden,
     order,
   } = inputCircles;
 
   const validatedOrder = validateArray(order, attributes);
   return {
     defaultOrder: validateArray(defaultOrder, validatedOrder),
+    hidden: validateArray(hidden, defaultState.hidden),
     order: validatedOrder,
   };
 };

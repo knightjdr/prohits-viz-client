@@ -16,7 +16,7 @@ const drawLegend = (parameters, settings, options) => {
     return (
       <CircHeatmap
         legend={options.legend}
-        showKnown={settings.showKnown}
+        sortByKnown={settings.sortByKnown}
       />
     );
   } if (parameters.imageType === 'dotplot') {

@@ -12,7 +12,10 @@
 }
 .settings__image-circle-draggable h4 {
   margin: 0;
-  margin-bottom: 0.3rem;
+}
+
+.settings__image-circle-hidden {
+  margin-top: 1rem;
 }
 
 .settings__image-circle-draggable-content {
@@ -24,8 +27,20 @@
 .panel__settings .settings__image-circle-draggable-content .select__container {
   display: block;
 }
-
 .panel__settings .settings__image-circle-draggable-content .input__container > label,
 .panel__settings .settings__image-circle-draggable-content .select__container > label {
   text-align: left;
+}
+
+.settings__image-circle-draggable-heading {
+  align-items: center;
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 0.3rem;
+}
+.panel__settings .settings__image-circle-draggable-heading .input__container {
+  display: inline-flex;
+  margin-bottom: 0;
+  margin-left: auto;
+  width: 60px;
 }

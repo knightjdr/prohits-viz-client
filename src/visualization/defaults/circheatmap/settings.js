@@ -1,9 +1,11 @@
 import fillSnapshots from '../snapshot';
 import isObject from '../../../utils/is-object';
-import { validateBoolean } from '../../../utils/validate-type';
+import { validateBoolean, validateNumber } from '../../../utils/validate-type';
 
 export const defaultState = {
-  showKnown: false,
+  maxReadouts: Infinity,
+  sortByKnown: false,
+  thickness: 50,
 };
 
 export const validateSettings = (userSettings) => {
@@ -12,13 +14,17 @@ export const validateSettings = (userSettings) => {
   }
 
   const {
-    showKnown,
+    maxReadouts,
+    sortByKnown,
+    thickness,
     ...other
   } = userSettings;
 
   const settings = {
     ...other,
-    showKnown: validateBoolean(showKnown, defaultState.showKnown),
+    maxReadouts: validateNumber(maxReadouts, defaultState.maxReadouts),
+    sortByKnown: validateBoolean(sortByKnown, defaultState.sortByKnown),
+    thickness: validateNumber(thickness, defaultState.thickness),
   };
 
   return settings;

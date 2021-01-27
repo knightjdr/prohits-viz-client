@@ -5,7 +5,7 @@ import colorGradient from '../../../../../../utils/color/initialize-color-gradie
 
 const CircHeatmapLegend = ({
   legend,
-  showKnown,
+  sortByKnown,
 }) => {
   const height = (legend.length * 50) + 80;
   return (
@@ -40,10 +40,10 @@ const CircHeatmapLegend = ({
                     {circle.name}
                   </text>
                   <rect x="25" y="30" height="20" width="150" fill={`url('#${circle.name}-legendGradient')`} />
-                  <text x="13" y="45" textAnchor="right">
+                  <text x="20" y="45" textAnchor="end">
                     {circle.min}
                   </text>
-                  <text x="180" y="45" textAnchor="left">
+                  <text x="180" y="45" textAnchor="start">
                     {circle.max}
                   </text>
                 </g>
@@ -52,7 +52,7 @@ const CircHeatmapLegend = ({
           })
         }
         {
-          showKnown
+          sortByKnown
           && (
             <g transform={`translate(0 ${height - 50})`}>
               <text
@@ -87,7 +87,7 @@ CircHeatmapLegend.propTypes = {
       name: PropTypes.string,
     }),
   ).isRequired,
-  showKnown: PropTypes.bool.isRequired,
+  sortByKnown: PropTypes.bool.isRequired,
 };
 
 export default CircHeatmapLegend;

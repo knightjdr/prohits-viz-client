@@ -13,29 +13,17 @@ const sortAlgorithm = (byKnown) => {
 };
 
 const sortReadouts = (readouts, options) => {
-  const { byKnown, sortBy } = options;
+  const { byKnown, maxReadouts, sortBy } = options;
 
-  const indices = Array.from(Array(readouts.length)).map((c, index) => index);
+  let indices = Array.from(Array(readouts.length)).map((c, index) => index);
 
-  const attributes = Object.keys(readouts[0].segments);
   const values = readouts.map((readout) => [readout.known, readout.segments[sortBy]]);
   const sortMethod = sortAlgorithm(byKnown);
 
   indices.sort((a, b) => sortMethod(a, b, values));
+  indices = indices.splice(0, maxReadouts);
 
-  const circles = attributes.reduce((accum, attribute) => ({ ...accum, [attribute]: [] }), {});
-  const names = [];
-  indices.forEach((index) => {
-    names.push(readouts[index].name);
-    Object.entries(readouts[index].segments).forEach(([attribute, value]) => {
-      circles[attribute].push(value);
-    });
-  });
-
-  return {
-    names,
-    circles,
-  };
+  return indices.map((index) => readouts[index]);
 };
 
 export default sortReadouts;

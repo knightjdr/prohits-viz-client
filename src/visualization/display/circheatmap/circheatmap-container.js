@@ -4,12 +4,16 @@ import { useDispatch, useSelector } from 'react-redux';
 import CircHeatmap from './circheatmap';
 
 import defineDimensions from './dimensions/define-dimensions';
+import defineThickness from './dimensions/define-thickness';
 import defineTranslation from '../common/dimensions/define-translation';
+import filterReadouts from './utils/filter-readouts';
+import sortReadouts from './utils/sort-readouts';
 import useWindowDimension from '../../../hooks/window-size/use-window-dimension';
 import { selectDataProperty } from '../../../state/selector/visualization/data-selector';
 import { selectPlot } from '../../../state/selector/visualization/plot-selector';
 import { selectStateProperty } from '../../../state/selector/general';
 import { setDimensions } from '../../../state/visualization/settings/dimension-actions';
+import { updateSetting } from '../../../state/visualization/settings/settings-actions';
 
 const CircHeatmapContainer = () => {
   const dispatch = useDispatch();
@@ -19,6 +23,8 @@ const CircHeatmapContainer = () => {
   const panelOpen = useSelector((state) => selectStateProperty(state, 'panel', 'open'));
   const plot = useSelector((state) => selectPlot(state));
   const plotFixed = useSelector((state) => selectStateProperty(state, 'display', 'plotFixed'));
+  const settings = useSelector((state) => selectDataProperty(state, 'settings', 'current'));
+  const { maxReadouts, sortByKnown, thickness: desiredThickness } = settings;
 
   const windowDimensions = useWindowDimension(50);
 
@@ -26,9 +32,13 @@ const CircHeatmapContainer = () => {
     () => defineDimensions(
       windowDimensions.height,
       windowDimensions.width,
-      circles.length,
     ),
-    [circles, windowDimensions.height, windowDimensions.width],
+    [windowDimensions.height, windowDimensions.width],
+  );
+
+  const thickness = useMemo(
+    () => defineThickness(circles.length, dimensions.svg, desiredThickness),
+    [circles.length, dimensions.svg, desiredThickness],
   );
 
   const translation = useMemo(
@@ -48,20 +58,38 @@ const CircHeatmapContainer = () => {
     ],
   );
 
+  const filtered = useMemo(
+    () => filterReadouts(plot.readouts, circles),
+    [plot.readouts, circles],
+  );
+
+  const sortedReadouts = useMemo(
+    () => sortReadouts(filtered, { byKnown: sortByKnown, maxReadouts, sortBy: circles[0]?.name }),
+    [circles, filtered, maxReadouts, sortByKnown],
+  );
+
   useEffect(() => {
     dispatch(setDimensions(
       {
         canTranslate: dimensions.canTranslate,
         height: dimensions.svg,
-        thickness: dimensions.thickness,
         width: dimensions.svg,
       },
     ));
   }, [dimensions, dispatch]);
 
+  useEffect(() => {
+    if (thickness !== desiredThickness) {
+      dispatch(updateSetting('thickness', thickness));
+    }
+  }, [desiredThickness, thickness]);
+
   return (
     <CircHeatmap
-      plot={plot}
+      plot={{
+        ...plot,
+        readouts: sortedReadouts,
+      }}
       radius={dimensions.radius}
       ref={ref}
       svgHeight={dimensions.svg}

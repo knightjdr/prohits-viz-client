@@ -22,6 +22,7 @@ describe('Fill circles', () => {
     const userCircles = {
       main: {
         defaultOrder: defaultCircleOrder,
+        hidden: [{ color: 'blue', max: 50, min: 0, name: 'attribute4' }],
         order: defaultCircleOrder,
       },
     };
@@ -37,7 +38,8 @@ describe('Fill circles', () => {
   it('should return user-defined circles when valid but without snapshot identifiers', () => {
     const userCircles = {
       defaultOrder: defaultCircleOrder,
-      order: defaultCircleOrder,
+        hidden: [{ color: 'blue', max: 50, min: 0, name: 'attribute4' }],
+        order: defaultCircleOrder,
     };
     const expected = {
       main: userCircles,
@@ -49,6 +51,7 @@ describe('Fill circles', () => {
     const userLabels = {
       main: {
         defaultOrder: { attribute1: true, attribute2: true, attribute3: true },
+        hidden: { attribute4: true },
         order: { attribute2: true, attribute1: true, attribute3: true },
       },
     };
