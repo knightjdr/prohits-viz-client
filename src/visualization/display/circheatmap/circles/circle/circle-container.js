@@ -5,8 +5,8 @@ import Circle from './circle';
 
 import calculateRadii from './calculate-radii';
 import defineSegments from './define-segments';
-import initializeColorGradient from '../../../../utils/color/initialize-color-gradient';
-import setRangePartial from '../../../../utils/set-range-partial';
+import initializeColorGradient from '../../../../../utils/color/initialize-color-gradient';
+import setRangePartial from '../../../../../utils/set-range-partial';
 
 const NUM_COLORS = 101;
 

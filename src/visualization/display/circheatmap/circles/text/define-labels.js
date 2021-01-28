@@ -1,7 +1,7 @@
-import percToCoord from '../utils/percent-to-coordinate';
-import roundNearest from '../../../../utils/round-nearest';
+import percToCoord from '../../utils/percent-to-coordinate';
+import roundNearest from '../../../../../utils/round-nearest';
 import textLimits from './text-limits';
-import textSize from '../../../../utils/text-size';
+import textSize from '../../../../../utils/text-size';
 
 /* The plot is being rotated -90 in main-circHeatmap-svg, so the "x" and
 ** and "y" here are reversed. I'm intentionaly leaving it like this
@@ -10,6 +10,7 @@ const textPosition = (data, radius) => {
   let cumulativePercent = 0;
   const percent = roundNearest(1 / data.length, 0.0001);
   const halfPercent = percent / 2;
+  const halfSvg = radius + 50;
   return data.map((datum) => {
     cumulativePercent += percent;
     const textPoint = percToCoord(cumulativePercent - halfPercent, radius);
@@ -19,10 +20,10 @@ const textPosition = (data, radius) => {
       id: datum,
       string: datum,
       width,
-      x: textLimits.x(textPoint[0], radius, 8),
+      x: textLimits.x(textPoint[0], halfSvg, 8),
       y: cumulativePercent < 0.25 || cumulativePercent > 0.75
-        ? textLimits.y(textPoint[1] - 8, yOffset, radius, width)
-        : textLimits.y(textPoint[1] + 8, yOffset, radius, width),
+        ? textLimits.y(textPoint[1] - 8, yOffset, halfSvg, width)
+        : textLimits.y(textPoint[1] + 8, yOffset, halfSvg, width),
       yOffset,
     };
   });

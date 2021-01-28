@@ -2,13 +2,13 @@ import PropTypes from 'prop-types';
 import React, { useMemo, useRef, useState } from 'react';
 import { useSelector } from 'react-redux';
 
-import Circle from './circle-container';
-import Text from './text';
+import Circle from './circle/circle-container';
+import Text from './text/text-container';
 
 import debounce from '../../../../utils/debounce';
 import defineCircles from './define-circles';
-import defineLabels from './define-labels';
-import textLimits from './text-limits';
+import defineLabels from './text/define-labels';
+import textLimits from './text/text-limits';
 import textSize from '../../../../utils/text-size';
 import { selectDataProperty } from '../../../../state/selector/visualization/data-selector';
 
@@ -28,17 +28,17 @@ const CirclesContainer = ({
   );
 
   const labels = useMemo(
-    () => defineLabels(formatedCircles.names, radius),
-    [radius, formatedCircles.names],
+    () => defineLabels(formatedCircles.segmentNames, radius),
+    [radius, formatedCircles.segmentNames],
   );
 
   const handleMouseEnter = (e) => {
     ref.current.segmentEntered = true;
     const { attribute, segmentIndex } = e.target.dataset;
-    const { circles: sortedCircles, names } = formatedCircles;
+    const { circles: sortedCircles, segmentNames } = formatedCircles;
     const abundance = sortedCircles[attribute][segmentIndex];
     const position = labels[segmentIndex];
-    const readout = names[segmentIndex];
+    const readout = segmentNames[segmentIndex];
     const string = `${readout}, ${attribute}: ${abundance}`;
     const width = textSize(string, 'Lato', '16px');
     setHoveredText({
@@ -73,24 +73,23 @@ const CirclesContainer = ({
         {
           circles.map((circle, index) => (
             <Circle
-              attribute={circle.name}
+              attribute={circle.attribute}
               color={circle.color}
               handleMouseEnter={debouncedMouseEnter}
               handleMouseLeave={handleMouseLeave}
-              key={circle.name}
+              key={circle.attribute}
               max={circle.max}
               min={circle.min}
-              readouts={formatedCircles.names}
+              readouts={formatedCircles.segmentNames}
               radius={radius - (index * (thickness + space))}
               thickness={thickness}
-              values={formatedCircles.circles[circle.name]}
+              values={formatedCircles.circles[circle.attribute]}
             />
           ))
         }
         <Text
           hoveredText={hoveredText}
           labels={labels}
-          show={false}
         />
       </>
     )

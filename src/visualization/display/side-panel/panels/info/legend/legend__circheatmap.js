@@ -29,11 +29,11 @@ const CircHeatmapLegend = ({
             const halfColorIndex = Math.floor(numColors / 2);
             return (
               <g
-                key={circle.name}
+                key={circle.attribute}
                 transform={`translate(0 ${index * 50})`}
               >
                 <defs>
-                  <linearGradient id={`${circle.name}-legendGradient`}>
+                  <linearGradient id={`${circle.attribute}-legendGradient`}>
                     <stop offset="0%" stopColor={gradientFill[0]} />
                     <stop offset="50%" stopColor={gradientFill[halfColorIndex]} />
                     <stop offset="100%" stopColor={gradientFill[numColors - 1]} />
@@ -41,9 +41,9 @@ const CircHeatmapLegend = ({
                 </defs>
                 <g>
                   <text x="100" y="20" textAnchor="middle">
-                    {circle.name}
+                    {circle.attribute}
                   </text>
-                  <rect x="25" y="30" height="20" width="150" fill={`url('#${circle.name}-legendGradient')`} />
+                  <rect x="25" y="30" height="20" width="150" fill={`url('#${circle.attribute}-legendGradient')`} />
                   <text x="20" y="45" textAnchor="end">
                     {circle.min}
                   </text>
@@ -104,10 +104,10 @@ CircHeatmapLegend.defaultProps = {
 CircHeatmapLegend.propTypes = {
   legend: PropTypes.arrayOf(
     PropTypes.shape({
+      attribute: PropTypes.string,
       color: PropTypes.string,
       max: PropTypes.number,
       min: PropTypes.number,
-      name: PropTypes.string,
     }),
   ).isRequired,
   maxReadouts: PropTypes.number.isRequired,

@@ -3,7 +3,6 @@ import React from 'react';
 
 const Text = ({
   hoveredText,
-  show,
   labels,
 }) => (
   <g transform="scale(0.95)">
@@ -19,18 +18,17 @@ const Text = ({
       </feMerge>
     </filter>
     {
-      show
-      && labels.length > 0
-      && labels.map((details) => (
+      labels.map((label) => (
         <text
           className="circheatmap__text"
-          fontSize="16px"
-          key={details.id}
-          transform={`rotate(90 ${details.x} ${details.y})`}
-          x={details.x + 2}
-          y={details.y}
+          fontSize={16}
+          key={label.id}
+          style={label.style}
+          transform={`rotate(90 ${label.x} ${label.y})`}
+          x={label.x + 2}
+          y={label.y}
         >
-          {`${details.string}`}
+          {`${label.string}`}
         </text>
       ))
     }
@@ -67,7 +65,6 @@ const Text = ({
 
 Text.defaultProps = {
   hoveredText: null,
-  labels: [],
 };
 
 Text.propTypes = {
@@ -78,7 +75,6 @@ Text.propTypes = {
     x: PropTypes.number,
     y: PropTypes.number,
   }),
-  show: PropTypes.bool.isRequired,
   labels: PropTypes.arrayOf(
     PropTypes.shape({
       id: PropTypes.string,
@@ -87,7 +83,7 @@ Text.propTypes = {
       x: PropTypes.number,
       y: PropTypes.number,
     }),
-  ),
+  ).isRequired,
 };
 
 export default Text;

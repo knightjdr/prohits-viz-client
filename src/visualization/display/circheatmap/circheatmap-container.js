@@ -64,7 +64,7 @@ const CircHeatmapContainer = () => {
   );
 
   const sortedReadouts = useMemo(
-    () => sortReadouts(filtered, { byKnown: sortByKnown, maxReadouts, sortBy: circles[0]?.name }),
+    () => sortReadouts(filtered, { byKnown: sortByKnown, maxReadouts, sortBy: circles[0]?.attribute }),
     [circles, filtered, maxReadouts, sortByKnown],
   );
 
@@ -86,14 +86,12 @@ const CircHeatmapContainer = () => {
 
   return (
     <CircHeatmap
+      dimensions={dimensions}
       plot={{
         ...plot,
         readouts: sortedReadouts,
       }}
-      radius={dimensions.radius}
       ref={ref}
-      svgHeight={dimensions.svg}
-      svgWidth={dimensions.svg}
       translation={translation}
     />
   );

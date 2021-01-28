@@ -67,8 +67,8 @@ Image.propTypes = {
   circles: PropTypes.shape({
     order: PropTypes.arrayOf(
       PropTypes.shape({
+        attribute: PropTypes.string,
         color: PropTypes.string,
-        name: PropTypes.string,
       }),
     ),
   }).isRequired,

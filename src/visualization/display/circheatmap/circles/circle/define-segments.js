@@ -1,5 +1,5 @@
-import percToCoord from '../utils/percent-to-coordinate';
-import roundNearest from '../../../../utils/round-nearest';
+import percToCoord from '../../utils/percent-to-coordinate';
+import roundNearest from '../../../../../utils/round-nearest';
 
 const valuesToColor = (values, gradient, range) => (
   values.map((datum) => gradient[range(datum)])

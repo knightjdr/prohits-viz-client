@@ -8,10 +8,16 @@ const getPlot = (state) => {
 };
 
 const getPlotLabels = (state) => {
-  const { display, plots, tabs } = state;
+  const {
+    display,
+    parameters: { imageType },
+    plots,
+    tabs,
+  } = state;
   const plot = plots?.[display[tabs.activeSnapshot].selectedPlot];
   if (plot) {
-    const labels = plot.points.map((point) => point.label);
+    const pointKey = imageType === 'circheatmap' ? 'readouts' : 'points';
+    const labels = plot[pointKey].map((point) => point.label);
     const [order, sorted] = sortOrder(labels, true);
     return { labels, order, sorted };
   }

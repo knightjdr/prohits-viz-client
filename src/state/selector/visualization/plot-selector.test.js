@@ -6,6 +6,9 @@ const state = {
       selectedPlot: 0,
     },
   },
+  parameters: {
+    imageType: 'scatter',
+  },
   plots: [
     {
       labels: { x: 'bait1', y: 'bait2' },

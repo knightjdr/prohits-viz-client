@@ -27,17 +27,17 @@ const CircleContent = ({
 }) => (
   <div className="settings__image-circle-draggable">
     <div className="settings__image-circle-draggable-heading">
-      <h4>{circle.name}</h4>
+      <h4>{circle.attribute}</h4>
       <Checkbox
         checked={!visible}
-        id={`circle_visibility_${index}_${circle.name}`}
+        id={`circle_visibility_${index}_${circle.attribute}`}
         label="hide"
         onChange={toggleVisibility}
       />
     </div>
     <div className="settings__image-circle-draggable-content">
       <Input
-        id={`circle_min_${index}_${circle.name}`}
+        id={`circle_min_${index}_${circle.attribute}`}
         label="Min. (filter)"
         onChange={handleSettingChange}
         step="0.01"
@@ -46,7 +46,7 @@ const CircleContent = ({
         vertical
       />
       <Input
-        id={`circle_max_${index}_${circle.name}`}
+        id={`circle_max_${index}_${circle.attribute}`}
         label="Cap"
         onChange={handleSettingChange}
         step="0.01"
@@ -55,7 +55,7 @@ const CircleContent = ({
         vertical
       />
       <Select
-        id={`circle_color_${index}_${circle.name}`}
+        id={`circle_color_${index}_${circle.attribute}`}
         label="Color"
         onChange={handleSettingChange}
         options={colorOptions}
@@ -67,10 +67,10 @@ const CircleContent = ({
 
 CircleContent.propTypes = {
   circle: PropTypes.shape({
+    attribute: PropTypes.string,
     color: PropTypes.string,
     max: PropTypes.number,
     min: PropTypes.number,
-    name: PropTypes.string,
   }).isRequired,
   handleSettingChange: PropTypes.func.isRequired,
   index: PropTypes.number.isRequired,
@@ -85,7 +85,7 @@ const CircleDraggable = ({
   toggleVisibility,
   visible,
 }) => (
-  <Draggable draggableId={circle.name} index={index}>
+  <Draggable draggableId={circle.attribute} index={index}>
     {(provided) => (
       <div
         ref={provided.innerRef}
@@ -106,10 +106,10 @@ const CircleDraggable = ({
 
 CircleDraggable.propTypes = {
   circle: PropTypes.shape({
+    attribute: PropTypes.string,
     color: PropTypes.string,
     max: PropTypes.number,
     min: PropTypes.number,
-    name: PropTypes.string,
   }).isRequired,
   handleSettingChange: PropTypes.func.isRequired,
   index: PropTypes.number.isRequired,
@@ -128,7 +128,7 @@ const CircleList = ({
       circle={circle}
       handleSettingChange={handleSettingChange}
       index={index}
-      key={circle.name}
+      key={circle.attribute}
       toggleVisibility={toggleVisibility}
       visible={visible}
     />
@@ -138,10 +138,10 @@ const CircleList = ({
 CircleList.propTypes = {
   circles: PropTypes.arrayOf(
     PropTypes.shape({
+      attribute: PropTypes.string,
       color: PropTypes.string,
       max: PropTypes.number,
       min: PropTypes.number,
-      name: PropTypes.string,
     }),
   ).isRequired,
   handleSettingChange: PropTypes.func.isRequired,
@@ -234,18 +234,18 @@ CircleDND.propTypes = {
   circles: PropTypes.shape({
     hidden: PropTypes.arrayOf(
       PropTypes.shape({
+        attribute: PropTypes.string,
         color: PropTypes.string,
         max: PropTypes.number,
         min: PropTypes.number,
-        name: PropTypes.string,
       }),
     ),
     order: PropTypes.arrayOf(
       PropTypes.shape({
+        attribute: PropTypes.string,
         color: PropTypes.string,
         max: PropTypes.number,
         min: PropTypes.number,
-        name: PropTypes.string,
       }),
     ),
   }).isRequired,
