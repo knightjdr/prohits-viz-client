@@ -12,7 +12,7 @@ const FilterContainer = () => {
   const dispatch = useDispatch();
 
   const plot = useSelector((state) => selectPlot(state));
-  const readoutName = useSelector((state) => selectStateProperty(state, 'parameters', 'readout'));
+  const readoutName = useSelector((state) => selectStateProperty(state, 'parameters', 'readoutColumn'));
   const { maxReadouts } = useSelector((state) => selectDataProperty(state, 'settings', 'current'));
 
   const handleSettingChange = (e, name, value) => {

@@ -16,6 +16,9 @@ const drawLegend = (parameters, settings, options) => {
     return (
       <CircHeatmap
         legend={options.legend}
+        maxReadouts={settings.maxReadouts}
+        numReadouts={options.plot.readouts.length}
+        readoutName={parameters.readoutColumn}
         sortByKnown={settings.sortByKnown}
       />
     );
@@ -66,6 +69,7 @@ const Legend = ({
   downloadLegend,
   legend,
   parameters,
+  plot,
   settings,
 }) => (
   showLegend(parameters.imageType, { customizations, legend })
@@ -73,7 +77,7 @@ const Legend = ({
     <>
       <Section title="Legend">
         <div className="panel__info-legend">
-          {drawLegend(parameters, settings, { customizations, legend })}
+          {drawLegend(parameters, settings, { customizations, legend, plot })}
         </div>
       </Section>
       <div className="panel__info-legend-download">
@@ -111,6 +115,7 @@ Legend.propTypes = {
     scoreColumn: PropTypes.string,
     scoreType: PropTypes.string,
   }).isRequired,
+  plot: PropTypes.shape({}).isRequired,
   settings: PropTypes.shape({}).isRequired,
 };
 

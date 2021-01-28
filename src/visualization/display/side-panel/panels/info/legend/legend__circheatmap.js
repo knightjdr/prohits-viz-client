@@ -5,9 +5,13 @@ import colorGradient from '../../../../../../utils/color/initialize-color-gradie
 
 const CircHeatmapLegend = ({
   legend,
+  maxReadouts,
+  numReadouts,
+  readoutName,
   sortByKnown,
 }) => {
-  const height = (legend.length * 50) + 80;
+  const gradientHeight = (legend.length * 50);
+  const height = gradientHeight + (sortByKnown ? 120 : 80);
   return (
     <svg
       id="legend"
@@ -51,10 +55,25 @@ const CircHeatmapLegend = ({
             );
           })
         }
+        <g transform={`translate(0 ${gradientHeight + 35})`}>
+          <text
+            textAnchor="middle"
+            x="100"
+            y="0"
+          >
+            Number of
+            {' '}
+            {readoutName}
+            s
+            :
+            {' '}
+            {maxReadouts < numReadouts ? maxReadouts : numReadouts}
+          </text>
+        </g>
         {
           sortByKnown
           && (
-            <g transform={`translate(0 ${height - 50})`}>
+            <g transform={`translate(0 ${gradientHeight + 70})`}>
               <text
                 textAnchor="middle"
                 x="100"
@@ -78,6 +97,10 @@ const CircHeatmapLegend = ({
   );
 };
 
+CircHeatmapLegend.defaultProps = {
+  readoutName: 'readout',
+};
+
 CircHeatmapLegend.propTypes = {
   legend: PropTypes.arrayOf(
     PropTypes.shape({
@@ -87,6 +110,9 @@ CircHeatmapLegend.propTypes = {
       name: PropTypes.string,
     }),
   ).isRequired,
+  maxReadouts: PropTypes.number.isRequired,
+  numReadouts: PropTypes.number.isRequired,
+  readoutName: PropTypes.string,
   sortByKnown: PropTypes.bool.isRequired,
 };
 
