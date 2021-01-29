@@ -7,6 +7,7 @@ import './circle.css';
 
 const Circle = ({
   attribute,
+  handleClick,
   handleMouseEnter,
   handleMouseLeave,
   radii,
@@ -25,6 +26,7 @@ const Circle = ({
         return (
           <Segment
             attribute={attribute}
+            handleClick={handleClick}
             handleMouseEnter={handleMouseEnter}
             handleMouseLeave={handleMouseLeave}
             key={segment.readout}
@@ -40,6 +42,7 @@ const Circle = ({
 
 Circle.propTypes = {
   attribute: PropTypes.string.isRequired,
+  handleClick: PropTypes.func.isRequired,
   handleMouseEnter: PropTypes.func.isRequired,
   handleMouseLeave: PropTypes.func.isRequired,
   radii: PropTypes.shape({

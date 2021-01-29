@@ -3,6 +3,7 @@ import React from 'react';
 
 const Segment = ({
   attribute,
+  handleClick,
   handleMouseEnter,
   handleMouseLeave,
   path,
@@ -21,6 +22,7 @@ const Segment = ({
       data-attribute={attribute}
       data-segment-index={segmentIndex}
       fill={segment.fill}
+      onClick={handleClick}
       onMouseEnter={handleMouseEnter}
       onMouseLeave={handleMouseLeave}
       stroke="#f5f5f5"
@@ -32,6 +34,7 @@ const Segment = ({
 
 Segment.propTypes = {
   attribute: PropTypes.string.isRequired,
+  handleClick: PropTypes.func.isRequired,
   handleMouseEnter: PropTypes.func.isRequired,
   handleMouseLeave: PropTypes.func.isRequired,
   path: PropTypes.string.isRequired,

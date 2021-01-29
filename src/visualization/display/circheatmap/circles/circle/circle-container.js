@@ -1,5 +1,6 @@
 import PropTypes from 'prop-types';
 import React, { useMemo } from 'react';
+import { useDispatch } from 'react-redux';
 
 import Circle from './circle';
 
@@ -7,6 +8,7 @@ import calculateRadii from './calculate-radii';
 import defineSegments from './define-segments';
 import initializeColorGradient from '../../../../../utils/color/initialize-color-gradient';
 import setRangePartial from '../../../../../utils/set-range-partial';
+import { updateLabel } from '../../../../../state/visualization/scatter/label-actions';
 
 const NUM_COLORS = 101;
 
@@ -22,6 +24,8 @@ const CircleContainer = ({
   thickness,
   values,
 }) => {
+  const dispatch = useDispatch();
+
   const gradient = useMemo(
     () => initializeColorGradient(color, NUM_COLORS),
     [color],
@@ -50,9 +54,16 @@ const CircleContainer = ({
     [color, gradient, radii, range, readouts, values],
   );
 
+  const handleClick = (e) => {
+    const { segmentIndex } = e.target.dataset;
+    const label = readouts[Number(segmentIndex)];
+    dispatch(updateLabel(label));
+  };
+
   return (
     <Circle
       attribute={attribute}
+      handleClick={handleClick}
       handleMouseEnter={handleMouseEnter}
       handleMouseLeave={handleMouseLeave}
       radii={radii}
