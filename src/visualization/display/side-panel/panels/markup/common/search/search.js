@@ -3,9 +3,9 @@ import React from 'react';
 import { faSearch } from '@fortawesome/pro-solid-svg-icons';
 import { faTrash } from '@fortawesome/pro-duotone-svg-icons';
 
-import IconButton from '../../../../../../components/buttons/icon/button';
-import InputWithButton from '../../../../../../components/input/with-button/input-with-button-container';
-import Section from '../../section/section';
+import IconButton from '../../../../../../../components/buttons/icon/button';
+import InputWithButton from '../../../../../../../components/input/with-button/input-with-button-container';
+import Section from '../../../section/section';
 
 const Search = ({
   handleClear,

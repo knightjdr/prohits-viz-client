@@ -6,27 +6,31 @@ import textSize from '../../../../../utils/text-size';
 /* The plot is being rotated -90 in main-circHeatmap-svg, so the "x" and
 ** and "y" here are reversed. I'm intentionaly leaving it like this
 ** because it makes calculating the text positions easier. */
-const textPosition = (data, radius) => {
-  let cumulativePercent = 0;
-  const percent = roundNearest(1 / data.length, 0.0001);
-  const halfPercent = percent / 2;
-  const halfSvg = radius + 50;
-  return data.map((datum) => {
-    cumulativePercent += percent;
-    const textPoint = percToCoord(cumulativePercent - halfPercent, radius);
-    const width = textSize(datum, 'Lato', '16px');
-    const yOffset = cumulativePercent > 0.5;
-    return {
-      id: datum,
-      string: datum,
-      width,
-      x: textLimits.x(textPoint[0], halfSvg, 8),
-      y: cumulativePercent < 0.25 || cumulativePercent > 0.75
-        ? textLimits.y(textPoint[1] - 8, yOffset, halfSvg, width)
-        : textLimits.y(textPoint[1] + 8, yOffset, halfSvg, width),
-      yOffset,
-    };
-  });
+const textPosition = (data, dimensions = {}) => {
+  const { radius, svgWidth } = dimensions;
+  if (radius) {
+    let cumulativePercent = 0;
+    const percent = roundNearest(1 / data.length, 0.0001);
+    const halfPercent = percent / 2;
+    const widthLimit = svgWidth / 2;
+    return data.map((datum) => {
+      cumulativePercent += percent;
+      const textPoint = percToCoord(cumulativePercent - halfPercent, radius);
+      const width = textSize(datum, 'Lato', '16px');
+      const yOffset = cumulativePercent > 0.5;
+      return {
+        id: datum,
+        string: datum,
+        width,
+        x: textLimits.x(textPoint[0], radius, 8),
+        y: cumulativePercent < 0.25 || cumulativePercent > 0.75
+          ? textLimits.y(textPoint[1] - 8, yOffset, widthLimit, width)
+          : textLimits.y(textPoint[1] + 8, yOffset, widthLimit, width),
+      };
+    });
+  }
+
+  return [];
 };
 
 export default textPosition;

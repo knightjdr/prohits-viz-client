@@ -37,8 +37,8 @@ const CircHeatmapContainer = () => {
   );
 
   const thickness = useMemo(
-    () => defineThickness(circles.length, dimensions.svg, desiredThickness),
-    [circles.length, dimensions.svg, desiredThickness],
+    () => defineThickness(circles.length, dimensions.svgHeight, desiredThickness),
+    [circles.length, dimensions.svgHeight, desiredThickness],
   );
 
   const translation = useMemo(
@@ -47,14 +47,14 @@ const CircHeatmapContainer = () => {
       plotFixed,
       panelOpen,
       windowDimensions.width,
-      dimensions.svg,
+      dimensions.svgWidth,
     ),
     [
       dimensions.canTranslate,
       plotFixed,
       panelOpen,
       windowDimensions.width,
-      dimensions.svg,
+      dimensions.svgWidth,
     ],
   );
 
@@ -69,13 +69,7 @@ const CircHeatmapContainer = () => {
   );
 
   useEffect(() => {
-    dispatch(setDimensions(
-      {
-        canTranslate: dimensions.canTranslate,
-        height: dimensions.svg,
-        width: dimensions.svg,
-      },
-    ));
+    dispatch(setDimensions(dimensions));
   }, [dimensions, dispatch]);
 
   useEffect(() => {
@@ -87,10 +81,7 @@ const CircHeatmapContainer = () => {
   return (
     <CircHeatmap
       dimensions={dimensions}
-      plot={{
-        ...plot,
-        readouts: sortedReadouts,
-      }}
+      readouts={sortedReadouts}
       ref={ref}
       translation={translation}
     />

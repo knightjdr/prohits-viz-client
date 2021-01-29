@@ -59,6 +59,7 @@ describe('Plot selector', () => {
       const expected = {};
       const testState = {
         display: state.display,
+        parameters: { imageType: 'scatter' },
         tabs: state.tabs,
       };
       expect(selectPlotLabels(testState)).toEqual(expected);

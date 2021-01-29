@@ -9,7 +9,7 @@ import './circheatmap.css';
 const CircHeatmap = forwardRef((
   {
     dimensions,
-    plot,
+    readouts,
     translation,
   },
   ref,
@@ -21,39 +21,38 @@ const CircHeatmap = forwardRef((
       transform: `translate(${translation}px)`,
     }}
   >
-    <svg
-      id="svg-main"
-      height={dimensions.svg}
-      width={dimensions.svg}
-      viewBox={`-${dimensions.halfSvg} -${dimensions.halfSvg} ${dimensions.svg} ${dimensions.svg}`}
-      xmlns="http://www.w3.org/2000/svg"
-    >
-      <rect width="100%" height="100%" fill="white" />
-      <g transform="rotate(-90)">
-        <Known
-          radius={dimensions.radius}
-          readouts={plot.readouts}
-        />
-        <Circles
-          radius={dimensions.radius}
-          readouts={plot.readouts}
-        />
-      </g>
-    </svg>
+    {
+      dimensions.svgHeight
+      && (
+      <svg
+        id="svg-main"
+        height={dimensions.svgHeight}
+        width={dimensions.svgWidth}
+        viewBox={`-${dimensions.center.x} -${dimensions.center.y} ${dimensions.svgWidth} ${dimensions.svgHeight}`}
+        xmlns="http://www.w3.org/2000/svg"
+      >
+        <g transform="rotate(-90)">
+          <Known readouts={readouts} />
+          <Circles readouts={readouts} />
+        </g>
+      </svg>
+      )
+    }
   </div>
 ));
 
 CircHeatmap.propTypes = {
   dimensions: PropTypes.shape({
-    halfSvg: PropTypes.number,
-    radius: PropTypes.number,
-    svg: PropTypes.number,
+    center: PropTypes.shape({
+      x: PropTypes.number,
+      y: PropTypes.number,
+    }),
+    svgHeight: PropTypes.number,
+    svgWidth: PropTypes.number,
   }).isRequired,
-  plot: PropTypes.shape({
-    readouts: PropTypes.arrayOf(
-      PropTypes.shape({}),
-    ).isRequired,
-  }).isRequired,
+  readouts: PropTypes.arrayOf(
+    PropTypes.shape({}),
+  ).isRequired,
   translation: PropTypes.number.isRequired,
 };
 

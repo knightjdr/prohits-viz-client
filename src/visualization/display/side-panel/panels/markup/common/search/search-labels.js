@@ -15,6 +15,13 @@ const searchArray = (regex, arr) => (
 );
 
 const searchLabels = (labels, searchTerm) => {
+  if (searchTerm === '') {
+    return {
+      labels: {},
+      match: false,
+    };
+  }
+
   const searchRegex = createRegex(searchTerm);
   const matches = searchArray(searchRegex, labels);
   return {

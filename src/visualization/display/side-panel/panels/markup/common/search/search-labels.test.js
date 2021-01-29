@@ -1,6 +1,17 @@
 import searchLabels from './search-labels';
 
 describe('Search scatter plot labels', () => {
+  it('should return no match for an empty string', () => {
+    const labels = ['a', 'ab', 'aab', 'bc'];
+    const term = '';
+
+    const expected = {
+      labels: {},
+      match: false,
+    };
+    expect(searchLabels(labels, term)).toEqual(expected);
+  });
+
   it('should return a single match', () => {
     const labels = ['a', 'ab', 'aab', 'bc'];
     const term = 'AAB';

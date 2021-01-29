@@ -1,8 +1,8 @@
 import PropTypes from 'prop-types';
 import React from 'react';
 
-import Labels from './labels/label-container';
-import Search from './search/search-container';
+import Labels from '../common/labels/label-container';
+import Search from '../common/search/search-container';
 
 const Markup = ({
   labels,

@@ -8,9 +8,9 @@ import definePath from './define-path';
 import { selectDataProperty } from '../../../../state/selector/visualization/data-selector';
 
 const KnownContainer = ({
-  radius,
   readouts,
 }) => {
+  const radius = useSelector((state) => selectDataProperty(state, 'dimensions', 'radius'));
   const { sortByKnown } = useSelector((state) => selectDataProperty(state, 'settings', 'current'));
 
   const path = useMemo(
@@ -19,16 +19,19 @@ const KnownContainer = ({
   );
 
   return (
-    <Known
-      path={path}
-      radius={radius}
-      sortByKnown={sortByKnown}
-    />
+    radius
+      ? (
+        <Known
+          path={path}
+          radius={radius}
+          sortByKnown={sortByKnown}
+        />
+      )
+      : null
   );
 };
 
 KnownContainer.propTypes = {
-  radius: PropTypes.number.isRequired,
   readouts: PropTypes.arrayOf(
     PropTypes.shape({}),
   ).isRequired,

@@ -51,7 +51,7 @@ const Text = ({
             width={hoveredText.width}
           />
           <text
-            fontSize="16px"
+            fontSize={16}
             x={hoveredText.x + 2}
             y={hoveredText.y}
           >

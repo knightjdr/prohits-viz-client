@@ -10,16 +10,16 @@ import defineCircles from './define-circles';
 import defineLabels from './text/define-labels';
 import textLimits from './text/text-limits';
 import textSize from '../../../../utils/text-size';
-import { selectDataProperty } from '../../../../state/selector/visualization/data-selector';
+import { selectData, selectDataProperty } from '../../../../state/selector/visualization/data-selector';
 
 const CirclesContainer = ({
-  radius,
   readouts,
 }) => {
   const [hoveredText, setHoveredText] = useState();
   const ref = useRef({ mouseOver: false, segmentEntered: false });
 
   const circles = useSelector((state) => selectDataProperty(state, 'circles', 'order'));
+  const dimensions = useSelector((state) => selectData(state, 'dimensions'));
   const { thickness } = useSelector((state) => selectDataProperty(state, 'settings', 'current'));
 
   const formatedCircles = useMemo(
@@ -28,8 +28,8 @@ const CirclesContainer = ({
   );
 
   const labels = useMemo(
-    () => defineLabels(formatedCircles.segmentNames, radius),
-    [radius, formatedCircles.segmentNames],
+    () => defineLabels(formatedCircles.segmentNames, dimensions),
+    [dimensions, formatedCircles.segmentNames],
   );
 
   const handleMouseEnter = (e) => {
@@ -41,9 +41,10 @@ const CirclesContainer = ({
     const readout = segmentNames[segmentIndex];
     const string = `${readout}, ${attribute}: ${abundance}`;
     const width = textSize(string, 'Lato', '16px');
+    const widthLimit = dimensions.svgWidth / 2;
     setHoveredText({
-      x: textLimits.x(position.x, radius, 8),
-      y: textLimits.y(position.y, position.yOffset, radius, width),
+      x: textLimits.x(position.x, dimensions.radius, 8),
+      y: textLimits.y(position.y, false, widthLimit, width),
       id: readout,
       string,
       width: width + 4,
@@ -67,10 +68,11 @@ const CirclesContainer = ({
   const space = thickness / 4;
 
   return (
-    thickness > 0
-    && (
-      <>
-        {
+    dimensions?.radius
+    && thickness
+      ? (
+        <>
+          {
           circles.map((circle, index) => (
             <Circle
               attribute={circle.attribute}
@@ -81,23 +83,23 @@ const CirclesContainer = ({
               max={circle.max}
               min={circle.min}
               readouts={formatedCircles.segmentNames}
-              radius={radius - (index * (thickness + space))}
+              radius={dimensions.radius - (index * (thickness + space))}
               thickness={thickness}
               values={formatedCircles.circles[circle.attribute]}
             />
           ))
         }
-        <Text
-          hoveredText={hoveredText}
-          labels={labels}
-        />
-      </>
-    )
+          <Text
+            hoveredText={hoveredText}
+            labels={labels}
+          />
+        </>
+      )
+      : null
   );
 };
 
 CirclesContainer.propTypes = {
-  radius: PropTypes.number.isRequired,
   readouts: PropTypes.arrayOf(
     PropTypes.shape({}),
   ).isRequired,

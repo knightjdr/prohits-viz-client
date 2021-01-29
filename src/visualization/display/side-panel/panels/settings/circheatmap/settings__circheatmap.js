@@ -3,7 +3,7 @@ import React from 'react';
 
 import Image from './image/image-container';
 import Filter from './filter/filter-container';
-import Reset from '../reset/reset';
+import Reset from '../common/reset/reset';
 
 const Settings = ({
   handleReset,

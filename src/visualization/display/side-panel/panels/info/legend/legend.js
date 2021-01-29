@@ -98,6 +98,8 @@ const Legend = ({
 
 Legend.defaultProps = {
   customizations: {},
+  legend: [],
+  plot: {},
 };
 
 Legend.propTypes = {
@@ -108,14 +110,14 @@ Legend.propTypes = {
       color: PropTypes.string,
       text: PropTypes.string,
     }),
-  ).isRequired,
+  ),
   parameters: PropTypes.shape({
     abundanceColumn: PropTypes.string,
     imageType: PropTypes.string,
     scoreColumn: PropTypes.string,
     scoreType: PropTypes.string,
   }).isRequired,
-  plot: PropTypes.shape({}).isRequired,
+  plot: PropTypes.shape({}),
   settings: PropTypes.shape({}).isRequired,
 };
 

@@ -2,7 +2,7 @@ import PropTypes from 'prop-types';
 import React from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 
-import Search from '../../search/search';
+import Search from './search';
 
 import searchLabels from './search-labels';
 import { selectData } from '../../../../../../../state/selector/visualization/data-selector';

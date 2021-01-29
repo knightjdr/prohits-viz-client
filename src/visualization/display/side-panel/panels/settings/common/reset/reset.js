@@ -2,8 +2,8 @@ import PropTypes from 'prop-types';
 import React from 'react';
 import { faExpandAlt, faRedoAlt } from '@fortawesome/pro-duotone-svg-icons';
 
-import Button from '../../../../../../components/buttons/icon/button';
-import Section from '../../section/section';
+import Button from '../../../../../../../components/buttons/icon/button';
+import Section from '../../../section/section';
 
 import './reset.css';
 

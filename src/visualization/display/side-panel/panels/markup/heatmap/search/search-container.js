@@ -1,7 +1,7 @@
 import React from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 
-import Search from '../../search/search';
+import Search from '../../common/search/search';
 
 import useSearch from './use-search';
 import { selectData } from '../../../../../../../state/selector/visualization/data-selector';
