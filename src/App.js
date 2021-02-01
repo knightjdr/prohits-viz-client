@@ -1,7 +1,6 @@
 import React from 'react';
 import { ThemeProvider } from 'styled-components';
 
-import CookieNotification from './components/cookie-notification/cookie-notification-container';
 import ErrorBoundary from './components/error-boundary/error-boundary-container';
 import Navbar from './navbar/navbar-container';
 import Routing from './routes/routing';
@@ -18,7 +17,6 @@ const App = () => (
         <main className="app">
           <Routing />
         </main>
-        <CookieNotification />
       </ErrorBoundary>
     </ThemeProvider>
   </Store>

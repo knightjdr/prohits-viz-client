@@ -15,6 +15,10 @@
     <link rel="manifest" href="%PUBLIC_URL%/manifest.json">
     <meta name="msapplication-TileColor" content="#2A3132">
 
+    <% if (process.env.NODE_ENV === 'production') { %>
+      <script async defer data-domain="prohits-viz.org" src="https://analytics.jamesknight.dev/js/plausible.js"></script>
+    <% } %>
+
     <link href="https://fonts.googleapis.com/css?family=Lato:400,400i,700|Raleway:800" rel="stylesheet">
   </head>
   <body>

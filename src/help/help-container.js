@@ -4,7 +4,7 @@ import { useRoutes, usePath } from 'hookrouter';
 import Citation from './citation/citation';
 import Help from './help';
 import Main from './help-main';
-import Privacy from './privacy/privacy-container';
+import Privacy from './privacy/privacy';
 import Visualization from './visualization/visualization-container';
 import { linkOrder } from './links';
 
