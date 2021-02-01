@@ -1,5 +1,7 @@
+import { useEffect } from 'react';
 import isVisible from './is-visible';
-import useOnMount from '../on-mount/use-on-mount';
+
+const defaultOptions = { esc: true, ignoreVisibility: false, deps: [] };
 
 /* Detect click outside element specified by ref.current. If the visibility
 ** of the element is irrelevant, set ignoreVisibility argument to true. The
@@ -7,7 +9,9 @@ import useOnMount from '../on-mount/use-on-mount';
 ** getBoundingClientRect(). If esc argument is true, pressing the escape
 ** key is the same as clicking outside the element. func is called when
 ** a click occurs outside the element. */
-const useClickOutside = (ref, func, esc = true, ignoreVisibility = false) => {
+const useClickOutside = (ref, func, options = {}) => {
+  const { esc, ignoreVisibility, deps } = { ...defaultOptions, ...options };
+
   const clickedOutside = (isOutside, e) => {
     if (isOutside) {
       func(e);
@@ -29,7 +33,7 @@ const useClickOutside = (ref, func, esc = true, ignoreVisibility = false) => {
     }
   };
 
-  useOnMount(() => {
+  useEffect(() => {
     window.addEventListener('click', clickListener);
     if (esc) {
       window.addEventListener('keydown', escListener);
@@ -40,7 +44,7 @@ const useClickOutside = (ref, func, esc = true, ignoreVisibility = false) => {
         window.removeEventListener('keydown', escListener);
       }
     };
-  });
+  }, deps);
 
   const clear = () => {
     window.removeEventListener('click', clickListener);
