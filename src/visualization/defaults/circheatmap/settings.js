@@ -1,9 +1,10 @@
 import fillSnapshots from '../snapshot';
 import isObject from '../../../utils/is-object';
-import { validateBoolean, validateNumber } from '../../../utils/validate-type';
+import { validateArray, validateBoolean, validateNumber } from '../../../utils/validate-type';
 
 export const defaultState = {
   maxReadouts: Infinity,
+  readoutOrder: [],
   sortByKnown: false,
   thickness: 50,
 };
@@ -15,6 +16,7 @@ export const validateSettings = (userSettings) => {
 
   const {
     maxReadouts,
+    readoutOrder,
     sortByKnown,
     thickness,
     ...other
@@ -23,6 +25,7 @@ export const validateSettings = (userSettings) => {
   const settings = {
     ...other,
     maxReadouts: validateNumber(maxReadouts, defaultState.maxReadouts),
+    readoutOrder: validateArray(readoutOrder, defaultState.readoutOrder),
     sortByKnown: validateBoolean(sortByKnown, defaultState.sortByKnown),
     thickness: validateNumber(thickness, defaultState.thickness),
   };

@@ -7,7 +7,7 @@ import { changePanelTab, togglePanel } from '../../../../state/visualization/set
 
 const tabLabels = (imageType) => {
   if (imageType === 'circheatmap') {
-    return ['info', 'settings', 'markup'];
+    return ['info', 'settings', 'markup', 'analysis'];
   } if (imageType === 'dotplot' || imageType === 'heatmap') {
     return ['info', 'minimap', 'settings', 'markup', 'analysis', 'save'];
   } if (imageType === 'scatter') {

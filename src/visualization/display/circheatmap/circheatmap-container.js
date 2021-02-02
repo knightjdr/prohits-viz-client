@@ -8,6 +8,7 @@ import defineThickness from './dimensions/define-thickness';
 import defineTranslation from '../common/dimensions/define-translation';
 import filterReadouts from './utils/filter-readouts';
 import sortReadouts from './utils/sort-readouts';
+import useShortCuts from './hooks/use-shortcuts';
 import useWindowDimension from '../../../hooks/window-size/use-window-dimension';
 import { selectDataProperty } from '../../../state/selector/visualization/data-selector';
 import { selectPlot } from '../../../state/selector/visualization/plot-selector';
@@ -24,9 +25,15 @@ const CircHeatmapContainer = () => {
   const plot = useSelector((state) => selectPlot(state));
   const plotFixed = useSelector((state) => selectStateProperty(state, 'display', 'plotFixed'));
   const settings = useSelector((state) => selectDataProperty(state, 'settings', 'current'));
-  const { maxReadouts, sortByKnown, thickness: desiredThickness } = settings;
+  const {
+    maxReadouts,
+    readoutOrder,
+    sortByKnown,
+    thickness: desiredThickness,
+  } = settings;
 
   const windowDimensions = useWindowDimension(50);
+  useShortCuts();
 
   const dimensions = useMemo(
     () => defineDimensions(
@@ -59,8 +66,8 @@ const CircHeatmapContainer = () => {
   );
 
   const filtered = useMemo(
-    () => filterReadouts(plot.readouts, circles),
-    [plot.readouts, circles],
+    () => filterReadouts(plot.readouts, circles, readoutOrder),
+    [circles, plot.readouts, readoutOrder],
   );
 
   const sortedReadouts = useMemo(

@@ -4,6 +4,7 @@ describe('Validate settings', () => {
   it('should return user-defined settings when valid', () => {
     const userSettings = {
       maxReadouts: 100,
+      readoutOrder: [1, 2, 3],
       sortByKnown: true,
       thickness: 20,
     };
@@ -14,6 +15,7 @@ describe('Validate settings', () => {
   it('should return defaults when user-defined settings invalid', () => {
     const userSettings = {
       maxReadouts: '100',
+      readoutOrder: { 1: true, 2: true, 3: true },
       sortByKnown: 'true',
       thickness: '20',
     };
@@ -26,6 +28,7 @@ describe('Fill settings', () => {
   it('should return user-defined settings when valid', () => {
     const settings = {
       maxReadouts: 100,
+      readoutOrder: [1, 2, 3],
       sortByKnown: true,
       thickness: 20,
     };
@@ -42,6 +45,7 @@ describe('Fill settings', () => {
   it('should return set current settings to defaults when current key is missing', () => {
     const settings = {
       maxReadouts: 100,
+      readoutOrder: [1, 2, 3],
       sortByKnown: true,
       thickness: 20,
     };
@@ -62,6 +66,7 @@ describe('Fill settings', () => {
   it('should fill settings when main snapshot is missing', () => {
     const settings = {
       maxReadouts: 100,
+      readoutOrder: [1, 2, 3],
       sortByKnown: true,
       thickness: 20,
     };

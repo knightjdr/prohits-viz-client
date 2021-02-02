@@ -1,0 +1,10 @@
+.poi__action-circheatmap {
+  align-items: center;
+  display: flex;
+  justify-content: center;
+  margin-top: 15px;
+}
+
+.poi__action-circheatmap-filter svg {
+  margin-right: 5px;
+}

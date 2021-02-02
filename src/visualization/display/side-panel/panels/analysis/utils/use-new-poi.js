@@ -13,7 +13,11 @@ const useNewPOI = () => {
   const { order: pointOrder } = useSelector((state) => selectPlotLabels(state));
 
   const defineNewPOI = (canUseUnselected = true) => {
-    if (imageType === 'dotplot' || imageType === 'heatmap') {
+    if (imageType === 'circheatmap') {
+      return {
+        readouts: defineNewOrderForSelection(poi.readouts, canUseUnselected ? pointOrder : []),
+      };
+    } if (imageType === 'dotplot' || imageType === 'heatmap') {
       return {
         columns: defineNewOrderForSelection(poi.columns, canUseUnselected ? columnOrder : []),
         rows: defineNewOrderForSelection(poi.rows, canUseUnselected ? rowOrder : []),
