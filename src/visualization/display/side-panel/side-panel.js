@@ -26,6 +26,7 @@ const panels = (imageType) => {
         <Settings />
         <Markup />
         <Analysis />
+        <Save />
       </>
     );
   } if (imageType === 'dotplot' || imageType === 'heatmap') {

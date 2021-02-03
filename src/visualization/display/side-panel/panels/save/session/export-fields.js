@@ -1,10 +1,23 @@
 const exportFields = {
+  circheatmap: [
+    'analysis',
+    'circles',
+    'display',
+    'gprofiler',
+    'labels',
+    'panel',
+    'parameters',
+    'plots',
+    'poi',
+    'searchStatus',
+    'settings',
+    'tabs',
+  ],
   heatmap: [
     'analysis',
     'annotations',
     'columnDB',
     'columns',
-    'dimensions',
     'display',
     'exporter',
     'gprofiler',
@@ -23,7 +36,6 @@ const exportFields = {
   scatter: [
     'analysis',
     'customization',
-    'dimensions',
     'display',
     'gprofiler',
     'labels',

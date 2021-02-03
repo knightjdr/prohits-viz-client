@@ -1,6 +1,6 @@
 import validateParameters from './validate-parameters';
-import validateHeatmapFields from './validate-heatmap-fields';
-import readInteractiveFile from './read-interactive-file';
+import validateFields from './validate-fields';
+import readInteractiveFile from '../read-interactive-file';
 
 const validateInteractiveFile = async (file) => {
   const data = await readInteractiveFile(file);
@@ -8,7 +8,7 @@ const validateInteractiveFile = async (file) => {
   const { parameters } = data;
 
   validateParameters(parameters);
-  validateHeatmapFields(parameters.imageType, data);
+  validateFields(parameters.imageType, data);
 
   return data;
 };

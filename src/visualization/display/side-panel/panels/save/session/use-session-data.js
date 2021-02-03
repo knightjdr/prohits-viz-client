@@ -9,7 +9,9 @@ const useSessionData = () => {
   const { imageType } = session.parameters;
 
   const exportData = () => {
-    if (imageType === 'dotplot' || imageType === 'heatmap') {
+    if (imageType === 'circheatmap') {
+      return parseFields(session, exportFields.circheatmap);
+    } if (imageType === 'dotplot' || imageType === 'heatmap') {
       return parseFields(session, exportFields.heatmap);
     } if (imageType === 'scatter') {
       return parseFields(session, exportFields.scatter);

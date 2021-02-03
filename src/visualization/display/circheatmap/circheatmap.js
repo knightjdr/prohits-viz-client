@@ -31,6 +31,12 @@ const CircHeatmap = forwardRef((
         viewBox={`-${dimensions.center.x} -${dimensions.center.y} ${dimensions.svgWidth} ${dimensions.svgHeight}`}
         xmlns="http://www.w3.org/2000/svg"
       >
+        <rect
+          fill="white"
+          height="100%"
+          width="100%"
+          transform={`translate(-${dimensions.center.x} -${dimensions.center.y})`}
+        />
         <g transform="rotate(-90)">
           <Known readouts={readouts} />
           <Circles readouts={readouts} />

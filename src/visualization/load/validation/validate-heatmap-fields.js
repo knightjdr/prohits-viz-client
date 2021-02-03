@@ -30,3 +30,15 @@ export const validateRowDB = (rowDB) => {
     throw new Error('The row data should be an array with at least a "value" property');
   }
 };
+
+const validateHeatmapFields = (data) => {
+  const {
+    columnDB,
+    rowDB,
+  } = data;
+
+  validateColumnDB(columnDB);
+  validateRowDB(rowDB);
+};
+
+export default validateHeatmapFields;

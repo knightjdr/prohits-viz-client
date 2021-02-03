@@ -21,7 +21,7 @@ const ImageContainer = () => {
   };
 
   const handleSave = () => {
-    if (imageType === 'scatter') {
+    if (imageType === 'circheatmap' || imageType === 'scatter') {
       const svg = document.getElementById('svg-main');
       download(svg.outerHTML, 'image.svg');
     } else {
