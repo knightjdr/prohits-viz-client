@@ -6,7 +6,7 @@ import textSize from '../../../../../utils/text-size';
 /* The plot is being rotated -90 in main-circHeatmap-svg, so the "x" and
 ** and "y" here are reversed. I'm intentionaly leaving it like this
 ** because it makes calculating the text positions easier. */
-const textPosition = (data, dimensions = {}) => {
+const defineLabels = (data, dimensions = {}) => {
   const { radius, svgWidth } = dimensions;
   if (radius) {
     let cumulativePercent = 0;
@@ -33,4 +33,4 @@ const textPosition = (data, dimensions = {}) => {
   return [];
 };
 
-export default textPosition;
+export default defineLabels;

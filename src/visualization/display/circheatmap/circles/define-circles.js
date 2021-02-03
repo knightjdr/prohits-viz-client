@@ -10,8 +10,8 @@ const defineCircles = (readouts) => {
   });
 
   return {
-    segmentNames,
     circles,
+    segmentNames,
   };
 };
 
