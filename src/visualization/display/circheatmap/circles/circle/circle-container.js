@@ -37,7 +37,7 @@ const CircleContainer = ({
   );
 
   const range = useMemo(
-    () => setRangePartial(min, max, 0, NUM_COLORS),
+    () => setRangePartial(min, max, 0, 100),
     [max, min],
   );
 

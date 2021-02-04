@@ -73,22 +73,22 @@ const CirclesContainer = ({
       ? (
         <>
           {
-          circles.map((circle, index) => (
-            <Circle
-              attribute={circle.attribute}
-              color={circle.color}
-              handleMouseEnter={debouncedMouseEnter}
-              handleMouseLeave={handleMouseLeave}
-              key={circle.attribute}
-              max={circle.max}
-              min={circle.min}
-              readouts={formatedCircles.segmentNames}
-              radius={dimensions.radius - (index * (thickness + space))}
-              thickness={thickness}
-              values={formatedCircles.circles[circle.attribute]}
-            />
-          ))
-        }
+            circles.map((circle, index) => (
+              <Circle
+                attribute={circle.attribute}
+                color={circle.color}
+                handleMouseEnter={debouncedMouseEnter}
+                handleMouseLeave={handleMouseLeave}
+                key={circle.attribute}
+                max={circle.max}
+                min={circle.min}
+                readouts={formatedCircles.segmentNames}
+                radius={dimensions.radius - (index * (thickness + space))}
+                thickness={thickness}
+                values={formatedCircles.circles[circle.attribute]}
+              />
+            ))
+          }
           <Text
             hoveredText={hoveredText}
             labels={labels}

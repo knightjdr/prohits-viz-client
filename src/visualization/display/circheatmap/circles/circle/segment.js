@@ -3,11 +3,11 @@ import React from 'react';
 
 const Segment = ({
   attribute,
+  fill,
   handleClick,
   handleMouseEnter,
   handleMouseLeave,
   path,
-  segment,
   segmentIndex,
 }) => (
   <g>
@@ -21,7 +21,7 @@ const Segment = ({
       d={path}
       data-attribute={attribute}
       data-segment-index={segmentIndex}
-      fill={segment.fill}
+      fill={fill}
       onClick={handleClick}
       onMouseEnter={handleMouseEnter}
       onMouseLeave={handleMouseLeave}
@@ -34,13 +34,11 @@ const Segment = ({
 
 Segment.propTypes = {
   attribute: PropTypes.string.isRequired,
+  fill: PropTypes.string.isRequired,
   handleClick: PropTypes.func.isRequired,
   handleMouseEnter: PropTypes.func.isRequired,
   handleMouseLeave: PropTypes.func.isRequired,
   path: PropTypes.string.isRequired,
-  segment: PropTypes.shape({
-    fill: PropTypes.string,
-  }).isRequired,
   segmentIndex: PropTypes.number.isRequired,
 };
 

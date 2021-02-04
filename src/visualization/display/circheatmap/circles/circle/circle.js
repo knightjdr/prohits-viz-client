@@ -26,12 +26,12 @@ const Circle = ({
         return (
           <Segment
             attribute={attribute}
+            fill={segment.fill}
             handleClick={handleClick}
             handleMouseEnter={handleMouseEnter}
             handleMouseLeave={handleMouseLeave}
             key={segment.readout}
             path={path}
-            segment={segment}
             segmentIndex={index}
           />
         );
