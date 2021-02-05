@@ -1,5 +1,6 @@
 import fillAnalysis from '../analysis/analysis';
 import fillCustomization from './customization';
+import fillDimensions from './dimensions';
 import fillDisplay from './display';
 import fillGprofiler from '../analysis/gprofiler';
 import fillLabels from './labels';
@@ -16,6 +17,7 @@ const validateScatter = (file, filename, taskID) => {
   const {
     analysis,
     customization,
+    dimensions,
     display,
     gprofiler,
     labels,
@@ -33,6 +35,7 @@ const validateScatter = (file, filename, taskID) => {
   return {
     analysis: fillAnalysis(analysis),
     customization: fillCustomization(customization),
+    dimensions: fillDimensions(dimensions),
     display: fillDisplay(display),
     gprofiler: fillGprofiler(gprofiler),
     labels: fillLabels(labels),

@@ -1,6 +1,7 @@
 import fillAnalysis from '../analysis/analysis';
 import fillAnnotations from './annotations';
 import fillColumns from './columns';
+import fillDimensions from './dimensions';
 import fillDisplay from './display';
 import fillExporter from './exporter';
 import fillGprofiler from '../analysis/gprofiler';
@@ -21,6 +22,7 @@ const validateHeatmap = (file, filename, taskID) => {
     annotations,
     columnDB,
     columns,
+    dimensions,
     display,
     exporter,
     gprofiler,
@@ -42,6 +44,7 @@ const validateHeatmap = (file, filename, taskID) => {
     annotations: fillAnnotations(annotations),
     columnDB,
     columns: fillColumns(columns, columnDB),
+    dimensions: fillDimensions(dimensions),
     display: fillDisplay(display),
     exporter: fillExporter(exporter),
     gprofiler: fillGprofiler(gprofiler),
