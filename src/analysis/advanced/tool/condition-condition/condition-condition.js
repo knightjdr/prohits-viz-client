@@ -7,7 +7,7 @@ import Transformations from './transformations-container';
 
 import help from '../help/help-condition-condition';
 
-const Correlation = ({
+const AdvancedOptions = ({
   errors,
 }) => (
   <div>
@@ -17,8 +17,8 @@ const Correlation = ({
   </div>
 );
 
-Correlation.propTypes = {
+AdvancedOptions.propTypes = {
   errors: PropTypes.shape({}).isRequired,
 };
 
-export default Correlation;
+export default AdvancedOptions;

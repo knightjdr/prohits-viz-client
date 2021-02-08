@@ -4,17 +4,25 @@ export const defaultState = {
   abundance: '',
   condition: '',
   errors: {},
-  files: [],
+  files: [
+    new File(
+      ['Bait\tPrey\tPreyGene\tSpec\tSpecSum\tAvgSpec\tNumReplicates\t'
+      + 'ctrlCounts\tAvgP\tMaxP\tTopoAvgP\tTopoMaxP\tSaintScore\tlogOddsScore\tFoldChange\t'
+      + 'BFDR\tUniqueSpec\tUniqueSpecSum\tUniqueAvgSpec\tPreySequenceLength\n'],
+      'samplefile.txt',
+      { type: 'text/plain' },
+    ),
+  ],
   readout: '',
-  sampleFile: false,
+  sampleFile: true,
   score: '',
-  tool: '',
+  tool: 'scv',
   uploading: false,
 
-  fileType: '',
+  fileType: 'saint',
   header: [],
-  showAdvanced: false,
-  step: 0,
+  showAdvanced: true,
+  step: 7,
 };
 
 const reduceAndReset = () => ({ ...defaultState });

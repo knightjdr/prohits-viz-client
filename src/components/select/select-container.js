@@ -75,7 +75,7 @@ const SelectContainer = ({
     onChange(e, id, returnValue);
   };
 
-  useClickOutside(portalRef, closeDropdown);
+  useClickOutside(portalRef, closeDropdown, { deps: [selectedValues] });
 
   const clearOption = (e) => {
     const returnValue = formatReturnValue(multiple, '');

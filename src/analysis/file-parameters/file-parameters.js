@@ -18,6 +18,7 @@ const FileParameters = ({
     <Columns
       errors={errors}
       form={form}
+      multipleAbundance={selectedtool === 'scv'}
       options={{
         abundance: options.abundance,
         condition: options.condition,
@@ -58,7 +59,10 @@ FileParameters.propTypes = {
     score: PropTypes.string,
   }).isRequired,
   form: PropTypes.shape({
-    abundance: PropTypes.string,
+    abundance: PropTypes.oneOfType([
+      PropTypes.arrayOf(PropTypes.string),
+      PropTypes.string,
+    ]),
     condition: PropTypes.string,
     conditionX: PropTypes.string,
     conditionY: PropTypes.string,

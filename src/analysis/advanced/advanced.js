@@ -5,6 +5,7 @@ import ConditionCondition from './tool/condition-condition/condition-condition';
 import Correlation from './tool/correlation/correlation';
 import Divider from '../../components/divider/divider';
 import Dotplot from './tool/dotplot/dotplot';
+import SCV from './tool/scv/scv';
 import Specificity from './tool/specificity/specificity';
 
 import './advanced.css';
@@ -16,6 +17,8 @@ const loadToolOptions = (tool, errors) => {
     return <Correlation errors={errors} />;
   } if (tool === 'dotplot') {
     return <Dotplot errors={errors} />;
+  } if (tool === 'scv') {
+    return <SCV errors={errors} />;
   } if (tool === 'specificity') {
     return <Specificity errors={errors} />;
   }

@@ -64,6 +64,18 @@ const defaultFormValues = {
     writeDistance: false,
     writeHeatmap: false,
   },
+  scv: {
+    ...commonValues,
+    abundanceCap: 50,
+    abundanceFilterColumn: '',
+    verticalHeatmap: false,
+    known: '',
+    minAbundance: 0,
+    primaryFilter: 0.01,
+    proteinTissues: ['HEK-293'],
+    rnaTissues: [],
+    specificity: false,
+  },
   specificity: {
     ...commonValues,
     markExpression: false,

@@ -8,6 +8,7 @@ import Select from '../../components/select/select-container';
 const Columns = ({
   errors,
   form,
+  multipleAbundance,
   options,
   setColumn,
 }) => (
@@ -28,7 +29,8 @@ const Columns = ({
     <div className="analysis__column-selectors">
       <Select
         id="abundance"
-        label="Abundance column"
+        label={multipleAbundance ? 'Abundance columns' : 'Abundance column'}
+        multiple={multipleAbundance}
         onChange={setColumn}
         options={options.abundance}
         placeholder="Select abundance column..."
@@ -74,11 +76,15 @@ Columns.propTypes = {
     score: PropTypes.string,
   }).isRequired,
   form: PropTypes.shape({
-    abundance: PropTypes.string,
+    abundance: PropTypes.oneOfType([
+      PropTypes.arrayOf(PropTypes.string),
+      PropTypes.string,
+    ]),
     condition: PropTypes.string,
     readout: PropTypes.string,
     score: PropTypes.string,
   }).isRequired,
+  multipleAbundance: PropTypes.bool.isRequired,
   options: PropTypes.shape({
     abundance: PropTypes.arrayOf(
       PropTypes.shape({

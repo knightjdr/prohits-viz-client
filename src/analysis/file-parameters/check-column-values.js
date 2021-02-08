@@ -1,5 +1,18 @@
 const checkColumn = (form, columns, field) => {
-  if (form[field] !== columns[field].initialValue && !form.header.includes(form[field])) {
+  if (
+    typeof form[field] === 'string'
+    && form[field] !== columns[field].initialValue
+    && !form.header.includes(form[field])
+  ) {
+    return {
+      shouldUpdate: true,
+      value: columns[field].initialValue,
+    };
+  }
+  if (
+    Array.isArray(form[field])
+    && !form[field].every((column) => form.header.includes(column))
+  ) {
     return {
       shouldUpdate: true,
       value: columns[field].initialValue,

@@ -132,7 +132,7 @@ describe('Use click oustide hook', () => {
       renderHookForTest = () => {
         let clear;
         renderHook(() => {
-          clear = useClickedOutside(ref, clickedOusideFunc, false);
+          clear = useClickedOutside(ref, clickedOusideFunc, { esc: false });
         });
         return clear;
       };
@@ -160,7 +160,7 @@ describe('Use click oustide hook', () => {
       renderHookForTest = () => {
         let clear;
         renderHook(() => {
-          clear = useClickedOutside(ref, clickedOusideFunc, true, true);
+          clear = useClickedOutside(ref, clickedOusideFunc, { ignoreVisibility: true });
         });
         return clear;
       };

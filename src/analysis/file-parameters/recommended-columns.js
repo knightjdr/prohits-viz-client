@@ -29,6 +29,16 @@ const recommendedColumns = {
       score: ['bfdr', 'fdr', 'saintscore', 'avgp', 'maxp'],
     },
   },
+  scv: {
+    saint: {
+      abundance: ['avgspec', 'avgp', 'foldchange', 'saintscore', 'uniquespec', 'avgintensity', 'intensitysum'],
+      condition: ['bait', 'baits'],
+      control: ['ctrlcounts', 'control', 'controls'],
+      readout: ['preygene', 'prey', 'preygenes', 'preys'],
+      readoutLength: ['preysequencelength'],
+      score: ['bfdr', 'fdr', 'saintscore', 'avgp', 'maxp'],
+    },
+  },
   specificity: {
     saint: {
       abundance: ['avgspec', 'specsum', 'avgintensity', 'intensitysum', 'spec'],
