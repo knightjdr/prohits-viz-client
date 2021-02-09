@@ -1,13 +1,14 @@
 import validateConditionCondition from './condition-condition/validate-settings';
-import validateCorrelation from './correlation/validate-settings';
+import validateCommonSettings from './common/validate-settings';
 import validateDotplot from './dotplot/validate-settings';
-import validateSpecifcity from './specificity/validate-settings';
+import validateSCV from './scv/validate-settings';
 
 const validateImageType = {
   'condition-condition': validateConditionCondition,
-  correlation: validateCorrelation,
+  correlation: validateCommonSettings,
   dotplot: validateDotplot,
-  specificity: validateSpecifcity,
+  scv: validateSCV,
+  specificity: validateCommonSettings,
 };
 
 const getValidator = (imageType) => (

@@ -22,7 +22,7 @@ const InputFileContainer = ({
     updatedFiles.splice(index, 1);
     setInputFiles(updatedFiles);
     if (onChange) {
-      onChange(e, updatedFiles);
+      onChange(e, id, updatedFiles);
     }
   };
 

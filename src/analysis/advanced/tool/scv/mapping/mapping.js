@@ -5,14 +5,14 @@ import File from '../../fields/file';
 import Select from '../../fields/select';
 
 const idOptions = [
-  { label: 'ENSEMBL gene ID', value: 'ensemblg' },
-  { label: 'ENSEMBL protein ID', value: 'ensemblp' },
-  { label: 'Gene symbol', value: 'symbol' },
-  { label: 'Entrez gene ID', value: 'entrez' },
-  { label: 'REFSEQ gene ', value: 'refseqg' },
-  { label: 'REFSEQ protein', value: 'refseqp' },
-  { label: 'UniProt accession', value: 'uniprota' },
-  { label: 'UniProt ID', value: 'uniprotid' },
+  { label: 'ENSEMBL gene (e.g. ENSG00000104375)', value: 'ensemblg' },
+  { label: 'ENSEMBL protein (e.g. ENSP00000429744)', value: 'ensemblp' },
+  { label: 'Entrez gene (e.g. 6788)', value: 'entrez' },
+  { label: 'Gene symbol (e.g. STK3)', value: 'symbol' },
+  { label: 'REFSEQ gene (e.g. NM_001256312)', value: 'refseqg' },
+  { label: 'REFSEQ protein (e.g. NP_001243241)', value: 'refseqp' },
+  { label: 'UniProt accession (e.g. Q13188)', value: 'uniprota' },
+  { label: 'UniProt ID (e.g. STK3_HUMAN)', value: 'uniprotid' },
 ];
 
 const Mapping = ({
