@@ -23,7 +23,10 @@ const Load = ({
   isLoading,
 }) => (
   <div className="visualization__load">
-    <InputFile onChange={handleChange} />
+    <InputFile
+      id="file_input"
+      onChange={handleChange}
+    />
     <Loading
       className="visualization__loading-status"
       error={error}

@@ -15,7 +15,7 @@ const Data = ({
     <h2>Data</h2>
     <p>
       Select data to add to the visualization in addition to the abundance
-      columns to use.
+      columns to display.
     </p>
     <Select
       helpMessage={help.known}

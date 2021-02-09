@@ -29,7 +29,7 @@ const FileSelectionContainer = ({
     }));
   };
 
-  const selectFile = (e, selectedFiles) => {
+  const selectFile = (e, id, selectedFiles) => {
     dispatch(setFormFields({
       files: selectedFiles,
       sampleFile: false,

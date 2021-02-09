@@ -17,6 +17,22 @@ const help = {
   abundanceFilterColumn: `The name of the column to use for filtering by abundance, if desired.
     While filtering by abundance can only be applied to one column initially, it can
     be customized on a metric-by-metric basis from the interactive viewer`,
+  conditionIDType: `Condition names are assumed to be gene symbols by default. The symbol
+    is extracted from the condition name by grabbing everything before the first underscore. For
+    example, a condition name of "STK3_OA_treated" would be converted to "STK3", and this would
+    be used for retrieving information from knowledgebases. If your condition names are not symbols,
+    or you are supplying a map of identifiers to use, you must specifiy the identifier type.`,
+  conditionMapColumn: `Select a column of identifiers to use in place of condition names for
+    extracting data from knowledgebases. Supported identifiers include gene symbol (STK3), Entrez gene
+    ID (6788), UniProt accession (Q13188), UniProt ID (STK3_HUMAN), ENSEMBL gene ID (ENSG00000104375),
+    ENSEMBL protein ID (ENSP00000429744), REFSEQ protein (NP_001243241) or REFSEQ gene (NM_001256312).`,
+  conditionMapFile: `Supply a file for mapping condition names to identifiers to use for retrieving data
+    from knowledgebases. The file should be tab-delimited and have two columns: 1) condition name,
+    2) identifer. Condition names should be supplied exactly as they appear in the input file, i.e.
+    they are case sensitive, so STK3 and stk3 would be treated differently.
+    Supported identifiers include gene symbol (STK3), Entrez gene ID (6788), UniProt
+    accession (Q13188), UniProt ID (STK3_HUMAN), ENSEMBL gene ID (ENSG00000104375), ENSEMBL protein ID
+    (ENSP00000429744), REFSEQ protein (NP_001243241) or REFSEQ gene (NM_001256312).`,
   known: (
     <div>
       <p>
@@ -43,6 +59,22 @@ const help = {
     metric-by-metric basis from the interactive viewer.`,
   primaryFilter: 'Readouts must satisfy this score filter to be included in the visualization',
   proteinTissues: 'Select one or more tissues for protein expression data to include.',
+  readoutIDType: `Readout names are assumed to be gene symbols by default. The symbol
+    is extracted from the readout name by grabbing everything before the first underscore. For
+    example, a readout name of "STK3_HUMAN" would be converted to "STK3", and this would
+    be used for retrieving information from knowledgebases. If your readout names are not symbols,
+    or you are supplying a map of identifiers to use, you must specifiy the identifier type.`,
+  readoutMapColumn: `Select a column of identifiers to use in place of readout names for
+    extracting data from knowledgebases. Supported identifiers include gene symbol (STK3), Entrez gene
+    ID (6788), UniProt accession (Q13188), UniProt ID (STK3_HUMAN), ENSEMBL gene ID (ENSG00000104375),
+    ENSEMBL protein ID (ENSP00000429744), REFSEQ protein (NP_001243241) or REFSEQ gene (NM_001256312).`,
+  readoutMapFile: `Supply a file for mapping readout names to identifiers to use for retrieving data
+    from knowledgebases. The file should be tab-delimited and have two columns: 1) readout name,
+    2) identifer. Readout names should be supplied exactly as they appear in the input file, i.e.
+    they are case sensitive, so STK3 and stk3 would be treated differently.
+    Supported identifiers include gene symbol (STK3), Entrez gene ID (6788), UniProt
+    accession (Q13188), UniProt ID (STK3_HUMAN), ENSEMBL gene ID (ENSG00000104375), ENSEMBL protein ID
+    (ENSP00000429744), REFSEQ protein (NP_001243241) or REFSEQ gene (NM_001256312).`,
   rnaTissues: 'Select one or more tissues for RNA expression data to include.',
   specificity: `Display readout specificity as an additional circle. The specificity is calulcated
     as a simple fold enrichment score for each readout and the condition it was detected with, relative

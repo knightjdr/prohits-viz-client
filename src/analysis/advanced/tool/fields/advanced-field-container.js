@@ -9,6 +9,7 @@ const createModalID = (modalID) => (
 );
 
 const AdvancedFieldContainer = ({
+  className,
   children,
   iconMargin,
   message,
@@ -28,6 +29,7 @@ const AdvancedFieldContainer = ({
 
   return (
     <AdvancedField
+      className={className}
       handleModalClose={handleModalClose}
       iconMargin={iconMargin}
       id={id}
@@ -42,12 +44,14 @@ const AdvancedFieldContainer = ({
 };
 
 AdvancedFieldContainer.defaultProps = {
+  className: 'analysis__advanced-field',
   iconMargin: true,
   modalID: '',
 };
 
 AdvancedFieldContainer.propTypes = {
   children: PropTypes.node.isRequired,
+  className: PropTypes.string,
   iconMargin: PropTypes.bool,
   message: PropTypes.node.isRequired,
   modalID: PropTypes.string,

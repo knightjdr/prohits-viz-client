@@ -31,7 +31,7 @@ const InputFileContainer = ({
     setInputFiles(files);
     setInputWarning('');
     if (onChange) {
-      onChange(e, files);
+      onChange(e, id, files);
     }
   };
 

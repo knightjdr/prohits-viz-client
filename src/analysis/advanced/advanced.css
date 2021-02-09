@@ -1,5 +1,5 @@
 .analysis__advanced {
-  margin-top: 50px;
+  margin-top: 3rem;
 }
 
 .analysis__advanced h2 {
@@ -10,9 +10,9 @@
 }
 
 .analysis__advanced section:not(:first-of-type) {
-  margin-top: 50px;
+  margin-top: 3rem;
 }
 
 .analysis__advanced section > *:not(:last-child) {
-  margin-bottom: 15px;
+  margin-bottom: 1.3rem;
 }

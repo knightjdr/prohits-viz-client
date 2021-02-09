@@ -17,8 +17,8 @@ const LoadContainer = () => {
 
   const status = useLoading();
 
-  const handleChange = async (e) => {
-    const file = e.currentTarget.files[0];
+  const handleChange = async (e, id, selectedFiles) => {
+    const file = selectedFiles[0];
     status.setLoading(true);
     try {
       const fileData = await validateInteractiveFile(file);
