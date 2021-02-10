@@ -31,7 +31,7 @@ const recommendedColumns = {
   },
   scv: {
     saint: {
-      abundance: ['avgspec', 'avgp', 'foldchange', 'saintscore', 'uniquespec', 'avgintensity', 'intensitysum'],
+      abundance: ['avgspec', 'foldchange', 'uniquespec', 'avgintensity', 'intensitysum'],
       condition: ['bait', 'baits'],
       control: ['ctrlcounts', 'control', 'controls'],
       readout: ['preygene', 'prey', 'preygenes', 'preys'],

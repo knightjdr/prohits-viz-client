@@ -74,6 +74,7 @@ const defaultFormValues = {
     verticalHeatmap: false,
     known: '',
     minAbundance: 0,
+    otherAbundance: [],
     primaryFilter: 0.01,
     proteinTissues: ['HEK-293'],
     readoutIDType: 'symbol',
