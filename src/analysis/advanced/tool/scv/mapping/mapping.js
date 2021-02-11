@@ -11,7 +11,7 @@ const idOptions = [
   { label: 'Gene symbol (e.g. STK3)', value: 'symbol' },
   { label: 'REFSEQ gene (e.g. NM_001256312)', value: 'refseqg' },
   { label: 'REFSEQ protein (e.g. NP_001243241)', value: 'refseqp' },
-  { label: 'UniProt accession (e.g. Q13188)', value: 'uniprota' },
+  { label: 'UniProt accession (e.g. Q13188)', value: 'uniprotacc' },
   { label: 'UniProt ID (e.g. STK3_HUMAN)', value: 'uniprotid' },
 ];
 

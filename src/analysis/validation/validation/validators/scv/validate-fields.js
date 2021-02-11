@@ -8,7 +8,7 @@ const acceptedIDTypes = [
   'refseqg',
   'refseqp',
   'symbol',
-  'uniprota',
+  'uniprotacc',
   'uniprotid',
 ];
 
