@@ -5,6 +5,7 @@ const acceptedIDTypes = [
   'ensemblg',
   'ensemblp',
   'entrez',
+  'hgnc',
   'refseqg',
   'refseqp',
   'symbol',
