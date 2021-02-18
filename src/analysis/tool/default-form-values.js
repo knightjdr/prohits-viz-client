@@ -71,7 +71,6 @@ const defaultFormValues = {
     conditionIDType: 'symbol',
     conditionMapColumn: '',
     conditionMapFile: [],
-    verticalHeatmap: false,
     known: '',
     minAbundance: 0,
     otherAbundance: [],
@@ -82,6 +81,7 @@ const defaultFormValues = {
     readoutMapFile: [],
     rnaTissues: [],
     specificity: false,
+    verticalHeatmap: false,
   },
   specificity: {
     ...commonValues,
