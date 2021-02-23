@@ -48,6 +48,8 @@ const reducer = (state = {}, action) => {
       return reduceAndLoadState(action, 'settings');
     case snapshotActions.REMOVE_SNAPSHOT:
       return reduceAndRemoveSnapshot(state, action);
+    case displayActions.RESET_CIRCHEATMAP:
+      return reduceAndReset(state, action);
     case displayActions.RESET_HEATMAP:
       return reduceAndReset(state, action);
     case displayActions.RESET_SCATTER:

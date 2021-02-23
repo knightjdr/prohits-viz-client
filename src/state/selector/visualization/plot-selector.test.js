@@ -6,6 +6,9 @@ const state = {
       selectedPlot: 0,
     },
   },
+  parameters: {
+    imageType: 'scatter',
+  },
   plots: [
     {
       labels: { x: 'bait1', y: 'bait2' },
@@ -56,6 +59,7 @@ describe('Plot selector', () => {
       const expected = {};
       const testState = {
         display: state.display,
+        parameters: { imageType: 'scatter' },
         tabs: state.tabs,
       };
       expect(selectPlotLabels(testState)).toEqual(expected);

@@ -17,9 +17,9 @@ const PoiAction = ({
 }) => (
   <>
     {filteringComponent}
-    <div className="poi__action">
+    <div className="poi__action-heatmap">
       <Button
-        className="poi__action-filter"
+        className="poi__action-heatmap-filter"
         onClick={handleApply}
         kind="secondary"
         type="button"

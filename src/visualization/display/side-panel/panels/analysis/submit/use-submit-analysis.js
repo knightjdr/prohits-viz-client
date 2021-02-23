@@ -22,7 +22,9 @@ const useSubmitAnalysis = () => {
   const submit = (analyisType, analysisName) => {
     const analysis = defineAnalysisName(analysisName, tabs, 'analysis');
     const names = {};
-    if (imageType === 'dotplot' || imageType === 'heatmap') {
+    if (imageType === 'circheatmap') {
+      names.readouts = pointNames;
+    } if (imageType === 'dotplot' || imageType === 'heatmap') {
       names.columns = columnNames;
       names.rows = rowNames;
     } if (imageType === 'scatter') {

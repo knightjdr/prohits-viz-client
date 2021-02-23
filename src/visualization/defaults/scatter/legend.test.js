@@ -1,7 +1,7 @@
 import fillLegend from './legend';
 
 describe('Fill legend state', () => {
-  it('should use default state unless key is defined on input state', () => {
+  it('should use return valid input state', () => {
     const fileLegend = [
       { color: '#000000', text: 'text' },
     ];

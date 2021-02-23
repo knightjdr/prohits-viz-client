@@ -1,13 +1,13 @@
-.poi__action {
+.poi__action-heatmap {
   align-items: center;
   display: flex;
   margin-top: 15px;
 }
 
-.poi__action > *:last-child {
+.poi__action-heatmap > *:last-child {
   margin-left: auto;
 }
 
-.poi__action-filter svg {
+.poi__action-heatmap-filter svg {
   margin-right: 5px;
 }

@@ -22,16 +22,9 @@ const Image = ({
   >
     <div className="panel__save-image">
       {
-        imageType === 'scatter'
+        imageType === 'dotplot'
+        || imageType === 'heatmap'
           ? (
-            <ButtonRectangular
-              onClick={handleSave}
-              kind="secondary"
-            >
-              Save
-            </ButtonRectangular>
-          )
-          : (
             <>
               <Select
                 onChange={handleChange}
@@ -49,6 +42,14 @@ const Image = ({
                 onClick={handleSave}
               />
             </>
+          )
+          : (
+            <ButtonRectangular
+              onClick={handleSave}
+              kind="secondary"
+            >
+              Save
+            </ButtonRectangular>
           )
       }
 

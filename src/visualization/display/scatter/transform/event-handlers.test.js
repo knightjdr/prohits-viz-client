@@ -102,7 +102,6 @@ describe('Plot event handlers', () => {
   });
 
   describe('wheel', () => {
-    let preventDefault;
     let setTransform;
 
     afterAll(() => {
@@ -113,7 +112,6 @@ describe('Plot event handlers', () => {
     });
 
     beforeAll(() => {
-      preventDefault = jest.fn();
       setTransform = jest.fn();
 
       utils.defineMatrices = jest.fn().mockReturnValue({
@@ -125,18 +123,13 @@ describe('Plot event handlers', () => {
       utils.getWheelPosition = jest.fn().mockReturnValue({ x: 50, y: 75 });
       utils.getWheelOrigin = jest.fn().mockReturnValue({ x: 25, y: 25 });
 
-      const e = { preventDefault };
       const options = {
         setTransform,
         transform: {
           origin: { x: 0, y: 0 },
         },
       };
-      handlers.zoom(e, options);
-    });
-
-    it('should prevent default', () => {
-      expect(preventDefault).toHaveBeenCalled();
+      handlers.zoom({}, options);
     });
 
     it('should set transform', () => {

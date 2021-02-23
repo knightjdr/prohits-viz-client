@@ -2,6 +2,7 @@ import PropTypes from 'prop-types';
 import React from 'react';
 import { faDownload } from '@fortawesome/pro-duotone-svg-icons';
 
+import CircHeatmap from './legend__circheatmap';
 import Dotplot from './legend__dotplot';
 import Heatmap from './legend__heatmap';
 import IconButton from '../../../../../../components/buttons/icon/button';
@@ -10,8 +11,18 @@ import Section from '../../section/section';
 
 import './legend.css';
 
-const drawLegend = (parameters, settings, scatterOptions) => {
-  if (parameters.imageType === 'dotplot') {
+const drawLegend = (parameters, settings, options) => {
+  if (parameters.imageType === 'circheatmap') {
+    return (
+      <CircHeatmap
+        legend={options.legend}
+        maxReadouts={settings.maxReadouts}
+        numReadouts={options.plot.readouts.length}
+        readoutName={parameters.readoutColumn}
+        sortByKnown={settings.sortByKnown}
+      />
+    );
+  } if (parameters.imageType === 'dotplot') {
     return (
       <Dotplot
         abundanceColumn={parameters.abundanceColumn}
@@ -30,22 +41,25 @@ const drawLegend = (parameters, settings, scatterOptions) => {
   } if (parameters.imageType === 'scatter') {
     return (
       <Scatter
-        customizations={scatterOptions.customizations}
-        legend={scatterOptions.legend}
+        customizations={options.customizations}
+        legend={options.legend}
       />
     );
   }
   return null;
 };
 
-const showLegend = (imageType, scatterOptions) => (
+const showLegend = (imageType, options) => (
   imageType === 'dotplot'
   || imageType === 'heatmap'
   || (
-    imageType === 'scatter'
+    (
+      imageType === 'circheatmap'
+      || imageType === 'scatter'
+    )
     && (
-      scatterOptions.legend.length > 0
-      || Object.keys(scatterOptions.customizations).length > 0
+      options.legend.length > 0
+      || Object.keys(options.customizations).length > 0
     )
   )
 );
@@ -55,6 +69,7 @@ const Legend = ({
   downloadLegend,
   legend,
   parameters,
+  plot,
   settings,
 }) => (
   showLegend(parameters.imageType, { customizations, legend })
@@ -62,7 +77,7 @@ const Legend = ({
     <>
       <Section title="Legend">
         <div className="panel__info-legend">
-          {drawLegend(parameters, settings, { customizations, legend })}
+          {drawLegend(parameters, settings, { customizations, legend, plot })}
         </div>
       </Section>
       <div className="panel__info-legend-download">
@@ -83,6 +98,8 @@ const Legend = ({
 
 Legend.defaultProps = {
   customizations: {},
+  legend: [],
+  plot: {},
 };
 
 Legend.propTypes = {
@@ -93,13 +110,14 @@ Legend.propTypes = {
       color: PropTypes.string,
       text: PropTypes.string,
     }),
-  ).isRequired,
+  ),
   parameters: PropTypes.shape({
     abundanceColumn: PropTypes.string,
     imageType: PropTypes.string,
     scoreColumn: PropTypes.string,
     scoreType: PropTypes.string,
   }).isRequired,
+  plot: PropTypes.shape({}),
   settings: PropTypes.shape({}).isRequired,
 };
 

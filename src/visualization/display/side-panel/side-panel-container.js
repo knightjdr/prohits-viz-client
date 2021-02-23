@@ -7,6 +7,7 @@ import { selectState, selectStateProperty } from '../../../state/selector/genera
 import { togglePanel } from '../../../state/visualization/settings/panel-actions';
 
 const tabs = {
+  circheatmap: ['info', 'settings', 'markup', 'analysis', 'save'],
   dotplot: ['info', 'minimap', 'settings', 'markup', 'analysis', 'save'],
   heatmap: ['info', 'minimap', 'settings', 'markup', 'analysis', 'save'],
   scatter: ['info', 'settings', 'markup', 'customization', 'analysis', 'save'],

@@ -1,0 +1,14 @@
+.circheatmap__segment-path {
+  cursor: pointer;
+  pointer-events: all;
+  transition: transform 0.3s cubic-bezier(.17, .67, .16, .99);
+}
+.circheatmap__segment-path:hover,
+.circheatmap__segment-backdrop:hover + .circheatmap__segment-path  {
+  transform: scale(1.05);
+}
+
+.circheatmap__text_hovered {
+  pointer-events: none;
+}
+

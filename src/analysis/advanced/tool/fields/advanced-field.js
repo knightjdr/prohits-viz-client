@@ -9,6 +9,7 @@ import Modal from '../../../../components/modal/modal-container';
 import './advanced-field.css';
 
 const AdvancedField = ({
+  className,
   children,
   handleModalClose,
   iconMargin,
@@ -18,7 +19,7 @@ const AdvancedField = ({
   title,
   toggleModal,
 }) => (
-  <>
+  <div className={className}>
     <div className="analysis__advanced-field-help">
       {children}
       <IconButton
@@ -45,10 +46,11 @@ const AdvancedField = ({
     >
       {message}
     </Modal>
-  </>
+  </div>
 );
 
 AdvancedField.propTypes = {
+  className: PropTypes.string.isRequired,
   children: PropTypes.node.isRequired,
   handleModalClose: PropTypes.func.isRequired,
   iconMargin: PropTypes.bool.isRequired,

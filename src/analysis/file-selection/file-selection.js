@@ -54,6 +54,7 @@ const FileSelection = ({
         warning={errors.fileType}
       />
       <Input
+        id="files"
         multiple
         onChange={selectFile}
         value={files}

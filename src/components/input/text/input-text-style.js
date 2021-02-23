@@ -37,6 +37,7 @@ const Span = styled.span`
 
   label {
     box-sizing: border-box;
+    display: inline-block;
     grid-column: 1 / span 1;
     grid-row: 1 / span 1;
     padding-right: 8px;

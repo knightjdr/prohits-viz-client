@@ -12,8 +12,8 @@ describe('Set range', () => {
   });
 
   it('should map numbers within bounds to output range', () => {
-    const tests = [0, 10, 25, 40, 50];
-    const expected = [0, 20, 50, 80, 100];
+    const tests = [0, 10, 25, 40, 50, 100];
+    const expected = [0, 20, 50, 80, 100, 100];
     tests.forEach((test, index) => {
       expect(convertToRange(test)).toBe(expected[index]);
     });

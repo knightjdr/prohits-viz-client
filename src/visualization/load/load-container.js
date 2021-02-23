@@ -7,7 +7,7 @@ import Load from './load';
 import fillInteractiveState from '../defaults/fill-interactive-state';
 import removeFileExtenstion from '../../utils/remove-file-ext';
 import useLoading from '../../hooks/loading/use-loading';
-import validateInteractiveFile from './validate-interactive-file';
+import validateInteractiveFile from './validation/validate-interactive-file';
 import { loadInteractiveState } from '../../state/visualization/data/interactive-file-actions';
 import { selectState } from '../../state/selector/general';
 
@@ -17,8 +17,8 @@ const LoadContainer = () => {
 
   const status = useLoading();
 
-  const handleChange = async (e) => {
-    const file = e.currentTarget.files[0];
+  const handleChange = async (e, id, selectedFiles) => {
+    const file = selectedFiles[0];
     status.setLoading(true);
     try {
       const fileData = await validateInteractiveFile(file);

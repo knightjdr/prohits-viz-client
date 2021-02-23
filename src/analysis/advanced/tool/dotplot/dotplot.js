@@ -9,7 +9,7 @@ import Transformations from './transformations-container';
 
 import help from '../help/help-dotplot';
 
-const Dotplot = ({
+const AdvancedOptions = ({
   errors,
 }) => (
   <div>
@@ -21,8 +21,8 @@ const Dotplot = ({
   </div>
 );
 
-Dotplot.propTypes = {
+AdvancedOptions.propTypes = {
   errors: PropTypes.shape({}).isRequired,
 };
 
-export default Dotplot;
+export default AdvancedOptions;

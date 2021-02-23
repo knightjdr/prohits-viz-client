@@ -1,4 +1,18 @@
+import parseIfJSON from '../../../../utils/parse-if-json';
+
 const criteria = {
+  isArray: (value) => {
+    if (Array.isArray(value)) {
+      return [true, value];
+    }
+
+    const parsed = parseIfJSON(value);
+    if (parsed && Array.isArray(parsed)) {
+      return [true, parsed];
+    }
+
+    return [false, null];
+  },
   isBoolean: (value) => {
     if (value === true || value === 'true') {
       return [true, true];

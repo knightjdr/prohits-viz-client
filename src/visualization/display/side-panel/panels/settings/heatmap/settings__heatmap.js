@@ -4,7 +4,7 @@ import React from 'react';
 import ColorPalette from './color/color-palette';
 import Filter from './filter/filter-container';
 import Image from './image/image-container';
-import Reset from '../reset/reset';
+import Reset from '../common/reset/reset';
 
 const Settings = ({
   handleChange,

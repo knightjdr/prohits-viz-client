@@ -1,0 +1,12 @@
+.circheatmap {
+  box-sizing: border-box;
+  display: flex;
+  height: 100%;
+  justify-content: center;
+  padding: 10px 10px 0 10px;
+  position: relative;
+  width: 100%;
+  transition-duration: 0.3s;
+  transition-property: transform;
+  transition-timing-function: var(--timingFunction);
+}

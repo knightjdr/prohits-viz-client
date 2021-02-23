@@ -1,16 +1,31 @@
+.analysis__advanced-field {
+  width: 100%;
+}
+
 .analysis__advanced-field-help {
   display: flex;
   width: 100%;
 }
-.analysis__advanced-field-help > :first-child {
+
+.analysis__advanced-field .analysis__advanced-field-help > :first-child {
   flex-grow: 1;
 }
+.analysis__advanced-field .analysis__advanced-field-help-icon_margin {
+  margin-top: 24px;
+}
+
+.analysis__advanced-field-file .analysis__advanced-field-help > :first-child {
+  align-items: center;
+  display: flex;
+  height: 33px;
+}
+.analysis__advanced-field-file .analysis__advanced-field-help-icon_margin {
+  margin-left: auto;
+}
+
 .analysis__advanced-field-help > :nth-child(2) {
   margin-left: 15px;
   
-}
-.analysis__advanced-field-help-icon_margin {
-  margin-top: 24px;
 }
 
 .analysis__advanced-field-modal-header svg {

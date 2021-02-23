@@ -20,7 +20,9 @@ const help = {
     be selected accordingly.`,
   edgeColor: (
     <div>
-      The edge colour to apply to the dot indicating the score threshold.
+      <p>
+        The edge colour to apply to the dot indicating the score threshold.
+      </p>
       <div className="analysis__advanced-field-modal-img">
         <img
           alt="Edge indicating score threshold on dot"
@@ -41,7 +43,9 @@ const help = {
   ),
   fillColor: (
     <div>
-      The fill colour to apply to dots/cells indicating the abundance.
+      <p>
+        The fill colour to apply to dots/cells indicating the abundance.
+      </p>
       <div className="analysis__advanced-field-modal-img">
         <img
           alt="Fill indicating abundance on dot"

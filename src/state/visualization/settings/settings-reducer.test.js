@@ -87,6 +87,26 @@ describe('Settings reducer', () => {
     expect(reducer(currentState, action)).toEqual(expectedState);
   });
 
+  it('should handle RESET_CIRCHEATMAP action', () => {
+    const currentState = {
+      main: {
+        current: { sortByKnown: false },
+        default: { sortByKnown: true },
+      },
+    };
+    const action = {
+      snapshotID: 'main',
+      type: displayActions.RESET_CIRCHEATMAP,
+    };
+    const expectedState = {
+      main: {
+        current: { sortByKnown: true },
+        default: { sortByKnown: true },
+      },
+    };
+    expect(reducer(currentState, action)).toEqual(expectedState);
+  });
+
   it('should handle RESET_HEATMAP action', () => {
     const currentState = {
       main: {

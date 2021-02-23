@@ -52,6 +52,21 @@ const toolDescription = (tool) => {
         for more information on this tool.
       </p>
     );
+  } if (tool === 'scv') {
+    return (
+      <p>
+        Visualize data on a single condition in a compact circular heatmap form. See the
+        {' '}
+        <Link
+          href="/help"
+          visited={false}
+        >
+          help
+        </Link>
+        {' '}
+        for more information on this tool.
+      </p>
+    );
   } if (tool === 'specificity') {
     return (
       <p>

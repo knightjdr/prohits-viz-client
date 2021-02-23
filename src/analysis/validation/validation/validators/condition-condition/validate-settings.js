@@ -1,33 +1,10 @@
-import validateControl from '../../field-validation/control';
-import validateReadoutLength from '../../field-validation/readout-length';
-import { validateNormalizationSetting } from '../../field-validation/normalization';
-
-export const validateScoreFilters = (currentValues, currentErrors) => {
-  const errors = { ...currentErrors };
-  const validated = { ...currentValues };
-
-  if (
-    validated.scoreType === 'lte'
-    && validated.secondaryFilter < validated.primaryFilter
-  ) {
-    errors.secondaryFilter = 'should be greater than or equal to primary filter';
-  } if (
-    validated.scoreType === 'gte'
-    && validated.secondaryFilter > validated.primaryFilter
-  ) {
-    errors.secondaryFilter = 'should be less than or equal to primary filter';
-  }
-
-  return [validated, errors];
-};
+import validateCommonSettings from '../common/validate-settings';
+import validateScoreFilters from '../../field-validation/score-filters';
 
 const validateSettings = (settings) => {
-  const validated = { values: { ...settings } };
+  const validated = validateCommonSettings(settings);
 
-  [validated.values, validated.errors] = validateControl(validated.values, validated.errors);
-  [validated.values, validated.errors] = validateNormalizationSetting(validated.values, validated.errors);
   [validated.values, validated.errors] = validateScoreFilters(validated.values, validated.errors);
-  [validated.values, validated.errors] = validateReadoutLength(validated.values, validated.errors);
 
   return validated;
 };
