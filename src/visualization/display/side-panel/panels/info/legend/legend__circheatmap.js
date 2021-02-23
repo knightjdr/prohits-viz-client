@@ -20,6 +20,7 @@ const CircHeatmapLegend = ({
       width="210"
       viewBox={`0 0 210 ${height}`}
     >
+      <rect width="100%" height="100%" fill="white" />
       <g transform="translate(0 10)">
 
         {
@@ -27,13 +28,14 @@ const CircHeatmapLegend = ({
             const gradientFill = colorGradient(circle.color, 101, false);
             const numColors = gradientFill.length;
             const halfColorIndex = Math.floor(numColors / 2);
+            const id = circle.attribute.replace(' ', '-');
             return (
               <g
                 key={circle.attribute}
                 transform={`translate(0 ${index * 50})`}
               >
                 <defs>
-                  <linearGradient id={`${circle.attribute}-legendGradient`}>
+                  <linearGradient id={`${id}-legendGradient`}>
                     <stop offset="0%" stopColor={gradientFill[0]} />
                     <stop offset="50%" stopColor={gradientFill[halfColorIndex]} />
                     <stop offset="100%" stopColor={gradientFill[numColors - 1]} />
@@ -43,7 +45,7 @@ const CircHeatmapLegend = ({
                   <text x="100" y="20" textAnchor="middle">
                     {circle.attribute}
                   </text>
-                  <rect x="25" y="30" height="20" width="150" fill={`url('#${circle.attribute}-legendGradient')`} />
+                  <rect x="25" y="30" height="20" width="150" fill={`url(#${id}-legendGradient)`} />
                   <text x="20" y="45" textAnchor="end">
                     {circle.min}
                   </text>

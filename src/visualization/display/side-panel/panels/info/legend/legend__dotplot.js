@@ -29,6 +29,7 @@ const DotplotLegend = ({
       width="200"
       viewBox="0 0 200 250"
     >
+      <rect width="100%" height="100%" fill="white" />
       <defs>
         <linearGradient id="legendGradient">
           <stop offset="0%" stopColor={gradientFill[0]} />
@@ -40,7 +41,7 @@ const DotplotLegend = ({
         <text x="100" y="20" textAnchor="middle">
           {abundanceColumn}
         </text>
-        <rect x="25" y="30" height="20" width="150" fill="url('#legendGradient')" />
+        <rect x="25" y="30" height="20" width="150" fill="url(#legendGradient)" />
         <text x="25" y="65" textAnchor="middle">
           {minAbundance}
         </text>

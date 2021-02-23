@@ -26,6 +26,7 @@ const ScatterLegend = ({
       width="200"
       viewBox={`0 0 200 ${height}`}
     >
+      <rect width="100%" height="100%" fill="white" />
       {
         [...legend, ...customizationColors].map((dot, index) => {
           const yCircle = (index * 30) + 15;
