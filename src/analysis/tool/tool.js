@@ -37,7 +37,6 @@ const Tool = ({
           { label: 'Condition-condition', value: 'condition-condition' },
           { label: 'Dot plot', value: 'dotplot' },
           { label: 'Correlation', value: 'correlation' },
-          { label: 'SCV', value: 'scv' },
           { label: 'Specificity', value: 'specificity' },
         ]}
         placeholder="Select tool..."
