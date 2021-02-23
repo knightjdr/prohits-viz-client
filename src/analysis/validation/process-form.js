@@ -21,10 +21,10 @@ const processForm = (form) => {
     formData.append('file', file);
   });
 
-  if (form?.conditionMapFile.length > 0) {
+  if (form?.conditionMapFile?.length > 0) {
     formData.append('helperFile', form.conditionMapFile[0], 'condition-map');
   }
-  if (form?.readoutMapFile.length > 0) {
+  if (form?.readoutMapFile?.length > 0) {
     formData.append('helperFile', form.readoutMapFile[0], 'readout-map');
   }
 

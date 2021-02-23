@@ -1,22 +1,18 @@
 import PropTypes from 'prop-types';
 import React, { useState } from 'react';
-import { nanoid } from 'nanoid';
 
 import AdvancedField from './advanced-field';
 
-const createModalID = (modalID) => (
-  modalID ? `help-modal-${modalID}` : `help-modal-${nanoid()}`
-);
+import createModalID from '../../../../components/modal/create-modal-id';
 
 const AdvancedFieldContainer = ({
   className,
   children,
   iconMargin,
   message,
-  modalID,
   title,
 }) => {
-  const [id] = useState(createModalID(modalID));
+  const [id] = useState(createModalID('help-modal'));
   const [isModalOpen, setModalState] = useState(false);
 
   const handleModalClose = () => {
@@ -46,7 +42,6 @@ const AdvancedFieldContainer = ({
 AdvancedFieldContainer.defaultProps = {
   className: 'analysis__advanced-field',
   iconMargin: true,
-  modalID: '',
 };
 
 AdvancedFieldContainer.propTypes = {
@@ -54,7 +49,6 @@ AdvancedFieldContainer.propTypes = {
   className: PropTypes.string,
   iconMargin: PropTypes.bool,
   message: PropTypes.node.isRequired,
-  modalID: PropTypes.string,
   title: PropTypes.string.isRequired,
 };
 

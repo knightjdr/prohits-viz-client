@@ -11,6 +11,7 @@ import DropdownPortal from './dropdown-portal';
 import Select from './select';
 
 import calculateDropdownLayout from './calculate-dropdown-layout';
+import createModalID from '../modal/create-modal-id';
 import createSelectedText from './create-selected-text';
 import findFocusIndex from './find-focus-index';
 import formatReturnValue from './format-return-value';
@@ -182,7 +183,7 @@ const SelectContainer = ({
     }
   };
 
-  const portal = usePortal(`${inputID}-root`);
+  const portal = usePortal(createModalID(`${inputID}-root`));
 
   return (
     <>

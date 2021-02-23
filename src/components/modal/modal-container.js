@@ -24,6 +24,10 @@ const ModalContainer = ({
 
   useClickOutside(ref, handleClose);
 
+  if (name === 'scoreType') {
+    console.log(name, isOpen);
+  }
+
   useEffect(() => {
     if (isOpen && fromCursor) {
       positionFromCursor(ref.current, placement);

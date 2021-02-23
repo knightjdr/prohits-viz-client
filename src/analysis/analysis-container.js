@@ -8,7 +8,7 @@ import processForm from './validation/process-form';
 import useFetch from '../hooks/fetch/use-fetch';
 import { createTask } from '../state/task/task-actions';
 import { selectState } from '../state/selector/general';
-import { setFormField } from '../state/analysis/form-actions';
+import { setFormField, setFormFields } from '../state/analysis/form-actions';
 
 const AnalysisContainer = () => {
   const [taskID, setTaskID] = useState('');
@@ -26,7 +26,10 @@ const AnalysisContainer = () => {
       dispatch(setFormField('errors', status.errors));
     } else {
       const options = { data: status.form, method: 'POST' };
-      dispatch(setFormField('uploading', true));
+      dispatch(setFormFields({
+        errors: {},
+        uploading: true,
+      }));
       const response = await fetch(`/analysis/${status.tool}`, options);
       dispatch(setFormField('uploading', false));
       if (response.error) {

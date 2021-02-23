@@ -1,5 +1,5 @@
 import PropTypes from 'prop-types';
-import React, { useEffect } from 'react';
+import React from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 
 import Tool from './tool';
@@ -24,14 +24,6 @@ const ToolContainer = ({
       }),
     );
   };
-
-  useEffect(() => {
-    dispatch(
-      setFormFields({
-        ...defaultFormValues[selectedtool],
-      }),
-    );
-  }, [dispatch, selectedtool]);
 
   return (
     <Tool

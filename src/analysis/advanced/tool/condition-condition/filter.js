@@ -2,7 +2,7 @@ import PropTypes from 'prop-types';
 import React from 'react';
 
 import Input from '../fields/input';
-import ScoreType from '../common/score-type-container';
+import Select from '../fields/select';
 
 const Filtering = ({
   errors,
@@ -12,9 +12,18 @@ const Filtering = ({
 }) => (
   <section>
     <h2>Filtering</h2>
-    <ScoreType
-      errors={errors}
-      help={help}
+    <Select
+      helpMessage={help.scoreType}
+      helpTitle="Score type"
+      id="scoreType"
+      label="Score type"
+      onChange={handleChange}
+      options={[
+        { label: 'smaller scores are better', value: 'lte' },
+        { label: 'larger scores are better', value: 'gte' },
+      ]}
+      value={form.scoreType}
+      warning={errors.scoreType}
     />
     <Input
       helpMessage={help.primaryFilter}

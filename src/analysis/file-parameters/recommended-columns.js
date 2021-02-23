@@ -54,6 +54,14 @@ const recommendedColumns = {
     },
   },
   scv: {
+    other: {
+      abundance: ['abundance', 'abundances', 'avgspec', 'specsum', 'avgintensity', 'intensitysum'],
+      condition: ['condition', 'conditions', 'bait', 'baits'],
+      control: ['control', 'controls', 'ctrlcounts'],
+      readout: ['readout', 'readouts', 'preygene', 'prey', 'preygenes', 'preys'],
+      readoutLength: ['readoutLength', 'readoutLengths', 'preysequencelength'],
+      score: ['score', 'scores', 'pvalue', 'p-value', 'confidence', 'bfdr', 'fdr', 'saintscore', 'avgp', 'maxp'],
+    },
     saint: {
       abundance: ['avgspec', 'foldchange', 'uniquespec', 'avgintensity', 'intensitysum'],
       condition: ['bait', 'baits'],
