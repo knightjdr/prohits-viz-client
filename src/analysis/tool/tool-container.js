@@ -5,7 +5,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import Tool from './tool';
 
 import defaultFormValues from './default-form-values';
-import { selectStateProperty } from '../../state/selector/general';
+import { selectState } from '../../state/selector/general';
 import { setFormFields } from '../../state/analysis/form-actions';
 
 const ToolContainer = ({
@@ -13,13 +13,14 @@ const ToolContainer = ({
 }) => {
   const dispatch = useDispatch();
 
-  const selectedtool = useSelector((state) => selectStateProperty(state, 'form', 'tool'));
+  const form = useSelector((state) => selectState(state, 'form'));
 
   const setTool = (e, id, value) => {
     dispatch(
       setFormFields({
-        tool: value,
         ...defaultFormValues[value],
+        ...form,
+        tool: value,
       }),
     );
   };
@@ -27,7 +28,7 @@ const ToolContainer = ({
   return (
     <Tool
       errors={errors}
-      selectedtool={selectedtool}
+      selectedtool={form.tool}
       setTool={setTool}
     />
   );

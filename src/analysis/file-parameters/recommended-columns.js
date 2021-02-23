@@ -1,5 +1,13 @@
 const recommendedColumns = {
   'condition-condition': {
+    other: {
+      abundance: ['abundance', 'abundances', 'avgspec', 'specsum', 'avgintensity', 'intensitysum'],
+      condition: ['condition', 'conditions', 'bait', 'baits'],
+      control: ['control', 'controls', 'ctrlcounts'],
+      readout: ['readout', 'readouts', 'preygene', 'prey', 'preygenes', 'preys'],
+      readoutLength: ['readoutLength', 'readoutLengths', 'preysequencelength'],
+      score: ['score', 'scores', 'pvalue', 'p-value', 'confidence', 'bfdr', 'fdr', 'saintscore', 'avgp', 'maxp'],
+    },
     saint: {
       abundance: ['avgspec', 'specsum', 'avgintensity', 'intensitysum'],
       condition: ['bait', 'baits'],
@@ -10,6 +18,14 @@ const recommendedColumns = {
     },
   },
   correlation: {
+    other: {
+      abundance: ['abundance', 'abundances', 'avgspec', 'specsum', 'avgintensity', 'intensitysum'],
+      condition: ['condition', 'conditions', 'bait', 'baits'],
+      control: ['control', 'controls', 'ctrlcounts'],
+      readout: ['readout', 'readouts', 'preygene', 'prey', 'preygenes', 'preys'],
+      readoutLength: ['readoutLength', 'readoutLengths', 'preysequencelength'],
+      score: ['score', 'scores', 'pvalue', 'p-value', 'confidence', 'bfdr', 'fdr', 'saintscore', 'avgp', 'maxp'],
+    },
     saint: {
       abundance: ['spec', 'avgspec', 'specsum', 'avgintensity', 'intensitysum'],
       condition: ['bait', 'baits'],
@@ -20,6 +36,14 @@ const recommendedColumns = {
     },
   },
   dotplot: {
+    other: {
+      abundance: ['abundance', 'abundances', 'avgspec', 'specsum', 'avgintensity', 'intensitysum'],
+      condition: ['condition', 'conditions', 'bait', 'baits'],
+      control: ['control', 'controls', 'ctrlcounts'],
+      readout: ['readout', 'readouts', 'preygene', 'prey', 'preygenes', 'preys'],
+      readoutLength: ['readoutLength', 'readoutLengths', 'preysequencelength'],
+      score: ['score', 'scores', 'pvalue', 'p-value', 'confidence', 'bfdr', 'fdr', 'saintscore', 'avgp', 'maxp'],
+    },
     saint: {
       abundance: ['avgspec', 'specsum', 'avgintensity', 'intensitysum'],
       condition: ['bait', 'baits'],
@@ -30,6 +54,14 @@ const recommendedColumns = {
     },
   },
   specificity: {
+    other: {
+      abundance: ['abundance', 'abundances', 'avgspec', 'specsum', 'avgintensity', 'intensitysum'],
+      condition: ['condition', 'conditions', 'bait', 'baits'],
+      control: ['control', 'controls', 'ctrlcounts'],
+      readout: ['readout', 'readouts', 'preygene', 'prey', 'preygenes', 'preys'],
+      readoutLength: ['readoutLength', 'readoutLengths', 'preysequencelength'],
+      score: ['score', 'scores', 'pvalue', 'p-value', 'confidence', 'bfdr', 'fdr', 'saintscore', 'avgp', 'maxp'],
+    },
     saint: {
       abundance: ['avgspec', 'specsum', 'avgintensity', 'intensitysum', 'spec'],
       condition: ['bait', 'baits'],

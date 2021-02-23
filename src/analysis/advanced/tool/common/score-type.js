@@ -17,7 +17,7 @@ const ScoreType = ({
     onChange={handleChange}
     options={[
       { label: 'smaller scores are better', value: 'lte' },
-      { label: 'large scores are better', value: 'gte' },
+      { label: 'larger scores are better', value: 'gte' },
     ]}
     value={form.scoreType}
     warning={errors.scoreType}

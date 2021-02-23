@@ -64,7 +64,7 @@ const help = {
     </div>
   ),
   scoreType: `The score type defines how the scoring system in the
-    input file works, i.e. are smaller scores better that large scores, or
+    input file works, i.e. are smaller scores better that larger scores, or
     vice versa?`,
 };
 

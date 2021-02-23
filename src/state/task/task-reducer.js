@@ -2,10 +2,15 @@ import * as actions from './task-actions';
 
 const defaultState = {};
 
-const reduceAndCreate = (state, action) => ({
-  ...state,
-  [action.id]: { status: 'running' },
-});
+const reduceAndCreate = (state, action) => {
+  if (!state[action.id]) {
+    return {
+      ...state,
+      [action.id]: { status: 'running' },
+    };
+  }
+  return state;
+};
 
 const reduceAndUpdate = (state, action) => ({
   ...action.tasks,

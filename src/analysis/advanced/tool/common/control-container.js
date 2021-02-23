@@ -6,6 +6,7 @@ import Control from './control';
 
 import checkColumnValues from '../../../file-parameters/check-column-values';
 import useColumns from '../../../file-parameters/use-columns';
+import useOnMount from '../../../../hooks/on-mount/use-on-mount';
 import { selectState } from '../../../../state/selector/general';
 import { setFormField, setFormFields } from '../../../../state/analysis/form-actions';
 
@@ -24,6 +25,12 @@ const ControlContainer = ({
   const handleChange = (e, id, value) => {
     dispatch(setFormField(id, value));
   };
+
+  useOnMount(() => {
+    if (form.ctrlSub && !form.control) {
+      dispatch(setFormField('ctrlSub', false));
+    }
+  });
 
   useEffect(() => {
     const result = checkColumnValues(columns, form, fields);
