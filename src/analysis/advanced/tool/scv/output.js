@@ -31,26 +31,16 @@ const Output = ({
       label="Generate PNG"
       onChange={handleChange}
     />
-    <Switch
-      helpMessage={help.verticalHeatmap}
-      helpTitle="Generate traditional heat map"
-      checked={form.verticalHeatmap}
-      id="verticalHeatmap"
-      label="Generate traditional heat map"
-      onChange={handleChange}
-    />
   </section>
 );
 
 Output.propTypes = {
   form: PropTypes.shape({
     png: PropTypes.bool,
-    verticalHeatmap: PropTypes.bool,
   }).isRequired,
   handleChange: PropTypes.func.isRequired,
   help: PropTypes.shape({
     png: PropTypes.node,
-    verticalHeatmap: PropTypes.node,
   }).isRequired,
 };
 

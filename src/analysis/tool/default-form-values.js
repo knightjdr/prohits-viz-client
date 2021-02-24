@@ -79,7 +79,7 @@ const defaultFormValues = {
     readoutIDType: 'symbol',
     readoutMapColumn: '',
     readoutMapFile: [],
-    rnaTissues: [],
+    rnaTissues: ['HEK 293'],
     specificity: false,
     verticalHeatmap: false,
   },

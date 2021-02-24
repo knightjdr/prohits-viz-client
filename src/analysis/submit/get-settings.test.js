@@ -11,6 +11,7 @@ describe('Analysis settings', () => {
           minAbundance: 0,
           primaryFilter: 0.01,
           secondaryFilter: 0.05,
+          scoreType: 'lte',
         };
         settings = getSettings(form);
       });
@@ -23,6 +24,11 @@ describe('Analysis settings', () => {
       it('should return primary filter value', () => {
         const primaryFilterIndex = settings.findIndex((setting) => (setting.key === 'primaryFilter'));
         expect(settings[primaryFilterIndex].text).toBe('Primary filter: 0.01');
+      });
+
+      it('should return score type', () => {
+        const scoreTypeIndex = settings.findIndex((setting) => (setting.key === 'scoreType'));
+        expect(settings[scoreTypeIndex].text).toBe('Score type: smaller scores better');
       });
 
       it('should return secondary filter value', () => {
@@ -51,6 +57,11 @@ describe('Analysis settings', () => {
         expect(settings[primaryFilterIndex].text).toBe('Primary filter: not set');
       });
 
+      it('should report score type not set', () => {
+        const scoreTypeIndex = settings.findIndex((setting) => (setting.key === 'scoreType'));
+        expect(settings[scoreTypeIndex].text).toBe('Score type: not set');
+      });
+
       it('should report secondary filter value not set', () => {
         const secondaryFilterIndex = settings.findIndex((setting) => (setting.key === 'secondaryFilter'));
         expect(settings[secondaryFilterIndex].text).toBe('Secondary filter: not set');
@@ -67,8 +78,10 @@ describe('Analysis settings', () => {
           tool: 'correlation',
           conditionAbundanceFilter: 0,
           conditionScoreFilter: 0.01,
+          primaryFilter: 0.01,
           readoutAbundanceFilter: 5,
           readoutScoreFilter: 0.05,
+          scoreType: 'lte',
         };
         settings = getSettings(form);
       });
@@ -85,6 +98,11 @@ describe('Analysis settings', () => {
         expect(settings[conditionScoreFilterIndex].text).toBe('Condition score filter: 0.01');
       });
 
+      it('should return primary filter value', () => {
+        const primaryFilterIndex = settings.findIndex((setting) => (setting.key === 'primaryFilter'));
+        expect(settings[primaryFilterIndex].text).toBe('Primary filter: 0.01');
+      });
+
       it('should return readout abundance filter value', () => {
         const readoutAbundanceFilterIndex = settings.findIndex(
           (setting) => (setting.key === 'readoutAbundanceFilter'),
@@ -95,6 +113,11 @@ describe('Analysis settings', () => {
       it('should return readout score filter value', () => {
         const readoutScoreFilterIndex = settings.findIndex((setting) => (setting.key === 'readoutScoreFilter'));
         expect(settings[readoutScoreFilterIndex].text).toBe('Readout score filter: 0.05');
+      });
+
+      it('should return score type', () => {
+        const scoreTypeIndex = settings.findIndex((setting) => (setting.key === 'scoreType'));
+        expect(settings[scoreTypeIndex].text).toBe('Score type: smaller scores better');
       });
     });
 
@@ -120,6 +143,11 @@ describe('Analysis settings', () => {
         expect(settings[conditionScoreFilterIndex].text).toBe('Condition score filter: not set');
       });
 
+      it('should report primary filter value not set', () => {
+        const primaryFilterIndex = settings.findIndex((setting) => (setting.key === 'primaryFilter'));
+        expect(settings[primaryFilterIndex].text).toBe('Primary filter: not set');
+      });
+
       it('should return readout abundance filter not set', () => {
         const readoutAbundanceFilterIndex = settings.findIndex(
           (setting) => (setting.key === 'readoutAbundanceFilter'),
@@ -130,6 +158,11 @@ describe('Analysis settings', () => {
       it('should return readout score filter not set', () => {
         const readoutScoreFilterIndex = settings.findIndex((setting) => (setting.key === 'readoutScoreFilter'));
         expect(settings[readoutScoreFilterIndex].text).toBe('Readout score filter: not set');
+      });
+
+      it('should report score type not set', () => {
+        const scoreTypeIndex = settings.findIndex((setting) => (setting.key === 'scoreType'));
+        expect(settings[scoreTypeIndex].text).toBe('Score type: not set');
       });
     });
   });
@@ -145,6 +178,7 @@ describe('Analysis settings', () => {
           primaryFilter: 0.01,
           secondaryFilter: 0.05,
           minAbundance: 0,
+          scoreType: 'lte',
         };
         settings = getSettings(form);
       });
@@ -167,6 +201,11 @@ describe('Analysis settings', () => {
       it('should return clustering value', () => {
         const clusteringIndex = settings.findIndex((setting) => (setting.key === 'clustering'));
         expect(settings[clusteringIndex].text).toBe('Clustering type: hierarchical');
+      });
+
+      it('should return score type', () => {
+        const scoreTypeIndex = settings.findIndex((setting) => (setting.key === 'scoreType'));
+        expect(settings[scoreTypeIndex].text).toBe('Score type: smaller scores better');
       });
     });
 
@@ -199,6 +238,68 @@ describe('Analysis settings', () => {
         const clusteringIndex = settings.findIndex((setting) => (setting.key === 'clustering'));
         expect(settings[clusteringIndex].text).toBe('Clustering type: not set');
       });
+
+      it('should report score type not set', () => {
+        const scoreTypeIndex = settings.findIndex((setting) => (setting.key === 'scoreType'));
+        expect(settings[scoreTypeIndex].text).toBe('Score type: not set');
+      });
+    });
+  });
+
+  describe('scv', () => {
+    describe('default settings', () => {
+      let settings;
+
+      beforeAll(() => {
+        const form = {
+          tool: 'scv',
+          minAbundance: 0,
+          primaryFilter: 0.01,
+          scoreType: 'lte',
+        };
+        settings = getSettings(form);
+      });
+
+      it('should return minimum abundance filter value', () => {
+        const minAbundanceIndex = settings.findIndex((setting) => (setting.key === 'minAbundance'));
+        expect(settings[minAbundanceIndex].text).toBe('Minimum abundance: 0');
+      });
+
+      it('should return primary filter value', () => {
+        const primaryFilterIndex = settings.findIndex((setting) => (setting.key === 'primaryFilter'));
+        expect(settings[primaryFilterIndex].text).toBe('Primary filter: 0.01');
+      });
+
+      it('should return score type', () => {
+        const scoreTypeIndex = settings.findIndex((setting) => (setting.key === 'scoreType'));
+        expect(settings[scoreTypeIndex].text).toBe('Score type: smaller scores better');
+      });
+    });
+
+    describe('no options not set', () => {
+      let settings;
+
+      beforeAll(() => {
+        const form = {
+          tool: 'specificity',
+        };
+        settings = getSettings(form);
+      });
+
+      it('should return minimum abundance not set', () => {
+        const minAbundanceIndex = settings.findIndex((setting) => (setting.key === 'minAbundance'));
+        expect(settings[minAbundanceIndex].text).toBe('Minimum abundance: not set');
+      });
+
+      it('should report primary filter value not set', () => {
+        const primaryFilterIndex = settings.findIndex((setting) => (setting.key === 'primaryFilter'));
+        expect(settings[primaryFilterIndex].text).toBe('Primary filter: not set');
+      });
+
+      it('should report score type not set', () => {
+        const scoreTypeIndex = settings.findIndex((setting) => (setting.key === 'scoreType'));
+        expect(settings[scoreTypeIndex].text).toBe('Score type: not set');
+      });
     });
   });
 
@@ -210,14 +311,26 @@ describe('Analysis settings', () => {
         const form = {
           tool: 'specificity',
           minAbundance: 0,
+          primaryFilter: 0.01,
+          scoreType: 'lte',
           specificityMetric: 'fe',
         };
         settings = getSettings(form);
       });
 
-      it('should return primary filter value', () => {
+      it('should return minimum abundance value', () => {
         const minAbundanceIndex = settings.findIndex((setting) => (setting.key === 'minAbundance'));
         expect(settings[minAbundanceIndex].text).toBe('Minimum abundance: 0');
+      });
+
+      it('should return primary filter value', () => {
+        const primaryFilterIndex = settings.findIndex((setting) => (setting.key === 'primaryFilter'));
+        expect(settings[primaryFilterIndex].text).toBe('Primary filter: 0.01');
+      });
+
+      it('should return score type', () => {
+        const scoreTypeIndex = settings.findIndex((setting) => (setting.key === 'scoreType'));
+        expect(settings[scoreTypeIndex].text).toBe('Score type: smaller scores better');
       });
 
       it('should return metric value', () => {
@@ -236,14 +349,19 @@ describe('Analysis settings', () => {
         settings = getSettings(form);
       });
 
-      it('should return primary filter not set', () => {
+      it('should return minimum abundance not set', () => {
         const minAbundanceIndex = settings.findIndex((setting) => (setting.key === 'minAbundance'));
         expect(settings[minAbundanceIndex].text).toBe('Minimum abundance: not set');
       });
 
-      it('should return metric not set', () => {
-        const specificityMetricIndex = settings.findIndex((setting) => (setting.key === 'specificityMetric'));
-        expect(settings[specificityMetricIndex].text).toBe('Metric: not set');
+      it('should report primary filter value not set', () => {
+        const primaryFilterIndex = settings.findIndex((setting) => (setting.key === 'primaryFilter'));
+        expect(settings[primaryFilterIndex].text).toBe('Primary filter: not set');
+      });
+
+      it('should report score type not set', () => {
+        const scoreTypeIndex = settings.findIndex((setting) => (setting.key === 'scoreType'));
+        expect(settings[scoreTypeIndex].text).toBe('Score type: not set');
       });
     });
   });

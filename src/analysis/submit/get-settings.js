@@ -5,6 +5,15 @@ const getNumber = (value) => (
   isFalsyButNotZero(value) ? 'not set' : value
 );
 
+const getScoreMessage = (value) => {
+  if (value === 'lte') {
+    return 'smaller scores better';
+  } if (value === 'gte') {
+    return 'larger scores better';
+  }
+  return 'not set';
+};
+
 const getCommonSettings = (form) => {
   const tagArray = [];
 
@@ -32,6 +41,14 @@ const getCommonSettings = (form) => {
       text: `Log transformation: base ${form.logBase}`,
     });
   }
+  tagArray.push({
+    key: 'primaryFilter',
+    text: `Primary filter: ${getNumber(form.primaryFilter)}`,
+  });
+  tagArray.push({
+    key: 'scoreType',
+    text: `Score type: ${getScoreMessage(form.scoreType)}`,
+  });
 
   return tagArray;
 };
@@ -40,16 +57,12 @@ const getConditionConditionSettings = (form) => {
   const tagArray = [];
 
   tagArray.push({
-    key: 'minAbundance',
-    text: `Minimum abundance: ${getNumber(form.minAbundance)}`,
-  });
-  tagArray.push({
-    key: 'primaryFilter',
-    text: `Primary filter: ${getNumber(form.primaryFilter)}`,
-  });
-  tagArray.push({
     key: 'secondaryFilter',
     text: `Secondary filter: ${getNumber(form.secondaryFilter)}`,
+  });
+  tagArray.push({
+    key: 'minAbundance',
+    text: `Minimum abundance: ${getNumber(form.minAbundance)}`,
   });
 
   return tagArray;
@@ -82,10 +95,6 @@ const getDotplotSettings = (form) => {
   const tagArray = [];
 
   tagArray.push({
-    key: 'primaryFilter',
-    text: `Primary filter: ${getNumber(form.primaryFilter)}`,
-  });
-  tagArray.push({
     key: 'secondaryFilter',
     text: `Secondary filter: ${getNumber(form.secondaryFilter)}`,
   });
@@ -96,6 +105,17 @@ const getDotplotSettings = (form) => {
   tagArray.push({
     key: 'clustering',
     text: `Clustering type: ${form.clustering || 'not set'}`,
+  });
+
+  return tagArray;
+};
+
+const getScvSettings = (form) => {
+  const tagArray = [];
+
+  tagArray.push({
+    key: 'minAbundance',
+    text: `Minimum abundance: ${getNumber(form.minAbundance)}`,
   });
 
   return tagArray;
@@ -125,6 +145,8 @@ const getSettings = (form) => {
     tagArray.push(...getCorrelationSettings(form));
   } if (form.tool === 'dotplot') {
     tagArray.push(...getDotplotSettings(form));
+  } if (form.tool === 'scv') {
+    tagArray.push(...getScvSettings(form));
   } if (form.tool === 'specificity') {
     tagArray.push(...getSpecificitySettings(form));
   }
