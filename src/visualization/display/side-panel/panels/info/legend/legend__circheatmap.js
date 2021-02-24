@@ -28,7 +28,7 @@ const CircHeatmapLegend = ({
             const gradientFill = colorGradient(circle.color, 101, false);
             const numColors = gradientFill.length;
             const halfColorIndex = Math.floor(numColors / 2);
-            const id = circle.attribute.replace(' ', '-');
+            const id = circle.attribute.replaceAll(' ', '-');
             return (
               <g
                 key={circle.attribute}

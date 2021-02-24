@@ -5,9 +5,13 @@ const definePath = (data, radius) => {
   if (radius) {
     const known = data.reduce((accum, datum) => (datum.known ? accum + 1 : accum), 0);
     const percent = roundNearest(known / data.length, 0.0001);
+    if (percent === 1) {
+      return { circle: true };
+    }
     const point = percentToCoordinate(percent, radius);
     return {
       arc: percent > 0.5 ? 1 : 0,
+      circle: false,
       x: point[0],
       y: point[1],
     };

@@ -12,6 +12,7 @@ describe('Define known arc for circheatmap', () => {
 
     const expected = {
       arc: 1,
+      circle: false,
       x: -0,
       y: -100,
     };
@@ -29,9 +30,23 @@ describe('Define known arc for circheatmap', () => {
 
     const expected = {
       arc: 0,
+      circle: false,
       x: 0,
       y: 100,
     };
+    expect(definePath(data, radius)).toEqual(expected);
+  });
+
+  it('should specify to draw a circle when all readouts are known', () => {
+    const data = [
+      { known: true, label: 'readout1', segments: { a: 12, b: 5 } },
+      { known: true, label: 'readout2', segments: { a: 13, b: 12 } },
+      { known: true, label: 'readout3', segments: { a: 5, b: 5 } },
+      { known: true, label: 'readout4', segments: { a: 7, b: 4 } },
+    ];
+    const radius = 100;
+
+    const expected = { circle: true };
     expect(definePath(data, radius)).toEqual(expected);
   });
 });
