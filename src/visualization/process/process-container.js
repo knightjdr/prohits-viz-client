@@ -19,7 +19,6 @@ const ProcessContainer = ({
   const status = useLoading(true);
 
   useEffect(() => {
-    console.log(id);
     if (
       id !== 'userfile'
       && attempts < 5
