@@ -1,5 +1,5 @@
 import PropTypes from 'prop-types';
-import React, { useEffect } from 'react';
+import React, { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 
 import fetch from '../../utils/fetch';
@@ -13,18 +13,22 @@ const ProcessContainer = ({
   filename,
   id,
 }) => {
+  const [attempts, setAttempts] = useState(0);
   const parameters = useSelector((state) => selectState(state, 'parameters'));
   const dispatch = useDispatch();
   const status = useLoading(true);
 
   useEffect(() => {
+    console.log(id);
     if (
       id !== 'userfile'
+      && attempts < 5
       && (
         parameters.taskID !== id
         || parameters.filename !== filename
       )
     ) {
+      setAttempts(attempts + 1);
       const getFile = async () => {
         status.setLoading(true);
         const response = await fetch(`/task/${id}/${filename}`);
@@ -39,7 +43,8 @@ const ProcessContainer = ({
       };
       getFile();
     } else {
-      status.setLoading(false);
+      status.setError(true);
+      status.setErrorMessage('You must reload your local file');
     }
   }, [dispatch, filename, id, parameters, status]);
 

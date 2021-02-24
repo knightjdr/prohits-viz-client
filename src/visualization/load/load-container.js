@@ -23,7 +23,7 @@ const LoadContainer = () => {
     try {
       const fileData = await validateInteractiveFile(file);
       const filename = removeFileExtenstion(file.name);
-      const interactiveData = fillInteractiveState(fileData, filename, filename);
+      const interactiveData = fillInteractiveState(fileData, filename, 'userfile');
       dispatch(loadInteractiveState(interactiveData));
       navigate(`/visualization/userfile/${filename}`, true);
     } catch (err) {
