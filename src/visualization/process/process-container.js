@@ -1,5 +1,6 @@
 import PropTypes from 'prop-types';
-import React, { useEffect, useState } from 'react';
+import React, { useEffect, useRef } from 'react';
+import { navigate } from 'hookrouter';
 import { useDispatch, useSelector } from 'react-redux';
 
 import fetch from '../../utils/fetch';
@@ -13,27 +14,34 @@ const ProcessContainer = ({
   filename,
   id,
 }) => {
-  const [attempts, setAttempts] = useState(0);
+  const attemptRef = useRef(0);
   const parameters = useSelector((state) => selectState(state, 'parameters'));
   const dispatch = useDispatch();
   const status = useLoading(true);
 
   useEffect(() => {
+    // If a users loads an image from a file and hits refresh in the browser,
+    // this will catch that and redirect to the upload page.
+    if (id === 'userfile' && !parameters.taskID) {
+      navigate('/visualization', true);
+    }
+    // Load files from the server. It will make five attempts, and if the image cannot be
+    // found it will display the error message.
     if (
       id !== 'userfile'
-      && attempts < 5
+      && attemptRef.current < 5
       && (
         parameters.taskID !== id
         || parameters.filename !== filename
       )
     ) {
-      setAttempts(attempts + 1);
+      attemptRef.current += 1;
       const getFile = async () => {
         status.setLoading(true);
         const response = await fetch(`/task/${id}/${filename}`);
         if (response.error) {
           status.setError(true);
-          status.setErrorMessage('There was an error displaying the image');
+          status.setErrorMessage('There was an error loading the image. Tasks are only kept for 24 hours.');
         } else {
           const data = fillInteractiveState(response.data, filename, id);
           dispatch(loadInteractiveState(data));
@@ -42,10 +50,9 @@ const ProcessContainer = ({
       };
       getFile();
     } else {
-      status.setError(true);
-      status.setErrorMessage('You must reload your local file');
+      status.setLoading(false);
     }
-  }, [dispatch, filename, id, parameters, status]);
+  }, [attemptRef.current, dispatch, filename, id, parameters, status]);
 
   return (
     <Process
