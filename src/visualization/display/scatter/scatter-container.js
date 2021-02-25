@@ -9,7 +9,6 @@ import formatData from './data/format-data';
 import useShortCuts from './hooks/use-shortcuts';
 import useWindowDimension from '../../../hooks/window-size/use-window-dimension';
 import { selectData, selectDataProperty } from '../../../state/selector/visualization/data-selector';
-import { selectPlot } from '../../../state/selector/visualization/plot-selector';
 import { selectStateProperty } from '../../../state/selector/general';
 import { setDimensions } from '../../../state/visualization/settings/dimension-actions';
 
@@ -18,16 +17,11 @@ const ScatterContainer = () => {
   const ref = useRef();
 
   const panelOpen = useSelector((state) => selectStateProperty(state, 'panel', 'open'));
-  const plot = useSelector((state) => selectPlot(state));
+  const points = useSelector((state) => selectDataProperty(state, 'points', 'current'));
   const { plotFixed, transform } = useSelector((state) => selectData(state, 'display'));
   const { fcLines, showFcLines, showMidline } = useSelector((state) => selectData(state, 'lines'));
   const settings = useSelector((state) => selectDataProperty(state, 'settings', 'current'));
-  const {
-    equalScaleAxes,
-    logBase,
-    xFilter,
-    yFilter,
-  } = settings;
+  const { equalScaleAxes, logBase } = settings;
 
   const windowDimensions = useWindowDimension(50);
   useShortCuts();
@@ -57,11 +51,6 @@ const ScatterContainer = () => {
     ],
   );
 
-  const filtered = useMemo(
-    () => plot.points.filter((point) => point.x >= xFilter && point.y >= yFilter),
-    [plot.points, xFilter, yFilter],
-  );
-
   const data = useMemo(
     () => {
       const options = {
@@ -73,14 +62,14 @@ const ScatterContainer = () => {
         showMidline,
         equalScaleAxes,
       };
-      return formatData(filtered, options);
+      return formatData(points, options);
     },
     [
       dimensions.height,
       fcLines,
       logBase,
-      filtered,
       equalScaleAxes,
+      points,
       showFcLines,
       showMidline,
       transform.scale,

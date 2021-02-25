@@ -4,9 +4,10 @@ export const DELETE_POINT = 'DELETE_POINT';
 export const UPDATE_POINT = 'UPDATE_POINT';
 export const UPDATE_CUSTOMIZATION_SETTING = 'UPDATE_CUSTOMIZATION_SETTING';
 
-export const addPoints = (points) => ({
+export const addPoints = (points, noTotalPoints) => ({
   AUGMENT_WITH_ACTIVE_SNAPSHOT: true,
   points,
+  noTotalPoints,
   type: ADD_POINTS,
 });
 

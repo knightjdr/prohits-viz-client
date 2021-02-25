@@ -9,6 +9,7 @@ import fillLines from './lines';
 import fillPanel from './panel';
 import fillParameters from './parameters';
 import fillPOI from './poi';
+import fillPoints from './points';
 import fillSearchStatus from './search-status';
 import fillSettings from './settings';
 import fillTabs from '../tabs';
@@ -27,6 +28,7 @@ const validateScatter = (file, filename, taskID) => {
     parameters,
     plots,
     poi,
+    points,
     searchStatus,
     settings,
     tabs,
@@ -45,6 +47,7 @@ const validateScatter = (file, filename, taskID) => {
     parameters: fillParameters(parameters, filename, taskID),
     plots,
     poi: fillPOI(poi),
+    points: fillPoints(points, plots),
     searchStatus: fillSearchStatus(searchStatus),
     settings: fillSettings(settings),
     tabs: fillTabs(tabs),

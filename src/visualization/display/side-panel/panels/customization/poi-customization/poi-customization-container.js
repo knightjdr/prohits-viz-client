@@ -23,7 +23,7 @@ const PoiCustomizationContainer = () => {
         ...accum,
         [labels[index]]: { color, radius },
       }), {});
-      dispatch(addPoints(points));
+      dispatch(addPoints(points, labels.length));
     }
   };
 

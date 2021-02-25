@@ -11,13 +11,18 @@ const getPlotLabels = (state) => {
   const {
     display,
     parameters: { imageType },
+    points,
     plots,
-    tabs,
+    tabs: { activeSnapshot },
   } = state;
-  const plot = plots?.[display[tabs.activeSnapshot].selectedPlot];
-  if (plot) {
-    const pointKey = imageType === 'circheatmap' ? 'readouts' : 'points';
-    const labels = plot[pointKey].map((point) => point.label);
+  if (imageType === 'scatter') {
+    const labels = points[activeSnapshot].current.map((point) => point.label);
+    const [order, sorted] = sortOrder(labels, true);
+    return { labels, order, sorted };
+  }
+  if (imageType === 'circheatmap') {
+    const plot = plots?.[display[activeSnapshot].selectedPlot];
+    const labels = plot.readouts.map((point) => point.label);
     const [order, sorted] = sortOrder(labels, true);
     return { labels, order, sorted };
   }

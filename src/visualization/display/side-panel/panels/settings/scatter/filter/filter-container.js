@@ -1,9 +1,10 @@
 import React from 'react';
-import { useDispatch, useSelector } from 'react-redux';
+import { batch, useDispatch, useSelector } from 'react-redux';
 
 import Filter from './filter';
 
 import defineInputLabels from './define-input-labels';
+import { filterPoints } from '../../../../../../../state/visualization/scatter/points-actions';
 import { selectDataProperty } from '../../../../../../../state/selector/visualization/data-selector';
 import { selectPlot } from '../../../../../../../state/selector/visualization/plot-selector';
 import { selectState } from '../../../../../../../state/selector/general';
@@ -16,7 +17,14 @@ const FilterContainer = () => {
   const plot = useSelector((state) => selectPlot(state));
 
   const handleSettingChange = (e, name, value) => {
-    dispatch(updateSetting(name, value));
+    batch(() => {
+      dispatch(updateSetting(name, value));
+      dispatch(filterPoints({
+        x: xFilter,
+        y: yFilter,
+        [name === 'xFilter' ? 'x' : 'y']: value,
+      }));
+    });
   };
 
   const inputLabels = defineInputLabels(analysisType, abundanceColumn, plot.labels);

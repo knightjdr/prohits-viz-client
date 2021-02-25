@@ -24,6 +24,7 @@ import panel from './visualization/settings/panel-reducer';
 import parameters from './visualization/data/parameter-reducer';
 import plots from './visualization/data/plots-reducer';
 import poi from './visualization/analysis/poi-reducer';
+import points from './visualization/scatter/points-reducer';
 import position from './visualization/settings/position-reducer';
 import rowDB from './visualization/data/row-db-reducer';
 import rows from './visualization/heatmap/rows-reducer';
@@ -58,6 +59,7 @@ const reducers = combineReducers({
   parameters,
   plots,
   poi,
+  points,
   position,
   rowDB,
   rows,
