@@ -1,5 +1,13 @@
 const recommendedColumns = {
   'condition-condition': {
+    crapome: {
+      abundance: ['avgspc', 'avg. spc', 'avgint', 'avg. int'],
+      condition: ['bait', 'baitgene'],
+      control: ['user controls (spc or intensities)', 'crap controls (spc)', 'crap controls (int)'],
+      readout: ['prey', 'preygene'],
+      readoutLength: ['preysequencelength'],
+      score: ['bfdr', 'fdr', 'sp', 'fca', 'fcb', 'wd', 'is'],
+    },
     other: {
       abundance: ['abundance', 'abundances', 'avgspec', 'specsum', 'avgintensity', 'intensitysum'],
       condition: ['condition', 'conditions', 'bait', 'baits'],
@@ -18,6 +26,14 @@ const recommendedColumns = {
     },
   },
   correlation: {
+    crapome: {
+      abundance: ['avgspc', 'avg. spc', 'avgint', 'avg. int'],
+      condition: ['bait', 'baitgene'],
+      control: ['user controls (spc or intensities)', 'crap controls (spc)', 'crap controls (int)'],
+      readout: ['prey', 'preygene'],
+      readoutLength: ['preysequencelength'],
+      score: ['bfdr', 'fdr', 'sp', 'fca', 'fcb', 'wd', 'is'],
+    },
     other: {
       abundance: ['abundance', 'abundances', 'avgspec', 'specsum', 'avgintensity', 'intensitysum'],
       condition: ['condition', 'conditions', 'bait', 'baits'],
@@ -36,6 +52,14 @@ const recommendedColumns = {
     },
   },
   dotplot: {
+    crapome: {
+      abundance: ['avgspc', 'avg. spc', 'avgint', 'avg. int'],
+      condition: ['bait', 'baitgene'],
+      control: ['user controls (spc or intensities)', 'crap controls (spc)', 'crap controls (int)'],
+      readout: ['prey', 'preygene'],
+      readoutLength: ['preysequencelength'],
+      score: ['bfdr', 'fdr', 'sp', 'fca', 'fcb', 'wd', 'is'],
+    },
     other: {
       abundance: ['abundance', 'abundances', 'avgspec', 'specsum', 'avgintensity', 'intensitysum'],
       condition: ['condition', 'conditions', 'bait', 'baits'],
@@ -54,6 +78,14 @@ const recommendedColumns = {
     },
   },
   scv: {
+    crapome: {
+      abundance: ['avgspc', 'avg. spc', 'avgint', 'avg. int'],
+      condition: ['bait', 'baitgene'],
+      control: ['user controls (spc or intensities)', 'crap controls (spc)', 'crap controls (int)'],
+      readout: ['prey', 'preygene'],
+      readoutLength: ['preysequencelength'],
+      score: ['bfdr', 'fdr', 'sp', 'fca', 'fcb', 'wd', 'is'],
+    },
     other: {
       abundance: ['abundance', 'abundances', 'avgspec', 'specsum', 'avgintensity', 'intensitysum'],
       condition: ['condition', 'conditions', 'bait', 'baits'],
@@ -72,6 +104,14 @@ const recommendedColumns = {
     },
   },
   specificity: {
+    crapome: {
+      abundance: ['avgspc', 'avg. spc', 'avgint', 'avg. int'],
+      condition: ['bait', 'baitgene'],
+      control: ['user controls (spc or intensities)', 'crap controls (spc)', 'crap controls (int)'],
+      readout: ['prey', 'preygene'],
+      readoutLength: ['preysequencelength'],
+      score: ['bfdr', 'fdr', 'sp', 'fca', 'fcb', 'wd', 'is'],
+    },
     other: {
       abundance: ['abundance', 'abundances', 'avgspec', 'specsum', 'avgintensity', 'intensitysum'],
       condition: ['condition', 'conditions', 'bait', 'baits'],

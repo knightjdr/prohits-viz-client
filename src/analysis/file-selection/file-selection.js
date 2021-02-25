@@ -46,6 +46,7 @@ const FileSelection = ({
         id="fileType"
         onChange={selectFileType}
         options={[
+          { label: 'CRAPome', value: 'crapome' },
           { label: 'SAINT', value: 'saint' },
           { label: 'Other', value: 'other' },
         ]}
