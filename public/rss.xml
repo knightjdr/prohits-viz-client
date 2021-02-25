@@ -3,7 +3,7 @@
     <title>ProHits-viz</title>
     <description>News and tutorials on visualizing data at ProHits-viz.</description>
     <link>https://prohits-viz.org/news</link>
-    <lastBuildDate>Tue, 19 Jan 2021 16:57:20 -0500</lastBuildDate>
+    <lastBuildDate>Thu, 25 Feb 2021 10:04:56 -0500</lastBuildDate>
     <item>
       <title>2.0 alpha test begins</title>
       <description>Learn about the first stage of testing for the new ProHits-viz interface.</description>
@@ -42,6 +42,16 @@
       <pubDate>Wednesday, 20 Jan 2021 12:00:00 GMT</pubDate>
       <content:encoded>
         &lt;p&gt;Support for scatter plot analysis, including condition-condition analysis (formerly called bait-bait) and readout specificity has been added to ProHits-viz 2.0.&lt;/p&gt;&lt;p&gt;These tools come with an updated interactive viewer that allows for customization of the colour and size of points, addition of fold-change lines, toggling between linear and log axes, and selection of points for analysis, such as GO enrichment. You can try out the new features with an &lt;a href=&quot;https://prohits-viz.org/visualization/samplefile/specificity&quot;&gt;example dataset&lt;/a&gt;.&lt;/p&gt;&lt;p&gt;If you would like to provide feedback, report bugs or request new features, please use GitHub. If your issue has already been created on GitHub by someone else, you do not need to do anything unless you would like to provide additional comments or context.&lt;/p&gt;&lt;strong&gt;Using GitHub&lt;/strong&gt;&lt;ol&gt;&lt;li&gt;Create an account on GitHub: &lt;a href=&quot;https://github.com&quot;&gt;github.com&lt;/a&gt;&lt;/li&gt;&lt;li&gt;Skip the tutorial (unless you plan on coding)&lt;/li&gt;&lt;li&gt;Go to &lt;a href=&quot;https://github.com/knightjdr/prohits-viz-client/issues&quot;&gt;https://github.com/knightjdr/prohits-viz-client/issues&lt;/a&gt;&lt;/li&gt;&lt;li&gt;Click on the green &quot;New issue&quot; button to create a new issue and describe the issue, bug or feature.&lt;/li&gt;&lt;li&gt;Alternatively, browse and comment on issues created by others&lt;/li&gt;&lt;/ol&gt;
+      </content:encoded>
+    </item>
+    <item>
+      <title>New tool for single condition visualization</title>
+      <description>The SCV tool for visualizing data on a single condition (e.g. bait, experiment) is now available.</description>
+      <link>https://prohits-viz.org/news/New-tool-for-single-condition-visualization</link>
+      <guid>https://prohits-viz.org/news/New-tool-for-single-condition-visualization</guid>
+      <pubDate>Thursday, 25 February 2021 12:00:00 GMT</pubDate>
+      <content:encoded>
+        &lt;p&gt;There is a new tool for visualizing data on a single condition (for example a bait in a protein-protein interaction data set). It will display significant readouts in a circular heat map format, with the option to display multiple columns from the input file.&lt;/p&gt;&lt;p&gt;The image can be supplemented with either protein or RNA expression data from a range of cell lines and tissues. For protein-protein interaction data, the image can also be sorted between known and novel interactions.&lt;/p&gt;&lt;p&gt;You can try out the new tool with an &lt;a href=&quot;https://prohits-viz.org/visualization/samplefile/circheatmap&quot;&gt;example dataset&lt;/a&gt;.&lt;/p&gt;
       </content:encoded>
     </item>
   </channel>
