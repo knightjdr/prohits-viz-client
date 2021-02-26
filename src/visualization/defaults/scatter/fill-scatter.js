@@ -47,7 +47,7 @@ const validateScatter = (file, filename, taskID) => {
     parameters: fillParameters(parameters, filename, taskID),
     plots,
     poi: fillPOI(poi),
-    points: fillPoints(points, plots),
+    points: fillPoints(points, plots, display),
     searchStatus: fillSearchStatus(searchStatus),
     settings: fillSettings(settings),
     tabs: fillTabs(tabs),

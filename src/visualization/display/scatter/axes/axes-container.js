@@ -6,7 +6,7 @@ import Axes from './axes';
 
 import handlers from '../transform/event-handlers';
 import { selectData, selectDataProperty } from '../../../../state/selector/visualization/data-selector';
-import { selectPlot } from '../../../../state/selector/visualization/plot-selector';
+import { selectPlot } from '../../../../state/selector/visualization/scatter-selector';
 import { updateDisplaySetting } from '../../../../state/visualization/settings/display-actions';
 
 const AxesContainer = ({

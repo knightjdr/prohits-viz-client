@@ -12,7 +12,7 @@ import definePoiOptions from '../../poi/define-poi-options';
 import getHighlightedAttribute from '../../poi/get-highlighted-attribute';
 import reorderPOI from '../../poi/reorder-poi';
 import { selectData } from '../../../../../../../state/selector/visualization/data-selector';
-import { selectPlotLabels } from '../../../../../../../state/selector/visualization/plot-selector';
+import { selectScatterLabels } from '../../../../../../../state/selector/visualization/scatter-selector';
 import { updatePOI } from '../../../../../../../state/visualization/analysis/poi-actions';
 
 const PoiContainer = () => {
@@ -27,7 +27,7 @@ const PoiContainer = () => {
     },
   };
 
-  const { labels, order: labelOrder } = useSelector((state) => selectPlotLabels(state));
+  const { labels, order: labelOrder } = useSelector((state) => selectScatterLabels(state));
   const poi = useSelector((state) => selectData(state, 'poi'));
 
   const pointOptions = useMemo(

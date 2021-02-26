@@ -4,6 +4,9 @@
   justify-content: center;
   margin-top: 15px;
 }
+.poi__action-circheatmap > * {
+  margin: 0 0.3rem;
+}
 
 .poi__action-circheatmap-filter svg {
   margin-right: 5px;

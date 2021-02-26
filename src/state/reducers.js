@@ -26,6 +26,7 @@ import plots from './visualization/data/plots-reducer';
 import poi from './visualization/analysis/poi-reducer';
 import points from './visualization/scatter/points-reducer';
 import position from './visualization/settings/position-reducer';
+import readouts from './visualization/circheatmap/readouts-reducer';
 import rowDB from './visualization/data/row-db-reducer';
 import rows from './visualization/heatmap/rows-reducer';
 import searchStatus from './visualization/markup/search-reducer';
@@ -61,6 +62,7 @@ const reducers = combineReducers({
   poi,
   points,
   position,
+  readouts,
   rowDB,
   rows,
   searchStatus,

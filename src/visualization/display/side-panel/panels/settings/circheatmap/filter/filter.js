@@ -5,7 +5,7 @@ import Input from '../../../../../../../components/input/text/input-text-contain
 import Section from '../../../section/section';
 
 const Filter = ({
-  handleSettingChange,
+  handleMaxReadoutChange,
   maxReadouts,
   readoutName,
 }) => (
@@ -13,7 +13,7 @@ const Filter = ({
     <Input
       id="maxReadouts"
       label={`Max. no. ${readoutName}(s)`}
-      onChange={handleSettingChange}
+      onChange={handleMaxReadoutChange}
       min={1}
       step={1}
       type="number"
@@ -27,7 +27,7 @@ Filter.defaultProps = {
 };
 
 Filter.propTypes = {
-  handleSettingChange: PropTypes.func.isRequired,
+  handleMaxReadoutChange: PropTypes.func.isRequired,
   maxReadouts: PropTypes.number.isRequired,
   readoutName: PropTypes.string,
 };

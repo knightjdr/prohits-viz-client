@@ -7,22 +7,13 @@ const getPlot = (state) => {
   return plots[display[tabs.activeSnapshot].selectedPlot];
 };
 
-const getPlotLabels = (state) => {
+export const getPlotLabels = (state) => {
   const {
-    display,
-    parameters: { imageType },
-    points,
-    plots,
+    readouts,
     tabs: { activeSnapshot },
   } = state;
-  if (imageType === 'scatter') {
-    const labels = points[activeSnapshot].current.map((point) => point.label);
-    const [order, sorted] = sortOrder(labels, true);
-    return { labels, order, sorted };
-  }
-  if (imageType === 'circheatmap') {
-    const plot = plots?.[display[activeSnapshot].selectedPlot];
-    const labels = plot.readouts.map((point) => point.label);
+  if (readouts[activeSnapshot]) {
+    const labels = readouts[activeSnapshot].current.map((readout) => readout.label);
     const [order, sorted] = sortOrder(labels, true);
     return { labels, order, sorted };
   }
@@ -36,7 +27,7 @@ export const selectPlot = createSelector(
   ),
 );
 
-export const selectPlotLabels = createSelector(
+export const selectCircHeatmapLabels = createSelector(
   [getPlotLabels],
   (state) => (
     state

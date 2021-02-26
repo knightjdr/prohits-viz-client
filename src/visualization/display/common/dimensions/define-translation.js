@@ -1,4 +1,4 @@
-const PANEL_WIDTH = 400;
+const PANEL_WIDTH = 350;
 
 const defineTranslation = (canTranslate, plotFixed, panelOpen, windowWidth, wrapperWidth) => {
   if (plotFixed) {

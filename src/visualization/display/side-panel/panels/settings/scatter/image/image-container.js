@@ -1,12 +1,17 @@
 import React, { useMemo } from 'react';
-import { useDispatch, useSelector } from 'react-redux';
+import { batch, useDispatch, useSelector } from 'react-redux';
 
 import Image from './image';
 
 import handlers from '../../../../../scatter/transform/event-handlers';
 import { selectData, selectDataProperty } from '../../../../../../../state/selector/visualization/data-selector';
 import { selectState } from '../../../../../../../state/selector/general';
-import { changePlot, updateDisplaySetting } from '../../../../../../../state/visualization/settings/display-actions';
+import { defaultState as defaultDisplayState } from '../../../../../../defaults/scatter/display';
+import {
+  changeScatterPlot,
+  resetScatterTransformations,
+  updateDisplaySetting,
+} from '../../../../../../../state/visualization/settings/display-actions';
 import { updateSetting } from '../../../../../../../state/visualization/settings/settings-actions';
 
 const ImageContainer = () => {
@@ -24,9 +29,12 @@ const ImageContainer = () => {
 
   const handlePlotChange = (e, name, value) => {
     const index = plotNames.indexOf(value);
-    if (index !== selectedPlot) {
-      dispatch(changePlot(index));
-    }
+    batch(() => {
+      dispatch(changeScatterPlot(index));
+      dispatch(resetScatterTransformations({
+        transform: defaultDisplayState.transform,
+      }));
+    });
   };
 
   const handleSettingChange = (e, name, value) => {

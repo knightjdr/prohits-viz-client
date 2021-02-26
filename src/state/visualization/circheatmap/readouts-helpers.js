@@ -1,3 +1,13 @@
+export const filterReadouts = (readouts, circles, readoutOrder = []) => {
+  const filtered = readoutOrder.length > 0
+    ? readoutOrder.map((index) => readouts[index])
+    : readouts;
+
+  return filtered.filter((readout) => (
+    circles.every((circle) => readout.segments[circle.attribute] >= circle.min)
+  ));
+};
+
 const sortAlgorithm = (byKnown) => {
   if (byKnown) {
     return (a, b, values) => {
@@ -12,7 +22,7 @@ const sortAlgorithm = (byKnown) => {
   return (a, b, values) => values[b][1] - values[a][1];
 };
 
-const sortReadouts = (readouts, options) => {
+export const sortReadouts = (readouts, options) => {
   const { byKnown, maxReadouts, sortBy } = options;
 
   let indices = Array.from(Array(readouts.length)).map((c, index) => index);
@@ -25,5 +35,3 @@ const sortReadouts = (readouts, options) => {
 
   return indices.map((index) => readouts[index]);
 };
-
-export default sortReadouts;

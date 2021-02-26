@@ -63,7 +63,7 @@ const reducer = (state = {}, action) => {
       return reduceAndAdd(state, action);
     case snapshotActions.ADD_SNAPSHOT:
       return reduceAndAddSnapshot(state, action, 'customization');
-    case displayActions.CHANGE_PLOT:
+    case displayActions.CHANGE_SCATTER_PLOT:
       return reduceAndClear(state, action);
     case fileActions.CLEAR_INTERACTIVE_STATE:
       return reduceAndClearState();

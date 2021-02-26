@@ -5,7 +5,7 @@ describe('Display actions', () => {
     const expectedAction = {
       AUGMENT_WITH_ACTIVE_SNAPSHOT: true,
       setting: 'selectedPlot',
-      type: actions.CHANGE_PLOT,
+      type: actions.CHANGE_SCATTER_PLOT,
       value: 2,
     };
     expect(actions.changePlot(2)).toEqual(expectedAction);

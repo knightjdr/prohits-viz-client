@@ -1,5 +1,6 @@
 import * as actions from './poi-actions';
 import * as customizationActions from '../scatter/customization-actions';
+import * as displayActions from '../settings/display-actions';
 import * as fileActions from '../data/interactive-file-actions';
 import * as pointsActions from '../scatter/points-actions';
 import * as snapshotActions from '../data/snapshot-actions';
@@ -7,11 +8,12 @@ import * as snapshotActions from '../data/snapshot-actions';
 import { reduceAndAddSnapshot, reduceAndRemoveSnapshot } from '../data/snapshot-reducer';
 import { reduceAndClearState, reduceAndLoadState } from '../data/interactive-file-reducer';
 
-const reduceAndClearSelected = (state, action) => ({
+const reduceAndClear = (state, action) => ({
   ...state,
   [action.snapshotID]: {
     ...state[action.snapshotID],
     points: [],
+    readouts: [],
   },
 });
 
@@ -41,16 +43,24 @@ const reducer = (state = {}, action) => {
       return reduceAndReorder(state, action);
     case snapshotActions.ADD_SNAPSHOT:
       return reduceAndAddSnapshot(state, action, 'poi');
+    case displayActions.CHANGE_CIRCHEATMAP_PLOT:
+      return reduceAndClear(state, action);
+    case displayActions.CHANGE_SCATTER_PLOT:
+      return reduceAndClear(state, action);
     case fileActions.CLEAR_INTERACTIVE_STATE:
       return reduceAndClearState();
     case fileActions.LOAD_INTERACTIVE_STATE:
       return reduceAndLoadState(action, 'poi');
     case pointsActions.FILTER_POINTS:
-      return reduceAndClearSelected(state, action);
-    case actions.UPDATE_POI:
-      return reduceAndUpdatePOI(state, action);
+      return reduceAndClear(state, action);
     case snapshotActions.REMOVE_SNAPSHOT:
       return reduceAndRemoveSnapshot(state, action);
+    case displayActions.RESET_CIRCHEATMAP:
+      return reduceAndClear(state, action);
+    case displayActions.RESET_SCATTER:
+      return reduceAndClear(state, action);
+    case actions.UPDATE_POI:
+      return reduceAndUpdatePOI(state, action);
     default:
       return state;
   }

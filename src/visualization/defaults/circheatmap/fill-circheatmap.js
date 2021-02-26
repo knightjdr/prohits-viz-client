@@ -6,6 +6,7 @@ import fillLabels from './labels';
 import fillPanel from './panel';
 import fillParameters from './parameters';
 import fillPOI from './poi';
+import fillReadouts from './readouts';
 import fillSearchStatus from './search-status';
 import fillSettings from './settings';
 import fillTabs from '../tabs';
@@ -21,6 +22,7 @@ const validateCircHeatmap = (file, filename, taskID) => {
     parameters,
     plots,
     poi,
+    readouts,
     searchStatus,
     settings,
     tabs,
@@ -36,6 +38,7 @@ const validateCircHeatmap = (file, filename, taskID) => {
     parameters: fillParameters(parameters, filename, taskID),
     plots,
     poi: fillPOI(poi),
+    readouts: fillReadouts(readouts, plots, display),
     searchStatus: fillSearchStatus(searchStatus),
     settings: fillSettings(settings),
     tabs: fillTabs(tabs),

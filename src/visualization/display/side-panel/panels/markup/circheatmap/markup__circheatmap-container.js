@@ -3,10 +3,10 @@ import { useSelector } from 'react-redux';
 
 import Markup from './markup__circheatmap';
 
-import { selectPlotLabels } from '../../../../../../state/selector/visualization/plot-selector';
+import { selectCircHeatmapLabels } from '../../../../../../state/selector/visualization/circheatmap-selector';
 
 const MarkupContainer = () => {
-  const { labels } = useSelector((state) => selectPlotLabels(state));
+  const { labels } = useSelector((state) => selectCircHeatmapLabels(state));
 
   return (
     <Markup

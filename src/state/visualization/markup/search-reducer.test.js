@@ -38,7 +38,7 @@ describe('Search status reducer', () => {
     expect(reducer(currentState, action)).toEqual(expectedState);
   });
 
-  it('should handle CLEAR_PLOT action', () => {
+  it('should handle CHANGE_CIRCHEATMAP_PLOT action', () => {
     const currenState = {
       main: {
         labels: { a: true, aa: true },
@@ -48,7 +48,31 @@ describe('Search status reducer', () => {
     };
     const action = {
       snapshotID: 'main',
-      type: displayActions.CHANGE_PLOT,
+      type: displayActions.CHANGE_CIRCHEATMAP_PLOT,
+    };
+    const expectedState = {
+      main: {
+        columns: {},
+        labels: {},
+        match: false,
+        rows: {},
+        term: '',
+      },
+    };
+    expect(reducer(currenState, action)).toEqual(expectedState);
+  });
+
+  it('should handle CHANGE_SCATTER_PLOT action', () => {
+    const currenState = {
+      main: {
+        labels: { a: true, aa: true },
+        match: true,
+        term: 'a',
+      },
+    };
+    const action = {
+      snapshotID: 'main',
+      type: displayActions.CHANGE_SCATTER_PLOT,
     };
     const expectedState = {
       main: {

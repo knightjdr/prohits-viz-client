@@ -6,7 +6,7 @@ import Filter from './filter';
 import defineInputLabels from './define-input-labels';
 import { filterPoints } from '../../../../../../../state/visualization/scatter/points-actions';
 import { selectDataProperty } from '../../../../../../../state/selector/visualization/data-selector';
-import { selectPlot } from '../../../../../../../state/selector/visualization/plot-selector';
+import { selectPlot } from '../../../../../../../state/selector/visualization/scatter-selector';
 import { selectState } from '../../../../../../../state/selector/general';
 import { updateSetting } from '../../../../../../../state/visualization/settings/settings-actions';
 
@@ -19,11 +19,7 @@ const FilterContainer = () => {
   const handleSettingChange = (e, name, value) => {
     batch(() => {
       dispatch(updateSetting(name, value));
-      dispatch(filterPoints({
-        x: xFilter,
-        y: yFilter,
-        [name === 'xFilter' ? 'x' : 'y']: value,
-      }));
+      dispatch(filterPoints(name, value));
     });
   };
 

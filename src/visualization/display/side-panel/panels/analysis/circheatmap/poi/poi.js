@@ -30,7 +30,7 @@ const Poi = forwardRef((
       border={false}
       title="Selection"
     >
-      <div className="poi__grid-scatter">
+      <div className="poi__grid-circheatmap">
         <Select
           handleContextMenu={handleContextMenu}
           options={readouts.unselected}

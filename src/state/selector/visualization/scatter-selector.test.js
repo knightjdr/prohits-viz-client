@@ -1,4 +1,4 @@
-import { selectPlot, selectPlotLabels } from './plot-selector';
+import { selectPlot, selectPlotLabels } from './scatter-selector';
 
 const state = {
   display: {

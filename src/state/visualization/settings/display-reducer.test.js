@@ -35,7 +35,7 @@ describe('Display reducer', () => {
     expect(reducer(currentState, action)).toEqual(expectedState);
   });
 
-  it('should handle CHANGE_PLOT action', () => {
+  it('should handle CHANGE_SCATTER_PLOT action', () => {
     const currentState = {
       main: {
         selectedPlot: 0,
@@ -45,7 +45,7 @@ describe('Display reducer', () => {
     const action = {
       snapshotID: 'main',
       setting: 'selectedPlot',
-      type: actions.CHANGE_PLOT,
+      type: actions.CHANGE_SCATTER_PLOT,
       value: 1,
     };
     const expectedState = {

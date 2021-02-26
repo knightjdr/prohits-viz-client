@@ -7,11 +7,21 @@ import * as snapshotActions from '../data/snapshot-actions';
 import { reduceAndAddSnapshot, reduceAndRemoveSnapshot } from '../data/snapshot-reducer';
 import { reduceAndClearState, reduceAndLoadState } from '../data/interactive-file-reducer';
 
+import filterPoints from './points-helpers';
+
+const reduceAndChange = (state, action) => ({
+  ...state,
+  [action.snapshotID]: {
+    default: action.points,
+    current: filterPoints(action.points, action.filters),
+  },
+});
+
 const reduceAndFilter = (state, action) => ({
   ...state,
   [action.snapshotID]: {
     default: state[action.snapshotID].default,
-    current: state[action.snapshotID].default.filter((point) => point.x >= action.x && point.y >= action.y),
+    current: filterPoints(state[action.snapshotID].default, action),
   },
 });
 
@@ -51,6 +61,8 @@ const reducer = (state = {}, action) => {
       return reduceAndReorder(state, action);
     case snapshotActions.ADD_SNAPSHOT:
       return reduceAndAddSnapshot(state, action, 'points');
+    case displayActions.CHANGE_SCATTER_PLOT:
+      return reduceAndChange(state, action);
     case fileActions.CLEAR_INTERACTIVE_STATE:
       return reduceAndClearState();
     case actions.FILTER_POINTS:

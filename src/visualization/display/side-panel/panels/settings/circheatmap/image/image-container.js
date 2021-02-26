@@ -1,12 +1,13 @@
 import React, { useMemo } from 'react';
-import { useDispatch, useSelector } from 'react-redux';
+import { batch, useDispatch, useSelector } from 'react-redux';
 
 import Image from './image';
 
 import reorderArrayItem from '../../../../../../../utils/reorder-array-item';
+import { changeCircHeatmapPlot } from '../../../../../../../state/visualization/settings/display-actions';
+import { filterAndSortPoints } from '../../../../../../../state/visualization/circheatmap/readouts-actions';
 import { selectData, selectDataProperty } from '../../../../../../../state/selector/visualization/data-selector';
 import { selectState } from '../../../../../../../state/selector/general';
-import { changePlot } from '../../../../../../../state/visualization/settings/display-actions';
 import {
   updateCircleOrder,
   updateCircleSetting,
@@ -35,10 +36,14 @@ const ImageContainer = () => {
     ];
     const removeItem = (source) => source.filter((circle, i) => i !== sourceIndex);
 
-    dispatch(updateCircleVisibility({
+    const updatedCircles = {
       hidden: destinationKey === 'hidden' ? addItem(circles.hidden, circles.order) : removeItem(circles.hidden),
       order: destinationKey === 'order' ? addItem(circles.order, circles.hidden) : removeItem(circles.order),
-    }));
+    };
+    batch(() => {
+      dispatch(updateCircleVisibility(updatedCircles));
+      dispatch(filterAndSortPoints({ circles: updatedCircles.order }));
+    });
   };
 
   const handleDragEnd = (result) => {
@@ -58,7 +63,10 @@ const ImageContainer = () => {
       && result.destination.index !== result.source.index
     ) {
       const reordered = reorderArrayItem(circles.order, result.source.index, result.destination.index);
-      dispatch(updateCircleOrder({ key: 'order', order: reordered }));
+      batch(() => {
+        dispatch(updateCircleOrder({ key: 'order', order: reordered }));
+        dispatch(filterAndSortPoints({ circles: reordered }));
+      });
     } if (
       result.destination.droppableId === 'circle-list-hidden'
       && result.source.droppableId === 'circle-list-hidden'
@@ -75,9 +83,7 @@ const ImageContainer = () => {
 
   const handlePlotChange = (e, name, value) => {
     const index = plotNames.indexOf(value);
-    if (index !== selectedPlot) {
-      dispatch(changePlot(index));
-    }
+    dispatch(changeCircHeatmapPlot(index, plots[index].readouts));
   };
 
   const handleSettingChange = (e, id, value) => {
@@ -87,6 +93,13 @@ const ImageContainer = () => {
       index: Number(index),
       value,
     }));
+  };
+
+  const handleSortByKnownChange = (e, id, value) => {
+    batch(() => {
+      dispatch(updateSetting('sortByKnown', value));
+      dispatch(filterAndSortPoints({ sortByKnown: value }));
+    });
   };
 
   const toggleVisibility = (e, id, hide) => {
@@ -106,6 +119,7 @@ const ImageContainer = () => {
       handleImageSetting={handleImageSetting}
       handlePlotChange={handlePlotChange}
       handleSettingChange={handleSettingChange}
+      handleSortByKnownChange={handleSortByKnownChange}
       plotNames={plotNames}
       sortByKnown={settings.sortByKnown}
       selectedPlot={selectedPlot}

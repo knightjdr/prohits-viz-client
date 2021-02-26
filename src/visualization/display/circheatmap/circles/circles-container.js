@@ -1,4 +1,3 @@
-import PropTypes from 'prop-types';
 import React, { useMemo, useRef, useState } from 'react';
 import { useSelector } from 'react-redux';
 
@@ -12,14 +11,13 @@ import textLimits from './text/text-limits';
 import textSize from '../../../../utils/text-size';
 import { selectData, selectDataProperty } from '../../../../state/selector/visualization/data-selector';
 
-const CirclesContainer = ({
-  readouts,
-}) => {
+const CirclesContainer = () => {
   const [hoveredText, setHoveredText] = useState();
   const ref = useRef({ mouseOver: false, segmentEntered: false });
 
   const circles = useSelector((state) => selectDataProperty(state, 'circles', 'order'));
   const dimensions = useSelector((state) => selectData(state, 'dimensions'));
+  const readouts = useSelector((state) => selectDataProperty(state, 'readouts', 'current'));
   const { thickness } = useSelector((state) => selectDataProperty(state, 'settings', 'current'));
 
   const formatedCircles = useMemo(
@@ -97,12 +95,6 @@ const CirclesContainer = ({
       )
       : null
   );
-};
-
-CirclesContainer.propTypes = {
-  readouts: PropTypes.arrayOf(
-    PropTypes.shape({}),
-  ).isRequired,
 };
 
 export default CirclesContainer;

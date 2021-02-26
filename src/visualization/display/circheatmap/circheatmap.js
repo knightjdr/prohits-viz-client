@@ -9,7 +9,6 @@ import './circheatmap.css';
 const CircHeatmap = forwardRef((
   {
     dimensions,
-    readouts,
     translation,
   },
   ref,
@@ -38,8 +37,8 @@ const CircHeatmap = forwardRef((
           transform={`translate(-${dimensions.center.x} -${dimensions.center.y})`}
         />
         <g transform="rotate(-90)">
-          <Known readouts={readouts} />
-          <Circles readouts={readouts} />
+          <Known />
+          <Circles />
         </g>
       </svg>
       )
@@ -56,9 +55,6 @@ CircHeatmap.propTypes = {
     svgHeight: PropTypes.number,
     svgWidth: PropTypes.number,
   }).isRequired,
-  readouts: PropTypes.arrayOf(
-    PropTypes.shape({}),
-  ).isRequired,
   translation: PropTypes.number.isRequired,
 };
 

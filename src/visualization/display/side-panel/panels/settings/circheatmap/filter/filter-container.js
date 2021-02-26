@@ -1,10 +1,11 @@
 import React from 'react';
-import { useDispatch, useSelector } from 'react-redux';
+import { batch, useDispatch, useSelector } from 'react-redux';
 
 import Filter from './filter';
 
+import { filterAndSortPoints } from '../../../../../../../state/visualization/circheatmap/readouts-actions';
 import { selectDataProperty } from '../../../../../../../state/selector/visualization/data-selector';
-import { selectPlot } from '../../../../../../../state/selector/visualization/plot-selector';
+import { selectPlot } from '../../../../../../../state/selector/visualization/circheatmap-selector';
 import { selectStateProperty } from '../../../../../../../state/selector/general';
 import { updateSetting } from '../../../../../../../state/visualization/settings/settings-actions';
 
@@ -15,15 +16,18 @@ const FilterContainer = () => {
   const readoutName = useSelector((state) => selectStateProperty(state, 'parameters', 'readoutColumn'));
   const { maxReadouts } = useSelector((state) => selectDataProperty(state, 'settings', 'current'));
 
-  const handleSettingChange = (e, name, value) => {
-    dispatch(updateSetting(name, value));
+  const handleMaxReadoutChange = (e, name, value) => {
+    batch(() => {
+      dispatch(updateSetting('maxReadouts', value));
+      dispatch(filterAndSortPoints({ maxReadouts: value }));
+    });
   };
 
   const maxReadoutValue = maxReadouts === Infinity ? plot.readouts.length : maxReadouts;
 
   return (
     <Filter
-      handleSettingChange={handleSettingChange}
+      handleMaxReadoutChange={handleMaxReadoutChange}
       maxReadouts={maxReadoutValue}
       readoutName={readoutName}
     />

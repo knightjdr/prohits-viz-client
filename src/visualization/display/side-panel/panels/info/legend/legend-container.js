@@ -5,7 +5,7 @@ import Legend from './legend';
 
 import download from '../../../../../../utils/download';
 import { selectDataProperty } from '../../../../../../state/selector/visualization/data-selector';
-import { selectPlot } from '../../../../../../state/selector/visualization/plot-selector';
+import { selectPlot } from '../../../../../../state/selector/visualization/circheatmap-selector';
 import { selectState } from '../../../../../../state/selector/general';
 
 const LegendContainer = () => {

@@ -13,7 +13,7 @@ const reduceSetting = (state, action) => ({
   },
 });
 
-const resetScatter = (state, action) => ({
+const reduceAndReset = (state, action) => ({
   ...state,
   [action.snapshotID]: {
     ...state[action.snapshotID],
@@ -25,7 +25,9 @@ const reducer = (state = {}, action) => {
   switch (action.type) {
     case snapshotActions.ADD_SNAPSHOT:
       return reduceAndAddSnapshot(state, action, 'display');
-    case actions.CHANGE_PLOT:
+    case actions.CHANGE_CIRCHEATMAP_PLOT:
+      return reduceSetting(state, action);
+    case actions.CHANGE_SCATTER_PLOT:
       return reduceSetting(state, action);
     case fileActions.CLEAR_INTERACTIVE_STATE:
       return reduceAndClearState();
@@ -33,10 +35,12 @@ const reducer = (state = {}, action) => {
       return reduceAndLoadState(action, 'display');
     case snapshotActions.REMOVE_SNAPSHOT:
       return reduceAndRemoveSnapshot(state, action);
+    case actions.RESET_CIRCHEATMAP:
+      return reduceAndReset(state, action);
     case actions.RESET_SCATTER:
-      return resetScatter(state, action);
+      return reduceAndReset(state, action);
     case actions.RESET_SCATTER_TRANSFORMATIONS:
-      return resetScatter(state, action);
+      return reduceAndReset(state, action);
     case actions.UPDATE_DISPLAY_SETTING:
       return reduceSetting(state, action);
     default:

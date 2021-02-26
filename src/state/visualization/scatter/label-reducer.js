@@ -40,7 +40,9 @@ const reducer = (state = {}, action) => {
   switch (action.type) {
     case snapshotActions.ADD_SNAPSHOT:
       return reduceAndAddSnapshot(state, action, 'labels');
-    case displayActions.CHANGE_PLOT:
+    case displayActions.CHANGE_CIRCHEATMAP_PLOT:
+      return reduceAndClear(state, action);
+    case displayActions.CHANGE_SCATTER_PLOT:
       return reduceAndClear(state, action);
     case actions.CLEAR_LABELS:
       return reduceAndClear(state, action);

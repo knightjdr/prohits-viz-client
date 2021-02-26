@@ -15,6 +15,7 @@ const Image = ({
   handleImageSetting,
   handlePlotChange,
   handleSettingChange,
+  handleSortByKnownChange,
   plotNames,
   selectedPlot,
   sortByKnown,
@@ -42,7 +43,7 @@ const Image = ({
         checked={sortByKnown}
         id="sortByKnown"
         label="Sort by known"
-        onChange={handleImageSetting}
+        onChange={handleSortByKnownChange}
       />
       <Input
         id="thickness"
@@ -76,6 +77,7 @@ Image.propTypes = {
   handleImageSetting: PropTypes.func.isRequired,
   handlePlotChange: PropTypes.func.isRequired,
   handleSettingChange: PropTypes.func.isRequired,
+  handleSortByKnownChange: PropTypes.func.isRequired,
   plotNames: PropTypes.arrayOf(PropTypes.string).isRequired,
   selectedPlot: PropTypes.number.isRequired,
   sortByKnown: PropTypes.bool.isRequired,

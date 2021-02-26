@@ -3,10 +3,10 @@ import { useSelector } from 'react-redux';
 
 import Markup from './markup__scatter';
 
-import { selectPlotLabels } from '../../../../../../state/selector/visualization/plot-selector';
+import { selectScatterLabels } from '../../../../../../state/selector/visualization/scatter-selector';
 
 const MarkupContainer = () => {
-  const { labels } = useSelector((state) => selectPlotLabels(state));
+  const { labels } = useSelector((state) => selectScatterLabels(state));
 
   return (
     <Markup

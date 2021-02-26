@@ -1,7 +1,7 @@
 import PropTypes from 'prop-types';
 import React from 'react';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faFilter } from '@fortawesome/pro-solid-svg-icons';
+import { faEraser, faFilter } from '@fortawesome/pro-solid-svg-icons';
 
 import Button from '../../../../../../../../components/buttons/rectangular/button';
 
@@ -9,6 +9,7 @@ import './poi-action.css';
 
 const PoiAction = ({
   handleApply,
+  handleClear,
 }) => (
   <>
     <div className="poi__action-circheatmap">
@@ -21,12 +22,22 @@ const PoiAction = ({
         <FontAwesomeIcon icon={faFilter} />
         Filter
       </Button>
+      <Button
+        className="poi__action-circheatmap-filter"
+        onClick={handleClear}
+        kind="warning"
+        type="button"
+      >
+        <FontAwesomeIcon icon={faEraser} />
+        Clear
+      </Button>
     </div>
   </>
 );
 
 PoiAction.propTypes = {
   handleApply: PropTypes.func.isRequired,
+  handleClear: PropTypes.func.isRequired,
 };
 
 export default PoiAction;

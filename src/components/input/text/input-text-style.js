@@ -3,7 +3,7 @@ import styled, { css } from 'styled-components';
 const Span = styled.span`
   align-items: center;
   color: ${(props) => props.theme.fontDark};
-  display: inline-grid;
+  display: ${(props) => (props.label ? 'inline-grid' : 'block')};
   grid-template-columns: auto 200px;
 
   input {

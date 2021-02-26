@@ -77,7 +77,7 @@ describe('Customization reducer', () => {
     expect(reducer(currentState, action)).toEqual(expectedState);
   });
 
-  it('should handle CHANGE_PLOT action', () => {
+  it('should handle CHANGE_SCATTER_PLOT action', () => {
     const currentState = {
       main: {
         color: '#ff0000',
@@ -90,7 +90,7 @@ describe('Customization reducer', () => {
     };
     const action = {
       snapshotID: 'main',
-      type: displayActions.CHANGE_PLOT,
+      type: displayActions.CHANGE_SCATTER_PLOT,
     };
     const expectedState = {
       ...currentState,

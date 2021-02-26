@@ -36,7 +36,7 @@ describe('Label reducer', () => {
     expect(reducer(currentState, action)).toEqual(expectedState);
   });
 
-  it('should handle CHANGE_PLOT action', () => {
+  it('should handle CHANGE_CIRCHEATMAP_PLOT action', () => {
     const currentState = {
       main: {
         showAll: false,
@@ -45,7 +45,28 @@ describe('Label reducer', () => {
     };
     const action = {
       snapshotID: 'main',
-      type: displayActions.CHANGE_PLOT,
+      type: displayActions.CHANGE_CIRCHEATMAP_PLOT,
+    };
+    const expectedState = {
+      ...currentState,
+      main: {
+        showAll: false,
+        status: {},
+      },
+    };
+    expect(reducer(currentState, action)).toEqual(expectedState);
+  });
+
+  it('should handle CHANGE_SCATTER_PLOT action', () => {
+    const currentState = {
+      main: {
+        showAll: false,
+        status: { labelA: true },
+      },
+    };
+    const action = {
+      snapshotID: 'main',
+      type: displayActions.CHANGE_SCATTER_PLOT,
     };
     const expectedState = {
       ...currentState,
