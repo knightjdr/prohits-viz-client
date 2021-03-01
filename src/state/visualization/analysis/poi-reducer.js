@@ -10,11 +10,9 @@ import { reduceAndClearState, reduceAndLoadState } from '../data/interactive-fil
 
 const reduceAndClear = (state, action) => ({
   ...state,
-  [action.snapshotID]: {
-    ...state[action.snapshotID],
-    points: [],
-    readouts: [],
-  },
+  [action.snapshotID]: Object.keys(state[action.snapshotID]).reduce((accum, key) => ({
+    [key]: [],
+  }), {}),
 });
 
 const reduceAndReorder = (state, action) => {
@@ -49,10 +47,10 @@ const reducer = (state = {}, action) => {
       return reduceAndClear(state, action);
     case fileActions.CLEAR_INTERACTIVE_STATE:
       return reduceAndClearState();
-    case fileActions.LOAD_INTERACTIVE_STATE:
-      return reduceAndLoadState(action, 'poi');
     case pointsActions.FILTER_POINTS:
       return reduceAndClear(state, action);
+    case fileActions.LOAD_INTERACTIVE_STATE:
+      return reduceAndLoadState(action, 'poi');
     case snapshotActions.REMOVE_SNAPSHOT:
       return reduceAndRemoveSnapshot(state, action);
     case displayActions.RESET_CIRCHEATMAP:

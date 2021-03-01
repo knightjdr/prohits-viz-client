@@ -1,3 +1,5 @@
+import { batch } from 'react-redux';
+
 import { getDataProperty } from '../../selector/visualization/data-selector';
 import { updateSetting } from './settings-actions';
 
@@ -66,15 +68,17 @@ export const changeCircHeatmapPlot = (index) => (
 
       const circles = getDataProperty(state, 'circles', 'order');
       const { sortByKnown } = getDataProperty(state, 'settings', 'current');
-      dispatch(changeCircHeatmapFromThunk(
-        index,
-        plots[index].readouts,
-        {
-          circles,
-          sortByKnown,
-        },
-      ));
-      dispatch(updateSetting('maxReadouts', plots[index].readouts.length));
+      batch(() => {
+        dispatch(changeCircHeatmapFromThunk(
+          index,
+          plots[index].readouts,
+          {
+            circles,
+            sortByKnown,
+          },
+        ));
+        dispatch(updateSetting('maxReadouts', plots[index].readouts.length));
+      });
     }
   }
 );

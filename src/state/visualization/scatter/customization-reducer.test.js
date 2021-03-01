@@ -166,7 +166,7 @@ describe('Customization reducer', () => {
     expect(reducer(currentState, action)).toEqual(expectedState);
   });
 
-  it('should handle LOAD_INTERACTIVE_STATE action when label state is defined', () => {
+  it('should handle LOAD_INTERACTIVE_STATE action when customization state is defined', () => {
     const action = {
       file: {
         customization: {

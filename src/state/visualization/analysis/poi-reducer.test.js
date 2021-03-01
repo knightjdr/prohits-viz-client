@@ -1,6 +1,9 @@
 import reducer from './poi-reducer';
 import * as actions from './poi-actions';
+import * as customizationActions from '../scatter/customization-actions';
+import * as displayActions from '../settings/display-actions';
 import * as fileActions from '../data/interactive-file-actions';
+import * as pointsActions from '../scatter/points-actions';
 import * as snapshotActions from '../data/snapshot-actions';
 
 describe('POI reducer', () => {
@@ -8,6 +11,29 @@ describe('POI reducer', () => {
     const action = {};
     const expectedState = {};
     expect(reducer(undefined, action)).toEqual(expectedState);
+  });
+
+  it('should handle ADD_POINTS action', () => {
+    const currentState = {
+      main: {
+        points: [2, 3],
+      },
+    };
+    const action = {
+      points: {
+        labelB: { color: '#00ff00', radius: 8 },
+        labelC: { color: '#00ff00', radius: 8 },
+      },
+      snapshotID: 'main',
+      noTotalPoints: 10,
+      type: customizationActions.ADD_POINTS,
+    };
+    const expectedState = {
+      main: {
+        points: [8, 9],
+      },
+    };
+    expect(reducer(currentState, action)).toEqual(expectedState);
   });
 
   it('should handle ADD_SNAPSHOT action', () => {
@@ -33,12 +59,66 @@ describe('POI reducer', () => {
     expect(reducer(currentState, action)).toEqual(expectedState);
   });
 
+  it('should handle CHANGE_CIRCHEATMAP_PLOT action', () => {
+    const currentState = {
+      main: {
+        readouts: [2, 3],
+      },
+    };
+    const action = {
+      snapshotID: 'main',
+      type: displayActions.CHANGE_CIRCHEATMAP_PLOT,
+    };
+    const expectedState = {
+      main: {
+        readouts: [],
+      },
+    };
+    expect(reducer(currentState, action)).toEqual(expectedState);
+  });
+
+  it('should handle CHANGE_SCATTER_PLOT action', () => {
+    const currentState = {
+      main: {
+        points: [2, 3],
+      },
+    };
+    const action = {
+      snapshotID: 'main',
+      type: displayActions.CHANGE_SCATTER_PLOT,
+    };
+    const expectedState = {
+      main: {
+        points: [],
+      },
+    };
+    expect(reducer(currentState, action)).toEqual(expectedState);
+  });
+
   it('should handle CLEAR_INTERACTIVE_STATE action', () => {
     const action = {
       type: fileActions.CLEAR_INTERACTIVE_STATE,
     };
     const expectedState = {};
     expect(reducer(undefined, action)).toEqual(expectedState);
+  });
+
+  it('should handle FILTER_POINTS action', () => {
+    const currentState = {
+      main: {
+        points: [2, 3],
+      },
+    };
+    const action = {
+      snapshotID: 'main',
+      type: pointsActions.FILTER_POINTS,
+    };
+    const expectedState = {
+      main: {
+        points: [],
+      },
+    };
+    expect(reducer(currentState, action)).toEqual(expectedState);
   });
 
   it('should handle LOAD_INTERACTIVE_STATE action', () => {
@@ -81,6 +161,42 @@ describe('POI reducer', () => {
       main: {
         columns: [0, 1, 2, 3, 4],
         rows: [0, 1, 2, 3, 4],
+      },
+    };
+    expect(reducer(currentState, action)).toEqual(expectedState);
+  });
+
+  it('should handle RESET_CIRCHEATMAP action', () => {
+    const currentState = {
+      main: {
+        readouts: [2, 3],
+      },
+    };
+    const action = {
+      snapshotID: 'main',
+      type: displayActions.RESET_CIRCHEATMAP,
+    };
+    const expectedState = {
+      main: {
+        readouts: [],
+      },
+    };
+    expect(reducer(currentState, action)).toEqual(expectedState);
+  });
+
+  it('should handle RESET_SCATTER action', () => {
+    const currentState = {
+      main: {
+        points: [2, 3],
+      },
+    };
+    const action = {
+      snapshotID: 'main',
+      type: displayActions.RESET_SCATTER,
+    };
+    const expectedState = {
+      main: {
+        points: [],
       },
     };
     expect(reducer(currentState, action)).toEqual(expectedState);

@@ -17,7 +17,7 @@ describe('Plot translation', () => {
       const plotFixed = false;
       const windowWidth = 1024;
       const wrapperWidth = 424;
-      expect(defineTranslation(canTranslate, plotFixed, panelOpen, windowWidth, wrapperWidth)).toBe(-200);
+      expect(defineTranslation(canTranslate, plotFixed, panelOpen, windowWidth, wrapperWidth)).toBe(-175);
     });
 
     it('should return translation when available width is less than panel', () => {

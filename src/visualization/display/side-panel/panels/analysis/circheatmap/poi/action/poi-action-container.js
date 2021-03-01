@@ -16,6 +16,7 @@ const PoiActionContainer = () => {
   const handleApply = () => {
     const newOrder = Array.from(Array(poiReadouts.length)).map((c, index) => index);
     batch(() => {
+      dispatch(updatePOI({ readouts: [] }));
       dispatch(updateSetting('readoutOrder', newOrder));
       dispatch(filterAndSortPoints({ readoutOrder: poiReadouts }));
     });

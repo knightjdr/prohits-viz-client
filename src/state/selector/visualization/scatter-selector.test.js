@@ -1,13 +1,10 @@
-import { selectPlot, selectPlotLabels } from './scatter-selector';
+import { selectPlot, selectScatterLabels } from './scatter-selector';
 
 const state = {
   display: {
     main: {
       selectedPlot: 0,
     },
-  },
-  parameters: {
-    imageType: 'scatter',
   },
   plots: [
     {
@@ -27,6 +24,15 @@ const state = {
       ],
     },
   ],
+  points: {
+    main: {
+      current: [
+        { label: 'gene1', x: 10, y: 15 },
+        { label: 'gene3', x: 10, y: 15 },
+        { label: 'gene2', x: 10, y: 15 },
+      ],
+    },
+  },
   tabs: {
     activeSnapshot: 'main',
   },
@@ -52,17 +58,16 @@ describe('Plot selector', () => {
         order: [0, 2, 1],
         sorted: ['gene1', 'gene2', 'gene3'],
       };
-      expect(selectPlotLabels(state)).toEqual(expected);
+      expect(selectScatterLabels(state)).toEqual(expected);
     });
 
     it('should return empty object when plot not defined', () => {
       const expected = {};
       const testState = {
-        display: state.display,
-        parameters: { imageType: 'scatter' },
+        points: {},
         tabs: state.tabs,
       };
-      expect(selectPlotLabels(testState)).toEqual(expected);
+      expect(selectScatterLabels(testState)).toEqual(expected);
     });
   });
 });
