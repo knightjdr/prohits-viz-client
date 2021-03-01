@@ -33,13 +33,13 @@ describe('Filter readouts for circheatmap', () => {
       { label: 'readout4', segments: { a: 9, b: 4 } },
       { label: 'readout5', segments: { a: 100, b: 50 } },
     ];
-    const readoutOrder = [1, 4];
+    const readoutIDs = ['readout2', 'readout5'];
 
     const expected = [
       { label: 'readout2', segments: { a: 10, b: 12 } },
       { label: 'readout5', segments: { a: 100, b: 50 } },
     ];
-    expect(filterReadouts(data, circles, readoutOrder)).toEqual(expected);
+    expect(filterReadouts(data, circles, readoutIDs)).toEqual(expected);
   });
 });
 

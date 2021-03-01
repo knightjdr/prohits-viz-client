@@ -3,7 +3,7 @@ import { batch, useDispatch, useSelector } from 'react-redux';
 
 import Filter from './filter';
 
-import { filterAndSortPoints } from '../../../../../../../state/visualization/circheatmap/readouts-actions';
+import { filterAndSortReadouts } from '../../../../../../../state/visualization/circheatmap/readouts-actions';
 import { selectDataProperty } from '../../../../../../../state/selector/visualization/data-selector';
 import { selectPlot } from '../../../../../../../state/selector/visualization/circheatmap-selector';
 import { selectStateProperty } from '../../../../../../../state/selector/general';
@@ -19,7 +19,7 @@ const FilterContainer = () => {
   const handleMaxReadoutChange = (e, name, value) => {
     batch(() => {
       dispatch(updateSetting('maxReadouts', value));
-      dispatch(filterAndSortPoints({ maxReadouts: value }));
+      dispatch(filterAndSortReadouts({ maxReadouts: value }));
     });
   };
 

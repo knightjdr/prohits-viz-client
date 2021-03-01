@@ -4,7 +4,7 @@ import { validateArray, validateBoolean, validateNumber } from '../../../utils/v
 
 export const defaultState = {
   maxReadouts: Infinity,
-  readoutOrder: [],
+  readoutIDs: {},
   sortByKnown: false,
   thickness: 50,
 };
@@ -16,7 +16,7 @@ export const validateSettings = (userSettings) => {
 
   const {
     maxReadouts,
-    readoutOrder,
+    readoutIDs,
     sortByKnown,
     thickness,
     ...other
@@ -25,7 +25,7 @@ export const validateSettings = (userSettings) => {
   const settings = {
     ...other,
     maxReadouts: validateNumber(maxReadouts, defaultState.maxReadouts),
-    readoutOrder: validateArray(readoutOrder, defaultState.readoutOrder),
+    readoutIDs: validateArray(readoutIDs, defaultState.readoutIDs),
     sortByKnown: validateBoolean(sortByKnown, defaultState.sortByKnown),
     thickness: validateNumber(thickness, defaultState.thickness),
   };

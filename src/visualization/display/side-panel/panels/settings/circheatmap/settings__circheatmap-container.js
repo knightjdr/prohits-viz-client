@@ -9,7 +9,7 @@ const SettingsCircheatmapContainer = () => {
   const dispatch = useDispatch();
 
   const handleReset = () => {
-    dispatch(resetCircheatmap({}));
+    dispatch(resetCircheatmap());
   };
 
   return (

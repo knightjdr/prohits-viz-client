@@ -19,7 +19,7 @@ const reduceAndChange = (state, action) => {
     filtered,
     {
       byKnown: sortByKnown,
-      maxReadouts: readouts.length,
+      maxReadouts: Infinity,
       sortBy: circles[0]?.attribute,
     },
   );
@@ -37,13 +37,12 @@ const reduceAndFilter = (state, action) => {
   const {
     circles,
     maxReadouts,
-    readoutOrder,
+    readoutIDs,
     sortByKnown,
   } = action;
   const readouts = state[action.snapshotID].default;
-  const filtered = filterReadouts(state[action.snapshotID].default, circles, readoutOrder);
+  const filtered = filterReadouts(readouts, circles, readoutIDs);
   const sorted = sortReadouts(filtered, { byKnown: sortByKnown, maxReadouts, sortBy: circles[0]?.attribute });
-
   return {
     ...state,
     [action.snapshotID]: {
@@ -57,14 +56,14 @@ const reduceAndLoadState = (action) => {
   if (action.file.readouts) {
     return Object.entries(action.file.readouts).reduce((accum, [snapshot, readouts]) => {
       const { order: circles } = action.file.circles[snapshot];
-      const { maxReadouts, readoutOrder, sortByKnown } = action.file.settings[snapshot].current;
-      const filtered = filterReadouts(readouts.default, circles, readoutOrder);
+      const { maxReadouts, readoutIDs, sortByKnown } = action.file.settings[snapshot].current;
+      const filtered = filterReadouts(readouts.default, circles, readoutIDs);
       const sorted = sortReadouts(filtered, { byKnown: sortByKnown, maxReadouts, sortBy: circles[0]?.attribute });
       return {
         ...accum,
         [snapshot]: {
           current: sorted,
-          default: sorted,
+          default: readouts.default,
         },
       };
     }, {});
@@ -72,13 +71,25 @@ const reduceAndLoadState = (action) => {
   return {};
 };
 
-const reduceAndReset = (state, action) => ({
-  ...state,
-  [action.snapshotID]: {
-    default: state[action.snapshotID].default,
-    current: state[action.snapshotID].default,
-  },
-});
+const reduceAndReset = (state, action) => {
+  const {
+    circles,
+    maxReadouts,
+    readoutIDs,
+    sortByKnown,
+  } = action;
+  const readouts = state[action.snapshotID].default;
+  const filtered = filterReadouts(readouts, circles, readoutIDs);
+  const sorted = sortReadouts(filtered, { byKnown: sortByKnown, maxReadouts, sortBy: circles[0]?.attribute });
+
+  return {
+    ...state,
+    [action.snapshotID]: {
+      default: readouts,
+      current: sorted,
+    },
+  };
+};
 
 const reducer = (state = {}, action) => {
   switch (action.type) {

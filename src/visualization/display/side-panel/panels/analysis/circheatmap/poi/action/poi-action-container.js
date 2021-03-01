@@ -3,7 +3,8 @@ import { batch, useDispatch, useSelector } from 'react-redux';
 
 import PoiAction from './poi-action';
 
-import { filterAndSortPoints } from '../../../../../../../../state/visualization/circheatmap/readouts-actions';
+import { filterAndSortReadouts } from '../../../../../../../../state/visualization/circheatmap/readouts-actions';
+import { selectCircHeatmapLabels } from '../../../../../../../../state/selector/visualization/circheatmap-selector';
 import { selectDataProperty } from '../../../../../../../../state/selector/visualization/data-selector';
 import { updatePOI } from '../../../../../../../../state/visualization/analysis/poi-actions';
 import { updateSetting } from '../../../../../../../../state/visualization/settings/settings-actions';
@@ -12,21 +13,22 @@ const PoiActionContainer = () => {
   const dispatch = useDispatch();
 
   const poiReadouts = useSelector((state) => selectDataProperty(state, 'poi', 'readouts'));
+  const { labels } = useSelector((state) => selectCircHeatmapLabels(state));
 
   const handleApply = () => {
-    const newOrder = Array.from(Array(poiReadouts.length)).map((c, index) => index);
+    const readoutIDs = poiReadouts.map((index) => labels[index]);
     batch(() => {
       dispatch(updatePOI({ readouts: [] }));
-      dispatch(updateSetting('readoutOrder', newOrder));
-      dispatch(filterAndSortPoints({ readoutOrder: poiReadouts }));
+      dispatch(updateSetting('readoutIDs', readoutIDs));
+      dispatch(filterAndSortReadouts({ readoutIDs }));
     });
   };
 
   const handleClear = () => {
     batch(() => {
-      dispatch(updateSetting('readoutOrder', []));
       dispatch(updatePOI({ readouts: [] }));
-      dispatch(filterAndSortPoints({ readoutOrder: [] }));
+      dispatch(updateSetting('readoutIDs', {}));
+      dispatch(filterAndSortReadouts({ readoutOrder: [] }));
     });
   };
 

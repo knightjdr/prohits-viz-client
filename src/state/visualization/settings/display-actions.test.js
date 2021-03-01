@@ -114,12 +114,38 @@ describe('Display actions', () => {
     });
   });
 
-  it('should dispatch an action to reset circheatmap image', () => {
-    const expectedAction = {
-      AUGMENT_WITH_ACTIVE_SNAPSHOT: true,
-      type: actions.RESET_CIRCHEATMAP,
+  it('should dispatch an action to reset circheatmap image', async () => {
+    const state = {
+      circles: {
+        main: {
+          defaultOrder: [
+            { attribute: 'circle1', min: 0 },
+            { attribute: 'circle2', min: 0 },
+          ],
+        },
+      },
+      settings: {
+        main: {
+          default: { maxReadouts: Infinity, readoutIDs: [], sortByKnown: true },
+        },
+      },
+      tabs: { activeSnapshot: 'main' },
     };
-    expect(actions.resetCircheatmap()).toEqual(expectedAction);
+    const store = mockStore(state);
+
+    const expectedActions = [{
+      AUGMENT_WITH_ACTIVE_SNAPSHOT: true,
+      circles: [
+        { attribute: 'circle1', min: 0 },
+        { attribute: 'circle2', min: 0 },
+      ],
+      maxReadouts: Infinity,
+      readoutIDs: [],
+      sortByKnown: true,
+      type: actions.RESET_CIRCHEATMAP,
+    }];
+    await store.dispatch(actions.resetCircheatmap());
+    expect(store.getActions()).toEqual(expectedActions);
   });
 
   it('should dispatch an action to reset heatmap image', () => {

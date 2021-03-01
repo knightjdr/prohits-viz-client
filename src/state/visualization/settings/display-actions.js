@@ -29,9 +29,10 @@ const changeScatterFromThunk = (value, points, filters) => ({
   type: CHANGE_SCATTER_PLOT,
 });
 
-export const resetCircheatmap = () => ({
+const resetCircheatmapFromThunk = (settings) => ({
   AUGMENT_WITH_ACTIVE_SNAPSHOT: true,
   type: RESET_CIRCHEATMAP,
+  ...settings,
 });
 
 export const resetHeatmap = () => ({
@@ -94,5 +95,24 @@ export const changeScatterPlot = (index) => (
       const filters = { x: xFilter, y: yFilter };
       dispatch(changeScatterFromThunk(index, plots[index].points, filters));
     }
+  }
+);
+
+export const resetCircheatmap = () => (
+  (dispatch, getState) => {
+    const state = getState();
+    const circles = getDataProperty(state, 'circles', 'defaultOrder');
+    const {
+      maxReadouts,
+      readoutIDs,
+      sortByKnown,
+    } = getDataProperty(state, 'settings', 'default');
+
+    dispatch(resetCircheatmapFromThunk({
+      circles,
+      maxReadouts,
+      readoutIDs,
+      sortByKnown,
+    }));
   }
 );

@@ -1,6 +1,6 @@
-export const filterReadouts = (readouts, circles, readoutOrder = []) => {
-  const filtered = readoutOrder.length > 0
-    ? readoutOrder.map((index) => readouts[index])
+export const filterReadouts = (readouts, circles, readoutIDs = []) => {
+  const filtered = readoutIDs.length > 0
+    ? readoutIDs.map((id) => readouts.find((readout) => readout.label === id))
     : readouts;
 
   return filtered.filter((readout) => (

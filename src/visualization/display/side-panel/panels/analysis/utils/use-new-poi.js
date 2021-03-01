@@ -11,13 +11,13 @@ const useNewPOI = () => {
   const imageType = useSelector((state) => selectStateProperty(state, 'parameters', 'imageType'));
   const poi = useSelector((state) => selectData(state, 'poi'));
   const rowOrder = useSelector((state) => selectDataProperty(state, 'rows', 'order'));
-  const { order: readoutOrder } = useSelector((state) => selectCircHeatmapLabels(state));
+  const { order: readoutIDs } = useSelector((state) => selectCircHeatmapLabels(state));
   const { order: pointOrder } = useSelector((state) => selectScatterLabels(state));
 
   const defineNewPOI = (canUseUnselected = true) => {
     if (imageType === 'circheatmap') {
       return {
-        readouts: defineNewOrderForSelection(poi.readouts, canUseUnselected ? readoutOrder : []),
+        readouts: defineNewOrderForSelection(poi.readouts, canUseUnselected ? readoutIDs : []),
       };
     } if (imageType === 'dotplot' || imageType === 'heatmap') {
       return {

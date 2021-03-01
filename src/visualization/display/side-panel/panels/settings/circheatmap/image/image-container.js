@@ -5,7 +5,7 @@ import Image from './image';
 
 import reorderArrayItem from '../../../../../../../utils/reorder-array-item';
 import { changeCircHeatmapPlot } from '../../../../../../../state/visualization/settings/display-actions';
-import { filterAndSortPoints } from '../../../../../../../state/visualization/circheatmap/readouts-actions';
+import { filterAndSortReadouts } from '../../../../../../../state/visualization/circheatmap/readouts-actions';
 import { selectData, selectDataProperty } from '../../../../../../../state/selector/visualization/data-selector';
 import { selectState } from '../../../../../../../state/selector/general';
 import {
@@ -42,7 +42,7 @@ const ImageContainer = () => {
     };
     batch(() => {
       dispatch(updateCircleVisibility(updatedCircles));
-      dispatch(filterAndSortPoints({ circles: updatedCircles.order }));
+      dispatch(filterAndSortReadouts({ circles: updatedCircles.order }));
     });
   };
 
@@ -65,7 +65,7 @@ const ImageContainer = () => {
       const reordered = reorderArrayItem(circles.order, result.source.index, result.destination.index);
       batch(() => {
         dispatch(updateCircleOrder({ key: 'order', order: reordered }));
-        dispatch(filterAndSortPoints({ circles: reordered }));
+        dispatch(filterAndSortReadouts({ circles: reordered }));
       });
     } if (
       result.destination.droppableId === 'circle-list-hidden'
@@ -87,18 +87,39 @@ const ImageContainer = () => {
   };
 
   const handleSettingChange = (e, id, value) => {
-    const [, attribute, index] = id.split('_');
-    dispatch(updateCircleSetting({
-      attribute,
-      index: Number(index),
-      value,
-    }));
+    const [, attribute, indexString] = id.split('_');
+    const index = Number(indexString);
+    if (attribute === 'min') {
+      const updatedCircles = circles.order.map((circle, circleIndex) => {
+        if (circleIndex === index) {
+          return {
+            ...circle,
+            min: value,
+          };
+        }
+        return circle;
+      });
+      batch(() => {
+        dispatch(updateCircleSetting({
+          attribute: 'min',
+          index,
+          value,
+        }));
+        dispatch(filterAndSortReadouts({ circles: updatedCircles }));
+      });
+    } else {
+      dispatch(updateCircleSetting({
+        attribute,
+        index,
+        value,
+      }));
+    }
   };
 
   const handleSortByKnownChange = (e, id, value) => {
     batch(() => {
       dispatch(updateSetting('sortByKnown', value));
-      dispatch(filterAndSortPoints({ sortByKnown: value }));
+      dispatch(filterAndSortReadouts({ sortByKnown: value }));
     });
   };
 

@@ -8,20 +8,20 @@ const filterReadoutsFromThunk = (values) => ({
   ...values,
 });
 
-export const filterAndSortPoints = (settings = {}) => (
+export const filterAndSortReadouts = (settings = {}) => (
   (dispatch, getState) => {
     const state = getState();
     const circles = getDataProperty(state, 'circles', 'order');
     const {
       maxReadouts,
-      readoutOrder,
+      readoutIDs,
       sortByKnown,
     } = getDataProperty(state, 'settings', 'current');
 
     dispatch(filterReadoutsFromThunk({
       circles,
       maxReadouts,
-      readoutOrder,
+      readoutIDs,
       sortByKnown,
       ...settings,
     }));
