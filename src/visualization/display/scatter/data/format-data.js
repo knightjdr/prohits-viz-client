@@ -1,8 +1,7 @@
 import { defineFcLines, defineMidline } from './define-lines';
 import defineTicks from './define-ticks';
-import removeDuplicates from '../../../../utils/remove-duplicates';
+import mergeTicks from './merge-ticks';
 import scaleData from './scale-data';
-import sort from '../../../../utils/sort';
 
 const formatData = (data, options) => {
   const {
@@ -21,8 +20,7 @@ const formatData = (data, options) => {
   };
 
   if (equalScaleAxes) {
-    const tickList = removeDuplicates([...ticks.x, ...ticks.y]);
-    tickList.sort(sort.numeric);
+    const tickList = mergeTicks(ticks, logBase);
     ticks.x = tickList;
     ticks.y = tickList;
   }
