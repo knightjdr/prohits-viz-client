@@ -16,7 +16,7 @@ describe('Analysis settings', () => {
         settings = getSettings(form);
       });
 
-      it('should return primary filter value', () => {
+      it('should return min abundance filter value', () => {
         const minAbundanceIndex = settings.findIndex((setting) => (setting.key === 'minAbundance'));
         expect(settings[minAbundanceIndex].text).toBe('Minimum abundance: 0');
       });
@@ -47,7 +47,7 @@ describe('Analysis settings', () => {
         settings = getSettings(form);
       });
 
-      it('should return primary filter not set', () => {
+      it('should return min abundance not set', () => {
         const minAbundanceIndex = settings.findIndex((setting) => (setting.key === 'minAbundance'));
         expect(settings[minAbundanceIndex].text).toBe('Minimum abundance: not set');
       });
@@ -78,7 +78,6 @@ describe('Analysis settings', () => {
           tool: 'correlation',
           conditionAbundanceFilter: 0,
           conditionScoreFilter: 0.01,
-          primaryFilter: 0.01,
           readoutAbundanceFilter: 5,
           readoutScoreFilter: 0.05,
           scoreType: 'lte',
@@ -96,11 +95,6 @@ describe('Analysis settings', () => {
       it('should return condition score filter value', () => {
         const conditionScoreFilterIndex = settings.findIndex((setting) => (setting.key === 'conditionScoreFilter'));
         expect(settings[conditionScoreFilterIndex].text).toBe('Condition score filter: 0.01');
-      });
-
-      it('should return primary filter value', () => {
-        const primaryFilterIndex = settings.findIndex((setting) => (setting.key === 'primaryFilter'));
-        expect(settings[primaryFilterIndex].text).toBe('Primary filter: 0.01');
       });
 
       it('should return readout abundance filter value', () => {
@@ -141,11 +135,6 @@ describe('Analysis settings', () => {
       it('should return condition score filter not set', () => {
         const conditionScoreFilterIndex = settings.findIndex((setting) => (setting.key === 'conditionScoreFilter'));
         expect(settings[conditionScoreFilterIndex].text).toBe('Condition score filter: not set');
-      });
-
-      it('should report primary filter value not set', () => {
-        const primaryFilterIndex = settings.findIndex((setting) => (setting.key === 'primaryFilter'));
-        expect(settings[primaryFilterIndex].text).toBe('Primary filter: not set');
       });
 
       it('should return readout abundance filter not set', () => {

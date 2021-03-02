@@ -42,10 +42,6 @@ const getCommonSettings = (form) => {
     });
   }
   tagArray.push({
-    key: 'primaryFilter',
-    text: `Primary filter: ${getNumber(form.primaryFilter)}`,
-  });
-  tagArray.push({
     key: 'scoreType',
     text: `Score type: ${getScoreMessage(form.scoreType)}`,
   });
@@ -56,6 +52,10 @@ const getCommonSettings = (form) => {
 const getConditionConditionSettings = (form) => {
   const tagArray = [];
 
+  tagArray.push({
+    key: 'primaryFilter',
+    text: `Primary filter: ${getNumber(form.primaryFilter)}`,
+  });
   tagArray.push({
     key: 'secondaryFilter',
     text: `Secondary filter: ${getNumber(form.secondaryFilter)}`,
@@ -95,6 +95,10 @@ const getDotplotSettings = (form) => {
   const tagArray = [];
 
   tagArray.push({
+    key: 'primaryFilter',
+    text: `Primary filter: ${getNumber(form.primaryFilter)}`,
+  });
+  tagArray.push({
     key: 'secondaryFilter',
     text: `Secondary filter: ${getNumber(form.secondaryFilter)}`,
   });
@@ -114,6 +118,10 @@ const getScvSettings = (form) => {
   const tagArray = [];
 
   tagArray.push({
+    key: 'primaryFilter',
+    text: `Primary filter: ${getNumber(form.primaryFilter)}`,
+  });
+  tagArray.push({
     key: 'minAbundance',
     text: `Minimum abundance: ${getNumber(form.minAbundance)}`,
   });
@@ -124,6 +132,10 @@ const getScvSettings = (form) => {
 const getSpecificitySettings = (form) => {
   const tagArray = [];
 
+  tagArray.push({
+    key: 'primaryFilter',
+    text: `Primary filter: ${getNumber(form.primaryFilter)}`,
+  });
   tagArray.push({
     key: 'minAbundance',
     text: `Minimum abundance: ${getNumber(form.minAbundance)}`,
