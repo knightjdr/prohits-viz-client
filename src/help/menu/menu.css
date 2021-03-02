@@ -53,13 +53,20 @@
   background-color: #dbdbdb;
   outline: none;
 }
+.help__menu h2,
+.help__menu h3 {
+  font-family: var(--fontStackPrimary);
+  text-transform: uppercase;
+}
 .help__menu h2 {
-  font-size: 1.2em;
+  font-size: 1.2rem;
   margin: 0;
 }
 .help__menu h3 {
+  display: inline-block;
   font-weight: 500;
   margin: 0;
+  margin-bottom: 0.5rem;
 }
 
 .help__menu .help__menu-links_indent a {

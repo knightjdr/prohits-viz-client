@@ -5,17 +5,22 @@ import { A as RouterLink } from 'hookrouter';
 
 const A = ({
   children,
+  download,
   href,
   ...props
 }) => (
-  href.startsWith('/')
+  href.startsWith('/') && !download
     ? (
       <RouterLink href={href} {...props}>
         {children}
       </RouterLink>
     )
     : (
-      <a href={href} {...props}>
+      <a
+        href={href}
+        download={download}
+        {...props}
+      >
         {children}
       </a>
     )
@@ -23,10 +28,12 @@ const A = ({
 
 A.defaultProps = {
   children: null,
+  download: false,
 };
 
 A.propTypes = {
   children: PropTypes.node,
+  download: PropTypes.bool,
   href: PropTypes.string.isRequired,
 };
 

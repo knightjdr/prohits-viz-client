@@ -5,9 +5,9 @@ import Link from '../components/link/text/link';
 const Main = () => (
   <div>
     <h1>Help pages</h1>
-    <p>This help is a work in progress.</p>
+    <p><b>This help is a work in progress.</b></p>
     <p>
-      ProHits-viz is a suite of web tools designed principally to aid visualizing
+      ProHits-viz is a suite of web tools designed originally to aid in visualizing
       protein-protein interaction data although it can be used for any data set
       composed of conditions and readouts. The goal of this project is to make
       datasets of any size accesible through interactive visualization and a

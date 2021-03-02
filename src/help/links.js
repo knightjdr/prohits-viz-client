@@ -1,6 +1,19 @@
 const links = [
   { route: '/help', text: 'Introduction' },
   {
+    route: '/help/analysis',
+    text: 'Analysis',
+    children: [
+      {
+        route: '/help/analysis/input-file',
+        text: 'Input file',
+        children: [
+          { route: '/help/analysis/input-file', text: 'Input file' },
+        ],
+      },
+    ],
+  },
+  {
     route: '/help/visualization',
     text: 'Visualization',
     children: [

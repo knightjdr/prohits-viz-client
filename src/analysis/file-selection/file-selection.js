@@ -24,7 +24,7 @@ const FileSelection = ({
       the input below. See the
       {' '}
       <Link
-        href="/help"
+        href="/help/analysis/input-file"
         visited={false}
       >
         help
@@ -48,7 +48,7 @@ const FileSelection = ({
         options={[
           { label: 'CRAPome', value: 'crapome' },
           { label: 'SAINT', value: 'saint' },
-          { label: 'Other', value: 'other' },
+          { label: 'Generic', value: 'other' },
         ]}
         placeholder="File type..."
         value={fileType}

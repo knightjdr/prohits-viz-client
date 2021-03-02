@@ -19,10 +19,11 @@ const Tool = ({
   <div className="analysis__tool">
     <Divider>Analysis Tool</Divider>
     <p>
-      Select the tool you would like to use for your analysis. A detailed description of the tools can be in the
+      Select the tool you would like to use for your analysis. A detailed description of the tools can be found
+      in the
       {' '}
       <Link
-        href="/help"
+        href="/help/analysis"
         visited={false}
       >
         help

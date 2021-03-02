@@ -18,13 +18,13 @@ const Columns = ({
       Specify the columns to use if they have not been preselected. See the
       {' '}
       <Link
-        href="/help"
+        href="/help/analysis/input-file#columns"
         visited={false}
       >
         help
       </Link>
       {' '}
-      to learn about how the columns are used during analysis.
+      to learn more about the meaning of these columns.
     </p>
     <div className="analysis__column-selectors">
       <Select

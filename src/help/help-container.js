@@ -1,6 +1,7 @@
 import React from 'react';
 import { useRoutes, usePath } from 'hookrouter';
 
+import Analysis from './analysis/analysis-container';
 import Citation from './citation/citation';
 import Help from './help';
 import Main from './help-main';
@@ -10,6 +11,7 @@ import { linkOrder } from './links';
 
 const routes = {
   '/': () => <Main />,
+  '/analysis*': () => <Analysis />,
   '/citation': () => <Citation />,
   '/privacy': () => <Privacy />,
   '/visualization*': () => <Visualization />,
