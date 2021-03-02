@@ -132,7 +132,7 @@ Yaxis.propTypes = {
   ticks: PropTypes.arrayOf(
     PropTypes.shape({
       key: PropTypes.string,
-      label: PropTypes.number,
+      label: PropTypes.node,
       x: PropTypes.number,
     }),
   ).isRequired,

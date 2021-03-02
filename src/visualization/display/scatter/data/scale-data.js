@@ -1,5 +1,15 @@
 import { nanoid } from 'nanoid';
+import convertToExponent from '../../../../utils/convert-to-exponent';
 import round from '../../../../utils/round';
+
+const formatTickLabel = (value) => {
+  const label = round(value, 2);
+  const integer = Math.trunc(label);
+  if (integer.toString().length > 5) {
+    return convertToExponent(label, { asNode: true, base: 10, precision: 2 });
+  }
+  return label;
+};
 
 const scaleData = (points, ticks, lines, options) => {
   const { axisLength, logBase } = options;
@@ -38,8 +48,8 @@ const scaleData = (points, ticks, lines, options) => {
       y: scaleYValue(Math.max(point.y, ticks.y[0])),
     })),
     ticks: {
-      x: ticks.x.map((tick) => ({ key: nanoid(10), label: round(tick, 2), x: scaleXValue(tick) })),
-      y: ticks.y.map((tick) => ({ key: nanoid(10), label: round(tick, 2), y: scaleYValue(tick) })),
+      x: ticks.x.map((tick) => ({ key: nanoid(10), label: formatTickLabel(tick), x: scaleXValue(tick) })),
+      y: ticks.y.map((tick) => ({ key: nanoid(10), label: formatTickLabel(tick), y: scaleYValue(tick) })),
     },
   };
 };
