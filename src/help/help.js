@@ -1,27 +1,36 @@
 import PropTypes from 'prop-types';
 import React from 'react';
+import { Switch, Route } from 'react-router-dom';
 
 import Footer from './footer/footer';
 import Menu from './menu/menu-container';
 import NotFoundPage from '../routes/not-found';
 
+import Analysis from './analysis/analysis';
+import Citation from './citation/citation';
+import Main from './help-main';
+import Privacy from './privacy/privacy';
+import Visualization from './visualization/visualization';
+
 import './help.css';
 
 const Help = ({
   footerNavLinks,
-  routeContent,
 }) => (
-  routeContent
-    ? (
-      <div className="help">
-        <Menu />
-        <div className="help__inner">
-          {routeContent}
-          <Footer navLinks={footerNavLinks} />
-        </div>
-      </div>
-    )
-    : <NotFoundPage />
+  <div className="help">
+    <Menu />
+    <div className="help__inner">
+      <Switch>
+        <Route exact path="/help" component={Main} />
+        <Route path="/help/analysis" component={Analysis} />
+        <Route path="/help/citation" component={Citation} />
+        <Route path="/help/privacy" component={Privacy} />
+        <Route path="/help/visualization" component={Visualization} />
+        <Route path="*" component={NotFoundPage} />
+      </Switch>
+      <Footer navLinks={footerNavLinks} />
+    </div>
+  </div>
 );
 
 Help.defaultProps = {
@@ -29,7 +38,6 @@ Help.defaultProps = {
     next: {},
     previous: {},
   },
-  routeContent: undefined,
 };
 
 Help.propTypes = {
@@ -43,7 +51,6 @@ Help.propTypes = {
       text: PropTypes.string,
     }),
   }),
-  routeContent: PropTypes.node,
 };
 
 export default Help;

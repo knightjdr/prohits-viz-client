@@ -13,7 +13,7 @@ const TextLinks = ({
       <li className={route === link ? 'nav__link_active' : null} key={link}>
         <Link
           className="nav__link"
-          href={`/${link}`}
+          to={`/${link}`}
           visited={false}
         >
           {link}

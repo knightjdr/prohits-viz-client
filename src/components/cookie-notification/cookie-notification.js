@@ -18,7 +18,7 @@ const CookieNotification = forwardRef((
       <p>
         This site uses cookies to record usage for grant reporting purposes. See our
         <Link
-          href="/help/privacy"
+          to="/help/privacy"
           outline={false}
           visited={false}
         >

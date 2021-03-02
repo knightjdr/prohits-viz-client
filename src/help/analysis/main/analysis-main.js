@@ -21,7 +21,7 @@ const Analysis = () => (
       navigating to the
       {' '}
       <Link
-        href="/tasks"
+        to="/tasks"
         visited={false}
       >
         Tasks
@@ -38,7 +38,7 @@ const Analysis = () => (
       To begin your analysis, go to
       {' '}
       <Link
-        href="/analysis"
+        to="/analysis"
         visited={false}
       >
         Analysis

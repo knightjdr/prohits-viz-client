@@ -24,9 +24,7 @@ const help = {
       <p>
         Text files compatible with
         {' '}
-        <Link
-          href="https://www.ncbi.nlm.nih.gov/pubmed/21149340"
-        >
+        <Link to="https://www.ncbi.nlm.nih.gov/pubmed/21149340">
           Cytoscape
         </Link>
         {' '}

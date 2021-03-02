@@ -2,7 +2,6 @@ import React from 'react';
 import { ThemeProvider } from 'styled-components';
 
 import ErrorBoundary from './components/error-boundary/error-boundary-container';
-import Navbar from './navbar/navbar-container';
 import Routing from './routes/routing';
 import Store from './state/store';
 import theme from './style/theme';
@@ -13,10 +12,7 @@ const App = () => (
   <Store>
     <ThemeProvider theme={theme}>
       <ErrorBoundary>
-        <Navbar />
-        <main className="app">
-          <Routing />
-        </main>
+        <Routing />
       </ErrorBoundary>
     </ThemeProvider>
   </Store>

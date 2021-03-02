@@ -73,9 +73,7 @@ const getModalElements = {
           <li>
             From this link:
             {' '}
-            <Link
-              href={`/tasks/${options.taskID}`}
-            >
+            <Link to={`/tasks/${options.taskID}`}>
               {`${process.env.REACT_APP_URI}/task/${options.taskID}`}
             </Link>
           </li>
@@ -83,7 +81,7 @@ const getModalElements = {
             By clicking the
             {' '}
             <Link
-              href="/tasks"
+              to="/tasks"
               visited={false}
             >
               Tasks

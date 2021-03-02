@@ -12,7 +12,7 @@ const NotFoundPage = () => (
       You can e-mail us at
       {' '}
       <Link
-        href="mailto:contact@prohits-viz.org"
+        to="mailto:contact@prohits-viz.org"
         outline={false}
         visited={false}
       >
@@ -23,14 +23,14 @@ const NotFoundPage = () => (
     </p>
     <div className="not-found__links">
       <Link
-        href="/"
+        to="/"
         outline={false}
         visited={false}
       >
         Home
       </Link>
       <Link
-        href="/help"
+        to="/help"
         outline={false}
         visited={false}
       >

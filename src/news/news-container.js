@@ -1,19 +1,16 @@
 import React from 'react';
-import { useRoutes } from 'hookrouter';
+import { Switch, Route } from 'react-router-dom';
 
 import List from './list/list-container';
 import Article from './article/article-container';
 import NotFoundPage from '../routes/not-found';
 
-const routes = {
-  '/': () => <List />,
-  '/:id': (props) => <Article {...props} />,
-};
-
-const NewsContainer = () => {
-  const routeResult = useRoutes(routes);
-
-  return routeResult || <NotFoundPage />;
-};
+const NewsContainer = () => (
+  <Switch>
+    <Route exact path="/news" component={List} />
+    <Route path="/news/:id" component={Article} />
+    <Route path="*" component={NotFoundPage} />
+  </Switch>
+);
 
 export default NewsContainer;

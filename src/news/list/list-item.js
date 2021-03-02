@@ -14,7 +14,7 @@ const ListItem = ({
     <time>{convertIsoDate(article.dbDate)}</time>
     <p>{article.summary}</p>
     <Link
-      href={`/news/${article.headline.replace(/\s/g, '-')}`}
+      to={`/news/${article.headline.replace(/\s/g, '-')}`}
       outline={false}
     >
       read more

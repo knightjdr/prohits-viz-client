@@ -122,9 +122,7 @@ const help = {
         these are reduced to 50 and 500 when the approximate biclustering option is selected.
         Please see
         {' '}
-        <Link
-          href="https://www.ncbi.nlm.nih.gov/pubmed/20571534"
-        >
+        <Link to="https://www.ncbi.nlm.nih.gov/pubmed/20571534">
           Choi et al., 2010
         </Link>
         {' '}
@@ -138,9 +136,7 @@ const help = {
         Data can be clustered hierarchically or using the nested clustering (biclustering)
         approach of
         {' '}
-        <Link
-          href="https://www.ncbi.nlm.nih.gov/pubmed/20571534"
-        >
+        <Link to="https://www.ncbi.nlm.nih.gov/pubmed/20571534">
           Choi et al., 2010
         </Link>
         {' '}

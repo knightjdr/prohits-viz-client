@@ -1,5 +1,5 @@
-import { navigate } from 'hookrouter';
 import { useState } from 'react';
+import { useHistory } from 'react-router-dom';
 
 import fetch from '../../utils/fetch';
 import getFile from '../../utils/get-file';
@@ -8,6 +8,7 @@ const useTask = () => {
   const [fetchingText, setFetchingText] = useState(false);
   const [text, setText] = useState('');
   const [selectedFile, setSelectedFile] = useState('');
+  const history = useHistory();
 
   const download = async (e) => {
     const { taskid, tool } = e.currentTarget.dataset;
@@ -41,7 +42,7 @@ const useTask = () => {
     if (file === 'error' || file === 'log') {
       fetchText(taskid, file);
     } else {
-      navigate(`/visualization/${taskid}/${file}`);
+      history.push(`/visualization/${taskid}/${file}`);
     }
   };
 

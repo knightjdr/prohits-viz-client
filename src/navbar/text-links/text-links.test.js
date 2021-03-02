@@ -3,6 +3,7 @@ import { render } from '@testing-library/react';
 
 import TextLinks from './text-links';
 
+jest.mock('../../components/link/text/link');
 jest.mock('./text-links-style');
 
 const renderElement = (props) => render(<TextLinks {...props} />);

@@ -17,7 +17,7 @@ const Main = () => (
       The navigation menu at left can be used to find the help you need. If you have
       a question not covered by this guide, feel free to contact us at
       {' '}
-      <Link href="mailto:contact@prohits-viz.org?Subject=ProHits-viz%20help">
+      <Link to="mailto:contact@prohits-viz.org?Subject=ProHits-viz%20help">
         contact@prohits-viz.org
       </Link>
       .

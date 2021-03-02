@@ -24,7 +24,7 @@ const FileSelection = ({
       the input below. See the
       {' '}
       <Link
-        href="/help/analysis/input-file"
+        to="/help/analysis/input-file"
         visited={false}
       >
         help

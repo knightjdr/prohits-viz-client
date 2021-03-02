@@ -29,7 +29,7 @@ const Archive = ({
         to have your session permanently archived, please send us the URL. See the
         {' '}
         <Link
-          href="/help"
+          to="/help"
           visited={false}
         >
           help

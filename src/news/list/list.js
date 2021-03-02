@@ -41,7 +41,7 @@ const List = ({
           }
           <Link
             className="list__rss"
-            href={`${process.env.REACT_APP_URI}/rss.xml`}
+            to={`${process.env.REACT_APP_URI}/rss.xml`}
             kind="primary"
             shadow
           >

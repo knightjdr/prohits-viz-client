@@ -3,11 +3,15 @@ import { render } from '@testing-library/react';
 
 import Link from './link';
 
+jest.mock('react-router-hash-link', () => ({
+  HashLink: (props) => <div {...props} />,
+}));
+
 const renderElement = (props) => render(<Link {...props} />);
 
 describe('Link style', () => {
   describe('with style for :visited', () => {
-    const props = { href: '/' };
+    const props = { to: '/' };
 
     it('should match snapshot', () => {
       const { container } = renderElement(props);
@@ -25,7 +29,7 @@ describe('Link style', () => {
 
   describe('show outline on :focus', () => {
     const props = {
-      href: '/',
+      to: '/',
       outline: true,
     };
 
@@ -48,7 +52,7 @@ describe('Link style', () => {
 
   describe('with no style for :visited', () => {
     const props = {
-      href: '/',
+      to: '/',
       visited: false,
     };
 
@@ -68,7 +72,7 @@ describe('Link style', () => {
 
   describe('no outline on :focus', () => {
     const props = {
-      href: '/',
+      to: '/',
       outline: false,
     };
 

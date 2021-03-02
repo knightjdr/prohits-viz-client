@@ -3,6 +3,7 @@ import { render } from '@testing-library/react';
 
 import Menu from './menu';
 
+jest.mock('../../components/link/text/link');
 jest.mock('./menu-style');
 
 const toggleMenu = jest.fn();

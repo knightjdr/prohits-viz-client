@@ -27,7 +27,7 @@ const ErrorBoundary = ({
             of head
             {' '}
             <Link
-              href="/"
+              to="/"
               visited={false}
             >
               home

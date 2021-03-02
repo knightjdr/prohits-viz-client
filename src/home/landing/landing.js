@@ -28,7 +28,7 @@ const Landing = ({
       </h2>
       <LinkButton
         className="landing__button-demo"
-        href="https://www.youtube.com/watch?v=4IVTrixfWpw"
+        to="https://www.youtube.com/watch?v=4IVTrixfWpw"
         kind="primary"
         rel="noopener noreferrer"
         shadow
@@ -43,7 +43,7 @@ const Landing = ({
           && (
             <div className="landing__news-inner">
               <LinkText
-                href={`/news/${article.link}`}
+                to={`/news/${article.link}`}
                 outline={false}
               >
                 Latest news:

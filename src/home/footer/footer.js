@@ -41,7 +41,7 @@ const Footer = () => {
   const fundingLinks = fundingDetails.map((agency) => (
     <Link
       className="footer__funding-link"
-      href={agency.url}
+      to={agency.url}
       key={agency.name}
       outline
     >
@@ -67,9 +67,7 @@ const Footer = () => {
         <span className="footer__year">
           {new Date().getFullYear()}
         </span>
-        <Link
-          href="http://gingraslab.lunenfeld.ca/"
-        >
+        <Link to="http://gingraslab.lunenfeld.ca">
           Gingras lab
         </Link>
       </small>

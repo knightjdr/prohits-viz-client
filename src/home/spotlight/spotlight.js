@@ -33,13 +33,13 @@ const Spotlight = ({
                   </p>
                   <div className="carousel__links">
                     <Link
-                      href={`https://www.ncbi.nlm.nih.gov/pubmed/${manuscript.pubmed}`}
+                      to={`https://www.ncbi.nlm.nih.gov/pubmed/${manuscript.pubmed}`}
                       outline={false}
                     >
                       Pubmed
                     </Link>
                     <Link
-                      href={manuscript.url}
+                      to={manuscript.url}
                       outline={false}
                     >
                       Publisher

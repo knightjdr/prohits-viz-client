@@ -20,7 +20,7 @@ describe('Create gProfiler source link', () => {
     });
 
     it('should return element with url as href', () => {
-      expect(element.props.href).toBe('https://test-site.org');
+      expect(element.props.to).toBe('https://test-site.org');
     });
 
     it('should return element with ID as children', () => {

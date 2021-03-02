@@ -23,7 +23,7 @@ const Tool = ({
       in the
       {' '}
       <Link
-        href="/help/analysis"
+        to="/help/analysis"
         visited={false}
       >
         help

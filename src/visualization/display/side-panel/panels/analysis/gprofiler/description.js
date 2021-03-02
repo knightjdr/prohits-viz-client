@@ -12,7 +12,7 @@ const Description = () => (
       Gene Ontology (GO) analysis is performed using
       {' '}
       <Link
-        href="https://biit.cs.ut.ee/gprofiler"
+        to="https://biit.cs.ut.ee/gprofiler"
         rel="noopener noreferrer"
         target="_blank"
       >

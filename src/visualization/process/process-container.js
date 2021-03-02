@@ -1,7 +1,6 @@
-import PropTypes from 'prop-types';
 import React, { useEffect, useRef } from 'react';
-import { navigate } from 'hookrouter';
 import { useDispatch, useSelector } from 'react-redux';
+import { useHistory, useParams } from 'react-router-dom';
 
 import fetch from '../../utils/fetch';
 import fillInteractiveState from '../defaults/fill-interactive-state';
@@ -10,10 +9,9 @@ import useLoading from '../../hooks/loading/use-loading';
 import { loadInteractiveState } from '../../state/visualization/data/interactive-file-actions';
 import { selectState } from '../../state/selector/general';
 
-const ProcessContainer = ({
-  filename,
-  id,
-}) => {
+const ProcessContainer = () => {
+  const { id, filename } = useParams();
+  const history = useHistory();
   const attemptRef = useRef(0);
   const parameters = useSelector((state) => selectState(state, 'parameters'));
   const dispatch = useDispatch();
@@ -23,7 +21,7 @@ const ProcessContainer = ({
     // If a users loads an image from a file and hits refresh in the browser,
     // this will catch that and redirect to the upload page.
     if (id === 'userfile' && !parameters.taskID) {
-      navigate('/visualization', true);
+      history.replace('/visualization');
     }
     // Load files from the server. It will make five attempts, and if the image cannot be
     // found it will display the error message.
@@ -61,16 +59,6 @@ const ProcessContainer = ({
       isLoading={status.isLoading}
     />
   );
-};
-
-ProcessContainer.defaultProps = {
-  filename: '',
-  id: '',
-};
-
-ProcessContainer.propTypes = {
-  filename: PropTypes.string,
-  id: PropTypes.string,
 };
 
 export default ProcessContainer;

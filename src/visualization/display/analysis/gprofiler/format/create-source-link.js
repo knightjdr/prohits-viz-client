@@ -6,7 +6,7 @@ const createSourceLink = (id, url) => (
   url
     ? (
       <Link
-        href={url}
+        to={url}
         outline={false}
         rel="noopener noreferrer"
         target="_blank"

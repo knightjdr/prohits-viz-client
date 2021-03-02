@@ -14,7 +14,7 @@ const FooterLink = ({
     ? (
       <Link
         className={isPrevious ? 'left' : 'right'}
-        href={route}
+        to={route}
         outline={false}
         visited={false}
       >

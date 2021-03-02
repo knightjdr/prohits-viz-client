@@ -27,9 +27,9 @@ exports[`Link style with no style for :visited should match snapshot 1`] = `
   text-decoration: underline;
 }
 
-<a
+<div
   class="c0"
-  href="/"
+  to="/"
 />
 `;
 
@@ -60,8 +60,8 @@ exports[`Link style with style for :visited should match snapshot 1`] = `
   text-decoration: underline;
 }
 
-<a
+<div
   class="c0"
-  href="/"
+  to="/"
 />
 `;

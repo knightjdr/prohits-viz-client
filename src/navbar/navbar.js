@@ -16,7 +16,7 @@ const Navbar = ({
     <Nav route={route}>
       <Link
         className="nav__icon"
-        href="/"
+        to="/"
         visited={false}
       >
         <svg

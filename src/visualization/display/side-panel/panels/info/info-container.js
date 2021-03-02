@@ -1,6 +1,6 @@
 import React from 'react';
-import { navigate } from 'hookrouter';
 import { useDispatch, useSelector } from 'react-redux';
+import { useHistory } from 'react-router-dom';
 
 import Info from './info';
 import { clearInteractiveState } from '../../../../../state/visualization/data/interactive-file-actions';
@@ -8,11 +8,12 @@ import { selectState } from '../../../../../state/selector/general';
 
 const InfoContainer = () => {
   const dispatch = useDispatch();
+  const history = useHistory();
   const parameters = useSelector((state) => selectState(state, 'parameters'));
 
   const loadNewFile = () => {
     dispatch(clearInteractiveState());
-    navigate('/visualization');
+    history.push('/visualization');
   };
 
   return (

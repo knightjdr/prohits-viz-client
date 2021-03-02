@@ -1,23 +1,22 @@
 import PropTypes from 'prop-types';
 import React from 'react';
-
-import { A as RouterLink } from 'hookrouter';
+import { HashLink as Link } from 'react-router-hash-link';
 
 const A = ({
   children,
   download,
-  href,
+  to,
   ...props
 }) => (
-  href.startsWith('/') && !download
+  to.startsWith('/') && !download
     ? (
-      <RouterLink href={href} {...props}>
+      <Link to={to} {...props}>
         {children}
-      </RouterLink>
+      </Link>
     )
     : (
       <a
-        href={href}
+        href={to}
         download={download}
         {...props}
       >
@@ -34,7 +33,7 @@ A.defaultProps = {
 A.propTypes = {
   children: PropTypes.node,
   download: PropTypes.bool,
-  href: PropTypes.string.isRequired,
+  to: PropTypes.string.isRequired,
 };
 
 export default A;

@@ -18,7 +18,7 @@ const Columns = ({
       Specify the columns to use if they have not been preselected. See the
       {' '}
       <Link
-        href="/help/analysis/input-file#columns"
+        to="/help/analysis/input-file#columns"
         visited={false}
       >
         help

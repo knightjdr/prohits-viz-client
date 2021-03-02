@@ -120,10 +120,10 @@ const InputFile = () => (
       selected. Tools/websites currently supported include:
     </p>
     <ul>
-      <li><Link href="http://prohitsms.com">ProHits</Link></li>
-      <li><Link href="http://saint-apms.sourceforge.net">SAINT</Link></li>
-      <li><Link href="https://reprint-apms.org">CRAPome/REPRINT</Link></li>
-      <li><Link href="http://galaxyp.org/">GalaxyP</Link></li>
+      <li><Link to="http://prohitsms.com">ProHits</Link></li>
+      <li><Link to="http://saint-apms.sourceforge.net">SAINT</Link></li>
+      <li><Link to="https://reprint-apms.org">CRAPome/REPRINT</Link></li>
+      <li><Link to="http://galaxyp.org/">GalaxyP</Link></li>
     </ul>
     <h3>Sample files</h3>
     <p>
@@ -131,14 +131,14 @@ const InputFile = () => (
       {' '}
       <Link
         download
-        href="/sample-analysis-files.zip"
+        to="/sample-analysis-files.zip"
       >
         download
       </Link>
       {' '}
       and contain BioID published in
       {' '}
-      <Link href="http://www.ncbi.nlm.nih.gov/pubmed/24255178">
+      <Link to="http://www.ncbi.nlm.nih.gov/pubmed/24255178">
         PMID:24255178
       </Link>
       .

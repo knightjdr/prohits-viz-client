@@ -1,47 +1,21 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
 exports[`Navbar text links should match snapshot 1`] = `
-.c0 {
-  -webkit-text-decoration: none;
-  text-decoration: none;
-  white-space: nowrap;
-}
-
-.c0:link {
-  color: #2468e5;
-}
-
-.c0:visited {
-  color: #2468e5;
-}
-
-.c0:hover,
-.c0:active {
-  -webkit-text-decoration: underline;
-  text-decoration: underline;
-}
-
-.c0:focus {
-  outline: none;
-  -webkit-text-decoration: underline;
-  text-decoration: underline;
-}
-
 <ul>
   <li
     class="nav__link_active"
   >
     <a
-      class="c0 nav__link"
-      href="/analysis"
+      class="nav__link"
+      to="/analysis"
     >
       analysis
     </a>
   </li>
   <li>
     <a
-      class="c0 nav__link"
-      href="/help"
+      class="nav__link"
+      to="/help"
     >
       help
     </a>

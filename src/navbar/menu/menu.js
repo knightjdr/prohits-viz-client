@@ -36,7 +36,7 @@ const Menu = forwardRef((
           <li key={link}>
             <Link
               className="nav__link"
-              href={`/${link}`}
+              to={`/${link}`}
               visited={false}
             >
               {link}

@@ -1,6 +1,6 @@
-import PropTypes from 'prop-types';
 import React, { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
+import { useParams } from 'react-router-dom';
 
 import LoadArticle from './load-article';
 
@@ -9,9 +9,8 @@ import isArticleLoaded from './is-article-loaded';
 import { fillArticle, getArticle, articleError } from '../../state/news/article-actions';
 import { selectState } from '../../state/selector/general';
 
-const ArticleContainer = ({
-  id,
-}) => {
+const ArticleContainer = () => {
+  const { id } = useParams();
   const dispatch = useDispatch();
   const article = useSelector((state) => selectState(state, 'article'));
   const [isLoaded, setLoaded] = useState(isArticleLoaded(id, article.id));
@@ -40,14 +39,6 @@ const ArticleContainer = ({
       isLoaded={isLoaded}
     />
   );
-};
-
-ArticleContainer.defaultProps = {
-  id: '',
-};
-
-ArticleContainer.propTypes = {
-  id: PropTypes.string,
 };
 
 export default ArticleContainer;

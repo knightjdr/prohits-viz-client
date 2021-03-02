@@ -25,7 +25,7 @@ const Menu = ({
               <h2>
                 <Link
                   className={route === link.route ? 'active' : 'inactive'}
-                  href={link.route}
+                  to={link.route}
                   visited={false}
                 >
                   {link.text}
@@ -40,7 +40,7 @@ const Menu = ({
                   >
                     <Link
                       className={route === childLink.route ? 'active' : 'inactive'}
-                      href={childLink.route}
+                      to={childLink.route}
                       visited={false}
                     >
                       {childLink.text}

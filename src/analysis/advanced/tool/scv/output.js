@@ -15,7 +15,7 @@ const Output = ({
       See the
       {' '}
       <Link
-        href="/help"
+        to="/help"
         visited={false}
       >
         help

@@ -61,9 +61,7 @@ const help = {
         Comparative Proteomic Analysis Software Suite (CompPASS). We would refer the user to the
         tutorial page for detailed descriptions.
       </p>
-      <Link
-        href="http://besra.hms.harvard.edu/ipmsmsdbs/cgi-bin/tutorial.cgi"
-      >
+      <Link to="http://besra.hms.harvard.edu/ipmsmsdbs/cgi-bin/tutorial.cgi">
         CompPASS tutorial
       </Link>
       <ul>

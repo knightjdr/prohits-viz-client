@@ -1,6 +1,6 @@
 import React from 'react';
 import styled from 'styled-components';
-import { A } from 'hookrouter';
+import { Link as A } from 'react-router-dom';
 
 import Button from '../../buttons/rectangular/button';
 

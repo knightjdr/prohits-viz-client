@@ -13,7 +13,7 @@ const ToolBox = ({
 }) => (
   <Link
     className="toolbox"
-    href={link}
+    to={link}
     visited={false}
   >
     <div className="toolbox__title">

@@ -1,6 +1,6 @@
-import PropTypes from 'prop-types';
 import React, { useEffect, useMemo, useState } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
+import { useParams } from 'react-router-dom';
 
 import Tasks from './tasks';
 
@@ -10,9 +10,8 @@ import useTask from '../hooks/tasks/use-task';
 import { selectState } from '../state/selector/general';
 import { updateTasks, updateTaskStatus } from '../state/task/task-actions';
 
-const TasksContainer = ({
-  id,
-}) => {
+const TasksContainer = () => {
+  const { id } = useParams();
   const dispatch = useDispatch();
 
   const [errorStatus, setErrorStatus] = useState(0);
@@ -64,14 +63,6 @@ const TasksContainer = ({
       tasks={tasksToDisplay}
     />
   );
-};
-
-TasksContainer.defaultProps = {
-  id: '',
-};
-
-TasksContainer.propTypes = {
-  id: PropTypes.string,
 };
 
 export default TasksContainer;

@@ -1,18 +1,15 @@
 import React from 'react';
-import { useRoutes } from 'hookrouter';
+import { Switch, Route } from 'react-router-dom';
 
 import NotFoundPage from '../routes/not-found';
 import Tasks from './tasks-container';
 
-const routes = {
-  '/': () => <Tasks />,
-  '/:id': (props) => <Tasks {...props} />,
-};
-
-const TasksRouter = () => {
-  const routeResult = useRoutes(routes);
-
-  return routeResult || <NotFoundPage />;
-};
+const TasksRouter = () => (
+  <Switch>
+    <Route exact path="/tasks" component={Tasks} />
+    <Route path="/tasks/:id" component={Tasks} />
+    <Route path="*" component={NotFoundPage} />
+  </Switch>
+);
 
 export default TasksRouter;

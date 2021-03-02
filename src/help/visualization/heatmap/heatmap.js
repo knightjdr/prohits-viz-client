@@ -1,21 +1,17 @@
-import PropTypes from 'prop-types';
 import React from 'react';
+import { Switch, Route } from 'react-router-dom';
 
-const Heatmap = ({
-  routeContent,
-}) => (
+import NotFoundPage from '../../../routes/not-found';
+import Settings from './settings/settings';
+
+const Heatmap = () => (
   <div>
     <h2>Dot plot/Heat map</h2>
-    {routeContent}
+    <Switch>
+      <Route path="/help/visualization/settings/heatmap" component={Settings} />
+      <Route path="*" component={NotFoundPage} />
+    </Switch>
   </div>
 );
-
-Heatmap.defaultProps = {
-  routeContent: null,
-};
-
-Heatmap.propTypes = {
-  routeContent: PropTypes.node,
-};
 
 export default Heatmap;

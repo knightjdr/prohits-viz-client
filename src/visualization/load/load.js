@@ -39,7 +39,7 @@ const Load = ({
       located in the &quot;interactive&quot; subfolder. See the
       {' '}
       <Link
-        href="/help/visualization/input-file"
+        to="/help/visualization/input-file"
         outline={false}
         visited={false}
       >
@@ -49,7 +49,7 @@ const Load = ({
       for information on the input format. You can also test a sample
       {' '}
       <Link
-        href="/visualization/samplefile/dotplot"
+        to="/visualization/samplefile/dotplot"
         outline={false}
         visited={false}
       >
@@ -58,7 +58,7 @@ const Load = ({
       , sample
       {' '}
       <Link
-        href="/visualization/samplefile/specificity"
+        to="/visualization/samplefile/specificity"
         outline={false}
         visited={false}
       >
@@ -68,7 +68,7 @@ const Load = ({
       or a sample
       {' '}
       <Link
-        href="/visualization/samplefile/circheatmap"
+        to="/visualization/samplefile/circheatmap"
         outline={false}
         visited={false}
       >

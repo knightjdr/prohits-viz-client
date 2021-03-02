@@ -1,6 +1,6 @@
 import React from 'react';
-import { usePath } from 'hookrouter';
 import { useSelector } from 'react-redux';
+import { useLocation } from 'react-router-dom';
 
 import Navbar from './navbar';
 
@@ -12,11 +12,11 @@ import { selectState } from '../state/selector/general';
 const NavbarContainer = () => {
   const tasks = useSelector((state) => selectState(state, 'tasks'));
 
-  const path = usePath();
+  const { pathname } = useLocation();
   const smallScreen = useSmallScreen(0, 800);
 
   const links = defineLinks(tasks);
-  const route = parseURI(path);
+  const route = parseURI(pathname);
   return (
     <Navbar
       links={links}
