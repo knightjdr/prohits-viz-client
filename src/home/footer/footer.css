@@ -17,11 +17,11 @@
   display: flex;
   flex-wrap: wrap;
   justify-content: center;
-  margin-top: 10px;
+  margin-top: 0.7rem;
   max-width: 1200px;
 }
-.footer__funding-link {
-  margin: 10px 10px;
+.footer__funding-links a {
+  margin: 0.7rem;
 }
 .footer > small a {
   margin-left: 4px;

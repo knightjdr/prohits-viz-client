@@ -43,7 +43,7 @@ const toolDescription = (tool) => {
         data sets (&le; 20 conditions). See the
         {' '}
         <Link
-          to="/help"
+          to="/help/analysis/dotplot"
           visited={false}
         >
           help

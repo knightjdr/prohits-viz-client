@@ -18,8 +18,13 @@
   overflow-y: auto;
 }
 
-.help__menu-inner .help__menu-inner-scroll-content {
+.help__menu-inner .help__menu-scroll-content {
   height: auto;
+}
+.help__menu-scroll-content {
+  align-items: flex-start;
+  display: flex;
+  flex-direction: column;
 }
 
 .help__menu a {
@@ -66,7 +71,6 @@
   display: inline-block;
   font-weight: 500;
   margin: 0;
-  margin-bottom: 0.5rem;
 }
 
 .help__menu .help__menu-links_indent a {

@@ -11,6 +11,13 @@ const links = [
           { route: '/help/analysis/input-file', text: 'Input file' },
         ],
       },
+      {
+        route: '/help/analysis/dotplot',
+        text: 'Dot plot',
+        children: [
+          { route: '/help/analysis/dotplot', text: 'Dot plot' },
+        ],
+      },
     ],
   },
   {
@@ -27,6 +34,8 @@ const links = [
     ],
   },
   { route: '/help/privacy', text: 'Privacy' },
+  { route: '/help/citation', text: 'Citation' },
+  { route: '/help/about', text: 'About' },
 ];
 
 export const getLinkOrder = (list) => {

@@ -110,8 +110,9 @@ const InputFile = () => (
       most stringent value that can be set.
     </p>
     <p>
-      It is important that there are no missing values, and that the abundance and score columns contain
-      only numeric values.
+      It is important that there are no missing values in the file, and that the abundance and score columns contain
+      only numeric values. Multiple files can be selected from the file input. All files should have the same
+      format, specifically the number of columns and their order.
     </p>
     <h3>Explicitely supported tools</h3>
     <p>
@@ -125,7 +126,7 @@ const InputFile = () => (
       <li><Link to="https://reprint-apms.org">CRAPome/REPRINT</Link></li>
       <li><Link to="http://galaxyp.org/">GalaxyP</Link></li>
     </ul>
-    <h3>Sample files</h3>
+    <h3 id="sample-files">Sample files</h3>
     <p>
       Sample input files are available for
       {' '}
