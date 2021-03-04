@@ -22,10 +22,10 @@ const processForm = (form) => {
   });
 
   if (form?.conditionMapFile?.length > 0) {
-    formData.append('helperFile', form.conditionMapFile[0], 'condition-map');
+    formData.append('helperFile', form.conditionMapFile[0], 'condition-map.txt');
   }
   if (form?.readoutMapFile?.length > 0) {
-    formData.append('helperFile', form.readoutMapFile[0], 'readout-map');
+    formData.append('helperFile', form.readoutMapFile[0], 'readout-map.txt');
   }
 
   return {

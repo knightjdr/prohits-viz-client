@@ -45,6 +45,8 @@ const validateFields = (type, value) => {
         return validateField(validateIDType, `invalid ID type: ${value}`);
       case 'conditionMapColumn':
         return validateField(criteria.isString, 'should be a string');
+      case 'conditionMapFile':
+        return validateField(criteria.isArray, 'should be an array');
       case 'known':
         return validateField(validateKnownMetric, `invalid metric: ${value}`);
       case 'minAbundance':
@@ -57,6 +59,8 @@ const validateFields = (type, value) => {
         return validateField(validateIDType, `invalid ID type: ${value}`);
       case 'readoutMapColumn':
         return validateField(criteria.isString, 'should be a string');
+      case 'readoutMapFile':
+        return validateField(criteria.isArray, 'should be an array');
       case 'rnaTissues':
         return validateField(criteria.isArray, 'should be an array');
       case 'specificity':
