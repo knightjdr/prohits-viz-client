@@ -38,25 +38,6 @@ const Dotplot = () => (
       When a file is parsed by ProHits-viz it goes through several steps to determine what should
       be included on the image, how data should be transformed and how it should be arranged.
     </p>
-    <h4>Filtering</h4>
-    <p>
-      The readouts to display on the dot plot are determined based on a primary filter
-      andMinimum abundance. ProHits-viz assumes an FDR-like score is being used and sets
-      a primary filter value of 0.01 to define significant readouts. All readouts passing this filter
-      and the minimum abundance (default: 0) for at least one condition will be considered significant
-      and displayed on the image. All values for a readout across conditions will be included on the image,
-      even those that are not significant, provided at least one passed the specified filters.
-      These settings, including the type of score (i.e. are smaller or larger scores better), can be
-      adjusted in the &quot;Filtering&quot; section under advanced options.
-    </p>
-    <p>
-      The &quot;Abundance cap&quot; and &quot;Secondary filter&quot; are not used for filtering data.
-      The abundance cap sets the upper limit for the fill colour scale and the secondary filter
-      defines the intermediate intensity edge. Interactions that do not pass either the primary or
-      secondary filter will be marked with a low intensity edge. The secondary filter can be adjusted
-      depending on the dataset to allow a greater or lesser number of interactions into this
-      &quot;medium&quot; confidence range.
-    </p>
     <h4>Data transformations</h4>
     <p>
       If desired, data can be transformed in five ways before visualization. Several of these were
@@ -113,6 +94,25 @@ const Dotplot = () => (
         that a protein will likely dimerize with itself at least as much as with its most abundant interactor.
       </li>
     </ol>
+    <h4>Filtering</h4>
+    <p>
+      The readouts to display on the dot plot are determined based on a primary filter
+      and minimum abundance. ProHits-viz assumes an FDR-like score is being used and sets
+      a primary filter value of 0.01 to define significant readouts. All readouts passing this filter
+      and the minimum abundance (default: 0) for at least one condition will be considered significant
+      and displayed on the image. All values for a readout across conditions will be included on the image,
+      even those that are not significant, provided at least one passed the specified filters.
+      These settings, including the type of score (i.e. are smaller or larger scores better), can be
+      adjusted in the &quot;Filtering&quot; section under advanced options.
+    </p>
+    <p>
+      The &quot;Abundance cap&quot; and &quot;Secondary filter&quot; are not used for filtering data.
+      The abundance cap sets the upper limit for the fill colour scale and the secondary filter
+      defines the intermediate intensity edge. Interactions that do not pass either the primary or
+      secondary filter will be marked with a low intensity edge. The secondary filter can be adjusted
+      depending on the dataset to allow a greater or lesser number of interactions into this
+      &quot;medium&quot; confidence range.
+    </p>
     <h4>Clustering</h4>
     <p>
       Conditions and readouts are hierarchically clustered on dot plots. Different distance

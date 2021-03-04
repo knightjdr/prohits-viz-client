@@ -13,8 +13,8 @@ const AdvancedOptions = ({
   errors,
 }) => (
   <div>
-    <Filtering errors={errors} help={help} />
     <Transformations errors={errors} help={help} />
+    <Filtering errors={errors} help={help} />
     <CorrelationOptionsContainer errors={errors} help={help} />
     <Clustering errors={errors} help={help} />
     <Output help={help} />
