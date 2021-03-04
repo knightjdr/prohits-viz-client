@@ -7,16 +7,26 @@ const links = [
       {
         route: '/help/analysis/input-file',
         text: 'Input file',
-        children: [
-          { route: '/help/analysis/input-file', text: 'Input file' },
-        ],
+      },
+      {
+        route: '/help/analysis/condition-condition',
+        text: 'Condition-Condition',
+      },
+      {
+        route: '/help/analysis/correlation',
+        text: 'Correlation',
       },
       {
         route: '/help/analysis/dotplot',
         text: 'Dot plot',
-        children: [
-          { route: '/help/analysis/dotplot', text: 'Dot plot' },
-        ],
+      },
+      {
+        route: '/help/analysis/scv',
+        text: 'SCV',
+      },
+      {
+        route: '/help/analysis/specificity',
+        text: 'Specificity',
       },
     ],
   },

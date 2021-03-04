@@ -9,7 +9,7 @@ const toolDescription = (tool) => {
         Compare two conditions against each other in scatter plot form. See the
         {' '}
         <Link
-          to="/help"
+          to="/help/analysis/condition-condition"
           visited={false}
         >
           help
@@ -26,7 +26,7 @@ const toolDescription = (tool) => {
         display readout relationships in such circumstances than a dot plot. See the
         {' '}
         <Link
-          to="/help"
+          to="/help/analysis/correlation"
           visited={false}
         >
           help
@@ -58,7 +58,7 @@ const toolDescription = (tool) => {
         Visualize data on a single condition in a compact circular heatmap form. See the
         {' '}
         <Link
-          to="/help"
+          to="/help/analysis/scv"
           visited={false}
         >
           help
@@ -75,7 +75,7 @@ const toolDescription = (tool) => {
         analysis is suitable for large datasets (typically &ge; 20 conditions). See the
         {' '}
         <Link
-          to="/help"
+          to="/help/analysis/specificity"
           visited={false}
         >
           help
