@@ -1,7 +1,7 @@
 import React from 'react';
 
 const Visualization = () => (
-  <div />
+  <p><strong>Coming soon...</strong></p>
 );
 
 export default Visualization;
