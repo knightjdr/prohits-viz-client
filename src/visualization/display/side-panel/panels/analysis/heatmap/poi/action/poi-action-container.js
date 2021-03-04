@@ -18,7 +18,7 @@ const PoiActionContainer = () => {
 
   const handleApply = async () => {
     const order = defineNewOrder();
-    dispatch(updatePOI({ columns: [], row: [] }));
+    dispatch(updatePOI({ columns: [], rows: [] }));
     filter.updateState(null, null, order);
   };
 

@@ -5,7 +5,7 @@ import * as snapshotActions from '../data/snapshot-actions';
 import { reduceAndAddSnapshot, reduceAndRemoveSnapshot } from '../data/snapshot-reducer';
 import { reduceAndClearState, reduceAndLoadState } from '../data/interactive-file-reducer';
 
-const reduceAndSetDimeneions = (state, action) => ({
+const reduceAndSetDimensions = (state, action) => ({
   ...state,
   [action.snapshotID]: {
     ...action.dimensions,
@@ -23,7 +23,7 @@ const reducer = (state = {}, action) => {
     case snapshotActions.REMOVE_SNAPSHOT:
       return reduceAndRemoveSnapshot(state, action);
     case actions.SET_DIMENSIONS:
-      return reduceAndSetDimeneions(state, action);
+      return reduceAndSetDimensions(state, action);
     default:
       return state;
   }
