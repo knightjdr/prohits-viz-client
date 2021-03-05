@@ -1,4 +1,5 @@
 import React from 'react';
+
 import Link from '../../../components/link/text/link';
 
 const InputFile = () => (
@@ -68,7 +69,7 @@ const InputFile = () => (
       </table>
     </div>
     <p>
-      The file must have at least four columns:
+      The file can have any number of columns, but at a minimum four are required:
     </p>
     <ol
       className="help__inner-list-heading"
@@ -103,7 +104,7 @@ const InputFile = () => (
       </li>
     </ol>
     <p>
-      Missing columns can be simluated. For instance, if you do not have a score for the measurements and simply
+      Missing columns can be simulated. For instance, if you do not have a score for the measurements and simply
       want to visualize everything in your input file, create a score column filled with zeroes. ProHits-viz
       will assume by default that scores are FDR-like, i.e. smaller scores are better, so a column
       of zeros will ensure that all data gets included in the analysis as a score of zero is the
@@ -114,9 +115,9 @@ const InputFile = () => (
       only numeric values. Multiple files can be selected from the file input. All files should have the same
       format, specifically the number of columns and their order.
     </p>
-    <h3>Explicitely supported tools</h3>
+    <h3>Explicitly supported tools</h3>
     <p>
-      Several tools generate output files that are explicitely supported by ProHits-viz. When a file
+      Several tools generate output files that are explicitly supported by ProHits-viz. When a file
       from one of these tools is input, recommended columns and associated parameters will be automatically
       selected. Tools/websites currently supported include:
     </p>

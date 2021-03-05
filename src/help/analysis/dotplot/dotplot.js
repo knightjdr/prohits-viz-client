@@ -21,7 +21,7 @@ const Dotplot = () => (
     <figure>
       <img
         alt="Example dot plot, showing absolute and relative abundance, with edges for scoring"
-        height={372}
+        height={335}
         src={DotplotExample}
       />
       <figcaption>
@@ -67,7 +67,7 @@ const Dotplot = () => (
       <li>
         <span>readout length normalization:</span>
         in the case were measurements are affected by the length of the readout (e.g. gene or protein
-        seqeunce length), the abundance value can be normalized to length of the readout. The adjusted
+        sequence length), the abundance value can be normalized to length of the readout. The adjusted
         value of a readout is calculated by dividing the median length of all readouts in the data
         set by the length of the readout in question and then multiplying by the abundance. This will
         cause shorter readouts to have their abundance adjusted up and vice versa.
@@ -86,7 +86,7 @@ const Dotplot = () => (
       </li>
       <li>
         <span>simulate condition abundance:</span>
-        in SAINT analysis, the prey gene readout correpsonding to the bait is discarded since the
+        in SAINT analysis, the prey gene readout corresponding to the bait is discarded since the
         (over)-expression of the bait and detection of those peptides makes it impossible to accurately
         determine if the bait is dimerizing with itself and by how much. In some cases it may be desirable
         to have a simulated value to use in its place. The simulated value will be equal to the
@@ -108,9 +108,9 @@ const Dotplot = () => (
     <p>
       The &quot;Abundance cap&quot; and &quot;Secondary filter&quot; are not used for filtering data.
       The abundance cap sets the upper limit for the fill colour scale and the secondary filter
-      defines the intermediate intensity edge. Interactions that do not pass either the primary or
+      defines the intermediate intensity edge. Readouts that do not pass either the primary or
       secondary filter will be marked with a low intensity edge. The secondary filter can be adjusted
-      depending on the dataset to allow a greater or lesser number of interactions into this
+      depending on the dataset to allow a greater or lesser number of readouts into this
       &quot;medium&quot; confidence range.
     </p>
     <h4>Clustering</h4>
@@ -136,7 +136,7 @@ const Dotplot = () => (
     <h3 id="output">Output</h3>
     <p>
       In the majority of cases, users will want to open the generated image in our interactive viewer
-      for exploration. This will be available as soon as the analysis task completes and clicking
+      for exploration. This will be available as soon as the analysis task completes, and clicking
       on the &quot;view&quot; button will open the image.
     </p>
     <p>
@@ -158,10 +158,12 @@ const Dotplot = () => (
         >
           interactive viewer
         </Link>
+        {' '}
+        for exploring images
       </li>
       <li>
         <span>png folder:</span>
-        png versions of all images if the png option was selected in the &quot;Output&quot;
+        png versions of all images generated if the png option was selected in the &quot;Output&quot;
         section under advanced options
       </li>
       <li>
@@ -207,7 +209,7 @@ const Dotplot = () => (
     <figure>
       <img
         alt="Example distance heat map"
-        height={381}
+        height={399}
         src={DistanceExample}
       />
       <figcaption>

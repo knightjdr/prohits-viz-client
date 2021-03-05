@@ -10,7 +10,7 @@ const Privacy = () => (
     </p>
     <p>
       Analysis tasks are deleted from our servers after 24 hours. Links to task files
-      are publicily available to anyone with the link, so only share links with those
+      are publicly available to anyone with the link, so only share links with those
       you feel comfortable giving access to your data. Tasks are assigned a random 14 character identifier
       from an alphabet of 64. It would take ~20 years for someone to have a 1%
       probability of guessing an ID if they were testing 1000 urls a second. Rate-limiting on our

@@ -9,7 +9,7 @@ const idOptions = [
   { label: 'ENSEMBL protein (e.g. ENSP00000429744)', value: 'ensemblp' },
   { label: 'Entrez gene (e.g. 6788)', value: 'entrez' },
   { label: 'Gene symbol (e.g. STK3)', value: 'symbol' },
-  { label: 'HGNC (e.g. HGNC:11406 )', value: 'hgnc' },
+  { label: 'HGNC (e.g. HGNC:11406)', value: 'hgnc' },
   { label: 'REFSEQ gene (e.g. NM_001256312)', value: 'refseqg' },
   { label: 'REFSEQ protein (e.g. NP_001243241)', value: 'refseqp' },
   { label: 'UniProt accession (e.g. Q13188)', value: 'uniprotacc' },

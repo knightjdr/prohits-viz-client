@@ -40,7 +40,7 @@ const Filtering = ({
     />
     <Select
       helpMessage={help.abundanceFilterColumn}
-      helpTitle="Column for abundance filtering"
+      helpTitle="Column for abundance filtering (primary abundance column)"
       id="specificityMetric"
       label="Column for abundance filtering"
       onChange={handleChange}

@@ -10,7 +10,7 @@ const Main = () => (
       ProHits-viz is a suite of web tools designed originally to aid in visualizing
       protein-protein interaction data although it can be used for any data set
       composed of conditions and readouts. The goal of this project is to make
-      datasets of any size accesible through interactive visualization and a
+      datasets of any size accessible through interactive visualization and a
       variety of analysis and display options.
     </p>
     <p>
