@@ -6,8 +6,10 @@ function useScrollToTop(ref) {
 
   useEffect(() => {
     const unlisten = history.listen(() => {
-      // eslint-disable-next-line no-param-reassign
-      ref.current.scrollTop = 0;
+      if (ref?.current) {
+        // eslint-disable-next-line no-param-reassign
+        ref.current.scrollTop = 0;
+      }
     });
     return () => {
       unlisten();

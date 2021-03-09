@@ -15,7 +15,7 @@ const Output = ({
       See the
       {' '}
       <Link
-        to="/help"
+        to="/help/analysis/specificity#output"
         visited={false}
       >
         help

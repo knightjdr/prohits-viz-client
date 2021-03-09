@@ -88,10 +88,10 @@ const Dotplot = () => (
         <span>simulate condition abundance:</span>
         in SAINT analysis, the prey gene readout corresponding to the bait is discarded since the
         (over)-expression of the bait and detection of those peptides makes it impossible to accurately
-        determine if the bait is dimerizing with itself and by how much. In some cases it may be desirable
-        to have a simulated value to use in its place. The simulated value will be equal to the
-        highest abundance amongst the significant preys for that bait, on the assumption
-        that a protein will likely dimerize with itself at least as much as with its most abundant interactor.
+        determine if the bait is multimerizing with the endogenous version of itself and by how much. In some
+        cases it may be desirable to have a simulated value to use in its place. The simulated value will
+        be equal to the highest abundance amongst the significant preys for that bait, on the assumption
+        that a protein will likely multimerize with itself at least as much as with its most abundant interactor.
       </li>
     </ol>
     <h4>Filtering</h4>
