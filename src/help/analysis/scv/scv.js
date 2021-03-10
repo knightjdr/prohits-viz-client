@@ -31,7 +31,8 @@ const SCV = () => (
         . The significant interactions (readouts) for the bait (condition) LATS2 are shown as segments
         on a circular heat map. The segments are sorted first into known and novel interactions,
         indicated by the solid black line around the outside of the image, and then in descending order
-        according to the outermost circle metric, in this case spectral counts. Data is from
+        according to the outermost circle metric, in this case spectral counts. Data is from a protein-protein
+        interaction dataset that can be found here:
         {' '}
         <Link to="http://www.ncbi.nlm.nih.gov/pubmed/24255178">
           PMID:24255178
@@ -333,7 +334,7 @@ const SCV = () => (
     </ul>
     <h3 id="output">Output</h3>
     <p>
-      In the majority of cases, users will want to open the generated image in our interactive viewer
+      In the majority of cases, users will want to open the generated images in our interactive viewer
       for exploration. This will be available as soon as the analysis task completes, and clicking
       on the &quot;view&quot; button will open the image.
     </p>

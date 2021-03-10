@@ -1,7 +1,7 @@
 import React from 'react';
 
 import Link from '../../../../components/link/text/link';
-import Specificity from './images/specificity.svg';
+import Specificity from './images/specificity-fold-enrichment-metric-min.svg';
 
 import helpCommon from './help-common';
 
@@ -31,7 +31,7 @@ const help = {
       </p>
       <div className="analysis__advanced-field-modal-img">
         <img
-          alt="Default filter edges"
+          alt="Fold enrichment specificity metric"
           height={46}
           src={Specificity}
           width={218}

@@ -24,7 +24,8 @@ const CC = () => (
         are visualized as a scatter plot, with points coloured based on their
         best FDR. Axes are log
         <sub>10</sub>
-        -transformed. Data is from
+        -transformed. Data is from a protein-protein interaction dataset that
+        can be found here:
         {' '}
         <Link to="http://www.ncbi.nlm.nih.gov/pubmed/24255178">
           PMID:24255178
