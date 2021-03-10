@@ -21,7 +21,7 @@ const help = {
     is extracted from the condition name by grabbing everything before the first underscore. For
     example, a condition name of "STK3_OA_treated" would be converted to "STK3", and this would
     be used for retrieving information from knowledgebases. If your condition names are not symbols,
-    or you are supplying a map of identifiers to use, you must specifiy the identifier type.`,
+    or you are supplying a map of identifiers to use, you must specify the identifier type.`,
   conditionMapColumn: `Select a column of identifiers to use in place of condition names for
     extracting data from knowledgebases. Supported identifiers include gene symbol (STK3), Entrez gene
     ID (6788), UniProt accession (Q13188), UniProt ID (STK3_HUMAN), ENSEMBL gene ID (ENSG00000104375),
@@ -63,7 +63,7 @@ const help = {
     is extracted from the readout name by grabbing everything before the first underscore. For
     example, a readout name of "STK3_HUMAN" would be converted to "STK3", and this would
     be used for retrieving information from knowledgebases. If your readout names are not symbols,
-    or you are supplying a map of identifiers to use, you must specifiy the identifier type.`,
+    or you are supplying a map of identifiers to use, you must specify the identifier type.`,
   readoutMapColumn: `Select a column of identifiers to use in place of readout names for
     extracting data from knowledgebases. Supported identifiers include gene symbol (STK3), Entrez gene
     ID (6788), UniProt accession (Q13188), UniProt ID (STK3_HUMAN), ENSEMBL gene ID (ENSG00000104375),
@@ -76,7 +76,7 @@ const help = {
     accession (Q13188), UniProt ID (STK3_HUMAN), ENSEMBL gene ID (ENSG00000104375), ENSEMBL protein ID
     (ENSP00000429744), REFSEQ protein (NP_001243241) or REFSEQ gene (NM_001256312).`,
   rnaTissues: 'Select one or more tissues for RNA expression data to include.',
-  specificity: `Display readout specificity as an additional circle. The specificity is calulcated
+  specificity: `Display readout specificity as an additional circle. The specificity is calculated
     as a simple fold enrichment score for each readout and the condition it was detected with, relative
     to the entire dataset. It is only useful for datasets with multiple conditions, particularly those
     with at least ~20 conditions.`,

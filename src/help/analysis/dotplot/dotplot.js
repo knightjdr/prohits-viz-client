@@ -1,4 +1,5 @@
 import React from 'react';
+
 import Link from '../../../components/link/text/link';
 
 import DistanceExample from './assets/distance-example-min.svg';
@@ -101,7 +102,7 @@ const Dotplot = () => (
       a primary filter value of 0.01 to define significant readouts. All readouts passing this filter
       and the minimum abundance (default: 0) for at least one condition will be considered significant
       and displayed on the image. All values for a readout across conditions will be included on the image,
-      even those that are not significant, provided at least one passed the specified filters.
+      even those that are not significant, provided at least one condition passed the specified filters.
       These settings, including the type of score (i.e. are smaller or larger scores better), can be
       adjusted in the &quot;Filtering&quot; section under advanced options.
     </p>

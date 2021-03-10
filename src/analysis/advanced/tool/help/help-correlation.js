@@ -50,7 +50,7 @@ const help = {
         match for this to work.
       </p>
       <p>
-        The same rules will also be applied when peforming correlation between conditions. However,
+        The same rules will also be applied when performing correlation between conditions. However,
         the &quot;source&quot; is now the condition and the &quot;target&quot; is the readout.
       </p>
     </div>
@@ -67,7 +67,7 @@ const help = {
     for at least one condition, all the quantitative values for this readout – even
     those that did not satisfy the cutoff in particular condition-readout pairs -
     will also be included unless parsimonious readout filtering is enabled. When this
-    option is enabled, only quantitative values that explicility pass the filters will be used.`,
+    option is enabled, only quantitative values that explicity pass the filters will be used.`,
   readoutAbundanceFilter: `In addition to the score filter requirement, a readout must have an abundance value
     above this parameter for at least one condition to be included in condition-condition correlation analysis. A high
     value helps to ensure that a readout is sufficiently abundant to ensure its suitability for analysis. This
@@ -78,9 +78,9 @@ const help = {
     readout will be used across all conditions, even those that did not satisfy the cutoff in particular
     condition-readout pairs.`,
   useReplicates: `If an abundance column consists of a pipe-separated string of numbers (e.g. 1|4|2) then these are
-    considered to be replicates. Replicates provide additional data points correlation and will be used
-    when available if this option is enabled. If disabled, replicates will be averaged prior to calculating
-    the correlation.`,
+    considered to be replicates. Replicates provide additional data points when calculating the correlation
+    and will be used when available if this option is enabled. If disabled, any replicate information will be
+    averaged prior to calculating the correlation.`,
 };
 
 export default help;
