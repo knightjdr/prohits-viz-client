@@ -18,6 +18,7 @@ const Submit = ({
   submit,
   toggleAdvanced,
   uploading,
+  uploadProgress,
 }) => (
   <div className="analysis__submit">
     <Divider>Submit</Divider>
@@ -34,16 +35,7 @@ const Submit = ({
           onClick={submit}
           type="button"
         >
-          {
-            uploading
-              ? (
-                <>
-                  <FontAwesomeIcon icon={faSpinner} spin />
-                  Uploading
-                </>
-              )
-              : 'Submit'
-          }
+          Submit
         </Button>
         <Button
           kind="warning"
@@ -60,9 +52,25 @@ const Submit = ({
           Options
         </Button>
       </div>
+      {
+        uploading
+        && (
+          <div className="analysis__submit-progress">
+            <FontAwesomeIcon icon={faSpinner} spin />
+            Uploading
+            {' '}
+            {uploadProgress}
+            %
+          </div>
+        )
+      }
     </div>
   </div>
 );
+
+Submit.defaultProps = {
+  uploadProgress: 0,
+};
 
 Submit.propTypes = {
   hasError: PropTypes.bool.isRequired,
@@ -77,6 +85,7 @@ Submit.propTypes = {
   submit: PropTypes.func.isRequired,
   toggleAdvanced: PropTypes.func.isRequired,
   uploading: PropTypes.bool.isRequired,
+  uploadProgress: PropTypes.number,
 };
 
 export default Submit;

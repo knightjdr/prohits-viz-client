@@ -25,13 +25,22 @@ const AnalysisContainer = () => {
     if (status.errors) {
       dispatch(setFormField('errors', status.errors));
     } else {
-      const options = { data: status.form, method: 'POST' };
+      const options = {
+        data: status.form,
+        method: 'POST',
+        onUploadProgress: (progress) => {
+          dispatch(setFormField('uploadProgress', Math.round((progress.loaded * 100) / progress.total)));
+        },
+      };
       dispatch(setFormFields({
         errors: {},
         uploading: true,
       }));
       const response = await fetch(`/analysis/${status.tool}`, options);
-      dispatch(setFormField('uploading', false));
+      dispatch(setFormFields({
+        uploading: false,
+        uploadProgress: 0,
+      }));
       if (response.error) {
         dispatch(setFormField('errors', response.data.errors));
       } else {
@@ -60,7 +69,6 @@ const AnalysisContainer = () => {
       showAdvanced={form.showAdvanced}
       submit={submit}
       taskID={taskID}
-      uploading={form.uploading}
     />
   );
 };

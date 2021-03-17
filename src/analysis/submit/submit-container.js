@@ -11,7 +11,6 @@ import { resetForm, setFormField } from '../../state/analysis/form-actions';
 const SubmitContainer = ({
   errors,
   submit,
-  uploading,
 }) => {
   const dispatch = useDispatch();
 
@@ -35,7 +34,8 @@ const SubmitContainer = ({
       showAdvanced={form.showAdvanced}
       submit={submit}
       toggleAdvanced={toggleAdvanced}
-      uploading={uploading}
+      uploading={form.uploading}
+      uploadProgress={form.uploadProgress}
     />
   );
 };
@@ -43,7 +43,6 @@ const SubmitContainer = ({
 SubmitContainer.propTypes = {
   errors: PropTypes.shape({}).isRequired,
   submit: PropTypes.func.isRequired,
-  uploading: PropTypes.bool.isRequired,
 };
 
 const ShowWrapper = ({

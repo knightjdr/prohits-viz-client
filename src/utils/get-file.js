@@ -8,7 +8,7 @@ const getFile = async (route, options = {}, callback) => {
     const onSuccess = callback || download;
     const responseType = options.responseType || 'blob';
 
-    const response = await fetch(route, {}, responseType);
+    const response = await fetch(route, { responseType });
     if (response.error) {
       throw Error(response.statusText);
     }

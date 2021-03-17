@@ -57,7 +57,15 @@
   align-items: start;
   column-gap: 20px;
   display: inline-grid;
-  grid-template-columns: auto auto;
+  grid-template-columns: auto auto auto;
   justify-items: start;
   row-gap: 5px;
+}
+
+.analysis__submit-progress {
+  grid-column: 3 / 3;
+  grid-row: 2 / 3;
+}
+.analysis__submit-progress svg {
+  margin-right: 5px;
 }

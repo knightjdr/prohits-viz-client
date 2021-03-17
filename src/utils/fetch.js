@@ -1,22 +1,24 @@
+const axios = require('axios').default;
+
 const defaultOptions = {
   data: {},
   headers: {},
   method: 'GET',
+  onUploadProgress: null,
+  responseType: 'json',
 };
 
 const fillOptions = (options) => {
   const fetchOptions = Object.entries(defaultOptions).reduce((accum, [key, value]) => ({
     ...accum,
-    [key]: options[key] || value,
+    [key]: options[key] ?? value,
   }), {});
 
-  if (fetchOptions.method === 'POST' && fetchOptions.data instanceof FormData) {
-    fetchOptions.body = fetchOptions.data;
-  } else if (fetchOptions.method === 'POST') {
-    fetchOptions.body = JSON.stringify(fetchOptions.data);
+  if (fetchOptions.method === 'POST' && !(fetchOptions.data instanceof FormData)) {
+    fetchOptions.data = JSON.stringify(fetchOptions.data);
+  } if (fetchOptions.method === 'POST') {
     fetchOptions.headers['Content-Type'] = 'application/json';
   }
-  delete fetchOptions.data;
 
   if (Object.keys(fetchOptions.headers).length === 0) {
     delete fetchOptions.headers;
@@ -25,26 +27,28 @@ const fillOptions = (options) => {
   return fetchOptions;
 };
 
-const fetchWrapper = async (route, options = {}, responseType = 'json') => {
+const fetchWrapper = async (route, settings = {}) => {
   try {
     const url = `${process.env.REACT_APP_API}${route}`;
-    const fetchOptions = fillOptions(options);
-    const response = await fetch(url, fetchOptions);
+    const options = fillOptions(settings);
 
-    const [ok, data] = await Promise.all([response.ok, response[responseType]()]);
+    const response = await axios({
+      url,
+      ...options,
+    });
 
-    if (!ok) {
+    return { data: response.data };
+  } catch (error) {
+    if (error.response) {
       return {
-        data,
+        data: error.response.data,
         error: true,
-        message: response.statusText,
+        message: error.response.statusText,
       };
     }
-    return { data };
-  } catch (error) {
     return {
       error: true,
-      message: error.toString(),
+      message: error.message,
     };
   }
 };

@@ -22,7 +22,7 @@ const useTask = () => {
   const fetchText = async (taskid, file) => {
     setFetchingText(true);
     const route = `/task/${taskid}/${file}`;
-    const response = await fetch(route, {}, 'text');
+    const response = await fetch(route, { responseType: 'text' });
     if (!response.error) {
       setText(response.data);
     } else {

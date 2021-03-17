@@ -33,7 +33,7 @@ const ImageContainer = () => {
     if (exporter.file) {
       const fetchFile = async () => {
         const param = encodeURIComponent(exporter.file);
-        const response = await fetch(`/file/${param}`, {}, 'blob');
+        const response = await fetch(`/file/${param}`, { responseType: 'blob' });
         download(response.data, `image.${exporter.format}`);
       };
       fetchFile();
