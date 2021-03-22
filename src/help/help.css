@@ -25,7 +25,8 @@
   flex-direction: column;
   margin: 1rem 1rem 1.5rem 1rem;
 }
-.help__inner figure img {
+.help__inner figure img,
+.help__inner figure picture {
   height: auto;
   margin-bottom: 1rem;
   max-width: 100%;
@@ -151,6 +152,19 @@
 
 .help__mobile {
   display: none;
+}
+
+.help__image-screen img {
+  border: 1px solid #dddddd;
+  border-radius: 0.2rem;
+}
+.help__inner-resize-icon-wrapper {
+  display: inline-block;
+  font-size: inherit;
+  height: 1em;
+  overflow: visible;
+  padding: 0 1px;
+  vertical-align: -0.125em;
 }
 
 @media (max-width: 799px) {

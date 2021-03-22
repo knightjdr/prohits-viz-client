@@ -5,8 +5,15 @@
 .panel__minimap-title-button-attach {
   left: 0;
 }
-.panel__minimap-title-button-sync {
+.panel__minimap-title-buttons-right {
+  align-items: center;
+  display: flex;
   right: 0;
+}
+.panel__minimap-title-buttons-right a {
+  font-size: 18px;
+  margin-left: 0.2rem;
+  margin-top: -2px;
 }
 
 .panel__minimap-title {

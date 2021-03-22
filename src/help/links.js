@@ -36,10 +36,7 @@ const links = [
     children: [
       {
         route: '/help/visualization/heatmap',
-        text: 'Dot plot/heat map',
-        children: [
-          { route: '/help/visualization/heatmap/settings', text: 'Settings' },
-        ],
+        text: 'Heat map/dot plot',
       },
     ],
   },
