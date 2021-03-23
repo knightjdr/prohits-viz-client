@@ -4,11 +4,34 @@
 }
 
 .panel__section-title {
-  font-size: 1.1em;
-  font-weight: 600;
   margin-top: 0;
   margin-bottom: 15px;
   position: relative;
   text-align: center;
+}
+.panel__section-title h2 {
+  font-size: 1.1em;
+  font-weight: 600;
+  margin: 0;
   text-transform: uppercase;
+}
+
+.panel__section-title a {
+  font-size: 16px;
+  position: absolute;
+  right: 0;
+  top: 0;
+}
+.panel__section-title a:hover::after {
+  visibility: visible;
+}
+.panel__section-title a::after {
+  border: 1px solid #2468e5;
+  bottom: -2px;
+  content: '';
+  display: inline-block;
+  left: 0;
+  position: absolute;
+  visibility: hidden;
+  width: 100%;
 }

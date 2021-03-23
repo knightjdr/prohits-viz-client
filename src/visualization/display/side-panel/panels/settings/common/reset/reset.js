@@ -10,10 +10,14 @@ import './reset.css';
 const Reset = ({
   handleReset,
   handleTransformationReset,
+  helpLink,
   resetText,
 }) => (
   <>
-    <Section title="Reset">
+    <Section
+      helpLink={helpLink}
+      title="Reset"
+    >
       <div className="settings__reset">
         <span>
           {resetText}
@@ -44,12 +48,14 @@ const Reset = ({
 
 Reset.defaultProps = {
   handleTransformationReset: null,
+  helpLink: '',
   resetText: 'Reset image and settings',
 };
 
 Reset.propTypes = {
   handleReset: PropTypes.func.isRequired,
   handleTransformationReset: PropTypes.func,
+  helpLink: PropTypes.string,
   resetText: PropTypes.string,
 };
 

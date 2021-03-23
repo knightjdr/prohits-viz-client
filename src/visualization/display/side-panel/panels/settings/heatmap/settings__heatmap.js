@@ -31,6 +31,7 @@ const Settings = ({
       <Filter />
       <Reset
         handleReset={handleImageReset}
+        helpLink="/help/visualization/heatmap#settings-resets"
       />
     </div>
   );

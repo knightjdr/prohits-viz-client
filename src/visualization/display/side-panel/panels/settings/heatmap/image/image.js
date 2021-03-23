@@ -18,6 +18,7 @@ const Image = ({
   <>
     <Section
       border={false}
+      helpLink="/help/visualization/heatmap#settings-image"
       title="Image"
     >
       <Select

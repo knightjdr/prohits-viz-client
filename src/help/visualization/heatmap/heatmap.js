@@ -8,6 +8,7 @@ import {
   faToggleOn,
 } from '@fortawesome/pro-duotone-svg-icons';
 
+import Link from '../../../components/link/text/link';
 import Image from '../../../components/dynamic-image/image-container';
 import { ReactComponent as ResizeIcon } from './assets/resize.svg';
 
@@ -23,7 +24,7 @@ const Heatmap = () => (
       customize and annotate images, as well as perform basic analysis. In depth video tutorials will be
       available soon to accompany this documentation.
     </p>
-    <figure className="help__image-screen">
+    <figure className="help__image-screenshot">
       <Image
         alt="Interactive heat map and dot plot viewer"
         height={580}
@@ -50,7 +51,7 @@ const Heatmap = () => (
       scrolling will cause the image to scroll in the horizontal direction if the image is wider than the
       width of the browser window.
     </p>
-    <figure className="help__image-screen">
+    <figure className="help__image-screenshot">
       <Image
         alt="Interactive heat map and dot plot navigation"
         height={580}
@@ -67,7 +68,7 @@ const Heatmap = () => (
         back or forward a screen at a time, and the innermost arrows will move up or down one row at a time.
       </figcaption>
     </figure>
-    <h4>Sorting</h4>
+    <h4 id="sorting">Sorting</h4>
     <p>
       Images can be sorted by row by right-clicking on a column name and selected the desired option
       (ascending/descending). One column can be sorted relative to another, i.e. a fold-change sort,
@@ -103,7 +104,7 @@ const Heatmap = () => (
       icon can be used to detach the minimap from the side panel. This allows the minimap to be open at the same
       time as other tabs on the side panel.
     </p>
-    <figure className="help__image-screen">
+    <figure className="help__image-screenshot">
       <Image
         alt="Interactive heat map and dot plot navigation with detached minimap"
         height={580}
@@ -147,11 +148,140 @@ const Heatmap = () => (
       </figcaption>
     </figure>
     <h3>Settings</h3>
-    <p>a</p>
-    <h4 id="reset">Reset</h4>
     <p>
-      Images can be reset by pressing CMD/⌘-R on a Mac or Ctrl-R on Linux/Windows.
+      The settings tab allows customization of the image appearance and provides inputs for
+      filtering the image.
     </p>
+    <figure className="help__image-screenshot">
+      <Image
+        alt="Interactive heat map and dot plot settings"
+        height={580}
+        images={images}
+        name="heatmap-settings"
+        width={667}
+      />
+      <figcaption>
+        <span>Customizable settings</span>
+        . Change the image type (heat map/dot plot), colours and perform filtering.
+      </figcaption>
+    </figure>
+    <h4 id="settings-image">Image</h4>
+    <p>
+      From this area, basic settings about the image appearance can be adjusted. The image type can be swapped
+      between the heat map and dot plot types. Dot plots are only suitable when each condition-readout pair (a
+      circle or cell on the image) has
+      an associated score. If this is missing, the same score will be assumed for all cells on the image.
+    </p>
+    <p>
+      The cell
+      size (in pixels) can be adjusted. A smaller size will allow more of the image on to the screen at one time.
+      This will cause the font size of the column and row labels to shrink and can slow down the viewer as more
+      of the image must be drawn whenever changes are made to its appearance, for example when navigating, sorting
+      or changing settings.
+    </p>
+    <p>
+      The &quot;Reset ratios&quot; toggle is only visible on dot plot images. It is used for controlling whether
+      or not the relative circle size across conditions should be adjusted when subsets of the image are selected
+      (more on
+      {' '}
+      <Link
+        to="/help/visualization/heatmap#selections"
+        visited={false}
+      >
+        selections
+      </Link>
+      {' '}
+      below). The circle size on the original image is relative to all conditions, i.e. the condition with the
+      highest abundance will have the maximum circle size and all other values are relative to that. If you select
+      a subset of the image to view, that maximum condition may not be present. By toggling this setting to
+      &quot;on&quot;, the viewer will determine if a new maximum condition is needed and reset the circle ratios
+      across conditions accordingly.
+    </p>
+    <p>
+      Clicking the &quot;Fix plot&quot; toggle will fix the plot to the left side of the browser window when it
+      does not occupy the full width of the screen. By default it is centered. It can be useful to fix the plot
+      to the left when you want to detach the minimap and have it open at the same time as another tab on the side
+      panel, as this can yield sufficient space for everything to be visible side-by-side.
+    </p>
+    <h4 id="settings-colour">Colour</h4>
+    <p>
+      The fill colour and edge colour on dot plots can be adjusted from this area of the settings panel. The
+      fill colour scale can also be inverted if desired. In the future we would like to add the ability to create custom
+      colour scales.
+    </p>
+    <h4 id="settings-filtering">Filtering</h4>
+    <p>
+      The readouts displayed on the image are determined by the &quot;Minimum abundance&quot; filter, and also by
+      the &quot;Primary filter&quot; for data coming from the dot plot analysis tool. By default if a readout passes
+      these filters for one condition, it will appear on the image.
+    </p>
+    <p>
+      These filters can be adjusted in the corresponding area of the settings tab. However, the range of values they
+      can take is limited by the settings used for analysis, to the extent that readouts passing
+      filters less stringent than those initial settings cannot be added back onto the image.
+      For example, if a minimum abundance filter of 10 was set when the analysis was performed, readouts that did
+      not pass this cutoff were excluded from the image. If you were to change this filter
+      to 9 on the side panel, readouts passing this less stringent filter would not be added to the image as they
+      are not present in the available image data. The analysis would have to be repeated with this new cutoff
+      to parse these readouts from the file the analysis was performed on.
+    </p>
+    <p>
+      The &quot;Abundance cap&quot; and &quot;Secondary filter&quot; are not used for filtering data.
+      The abundance cap sets the upper limit for the fill colour scale and the secondary filter
+      defines the intermediate intensity edge on dot plots. These can still be adjusted and the changes will
+      be reflected in the colouring on the image and on the legend.
+    </p>
+    <p>
+      The &quot;Filter by&quot; dropdown menu allows you to restrict filtering to a subset of conditions. If
+      conditions are selected here, only readouts passing the filtering criteria for at least one of those
+      conditions will be included on the image. Combining filtering with
+      {' '}
+      <Link
+        to="/help/visualization/heatmap#sorting"
+        visited={false}
+      >
+        sorting
+      </Link>
+      {' '}
+      is a powerful way of creating ordered images displaying a precisely defined set of readouts.
+    </p>
+    <p>
+      When making a
+      {' '}
+      <Link
+        to="/help/visualization/heatmap#selections"
+        visited={false}
+      >
+        selection
+      </Link>
+      {' '}
+      on a subset of data, there may often be rows or columns where nothing passes the specified filters,
+      for example when an area of the image on a dot plot is selected that contains a readout but not the
+      single condition it was found to be significant in.
+      You can use the &quot;Clear failing columns&quot; and &quot;Clear failing rows&quot; toggles to
+      tell the viewer to exclude these when a new image is created from the selection. By default
+      rows with no readouts passing the filters will be excluded, but columns will be left in place.
+    </p>
+    <figure>
+      <Image
+        alt="Interactive heat map and dot plot selection filtering"
+        height={580}
+        images={images}
+        name="heatmap-selections-filtering-options"
+        width={889}
+      />
+      <figcaption>
+        <span>Excluding data when making a selection</span>
+        . a.
+      </figcaption>
+    </figure>
+    <h4 id="settings-reset">Reset</h4>
+    <p>
+      Resetting the image will undo any sorting, filtering and setting changes that were made after the image was
+      initially loaded. The keyboard shortcut for resetting is SHIFT-R.
+    </p>
+    <h3 id="selections">Selections</h3>
+    <p>a</p>
   </div>
 );
 

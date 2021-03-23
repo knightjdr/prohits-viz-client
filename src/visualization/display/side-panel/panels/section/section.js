@@ -16,11 +16,11 @@ const Section = ({
     {
       title
       && (
-        <div>
-          <h2 className="panel__section-title">
+        <div className="panel__section-title">
+          <h2>
             {title}
           </h2>
-          { helpLink && <HelpLink route="helpLink" /> }
+          { helpLink && <HelpLink route={helpLink} /> }
         </div>
       )
     }

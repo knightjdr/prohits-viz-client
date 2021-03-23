@@ -154,9 +154,9 @@
   display: none;
 }
 
-.help__image-screen img {
+.help__image-screenshot img {
   border: 1px solid #dddddd;
-  border-radius: 0.2rem;
+  border-radius: 3px;
 }
 .help__inner-resize-icon-wrapper {
   display: inline-block;

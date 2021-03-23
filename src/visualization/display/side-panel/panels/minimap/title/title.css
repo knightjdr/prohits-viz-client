@@ -12,8 +12,22 @@
 }
 .panel__minimap-title-buttons-right a {
   font-size: 18px;
-  margin-left: 0.2rem;
+  margin-left: 0.3rem;
   margin-top: -2px;
+  position: relative;
+}
+.panel__minimap-title-buttons-right a:hover::after {
+  visibility: visible;
+}
+.panel__minimap-title-buttons-right a::after {
+  border: 1px solid #2468e5;
+  bottom: -3px;
+  content: '';
+  display: inline-block;
+  left: 0;
+  position: absolute;
+  visibility: hidden;
+  width: 100%;
 }
 
 .panel__minimap-title {
@@ -22,6 +36,10 @@
   justify-content: center;
   position: relative;
 }
-.panel__minimap-title h1 {
+.panel__minimap-title h2 {
+  font-size: 1.1em;
+  font-weight: 600;
+  line-height: 32px;
   margin: 0;
+  text-transform: uppercase;
 }

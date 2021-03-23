@@ -25,7 +25,10 @@ const Filter = ({
 }) => (
   <>
     {filteringNotification}
-    <Section title="Filters">
+    <Section
+      helpLink="/help/visualization/heatmap#settings-filtering"
+      title="Filters"
+    >
       <Input
         id="abundanceCap"
         label="Abundance cap"

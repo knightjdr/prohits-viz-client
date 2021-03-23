@@ -26,7 +26,7 @@ const Title = ({
         type="button"
       />
     </span>
-    <h1 className="panel__section-title">Mini map</h1>
+    <h2 className="panel__section-title">Mini map</h2>
     <div className="panel__minimap-title-button panel__minimap-title-buttons-right">
       <span
         data-tooltip="Resync minimap"

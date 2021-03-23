@@ -25,6 +25,7 @@ const ColorPalette = ({
 }) => (
   <>
     <Section
+      helpLink="/help/visualization/heatmap#settings-colour"
       title="Color palette"
     >
       <Select
