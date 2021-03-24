@@ -10,6 +10,7 @@ const Session = ({
   handleSaveToFile,
 }) => (
   <Section
+    helpLink="/help/visualization/heatmap#save-session"
     title="Save session"
   >
     <div className="panel__save-session">

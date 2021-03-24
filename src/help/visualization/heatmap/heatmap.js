@@ -272,7 +272,18 @@ const Heatmap = () => (
       />
       <figcaption>
         <span>Excluding data when making a selection</span>
-        . a.
+        . As a selection contains a subset of the image, they can contain columns and rows where there
+        are not readouts passing the specified filters. The area in the dashed box in the screenshot
+        on the left contains eight rows and six columns (
+        <span className="help__inner-figure-panel">
+          a
+        </span>
+        ), but only three rows and four columns have at least one readout passing the filters (
+        <span className="help__inner-figure-panel">
+          b
+        </span>
+        ). Whether or not these failing columns/rows should be displayed when creating a new image from
+        the selection can be controlled with the associated toggles on the settings tab.
       </figcaption>
     </figure>
     <h4 id="settings-reset">Reset</h4>
@@ -280,8 +291,291 @@ const Heatmap = () => (
       Resetting the image will undo any sorting, filtering and setting changes that were made after the image was
       initially loaded. The keyboard shortcut for resetting is SHIFT-R.
     </p>
+    <h3 id="markup">Markup</h3>
+    <p>
+      The markup tab contains settings for searching, annotating and editing the image. These features allow you
+      to create very specific images with minimal effort, particularly relating to common tasks that might
+      otherwise be tedious in vector drawing software.
+    </p>
+    <h4 id="markup-search">Search</h4>
+    <p>
+      The search input allows you to search for column or row names. The search is case-insensitive and allows
+      partial matches. If at least one match is found, the image will automatically scroll the first match
+      into view. All matches will be highlighted on the image and can also be seen as green dots on the edges of
+      the minimap.
+    </p>
+    <figure>
+      <Image
+        alt="Interactive heat map and dot plot searching"
+        height={580}
+        images={images}
+        name="heatmap-markup-search"
+        width={733}
+      />
+      <figcaption>
+        <span>Searching for column and row names</span>
+        . Search for names and they will be highlighted in green on the image and on the sides of the minimap.
+      </figcaption>
+    </figure>
+    <p>
+      Regular expressions are supported in searches. These are sequences of characters that denote a search pattern
+      to find. For example,
+      {' '}
+      <code>^ra</code>
+      {' '}
+      would match to column or row names beginning with
+      {' '}
+      <code>ra</code>
+      , but not otherwise. Some of the more common characters are shown below, but please checkout this
+      {' '}
+      <Link to="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Guide/Regular_Expressions/Cheatsheet">
+        cheatsheet
+      </Link>
+      {' '}
+      for a comprehensive list.
+    </p>
+    <table className="help__inner-table">
+      <thead>
+        <tr>
+          <th>character</th>
+          <th>meaning</th>
+          <th>example</th>
+          <th>match</th>
+          <th>non-match</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>^</td>
+          <td>match the beginning of a string</td>
+          <td>
+            <code>^ra</code>
+          </td>
+          <td>
+            <code>rab</code>
+          </td>
+          <td>
+            <code>araf</code>
+          </td>
+        </tr>
+        <tr>
+          <td>$</td>
+          <td>match the end of a string</td>
+          <td>
+            <code>raf$</code>
+          </td>
+          <td>
+            <code>araf</code>
+          </td>
+          <td>
+            <code>raf1</code>
+          </td>
+        </tr>
+        <tr>
+          <td>\d</td>
+          <td>match a digit</td>
+          <td>
+            <code>raf\d</code>
+          </td>
+          <td>
+            <code>raf1</code>
+          </td>
+          <td>
+            <code>raf</code>
+          </td>
+        </tr>
+        <tr>
+          <td>*</td>
+          <td>match zero or more times</td>
+          <td>
+            <code>raf\d*</code>
+          </td>
+          <td>
+            <code>raf1</code>
+            ,
+            {' '}
+            <code>raf</code>
+          </td>
+          <td>-</td>
+        </tr>
+        <tr>
+          <td>+</td>
+          <td>match at least once</td>
+          <td>
+            <code>raf\d+</code>
+          </td>
+          <td>
+            <code>raf1</code>
+            ,
+            {' '}
+            <code>raf11</code>
+          </td>
+          <td>raf</td>
+        </tr>
+      </tbody>
+    </table>
+    <h4 id="markup-tooltips">Tooltips</h4>
+    <p>
+      Tooltips showing information about a cell on the image can be activated from the
+      &quot;Tooltips&quot; area. Hovering over a cell will display the raw data associated with it.
+    </p>
+    <figure>
+      <Image
+        alt="Interactive heat map and dot plot tooltips"
+        height={580}
+        images={images}
+        name="heatmap-markup-tooltips"
+        width={667}
+      />
+      <figcaption>
+        <span>Tooltips</span>
+        . Tooltips display the raw data associated with the area under the cursor.
+      </figcaption>
+    </figure>
+    <h4 id="markup-edits">Edits</h4>
+    <p>
+      Columns and rows can be reordered and deleted from the &quot;Edits&quot; area. Activating the
+      &quot;Delete columns/rows&quot; toggle will add an icon next to each column and row that when
+      clicked will delete it. Activating the
+      &quot;Reorder columns/rows&quot; toggle will add a number next to each column and row that
+      can be used to specify its position.
+    </p>
+    <figure>
+      <Image
+        alt="Interactive heat map and dot plot editing"
+        height={580}
+        images={images}
+        name="heatmap-markup-edits"
+        width={667}
+      />
+      <figcaption>
+        <span>Reorder columns/rows</span>
+        . Activating the &quot;Reorder columns/rows&quot; toggle will adds numbers to the image
+        margins that can be used for reordering.
+      </figcaption>
+    </figure>
+    <p>
+      Deletion and reordering are not permanent. Resetting the image will undo any edits that
+      have been made.
+    </p>
+    <h4 id="markup-annotations">Annotations</h4>
+    <p>
+      Text annotations can be added to the image from the &quot;Annotations&quot; area. Type in the annotation
+      and it will be added to the center of the image&apos;s visible area. You can then click and drag the
+      annotation to change its position. Annotations will appear as red dots on the minimap and can be
+      deleted individually by clicking on the X icon when hovering over the annotation.
+    </p>
+    <figure>
+      <Image
+        alt="Interactive heat map and dot plot annotations"
+        height={580}
+        images={images}
+        name="heatmap-markup-annotations"
+        width={733}
+      />
+      <figcaption>
+        <span>Text annotations</span>
+        . Add annotations and customize their position by dragging to a new location. They can be temporarily hidden,
+        deleted en masse or the font size customized from the side panel.
+      </figcaption>
+    </figure>
+    <p>
+      You may find it easier to add annotation in your vector-image editing software of choice after saving the image,
+      but in the case of very large images that are difficult to open in these tools, it may be more convenient to
+      do that directly in the interactive viewer.
+    </p>
+    <h4 id="markup-markers">Markers</h4>
+    <p>
+      Markers are simply boxes that can be placed around a portion of the image and are often associated with
+      an annotation as a way of highlighting a portion of the image. Markers can be created by activating the
+      &quot;Record selections&quot; toggle and then dragging the mouse over the area to select. Markers will
+      also be displayed on the minimap and can be deleted individually by clicking on the X icon when hovering
+      over the edge of the marker.
+    </p>
+    <figure>
+      <Image
+        alt="Interactive heat map and dot plot markers"
+        height={580}
+        images={images}
+        name="heatmap-markup-markers"
+        width={733}
+      />
+      <figcaption>
+        <span>Selection markers</span>
+        . Markers can be used to highlight a region on the image. Their colour can be adjusted from the side panel
+        and they can temporarily hidden or deleted en masse as well.
+      </figcaption>
+    </figure>
     <h3 id="selections">Selections</h3>
     <p>a</p>
+    <h3 id="save">Saving</h3>
+    <p>
+      Both images and interactive sessions can be saved. We also offer semi-permanent or permanent archiving
+      for image sharing.
+    </p>
+    <figure className="help__image-screenshot">
+      <Image
+        alt="Interactive heat map and dot plot side panel saving tab"
+        height={388}
+        images={images}
+        name="heatmap-save"
+        width={239}
+      />
+      <figcaption>
+        <span>Saving the image or session</span>
+        . The save tab on the side panel provides options for saving images or sessions, and archiving.
+      </figcaption>
+    </figure>
+    <h4 id="save-image">Images</h4>
+    <p>
+      Images can be saved in SVG or PNG format. Generally we recommend SVG as these can be easily edited in Adobe
+      Illustrator or similar vector-based drawing software. Very large images should be saved in PNG format, as programs
+      such as Illustrator can struggle to open SVG images when too many elements are present.
+    </p>
+    <h4 id="save-session">Session</h4>
+    <p>
+      A session refers to everything you may have done while using the interactive viewer, including sorting, filtering,
+      analysis, etc. You can save your complete session to a file and reload it at a later date to continue where you
+      left off. Session files are JSON format (.json)
+    </p>
+    <h4 id="save-archive">Archive</h4>
+    <p>
+      <strong>
+        This feature is not currently active, but will be in the near future.
+      </strong>
+    </p>
+    <p>
+      By default, analysis tasks and their associated images are only stored for 24 hours. Task results can be
+      downloaded and images manually loaded into the interactive viewer at any time however. Alternatively, archiving an
+      image allows for it to be stored semi-permanently or permanently on our server. If you choose to archive a file,
+      a new link will be created that will be active for three months. If you wish to having it stored permanently,
+      you need to first archive the image, then e-mail us at
+      {' '}
+      <Link to="mailto:contact@prohits-viz.org?Subject=ProHits-viz%20help">
+        contact@prohits-viz.org
+      </Link>
+      {' '}
+      with a request for permanent storage and provide the archived link. While we make backups of the archive, you
+      should always keep a local copy of the archived image as a backup.
+    </p>
+    <p>
+      Archiving was designed to support temporary but easy image sharing amongst collaborators, for which
+      a link that is active for three months should be sufficient. Permanent storage is meant for images that
+      may be associated with a publication or some other permanently public resource. Requests for permanent
+      storage should be made sparingly.
+    </p>
+    <p>
+      The full session state is stored when archiving (see the
+      {' '}
+      <Link
+        to="/help/visualization/heatmap#save-session"
+      >
+        session
+      </Link>
+      {' '}
+      section), so ensure that the state of the image is how you would like it to appear when the archive link
+      is used.
+    </p>
   </div>
 );
 

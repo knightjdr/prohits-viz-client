@@ -10,11 +10,13 @@ import Section from '../../../section/section';
 const Search = ({
   handleClear,
   handleSearch,
+  helpLink,
   term,
   warning,
 }) => (
   <Section
     border={false}
+    helpLink={helpLink}
     title="Search"
   >
     <div className="panel-markup__input">
@@ -57,9 +59,14 @@ const Search = ({
   </Section>
 );
 
+Search.defaultProps = {
+  helpLink: '',
+};
+
 Search.propTypes = {
   handleClear: PropTypes.func.isRequired,
   handleSearch: PropTypes.func.isRequired,
+  helpLink: PropTypes.string,
   term: PropTypes.string.isRequired,
   warning: PropTypes.string.isRequired,
 };

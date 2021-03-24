@@ -17,6 +17,7 @@ const Marker = ({
   show,
 }) => (
   <Section
+    helpLink="/help/visualization/heatmap#markup-markers"
     title="Markers"
   >
     <div className="panel-markup__grid">

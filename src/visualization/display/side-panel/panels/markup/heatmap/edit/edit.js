@@ -10,7 +10,10 @@ const Edit = ({
   handleReorderToggle,
   reorderImage,
 }) => (
-  <Section title="Edit">
+  <Section
+    helpLink="/help/visualization/heatmap#markup-edits"
+    title="Edit"
+  >
     <div className="panel-markup__grid">
       <Switch
         checked={deleteFromImage}

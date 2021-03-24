@@ -17,7 +17,10 @@ const Annotation = ({
   handleToggleAnnotations,
   show,
 }) => (
-  <Section title="Annotations">
+  <Section
+    helpLink="/help/visualization/heatmap#markup-annotations"
+    title="Annotations"
+  >
     <div className="panel-markup__input">
       <InputWithButton
         kind="secondary"

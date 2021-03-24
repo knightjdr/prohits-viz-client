@@ -167,6 +167,10 @@
   vertical-align: -0.125em;
 }
 
+.help__inner-figure-panel {
+  font-weight: bold;
+}
+
 @media (max-width: 799px) {
   .help {
     display: block;

@@ -12,7 +12,10 @@ import './archive.css';
 const Archive = ({
   handleArchive,
 }) => (
-  <Section title="Archive">
+  <Section
+    helpLink="/help/visualization/heatmap#save-archive"
+    title="Archive"
+  >
     <div className="panel__save-archive">
       <div className="panel__save-archive-container-button">
         <span>Archive:</span>
@@ -29,13 +32,13 @@ const Archive = ({
         to have your session permanently archived, please send us the URL. See the
         {' '}
         <Link
-          to="/help"
+          to="/help/visualization/heatmap#save-archive"
           visited={false}
         >
           help
         </Link>
         {' '}
-        more.
+        for more.
       </p>
     </div>
   </Section>

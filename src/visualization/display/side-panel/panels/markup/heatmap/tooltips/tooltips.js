@@ -8,7 +8,10 @@ const Tooltip = ({
   handleToggleTooltips,
   show,
 }) => (
-  <Section title="Tooltips">
+  <Section
+    helpLink="/help/visualization/heatmap#markup-tooltips"
+    title="Tooltips"
+  >
     <div className="panel-markup__grid">
       <Switch
         checked={show}

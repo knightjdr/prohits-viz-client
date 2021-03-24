@@ -18,6 +18,7 @@ const Image = ({
 }) => (
   <Section
     border={false}
+    helpLink="/help/visualization/heatmap#save"
     title="Save Image"
   >
     <div className="panel__save-image">

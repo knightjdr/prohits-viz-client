@@ -32,6 +32,7 @@ const SearchContainer = () => {
     <Search
       handleClear={handleClear}
       handleSearch={handleSearch}
+      helpLink="/help/visualization/heatmap#markup-search"
       term={term}
       warning={warning}
     />
