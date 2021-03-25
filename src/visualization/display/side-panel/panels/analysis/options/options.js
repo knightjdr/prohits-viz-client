@@ -20,9 +20,11 @@ const AnalysisOptions = ({
   analysisType,
   handleAnalysisNameChange,
   handleAnalysisTypeChange,
+  helpLink,
   submitForm,
 }) => (
   <Section
+    helpLink={helpLink}
     title="Analysis"
   >
     <div className="analysis__options-definition">
@@ -58,6 +60,7 @@ AnalysisOptions.propTypes = {
   analysisType: PropTypes.string.isRequired,
   handleAnalysisNameChange: PropTypes.func.isRequired,
   handleAnalysisTypeChange: PropTypes.func.isRequired,
+  helpLink: PropTypes.string.isRequired,
   submitForm: PropTypes.func.isRequired,
 };
 

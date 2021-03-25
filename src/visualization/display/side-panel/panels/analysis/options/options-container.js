@@ -1,10 +1,13 @@
+import PropTypes from 'prop-types';
 import React, { useState } from 'react';
 
 import AnalysisOptions from './options';
 
 import useSubmitAnalysis from '../submit/use-submit-analysis';
 
-const AnalysisOptionsContainer = () => {
+const AnalysisOptionsContainer = ({
+  helpLink,
+}) => {
   const [analysisName, setAnalysisName] = useState('');
   const [analysisType, setAnalysisType] = useState('gprofiler');
 
@@ -28,9 +31,18 @@ const AnalysisOptionsContainer = () => {
       analysisType={analysisType}
       handleAnalysisNameChange={handleAnalysisNameChange}
       handleAnalysisTypeChange={handleAnalysisTypeChange}
+      helpLink={helpLink}
       submitForm={submitForm}
     />
   );
+};
+
+AnalysisOptionsContainer.defaultProps = {
+  helpLink: '',
+};
+
+AnalysisOptionsContainer.propTypes = {
+  helpLink: PropTypes.string,
 };
 
 export default AnalysisOptionsContainer;

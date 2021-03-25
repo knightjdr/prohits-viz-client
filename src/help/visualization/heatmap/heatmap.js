@@ -72,7 +72,7 @@ const Heatmap = () => (
     <p>
       Images can be sorted by row by right-clicking on a column name and selected the desired option
       (ascending/descending). One column can be sorted relative to another, i.e. a fold-change sort,
-      by right clicking on one column and setting it as a reference, and then clicking on a second
+      by right-clicking on one column and setting it as a reference, and then clicking on a second
       column and sorting relative to the first.
     </p>
     <h4 id="minimap">Minimap</h4>
@@ -507,7 +507,187 @@ const Heatmap = () => (
       </figcaption>
     </figure>
     <h3 id="selections">Selections</h3>
-    <p>a</p>
+    <p>
+      Selections are a way to visualize only a part of the image or to define a subset of the data to perform
+      analysis on. Column and row names available for selection, and those currently selected, are displayed
+      on the &quot;Selections and Analysis tab&quot; of the side panel.
+    </p>
+    <p>
+      There are four ways to select columns and/or rows:
+    </p>
+    <ol>
+      <li>Items can be selected/deselected using the menus in the selection area</li>
+      <li>right-clicking on a column or row name will open a context menu with an option to select the item</li>
+      <li>
+        Clicking and dragging the cursor over an area of the image will select the columns and rows contained
+        in the selection. The selection will be marked by a black dashed box. Selecting items this way will replace
+        any previously selected items.
+      </li>
+      <li>
+        right-clicking on the selection menu will offer the option to paste in a list of name matching the desired
+        selection. When pasting a name, the matching algorithm is case insensitive, meaning
+        &quot;RAB&quot;, &quot;Rab&quot; and &quot;rab&quot; will be treated the same. Any pasted names not present
+        on the image will be discarded. A pasted list can either replace the current selection or be appended
+        to it.
+      </li>
+    </ol>
+    <figure className="help__image-screenshot">
+      <Image
+        alt="Interactive heat map and dot plot selection methods"
+        height={580}
+        images={images}
+        name="heatmap-selections"
+        width={667}
+      />
+      <figcaption>
+        <span>Making selections</span>
+        . Specific columns and rows can be selected from the selection menus on the side panel,
+        right-clicking on a column or row name, clicking and dragging the mouse over an area of the
+        image, and by right-clicking and pasting a list into the selection menu.
+      </figcaption>
+    </figure>
+    <h4 id="selections-snapshot">Manual filtering and snapshots</h4>
+    <p>
+      Once a selection is made, clicking the &quot;Filter&quot; button will display only the selected
+      rows and columns. If only rows have been selected (i.e. the column selection menu is empty),
+      all columns will be implicitly selected, and vice versa. This filtering can be undone by
+      {' '}
+      <Link
+        to="/help/visualization/heatmap#settings-reset"
+        visited={false}
+      >
+        resetting
+      </Link>
+      {' '}
+      the image. The order of the columns and rows will be as they appear in the selection menus.
+      The up and down arrows on the right of the menus can be used to control the order.
+      Important settings to consider when filtering are whether to include columns
+      and rows that do not have a single entry passing the filtering criteria. By default,
+      rows will be removed but not columns. This can be controlled from the
+      {' '}
+      <Link
+        to="/help/visualization/heatmap#settings-filtering"
+        visited={false}
+      >
+        filtering
+      </Link>
+      {' '}
+      area of the settings tab.
+    </p>
+    <p>
+      Creating a snapshot will have the same effect as filtering, but in this case a new image will
+      be created rather than simply hiding unwanted parts of the primary image. Both the primary (main) image and
+      the snapshot will be accessible from the snapshot menu button in the upper left.
+    </p>
+    <figure className="help__image-screenshot">
+      <Image
+        alt="Interactive heat map and dot plot snapshot menu"
+        height={580}
+        images={images}
+        name="heatmap-selections-snapshot"
+        width={667}
+      />
+      <figcaption>
+        <span>Snapshots</span>
+        . A snapshot of the main image was made and displays a small portion of the original image. Moving
+        between the main image and snapshots can be done from the snapshot menu in the upper left of the
+        window.
+      </figcaption>
+    </figure>
+    <p>
+      In terms of viewer functionality, there is no difference in behaviour between the main image and snapshots.
+      All settings and features can be set and will be recorded on a snapshot-by-snapshot basis. Snapshots can
+      even be made from other snapshots. The only difference is the base state of the image. Only rows and columns
+      present when the snapshot was made will be available from the snapshot. So if you sort a snapshot and then
+      reset it, the image will return to how it appeared when the snapshot was taken.
+    </p>
+    <p>
+      Snapshots are a convenient way to keep multiple sub images of interest available without having to resort
+      or refilter the main image every time. You can have as many snapshots open as you would like. Snapshots
+      can be given custom names; otherwise a default naming scheme will be used. Unwanted snapshots can be deleted from
+      the snapshot menu button.
+    </p>
+    <h4 id="selections-analysis">Analysis</h4>
+    <p>
+      The &quot;Analysis&quot; area below the selection menus can be used to perform analysis on selections, provided
+      the columns and rows selected represent gene names. Currently, there is only a single type of analysis
+      available but we intend on adding more in the future.
+    </p>
+    <figure className="help__image-screenshot">
+      <Image
+        alt="Interactive heat map and dot plot analysis"
+        height={463}
+        images={images}
+        name="heatmap-selections-analysis1"
+        width={232}
+      />
+      <figcaption>
+        <span>Analysis area on the side panel</span>
+        . Selections representing gene names can be used for analysis by choosing one of the available analysis types,
+        optionally naming the analysis and hitting submit.
+      </figcaption>
+    </figure>
+    <h5>Gene Ontology (GO) enrichment</h5>
+    <p>
+      GO enrichment analysis of selections is done using the API provided by
+      {' '}
+      <Link to="https://biit.cs.ut.ee/gprofiler/gost">
+        g:Profiler
+      </Link>
+      . The analysis can be given a custom name if desired, and a variety of analysis options are provided on the side
+      panel.
+    </p>
+    <p>
+      Analysis results will open automatically in a separate tabular view. Returning to an image can be done from the
+      snapshot menu in the upper left.
+    </p>
+    <figure className="help__image-screenshot">
+      <Image
+        alt="Interactive heat map and dot plot GO enrichment results"
+        height={580}
+        images={images}
+        name="heatmap-selections-analysis2"
+        width={667}
+      />
+      <figcaption>
+        <span>GO enrichment results</span>
+        . Enriched terms for the selection are sorted based on p-value. Hovering over column headings will display
+        the full column name, and hovering over individual cells will display the full cell information if it is too
+        long to fit within the default width.
+      </figcaption>
+    </figure>
+    <p>
+      Some column name have been abbreviated for space reasons:
+    </p>
+    <ul className="help__inner-list-heading">
+      <li>
+        <span>T (term size):</span>
+        the number of genes in the source database with the term
+      </li>
+      <li>
+        <span>Q (query size):</span>
+        the number of genes in the query selection that have at least one annotation in the source database. Only
+        genes with at least one annotation are used for enrichment as genes with no annotations may not have
+        been annotated and would unnecessarily penalize the results.
+      </li>
+      <li>
+        <span>I (intersection):</span>
+        the intersection between T and Q. This is the number of query genes with the term.
+      </li>
+    </ul>
+    <p>
+      The enrichment results can be exported from the button at the bottom. You can also using the annotation
+      input to create and add
+      {' '}
+      <Link
+        to="/help/visualizations/heatmap#markup-annotations"
+        visited={false}
+      >
+        annotations
+      </Link>
+      {' '}
+      to the image.
+    </p>
     <h3 id="save">Saving</h3>
     <p>
       Both images and interactive sessions can be saved. We also offer semi-permanent or permanent archiving

@@ -29,6 +29,7 @@ const Poi = forwardRef((
     />
     <Section
       border={false}
+      helpLink="/help/visualization/heatmap#selections"
       title="Selection"
     >
       <div className="poi__grid-heatmap">

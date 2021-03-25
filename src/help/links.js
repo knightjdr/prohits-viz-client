@@ -35,8 +35,20 @@ const links = [
     text: 'Visualization',
     children: [
       {
+        route: '/help/visualization/input-file',
+        text: 'Input file',
+      },
+      {
+        route: '/help/visualization/circular-heatmap',
+        text: 'Circular heatmap',
+      },
+      {
         route: '/help/visualization/heatmap',
         text: 'Heat map/dot plot',
+      },
+      {
+        route: '/help/visualization/scatterplot',
+        text: 'Scatter plot',
       },
     ],
   },
