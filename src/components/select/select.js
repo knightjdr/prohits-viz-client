@@ -21,12 +21,15 @@ const CustomSelect = forwardRef((
     selectedText,
     toggleOnClick,
     toggleOnKeydown,
+    vertical,
     warning,
     ...props
   },
   ref,
 ) => (
-  <SelectContainer className="select__container">
+  <SelectContainer
+    className={`select__container ${vertical ? 'select__container_vertical' : 'select__container_horizontal'}`}
+  >
     <Label
       id={inputID}
       label={label}
@@ -67,6 +70,7 @@ CustomSelect.defaultProps = {
   label: '',
   placeholder: 'Select...',
   selectedText: '',
+  vertical: true,
   warning: '',
 };
 
@@ -82,6 +86,7 @@ CustomSelect.propTypes = {
   selectedText: PropTypes.string,
   toggleOnClick: PropTypes.func.isRequired,
   toggleOnKeydown: PropTypes.func.isRequired,
+  vertical: PropTypes.bool,
   warning: PropTypes.string,
 };
 

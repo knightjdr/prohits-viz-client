@@ -1,41 +1,19 @@
-import React, { useMemo } from 'react';
-import { batch, useDispatch, useSelector } from 'react-redux';
+import React, { } from 'react';
+import { useDispatch, useSelector } from 'react-redux';
 
 import Image from './image';
 
 import handlers from '../../../../../scatter/transform/event-handlers';
 import { selectData, selectDataProperty } from '../../../../../../../state/selector/visualization/data-selector';
-import { selectState } from '../../../../../../../state/selector/general';
-import { defaultState as defaultDisplayState } from '../../../../../../defaults/scatter/display';
-import {
-  changeScatterPlot,
-  resetScatterTransformations,
-  updateDisplaySetting,
-} from '../../../../../../../state/visualization/settings/display-actions';
+import { updateDisplaySetting } from '../../../../../../../state/visualization/settings/display-actions';
 import { updateSetting } from '../../../../../../../state/visualization/settings/settings-actions';
 
 const ImageContainer = () => {
   const dispatch = useDispatch();
 
-  const plots = useSelector((state) => selectState(state, 'plots'));
   const settings = useSelector((state) => selectDataProperty(state, 'settings', 'current'));
-  const { selectedPlot, transform } = useSelector((state) => selectData(state, 'display'));
+  const { transform } = useSelector((state) => selectData(state, 'display'));
   const { equalScaleAxes, fontSize, logBase } = settings;
-
-  const plotNames = useMemo(
-    () => plots.map((plot) => plot.name),
-    [plots],
-  );
-
-  const handlePlotChange = (e, name, value) => {
-    const index = plotNames.indexOf(value);
-    batch(() => {
-      dispatch(changeScatterPlot(index));
-      dispatch(resetScatterTransformations({
-        transform: defaultDisplayState.transform,
-      }));
-    });
-  };
 
   const handleSettingChange = (e, name, value) => {
     dispatch(updateSetting(name, value));
@@ -64,12 +42,9 @@ const ImageContainer = () => {
     <Image
       equalScaleAxes={equalScaleAxes}
       fontSize={fontSize}
-      handlePlotChange={handlePlotChange}
       handleSettingChange={handleSettingChange}
       handleZoom={handleZoom}
       logBase={logBase}
-      plotNames={plotNames}
-      selectedPlot={selectedPlot}
     />
   );
 };

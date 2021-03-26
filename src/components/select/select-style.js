@@ -34,6 +34,16 @@ export const SelectContainer = styled.span`
     width: 100%;
   }
 
+  &.select__container_horizontal {
+    align-items: center;
+    display: inline-flex;
+    justify-content: center;
+    width: 100%;
+  }
+  &.select__container_horizontal label {
+    margin-bottom: 0;
+  }
+
   .select__arrow {
     opacity: 0.5;
     pointer-events: none;

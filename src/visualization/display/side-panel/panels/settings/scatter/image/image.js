@@ -13,30 +13,15 @@ import './image.css';
 const Image = ({
   equalScaleAxes,
   fontSize,
-  handlePlotChange,
   handleSettingChange,
   handleZoom,
   logBase,
-  plotNames,
-  selectedPlot,
 }) => (
   <>
     <Section
       border={false}
       title="Image"
     >
-      {
-        plotNames.length > 1
-        && (
-          <Select
-            id="selectedPlot"
-            label="Plot"
-            onChange={handlePlotChange}
-            options={plotNames}
-            value={plotNames[selectedPlot]}
-          />
-        )
-      }
       <Select
         id="logBase"
         label="Log transform"
@@ -85,12 +70,9 @@ const Image = ({
 Image.propTypes = {
   equalScaleAxes: PropTypes.bool.isRequired,
   fontSize: PropTypes.number.isRequired,
-  handlePlotChange: PropTypes.func.isRequired,
   handleSettingChange: PropTypes.func.isRequired,
   handleZoom: PropTypes.func.isRequired,
   logBase: PropTypes.string.isRequired,
-  plotNames: PropTypes.arrayOf(PropTypes.string).isRequired,
-  selectedPlot: PropTypes.number.isRequired,
 };
 
 export default Image;

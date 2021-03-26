@@ -3,7 +3,6 @@ import React from 'react';
 
 import Input from '../../../../../../../components/input/text/input-text-container';
 import Section from '../../../section/section';
-import Select from '../../../../../../../components/select/select-container';
 import Switch from '../../../../../../../components/input/switch/switch-container';
 import CircleDND from './circle-dnd';
 
@@ -13,11 +12,8 @@ const Image = ({
   circles,
   handleDragEnd,
   handleImageSetting,
-  handlePlotChange,
   handleSettingChange,
   handleSortByKnownChange,
-  plotNames,
-  selectedPlot,
   sortByKnown,
   thickness,
   toggleVisibility,
@@ -27,18 +23,6 @@ const Image = ({
       border={false}
       title="Image"
     >
-      {
-        plotNames.length > 1
-        && (
-          <Select
-            id="selectedPlot"
-            label="Plot"
-            onChange={handlePlotChange}
-            options={plotNames}
-            value={plotNames[selectedPlot]}
-          />
-        )
-      }
       <Switch
         checked={sortByKnown}
         id="sortByKnown"
@@ -75,11 +59,8 @@ Image.propTypes = {
   }).isRequired,
   handleDragEnd: PropTypes.func.isRequired,
   handleImageSetting: PropTypes.func.isRequired,
-  handlePlotChange: PropTypes.func.isRequired,
   handleSettingChange: PropTypes.func.isRequired,
   handleSortByKnownChange: PropTypes.func.isRequired,
-  plotNames: PropTypes.arrayOf(PropTypes.string).isRequired,
-  selectedPlot: PropTypes.number.isRequired,
   sortByKnown: PropTypes.bool.isRequired,
   thickness: PropTypes.number.isRequired,
   toggleVisibility: PropTypes.func.isRequired,

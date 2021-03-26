@@ -1,0 +1,7 @@
+.panel__info-plot {
+  padding-top: 1rem;
+}
+
+.panel__info-plot .select__container_horizontal .select__input-container {
+  flex: 1;
+}

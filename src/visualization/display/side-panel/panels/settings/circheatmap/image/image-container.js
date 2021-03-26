@@ -1,13 +1,11 @@
-import React, { useMemo } from 'react';
+import React from 'react';
 import { batch, useDispatch, useSelector } from 'react-redux';
 
 import Image from './image';
 
 import reorderArrayItem from '../../../../../../../utils/reorder-array-item';
-import { changeCircHeatmapPlot } from '../../../../../../../state/visualization/settings/display-actions';
 import { filterAndSortReadouts } from '../../../../../../../state/visualization/circheatmap/readouts-actions';
 import { selectData, selectDataProperty } from '../../../../../../../state/selector/visualization/data-selector';
-import { selectState } from '../../../../../../../state/selector/general';
 import {
   updateCircleOrder,
   updateCircleSetting,
@@ -19,14 +17,7 @@ const ImageContainer = () => {
   const dispatch = useDispatch();
 
   const circles = useSelector((state) => selectData(state, 'circles'));
-  const plots = useSelector((state) => selectState(state, 'plots'));
   const settings = useSelector((state) => selectDataProperty(state, 'settings', 'current'));
-  const { selectedPlot } = useSelector((state) => selectData(state, 'display'));
-
-  const plotNames = useMemo(
-    () => plots.map((plot) => plot.name),
-    [plots],
-  );
 
   const updateOrder = (destinationKey, sourceIndex, destIndex) => {
     const addItem = (dest, source) => [
@@ -81,11 +72,6 @@ const ImageContainer = () => {
     dispatch(updateSetting(id, value));
   };
 
-  const handlePlotChange = (e, name, value) => {
-    const index = plotNames.indexOf(value);
-    dispatch(changeCircHeatmapPlot(index, plots[index].readouts));
-  };
-
   const handleSettingChange = (e, id, value) => {
     const [, attribute, indexString] = id.split('_');
     const index = Number(indexString);
@@ -138,12 +124,9 @@ const ImageContainer = () => {
       circles={circles}
       handleDragEnd={handleDragEnd}
       handleImageSetting={handleImageSetting}
-      handlePlotChange={handlePlotChange}
       handleSettingChange={handleSettingChange}
       handleSortByKnownChange={handleSortByKnownChange}
-      plotNames={plotNames}
       sortByKnown={settings.sortByKnown}
-      selectedPlot={selectedPlot}
       thickness={settings.thickness}
       toggleVisibility={toggleVisibility}
     />
