@@ -42,7 +42,8 @@
 .help__inner h1,
 .help__inner h2,
 .help__inner h3,
-.help__inner h4 {
+.help__inner h4,
+.help__inner h5 {
   font-family: var(--fontStackPrimary);
   margin: 0;
 }
@@ -63,19 +64,25 @@
   font-size: 1rem;
   margin-bottom: 0.3rem;
 }
+.help__inner h5 {
+  font-size: 1rem;
+  margin-bottom: 0.3rem;
+}
 .help__inner h1 {
   border-bottom: 1px solid #e8e8e8;
   padding-bottom: 0.3rem;
 }
 .help__inner h2,
 .help__inner h3,
-.help__inner h4 {
+.help__inner h4,
+.help__inner h5 {
   display: inline-block;
   position: relative;
 }
 .help__inner h2:before,
 .help__inner h3:before,
-.help__inner h4:before {
+.help__inner h4:before,
+.help__inner h5:before {
   border-bottom: 1px solid #e8e8e8;
   content: "";
   bottom: -5px;
@@ -169,6 +176,10 @@
 
 .help__inner-figure-panel {
   font-weight: bold;
+}
+
+.help__inner-icon_red {
+  color: var(--warning);
 }
 
 @media (max-width: 799px) {

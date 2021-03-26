@@ -7,6 +7,7 @@ import {
   faSync,
   faToggleOn,
 } from '@fortawesome/pro-duotone-svg-icons';
+import { faTimesCircle } from '@fortawesome/pro-solid-svg-icons';
 
 import Link from '../../../components/link/text/link';
 import Image from '../../../components/dynamic-image/image-container';
@@ -66,14 +67,15 @@ const Heatmap = () => (
         that position. The arrows at the bottom right of the image can be used for precise navigation. The top
         and bottom arrows will move to the start or end of the image respectively, the next innermost arrows will move
         back or forward a screen at a time, and the innermost arrows will move up or down one row at a time.
+        Right-clicking on a column label will offer sorting options.
       </figcaption>
     </figure>
     <h4 id="sorting">Sorting</h4>
     <p>
-      Images can be sorted by row by right-clicking on a column name and selected the desired option
+      Images can be sorted by row by right-clicking on a column label and selecting the desired option
       (ascending/descending). One column can be sorted relative to another, i.e. a fold-change sort,
       by right-clicking on one column and setting it as a reference, and then clicking on a second
-      column and sorting relative to the first.
+      column and sorting. When a reference is set, sorting will always be in reference to that.
     </p>
     <h4 id="minimap">Minimap</h4>
     <p>
@@ -84,7 +86,7 @@ const Heatmap = () => (
     <p>
       Sorting an image will cause the minimap to disappear as it no longer corresponds to the current image
       state. A minimap matching the current image state is not automatically generated as this can be
-      time-consuming (several seconds) if the image is large. When the minimap is not available, a button
+      time-consuming if the image is large (several seconds). When the minimap is not available, a button
       will be present that allows a new minimap to be created if desired.
     </p>
     <p>
@@ -139,7 +141,7 @@ const Heatmap = () => (
         <FontAwesomeIcon icon={faToggleOn} />
         {' '}
         icon allows you to control the panel&apos;s opacity with the cursor position. If
-        this setting is toggled off, moving the cursor outside the panel will cause it to disappear,
+        this setting is toggled off, moving the cursor outside the detached panel will cause it to disappear,
         while moving it back over the area will cause it to reappear. This was designed for
         situations where a very large image is displayed that occupies the entire browser
         window. A detached minimap will overlap such a large image, but moving the cursor outside and
@@ -150,7 +152,7 @@ const Heatmap = () => (
     <h3>Settings</h3>
     <p>
       The settings tab allows customization of the image appearance and provides inputs for
-      filtering the image.
+      filtering.
     </p>
     <figure className="help__image-screenshot">
       <Image
@@ -168,13 +170,13 @@ const Heatmap = () => (
     <h4 id="settings-image">Image</h4>
     <p>
       From this area, basic settings about the image appearance can be adjusted. The image type can be swapped
-      between the heat map and dot plot types. Dot plots are only suitable when each condition-readout pair (a
-      circle or cell on the image) has
-      an associated score. If this is missing, the same score will be assumed for all cells on the image.
+      between the heat map and dot plot types. Dot plots are only suitable when each column-row pair (a
+      cell on the image) has an associated score. The same score will be assumed for all cells on the
+      image if the dot plot image type is selected but no score information is available.
     </p>
     <p>
       The cell
-      size (in pixels) can be adjusted. A smaller size will allow more of the image on to the screen at one time.
+      size (in pixels) can be adjusted. A smaller size will display more of the image on the screen at a time.
       This will cause the font size of the column and row labels to shrink and can slow down the viewer as more
       of the image must be drawn whenever changes are made to its appearance, for example when navigating, sorting
       or changing settings.
@@ -193,25 +195,25 @@ const Heatmap = () => (
       {' '}
       below). The circle size on the original image is relative to all conditions, i.e. the condition with the
       highest abundance will have the maximum circle size and all other values are relative to that. If you select
-      a subset of the image to view, that maximum condition may not be present. By toggling this setting to
-      &quot;on&quot;, the viewer will determine if a new maximum condition is needed and reset the circle ratios
-      across conditions accordingly.
+      a subset of the image to view, that maximum condition may not be present. By toggling this setting
+      on, the viewer will determine if a new maximum condition is needed and reset the circle ratios
+      across conditions accordingly, thus ensuring a perfectly self-contained image whenever the data is subset.
     </p>
     <p>
       Clicking the &quot;Fix plot&quot; toggle will fix the plot to the left side of the browser window when it
       does not occupy the full width of the screen. By default it is centered. It can be useful to fix the plot
       to the left when you want to detach the minimap and have it open at the same time as another tab on the side
-      panel, as this can yield sufficient space for everything to be visible side-by-side.
+      panel, as this can allow sufficient space for everything to be visible side-by-side.
     </p>
     <h4 id="settings-colour">Colour</h4>
     <p>
       The fill colour and edge colour on dot plots can be adjusted from this area of the settings panel. The
-      fill colour scale can also be inverted if desired. In the future we would like to add the ability to create custom
-      colour scales.
+      fill colour scale can also be inverted if desired. In the future, the ability to create custom
+      colour scales will be available.
     </p>
     <h4 id="settings-filtering">Filtering</h4>
     <p>
-      The readouts displayed on the image are determined by the &quot;Minimum abundance&quot; filter, and also by
+      The readouts/rows displayed on the image are determined by the &quot;Minimum abundance&quot; filter, and also by
       the &quot;Primary filter&quot; for data coming from the dot plot analysis tool. By default if a readout passes
       these filters for one condition, it will appear on the image.
     </p>
@@ -228,12 +230,12 @@ const Heatmap = () => (
     <p>
       The &quot;Abundance cap&quot; and &quot;Secondary filter&quot; are not used for filtering data.
       The abundance cap sets the upper limit for the fill colour scale and the secondary filter
-      defines the intermediate intensity edge on dot plots. These can still be adjusted and the changes will
+      defines the intermediate intensity edge on dot plots. When adjusted, the changes will
       be reflected in the colouring on the image and on the legend.
     </p>
     <p>
-      The &quot;Filter by&quot; dropdown menu allows you to restrict filtering to a subset of conditions. If
-      conditions are selected here, only readouts passing the filtering criteria for at least one of those
+      The &quot;Filter by&quot; dropdown menu allows you to restrict filtering to a subset of conditions/columns. If
+      column labels are selected here, only readouts passing the filtering criteria for at least one of those
       conditions will be included on the image. Combining filtering with
       {' '}
       <Link
@@ -272,8 +274,8 @@ const Heatmap = () => (
       />
       <figcaption>
         <span>Excluding data when making a selection</span>
-        . As a selection contains a subset of the image, they can contain columns and rows where there
-        are not readouts passing the specified filters. The area in the dashed box in the screenshot
+        . A selection that contains a subset of the image can contain columns and rows where there
+        are no readouts passing the specified filters. The area in the dashed box in the screenshot
         on the left contains eight rows and six columns (
         <span className="help__inner-figure-panel">
           a
@@ -293,13 +295,13 @@ const Heatmap = () => (
     </p>
     <h3 id="markup">Markup</h3>
     <p>
-      The markup tab contains settings for searching, annotating and editing the image. These features allow you
+      The markup tab contains actions for searching, annotating and editing the image. These features allow you
       to create very specific images with minimal effort, particularly relating to common tasks that might
       otherwise be tedious in vector drawing software.
     </p>
     <h4 id="markup-search">Search</h4>
     <p>
-      The search input allows you to search for column or row names. The search is case-insensitive and allows
+      The search input allows you to search for column or row labels. The search is case-insensitive and allows
       partial matches. If at least one match is found, the image will automatically scroll the first match
       into view. All matches will be highlighted on the image and can also be seen as green dots on the edges of
       the minimap.
@@ -313,8 +315,9 @@ const Heatmap = () => (
         width={733}
       />
       <figcaption>
-        <span>Searching for column and row names</span>
-        . Search for names and they will be highlighted in green on the image and on the sides of the minimap.
+        <span>Searching for column and row labels</span>
+        . Matches to the search query will be highlighted in green on the image and as dots on the sides of the
+        minimap.
       </figcaption>
     </figure>
     <p>
@@ -323,16 +326,17 @@ const Heatmap = () => (
       {' '}
       <code>^ra</code>
       {' '}
-      would match to column or row names beginning with
+      would match to column or row labels beginning with
       {' '}
       <code>ra</code>
-      , but not otherwise. Some of the more common characters are shown below, but please checkout this
+      {' '}
+      but not otherwise. Some of the more common characters are shown below, but please checkout this
       {' '}
       <Link to="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Guide/Regular_Expressions/Cheatsheet">
         cheatsheet
       </Link>
       {' '}
-      for a comprehensive list.
+      for a more extensive list.
     </p>
     <table className="help__inner-table">
       <thead>
@@ -352,7 +356,7 @@ const Heatmap = () => (
             <code>^ra</code>
           </td>
           <td>
-            <code>rab</code>
+            <code>raf1</code>
           </td>
           <td>
             <code>araf</code>
@@ -434,11 +438,11 @@ const Heatmap = () => (
     </figure>
     <h4 id="markup-edits">Edits</h4>
     <p>
-      Columns and rows can be reordered and deleted from the &quot;Edits&quot; area. Activating the
-      &quot;Delete columns/rows&quot; toggle will add an icon next to each column and row that when
-      clicked will delete it. Activating the
+      Columns and rows can be reordered and deleted from the &quot;Edit&quot; area. Activating the
+      &quot;Delete columns/rows&quot; toggle will add an icon next to each column and row that
+      will delete it when clicked. Activating the
       &quot;Reorder columns/rows&quot; toggle will add a number next to each column and row that
-      can be used to specify its position.
+      can be used to change its position.
     </p>
     <figure>
       <Image
@@ -450,7 +454,7 @@ const Heatmap = () => (
       />
       <figcaption>
         <span>Reorder columns/rows</span>
-        . Activating the &quot;Reorder columns/rows&quot; toggle will adds numbers to the image
+        . Activating the &quot;Reorder columns/rows&quot; toggle adds numbers to the image
         margins that can be used for reordering.
       </figcaption>
     </figure>
@@ -463,7 +467,11 @@ const Heatmap = () => (
       Text annotations can be added to the image from the &quot;Annotations&quot; area. Type in the annotation
       and it will be added to the center of the image&apos;s visible area. You can then click and drag the
       annotation to change its position. Annotations will appear as red dots on the minimap and can be
-      deleted individually by clicking on the X icon when hovering over the annotation.
+      deleted individually by clicking on the
+      {' '}
+      <FontAwesomeIcon className="help__inner-icon_red" icon={faTimesCircle} />
+      {' '}
+      icon when hovering over the annotation.
     </p>
     <figure>
       <Image
@@ -480,16 +488,20 @@ const Heatmap = () => (
       </figcaption>
     </figure>
     <p>
-      You may find it easier to add annotation in your vector-image editing software of choice after saving the image,
-      but in the case of very large images that are difficult to open in these tools, it may be more convenient to
+      You may find it easier to add annotations in your vector-image editing software of choice after saving the image.
+      However, in the case of very large images that are difficult to open in these tools, it may be more convenient to
       do that directly in the interactive viewer.
     </p>
     <h4 id="markup-markers">Markers</h4>
     <p>
-      Markers are simply boxes that can be placed around a portion of the image and are often associated with
+      Markers are boxes that can be placed around a portion of the image and are often associated with
       an annotation as a way of highlighting a portion of the image. Markers can be created by activating the
-      &quot;Record selections&quot; toggle and then dragging the mouse over the area to select. Markers will
-      also be displayed on the minimap and can be deleted individually by clicking on the X icon when hovering
+      &quot;Record selections&quot; toggle and then dragging the mouse over the area to highlight. Markers will
+      also be displayed on the minimap and can be deleted individually by clicking on the
+      {' '}
+      <FontAwesomeIcon className="help__inner-icon_red" icon={faTimesCircle} />
+      {' '}
+      icon when hovering
       over the edge of the marker.
     </p>
     <figure>
@@ -509,7 +521,7 @@ const Heatmap = () => (
     <h3 id="selections">Selections</h3>
     <p>
       Selections are a way to visualize only a part of the image or to define a subset of the data to perform
-      analysis on. Column and row names available for selection, and those currently selected, are displayed
+      analysis on. Column and row labels available for selection, and those currently selected, are displayed
       on the &quot;Selections and Analysis tab&quot; of the side panel.
     </p>
     <p>
@@ -517,14 +529,14 @@ const Heatmap = () => (
     </p>
     <ol>
       <li>Items can be selected/deselected using the menus in the selection area</li>
-      <li>right-clicking on a column or row name will open a context menu with an option to select the item</li>
+      <li>Right-clicking on a column or row name will open a context menu with an option to select the item</li>
       <li>
         Clicking and dragging the cursor over an area of the image will select the columns and rows contained
         in the selection. The selection will be marked by a black dashed box. Selecting items this way will replace
         any previously selected items.
       </li>
       <li>
-        right-clicking on the selection menu will offer the option to paste in a list of name matching the desired
+        Right-clicking on the selection menu will offer the option to paste in a list of names matching the desired
         selection. When pasting a name, the matching algorithm is case insensitive, meaning
         &quot;RAB&quot;, &quot;Rab&quot; and &quot;rab&quot; will be treated the same. Any pasted names not present
         on the image will be discarded. A pasted list can either replace the current selection or be appended
@@ -542,14 +554,14 @@ const Heatmap = () => (
       <figcaption>
         <span>Making selections</span>
         . Specific columns and rows can be selected from the selection menus on the side panel,
-        right-clicking on a column or row name, clicking and dragging the mouse over an area of the
+        right-clicking on a column or row label, clicking and dragging the mouse over an area of the
         image, and by right-clicking and pasting a list into the selection menu.
       </figcaption>
     </figure>
     <h4 id="selections-snapshot">Manual filtering and snapshots</h4>
     <p>
-      Once a selection is made, clicking the &quot;Filter&quot; button will display only the selected
-      rows and columns. If only rows have been selected (i.e. the column selection menu is empty),
+      Clicking the &quot;Filter&quot; button after making a selection will display only the selected
+      rows and columns on the image. If only rows have been selected (i.e. the column selection menu is empty),
       all columns will be implicitly selected, and vice versa. This filtering can be undone by
       {' '}
       <Link
@@ -598,14 +610,14 @@ const Heatmap = () => (
       In terms of viewer functionality, there is no difference in behaviour between the main image and snapshots.
       All settings and features can be set and will be recorded on a snapshot-by-snapshot basis. Snapshots can
       even be made from other snapshots. The only difference is the base state of the image. Only rows and columns
-      present when the snapshot was made will be available from the snapshot. So if you sort a snapshot and then
+      selected when the snapshot was made will be available from the snapshot. So if you sort a snapshot and then
       reset it, the image will return to how it appeared when the snapshot was taken.
     </p>
     <p>
       Snapshots are a convenient way to keep multiple sub images of interest available without having to resort
-      or refilter the main image every time. You can have as many snapshots open as you would like. Snapshots
-      can be given custom names; otherwise a default naming scheme will be used. Unwanted snapshots can be deleted from
-      the snapshot menu button.
+      or refilter the main image every time. You can create as many snapshots as you like. Snapshots
+      can be given custom names, otherwise a default naming scheme will be used. Unwanted snapshots can be deleted from
+      the snapshot menu.
     </p>
     <h4 id="selections-analysis">Analysis</h4>
     <p>
@@ -634,7 +646,7 @@ const Heatmap = () => (
       <Link to="https://biit.cs.ut.ee/gprofiler/gost">
         g:Profiler
       </Link>
-      . The analysis can be given a custom name if desired, and a variety of analysis options are provided on the side
+      . The analysis can be given a custom name and a variety of analysis options are provided on the side
       panel.
     </p>
     <p>
@@ -651,13 +663,13 @@ const Heatmap = () => (
       />
       <figcaption>
         <span>GO enrichment results</span>
-        . Enriched terms for the selection are sorted based on p-value. Hovering over column headings will display
-        the full column name, and hovering over individual cells will display the full cell information if it is too
-        long to fit within the default width.
+        . Enriched terms for the analysis are sorted based on p-value. Hovering over column headings will display
+        the full column name for abbreviations, and hovering over individual cells will display the full cell
+        information if it is too long to fit within the available width.
       </figcaption>
     </figure>
     <p>
-      Some column name have been abbreviated for space reasons:
+      Some column names have been abbreviated for space reasons:
     </p>
     <ul className="help__inner-list-heading">
       <li>
@@ -667,8 +679,8 @@ const Heatmap = () => (
       <li>
         <span>Q (query size):</span>
         the number of genes in the query selection that have at least one annotation in the source database. Only
-        genes with at least one annotation are used for enrichment as genes with no annotations may not have
-        been annotated and would unnecessarily penalize the results.
+        genes with at least one annotation are used for enrichment as genes with no annotations could be missing
+        or poorly studied entries that would unnecessarily penalize the results.
       </li>
       <li>
         <span>I (intersection):</span>
@@ -680,7 +692,7 @@ const Heatmap = () => (
       input to create and add
       {' '}
       <Link
-        to="/help/visualizations/heatmap#markup-annotations"
+        to="/help/visualization/heatmap#markup-annotations"
         visited={false}
       >
         annotations
@@ -709,14 +721,14 @@ const Heatmap = () => (
     <h4 id="save-image">Images</h4>
     <p>
       Images can be saved in SVG or PNG format. Generally we recommend SVG as these can be easily edited in Adobe
-      Illustrator or similar vector-based drawing software. Very large images should be saved in PNG format, as programs
+      Illustrator or similar vector-based editing software. Very large images should be saved in PNG format, as programs
       such as Illustrator can struggle to open SVG images when too many elements are present.
     </p>
     <h4 id="save-session">Session</h4>
     <p>
       A session refers to everything you may have done while using the interactive viewer, including sorting, filtering,
       analysis, etc. You can save your complete session to a file and reload it at a later date to continue where you
-      left off. Session files are JSON format (.json)
+      left off. Session files are in JSON format (.json)
     </p>
     <h4 id="save-archive">Archive</h4>
     <p>
@@ -735,8 +747,8 @@ const Heatmap = () => (
         contact@prohits-viz.org
       </Link>
       {' '}
-      with a request for permanent storage and provide the archived link. While we make backups of the archive, you
-      should always keep a local copy of the archived image as a backup.
+      with a request for permanent storage. While we make backups of the archive, you
+      should always keep a local copy of the archived image as a personal backup.
     </p>
     <p>
       Archiving was designed to support temporary but easy image sharing amongst collaborators, for which
@@ -753,8 +765,8 @@ const Heatmap = () => (
         session
       </Link>
       {' '}
-      section), so ensure that the state of the image is how you would like it to appear when the archive link
-      is used.
+      section directly above), so ensure that the state of the image is how you would like it to appear when the
+      archive link is used.
     </p>
   </div>
 );

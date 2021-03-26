@@ -13,15 +13,15 @@ const Visualization = () => (
     <ol className="help__inner-list-heading">
       <li>
         <span>heat map/dot plot:</span>
-        visualize images from the dot plot and correlation tools
+        visualizes images from the dot plot and correlation tools
       </li>
       <li>
         <span>scatter plot:</span>
-        visualize images from the condition-condition and specificity tools
+        visualizes images from the condition-condition and specificity tools
       </li>
       <li>
         <span>circular heat map:</span>
-        visualize images from the single-condition visualization (SCV) tool
+        visualizes images from the single-condition visualization (SCV) tool
       </li>
     </ol>
   </div>
