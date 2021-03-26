@@ -9,9 +9,13 @@ import Switch from '../../../../../../../components/input/switch/switch-containe
 const Labels = ({
   handleChange,
   handleClear,
+  helpLink,
   showAll,
 }) => (
-  <Section title="Labels">
+  <Section
+    helpLink={helpLink}
+    title="Labels"
+  >
     <div className="panel-markup__grid">
       <Switch
         checked={showAll}
@@ -35,6 +39,7 @@ const Labels = ({
 Labels.propTypes = {
   handleChange: PropTypes.func.isRequired,
   handleClear: PropTypes.func.isRequired,
+  helpLink: PropTypes.string.isRequired,
   showAll: PropTypes.bool.isRequired,
 };
 

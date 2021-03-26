@@ -21,6 +21,7 @@ const Image = ({
   <>
     <Section
       border={false}
+      helpLink="/help/visualization/circular-heatmap#settings-image"
       title="Image"
     >
       <Switch

@@ -12,6 +12,7 @@ import {
 } from '../../../../../../../state/visualization/markup/search-actions';
 
 const SearchContainer = ({
+  helpLink,
   labels,
 }) => {
   const dispatch = useDispatch();
@@ -34,13 +35,19 @@ const SearchContainer = ({
     <Search
       handleClear={handleClear}
       handleSearch={handleSearch}
+      helpLink={helpLink}
       term={term}
       warning={warning}
     />
   );
 };
 
+SearchContainer.defaultProps = {
+  helpLink: '',
+};
+
 SearchContainer.propTypes = {
+  helpLink: PropTypes.string,
   labels: PropTypes.arrayOf(PropTypes.string).isRequired,
 };
 

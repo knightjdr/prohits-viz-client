@@ -8,8 +8,14 @@ const Markup = ({
   labels,
 }) => (
   <div className="panel panel__markup">
-    <Search labels={labels} />
-    <Labels labels={labels} />
+    <Search
+      helpLink="/help/visualization/circular-heatmap#markup-search"
+      labels={labels}
+    />
+    <Labels
+      helpLink="/help/visualization/circular-heatmap#markup-labels"
+      labels={labels}
+    />
   </div>
 );
 

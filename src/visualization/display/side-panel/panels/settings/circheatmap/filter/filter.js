@@ -9,7 +9,10 @@ const Filter = ({
   maxReadouts,
   readoutName,
 }) => (
-  <Section title="Filters">
+  <Section
+    helpLink="/help/visualization/circular-heatmap#settings-filtering"
+    title="Filters"
+  >
     <Input
       id="maxReadouts"
       label={`Max. no. ${readoutName}(s)`}

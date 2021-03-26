@@ -13,6 +13,7 @@ const Settings = ({
     <Filter />
     <Reset
       handleReset={handleReset}
+      helpLink="/help/visualization/circular-heatmap#settings-reset"
     />
   </div>
 );

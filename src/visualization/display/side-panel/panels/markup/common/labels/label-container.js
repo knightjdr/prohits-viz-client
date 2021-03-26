@@ -8,6 +8,7 @@ import { selectDataProperty } from '../../../../../../../state/selector/visualiz
 import { clearLabels, toggleLabels } from '../../../../../../../state/visualization/scatter/label-actions';
 
 const LabelsContainer = ({
+  helpLink,
   labels,
 }) => {
   const dispatch = useDispatch();
@@ -28,12 +29,18 @@ const LabelsContainer = ({
     <Labels
       handleChange={handleChange}
       handleClear={handleClear}
+      helpLink={helpLink}
       showAll={showAll}
     />
   );
 };
 
+LabelsContainer.defaultProps = {
+  helpLink: '',
+};
+
 LabelsContainer.propTypes = {
+  helpLink: PropTypes.string,
   labels: PropTypes.arrayOf(PropTypes.string).isRequired,
 };
 
