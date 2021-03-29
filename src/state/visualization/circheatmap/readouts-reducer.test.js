@@ -219,7 +219,7 @@ describe('Readouts reducer', () => {
     });
   });
 
-  it('should handle LOAD_INTERACTIVE_STATE action when line state is defined', () => {
+  it('should handle LOAD_INTERACTIVE_STATE action when circle state is defined', () => {
     const action = {
       file: {
         circles: {
@@ -256,6 +256,7 @@ describe('Readouts reducer', () => {
       snapshotID: 'main',
       type: fileActions.LOAD_INTERACTIVE_STATE,
     };
+
     const expectedState = {
       main: {
         default: [

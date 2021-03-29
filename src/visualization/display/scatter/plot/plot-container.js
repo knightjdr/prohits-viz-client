@@ -5,11 +5,11 @@ import { batch, useDispatch, useSelector } from 'react-redux';
 import Plot from './plot';
 
 import handlers from '../transform/event-handlers';
+import removeDuplicates from '../../../../utils/remove-duplicates';
 import { selectData, selectDataProperty } from '../../../../state/selector/visualization/data-selector';
 import { updateDisplaySetting } from '../../../../state/visualization/settings/display-actions';
 import { updateLabel } from '../../../../state/visualization/scatter/label-actions';
 import { updatePOI } from '../../../../state/visualization/analysis/poi-actions';
-import removeDuplicates from '../../../../utils/remove-duplicates';
 
 const PlotContainer = ({
   lines,

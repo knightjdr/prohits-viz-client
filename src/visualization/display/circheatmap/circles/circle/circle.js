@@ -30,6 +30,7 @@ const Circle = ({
             handleClick={handleClick}
             handleMouseEnter={handleMouseEnter}
             handleMouseLeave={handleMouseLeave}
+            label={segment.readout}
             key={segment.readout}
             path={path}
             segmentIndex={index}

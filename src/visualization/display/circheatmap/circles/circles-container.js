@@ -20,20 +20,20 @@ const CirclesContainer = () => {
   const readouts = useSelector((state) => selectDataProperty(state, 'readouts', 'current'));
   const { thickness } = useSelector((state) => selectDataProperty(state, 'settings', 'current'));
 
-  const formatedCircles = useMemo(
+  const formattedCircles = useMemo(
     () => defineCircles(readouts),
     [readouts],
   );
 
   const labels = useMemo(
-    () => defineLabels(formatedCircles.segmentNames, dimensions),
-    [dimensions, formatedCircles.segmentNames],
+    () => defineLabels(formattedCircles.segmentNames, dimensions),
+    [dimensions, formattedCircles.segmentNames],
   );
 
   const handleMouseEnter = (e) => {
     ref.current.segmentEntered = true;
     const { attribute, segmentIndex } = e.target.dataset;
-    const { circles: sortedCircles, segmentNames } = formatedCircles;
+    const { circles: sortedCircles, segmentNames } = formattedCircles;
     const abundance = sortedCircles[attribute][segmentIndex];
     const position = labels[segmentIndex];
     const readout = segmentNames[segmentIndex];
@@ -80,10 +80,10 @@ const CirclesContainer = () => {
                 key={circle.attribute}
                 max={circle.max}
                 min={circle.min}
-                readouts={formatedCircles.segmentNames}
+                readouts={formattedCircles.segmentNames}
                 radius={dimensions.radius - (index * (thickness + space))}
                 thickness={thickness}
-                values={formatedCircles.circles[circle.attribute]}
+                values={formattedCircles.circles[circle.attribute]}
               />
             ))
           }

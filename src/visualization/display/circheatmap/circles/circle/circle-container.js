@@ -1,14 +1,17 @@
 import PropTypes from 'prop-types';
 import React, { useMemo } from 'react';
-import { useDispatch } from 'react-redux';
+import { batch, useDispatch, useSelector } from 'react-redux';
 
 import Circle from './circle';
 
 import calculateRadii from './calculate-radii';
 import defineSegments from './define-segments';
 import initializeColorGradient from '../../../../../utils/color/initialize-color-gradient';
+import removeDuplicates from '../../../../../utils/remove-duplicates';
 import setRangePartial from '../../../../../utils/set-range-partial';
+import { selectData, selectDataProperty } from '../../../../../state/selector/visualization/data-selector';
 import { updateLabel } from '../../../../../state/visualization/scatter/label-actions';
+import { updatePOI } from '../../../../../state/visualization/analysis/poi-actions';
 
 const NUM_COLORS = 101;
 
@@ -25,6 +28,9 @@ const CircleContainer = ({
   values,
 }) => {
   const dispatch = useDispatch();
+
+  const labels = useSelector((state) => selectDataProperty(state, 'labels', 'status'));
+  const poi = useSelector((state) => selectData(state, 'poi'));
 
   const gradient = useMemo(
     () => initializeColorGradient(color, NUM_COLORS),
@@ -55,9 +61,20 @@ const CircleContainer = ({
   );
 
   const handleClick = (e) => {
-    const { segmentIndex } = e.target.dataset;
-    const label = readouts[Number(segmentIndex)];
-    dispatch(updateLabel(label));
+    const { label, segmentIndex: index } = e.target.dataset;
+    const numIndex = Number(index);
+    const removePoi = Boolean(labels[label]);
+
+    const updatedPOI = {
+      readouts: removePoi
+        ? poi.readouts.filter((readout) => readout !== numIndex)
+        : removeDuplicates([...poi.readouts, numIndex]),
+    };
+
+    batch(() => {
+      dispatch(updateLabel(label));
+      dispatch(updatePOI(updatedPOI));
+    });
   };
 
   return (

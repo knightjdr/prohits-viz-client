@@ -7,6 +7,7 @@ const Segment = ({
   handleClick,
   handleMouseEnter,
   handleMouseLeave,
+  label,
   path,
   segmentIndex,
 }) => (
@@ -20,6 +21,7 @@ const Segment = ({
       className="circheatmap__segment-path"
       d={path}
       data-attribute={attribute}
+      data-label={label}
       data-segment-index={segmentIndex}
       fill={fill}
       onClick={handleClick}
@@ -38,6 +40,7 @@ Segment.propTypes = {
   handleClick: PropTypes.func.isRequired,
   handleMouseEnter: PropTypes.func.isRequired,
   handleMouseLeave: PropTypes.func.isRequired,
+  label: PropTypes.string.isRequired,
   path: PropTypes.string.isRequired,
   segmentIndex: PropTypes.number.isRequired,
 };
