@@ -7,13 +7,16 @@ import IconButton from '../../../../../../components/buttons/icon/button';
 import Link from '../../../../../../components/link/text/link';
 import Section from '../../section/section';
 
+import defineHelpLink from '../define-help-link';
+
 import './archive.css';
 
 const Archive = ({
   handleArchive,
+  imageType,
 }) => (
   <Section
-    helpLink="/help/visualization/heatmap#save-archive"
+    helpLink={defineHelpLink(imageType, 'save-session')}
     title="Archive"
   >
     <div className="panel__save-archive">
@@ -46,6 +49,7 @@ const Archive = ({
 
 Archive.propTypes = {
   handleArchive: PropTypes.func.isRequired,
+  imageType: PropTypes.string.isRequired,
 };
 
 export default Archive;

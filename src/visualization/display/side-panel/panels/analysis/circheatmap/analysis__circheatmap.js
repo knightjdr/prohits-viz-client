@@ -6,7 +6,9 @@ import Poi from './poi/poi-container';
 const Analysis = () => (
   <div className="panel">
     <Poi />
-    <AnalysisOptions />
+    <AnalysisOptions
+      helpLink="/help/visualization/circular-heatmap#selections-analysis"
+    />
   </div>
 );
 

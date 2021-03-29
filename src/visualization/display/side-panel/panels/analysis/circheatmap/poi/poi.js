@@ -28,6 +28,7 @@ const Poi = forwardRef((
     />
     <Section
       border={false}
+      helpLink="/help/visualization/circular-heatmap#selections"
       title="Selection"
     >
       <div className="poi__grid-circheatmap">

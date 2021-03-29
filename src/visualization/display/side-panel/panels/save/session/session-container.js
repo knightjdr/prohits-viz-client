@@ -1,11 +1,15 @@
 import React from 'react';
+import { useSelector } from 'react-redux';
 
 import Session from './session';
 
 import download from '../../../../../../utils/download';
 import useSessionData from './use-session-data';
+import { selectStateProperty } from '../../../../../../state/selector/general';
 
 const SessionContainer = () => {
+  const imageType = useSelector((state) => selectStateProperty(state, 'parameters', 'imageType'));
+
   const sessionData = useSessionData();
 
   const handleSaveToFile = () => {
@@ -14,7 +18,10 @@ const SessionContainer = () => {
   };
 
   return (
-    <Session handleSaveToFile={handleSaveToFile} />
+    <Session
+      handleSaveToFile={handleSaveToFile}
+      imageType={imageType}
+    />
   );
 };
 

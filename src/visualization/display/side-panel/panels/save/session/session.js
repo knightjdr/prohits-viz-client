@@ -4,13 +4,16 @@ import React from 'react';
 import ButtonRectangular from '../../../../../../components/buttons/rectangular/button';
 import Section from '../../section/section';
 
+import defineHelpLink from '../define-help-link';
+
 import './session.css';
 
 const Session = ({
   handleSaveToFile,
+  imageType,
 }) => (
   <Section
-    helpLink="/help/visualization/heatmap#save-session"
+    helpLink={defineHelpLink(imageType, 'save-session')}
     title="Save session"
   >
     <div className="panel__save-session">
@@ -29,6 +32,7 @@ const Session = ({
 
 Session.propTypes = {
   handleSaveToFile: PropTypes.func.isRequired,
+  imageType: PropTypes.string.isRequired,
 };
 
 export default Session;

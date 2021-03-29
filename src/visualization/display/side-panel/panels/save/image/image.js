@@ -8,6 +8,8 @@ import Message from './message';
 import Section from '../../section/section';
 import Select from '../../../../../../components/select/select-container';
 
+import defineHelpLink from '../define-help-link';
+
 import './image.css';
 
 const Image = ({
@@ -18,7 +20,7 @@ const Image = ({
 }) => (
   <Section
     border={false}
-    helpLink="/help/visualization/heatmap#save"
+    helpLink={defineHelpLink(imageType, 'save')}
     title="Save Image"
   >
     <div className="panel__save-image">

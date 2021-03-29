@@ -15,7 +15,7 @@ const Plot = ({
     <div className="panel__info-plot">
       <Select
         id="selectedPlot"
-        label="Plot"
+        label="Heat map"
         onChange={handlePlotChange}
         options={plotNames}
         value={plotNames[selectedPlot]}
