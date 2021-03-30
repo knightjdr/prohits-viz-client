@@ -11,10 +11,31 @@ const PoiCustomization = ({
   color,
   handleAddCustomizations,
   handleColorChange,
+  handleLabelChange,
   handleRadiusChange,
+  label,
   radius,
 }) => (
   <div className="poi-customization">
+    <Input
+      className="poi-customization__label"
+      id="customization-label"
+      label="Label"
+      onChange={handleLabelChange}
+      placeholder="Group label..."
+      type="text"
+      value={label}
+    />
+    <Input
+      className="poi-customization__radius"
+      id="customization-size"
+      label="Size"
+      min={1}
+      onChange={handleRadiusChange}
+      step={1}
+      type="number"
+      value={radius}
+    />
     <div className="poi-customization__color-label">
       <div>Colour (</div>
       <div
@@ -28,15 +49,6 @@ const PoiCustomization = ({
       modalID="poi-customization"
       onChange={handleColorChange}
       placement={['right', 'center']}
-    />
-    <Input
-      id="customization-size"
-      label="Size"
-      min={1}
-      onChange={handleRadiusChange}
-      step={1}
-      type="number"
-      value={radius}
     />
     <div className="poi-customization__submit">
       <ButtonRectangular
@@ -53,7 +65,9 @@ PoiCustomization.propTypes = {
   color: PropTypes.string.isRequired,
   handleAddCustomizations: PropTypes.func.isRequired,
   handleColorChange: PropTypes.func.isRequired,
+  handleLabelChange: PropTypes.func.isRequired,
   handleRadiusChange: PropTypes.func.isRequired,
+  label: PropTypes.string.isRequired,
   radius: PropTypes.number.isRequired,
 };
 

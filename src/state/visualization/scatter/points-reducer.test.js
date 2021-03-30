@@ -1,6 +1,6 @@
 import reducer from './points-reducer';
 import * as actions from './points-actions';
-import * as cusotmizationActions from './customization-actions';
+import * as customizationActions from './customization-actions';
 import * as displayActions from '../settings/display-actions';
 import * as fileActions from '../data/interactive-file-actions';
 import * as snapshotActions from '../data/snapshot-actions';
@@ -8,7 +8,7 @@ import * as snapshotActions from '../data/snapshot-actions';
 const defaultState = {};
 
 describe('Points reducer', () => {
-  it('should handle ADD_POINTS action', () => {
+  it('should handle ADD_GROUP action', () => {
     const currentState = {
       main: {
         default: [
@@ -26,12 +26,16 @@ describe('Points reducer', () => {
       },
     };
     const action = {
-      points: {
-        b: { color: '#00ff00', radius: 8 },
-        c: { color: '#00ff00', radius: 8 },
-      },
+      groups: [
+        {
+          color: '#ff0000',
+          label: 'custom group 1',
+          points: ['b', 'c'],
+          radius: 5,
+        },
+      ],
       snapshotID: 'main',
-      type: cusotmizationActions.ADD_POINTS,
+      type: customizationActions.ADD_GROUP,
     };
     const expectedState = {
       main: {

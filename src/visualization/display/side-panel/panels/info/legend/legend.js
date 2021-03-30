@@ -97,13 +97,16 @@ const Legend = ({
 );
 
 Legend.defaultProps = {
-  customizations: {},
+  customizations: [],
   legend: [],
   plot: {},
 };
 
 Legend.propTypes = {
-  customizations: PropTypes.shape({}),
+  customizations: PropTypes.arrayOf(PropTypes.shape({
+    color: PropTypes.string,
+    label: PropTypes.string,
+  })),
   downloadLegend: PropTypes.func.isRequired,
   legend: PropTypes.arrayOf(
     PropTypes.shape({

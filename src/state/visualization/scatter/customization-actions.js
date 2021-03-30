@@ -1,35 +1,38 @@
-import { getDataProperty } from '../../selector/visualization/data-selector';
+import convertArrayToObject from '../../../utils/convert-array-to-object';
+import { getData, getDataProperty } from '../../selector/visualization/data-selector';
 import { getPlotLabels } from '../../selector/visualization/scatter-selector';
 
-export const ADD_POINTS = 'ADD_POINTS';
-export const DELETE_ALL_POINTS = 'DELETE_ALL_POINTS';
+export const ADD_GROUP = 'ADD_GROUP';
+export const DELETE_ALL_GROUPS = 'DELETE_ALL_GROUPS';
+export const DELETE_GROUP = 'DELETE_GROUP';
 export const DELETE_POINT = 'DELETE_POINT';
-export const UPDATE_POINT = 'UPDATE_POINT';
 export const UPDATE_CUSTOMIZATION_SETTING = 'UPDATE_CUSTOMIZATION_SETTING';
+export const UPDATE_GROUP_SETTING = 'UPDATE_GROUP_SETTING';
 
-const addPointsFromThunk = (points, noTotalPoints) => ({
+const addGroupFromThunk = (groups, nextGroupID, noTotalPoints) => ({
   AUGMENT_WITH_ACTIVE_SNAPSHOT: true,
-  points,
+  groups,
+  nextGroupID,
   noTotalPoints,
-  type: ADD_POINTS,
+  type: ADD_GROUP,
 });
 
-export const deleteAllPoints = () => ({
+export const deleteAllGroups = () => ({
   AUGMENT_WITH_ACTIVE_SNAPSHOT: true,
-  type: DELETE_ALL_POINTS,
+  type: DELETE_ALL_GROUPS,
 });
 
-export const deletePoint = (label) => ({
+export const deleteGroup = (groupIndex) => ({
   AUGMENT_WITH_ACTIVE_SNAPSHOT: true,
+  groupIndex,
+  type: DELETE_GROUP,
+});
+
+export const deletePoint = (groupIndex, label) => ({
+  AUGMENT_WITH_ACTIVE_SNAPSHOT: true,
+  groupIndex,
   label,
   type: DELETE_POINT,
-});
-
-export const updatePoint = (label, parameters) => ({
-  AUGMENT_WITH_ACTIVE_SNAPSHOT: true,
-  label,
-  parameters,
-  type: UPDATE_POINT,
 });
 
 export const updateCustomizationSetting = (setting, value) => ({
@@ -39,18 +42,48 @@ export const updateCustomizationSetting = (setting, value) => ({
   value,
 });
 
-export const addPoints = (color, radius) => (
+export const updateGroupSetting = (groupIndex, setting, value) => ({
+  AUGMENT_WITH_ACTIVE_SNAPSHOT: true,
+  groupIndex,
+  setting,
+  type: UPDATE_GROUP_SETTING,
+  value,
+});
+
+export const addGroup = () => (
   (dispatch, getState) => {
     const state = getState();
-    const { labels } = getPlotLabels(state);
+    const customizations = getData(state, 'customization');
     const poi = getDataProperty(state, 'poi', 'points');
+    const { labels } = getPlotLabels(state);
+
+    const {
+      color,
+      groups,
+      id: groupID,
+      label: groupLabel,
+      radius,
+    } = customizations;
 
     if (poi.length > 0) {
-      const customizations = poi.reduce((accum, index) => ({
-        ...accum,
-        [labels[index]]: { color, radius },
-      }), {});
-      dispatch(addPointsFromThunk(customizations, labels.length));
+      const newGroup = {
+        color,
+        label: groupLabel || `custom group ${groupID}`,
+        points: poi.map((index) => labels[index]),
+        radius,
+      };
+      const newGroupDict = convertArrayToObject(newGroup.points);
+
+      const updatedGroups = [
+        ...groups.map((group) => ({
+          ...group,
+          points: group.points.filter((point) => !newGroupDict[point]),
+        })),
+        newGroup,
+      ];
+
+      const nextGroupID = customizations.label ? groupID : groupID + 1;
+      dispatch(addGroupFromThunk(updatedGroups, nextGroupID, labels.length));
     }
   }
 );

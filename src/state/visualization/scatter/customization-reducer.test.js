@@ -7,33 +7,42 @@ import * as snapshotActions from '../data/snapshot-actions';
 const defaultState = {};
 
 describe('Customization reducer', () => {
-  it('should handle ADD_POINTS action', () => {
+  it('should handle ADD_GROUP action', () => {
     const currentState = {
       main: {
         color: '#ff0000',
-        points: {
-          labelA: { color: '#ff0000', radius: 10 },
-          labelB: { color: '#000000', radius: 5 },
-        },
+        groups: [],
+        id: 1,
+        label: '',
         radius: 5,
       },
     };
     const action = {
-      points: {
-        labelB: { color: '#00ff00', radius: 8 },
-        labelC: { color: '#00ff00', radius: 8 },
-      },
+      groups: [
+        {
+          color: '#ff0000',
+          label: 'custom group 1',
+          points: ['a', 'd'],
+          radius: 5,
+        },
+      ],
+      nextGroupID: 2,
       snapshotID: 'main',
-      type: actions.ADD_POINTS,
+      type: actions.ADD_GROUP,
     };
     const expectedState = {
       main: {
         color: '#ff0000',
-        points: {
-          labelA: { color: '#ff0000', radius: 10 },
-          labelB: { color: '#00ff00', radius: 8 },
-          labelC: { color: '#00ff00', radius: 8 },
-        },
+        groups: [
+          {
+            color: '#ff0000',
+            label: 'custom group 1',
+            points: ['a', 'd'],
+            radius: 5,
+          },
+        ],
+        id: 2,
+        label: '',
         radius: 5,
       },
     };
@@ -50,19 +59,31 @@ describe('Customization reducer', () => {
     const currentState = {
       main: {
         color: '#ff0000',
-        points: {
-          labelA: { color: '#ff0000', radius: 10 },
-          labelB: { color: '#000000', radius: 5 },
-        },
+        groups: [
+          {
+            color: '#ff0000',
+            label: 'custom group 1',
+            points: ['a', 'd'],
+            radius: 5,
+          },
+        ],
+        id: 2,
+        label: '',
         radius: 5,
       },
     };
     const snapshotState = {
       color: '#ff0000',
-      points: {
-        labelA: { color: '#ff0000', radius: 10 },
-        labelB: { color: '#000000', radius: 5 },
-      },
+      groups: [
+        {
+          color: '#ff0000',
+          label: 'custom group 1',
+          points: ['a', 'd'],
+          radius: 5,
+        },
+      ],
+      id: 2,
+      label: '',
       radius: 5,
     };
     const action = {
@@ -81,10 +102,16 @@ describe('Customization reducer', () => {
     const currentState = {
       main: {
         color: '#ff0000',
-        points: {
-          labelA: { color: '#ff0000', radius: 10 },
-          labelB: { color: '#000000', radius: 5 },
-        },
+        groups: [
+          {
+            color: '#ff0000',
+            label: 'custom group 1',
+            points: ['a', 'd'],
+            radius: 5,
+          },
+        ],
+        id: 2,
+        label: 'my custom label',
         radius: 5,
       },
     };
@@ -96,7 +123,9 @@ describe('Customization reducer', () => {
       ...currentState,
       main: {
         color: '#ff0000',
-        points: {},
+        groups: [],
+        id: 1,
+        label: 'my custom label',
         radius: 5,
       },
     };
@@ -113,26 +142,87 @@ describe('Customization reducer', () => {
     expect(reducer(undefined, action)).toEqual(expectedState);
   });
 
-  it('should handle DELETE_ALL_POINTS action', () => {
+  it('should handle DELETE_ALL_GROUPS action', () => {
     const currentState = {
       main: {
         color: '#ff0000',
-        points: {
-          labelA: { color: '#ff0000', radius: 10 },
-          labelB: { color: '#000000', radius: 5 },
-        },
-        radius: 5,
+        groups: [
+          {
+            color: '#ff0000',
+            label: 'custom group 1',
+            points: ['a', 'd'],
+            radius: 5,
+          },
+          {
+            color: '#00ff00',
+            label: 'custom group 2',
+            points: ['b', 'c'],
+            radius: 10,
+          },
+        ],
+        id: 3,
+        label: 'my custom label',
+        radius: 10,
       },
     };
     const action = {
       snapshotID: 'main',
-      type: actions.DELETE_ALL_POINTS,
+      type: actions.DELETE_ALL_GROUPS,
     };
     const expectedState = {
       main: {
         color: '#ff0000',
-        points: {},
-        radius: 5,
+        groups: [],
+        id: 1,
+        label: 'my custom label',
+        radius: 10,
+      },
+    };
+    expect(reducer(currentState, action)).toEqual(expectedState);
+  });
+
+  it('should handle DELETE_GROUP action', () => {
+    const currentState = {
+      main: {
+        color: '#ff0000',
+        groups: [
+          {
+            color: '#ff0000',
+            label: 'custom group 1',
+            points: ['a', 'd'],
+            radius: 5,
+          },
+          {
+            color: '#00ff00',
+            label: 'custom group 2',
+            points: ['b', 'c'],
+            radius: 10,
+          },
+        ],
+        id: 3,
+        label: 'my custom label',
+        radius: 10,
+      },
+    };
+    const action = {
+      snapshotID: 'main',
+      groupIndex: 0,
+      type: actions.DELETE_GROUP,
+    };
+    const expectedState = {
+      main: {
+        color: '#ff0000',
+        groups: [
+          {
+            color: '#00ff00',
+            label: 'custom group 2',
+            points: ['b', 'c'],
+            radius: 10,
+          },
+        ],
+        id: 3,
+        label: 'my custom label',
+        radius: 10,
       },
     };
     expect(reducer(currentState, action)).toEqual(expectedState);
@@ -142,24 +232,38 @@ describe('Customization reducer', () => {
     const currentState = {
       main: {
         color: '#ff0000',
-        points: {
-          labelA: { color: '#ff0000', radius: 10 },
-          labelB: { color: '#000000', radius: 5 },
-        },
+        groups: [
+          {
+            color: '#ff0000',
+            label: 'custom group 1',
+            points: ['a', 'd'],
+            radius: 5,
+          },
+        ],
+        id: 2,
+        label: 'my custom label',
         radius: 5,
       },
     };
     const action = {
-      label: 'labelA',
+      groupIndex: 0,
+      label: 'a',
       snapshotID: 'main',
       type: actions.DELETE_POINT,
     };
     const expectedState = {
       main: {
         color: '#ff0000',
-        points: {
-          labelB: { color: '#000000', radius: 5 },
-        },
+        groups: [
+          {
+            color: '#ff0000',
+            label: 'custom group 1',
+            points: ['d'],
+            radius: 5,
+          },
+        ],
+        id: 2,
+        label: 'my custom label',
         radius: 5,
       },
     };
@@ -170,23 +274,39 @@ describe('Customization reducer', () => {
     const action = {
       file: {
         customization: {
-          color: '#ff0000',
-          points: {
-            labelA: { color: '#ff0000', radius: 10 },
-            labelB: { color: '#000000', radius: 5 },
+          main: {
+            color: '#ff0000',
+            groups: [
+              {
+                color: '#ff0000',
+                label: 'custom group 1',
+                points: ['a', 'd'],
+                radius: 5,
+              },
+            ],
+            id: 2,
+            label: 'my custom label',
+            radius: 5,
           },
-          radius: 5,
         },
       },
       type: fileActions.LOAD_INTERACTIVE_STATE,
     };
     const expectedState = {
-      color: '#ff0000',
-      points: {
-        labelA: { color: '#ff0000', radius: 10 },
-        labelB: { color: '#000000', radius: 5 },
+      main: {
+        color: '#ff0000',
+        groups: [
+          {
+            color: '#ff0000',
+            label: 'custom group 1',
+            points: ['a', 'd'],
+            radius: 5,
+          },
+        ],
+        id: 2,
+        label: 'my custom label',
+        radius: 5,
       },
-      radius: 5,
     };
     expect(reducer(undefined, action)).toEqual(expectedState);
   });
@@ -195,19 +315,31 @@ describe('Customization reducer', () => {
     const currentState = {
       main: {
         color: '#ff0000',
-        points: {
-          labelA: { color: '#ff0000', radius: 10 },
-          labelB: { color: '#000000', radius: 5 },
-        },
+        groups: [
+          {
+            color: '#ff0000',
+            label: 'custom group 1',
+            points: ['a', 'd'],
+            radius: 5,
+          },
+        ],
+        id: 2,
+        label: 'my custom label',
         radius: 5,
       },
       snapshot1: {
         color: '#ff0000',
-        points: {
-          labelA: { color: '#ff0000', radius: 10 },
-          labelB: { color: '#000000', radius: 5 },
-        },
-        radius: 5,
+        groups: [
+          {
+            color: '#ff0000',
+            label: 'custom group 1',
+            points: ['b', 'c'],
+            radius: 5,
+          },
+        ],
+        id: 2,
+        label: 'my custom label',
+        radius: 10,
       },
     };
     const action = {
@@ -217,40 +349,16 @@ describe('Customization reducer', () => {
     const expectedState = {
       main: {
         color: '#ff0000',
-        points: {
-          labelA: { color: '#ff0000', radius: 10 },
-          labelB: { color: '#000000', radius: 5 },
-        },
-        radius: 5,
-      },
-    };
-    expect(reducer(currentState, action)).toEqual(expectedState);
-  });
-
-  it('should handle UPDATE_POINT action', () => {
-    const currentState = {
-      main: {
-        color: '#ff0000',
-        points: {
-          labelA: { color: '#ff0000', radius: 10 },
-          labelB: { color: '#000000', radius: 5 },
-        },
-        radius: 5,
-      },
-    };
-    const action = {
-      label: 'labelA',
-      parameters: { color: '#00ff00', radius: 7 },
-      snapshotID: 'main',
-      type: actions.UPDATE_POINT,
-    };
-    const expectedState = {
-      main: {
-        color: '#ff0000',
-        points: {
-          labelA: { color: '#00ff00', radius: 7 },
-          labelB: { color: '#000000', radius: 5 },
-        },
+        groups: [
+          {
+            color: '#ff0000',
+            label: 'custom group 1',
+            points: ['a', 'd'],
+            radius: 5,
+          },
+        ],
+        id: 2,
+        label: 'my custom label',
         radius: 5,
       },
     };
@@ -261,10 +369,9 @@ describe('Customization reducer', () => {
     const currentState = {
       main: {
         color: '#ff0000',
-        points: {
-          labelA: { color: '#ff0000', radius: 10 },
-          labelB: { color: '#000000', radius: 5 },
-        },
+        groups: [],
+        id: 1,
+        label: '',
         radius: 5,
       },
     };
@@ -277,11 +384,65 @@ describe('Customization reducer', () => {
     const expectedState = {
       main: {
         color: '#00ff00',
-        points: {
-          labelA: { color: '#ff0000', radius: 10 },
-          labelB: { color: '#000000', radius: 5 },
-        },
+        groups: [],
+        id: 1,
+        label: '',
         radius: 5,
+      },
+    };
+    expect(reducer(currentState, action)).toEqual(expectedState);
+  });
+
+  it('should handle UPDATE_GROUP_SETTING action', () => {
+    const currentState = {
+      main: {
+        color: '#ff0000',
+        groups: [
+          {
+            color: '#ff0000',
+            label: 'custom group 1',
+            points: ['a', 'd'],
+            radius: 5,
+          },
+          {
+            color: '#00ff00',
+            label: 'custom group 2',
+            points: ['b', 'c'],
+            radius: 10,
+          },
+        ],
+        id: 3,
+        label: 'my custom label',
+        radius: 10,
+      },
+    };
+    const action = {
+      snapshotID: 'main',
+      groupIndex: 0,
+      setting: 'color',
+      type: actions.UPDATE_GROUP_SETTING,
+      value: '#0000ff',
+    };
+    const expectedState = {
+      main: {
+        color: '#ff0000',
+        groups: [
+          {
+            color: '#0000ff',
+            label: 'custom group 1',
+            points: ['a', 'd'],
+            radius: 5,
+          },
+          {
+            color: '#00ff00',
+            label: 'custom group 2',
+            points: ['b', 'c'],
+            radius: 10,
+          },
+        ],
+        id: 3,
+        label: 'my custom label',
+        radius: 10,
       },
     };
     expect(reducer(currentState, action)).toEqual(expectedState);

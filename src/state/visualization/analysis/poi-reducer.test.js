@@ -13,20 +13,24 @@ describe('POI reducer', () => {
     expect(reducer(undefined, action)).toEqual(expectedState);
   });
 
-  it('should handle ADD_POINTS action', () => {
+  it('should handle ADD_GROUP action', () => {
     const currentState = {
       main: {
         points: [2, 3],
       },
     };
     const action = {
-      points: {
-        labelB: { color: '#00ff00', radius: 8 },
-        labelC: { color: '#00ff00', radius: 8 },
-      },
-      snapshotID: 'main',
+      groups: [
+        {
+          color: '#ff0000',
+          label: 'custom group 1',
+          points: ['a', 'd'],
+          radius: 5,
+        },
+      ],
       noTotalPoints: 10,
-      type: customizationActions.ADD_POINTS,
+      snapshotID: 'main',
+      type: customizationActions.ADD_GROUP,
     };
     const expectedState = {
       main: {
@@ -203,7 +207,7 @@ describe('POI reducer', () => {
   });
 
   it('should handle UPDATE_POI action', () => {
-    const currenState = {
+    const currentState = {
       main: {
         columns: [3, 4],
         rows: [5, 1, 2],
@@ -223,6 +227,6 @@ describe('POI reducer', () => {
         rows: [5, 1, 2, 0],
       },
     };
-    expect(reducer(currenState, action)).toEqual(expectedState);
+    expect(reducer(currentState, action)).toEqual(expectedState);
   });
 });

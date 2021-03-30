@@ -10,7 +10,7 @@ import { selectState } from '../../../../../../state/selector/general';
 
 const LegendContainer = () => {
   const circles = useSelector((state) => selectDataProperty(state, 'circles', 'order'));
-  const customizations = useSelector((state) => selectDataProperty(state, 'customization', 'points'));
+  const customizations = useSelector((state) => selectDataProperty(state, 'customization', 'groups'));
   const legend = useSelector((state) => selectState(state, 'legend'));
   const parameters = useSelector((state) => selectState(state, 'parameters'));
   const plot = useSelector((state) => selectPlot(state));

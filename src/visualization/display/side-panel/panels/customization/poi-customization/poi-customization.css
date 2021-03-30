@@ -2,8 +2,8 @@
   align-items: center;
   box-sizing: border-box;
   display: grid;
-  grid-row-gap: 12px;
-  grid-template-columns: 150px 1fr;
+  grid-row-gap: 1rem;
+  grid-template-columns: 120px 1fr;
   justify-content: flex;
   margin-top: 1rem;
 }
@@ -14,10 +14,14 @@
 .poi-customization .input__container > label {
   display: inline-block;
   text-align: right;
-  width: 150px;
+  width: 120px;
 }
-.poi-customization .input__container > input {
-  width: 60px;
+input.poi-customization__label {
+  min-width: 100px;
+  width: 80%;
+}
+input.poi-customization__radius {
+  width: 100px;
 }
 
 .poi-customization__color-indicator {
@@ -36,6 +40,6 @@
 
 .poi-customization__submit {
   grid-column: 1 / 3;
-  margin-top: 0.3rem;
   justify-self: center;
+  margin-top: 0.3rem;
 }

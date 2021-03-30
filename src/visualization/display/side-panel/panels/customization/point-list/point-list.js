@@ -1,15 +1,17 @@
 import PropTypes from 'prop-types';
-import React, { Fragment } from 'react';
+/* import React, { Fragment } from 'react';
 import { faTrash } from '@fortawesome/pro-duotone-svg-icons';
 import { faTimes } from '@fortawesome/pro-solid-svg-icons';
 
 import ButtonIcon from '../../../../../../components/buttons/icon/button';
 import ColorPicker from '../../../../../../components/color-picker/color-picker-container';
-import Section from '../../section/section';
+import Section from '../../section/section'; */
 
 import './point-list.css';
 
-const PointList = ({
+const PointList = () => null;
+
+/* const PointList = ({
   customization,
   handleColorChange,
   handleDelete,
@@ -95,7 +97,7 @@ const PointList = ({
       }
     </div>
   </Section>
-);
+); */
 
 PointList.propTypes = {
   customization: PropTypes.shape({}).isRequired,

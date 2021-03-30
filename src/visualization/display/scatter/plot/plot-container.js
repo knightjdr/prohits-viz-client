@@ -1,5 +1,5 @@
 import PropTypes from 'prop-types';
-import React from 'react';
+import React, { useMemo } from 'react';
 import { batch, useDispatch, useSelector } from 'react-redux';
 
 import Plot from './plot';
@@ -10,6 +10,7 @@ import { selectData, selectDataProperty } from '../../../../state/selector/visua
 import { updateDisplaySetting } from '../../../../state/visualization/settings/display-actions';
 import { updateLabel } from '../../../../state/visualization/scatter/label-actions';
 import { updatePOI } from '../../../../state/visualization/analysis/poi-actions';
+import getCustomPointsFromGroups from './customization/get-custom-points-from-groups';
 
 const PlotContainer = ({
   lines,
@@ -18,12 +19,17 @@ const PlotContainer = ({
   const dispatch = useDispatch();
 
   const axisLength = useSelector((state) => selectDataProperty(state, 'dimensions', 'height'));
-  const customization = useSelector((state) => selectDataProperty(state, 'customization', 'points'));
+  const groups = useSelector((state) => selectDataProperty(state, 'customization', 'groups'));
   const labels = useSelector((state) => selectDataProperty(state, 'labels', 'status'));
   const poi = useSelector((state) => selectData(state, 'poi'));
   const searchLabels = useSelector((state) => selectDataProperty(state, 'searchStatus', 'labels'));
   const transform = useSelector((state) => selectDataProperty(state, 'display', 'transform'));
   const { fontSize } = useSelector((state) => selectDataProperty(state, 'settings', 'current'));
+
+  const customPoints = useMemo(
+    () => getCustomPointsFromGroups(groups),
+    [groups],
+  );
 
   const setTransform = (value) => {
     dispatch(updateDisplaySetting('transform', value));
@@ -64,7 +70,7 @@ const PlotContainer = ({
   return (
     <Plot
       axisLength={axisLength}
-      customization={customization}
+      customization={customPoints}
       fontSize={fontSize}
       handleClickLabel={handleClickLabel}
       handleMouseDown={handleMouseDown}

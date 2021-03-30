@@ -5,10 +5,16 @@ describe('Fill customization', () => {
     const userCustomization = {
       main: {
         color: '#ff0000',
-        points: {
-          labelA: { color: '#ff0000', radius: 10 },
-          labelB: { color: '#000000', radius: 5 },
-        },
+        groups: [
+          {
+            color: '#ff0000',
+            label: 'custom group 1',
+            points: ['a', 'd'],
+            radius: 5,
+          },
+        ],
+        id: 2,
+        label: 'my custom label',
         radius: 5,
       },
     };
@@ -21,13 +27,37 @@ describe('Fill customization', () => {
     expect(fillCustomization(userCustomization)).toEqual(expected);
   });
 
+  it('should return defaults when user-defined values are invalid', () => {
+    const userCustomization = {
+      main: {
+        color: 'fff',
+        groups: {},
+        id: '1',
+        label: 1,
+        radius: 'four',
+      },
+    };
+    const expected = {
+      main: {
+        ...defaultState,
+      },
+    };
+    expect(fillCustomization(userCustomization)).toEqual(expected);
+  });
+
   it('should return user-defined customization when valid but without snapshot identifiers', () => {
     const userCustomization = {
       color: '#ff0000',
-      points: {
-        labelA: { color: '#ff0000', radius: 10 },
-        labelB: { color: '#000000', radius: 5 },
-      },
+      groups: [
+        {
+          color: '#ff0000',
+          label: 'custom group 1',
+          points: ['a', 'd'],
+          radius: 5,
+        },
+      ],
+      id: 2,
+      label: 'my custom label',
       radius: 5,
     };
     const expected = {

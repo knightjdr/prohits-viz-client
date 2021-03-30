@@ -34,10 +34,11 @@ const reduceAndReset = (state, action) => ({
 });
 
 const reduceAndReorder = (state, action) => {
+  const { points } = action.groups[action.groups.length - 1];
   const firstGroup = [];
   const secondGroup = [];
   state[action.snapshotID].current.forEach((point) => {
-    if (!action.points[point.label]) {
+    if (!points.includes(point.label)) {
       firstGroup.push(point);
     } else {
       secondGroup.push(point);
@@ -57,7 +58,7 @@ const reduceAndReorder = (state, action) => {
 
 const reducer = (state = {}, action) => {
   switch (action.type) {
-    case customizationActions.ADD_POINTS:
+    case customizationActions.ADD_GROUP:
       return reduceAndReorder(state, action);
     case snapshotActions.ADD_SNAPSHOT:
       return reduceAndAddSnapshot(state, action, 'points');

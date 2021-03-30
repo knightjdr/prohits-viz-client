@@ -1,20 +1,20 @@
-import React, { useMemo } from 'react';
-import { useDispatch, useSelector } from 'react-redux';
+import React from 'react';
+import { useDispatch } from 'react-redux';
 
 import PointList from './point-list';
 
-import sort from '../../../../../../utils/sort';
+// import sort from '../../../../../../utils/sort';
 import {
-  deleteAllPoints,
+  // deleteAllPoints,
   deletePoint,
-  updatePoint,
+  // updatePoint,
 } from '../../../../../../state/visualization/scatter/customization-actions';
-import { selectDataProperty } from '../../../../../../state/selector/visualization/data-selector';
+// import { selectDataProperty } from '../../../../../../state/selector/visualization/data-selector';
 
 const PointListContainer = () => {
   const dispatch = useDispatch();
 
-  const customization = useSelector((state) => selectDataProperty(state, 'customization', 'points'));
+  /* const customization = useSelector((state) => selectDataProperty(state, 'customization', 'points'));
 
   const labelOrder = useMemo(
     () => {
@@ -23,14 +23,14 @@ const PointListContainer = () => {
       return order;
     },
     [customization],
-  );
+  ); */
 
-  const handleColorChange = (newColor, label) => {
-    const parameters = {
+  const handleColorChange = (/* newColor, label */) => {
+    /* const parameters = {
       ...customization[label],
       color: newColor,
-    };
-    dispatch(updatePoint(label, parameters));
+    }; */
+    // dispatch(updatePoint(label, parameters));
   };
 
   const handleDelete = (e) => {
@@ -40,27 +40,27 @@ const PointListContainer = () => {
   };
 
   const handleDeleteAll = () => {
-    dispatch(deleteAllPoints());
+    // dispatch(deleteAllPoints());
   };
 
-  const handleRadiusChange = (e) => {
-    const { dataset, value } = e.target;
+  const handleRadiusChange = (/* e */) => {
+    /* const { dataset, value } = e.target;
     const { label } = dataset;
     const parameters = {
       ...customization[label],
       radius: value,
-    };
-    dispatch(updatePoint(label, parameters));
+    }; */
+    // dispatch(updatePoint(label, parameters));
   };
 
   return (
     <PointList
-      customization={customization}
+      customization={{}}
       handleColorChange={handleColorChange}
       handleDelete={handleDelete}
       handleDeleteAll={handleDeleteAll}
       handleRadiusChange={handleRadiusChange}
-      labelOrder={labelOrder}
+      labelOrder={[]}
     />
   );
 };

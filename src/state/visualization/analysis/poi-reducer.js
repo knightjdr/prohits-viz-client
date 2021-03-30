@@ -16,7 +16,7 @@ const reduceAndClear = (state, action) => ({
 });
 
 const reduceAndReorder = (state, action) => {
-  const numberPoi = Object.keys(action.points).length;
+  const numberPoi = action.groups[action.groups.length - 1].points.length;
   const newStart = action.noTotalPoints - numberPoi;
   return {
     ...state,
@@ -37,7 +37,7 @@ const reduceAndUpdatePOI = (state, action) => ({
 
 const reducer = (state = {}, action) => {
   switch (action.type) {
-    case customizationActions.ADD_POINTS:
+    case customizationActions.ADD_GROUP:
       return reduceAndReorder(state, action);
     case snapshotActions.ADD_SNAPSHOT:
       return reduceAndAddSnapshot(state, action, 'poi');

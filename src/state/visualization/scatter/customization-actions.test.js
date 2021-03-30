@@ -3,16 +3,22 @@ import thunk from 'redux-thunk';
 
 import * as actions from './customization-actions';
 
-const middlewares = [thunk];
-const mockStore = configureMockStore(middlewares);
+const middleware = [thunk];
+const mockStore = configureMockStore(middleware);
 
 describe('Customization actions', () => {
-  describe('add points', () => {
-    it('should dispatch an action to add points', async () => {
-      const color = '#ff0000';
-      const radius = 5;
-
+  describe('add group', () => {
+    it('should dispatch an action to add a group using id', async () => {
       const state = {
+        customization: {
+          main: {
+            color: '#ff0000',
+            groups: [],
+            id: 1,
+            label: '',
+            radius: 5,
+          },
+        },
         poi: {
           main: {
             points: [0, 3],
@@ -34,22 +40,81 @@ describe('Customization actions', () => {
 
       const expectedActions = [{
         AUGMENT_WITH_ACTIVE_SNAPSHOT: true,
-        points: {
-          a: { color: '#ff0000', radius: 5 },
-          d: { color: '#ff0000', radius: 5 },
-        },
+        groups: [
+          {
+            color: '#ff0000',
+            label: 'custom group 1',
+            points: ['a', 'd'],
+            radius: 5,
+          },
+        ],
+        nextGroupID: 2,
         noTotalPoints: 4,
-        type: actions.ADD_POINTS,
+        type: actions.ADD_GROUP,
       }];
-      await store.dispatch(actions.addPoints(color, radius));
+      await store.dispatch(actions.addGroup());
       expect(store.getActions()).toEqual(expectedActions);
     });
 
-    it('should not dispatch an action to add points when none are selected', async () => {
-      const color = '#ff0000';
-      const radius = 5;
-
+    it('should dispatch an action to add a group using custom label', async () => {
       const state = {
+        customization: {
+          main: {
+            color: '#ff0000',
+            groups: [],
+            id: 1,
+            label: 'my label',
+            radius: 5,
+          },
+        },
+        poi: {
+          main: {
+            points: [0, 3],
+          },
+        },
+        points: {
+          main: {
+            current: [
+              { label: 'a' },
+              { label: 'b' },
+              { label: 'c' },
+              { label: 'd' },
+            ],
+          },
+        },
+        tabs: { activeSnapshot: 'main' },
+      };
+      const store = mockStore(state);
+
+      const expectedActions = [{
+        AUGMENT_WITH_ACTIVE_SNAPSHOT: true,
+        groups: [
+          {
+            color: '#ff0000',
+            label: 'my label',
+            points: ['a', 'd'],
+            radius: 5,
+          },
+        ],
+        nextGroupID: 1,
+        noTotalPoints: 4,
+        type: actions.ADD_GROUP,
+      }];
+      await store.dispatch(actions.addGroup());
+      expect(store.getActions()).toEqual(expectedActions);
+    });
+
+    it('should not dispatch an action to add a group when no points are selected', async () => {
+      const state = {
+        customization: {
+          main: {
+            color: '#ff0000',
+            groups: [],
+            id: 1,
+            label: '',
+            radius: 5,
+          },
+        },
         poi: {
           main: {
             points: [],
@@ -70,40 +135,36 @@ describe('Customization actions', () => {
       const store = mockStore(state);
 
       const expectedActions = [];
-      await store.dispatch(actions.addPoints(color, radius));
+      await store.dispatch(actions.addGroup());
       expect(store.getActions()).toEqual(expectedActions);
     });
   });
 
-  it('should dispatch an action to delete all points', () => {
+  it('should dispatch an action to delete all groups', () => {
     const expectedAction = {
       AUGMENT_WITH_ACTIVE_SNAPSHOT: true,
-      type: actions.DELETE_ALL_POINTS,
+      type: actions.DELETE_ALL_GROUPS,
     };
-    expect(actions.deleteAllPoints()).toEqual(expectedAction);
+    expect(actions.deleteAllGroups()).toEqual(expectedAction);
+  });
+
+  it('should dispatch an action to delete a group', () => {
+    const expectedAction = {
+      AUGMENT_WITH_ACTIVE_SNAPSHOT: true,
+      groupIndex: 2,
+      type: actions.DELETE_GROUP,
+    };
+    expect(actions.deleteGroup(2)).toEqual(expectedAction);
   });
 
   it('should dispatch an action to delete a point', () => {
     const expectedAction = {
       AUGMENT_WITH_ACTIVE_SNAPSHOT: true,
-      label: 'labelA',
+      groupIndex: 2,
+      label: 'a',
       type: actions.DELETE_POINT,
     };
-    expect(actions.deletePoint('labelA')).toEqual(expectedAction);
-  });
-
-  it('should dispatch an action to update a point', () => {
-    const parameters = {
-      color: '#ff0000',
-      radius: 5,
-    };
-    const expectedAction = {
-      AUGMENT_WITH_ACTIVE_SNAPSHOT: true,
-      label: 'labelA',
-      parameters,
-      type: actions.UPDATE_POINT,
-    };
-    expect(actions.updatePoint('labelA', parameters)).toEqual(expectedAction);
+    expect(actions.deletePoint(2, 'a')).toEqual(expectedAction);
   });
 
   it('should dispatch an action to update a setting', () => {
@@ -114,5 +175,16 @@ describe('Customization actions', () => {
       value: '#00ffff',
     };
     expect(actions.updateCustomizationSetting('color', '#00ffff')).toEqual(expectedAction);
+  });
+
+  it('should dispatch an action to update a group setting', () => {
+    const expectedAction = {
+      AUGMENT_WITH_ACTIVE_SNAPSHOT: true,
+      groupIndex: 2,
+      setting: 'color',
+      type: actions.UPDATE_GROUP_SETTING,
+      value: '#00ffff',
+    };
+    expect(actions.updateGroupSetting(2, 'color', '#00ffff')).toEqual(expectedAction);
   });
 });
