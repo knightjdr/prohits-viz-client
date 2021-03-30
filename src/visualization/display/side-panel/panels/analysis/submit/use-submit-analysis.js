@@ -2,8 +2,9 @@ import { useSelector } from 'react-redux';
 
 import defineAnalysisName from '../utils/define-name';
 import mergePOI from './merge-poi';
-import useGprofilerAnalysis from './use-gprofiler-analysis';
+import useGprofilerAnalysis from '../gprofiler/use-gprofiler-analysis';
 import useNewPOI from '../utils/use-new-poi';
+import useRSQ from '../rsq/use-rsq';
 import { selectCircHeatmapLabels } from '../../../../../../state/selector/visualization/circheatmap-selector';
 import { selectColumnNames } from '../../../../../../state/selector/visualization/column-selector';
 import { selectScatterLabels } from '../../../../../../state/selector/visualization/scatter-selector';
@@ -20,8 +21,9 @@ const useSubmitAnalysis = () => {
 
   const defineNewPOI = useNewPOI();
   const performGprofilerAnalysis = useGprofilerAnalysis();
+  const performRSQAnalysis = useRSQ();
 
-  const submit = (analyisType, analysisName) => {
+  const submit = (analysisType, analysisName) => {
     const analysis = defineAnalysisName(analysisName, tabs, 'analysis');
     const names = {};
     if (imageType === 'circheatmap') {
@@ -34,8 +36,10 @@ const useSubmitAnalysis = () => {
     }
     const poi = mergePOI(defineNewPOI(false), names);
 
-    if (poi.length > 0 && analyisType === 'gprofiler') {
+    if (poi.length > 0 && analysisType === 'gprofiler') {
       performGprofilerAnalysis(analysis.id, analysis.name, poi);
+    } if (analysisType === 'rsq') {
+      performRSQAnalysis(poi.length > 0 ? poi : names.points);
     }
   };
 

@@ -1,0 +1,10 @@
+.analysis__options-rsq-result {
+  display: flex;
+  justify-content: center;
+}
+
+.analysis__options-rsq-result code {
+  border: 1px solid var(--accentPrimary1);
+  border-radius: 0.2rem;
+  padding: 0.3rem 0.5rem;
+}

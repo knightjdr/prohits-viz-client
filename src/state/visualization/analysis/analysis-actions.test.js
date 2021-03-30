@@ -29,4 +29,13 @@ describe('Analysis actions', () => {
     };
     expect(actions.updateAnalysis('gprofiler-2', updatedAnalysis)).toEqual(expectedAction);
   });
+
+  it('should dispatch an action to update an analysis field', () => {
+    const expectedAction = {
+      name: 'rsq',
+      type: actions.UPDATE_ANALYSIS_FIELD,
+      value: 0.5,
+    };
+    expect(actions.updateAnalysisField('rsq', 0.5)).toEqual(expectedAction);
+  });
 });

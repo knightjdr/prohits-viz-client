@@ -86,4 +86,17 @@ describe('Analysis reducer', () => {
     };
     expect(reducer(currentState, action)).toEqual(expectedState);
   });
+
+  it('should handle UPDATE_ANALYSIS_FIELD action', () => {
+    const currentState = {};
+    const action = {
+      name: 'rsq',
+      type: actions.UPDATE_ANALYSIS_FIELD,
+      value: 0.5,
+    };
+    const expectedState = {
+      rsq: 0.5,
+    };
+    expect(reducer(currentState, action)).toEqual(expectedState);
+  });
 });

@@ -22,6 +22,11 @@ const reduceAndUpdateAnalysis = (state, action) => ({
   },
 });
 
+const reduceAndUpdateAnalysisField = (state, action) => ({
+  ...state,
+  [action.name]: action.value,
+});
+
 const reducer = (state = {}, action) => {
   switch (action.type) {
     case actions.ADD_ANALYSIS:
@@ -34,6 +39,8 @@ const reducer = (state = {}, action) => {
       return reduceAndRemoveAnalysis(state, action);
     case actions.UPDATE_ANALYSIS:
       return reduceAndUpdateAnalysis(state, action);
+    case actions.UPDATE_ANALYSIS_FIELD:
+      return reduceAndUpdateAnalysisField(state, action);
     default:
       return state;
   }

@@ -1,15 +1,19 @@
 import PropTypes from 'prop-types';
 import React, { useState } from 'react';
+import { useSelector } from 'react-redux';
 
 import AnalysisOptions from './options';
 
 import useSubmitAnalysis from '../submit/use-submit-analysis';
+import { selectStateProperty } from '../../../../../../state/selector/general';
 
 const AnalysisOptionsContainer = ({
   helpLink,
 }) => {
   const [analysisName, setAnalysisName] = useState('');
   const [analysisType, setAnalysisType] = useState('gprofiler');
+
+  const imageType = useSelector((state) => selectStateProperty(state, 'parameters', 'imageType'));
 
   const submit = useSubmitAnalysis();
 
@@ -32,6 +36,7 @@ const AnalysisOptionsContainer = ({
       handleAnalysisNameChange={handleAnalysisNameChange}
       handleAnalysisTypeChange={handleAnalysisTypeChange}
       helpLink={helpLink}
+      imageType={imageType}
       submitForm={submitForm}
     />
   );

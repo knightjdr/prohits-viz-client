@@ -2,7 +2,8 @@ import PropTypes from 'prop-types';
 import React from 'react';
 
 import Button from '../../../../../../components/buttons/rectangular/button';
-import GprofilerContainer from '../gprofiler/gprofiler-container';
+import Gprofiler from '../gprofiler/gprofiler-container';
+import RSQ from '../rsq/rsq-container';
 import Section from '../../section/section';
 import Select from '../../../../../../components/select/select-container';
 
@@ -10,8 +11,21 @@ import InputText from '../../../../../../components/input/text/input-text-contai
 
 import './options.css';
 
+const getSelectOptions = (imageType) => {
+  if (imageType === 'scatter') {
+    return ([
+      { label: 'g:Profiler', value: 'gprofiler' },
+      { label: 'R-squared', value: 'rsq' },
+    ]);
+  }
+  return [
+    { label: 'g:Profiler', value: 'gprofiler' },
+  ];
+};
+
 const options = {
-  gprofiler: <GprofilerContainer />,
+  gprofiler: <Gprofiler />,
+  rsq: <RSQ />,
   '': null,
 };
 
@@ -21,6 +35,7 @@ const AnalysisOptions = ({
   handleAnalysisNameChange,
   handleAnalysisTypeChange,
   helpLink,
+  imageType,
   submitForm,
 }) => (
   <Section
@@ -30,9 +45,7 @@ const AnalysisOptions = ({
     <div className="analysis__options-definition">
       <Select
         onChange={handleAnalysisTypeChange}
-        options={[
-          { label: 'g:Profiler', value: 'gprofiler' },
-        ]}
+        options={getSelectOptions(imageType)}
         value={analysisType}
       />
       <InputText
@@ -61,6 +74,7 @@ AnalysisOptions.propTypes = {
   handleAnalysisNameChange: PropTypes.func.isRequired,
   handleAnalysisTypeChange: PropTypes.func.isRequired,
   helpLink: PropTypes.string.isRequired,
+  imageType: PropTypes.string.isRequired,
   submitForm: PropTypes.func.isRequired,
 };
 
