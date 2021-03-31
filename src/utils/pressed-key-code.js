@@ -18,6 +18,10 @@ export const pressedBackspace = (e) => (
   pressedKeyCode(e, 8)
 );
 
+export const pressedDelete = (e) => (
+  pressedKeyCode(e, 46)
+);
+
 export const pressedEnd = (e) => (
   pressedKeyCode(e, 35)
 );

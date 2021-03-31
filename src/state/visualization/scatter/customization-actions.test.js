@@ -167,6 +167,15 @@ describe('Customization actions', () => {
     expect(actions.deletePoint(2, 'a')).toEqual(expectedAction);
   });
 
+  it('should dispatch an action to update groups', () => {
+    const expectedAction = {
+      AUGMENT_WITH_ACTIVE_SNAPSHOT: true,
+      groups: [],
+      type: actions.UPDATE_GROUPS,
+    };
+    expect(actions.updateGroups([])).toEqual(expectedAction);
+  });
+
   it('should dispatch an action to update a setting', () => {
     const expectedAction = {
       AUGMENT_WITH_ACTIVE_SNAPSHOT: true,

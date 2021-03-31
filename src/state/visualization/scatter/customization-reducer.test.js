@@ -393,6 +393,72 @@ describe('Customization reducer', () => {
     expect(reducer(currentState, action)).toEqual(expectedState);
   });
 
+  it('should handle UPDATE_GROUPS', () => {
+    const currentState = {
+      main: {
+        color: '#ff0000',
+        groups: [
+          {
+            color: '#ff0000',
+            label: 'custom group 1',
+            points: ['a', 'd'],
+            radius: 5,
+          },
+          {
+            color: '#00ff00',
+            label: 'custom group 2',
+            points: ['b', 'c'],
+            radius: 10,
+          },
+        ],
+        id: 3,
+        label: 'my custom label',
+        radius: 10,
+      },
+    };
+    const action = {
+      snapshotID: 'main',
+      groups: [
+        {
+          color: '#ff0000',
+          label: 'custom group 1',
+          points: ['a', 'd', 'b'],
+          radius: 5,
+        },
+        {
+          color: '#00ff00',
+          label: 'custom group 2',
+          points: ['c'],
+          radius: 10,
+        },
+      ],
+      type: actions.UPDATE_GROUPS,
+    };
+    const expectedState = {
+      main: {
+        color: '#ff0000',
+        groups: [
+          {
+            color: '#ff0000',
+            label: 'custom group 1',
+            points: ['a', 'd', 'b'],
+            radius: 5,
+          },
+          {
+            color: '#00ff00',
+            label: 'custom group 2',
+            points: ['c'],
+            radius: 10,
+          },
+        ],
+        id: 3,
+        label: 'my custom label',
+        radius: 10,
+      },
+    };
+    expect(reducer(currentState, action)).toEqual(expectedState);
+  });
+
   it('should handle UPDATE_GROUP_SETTING action', () => {
     const currentState = {
       main: {

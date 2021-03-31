@@ -7,6 +7,7 @@ export const DELETE_ALL_GROUPS = 'DELETE_ALL_GROUPS';
 export const DELETE_GROUP = 'DELETE_GROUP';
 export const DELETE_POINT = 'DELETE_POINT';
 export const UPDATE_CUSTOMIZATION_SETTING = 'UPDATE_CUSTOMIZATION_SETTING';
+export const UPDATE_GROUPS = 'UPDATE_GROUPS';
 export const UPDATE_GROUP_SETTING = 'UPDATE_GROUP_SETTING';
 
 const addGroupFromThunk = (groups, nextGroupID, noTotalPoints) => ({
@@ -40,6 +41,12 @@ export const updateCustomizationSetting = (setting, value) => ({
   setting,
   type: UPDATE_CUSTOMIZATION_SETTING,
   value,
+});
+
+export const updateGroups = (groups) => ({
+  AUGMENT_WITH_ACTIVE_SNAPSHOT: true,
+  groups,
+  type: UPDATE_GROUPS,
 });
 
 export const updateGroupSetting = (groupIndex, setting, value) => ({

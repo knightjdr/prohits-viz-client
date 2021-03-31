@@ -1,39 +1,62 @@
-.customization__list-content,
-.customization__list-header {
-  align-items: center;
-  border-bottom: 1px solid #e0e0e0;
-  display: grid;
-  grid-template-columns: 120px repeat(2, 1fr) 25px;
-  justify-items: center;
-  padding: 0.2rem 0;
+.customization__group {
+  background-color: #dddddd;
+  border-radius: 0.2rem;
+  font-size: 0.9rem;
+  margin: 0.5rem 0;
+  padding: 0.5rem;
 }
 
-.customization__list-clear {
+.customization__group h3 {
+  display: flex;
+  margin: 0;
+}
+.customization__group h3 .input__container {
+  flex: 1;
+}
+.customization__group h3 .input__container input {
+  background-color: transparent;
+  border: 0;
+  font-weight: bold;
+  padding: 0;
+  width: 100%;
+}
+.customization__group h3 button {
+  position: relative;
+  right: -5px;
+  top: -5px;
+  visibility: hidden;
+}
+.customization__group:hover h3 button {
+  visibility: visible;
+}
+
+.customization__group-inputs {
   align-items: center;
   display: flex;
-  justify-content: center;
-  margin-top: 1.5rem;
-}
-.customization__list-clear > :first-child {
-  margin-right: 0.5rem;
+  justify-content: flex-start;
+  margin-top: 0.5rem;
 }
 
-.customization__list-content > *:nth-child(4n + 1) {
-  justify-self: start;
-  overflow: hidden;
-  text-overflow: ellipsis;
-  white-space: nowrap;
-  width: 120px;
+.customization__group-inputs .input__container {
+  grid-template-columns: auto 70px;
 }
-.customization__list-content input {
-  background-image: none;
-  background-color: transparent;
-  border: none;
-  box-shadow: none;
-  width: 30px;
+.customization__group-inputs .input__container input {
+  width: 70px;
 }
 
-.customization__list-color-indicator {
+.customization__group-color {
+  align-items: center;
+  display: flex;
+  margin-right: 1rem;
+}
+.customization__group-color-label {
+  align-items: center;
+  box-sizing: border-box;
+  display: flex;
+  justify-content: flex-end;
+  padding-right: 8px;
+}
+.customization__group-color-indicator {
   background: transparent;
   border: none;
   border-radius: 50%;
@@ -42,11 +65,72 @@
   width: 1rem;
 }
 
-.customization__list-delete-button {
-  height: 20px;
-  width: 20px;
+.customization__group-list-container {
+  border-top: 1px solid var(--colorPrimary2);
+  margin-top: 1rem;
+  min-height: 2rem;
+  overflow: hidden;
+  padding-top: 0.5rem;
+}
+.customization__group-list {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.3rem;
+  padding-top: 0.3rem;
+  position: relative;
+}
+.customization__group-list-item {
+  border: 1px solid var(--colorPrimary2);
+  border-radius: 0.2rem;
+  display: flex;
+  padding: 0.3rem;
+}
+.customization__group-list-item button {
+  background-color: transparent;
+  border: none;
+  padding: 0;
+  transform: scale(0);
+  transition: all 0.3s var(--timingFunction);
+  transition-property: padding, transform;
+  width: 0;
+}
+.customization__group-list-item:hover button {
+  padding: 0 0.3rem 0 0.5rem;
+  transform: scale(1);
+  width: auto;
 }
 
-.customization__list-header {
-  font-weight: bold;
+.customization__group-list_empty {
+  align-items: center;
+  display: flex;
+  justify-content: center;
+  width: 100%;
+}
+
+.customization__group-list-target {
+  align-items: center;
+  background-color: var(--accentPrimary3);
+  border: 1px solid var(--accentPrimary1);
+  border-radius: 0.3rem;
+  box-sizing: border-box;
+  display: flex;
+  font-size: 1.1rem;
+  font-weight: semi-bold;
+  height: 100%;
+  justify-content: center;
+  left: 0;
+  min-height: 2rem;
+  position: absolute;
+  top: 0;
+  width: 100%;
+}
+
+.customization__group-actions {
+  align-items: center;
+  display: flex;
+  justify-content: center;
+  margin-top: 0.8rem;
+}
+.customization__group-actions > div:first-child {
+  margin-right: 0.5rem;
 }

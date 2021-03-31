@@ -48,6 +48,14 @@ const reduceAndDeletePoint = (state, action) => ({
   },
 });
 
+const reduceAndUpdateGroups = (state, action) => ({
+  ...state,
+  [action.snapshotID]: {
+    ...state[action.snapshotID],
+    groups: action.groups,
+  },
+});
+
 const reduceAndUpdateGroupSetting = (state, action) => ({
   ...state,
   [action.snapshotID]: {
@@ -94,6 +102,8 @@ const reducer = (state = {}, action) => {
       return reduceAndRemoveSnapshot(state, action);
     case actions.UPDATE_CUSTOMIZATION_SETTING:
       return reduceAndUpdateSetting(state, action);
+    case actions.UPDATE_GROUPS:
+      return reduceAndUpdateGroups(state, action);
     case actions.UPDATE_GROUP_SETTING:
       return reduceAndUpdateGroupSetting(state, action);
     default:

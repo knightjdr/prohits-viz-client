@@ -5,14 +5,7 @@ import { validateArray, validateNumber, validateString } from '../../../utils/va
 
 export const defaultState = {
   color: '#333333',
-  groups: [
-    {
-      color: '#333333',
-      label: 'group 1',
-      points: ['MPDZ', 'MPP5'],
-      radius: 10,
-    },
-  ],
+  groups: [],
   id: 1,
   label: '',
   radius: 4,

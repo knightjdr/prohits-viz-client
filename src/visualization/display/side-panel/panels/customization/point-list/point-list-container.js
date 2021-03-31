@@ -1,66 +1,102 @@
-import React from 'react';
-import { useDispatch } from 'react-redux';
+import React, { useMemo, useState } from 'react';
+import { useDispatch, useSelector } from 'react-redux';
 
 import PointList from './point-list';
 
-// import sort from '../../../../../../utils/sort';
+import sort from '../../../../../../utils/sort';
 import {
-  // deleteAllPoints,
+  deleteAllGroups,
+  deleteGroup,
   deletePoint,
-  // updatePoint,
+  updateGroups,
+  updateGroupSetting,
 } from '../../../../../../state/visualization/scatter/customization-actions';
-// import { selectDataProperty } from '../../../../../../state/selector/visualization/data-selector';
+import { selectDataProperty } from '../../../../../../state/selector/visualization/data-selector';
 
 const PointListContainer = () => {
   const dispatch = useDispatch();
+  const [isDragging, setDraggingStatus] = useState(false);
+  const groups = useSelector((state) => selectDataProperty(state, 'customization', 'groups'));
 
-  /* const customization = useSelector((state) => selectDataProperty(state, 'customization', 'points'));
+  const groupsWithPointsSorted = useMemo(
+    () => groups.map((group) => ({
+      ...group,
+      points: [...group.points].sort(sort.character),
+    })),
+    [groups],
+  );
 
-  const labelOrder = useMemo(
-    () => {
-      const order = Object.keys(customization);
-      order.sort(sort.character);
-      return order;
-    },
-    [customization],
-  ); */
-
-  const handleColorChange = (/* newColor, label */) => {
-    /* const parameters = {
-      ...customization[label],
-      color: newColor,
-    }; */
-    // dispatch(updatePoint(label, parameters));
-  };
-
-  const handleDelete = (e) => {
-    const { dataset } = e.currentTarget;
-    const { label } = dataset;
-    dispatch(deletePoint(label));
+  const handleColorChange = (hex, id) => {
+    const groupIndex = Number(id.split('-')[0]);
+    dispatch(updateGroupSetting(groupIndex, 'color', hex));
   };
 
   const handleDeleteAll = () => {
-    // dispatch(deleteAllPoints());
+    dispatch(deleteAllGroups());
   };
 
-  const handleRadiusChange = (/* e */) => {
-    /* const { dataset, value } = e.target;
-    const { label } = dataset;
-    const parameters = {
-      ...customization[label],
-      radius: value,
-    }; */
-    // dispatch(updatePoint(label, parameters));
+  const handleDeleteGroup = (e) => {
+    const { groupIndex } = e.currentTarget.dataset;
+    dispatch(deleteGroup(Number(groupIndex)));
+  };
+
+  const handleDeletePoint = (e) => {
+    const { groupIndex, label } = e.currentTarget.dataset;
+    dispatch(deletePoint(Number(groupIndex), label));
+  };
+
+  const handleDragEnd = (result) => {
+    setDraggingStatus(false);
+    if (result.destination && result.source) {
+      const destID = Number(result.destination.droppableId.split('-')[0]);
+      const sourceID = Number(result.source.droppableId.split('-')[0]);
+      if (destID !== sourceID) {
+        const label = result.draggableId;
+        const updatedGroups = groups.map((group, index) => {
+          if (index === destID) {
+            return {
+              ...group,
+              points: [...group.points, label],
+            };
+          } if (index === sourceID) {
+            return {
+              ...group,
+              points: group.points.filter((point) => point !== label),
+            };
+          }
+          return group;
+        });
+        dispatch(updateGroups(updatedGroups));
+      }
+    }
+  };
+
+  const handleDragStart = () => {
+    setDraggingStatus(true);
+  };
+
+  const handleLabelChange = (e, id, value) => {
+    const { groupIndex } = e.target.dataset;
+    dispatch(updateGroupSetting(Number(groupIndex), 'label', value));
+  };
+
+  const handleRadiusChange = (e, id, value) => {
+    const { groupIndex } = e.target.dataset;
+    dispatch(updateGroupSetting(Number(groupIndex), 'radius', Number(value)));
   };
 
   return (
     <PointList
-      customization={{}}
       handleColorChange={handleColorChange}
-      handleDelete={handleDelete}
       handleDeleteAll={handleDeleteAll}
+      handleDeleteGroup={handleDeleteGroup}
+      handleDeletePoint={handleDeletePoint}
+      handleDragEnd={handleDragEnd}
+      handleDragStart={handleDragStart}
+      handleLabelChange={handleLabelChange}
       handleRadiusChange={handleRadiusChange}
-      labelOrder={[]}
+      isDragging={isDragging}
+      groups={groupsWithPointsSorted}
     />
   );
 };

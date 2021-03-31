@@ -4,6 +4,7 @@ const keys = {
   ArrowDown: 40,
   ArrowUp: 38,
   Backspace: 8,
+  Delete: 46,
   End: 35,
   Enter: 13,
   Escape: 27,
