@@ -4,12 +4,12 @@ import { useSelector } from 'react-redux';
 
 import Gprofiler from './gprofiler';
 
-import columnDefinitions from './column-definitions';
-
 import convertToCsv from '../../../../utils/convert-to-csv';
 import download from '../../../../utils/download';
 import formatRows from './format/format-rows';
 import useAnnotation from '../../side-panel/panels/markup/heatmap/annotations/use-annotation';
+import useMarkupAction from './action/use-markup-action';
+import { columnDefinitions, getTableHeader } from './get-table-header';
 import { selectStateProperty } from '../../../../state/selector/general';
 
 const GprofilerContainer = ({
@@ -19,9 +19,16 @@ const GprofilerContainer = ({
   const addAnnotation = useAnnotation();
   const imageType = useSelector((state) => selectStateProperty(state, 'parameters', 'imageType'));
 
+  const action = useMarkupAction(imageType);
+
+  const [tableHeader, tableWidth] = useMemo(
+    () => getTableHeader(imageType),
+    [imageType],
+  );
+
   const tableRows = useMemo(
-    () => formatRows(data.results),
-    [data.results],
+    () => formatRows(data.results, action),
+    [action, data.results],
   );
 
   const handleAddAnnotation = (e, inputID, value) => {
@@ -39,7 +46,9 @@ const GprofilerContainer = ({
       handleAddAnnotation={handleAddAnnotation}
       handleExportCSV={handleExportCSV}
       imageType={imageType}
+      tableHeader={tableHeader}
       tableRows={tableRows}
+      tableWidth={tableWidth}
     />
   );
 };

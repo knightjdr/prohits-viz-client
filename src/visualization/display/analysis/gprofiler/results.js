@@ -3,27 +3,32 @@ import React from 'react';
 
 import Table from '../../../../components/table/table-container';
 
-import columnDefinitions from './column-definitions';
-
 const Results = ({
-  data,
+  header,
+  rows,
+  width,
 }) => (
   <div className="gprofiler-results__table">
     <Table
-      fieldOrder={columnDefinitions.order}
-      header={columnDefinitions.header}
-      minWidth={775}
+      fieldOrder={header.order}
+      header={header.header}
+      minWidth={width}
       sortBy="pValue"
       sortByDirection="ascending"
-      rows={data}
+      rows={rows}
     />
   </div>
 );
 
 Results.propTypes = {
-  data: PropTypes.arrayOf(
+  header: PropTypes.shape({
+    header: PropTypes.arrayOf(PropTypes.shape({})),
+    order: PropTypes.arrayOf(PropTypes.string),
+  }).isRequired,
+  rows: PropTypes.arrayOf(
     PropTypes.shape({}),
   ).isRequired,
+  width: PropTypes.number.isRequired,
 };
 
 export default Results;

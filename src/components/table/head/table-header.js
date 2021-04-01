@@ -41,7 +41,7 @@ TableHeader.propTypes = {
   handleSortRows: PropTypes.func.isRequired,
   header: PropTypes.arrayOf(
     PropTypes.shape({
-      name: PropTypes.string.isRequired,
+      name: PropTypes.node.isRequired,
       sortable: PropTypes.bool,
       sortDirection: PropTypes.string,
       sortKey: PropTypes.string,

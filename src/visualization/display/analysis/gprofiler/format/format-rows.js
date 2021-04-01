@@ -1,9 +1,21 @@
+import React from 'react';
+import { faPlus } from '@fortawesome/pro-solid-svg-icons';
 import { nanoid } from 'nanoid';
+
+import Button from '../../../../../components/buttons/icon/button';
 
 import createSourceLink from './create-source-link';
 
-const formatRows = (results) => (
+const formatRows = (results, action) => (
   results.map((term) => ({
+    action: {
+      content: (
+        <Button
+          icon={faPlus}
+          onClick={action}
+        />
+      ),
+    },
     genes: {
       align: 'left',
       content: term.genes,

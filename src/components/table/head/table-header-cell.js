@@ -35,7 +35,7 @@ const HeaderCell = ({
 
 HeaderCell.propTypes = {
   cell: PropTypes.shape({
-    name: PropTypes.string,
+    name: PropTypes.node,
     sortable: PropTypes.bool,
     sortDirection: PropTypes.string,
     sortKey: PropTypes.string,

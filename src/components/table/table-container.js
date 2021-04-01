@@ -82,7 +82,7 @@ TableContainer.propTypes = {
   fieldOrder: PropTypes.arrayOf(PropTypes.string).isRequired,
   header: PropTypes.arrayOf(
     PropTypes.shape({
-      name: PropTypes.string.isRequired,
+      name: PropTypes.node.isRequired,
       sort: PropTypes.func,
       sortable: PropTypes.bool,
       sortKey: PropTypes.string,

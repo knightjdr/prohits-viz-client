@@ -20,13 +20,13 @@ export const TableBody = styled.div`
 
   .table__body-cell {
     align-items: center;
+    border-right: 5px solid transparent;
     box-sizing: border-box;
-    display: flex;
+    display: inline-flex;
     height: 100%;
-    justifyContent: center;
+    justify-content: center;
     overflow: hidden;
-    padding: 5px 2px;
-    text-overflow: ellipsis;
+    padding: 5px 0 5px 5px;
     white-space: nowrap;
   }
 `;

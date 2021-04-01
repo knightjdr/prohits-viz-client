@@ -1,10 +1,11 @@
 const setHeadPadding = (tableBody, tableHeader) => {
-  const { clientWidth, offsetWidth } = tableBody;
-  const scrollBarWidth = offsetWidth - clientWidth;
+  const bodyWidth = tableBody.offsetWidth;
+  const parentWidth = tableBody.parentNode.offsetWidth;
+  const scrollBarWidth = parentWidth - bodyWidth;
   if (scrollBarWidth > 0) {
-    tableHeader.style.setProperty('paddingRight', `${scrollBarWidth}px`);
+    tableHeader.style.setProperty('padding-right', `${scrollBarWidth}px`);
   } else {
-    tableHeader.style.setProperty('paddingRight', '0');
+    tableHeader.style.setProperty('padding-right', '0');
   }
 };
 
