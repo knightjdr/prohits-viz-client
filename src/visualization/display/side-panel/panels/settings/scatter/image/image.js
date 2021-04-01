@@ -16,6 +16,8 @@ const Image = ({
   handleSettingChange,
   handleZoom,
   logBase,
+  logX,
+  logY,
 }) => (
   <>
     <Section
@@ -28,6 +30,18 @@ const Image = ({
         onChange={handleSettingChange}
         options={['none', '2', '10']}
         value={logBase}
+      />
+      <Switch
+        checked={logX}
+        id="logX"
+        label="Log transform x-axis"
+        onChange={handleSettingChange}
+      />
+      <Switch
+        checked={logY}
+        id="logY"
+        label="Log transform y-axis"
+        onChange={handleSettingChange}
       />
       <Switch
         checked={equalScaleAxes}
@@ -73,6 +87,8 @@ Image.propTypes = {
   handleSettingChange: PropTypes.func.isRequired,
   handleZoom: PropTypes.func.isRequired,
   logBase: PropTypes.string.isRequired,
+  logX: PropTypes.bool.isRequired,
+  logY: PropTypes.bool.isRequired,
 };
 
 export default Image;

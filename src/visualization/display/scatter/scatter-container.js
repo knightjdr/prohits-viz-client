@@ -21,7 +21,12 @@ const ScatterContainer = () => {
   const { plotFixed, transform } = useSelector((state) => selectData(state, 'display'));
   const { fcLines, showFcLines, showMidline } = useSelector((state) => selectData(state, 'lines'));
   const settings = useSelector((state) => selectDataProperty(state, 'settings', 'current'));
-  const { equalScaleAxes, logBase } = settings;
+  const {
+    equalScaleAxes,
+    logBase,
+    logX,
+    logY,
+  } = settings;
 
   const windowDimensions = useWindowDimension(50);
   useShortCuts();
@@ -55,20 +60,24 @@ const ScatterContainer = () => {
     () => {
       const options = {
         axisLength: dimensions.plot,
+        equalScaleAxes,
         fcLines,
         logBase,
+        logX,
+        logY,
         scale: transform.scale,
         showFcLines,
         showMidline,
-        equalScaleAxes,
       };
       return formatData(points, options);
     },
     [
       dimensions.height,
       fcLines,
-      logBase,
       equalScaleAxes,
+      logBase,
+      logX,
+      logY,
       points,
       showFcLines,
       showMidline,

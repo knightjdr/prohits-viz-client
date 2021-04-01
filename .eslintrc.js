@@ -31,6 +31,12 @@ module.exports = {
       },
     ],
     'no-underscore-dangle': ['error', { allow: ['__REDUX_DEVTOOLS_EXTENSION__'] }],
+    'object-curly-newline': ['error', {
+      ObjectExpression: { minProperties: 10, multiline: true, consistent: true },
+      ObjectPattern: { minProperties: 10, multiline: true, consistent: true },
+      ImportDeclaration: { minProperties: 4, multiline: true, consistent: true },
+      ExportDeclaration: { minProperties: 4, multiline: true, consistent: true },
+    }],
     'react/jsx-filename-extension': [1, { extensions: ['.js', '.jsx'] }],
     'react/jsx-props-no-spreading': 'off',
   },

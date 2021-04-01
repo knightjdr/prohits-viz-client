@@ -82,10 +82,10 @@ export const calculateLogTicks = (logBase, max, min, scale) => {
 };
 
 const defineTicks = (data, options) => {
-  const { logBase, scale, vertex } = options;
+  const { logAxis, logBase, scale, vertex } = options;
   const max = data.reduce((maxValue, datum) => (datum[vertex] > maxValue ? datum[vertex] : maxValue), 0);
   const min = data.reduce((minValue, datum) => (datum[vertex] < minValue ? datum[vertex] : minValue), Infinity);
-  return logBase !== 'none' ? calculateLogTicks(logBase, max, min, scale) : calculateLinearTicks(max, scale);
+  return logBase !== 'none' && logAxis ? calculateLogTicks(logBase, max, min, scale) : calculateLinearTicks(max, scale);
 };
 
 export default defineTicks;

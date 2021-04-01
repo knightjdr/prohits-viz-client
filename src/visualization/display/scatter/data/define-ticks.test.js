@@ -17,13 +17,13 @@ describe('Define ticks', () => {
       });
     });
 
-    it('should set scale factor using multipler when greater than or equal to 1.5', () => {
-      const multipler = 2;
+    it('should set scale factor using multiplier when greater than or equal to 1.5', () => {
+      const multiplier = 2;
       const tests = [1.5, 2.4];
 
       const expected = [2, 4];
       tests.forEach((test, index) => {
-        expect(getScaleFactor(test, multipler)).toBe(expected[index]);
+        expect(getScaleFactor(test, multiplier)).toBe(expected[index]);
       });
     });
   });
@@ -195,7 +195,7 @@ describe('Define ticks', () => {
   });
 
   describe('define ticks from data', () => {
-    it('should define linear ticks', () => {
+    it('should define linear ticks when base is "none"', () => {
       const data = [
         { x: 1 },
         { x: 27 },
@@ -203,6 +203,24 @@ describe('Define ticks', () => {
       ];
       const options = {
         logBase: 'none',
+        logAxis: true,
+        scale: 1,
+        vertex: 'x',
+      };
+
+      const expected = [0, 10, 20, 30];
+      expect(defineTicks(data, options)).toEqual(expected);
+    });
+
+    it('should define linear ticks when transformation is not requested for axis', () => {
+      const data = [
+        { x: 1 },
+        { x: 27 },
+        { x: 16 },
+      ];
+      const options = {
+        logBase: '2',
+        logAxis: false,
         scale: 1,
         vertex: 'x',
       };
@@ -219,6 +237,7 @@ describe('Define ticks', () => {
       ];
       const options = {
         logBase: '2',
+        logAxis: true,
         scale: 1,
         vertex: 'x',
       };
@@ -235,6 +254,7 @@ describe('Define ticks', () => {
       ];
       const options = {
         logBase: '10',
+        logAxis: true,
         scale: 1,
         vertex: 'x',
       };

@@ -81,6 +81,8 @@ describe('Scale data', () => {
     const options = {
       axisLength: 100,
       logBase: '2',
+      logX: true,
+      logY: true,
     };
     const lines = {
       fcLines: [
@@ -157,6 +159,8 @@ describe('Scale data', () => {
     const options = {
       axisLength: 100,
       logBase: '10',
+      logX: true,
+      logY: true,
     };
     const lines = {
       fcLines: [
@@ -219,6 +223,52 @@ describe('Scale data', () => {
           { key: 'id123', label: 10, y: 33.33 },
           { key: 'id123', label: 100, y: 66.67 },
           { key: 'id123', label: 1000, y: 100 },
+        ],
+      },
+    };
+    expect(scaleData(points, ticks, lines, options)).toEqual(expected);
+  });
+
+  it('should scale log base 10 data on only one axis', () => {
+    const options = {
+      axisLength: 100,
+      logBase: '10',
+      logX: true,
+      logY: false,
+    };
+    const lines = {
+      fcLines: [],
+    };
+    const points = [
+      { label: 'a', x: 10, y: 1 },
+      { label: 'b', x: 100, y: 100 },
+      { label: 'c', x: 1, y: 250 },
+    ];
+    const ticks = {
+      x: [1, 10, 100],
+      y: [0, 100, 200, 300],
+    };
+
+    const expected = {
+      lines: {
+        fcLines: [],
+      },
+      points: [
+        { label: 'a', x: 50, y: 0.33 },
+        { label: 'b', x: 100, y: 33.33 },
+        { label: 'c', x: 0, y: 83.33 },
+      ],
+      ticks: {
+        x: [
+          { key: 'id123', label: 1, x: 0 },
+          { key: 'id123', label: 10, x: 50 },
+          { key: 'id123', label: 100, x: 100 },
+        ],
+        y: [
+          { key: 'id123', label: 0, y: 0 },
+          { key: 'id123', label: 100, y: 33.33 },
+          { key: 'id123', label: 200, y: 66.67 },
+          { key: 'id123', label: 300, y: 100 },
         ],
       },
     };

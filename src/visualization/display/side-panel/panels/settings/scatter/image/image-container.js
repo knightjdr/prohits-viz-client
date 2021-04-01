@@ -13,7 +13,13 @@ const ImageContainer = () => {
 
   const settings = useSelector((state) => selectDataProperty(state, 'settings', 'current'));
   const { transform } = useSelector((state) => selectData(state, 'display'));
-  const { equalScaleAxes, fontSize, logBase } = settings;
+  const {
+    equalScaleAxes,
+    fontSize,
+    logBase,
+    logX,
+    logY,
+  } = settings;
 
   const handleSettingChange = (e, name, value) => {
     dispatch(updateSetting(name, value));
@@ -45,6 +51,8 @@ const ImageContainer = () => {
       handleSettingChange={handleSettingChange}
       handleZoom={handleZoom}
       logBase={logBase}
+      logX={logX}
+      logY={logY}
     />
   );
 };

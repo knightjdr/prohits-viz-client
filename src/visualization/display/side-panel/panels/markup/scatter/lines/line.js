@@ -1,5 +1,7 @@
 import PropTypes from 'prop-types';
 import React from 'react';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faExclamationTriangle } from '@fortawesome/pro-duotone-svg-icons';
 
 import Input from '../../../../../../../components/input/text/input-text-container';
 import InputTextArea from '../../../../../../../components/input/text-area/input-text-area-container';
@@ -16,8 +18,18 @@ const Line = ({
   isDashed,
   showFcLines,
   showMidline,
+  showWarning,
 }) => (
   <Section title="Lines">
+    {
+      showWarning
+      && (
+        <p className="panel-markup__lines-warning">
+          <FontAwesomeIcon icon={faExclamationTriangle} />
+          Lines will not be displayed when only one axis is log-transformed.
+        </p>
+      )
+    }
     <div className="panel-markup__grid">
       <Switch
         checked={showMidline}
@@ -72,6 +84,7 @@ Line.propTypes = {
   isDashed: PropTypes.bool.isRequired,
   showFcLines: PropTypes.bool.isRequired,
   showMidline: PropTypes.bool.isRequired,
+  showWarning: PropTypes.bool.isRequired,
 };
 
 export default Line;

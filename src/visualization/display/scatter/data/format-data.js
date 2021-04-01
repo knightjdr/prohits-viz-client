@@ -9,17 +9,35 @@ const formatData = (data, options) => {
     equalScaleAxes,
     fcLines,
     logBase,
+    logX,
+    logY,
     scale,
     showFcLines,
     showMidline,
   } = options;
 
   const ticks = {
-    x: defineTicks(data, { logBase, scale, vertex: 'x' }),
-    y: defineTicks(data, { logBase, scale, vertex: 'y' }),
+    x: defineTicks(
+      data,
+      {
+        logAxis: logX,
+        logBase,
+        scale,
+        vertex: 'x',
+      },
+    ),
+    y: defineTicks(
+      data,
+      {
+        logAxis: logY,
+        logBase,
+        scale,
+        vertex: 'y',
+      },
+    ),
   };
 
-  if (equalScaleAxes) {
+  if (equalScaleAxes && (logX === logY)) {
     const tickList = mergeTicks(ticks, logBase);
     ticks.x = tickList;
     ticks.y = tickList;
@@ -30,7 +48,7 @@ const formatData = (data, options) => {
     midline: showMidline ? defineMidline(ticks) : {},
   };
 
-  const scaleOptions = { axisLength, logBase };
+  const scaleOptions = { axisLength, logBase, logX, logY };
   const scaledData = scaleData(data, ticks, lines, scaleOptions);
 
   return scaledData;

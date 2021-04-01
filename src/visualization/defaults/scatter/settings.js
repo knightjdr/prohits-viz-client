@@ -6,6 +6,8 @@ export const defaultState = {
   equalScaleAxes: false,
   fontSize: 12,
   logBase: 'none',
+  logX: false,
+  logY: false,
   xFilter: 0,
   yFilter: 0,
 };
@@ -20,6 +22,13 @@ const validateLogBase = (base, defaultBase) => (
   acceptedLogBase[base] ? base : defaultBase
 );
 
+export const validateLogAxis = (base, logAxis, defaultLogAxis) => {
+  if (base !== 'none' && typeof logAxis !== 'boolean') {
+    return true;
+  }
+  return validateBoolean(logAxis, defaultLogAxis);
+};
+
 export const validateSettings = (userSettings) => {
   if (!userSettings) {
     return { ...defaultState };
@@ -29,16 +38,21 @@ export const validateSettings = (userSettings) => {
     equalScaleAxes,
     fontSize,
     logBase,
+    logX,
+    logY,
     xFilter,
     yFilter,
     ...other
   } = userSettings;
 
+  const validatedLogBase = validateLogBase(logBase, defaultState.logBase);
   const settings = {
     ...other,
     equalScaleAxes: validateBoolean(equalScaleAxes, defaultState.equalScaleAxes),
     fontSize: validateNumber(fontSize, defaultState.fontSize),
-    logBase: validateLogBase(logBase, defaultState.logBase),
+    logBase: validatedLogBase,
+    logX: validateLogAxis(validatedLogBase, logX, defaultState.logX),
+    logY: validateLogAxis(validatedLogBase, logY, defaultState.logY),
     xFilter: validateNumber(xFilter, defaultState.xFilter),
     yFilter: validateNumber(yFilter, defaultState.yFilter),
   };

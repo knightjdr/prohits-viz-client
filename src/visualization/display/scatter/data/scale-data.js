@@ -12,11 +12,11 @@ const formatTickLabel = (value) => {
 };
 
 const scaleData = (points, ticks, lines, options) => {
-  const { axisLength, logBase } = options;
+  const { axisLength, logBase, logX, logY } = options;
 
-  const getScaler = (vertex) => {
+  const getScaler = (vertex, log, logAxis) => {
     const max = ticks[vertex][ticks[vertex].length - 1];
-    if (logBase !== 'none') {
+    if (log !== 'none' && logAxis) {
       const logFunc = logBase === '2' ? Math.log10 : Math.log2;
       const min = ticks[vertex][0];
       const k = axisLength / (logFunc(max) - logFunc(min));
@@ -26,8 +26,8 @@ const scaleData = (points, ticks, lines, options) => {
     return (point) => round((point / max) * axisLength, 2);
   };
 
-  const scaleXValue = getScaler('x');
-  const scaleYValue = getScaler('y');
+  const scaleXValue = getScaler('x', logBase, logX);
+  const scaleYValue = getScaler('y', logBase, logY);
 
   const scaleLine = (line) => ({
     ...line,
@@ -40,7 +40,7 @@ const scaleData = (points, ticks, lines, options) => {
   return {
     lines: {
       fcLines: lines.fcLines.map((line) => scaleLine(line)),
-      midline: scaleLine(lines.midline),
+      midline: lines.midline && scaleLine(lines.midline),
     },
     points: points.map((point) => ({
       ...point,
