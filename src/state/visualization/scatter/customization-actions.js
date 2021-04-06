@@ -57,7 +57,57 @@ export const updateGroupSetting = (groupIndex, setting, value) => ({
   value,
 });
 
-export const addGroup = () => (
+const addGroup = (newGroup) => (
+  (dispatch, getState) => {
+    const state = getState();
+    const customizations = getData(state, 'customization');
+    const { labels } = getPlotLabels(state);
+
+    const {
+      groups,
+      id: groupID,
+      label: groupLabel,
+    } = customizations;
+
+    const newGroupDict = convertArrayToObject(newGroup.points);
+
+    const updatedGroups = [
+      ...groups.map((group) => ({
+        ...group,
+        points: group.points.filter((point) => !newGroupDict[point]),
+      })),
+      newGroup,
+    ];
+
+    const nextGroupID = groupLabel ? groupID : groupID + 1;
+    dispatch(addGroupFromThunk(updatedGroups, nextGroupID, labels.length));
+  }
+);
+
+export const addGroupFromList = (list, label = '') => (
+  (dispatch, getState) => {
+    const state = getState();
+    const customizations = getData(state, 'customization');
+
+    const {
+      color,
+      id: groupID,
+      radius,
+    } = customizations;
+
+    if (list.length > 0) {
+      const newGroup = {
+        color,
+        label: label || `custom group ${groupID}`,
+        points: list,
+        radius,
+      };
+      dispatch(addGroup(newGroup));
+    }
+  }
+);
+
+export const addGroupFromPOI = () => (
   (dispatch, getState) => {
     const state = getState();
     const customizations = getData(state, 'customization');
@@ -66,7 +116,6 @@ export const addGroup = () => (
 
     const {
       color,
-      groups,
       id: groupID,
       label: groupLabel,
       radius,
@@ -79,18 +128,7 @@ export const addGroup = () => (
         points: poi.map((index) => labels[index]),
         radius,
       };
-      const newGroupDict = convertArrayToObject(newGroup.points);
-
-      const updatedGroups = [
-        ...groups.map((group) => ({
-          ...group,
-          points: group.points.filter((point) => !newGroupDict[point]),
-        })),
-        newGroup,
-      ];
-
-      const nextGroupID = customizations.label ? groupID : groupID + 1;
-      dispatch(addGroupFromThunk(updatedGroups, nextGroupID, labels.length));
+      dispatch(addGroup(newGroup));
     }
   }
 );

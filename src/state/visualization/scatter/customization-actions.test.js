@@ -8,135 +8,263 @@ const mockStore = configureMockStore(middleware);
 
 describe('Customization actions', () => {
   describe('add group', () => {
-    it('should dispatch an action to add a group using id', async () => {
-      const state = {
-        customization: {
-          main: {
-            color: '#ff0000',
-            groups: [],
-            id: 1,
-            label: '',
-            radius: 5,
+    describe('from list', () => {
+      it('should dispatch an action to add a group using id', async () => {
+        const state = {
+          customization: {
+            main: {
+              color: '#ff0000',
+              groups: [],
+              id: 1,
+              label: '',
+              radius: 5,
+            },
           },
-        },
-        poi: {
-          main: {
-            points: [0, 3],
+          points: {
+            main: {
+              current: [
+                { label: 'a' },
+                { label: 'b' },
+                { label: 'c' },
+                { label: 'd' },
+              ],
+            },
           },
-        },
-        points: {
-          main: {
-            current: [
-              { label: 'a' },
-              { label: 'b' },
-              { label: 'c' },
-              { label: 'd' },
-            ],
-          },
-        },
-        tabs: { activeSnapshot: 'main' },
-      };
-      const store = mockStore(state);
+          tabs: { activeSnapshot: 'main' },
+        };
+        const store = mockStore(state);
 
-      const expectedActions = [{
-        AUGMENT_WITH_ACTIVE_SNAPSHOT: true,
-        groups: [
-          {
-            color: '#ff0000',
-            label: 'custom group 1',
-            points: ['a', 'd'],
-            radius: 5,
+        const label = '';
+        const list = ['a', 'd'];
+
+        const expectedActions = [{
+          AUGMENT_WITH_ACTIVE_SNAPSHOT: true,
+          groups: [
+            {
+              color: '#ff0000',
+              label: 'custom group 1',
+              points: ['a', 'd'],
+              radius: 5,
+            },
+          ],
+          nextGroupID: 2,
+          noTotalPoints: 4,
+          type: actions.ADD_GROUP,
+        }];
+        await store.dispatch(actions.addGroupFromList(list, label));
+        expect(store.getActions()).toEqual(expectedActions);
+      });
+
+      it('should dispatch an action to add a group using custom label', async () => {
+        const state = {
+          customization: {
+            main: {
+              color: '#ff0000',
+              groups: [],
+              id: 1,
+              label: '',
+              radius: 5,
+            },
           },
-        ],
-        nextGroupID: 2,
-        noTotalPoints: 4,
-        type: actions.ADD_GROUP,
-      }];
-      await store.dispatch(actions.addGroup());
-      expect(store.getActions()).toEqual(expectedActions);
+          points: {
+            main: {
+              current: [
+                { label: 'a' },
+                { label: 'b' },
+                { label: 'c' },
+                { label: 'd' },
+              ],
+            },
+          },
+          tabs: { activeSnapshot: 'main' },
+        };
+        const store = mockStore(state);
+
+        const label = 'my label';
+        const list = ['a', 'd'];
+
+        const expectedActions = [{
+          AUGMENT_WITH_ACTIVE_SNAPSHOT: true,
+          groups: [
+            {
+              color: '#ff0000',
+              label: 'my label',
+              points: ['a', 'd'],
+              radius: 5,
+            },
+          ],
+          nextGroupID: 2,
+          noTotalPoints: 4,
+          type: actions.ADD_GROUP,
+        }];
+        await store.dispatch(actions.addGroupFromList(list, label));
+        expect(store.getActions()).toEqual(expectedActions);
+      });
+
+      it('should not dispatch an action to add a group when no points are selected', async () => {
+        const state = {
+          customization: {
+            main: {
+              color: '#ff0000',
+              groups: [],
+              id: 1,
+              label: '',
+              radius: 5,
+            },
+          },
+          points: {
+            main: {
+              current: [
+                { label: 'a' },
+                { label: 'b' },
+                { label: 'c' },
+                { label: 'd' },
+              ],
+            },
+          },
+          tabs: { activeSnapshot: 'main' },
+        };
+        const store = mockStore(state);
+
+        const label = '';
+        const list = [];
+
+        const expectedActions = [];
+        await store.dispatch(actions.addGroupFromList(list, label));
+        expect(store.getActions()).toEqual(expectedActions);
+      });
     });
+    describe('from POI', () => {
+      it('should dispatch an action to add a group using id', async () => {
+        const state = {
+          customization: {
+            main: {
+              color: '#ff0000',
+              groups: [],
+              id: 1,
+              label: '',
+              radius: 5,
+            },
+          },
+          poi: {
+            main: {
+              points: [0, 3],
+            },
+          },
+          points: {
+            main: {
+              current: [
+                { label: 'a' },
+                { label: 'b' },
+                { label: 'c' },
+                { label: 'd' },
+              ],
+            },
+          },
+          tabs: { activeSnapshot: 'main' },
+        };
+        const store = mockStore(state);
 
-    it('should dispatch an action to add a group using custom label', async () => {
-      const state = {
-        customization: {
-          main: {
-            color: '#ff0000',
-            groups: [],
-            id: 1,
-            label: 'my label',
-            radius: 5,
-          },
-        },
-        poi: {
-          main: {
-            points: [0, 3],
-          },
-        },
-        points: {
-          main: {
-            current: [
-              { label: 'a' },
-              { label: 'b' },
-              { label: 'c' },
-              { label: 'd' },
-            ],
-          },
-        },
-        tabs: { activeSnapshot: 'main' },
-      };
-      const store = mockStore(state);
+        const expectedActions = [{
+          AUGMENT_WITH_ACTIVE_SNAPSHOT: true,
+          groups: [
+            {
+              color: '#ff0000',
+              label: 'custom group 1',
+              points: ['a', 'd'],
+              radius: 5,
+            },
+          ],
+          nextGroupID: 2,
+          noTotalPoints: 4,
+          type: actions.ADD_GROUP,
+        }];
+        await store.dispatch(actions.addGroupFromPOI());
+        expect(store.getActions()).toEqual(expectedActions);
+      });
 
-      const expectedActions = [{
-        AUGMENT_WITH_ACTIVE_SNAPSHOT: true,
-        groups: [
-          {
-            color: '#ff0000',
-            label: 'my label',
-            points: ['a', 'd'],
-            radius: 5,
+      it('should dispatch an action to add a group using custom label', async () => {
+        const state = {
+          customization: {
+            main: {
+              color: '#ff0000',
+              groups: [],
+              id: 1,
+              label: 'my label',
+              radius: 5,
+            },
           },
-        ],
-        nextGroupID: 1,
-        noTotalPoints: 4,
-        type: actions.ADD_GROUP,
-      }];
-      await store.dispatch(actions.addGroup());
-      expect(store.getActions()).toEqual(expectedActions);
-    });
+          poi: {
+            main: {
+              points: [0, 3],
+            },
+          },
+          points: {
+            main: {
+              current: [
+                { label: 'a' },
+                { label: 'b' },
+                { label: 'c' },
+                { label: 'd' },
+              ],
+            },
+          },
+          tabs: { activeSnapshot: 'main' },
+        };
+        const store = mockStore(state);
 
-    it('should not dispatch an action to add a group when no points are selected', async () => {
-      const state = {
-        customization: {
-          main: {
-            color: '#ff0000',
-            groups: [],
-            id: 1,
-            label: '',
-            radius: 5,
-          },
-        },
-        poi: {
-          main: {
-            points: [],
-          },
-        },
-        points: {
-          main: {
-            current: [
-              { label: 'a' },
-              { label: 'b' },
-              { label: 'c' },
-              { label: 'd' },
-            ],
-          },
-        },
-        tabs: { activeSnapshot: 'main' },
-      };
-      const store = mockStore(state);
+        const expectedActions = [{
+          AUGMENT_WITH_ACTIVE_SNAPSHOT: true,
+          groups: [
+            {
+              color: '#ff0000',
+              label: 'my label',
+              points: ['a', 'd'],
+              radius: 5,
+            },
+          ],
+          nextGroupID: 1,
+          noTotalPoints: 4,
+          type: actions.ADD_GROUP,
+        }];
+        await store.dispatch(actions.addGroupFromPOI());
+        expect(store.getActions()).toEqual(expectedActions);
+      });
 
-      const expectedActions = [];
-      await store.dispatch(actions.addGroup());
-      expect(store.getActions()).toEqual(expectedActions);
+      it('should not dispatch an action to add a group when no points are selected', async () => {
+        const state = {
+          customization: {
+            main: {
+              color: '#ff0000',
+              groups: [],
+              id: 1,
+              label: '',
+              radius: 5,
+            },
+          },
+          poi: {
+            main: {
+              points: [],
+            },
+          },
+          points: {
+            main: {
+              current: [
+                { label: 'a' },
+                { label: 'b' },
+                { label: 'c' },
+                { label: 'd' },
+              ],
+            },
+          },
+          tabs: { activeSnapshot: 'main' },
+        };
+        const store = mockStore(state);
+
+        const expectedActions = [];
+        await store.dispatch(actions.addGroupFromPOI());
+        expect(store.getActions()).toEqual(expectedActions);
+      });
     });
   });
 

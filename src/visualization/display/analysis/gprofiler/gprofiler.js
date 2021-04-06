@@ -1,16 +1,14 @@
 import PropTypes from 'prop-types';
 import React from 'react';
 
-import Actions from './actions';
+import Export from './export';
 import Results from './results';
 import Warning from './warning';
 
 import './gprofiler.css';
 
 const Gprofiler = ({
-  handleAddAnnotation,
   handleExportCSV,
-  imageType,
   tableHeader,
   tableRows,
   tableWidth,
@@ -22,18 +20,14 @@ const Gprofiler = ({
       rows={tableRows}
       width={tableWidth}
     />
-    <Actions
-      handleAddAnnotation={handleAddAnnotation}
+    <Export
       handleExportCSV={handleExportCSV}
-      imageType={imageType}
     />
   </div>
 );
 
 Gprofiler.propTypes = {
-  handleAddAnnotation: PropTypes.func.isRequired,
   handleExportCSV: PropTypes.func.isRequired,
-  imageType: PropTypes.string.isRequired,
   tableHeader: PropTypes.shape({
     header: PropTypes.arrayOf(PropTypes.shape({})),
     order: PropTypes.arrayOf(PropTypes.string),

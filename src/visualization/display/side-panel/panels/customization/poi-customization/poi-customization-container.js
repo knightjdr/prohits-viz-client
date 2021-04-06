@@ -4,7 +4,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import PoiCustomization from './poi-customization';
 
 import {
-  addGroup,
+  addGroupFromPOI,
   updateCustomizationSetting,
 } from '../../../../../../state/visualization/scatter/customization-actions';
 import { selectData } from '../../../../../../state/selector/visualization/data-selector';
@@ -15,7 +15,7 @@ const PoiCustomizationContainer = () => {
   const { color, label, radius } = useSelector((state) => selectData(state, 'customization'));
 
   const handleAddCustomizations = () => {
-    dispatch(addGroup());
+    dispatch(addGroupFromPOI());
   };
 
   const handleColorChange = (hex) => {

@@ -10,10 +10,14 @@ const formatRows = (results, action) => (
   results.map((term) => ({
     action: {
       content: (
-        <Button
-          icon={faPlus}
-          onClick={action}
-        />
+        action
+          ? (
+            <Button
+              icon={faPlus}
+              onClick={action(term)}
+            />
+          )
+          : null
       ),
     },
     genes: {

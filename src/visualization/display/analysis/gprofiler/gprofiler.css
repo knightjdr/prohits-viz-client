@@ -4,9 +4,6 @@
   padding: 10px
 }
 
-.gprofiler-results__actions > *:not(:last-child) {
-  margin-right: 0.7rem;
-}
 .gprofiler-results__export svg {
   margin-right: 0.5rem;
 }

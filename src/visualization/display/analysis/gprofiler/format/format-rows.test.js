@@ -35,6 +35,7 @@ describe('Format gProfiler response data for table', () => {
   it('should return results formatted for table', () => {
     const expected = [
       {
+        action: { content: null },
         genes: {
           align: 'left',
           content: 'a, b',
