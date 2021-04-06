@@ -2,12 +2,13 @@ import React from 'react';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import {
   faArrowsAlt,
+  faEdit,
   faEyeSlash,
   faLink,
   faSync,
   faToggleOn,
 } from '@fortawesome/pro-duotone-svg-icons';
-import { faTimesCircle } from '@fortawesome/pro-solid-svg-icons';
+import { faPlus, faTimesCircle } from '@fortawesome/pro-solid-svg-icons';
 
 import Link from '../../../components/link/text/link';
 import Image from '../../../components/dynamic-image/image-container';
@@ -560,7 +561,7 @@ const Heatmap = () => (
     <figure className="help__image-screenshot">
       <Image
         alt="Interactive heat map and dot plot GO enrichment results"
-        height={580}
+        height={327}
         images={images}
         name="heatmap-selections-analysis2"
         width={667}
@@ -569,7 +570,20 @@ const Heatmap = () => (
         <span>GO enrichment results</span>
         . Enriched terms for the analysis are sorted based on p-value. Hovering over column headings will display
         the full column name for abbreviations, and hovering over individual cells will display the full cell
-        information if it is too long to fit within the available width.
+        information if it is too long to fit within the available width. You can add an
+        {' '}
+        <Link
+          to="/help/visualization/heatmap#markup-annotations"
+          visited={false}
+        >
+          annotation
+        </Link>
+        {' '}
+        to the image corresponding to the enriched term by clicking the
+        {' '}
+        <FontAwesomeIcon icon={faPlus} />
+        {' '}
+        icon.
       </figcaption>
     </figure>
     <p>
@@ -590,19 +604,16 @@ const Heatmap = () => (
         <span>I (intersection):</span>
         the intersection between T and Q. This is the number of query genes with the term.
       </li>
+      <li>
+        <span>
+          <FontAwesomeIcon icon={faEdit} />
+          :
+        </span>
+        add an annotation to the image for the enriched term in the corresponding row
+      </li>
     </ul>
     <p>
-      The enrichment results can be exported from the button at the bottom. You can also using the annotation
-      input to create and add
-      {' '}
-      <Link
-        to="/help/visualization/heatmap#markup-annotations"
-        visited={false}
-      >
-        annotations
-      </Link>
-      {' '}
-      to the image.
+      The enrichment results can be exported from the button at the bottom.
     </p>
     <h3 id="save">Saving</h3>
     <p>
