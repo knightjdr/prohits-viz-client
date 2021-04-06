@@ -91,7 +91,7 @@ const CircHeatmap = () => (
     </p>
     <h4 id="settings-filtering">Filtering</h4>
     <p>
-      The &quot;Filters&quot; area has a single input for controlling the number of readouts displayed on the image.
+      The filters area has a single input for controlling the number of readouts displayed on the image.
       The first readout is at the top of the circle and counting is in the clockwise direction.
     </p>
     <h4 id="settings-reset">Reset</h4>

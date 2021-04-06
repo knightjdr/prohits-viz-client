@@ -20,7 +20,10 @@ const Line = ({
   showMidline,
   showWarning,
 }) => (
-  <Section title="Lines">
+  <Section
+    helpLink="/help/visualization/scatterplot#markup-lines"
+    title="Lines"
+  >
     {
       showWarning
       && (
@@ -51,7 +54,7 @@ const Line = ({
       />
       <Input
         id="dashLength"
-        label="Dash width"
+        label="Dash length"
         min={1}
         onChange={handleSettingChange}
         step={1}

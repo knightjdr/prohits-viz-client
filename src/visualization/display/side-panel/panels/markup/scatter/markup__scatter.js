@@ -9,8 +9,14 @@ const Markup = ({
   labels,
 }) => (
   <div className="panel panel__markup">
-    <Search labels={labels} />
-    <Labels labels={labels} />
+    <Search
+      helpLink="/help/visualization/scatterplot#markup-search"
+      labels={labels}
+    />
+    <Labels
+      helpLink="/help/visualization/scatterplot#markup-labels"
+      labels={labels}
+    />
     <Lines />
   </div>
 );

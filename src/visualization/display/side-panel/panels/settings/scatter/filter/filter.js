@@ -10,7 +10,10 @@ const Filter = ({
   xFilter,
   yFilter,
 }) => (
-  <Section title="Filters">
+  <Section
+    helpLink="/help/visualization/scatterplot#settings-filtering"
+    title="Filters"
+  >
     <Input
       id="xFilter"
       label={inputLabels.x}

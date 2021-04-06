@@ -22,6 +22,7 @@ const Image = ({
   <>
     <Section
       border={false}
+      helpLink="/help/visualization/scatterplot#settings-image"
       title="Image"
     >
       <Select
@@ -46,7 +47,7 @@ const Image = ({
       <Switch
         checked={equalScaleAxes}
         id="equalScaleAxes"
-        label="Equal scale axes"
+        label="Equal limit axes"
         onChange={handleSettingChange}
       />
       <Input

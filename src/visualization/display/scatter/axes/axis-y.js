@@ -112,8 +112,8 @@ const Yaxis = ({
       <text
         dy={5}
         textAnchor="middle"
-        transform={`rotate(-90, 10, ${axisLabelY})`}
-        x={10}
+        transform={`rotate(-90, 20, ${axisLabelY})`}
+        x={20}
         y={axisLabelY}
       >
         {label}
