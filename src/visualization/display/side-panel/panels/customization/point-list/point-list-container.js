@@ -42,6 +42,7 @@ const PointListContainer = () => {
 
   const handleDeletePoint = (e) => {
     const { groupIndex, label } = e.currentTarget.dataset;
+    console.log(groupIndex, label);
     dispatch(deletePoint(Number(groupIndex), label));
   };
 

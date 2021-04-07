@@ -62,6 +62,7 @@ ListDraggable.propTypes = {
 };
 
 const List = ({
+  groupIndex,
   handleDeletePoint,
   isDragging,
   points,
@@ -70,9 +71,9 @@ const List = ({
     {
       points.length > 0
         ? (
-          points.map((point, index) => (
+          points.map((point) => (
             <ListDraggable
-              groupIndex={index}
+              groupIndex={groupIndex}
               handleDeletePoint={handleDeletePoint}
               key={point}
               point={point}
@@ -89,6 +90,7 @@ const List = ({
 );
 
 List.propTypes = {
+  groupIndex: PropTypes.number.isRequired,
   handleDeletePoint: PropTypes.func.isRequired,
   isDragging: PropTypes.bool.isRequired,
   points: PropTypes.arrayOf(PropTypes.string).isRequired,
@@ -111,7 +113,7 @@ const Points = ({
           ref={provided.innerRef}
         >
           <ListItem
-            groupIndex={rubric.source.index}
+            groupIndex={groupIndex}
             handleDeletePoint={handleDeletePoint}
             point={points[rubric.source.index]}
           />
@@ -121,6 +123,7 @@ const Points = ({
       {(provided) => (
         <div ref={provided.innerRef}>
           <List
+            groupIndex={groupIndex}
             handleDeletePoint={handleDeletePoint}
             isDragging={isDragging}
             points={points}

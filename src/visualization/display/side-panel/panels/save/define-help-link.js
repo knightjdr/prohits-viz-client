@@ -3,6 +3,8 @@ const defineHelpLink = (imageType, hash) => {
     return `/help/visualization/circular-heatmap#${hash}`;
   } if (imageType === 'dotplot' || imageType === 'heatmap') {
     return `/help/visualization/heatmap#${hash}`;
+  } if (imageType === 'scatter') {
+    return `/help/visualization/scatterplot#${hash}`;
   }
   return '';
 };

@@ -27,6 +27,7 @@ const Poi = forwardRef((
     />
     <Section
       border={false}
+      helpLink="/help/visualization/scatterplot#selections"
       title="Selection"
     >
       <div className="poi__grid-scatter">

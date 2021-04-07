@@ -182,6 +182,10 @@
   color: var(--warning);
 }
 
+.help__inner_bold {
+  font-weight: bold;
+}
+
 @media (max-width: 799px) {
   .help {
     display: block;

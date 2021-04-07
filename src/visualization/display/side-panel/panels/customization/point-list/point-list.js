@@ -18,7 +18,10 @@ const PointList = ({
   handleRadiusChange,
   isDragging,
 }) => (
-  <Section title="Customized groups">
+  <Section
+    helpLink="/help/visualization/scatterplot#selections-customization"
+    title="Customized groups"
+  >
     <div className="customization__list">
       {
         groups.length === 0

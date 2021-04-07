@@ -55,7 +55,7 @@ const PoiCustomization = ({
         kind="primary"
         onClick={handleAddCustomizations}
       >
-        Add customizations
+        Create group
       </ButtonRectangular>
     </div>
   </div>

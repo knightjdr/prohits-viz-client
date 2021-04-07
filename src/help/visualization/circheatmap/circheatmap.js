@@ -71,7 +71,11 @@ const CircHeatmap = () => (
     </figure>
     <h4 id="settings-image">Image</h4>
     <p>
-      In the &quot;Image&quot; area you can toggle between sorting by the &quot;knownness&quot;
+      In the
+      {' '}
+      <span className="help__inner_bold">Image</span>
+      {' '}
+      area you can toggle between sorting by the &quot;knownness&quot;
       property if this option was selected during analysis. Readouts will be sorted first by whether
       they are known or not for the condition being visualized and then by the value of the metric
       visualized in the outermost circle if this option is enabled.
@@ -82,7 +86,11 @@ const CircHeatmap = () => (
       input.
     </p>
     <p>
-      Settings for each circle on the image are controlled from the &quot;Circle settings&quot; drag-and-drop area.
+      Settings for each circle on the image are controlled from the
+      {' '}
+      <span className="help__inner_bold">Circle settings</span>
+      {' '}
+      drag-and-drop area.
       In this area there is a card for each metric visualized on the image. Clicking and dragging a card allows
       reordering of the circles on the image. The minimum value for each metric acts as an inclusive filter. Only
       readouts equal to or above that value will be displayed on the image. The cap is a visual cap on the colour
@@ -133,7 +141,7 @@ const CircHeatmap = () => (
     <p>
       Selections are a way to visualize only a part of the image or to define a subset of the data to perform
       analysis on. Readout/segment labels available for selection, and those currently selected, are displayed
-      on the &quot;Selections and Analysis tab&quot; of the side panel.
+      on the fourth tab of the side panel.
     </p>
     <p>
       There are three ways to select readouts:
@@ -196,7 +204,11 @@ const CircHeatmap = () => (
     </p>
     <h4 id="selections-analysis">Analysis</h4>
     <p>
-      The &quot;Analysis&quot; area below the selection menus can be used to perform analysis on selections, provided
+      The
+      {' '}
+      <span className="help__inner_bold">Analysis</span>
+      {' '}
+      area below the selection menus can be used to perform analysis on selections, provided
       the readouts selected represent gene names. Currently, there is only a single type of analysis
       available but we intend on adding more in the future.
     </p>
@@ -225,7 +237,7 @@ const CircHeatmap = () => (
       panel.
     </p>
     <p>
-      Analysis results will open automatically in a separate tabular view. Returning to an image can be done from the
+      Analysis results will open automatically in a separate tabular view. The image can be returned to from the
       menu in the upper left.
     </p>
     <figure className="help__image-screenshot">

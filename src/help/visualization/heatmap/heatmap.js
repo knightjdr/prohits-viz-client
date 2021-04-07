@@ -326,7 +326,10 @@ const Heatmap = () => (
     <h4 id="markup-tooltips">Tooltips</h4>
     <p>
       Tooltips showing information about a cell on the image can be activated from the
-      &quot;Tooltips&quot; area. Hovering over a cell will display the raw data associated with it.
+      {' '}
+      <span className="help__inner_bold">Tooltips</span>
+      {' '}
+      area. Hovering over a cell will display the raw data associated with it.
     </p>
     <figure>
       <Image
@@ -343,7 +346,11 @@ const Heatmap = () => (
     </figure>
     <h4 id="markup-edits">Edits</h4>
     <p>
-      Columns and rows can be reordered and deleted from the &quot;Edit&quot; area. Activating the
+      Columns and rows can be reordered and deleted from the
+      {' '}
+      <span className="help__inner_bold">Edit</span>
+      {' '}
+      area. Activating the
       &quot;Delete columns/rows&quot; toggle will add an icon next to each column and row that
       will delete it when clicked. Activating the
       &quot;Reorder columns/rows&quot; toggle will add a number next to each column and row that
@@ -369,7 +376,11 @@ const Heatmap = () => (
     </p>
     <h4 id="markup-annotations">Annotations</h4>
     <p>
-      Text annotations can be added to the image from the &quot;Annotations&quot; area. Type in the annotation
+      Text annotations can be added to the image from the
+      {' '}
+      <span className="help__inner_bold">Annotations</span>
+      {' '}
+      area. Type in the annotation
       and it will be added to the center of the image&apos;s visible area. You can then click and drag the
       annotation to change its position. Annotations will appear as red dots on the minimap and can be
       deleted individually by clicking on the
@@ -427,7 +438,7 @@ const Heatmap = () => (
     <p>
       Selections are a way to visualize only a part of the image or to define a subset of the data to perform
       analysis on. Column and row labels available for selection, and those currently selected, are displayed
-      on the &quot;Selections and Analysis tab&quot; of the side panel.
+      on the fifth tab of the side panel.
     </p>
     <p>
       There are four ways to select columns and/or rows:
@@ -526,7 +537,11 @@ const Heatmap = () => (
     </p>
     <h4 id="selections-analysis">Analysis</h4>
     <p>
-      The &quot;Analysis&quot; area below the selection menus can be used to perform analysis on selections, provided
+      The
+      {' '}
+      <span className="help__inner_bold">Analysis</span>
+      {' '}
+      area below the selection menus can be used to perform analysis on selections, provided
       the columns and rows selected represent gene names. Currently, there is only a single type of analysis
       available but we intend on adding more in the future.
     </p>
@@ -609,7 +624,7 @@ const Heatmap = () => (
           <FontAwesomeIcon icon={faEdit} />
           :
         </span>
-        add an annotation to the image for the enriched term in the corresponding row
+        add an annotation to the image for the enriched term
       </li>
     </ul>
     <p>
