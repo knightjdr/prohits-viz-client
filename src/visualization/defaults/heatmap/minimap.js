@@ -1,6 +1,7 @@
 import fillSnapshots from '../snapshot';
 import isObject from '../../../utils/is-object';
 import validateUri from '../../../utils/validate-uri';
+import { validateBoolean } from '../../../utils/validate-type';
 
 export const defaultState = {
   image: null,
@@ -23,14 +24,16 @@ export const fillSnapshotMinimap = (inputMinimap) => {
     image: image && validateUri(image) ? image : defaultState.image,
     syncedImage: syncedImage && validateUri(syncedImage)
       ? syncedImage : defaultState.syncedImage,
-    needSyncing: typeof needSyncing === 'boolean' ? needSyncing : defaultState.needSyncing,
+    needSyncing: validateBoolean(needSyncing, defaultState.needSyncing),
   };
 };
 
 const fillMinimap = (fileMinimap) => {
   if (!fileMinimap || !isObject(fileMinimap) || Object.keys(fileMinimap).length === 0) {
     return {
-      main: { ...defaultState },
+      main: {
+        ...defaultState,
+      },
     };
   }
 
