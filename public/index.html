@@ -6,7 +6,6 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="robots" content="noindex,nofollow">
 
     <meta name="theme-color" content="#2A3132">
     <link rel="apple-touch-icon" sizes="180x180" href="%PUBLIC_URL%/favicon/apple-touch-icon.png">
@@ -16,6 +15,7 @@
     <meta name="msapplication-TileColor" content="#2A3132">
 
     <% if (process.env.NODE_ENV === 'production') { %>
+      <meta name="google-site-verification" content="%REACT_APP_SITE_VERIFICATION%" />
       <script async defer data-domain="prohits-viz.org" src="%REACT_APP_PLAUSIBLE%"></script>
     <% } %>
 
