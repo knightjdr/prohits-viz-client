@@ -1,7 +1,12 @@
 /* TEAM */
 	Creator, designer and developer: James Knight
-	Contact: jknight [at] lunenfeld.ca
-	From: Toronto, Ontario, Canada
+  Contact: jknight [at] lunenfeld.ca
+  Website: jamesknight.dev
+  From: Toronto, Ontario, Canada
+
+  Group leader: Anne-Claude Gingras
+  Contact: gingras [at] lunenfeld.ca
+  Website: gingraslab.lunenfeld.ca
 
 /* SITE */
 	Language: English
