@@ -11,6 +11,7 @@ import usePortal from '../../hooks/portal/use-portal';
 import usePrevious from '../../hooks/previous/use-previous';
 
 const ModalContainer = ({
+  deps,
   fromCursor,
   handleClose,
   isOpen,
@@ -22,7 +23,7 @@ const ModalContainer = ({
   const portal = usePortal(`${name}-root`);
   const wasOpen = usePrevious(isOpen);
 
-  useClickOutside(ref, handleClose);
+  useClickOutside(ref, handleClose, { deps });
 
   useEffect(() => {
     if (isOpen && fromCursor) {
@@ -45,6 +46,7 @@ const ModalContainer = ({
 };
 
 ModalContainer.defaultProps = {
+  deps: [],
   fromCursor: false,
   handleClose: () => {},
   isOpen: false,
@@ -56,6 +58,7 @@ ModalContainer.defaultProps = {
 };
 
 ModalContainer.propTypes = {
+  deps: PropTypes.arrayOf(PropTypes.string),
   fromCursor: PropTypes.bool,
   handleClose: PropTypes.func,
   isOpen: PropTypes.bool,

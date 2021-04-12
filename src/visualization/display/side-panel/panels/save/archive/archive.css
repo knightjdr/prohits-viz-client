@@ -11,3 +11,21 @@
 .panel__save-archive-container-button > span {
   margin-right: 5px;
 }
+
+.panel__save-archive-status {
+  margin-top: 1rem;
+}
+.panel__save-archive-status_error {
+  border: 1px solid var(--warning);
+  border-radius: 3px;
+  margin-top: 1rem;
+  padding: 0.4rem;
+}
+.panel__save-archive-status_loading {
+  display: flex;
+  justify-content: center;
+}
+.panel__save-archive-modal-footer {
+  display: flex;
+  justify-content: space-between;
+}

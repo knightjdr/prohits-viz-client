@@ -3,6 +3,8 @@ import React from 'react';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faArchive, faExclamationCircle } from '@fortawesome/pro-duotone-svg-icons';
 
+import ArchiveModal from './archive-modal';
+import ArchivingStatus from './archiving-status';
 import IconButton from '../../../../../../components/buttons/icon/button';
 import Link from '../../../../../../components/link/text/link';
 import Section from '../../section/section';
@@ -12,8 +14,15 @@ import defineHelpLink from '../define-help-link';
 import './archive.css';
 
 const Archive = ({
+  archiving,
+  error,
   handleArchive,
+  handleClose,
+  handleCopy,
   imageType,
+  isArchiveModelOpen,
+  message,
+  route,
 }) => (
   <Section
     helpLink={defineHelpLink(imageType, 'save-session')}
@@ -23,11 +32,15 @@ const Archive = ({
       <div className="panel__save-archive-container-button">
         <span>Archive:</span>
         <IconButton
-          disabled
           icon={faArchive}
           onClick={handleArchive}
         />
       </div>
+      <ArchivingStatus
+        archiving={archiving}
+        error={error}
+        message={message}
+      />
       <p>
         <FontAwesomeIcon icon={faExclamationCircle} />
         Archiving an image will generate a new URL that can be used to access your session
@@ -44,12 +57,25 @@ const Archive = ({
         for more.
       </p>
     </div>
+    <ArchiveModal
+      handleClose={handleClose}
+      handleCopy={handleCopy}
+      isOpen={isArchiveModelOpen}
+      route={route}
+    />
   </Section>
 );
 
 Archive.propTypes = {
+  archiving: PropTypes.bool.isRequired,
+  error: PropTypes.bool.isRequired,
   handleArchive: PropTypes.func.isRequired,
+  handleClose: PropTypes.func.isRequired,
+  handleCopy: PropTypes.func.isRequired,
   imageType: PropTypes.string.isRequired,
+  isArchiveModelOpen: PropTypes.bool.isRequired,
+  message: PropTypes.string.isRequired,
+  route: PropTypes.string.isRequired,
 };
 
 export default Archive;

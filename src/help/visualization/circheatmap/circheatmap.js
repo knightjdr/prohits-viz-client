@@ -308,11 +308,6 @@ const CircHeatmap = () => (
     </p>
     <h4 id="save-archive">Archive</h4>
     <p>
-      <strong>
-        This feature is not currently active, but will be in the near future.
-      </strong>
-    </p>
-    <p>
       By default, analysis tasks and their associated images are only stored for 24 hours. Task results can be
       downloaded and images manually loaded into the interactive viewer at any time however. Alternatively, archiving an
       image allows for it to be stored semi-permanently or permanently on our server. If you choose to archive a file,
