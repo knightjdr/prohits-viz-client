@@ -33,14 +33,15 @@ const ProcessContainer = () => {
         || parameters.filename !== filename
       )
     ) {
-      attemptRef.current += 1;
       const getFile = async () => {
+        attemptRef.current += 1;
         status.setLoading(true);
         const response = await fetch(`/task/${id}/${filename}`);
         if (response.error) {
           status.setError(true);
           status.setErrorMessage('There was an error loading the image. Tasks are only kept for 24 hours.');
         } else {
+          attemptRef.current = 0;
           const data = fillInteractiveState(response.data, filename, id);
           dispatch(loadInteractiveState(data));
         }
@@ -50,7 +51,7 @@ const ProcessContainer = () => {
     } else {
       status.setLoading(false);
     }
-  }, [attemptRef.current, dispatch, filename, id, parameters, status]);
+  }, [dispatch, filename, id, parameters]);
 
   return (
     <Process

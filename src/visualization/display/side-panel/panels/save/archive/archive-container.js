@@ -4,10 +4,11 @@ import { useHistory } from 'react-router-dom';
 
 import Archive from './archive';
 
+import copyToClipboard from '../../../../../../utils/copy-to-clipboard';
+import defineHelpLink from '../define-help-link';
 import useFetch from '../../../../../../hooks/fetch/use-fetch';
 import useSessionData from '../session/use-session-data';
 import { selectStateProperty } from '../../../../../../state/selector/general';
-import copyToClipboard from '../../../../../../utils/copy-to-clipboard';
 
 const ArchiveContainer = () => {
   const history = useHistory();
@@ -65,6 +66,8 @@ const ArchiveContainer = () => {
     copyToClipboard(`${process.env.REACT_APP_WS_HOST}${archiveStatus.route}`);
   };
 
+  const helpLink = defineHelpLink(imageType, 'save-archive');
+
   return (
     <Archive
       archiving={archiveStatus.archiving}
@@ -72,7 +75,7 @@ const ArchiveContainer = () => {
       handleArchive={handleArchive}
       handleClose={handleClose}
       handleCopy={handleCopy}
-      imageType={imageType}
+      helpLink={helpLink}
       isArchiveModelOpen={isArchiveModelOpen}
       message={archiveStatus.message}
       route={archiveStatus.route}

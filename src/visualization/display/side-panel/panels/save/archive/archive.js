@@ -9,8 +9,6 @@ import IconButton from '../../../../../../components/buttons/icon/button';
 import Link from '../../../../../../components/link/text/link';
 import Section from '../../section/section';
 
-import defineHelpLink from '../define-help-link';
-
 import './archive.css';
 
 const Archive = ({
@@ -19,13 +17,13 @@ const Archive = ({
   handleArchive,
   handleClose,
   handleCopy,
-  imageType,
+  helpLink,
   isArchiveModelOpen,
   message,
   route,
 }) => (
   <Section
-    helpLink={defineHelpLink(imageType, 'save-session')}
+    helpLink={helpLink}
     title="Archive"
   >
     <div className="panel__save-archive">
@@ -43,12 +41,12 @@ const Archive = ({
       />
       <p>
         <FontAwesomeIcon icon={faExclamationCircle} />
-        Archiving an image will generate a new URL that can be used to access your session
+        Archiving a session will generate a new URL that can be used to access your session
         from any browser. These sessions will be saved for three months. If you would like
         to have your session permanently archived, please send us the URL. See the
         {' '}
         <Link
-          to="/help/visualization/heatmap#save-archive"
+          to={helpLink}
           visited={false}
         >
           help
@@ -72,7 +70,7 @@ Archive.propTypes = {
   handleArchive: PropTypes.func.isRequired,
   handleClose: PropTypes.func.isRequired,
   handleCopy: PropTypes.func.isRequired,
-  imageType: PropTypes.string.isRequired,
+  helpLink: PropTypes.string.isRequired,
   isArchiveModelOpen: PropTypes.bool.isRequired,
   message: PropTypes.string.isRequired,
   route: PropTypes.string.isRequired,
