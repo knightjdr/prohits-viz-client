@@ -4,6 +4,7 @@ import { useSelector } from 'react-redux';
 import Map from './minimap';
 
 import calculatePageOutline from './calculate-page-outline';
+import useOnMount from '../../../../../hooks/on-mount/use-on-mount';
 import useSync from './sync/use-sync';
 import { selectData } from '../../../../../state/selector/visualization/data-selector';
 
@@ -28,6 +29,12 @@ const MinimapContainer = () => {
   const updateMinimap = () => {
     sync(true);
   };
+
+  useOnMount(() => {
+    if (!minimap.image && minimap.needSyncing) {
+      sync(true);
+    }
+  });
 
   return (
     <Map
