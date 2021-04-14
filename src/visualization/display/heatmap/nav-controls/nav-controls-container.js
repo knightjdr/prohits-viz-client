@@ -118,7 +118,7 @@ const ShowNavControls = ({
     };
   });
 
-  const showControls = show && dimensions.height && dimensions.width;
+  const showControls = show && (dimensions.height > 0) && (dimensions.width > 0);
 
   return (
     showControls
