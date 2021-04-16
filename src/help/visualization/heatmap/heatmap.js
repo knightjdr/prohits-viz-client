@@ -293,7 +293,14 @@ const Heatmap = () => (
     <h4 id="settings-reset">Reset</h4>
     <p>
       Resetting the image will undo any sorting, filtering and setting changes that were made after the image was
-      initially loaded. The keyboard shortcut for resetting is SHIFT-R.
+      initially loaded. The keyboard shortcut for resetting is
+      {' '}
+      <span className="help__inner-key-shortcut">Ctrl</span>
+      {' '}
+      +
+      {' '}
+      <span className="help__inner-key-shortcut">U</span>
+      .
     </p>
     <h3 id="markup">Markup</h3>
     <p>

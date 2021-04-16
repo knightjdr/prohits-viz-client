@@ -115,8 +115,14 @@ const Scatter = () => (
     <h4 id="settings-reset">Reset</h4>
     <p>
       The first reset button will undo any setting changes, as well as zooming and panning, that were made
-      after the image was initially loaded. The keyboard shortcut for this reset level is SHIFT-R. The second
-      button will only reset zooming and panning (there is no keyboard shortcut for this).
+      after the image was initially loaded. The keyboard shortcut for resetting is
+      {' '}
+      <span className="help__inner-key-shortcut">Ctrl</span>
+      {' '}
+      +
+      {' '}
+      <span className="help__inner-key-shortcut">U</span>
+      . The second button will only reset zooming and panning (there is no keyboard shortcut for this).
     </p>
     <h3 id="markup">Markup</h3>
     <p>

@@ -186,6 +186,15 @@
   font-weight: bold;
 }
 
+.help__inner-key-shortcut {
+  background-color: #eeeeee;
+  border: 1px solid #333333;
+  border-radius: 3px;
+  box-sizing: border-box;
+  display: inline-block;
+  padding: 0 0.5rem;
+}
+
 @media (max-width: 799px) {
   .help {
     display: block;

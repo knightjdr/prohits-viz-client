@@ -8,8 +8,8 @@ const useShortCuts = () => {
 
   const handleKeyDown = useCallback(
     (e) => {
-      const { key, shiftKey } = e;
-      if (shiftKey && key === 'R') {
+      const { key, ctrlKey } = e;
+      if (ctrlKey && key.toLowerCase() === 'u') {
         e.preventDefault();
         dispatch(resetCircheatmap());
       }
