@@ -1,7 +1,7 @@
 const calculateTranslation = (cellSize, cellX, cellY) => {
-  const x = 100 - (cellSize * cellX);
-  const y = 100 - (cellSize * cellY);
-  return `translate(${x}, ${y})`;
+  const x = cellSize * cellX;
+  const y = cellSize * cellY;
+  return `translate(-${x}, -${y})`;
 };
 
 export default calculateTranslation;

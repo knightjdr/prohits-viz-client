@@ -1,3 +1,6 @@
 .heatmap__canvas {
+  left: 100px;
+  position: absolute;
+  top: 100px;
   transform-origin: top left;
 }

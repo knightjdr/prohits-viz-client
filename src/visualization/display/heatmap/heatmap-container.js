@@ -13,6 +13,7 @@ import defineDimensions from './dimensions/define-dimensions';
 import defineTranslation from '../common/dimensions/define-translation';
 import useShortCuts from './hooks/use-shortcuts';
 import useWindowDimension from '../../../hooks/window-size/use-window-dimension';
+import { getPressedKeyCode } from '../../../utils/pressed-key-code';
 import { setDimensions, updateDimension } from '../../../state/visualization/settings/dimension-actions';
 import { selectDataProperty } from '../../../state/selector/visualization/data-selector';
 import { selectStateProperty } from '../../../state/selector/general';
@@ -40,10 +41,12 @@ const HeatmapContainer = () => {
   const updateScroll = useCallback(
     (dimension, value) => {
       const newY = Math.round(value / cellSize);
-      dispatch(updateDimension(dimension, value));
       debounce(
-        dispatch(updatePosition(0, newY)),
-        50,
+        batch(() => {
+          dispatch(updateDimension(dimension, value));
+          dispatch(updatePosition(0, newY));
+        }),
+        20,
       );
     },
     [dispatch],
@@ -94,6 +97,8 @@ const HeatmapContainer = () => {
           scrollContainerWidth: width.scrollContainer,
           scrollContentHeight: height.scrollContent,
           scrollContentWidth: width.scrollContent,
+          scrollLeft: width.scrollLeft,
+          scrollTop: height.scrollTop,
           wrapperHeight: height.wrapper,
           wrapperWidth: width.wrapper,
         },
@@ -103,14 +108,25 @@ const HeatmapContainer = () => {
   }, [dimensions, dispatch]);
 
   useEffect(() => {
-    const updateScrollPosition = () => {
+    const updateScrollByKeyDown = (e) => {
+      const ignoreCodes = [37, 38, 39, 40];
+      const code = getPressedKeyCode(e);
+      /* if (ignoreCodes.includes(code)) {
+        e.preventDefault();
+      } */
+    };
+
+    const updateScrollPosition = (e) => {
       updateScroll('scrollTop', scrollRef.current.scrollTop);
     };
+
     if (scrollRef.current) {
+      window.addEventListener('keydown', updateScrollByKeyDown);
       scrollRef.current.addEventListener('scroll', updateScrollPosition);
     }
     return () => {
       if (scrollRef.current) {
+        window.removeEventListener('keydown', updateScrollByKeyDown);
         scrollRef.current.removeEventListener('scroll', updateScrollPosition);
       }
     };
@@ -118,6 +134,10 @@ const HeatmapContainer = () => {
 
   return (
     <Heatmap
+      page={{
+        height: dimensions.height.heatmap,
+        width: dimensions.width.heatmap,
+      }}
       ref={{
         pageRef,
         scrollRef,

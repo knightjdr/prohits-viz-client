@@ -31,6 +31,7 @@ export const calculateHeight = (cellSize, noRows, windowHeight, removePadding) =
     height.rows = noRows;
     height.scrollContainer = height.heatmap;
     height.scrollContent = height.heatmap;
+    height.scrollTop = 0;
     height.wrapper = height.heatmap + COL_MARGIN + PADDING;
   } else {
     height.arrowsY = true;
@@ -39,6 +40,7 @@ export const calculateHeight = (cellSize, noRows, windowHeight, removePadding) =
     height.rows = noRows;
     height.scrollContainer = height.heatmap;
     height.scrollContent = noRows * cellSize;
+    height.scrollTop = 0;
     height.wrapper = wrapper;
   }
   return height;
@@ -58,6 +60,7 @@ export const calculateWidth = (cellSize, noCols, windowWidth) => {
     width.pageX = noCols;
     width.scrollContainer = width.heatmap;
     width.scrollContent = width.heatmap;
+    width.scrollLeft = 0;
     width.wrapper = width.heatmap + ROW_MARGIN + PADDING;
   } else {
     width.arrowsX = true;
@@ -67,6 +70,7 @@ export const calculateWidth = (cellSize, noCols, windowWidth) => {
     width.pageX = pageX;
     width.scrollContainer = width.heatmap;
     width.scrollContent = noCols * cellSize;
+    width.scrollLeft = 0;
     width.wrapper = wrapper;
   }
   return width;

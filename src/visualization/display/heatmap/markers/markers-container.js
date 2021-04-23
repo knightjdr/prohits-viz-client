@@ -16,7 +16,6 @@ const MarkersContainer = () => {
   const markers = useSelector((state) => selectData(state, 'markers'));
   const settings = useSelector((state) => selectDataProperty(state, 'settings', 'current'));
 
-  const clipPathID = 'annotationClipPath';
   const translation = useTranslation('markerClipPath');
 
   const { color, list } = markers;
@@ -37,13 +36,11 @@ const MarkersContainer = () => {
 
   return (
     <Markers
-      clipPath={translation.clipPath}
-      clipPathID={clipPathID}
       color={color}
       handleMarkerDeletion={handleMarkerDeletion}
       list={list}
       scaleDimensions={scaleDimensions}
-      translation={translation.translation}
+      translation={translation}
     />
   );
 };

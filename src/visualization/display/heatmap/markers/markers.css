@@ -1,0 +1,16 @@
+.heatmap__marker rect {
+  fill-opacity: 0;
+  pointer-events: stroke;
+  stroke-width: 2px;
+}
+rect.heatmap__marker-hover-border {
+  stroke-width: 15px;
+}
+
+.heatmap__markup-times {
+  visibility: hidden;
+}
+
+.heatmap__marker:hover .heatmap__markup-times {
+  visibility: visible;
+}

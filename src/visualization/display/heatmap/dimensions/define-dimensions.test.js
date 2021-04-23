@@ -12,6 +12,7 @@ describe('calculate height', () => {
       rows: 3,
       scrollContainer: 30,
       scrollContent: 30,
+      scrollTop: 0,
       wrapper: 132,
     };
     expect(calculateHeight(cellSize, noRows, windowHeight, false)).toEqual(expected);
@@ -28,6 +29,7 @@ describe('calculate height', () => {
       rows: 3,
       scrollContainer: 20,
       scrollContent: 30,
+      scrollTop: 0,
       wrapper: 120,
     };
     expect(calculateHeight(cellSize, noRows, windowHeight, false)).toEqual(expected);
@@ -44,6 +46,7 @@ describe('calculate height', () => {
       rows: 3,
       scrollContainer: 20,
       scrollContent: 30,
+      scrollTop: 0,
       wrapper: 120,
     };
     expect(calculateHeight(cellSize, noRows, windowHeight, true)).toEqual(expected);
@@ -63,6 +66,7 @@ describe('calculate width', () => {
       pageX: 3,
       scrollContainer: 30,
       scrollContent: 30,
+      scrollLeft: 0,
       wrapper: 132,
     };
     expect(calculateWidth(cellSize, noCols, windowWidth)).toEqual(expected);
@@ -80,6 +84,7 @@ describe('calculate width', () => {
       pageX: 2,
       scrollContainer: 20,
       scrollContent: 30,
+      scrollLeft: 0,
       wrapper: 120,
     };
     expect(calculateWidth(cellSize, noCols, windowWidth)).toEqual(expected);
@@ -102,6 +107,7 @@ describe('Define heat map dimensions', () => {
         rows: 3,
         scrollContainer: 30,
         scrollContent: 30,
+        scrollTop: 0,
         wrapper: 132,
       },
       width: {
@@ -112,6 +118,7 @@ describe('Define heat map dimensions', () => {
         pageX: 3,
         scrollContainer: 30,
         scrollContent: 30,
+        scrollLeft: 0,
         wrapper: 132,
       },
     };
@@ -133,6 +140,7 @@ describe('Define heat map dimensions', () => {
         rows: 100,
         scrollContainer: 330,
         scrollContent: 1000,
+        scrollTop: 0,
         wrapper: 430,
       },
       width: {
@@ -143,6 +151,7 @@ describe('Define heat map dimensions', () => {
         pageX: 25,
         scrollContainer: 270,
         scrollContent: 500,
+        scrollLeft: 0,
         wrapper: 370,
       },
     };

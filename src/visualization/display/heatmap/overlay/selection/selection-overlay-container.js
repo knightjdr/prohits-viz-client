@@ -26,6 +26,8 @@ const defaultSelection = {
     width: 0,
   },
   position: {
+    startCellX: 0,
+    startCellY: 0,
     x: 0,
     y: 0,
   },
@@ -86,7 +88,11 @@ const SelectionOverlayContainer = ({
       const newCoordinates = calculateSelectionCoordinates(startPosition.current, currentCoordinates);
       const size = calculateSelectionSize(startPosition.current, currentCoordinates);
       setSelectionSize(size);
-      setSelectionCoordinates(newCoordinates);
+      setSelectionCoordinates({
+        ...newCoordinates,
+        startCellX: position.x,
+        startCellY: position.y,
+      });
       return {
         position: newCoordinates,
         size,
@@ -129,6 +135,24 @@ const SelectionOverlayContainer = ({
       width: 0,
     });
   }, [activeSnapshot, columnOrder, rowOrder]);
+
+  useEffect(() => {
+    if (
+      selectionSize.height > 0
+      && selectionSize.width > 0
+      && (
+        position.x !== selectionCoordinates.startCellX
+        || position.y !== selectionCoordinates.startCellY
+      )
+    ) {
+      setSelectionCoordinates({
+        startCellX: position.x,
+        startCellY: position.y,
+        x: selectionCoordinates.x + ((selectionCoordinates.startCellX - position.x) * cellSize),
+        y: selectionCoordinates.y + ((selectionCoordinates.startCellY - position.y) * cellSize),
+      });
+    }
+  }, [position.x, position.y]);
 
   return (
     <SelectionOverlay

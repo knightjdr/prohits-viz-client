@@ -9,23 +9,16 @@ const Canvas = forwardRef((
   },
   ref,
 ) => (
-  <g>
-    <foreignObject
-      x="100"
-      y="100"
-      height={pageDimensions.height}
-      width={pageDimensions.width}
-    >
-      <canvas
-        xmlns="http://www.w3.org/1999/xhtml"
-        className="heatmap__canvas"
-        height={pageDimensions.canvasHeight}
-        ref={ref}
-        style={{ transform: pageDimensions.transform }}
-        width={pageDimensions.canvasWidth}
-      />
-    </foreignObject>
-  </g>
+  <canvas
+    xmlns="http://www.w3.org/1999/xhtml"
+    className="heatmap__canvas"
+    height={pageDimensions.canvasHeight}
+    ref={ref}
+    style={{
+      transform: pageDimensions.transform,
+    }}
+    width={pageDimensions.canvasWidth}
+  />
 ));
 
 Canvas.propTypes = {

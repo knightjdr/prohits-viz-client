@@ -1,0 +1,12 @@
+.heatmap__row {
+  align-items: center;
+  display: flex;
+  position: absolute;
+  right: 2px;
+}
+.heatmap__rows-container {
+  overflow: hidden;
+  position: absolute;
+  top: 100px;
+  width: 100px;
+}

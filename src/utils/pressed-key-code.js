@@ -1,4 +1,12 @@
-const pressedKeyCode = (e, key) => {
+export const getPressedKeyCode = (e) => {
+  if (!e) {
+    return null;
+  }
+  const { keyCode, which } = e;
+  return keyCode || which;
+};
+
+export const pressedKeyCode = (e, key) => {
   if (!e) {
     return false;
   }
@@ -8,6 +16,14 @@ const pressedKeyCode = (e, key) => {
 
 export const pressedArrowDown = (e) => (
   pressedKeyCode(e, 40)
+);
+
+export const pressedArrowLeft = (e) => (
+  pressedKeyCode(e, 37)
+);
+
+export const pressedArrowRight = (e) => (
+  pressedKeyCode(e, 39)
 );
 
 export const pressedArrowUp = (e) => (

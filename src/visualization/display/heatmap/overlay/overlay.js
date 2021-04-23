@@ -17,7 +17,7 @@ const Overlay = forwardRef((
       gridRef={ref.current}
       show={showTooltips}
     />
-    <g transform="translate(100, 100)">
+    <g>
       <rect
         height={height}
         opacity={0}
