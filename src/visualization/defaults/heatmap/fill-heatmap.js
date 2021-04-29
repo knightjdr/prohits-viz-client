@@ -44,7 +44,7 @@ const validateHeatmap = (file, filename, taskID) => {
     annotations: fillAnnotations(annotations),
     columnDB,
     columns: fillColumns(columns, columnDB),
-    dimensions: fillDimensions(dimensions),
+    dimensions: fillDimensions(dimensions, tabs?.availableSnapshots),
     display: fillDisplay(display),
     exporter: fillExporter(exporter),
     gprofiler: fillGprofiler(gprofiler),

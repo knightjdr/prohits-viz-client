@@ -17,8 +17,14 @@ export const fillSnapshotDimensions = () => ({
   ...defaultState,
 });
 
-const fillDimensions = (fileDimensions) => {
+const fillDimensions = (fileDimensions, snapshots) => {
   if (!fileDimensions || !isObject(fileDimensions) || Object.keys(fileDimensions).length === 0) {
+    if (snapshots && snapshots.length > 0) {
+      return snapshots.reduce((accum, snapshot) => ({
+        ...accum,
+        [snapshot]: { ...defaultState },
+      }), {});
+    }
     return {
       main: { ...defaultState },
     };
