@@ -1,5 +1,6 @@
 export const SET_DIMENSIONS = 'SET_DIMENSIONS';
 export const UPDATE_DIMENSION = 'UPDATE_DIMENSION';
+export const UPDATE_DIMENSIONS = 'UPDATE_DIMENSIONS';
 
 export const setDimensions = (dimensions) => ({
   AUGMENT_WITH_ACTIVE_SNAPSHOT: true,
@@ -12,4 +13,10 @@ export const updateDimension = (dimension, value) => ({
   dimension,
   type: UPDATE_DIMENSION,
   value,
+});
+
+export const updateDimensions = (dimensions) => ({
+  AUGMENT_WITH_ACTIVE_SNAPSHOT: true,
+  dimensions,
+  type: UPDATE_DIMENSIONS,
 });

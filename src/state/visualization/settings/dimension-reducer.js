@@ -20,6 +20,14 @@ const reduceAndUpdate = (state, action) => ({
   },
 });
 
+const reduceAndUpdateMultiple = (state, action) => ({
+  ...state,
+  [action.snapshotID]: {
+    ...state[action.snapshotID],
+    ...action.dimensions,
+  },
+});
+
 const reducer = (state = {}, action) => {
   switch (action.type) {
     case snapshotActions.ADD_SNAPSHOT:
@@ -34,6 +42,8 @@ const reducer = (state = {}, action) => {
       return reduceAndSetDimensions(state, action);
     case actions.UPDATE_DIMENSION:
       return reduceAndUpdate(state, action);
+    case actions.UPDATE_DIMENSIONS:
+      return reduceAndUpdateMultiple(state, action);
     default:
       return state;
   }

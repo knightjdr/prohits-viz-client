@@ -21,12 +21,22 @@ const SortMatch = ({
   && sortBy === name
   && sortDirection
   && (
-    <polygon
-      data-name={name}
-      fill="#f48fb1"
-      onContextMenu={openContextMenu}
-      points={definePolygon(sortDirection, cellSize, columnIndex)}
-    />
+    <svg
+      className="heatmap__sort-polygon"
+      height={100}
+      style={{
+        left: columnIndex * cellSize,
+      }}
+      width={cellSize}
+      xmlns="http://www.w3.org/2000/svg"
+    >
+      <polygon
+        data-name={name}
+        fill="#f48fb1"
+        onContextMenu={openContextMenu}
+        points={definePolygon(sortDirection, cellSize, 0)}
+      />
+    </svg>
   )
 );
 

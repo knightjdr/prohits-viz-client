@@ -13,9 +13,8 @@ import defineDimensions from './dimensions/define-dimensions';
 import defineTranslation from '../common/dimensions/define-translation';
 import useShortCuts from './hooks/use-shortcuts';
 import useWindowDimension from '../../../hooks/window-size/use-window-dimension';
-import { getPressedKeyCode } from '../../../utils/pressed-key-code';
 import { setDimensions, updateDimension } from '../../../state/visualization/settings/dimension-actions';
-import { selectDataProperty } from '../../../state/selector/visualization/data-selector';
+import { selectData, selectDataProperty } from '../../../state/selector/visualization/data-selector';
 import { selectStateProperty } from '../../../state/selector/general';
 import { updatePosition } from '../../../state/visualization/settings/position-actions';
 
@@ -30,6 +29,7 @@ const HeatmapContainer = () => {
   const plotFixed = useSelector((state) => selectDataProperty(state, 'display', 'plotFixed'));
   const rowOrder = useSelector((state) => selectDataProperty(state, 'rows', 'order'));
   const settings = useSelector((state) => selectDataProperty(state, 'settings', 'current'));
+  const { scrollLeft, scrollTop, scrollUpdate } = useSelector((state) => selectData(state, 'dimensions'));
 
   const windowDimensions = useWindowDimension(50);
   useShortCuts();
@@ -99,6 +99,7 @@ const HeatmapContainer = () => {
           scrollContentWidth: width.scrollContent,
           scrollLeft: width.scrollLeft,
           scrollTop: height.scrollTop,
+          scrollUpdate: 'true',
           wrapperHeight: height.wrapper,
           wrapperWidth: width.wrapper,
         },
@@ -108,29 +109,27 @@ const HeatmapContainer = () => {
   }, [dimensions, dispatch]);
 
   useEffect(() => {
-    const updateScrollByKeyDown = (e) => {
-      const ignoreCodes = [37, 38, 39, 40];
-      const code = getPressedKeyCode(e);
-      /* if (ignoreCodes.includes(code)) {
-        e.preventDefault();
-      } */
-    };
-
-    const updateScrollPosition = (e) => {
+    const updateScrollPosition = () => {
       updateScroll('scrollTop', scrollRef.current.scrollTop);
     };
 
     if (scrollRef.current) {
-      window.addEventListener('keydown', updateScrollByKeyDown);
       scrollRef.current.addEventListener('scroll', updateScrollPosition);
     }
     return () => {
       if (scrollRef.current) {
-        window.removeEventListener('keydown', updateScrollByKeyDown);
         scrollRef.current.removeEventListener('scroll', updateScrollPosition);
       }
     };
   }, [scrollRef.current]);
+
+  useEffect(() => {
+    if (scrollRef.current && scrollUpdate) {
+      scrollRef.current.scrollLeft = scrollLeft;
+      scrollRef.current.scrollTop = scrollTop;
+      dispatch(updateDimension('scrollUpdate', false));
+    }
+  }, [scrollUpdate]);
 
   return (
     <Heatmap

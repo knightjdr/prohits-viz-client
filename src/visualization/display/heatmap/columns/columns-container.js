@@ -6,7 +6,7 @@ import Columns from './columns';
 import formatNames from '../names/format-names';
 import setFontSize from '../font-size/font-size';
 import useContextMenu from '../context-menu/use-context-menu';
-import { selectDataProperty } from '../../../../state/selector/visualization/data-selector';
+import { selectData, selectDataProperty } from '../../../../state/selector/visualization/data-selector';
 import { selectVisibleColumnNames } from '../../../../state/selector/visualization/column-selector';
 
 const ColumnsContainer = () => {
@@ -23,6 +23,7 @@ const ColumnsContainer = () => {
 
   const columnRef = useSelector((state) => selectDataProperty(state, 'columns', 'ref'));
   const columnSearchMatches = useSelector((state) => selectDataProperty(state, 'searchStatus', 'columns'));
+  const dimensions = useSelector((state) => selectData(state, 'dimensions'));
   const names = useSelector((state) => selectVisibleColumnNames(state));
   const settings = useSelector((state) => selectDataProperty(state, 'settings', 'current'));
   const sortBy = useSelector((state) => selectDataProperty(state, 'rows', 'sortBy'));
@@ -77,6 +78,7 @@ const ColumnsContainer = () => {
     <Columns
       cellSize={cellSize}
       contextMenu={contextMenu.Component}
+      dimensions={dimensions}
       fontSize={fontSize}
       handleClick={handleClick}
       hideTooltip={hideTooltip}

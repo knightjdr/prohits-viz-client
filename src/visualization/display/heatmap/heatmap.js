@@ -3,7 +3,7 @@ import React, { forwardRef } from 'react';
 
 import Annotations from './annotations/annotations-container';
 import Canvas from './canvas/canvas-container';
-// import Columns from './columns/columns-container';
+import Columns from './columns/columns-container';
 import Deletion from './edit/deletion/deletion-container';
 import Markers from './markers/markers-container';
 import NavControls from './nav-controls/nav-controls-container';
@@ -38,6 +38,19 @@ const Heatmap = forwardRef((
         width: wrapper.width,
       }}
     >
+      <Columns />
+      <Rows />
+      <Canvas />
+      <svg
+        className="heatmap__page"
+        height={page.height}
+        width={page.width}
+        xmlns="http://www.w3.org/2000/svg"
+      >
+        <Overlay />
+        <Markers />
+        <Annotations />
+      </svg>
       <div
         className="heatmap__scroll"
         ref={ref.scrollRef}
@@ -53,19 +66,6 @@ const Heatmap = forwardRef((
           }}
         />
       </div>
-      {/* <Columns /> */}
-      <Rows />
-      <Canvas />
-      <svg
-        className="heatmap__page"
-        height={page.height}
-        width={page.width}
-        xmlns="http://www.w3.org/2000/svg"
-      >
-        <Overlay />
-        <Markers />
-        <Annotations />
-      </svg>
     </div>
     <Deletion heatmapRef={ref.pageRef} />
     <Reorder heatmapRef={ref.pageRef} />

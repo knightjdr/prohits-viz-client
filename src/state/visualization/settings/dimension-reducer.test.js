@@ -143,4 +143,86 @@ describe('Dimension reducer', () => {
     };
     expect(reducer(currentState, action)).toEqual(expectedState);
   });
+
+  it('should handle UPDATE_DIMENSION action', () => {
+    const currentState = {
+      main: {
+        columns: 0,
+        height: 0,
+        pageX: 0,
+        pageY: 0,
+        rows: 0,
+        scrollLeft: 0,
+        scrollTop: 0,
+        width: 0,
+        wrapperHeight: 0,
+        wrapperWidth: 0,
+      },
+    };
+
+    const action = {
+      snapshotID: 'main',
+      dimension: 'scrollTop',
+      type: actions.UPDATE_DIMENSION,
+      value: 50,
+    };
+    const expectedState = {
+      ...currentState,
+      main: {
+        columns: 0,
+        height: 0,
+        pageX: 0,
+        pageY: 0,
+        rows: 0,
+        scrollLeft: 0,
+        scrollTop: 50,
+        width: 0,
+        wrapperHeight: 0,
+        wrapperWidth: 0,
+      },
+    };
+    expect(reducer(currentState, action)).toEqual(expectedState);
+  });
+
+  it('should handle UPDATE_DIMENSIONS action', () => {
+    const currentState = {
+      main: {
+        columns: 0,
+        height: 0,
+        pageX: 0,
+        pageY: 0,
+        rows: 0,
+        scrollLeft: 0,
+        scrollTop: 0,
+        width: 0,
+        wrapperHeight: 0,
+        wrapperWidth: 0,
+      },
+    };
+
+    const action = {
+      snapshotID: 'main',
+      dimensions: {
+        scrollLeft: 30,
+        scrollTop: 50,
+      },
+      type: actions.UPDATE_DIMENSIONS,
+    };
+    const expectedState = {
+      ...currentState,
+      main: {
+        columns: 0,
+        height: 0,
+        pageX: 0,
+        pageY: 0,
+        rows: 0,
+        scrollLeft: 30,
+        scrollTop: 50,
+        width: 0,
+        wrapperHeight: 0,
+        wrapperWidth: 0,
+      },
+    };
+    expect(reducer(currentState, action)).toEqual(expectedState);
+  });
 });
