@@ -9,15 +9,25 @@ describe('Search status actions', () => {
     expect(actions.clearSearchStatus()).toEqual(expectedAction);
   });
 
-  it('should dispatch an action to set search status for heatmaps', () => {
+  it('should dispatch an action to set search status for heat maps', () => {
     const results = {
       columns: { a: true, aa: true },
+      dimensions: {
+        scrollLeft: 10,
+        scrollTop: 20,
+        scrollUpdate: true,
+      },
       match: true,
       position: { x: 5, y: 10 },
       rows: { aaa: true },
     };
     const expectedAction = {
       AUGMENT_WITH_ACTIVE_SNAPSHOT: true,
+      dimensions: {
+        scrollLeft: 10,
+        scrollTop: 20,
+        scrollUpdate: true,
+      },
       results,
       term: 'a',
       type: actions.SET_SEARCH_STATUS_HEATMAP,

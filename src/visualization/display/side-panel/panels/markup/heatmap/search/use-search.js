@@ -2,7 +2,7 @@ import { useSelector } from 'react-redux';
 
 import { selectOrderedColumnNames } from '../../../../../../../state/selector/visualization/column-selector';
 import selectRows from '../../../../../../../state/selector/visualization/row-selector';
-import { selectData } from '../../../../../../../state/selector/visualization/data-selector';
+import { selectData, selectDataProperty } from '../../../../../../../state/selector/visualization/data-selector';
 
 export const createRegex = (searchTerm) => (
   new RegExp(searchTerm, 'i')
@@ -68,6 +68,7 @@ const useSearch = () => {
   const dimensions = useSelector((state) => selectData(state, 'dimensions'));
   const rows = useSelector((state) => selectRows(state));
   const position = useSelector((state) => selectData(state, 'position'));
+  const { cellSize } = useSelector((state) => selectDataProperty(state, 'settings', 'current'));
 
   const search = (searchTerm) => {
     const searchRegex = createRegex(searchTerm);
@@ -76,6 +77,11 @@ const useSearch = () => {
     const newPosition = findNewPosition(firstMatches, position, dimensions);
     return {
       columns: matches.columns,
+      dimensions: {
+        scrollLeft: newPosition.x * cellSize,
+        scrollTop: newPosition.y * cellSize,
+        scrollUpdate: true,
+      },
       match: hasMatch(firstMatches),
       position: newPosition,
       rows: matches.rows,

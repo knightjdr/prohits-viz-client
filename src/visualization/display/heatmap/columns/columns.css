@@ -4,11 +4,12 @@
   left: 100px;
   overflow: hidden;
   position: absolute;
+  top: 0;
 }
 
 .heatmap__column {
   align-items: center;
-  bottom: 0;
+  bottom: 2px;
   display: flex;
   position: absolute;
   writing-mode: tb-rl;

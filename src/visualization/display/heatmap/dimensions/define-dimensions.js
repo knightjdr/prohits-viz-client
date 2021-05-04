@@ -1,9 +1,9 @@
 import getScrollbarWidth from '../../../../utils/define-scrollbar-width';
 
 // Pixel dimensions of elements around the plot.
-const ARROW_PADDING = 30;
+const ARROW_PADDING = 50;
 const COL_MARGIN = 100;
-const HORIZONTAL_PADDING = 50;
+const HORIZONTAL_PADDING = 70;
 const NAVBAR_HEIGHT = 40;
 const PADDING = 2;
 const ROW_MARGIN = 100;

@@ -13,7 +13,11 @@ import defineDimensions from './dimensions/define-dimensions';
 import defineTranslation from '../common/dimensions/define-translation';
 import useShortCuts from './hooks/use-shortcuts';
 import useWindowDimension from '../../../hooks/window-size/use-window-dimension';
-import { setDimensions, updateDimension } from '../../../state/visualization/settings/dimension-actions';
+import {
+  setDimensions,
+  updateDimension,
+  updateDimensions,
+} from '../../../state/visualization/settings/dimension-actions';
 import { selectData, selectDataProperty } from '../../../state/selector/visualization/data-selector';
 import { selectStateProperty } from '../../../state/selector/general';
 import { updatePosition } from '../../../state/visualization/settings/position-actions';
@@ -39,12 +43,16 @@ const HeatmapContainer = () => {
   const noRows = rowOrder.length;
 
   const updateScroll = useCallback(
-    (dimension, value) => {
-      const newY = Math.round(value / cellSize);
+    (newScrollLeft, newScrollTop) => {
+      const newX = Math.round(newScrollLeft / cellSize);
+      const newY = Math.round(newScrollTop / cellSize);
       debounce(
         batch(() => {
-          dispatch(updateDimension(dimension, value));
-          dispatch(updatePosition(0, newY));
+          dispatch(updateDimensions({
+            scrollLeft: newScrollLeft,
+            scrollTop: newScrollTop,
+          }));
+          dispatch(updatePosition(newX, newY));
         }),
         20,
       );
@@ -110,7 +118,7 @@ const HeatmapContainer = () => {
 
   useEffect(() => {
     const updateScrollPosition = () => {
-      updateScroll('scrollTop', scrollRef.current.scrollTop);
+      updateScroll(scrollRef.current.scrollLeft, scrollRef.current.scrollTop);
     };
 
     if (scrollRef.current) {

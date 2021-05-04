@@ -1,5 +1,6 @@
 import * as actions from './dimension-actions';
 import * as fileActions from '../data/interactive-file-actions';
+import * as searchActions from '../markup/search-actions';
 import * as snapshotActions from '../data/snapshot-actions';
 
 import { reduceAndAddSnapshot, reduceAndRemoveSnapshot } from '../data/snapshot-reducer';
@@ -38,6 +39,8 @@ const reducer = (state = {}, action) => {
       return reduceAndLoadState(action, 'dimensions');
     case snapshotActions.REMOVE_SNAPSHOT:
       return reduceAndRemoveSnapshot(state, action);
+    case searchActions.SET_SEARCH_STATUS_HEATMAP:
+      return reduceAndUpdateMultiple(state, action);
     case actions.SET_DIMENSIONS:
       return reduceAndSetDimensions(state, action);
     case actions.UPDATE_DIMENSION:

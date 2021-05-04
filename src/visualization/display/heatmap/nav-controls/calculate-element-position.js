@@ -8,13 +8,13 @@ const calculateElementPosition = (direction, height, wrapperHeight, width, windo
 
   return direction === 'horizontal'
     ? {
-      bottom: (wrapperVerticalMargin - 73),
-      right: (wrapperHorizontalMargin / 2) - 40,
+      bottom: (wrapperVerticalMargin - 80),
+      right: (wrapperHorizontalMargin / 2) - 38,
       transform: 'rotate(-90deg)',
     }
     : {
       bottom: (wrapperVerticalMargin - 100) + (offset ? 30 : 0),
-      right: (wrapperHorizontalMargin / 2) - 83,
+      right: (wrapperHorizontalMargin / 2) - 90,
       transform: null,
     };
 };

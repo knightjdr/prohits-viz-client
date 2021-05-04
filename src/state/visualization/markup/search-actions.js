@@ -9,6 +9,7 @@ export const clearSearchStatus = () => ({
 
 export const setSearchStatusHeatmap = (term, results) => ({
   AUGMENT_WITH_ACTIVE_SNAPSHOT: true,
+  dimensions: results.dimensions,
   results,
   term,
   type: SET_SEARCH_STATUS_HEATMAP,

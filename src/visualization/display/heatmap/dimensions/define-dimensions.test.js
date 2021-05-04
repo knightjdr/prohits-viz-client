@@ -38,7 +38,7 @@ describe('calculate height', () => {
   it('should return height values when extra padding is available', () => {
     const cellSize = 10;
     const noRows = 3;
-    const windowHeight = 210;
+    const windowHeight = 230;
     const expected = {
       arrowsY: true,
       heatmap: 20,
@@ -57,7 +57,7 @@ describe('calculate width', () => {
   it('should return width values when all columns fit within page', () => {
     const cellSize = 10;
     const noCols = 3;
-    const windowWidth = 200;
+    const windowWidth = 210;
     const expected = {
       arrowsX: false,
       canTranslate: true,
@@ -75,7 +75,7 @@ describe('calculate width', () => {
   it('should return width values when columns do not fit within page', () => {
     const cellSize = 10;
     const noCols = 3;
-    const windowWidth = 170;
+    const windowWidth = 190;
     const expected = {
       arrowsX: true,
       canTranslate: false,
@@ -96,8 +96,8 @@ describe('Define heat map dimensions', () => {
     const cellSize = 10;
     const noCols = 3;
     const noRows = 3;
-    const windowHeight = 240;
-    const windowWidth = 200;
+    const windowHeight = 250;
+    const windowWidth = 210;
 
     const expected = {
       height: {
@@ -129,30 +129,30 @@ describe('Define heat map dimensions', () => {
     const cellSize = 10;
     const noCols = 50;
     const noRows = 100;
-    const windowHeight = 500;
+    const windowHeight = 530;
     const windowWidth = 400;
 
     const expected = {
       height: {
         arrowsY: true,
-        heatmap: 310,
-        pageY: 31,
+        heatmap: 320,
+        pageY: 32,
         rows: 100,
-        scrollContainer: 330,
+        scrollContainer: 320,
         scrollContent: 1000,
         scrollTop: 0,
-        wrapper: 430,
+        wrapper: 420,
       },
       width: {
         arrowsX: true,
         canTranslate: false,
         columns: 50,
-        heatmap: 250,
-        pageX: 25,
-        scrollContainer: 270,
+        heatmap: 230,
+        pageX: 23,
+        scrollContainer: 230,
         scrollContent: 500,
         scrollLeft: 0,
-        wrapper: 370,
+        wrapper: 330,
       },
     };
     expect(defineDimensions(cellSize, noRows, noCols, windowHeight, windowWidth)).toEqual(expected);
