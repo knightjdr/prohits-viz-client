@@ -48,11 +48,10 @@ const Heatmap = () => (
       such as column and row labels. Generally this will result in only a part of the image being displayed
       on the screen. Different areas can be selected for viewing by clicking on the minimap found in the
       second tab of the side panel. The arrows at the side of the image can be used for moving the image in
-      precise increments. The mouse wheel can also be used to scroll through the image, although this will
-      work poorly if you have a device
-      with inertial scrolling, such as a track pad, magic mouse or touch device. Holding the shift key while
-      scrolling will cause the image to scroll in the horizontal direction if the image is wider than the
-      width of the browser window.
+      precise increments. The blue scroll bars adjacent to the image can be used to scroll through the image.
+      The mousewheel can also be used for scrolling when the mouse is hovering over the image. Holding
+      the shift key while scrolling with the wheel will cause the image to scroll in the horizontal direction
+      if the image is wider than the width of the browser window.
     </p>
     <figure className="help__image-screenshot">
       <Image

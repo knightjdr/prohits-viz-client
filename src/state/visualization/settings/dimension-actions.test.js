@@ -1,6 +1,14 @@
 import * as actions from './dimension-actions';
 
 describe('Dimension actions', () => {
+  it('should dispatch an action to reset scroll', () => {
+    const expectedAction = {
+      AUGMENT_WITH_ACTIVE_SNAPSHOT: true,
+      type: actions.RESET_SCROLL,
+    };
+    expect(actions.resetScroll()).toEqual(expectedAction);
+  });
+
   it('should dispatch an action to set the image dimensions', () => {
     const dimensions = {
       columns: 30,

@@ -14,9 +14,9 @@ import heatmapConfig from '../config';
 import initializeColorGradient from '../../../../utils/color/initialize-color-gradient';
 import partialEdgeRange from './set-edge-range-partial';
 import partialSetRange from '../../../../utils/set-range-partial';
+import { resetScroll } from '../../../../state/visualization/settings/dimension-actions';
 import { selectData, selectDataProperty } from '../../../../state/selector/visualization/data-selector';
 import { selectState, selectStateProperty } from '../../../../state/selector/general';
-import { updateDimensions } from '../../../../state/visualization/settings/dimension-actions';
 import { updatePosition } from '../../../../state/visualization/settings/position-actions';
 
 const CanvasContainer = () => {
@@ -97,11 +97,7 @@ const CanvasContainer = () => {
   useEffect(() => {
     if (pageDimensions.resetPosition) {
       batch(() => {
-        dispatch(updateDimensions({
-          scrollLeft: 0,
-          scrollTop: 0,
-          scrollUpdate: true,
-        }));
+        dispatch(resetScroll());
         dispatch(updatePosition(0, 0));
       });
     }

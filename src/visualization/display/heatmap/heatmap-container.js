@@ -116,20 +116,10 @@ const HeatmapContainer = () => {
     });
   }, [dimensions, dispatch]);
 
-  useEffect(() => {
-    const updateScrollPosition = () => {
-      updateScroll(scrollRef.current.scrollLeft, scrollRef.current.scrollTop);
-    };
-
-    if (scrollRef.current) {
-      scrollRef.current.addEventListener('scroll', updateScrollPosition);
-    }
-    return () => {
-      if (scrollRef.current) {
-        scrollRef.current.removeEventListener('scroll', updateScrollPosition);
-      }
-    };
-  }, [scrollRef.current]);
+  const handleScroll = (e) => {
+    const el = e.currentTarget;
+    updateScroll(el.scrollLeft, el.scrollTop);
+  };
 
   useEffect(() => {
     if (scrollRef.current && scrollUpdate) {
@@ -141,6 +131,7 @@ const HeatmapContainer = () => {
 
   return (
     <Heatmap
+      handleScroll={handleScroll}
       page={{
         height: dimensions.height.heatmap,
         width: dimensions.width.heatmap,

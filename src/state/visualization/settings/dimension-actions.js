@@ -1,6 +1,12 @@
+export const RESET_SCROLL = 'RESET_SCROLL';
 export const SET_DIMENSIONS = 'SET_DIMENSIONS';
 export const UPDATE_DIMENSION = 'UPDATE_DIMENSION';
 export const UPDATE_DIMENSIONS = 'UPDATE_DIMENSIONS';
+
+export const resetScroll = () => ({
+  AUGMENT_WITH_ACTIVE_SNAPSHOT: true,
+  type: RESET_SCROLL,
+});
 
 export const setDimensions = (dimensions) => ({
   AUGMENT_WITH_ACTIVE_SNAPSHOT: true,

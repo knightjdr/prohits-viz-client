@@ -1,5 +1,6 @@
 import reducer from './dimension-reducer';
 import * as actions from './dimension-actions';
+import * as displayActions from './display-actions';
 import * as fileActions from '../data/interactive-file-actions';
 import * as searchActions from '../markup/search-actions';
 import * as snapshotActions from '../data/snapshot-actions';
@@ -96,6 +97,86 @@ describe('Dimension reducer', () => {
       main: {
         height: 50,
         width: 100,
+      },
+    };
+    expect(reducer(currentState, action)).toEqual(expectedState);
+  });
+
+  it('should handle RESET_HEATMAP action', () => {
+    const currentState = {
+      main: {
+        columns: 0,
+        height: 0,
+        pageX: 0,
+        pageY: 0,
+        rows: 0,
+        scrollLeft: 30,
+        scrollTop: 500,
+        scrollUpdate: false,
+        width: 0,
+        wrapperHeight: 0,
+        wrapperWidth: 0,
+      },
+    };
+
+    const action = {
+      snapshotID: 'main',
+      type: displayActions.RESET_HEATMAP,
+    };
+    const expectedState = {
+      ...currentState,
+      main: {
+        columns: 0,
+        height: 0,
+        pageX: 0,
+        pageY: 0,
+        rows: 0,
+        scrollLeft: 0,
+        scrollTop: 0,
+        scrollUpdate: true,
+        width: 0,
+        wrapperHeight: 0,
+        wrapperWidth: 0,
+      },
+    };
+    expect(reducer(currentState, action)).toEqual(expectedState);
+  });
+
+  it('should handle RESET_SCROLL action', () => {
+    const currentState = {
+      main: {
+        columns: 0,
+        height: 0,
+        pageX: 0,
+        pageY: 0,
+        rows: 0,
+        scrollLeft: 30,
+        scrollTop: 500,
+        scrollUpdate: false,
+        width: 0,
+        wrapperHeight: 0,
+        wrapperWidth: 0,
+      },
+    };
+
+    const action = {
+      snapshotID: 'main',
+      type: actions.RESET_SCROLL,
+    };
+    const expectedState = {
+      ...currentState,
+      main: {
+        columns: 0,
+        height: 0,
+        pageX: 0,
+        pageY: 0,
+        rows: 0,
+        scrollLeft: 0,
+        scrollTop: 0,
+        scrollUpdate: true,
+        width: 0,
+        wrapperHeight: 0,
+        wrapperWidth: 0,
       },
     };
     expect(reducer(currentState, action)).toEqual(expectedState);

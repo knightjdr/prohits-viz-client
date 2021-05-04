@@ -15,6 +15,7 @@ import './heatmap.css';
 
 const Heatmap = forwardRef((
   {
+    handleScroll,
     page,
     showHorizontalArrows,
     showVerticalArrows,
@@ -41,18 +42,9 @@ const Heatmap = forwardRef((
       <Columns />
       <Rows />
       <Canvas />
-      <svg
-        className="heatmap__page"
-        height={page.height}
-        width={page.width}
-        xmlns="http://www.w3.org/2000/svg"
-      >
-        <Overlay />
-        <Markers />
-        <Annotations />
-      </svg>
       <div
         className="heatmap__scroll"
+        onScroll={handleScroll}
         ref={ref.scrollRef}
         style={{
           height: scroll.containerHeight,
@@ -64,7 +56,18 @@ const Heatmap = forwardRef((
             height: scroll.contentHeight,
             width: scroll.contentWidth,
           }}
-        />
+        >
+          <svg
+            className="heatmap__page"
+            height={page.height}
+            width={page.width}
+            xmlns="http://www.w3.org/2000/svg"
+          >
+            <Overlay />
+            <Markers />
+            <Annotations />
+          </svg>
+        </div>
       </div>
     </div>
     <Deletion heatmapRef={ref.pageRef} />
@@ -82,6 +85,7 @@ const Heatmap = forwardRef((
 ));
 
 Heatmap.propTypes = {
+  handleScroll: PropTypes.func.isRequired,
   page: PropTypes.shape({
     height: PropTypes.number,
     width: PropTypes.number,

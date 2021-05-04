@@ -1,10 +1,21 @@
 import * as actions from './dimension-actions';
+import * as displayActions from './display-actions';
 import * as fileActions from '../data/interactive-file-actions';
 import * as searchActions from '../markup/search-actions';
 import * as snapshotActions from '../data/snapshot-actions';
 
 import { reduceAndAddSnapshot, reduceAndRemoveSnapshot } from '../data/snapshot-reducer';
 import { reduceAndClearState, reduceAndLoadState } from '../data/interactive-file-reducer';
+
+const reduceAndResetScroll = (state, action) => ({
+  ...state,
+  [action.snapshotID]: {
+    ...state[action.snapshotID],
+    scrollLeft: 0,
+    scrollTop: 0,
+    scrollUpdate: true,
+  },
+});
 
 const reduceAndSetDimensions = (state, action) => ({
   ...state,
@@ -39,6 +50,10 @@ const reducer = (state = {}, action) => {
       return reduceAndLoadState(action, 'dimensions');
     case snapshotActions.REMOVE_SNAPSHOT:
       return reduceAndRemoveSnapshot(state, action);
+    case displayActions.RESET_HEATMAP:
+      return reduceAndResetScroll(state, action);
+    case actions.RESET_SCROLL:
+      return reduceAndResetScroll(state, action);
     case searchActions.SET_SEARCH_STATUS_HEATMAP:
       return reduceAndUpdateMultiple(state, action);
     case actions.SET_DIMENSIONS:
