@@ -89,10 +89,36 @@ const addScrollPadding = (height, width) => ({
   },
 });
 
-const defineDimensions = (cellSize, noRows, noCols, windowHeight, windowWidth) => {
+const updateRelativeToOldDimensions = (newDimensions, previousDimensions, cellSize) => {
+  const updatedDimensions = {
+    height: {
+      ...newDimensions.height,
+    },
+    width: {
+      ...newDimensions.width,
+    },
+  };
+
+  if (previousDimensions.scrollContentHeight === newDimensions.height.scrollContent) {
+    updatedDimensions.height.scrollTop = previousDimensions.scrollTop;
+  } if (previousDimensions.scrollContentWidth === newDimensions.width.scrollContent) {
+    updatedDimensions.width.scrollLeft = previousDimensions.scrollLeft;
+  }
+
+  if (previousDimensions.scrollContentHeight === newDimensions.height.scrollContent + cellSize) {
+    updatedDimensions.height.scrollTop = previousDimensions.scrollTop - cellSize;
+  } if (previousDimensions.scrollContentWidth === newDimensions.width.scrollContent + cellSize) {
+    updatedDimensions.width.scrollLeft = previousDimensions.scrollLeft - cellSize;
+  }
+
+  return updatedDimensions;
+};
+
+const defineDimensions = ({ cellSize, noCols, noRows, previousDimensions, windowHeight, windowWidth }) => {
   const width = calculateWidth(cellSize, noCols, windowWidth);
   const height = calculateHeight(cellSize, noRows, windowHeight, width.arrowsX);
-  return addScrollPadding(height, width);
+  const dimensions = addScrollPadding(height, width);
+  return updateRelativeToOldDimensions(dimensions, previousDimensions, cellSize);
 };
 
 export default defineDimensions;

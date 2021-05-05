@@ -93,11 +93,14 @@ describe('calculate width', () => {
 
 describe('Define heat map dimensions', () => {
   it('should define height and width when no scroll bars are needed', () => {
-    const cellSize = 10;
-    const noCols = 3;
-    const noRows = 3;
-    const windowHeight = 250;
-    const windowWidth = 210;
+    const options = {
+      cellSize: 10,
+      noCols: 3,
+      noRows: 3,
+      previousDimensions: {},
+      windowHeight: 250,
+      windowWidth: 210,
+    };
 
     const expected = {
       height: {
@@ -122,15 +125,18 @@ describe('Define heat map dimensions', () => {
         wrapper: 132,
       },
     };
-    expect(defineDimensions(cellSize, noRows, noCols, windowHeight, windowWidth)).toEqual(expected);
+    expect(defineDimensions(options)).toEqual(expected);
   });
 
   it('should define height and width when scroll bars are needed', () => {
-    const cellSize = 10;
-    const noCols = 50;
-    const noRows = 100;
-    const windowHeight = 530;
-    const windowWidth = 400;
+    const options = {
+      cellSize: 10,
+      noCols: 50,
+      noRows: 100,
+      previousDimensions: {},
+      windowHeight: 530,
+      windowWidth: 400,
+    };
 
     const expected = {
       height: {
@@ -155,6 +161,129 @@ describe('Define heat map dimensions', () => {
         wrapper: 330,
       },
     };
-    expect(defineDimensions(cellSize, noRows, noCols, windowHeight, windowWidth)).toEqual(expected);
+    expect(defineDimensions(options)).toEqual(expected);
+  });
+
+  it('should reuse scroll positions when content size is the same (e.g. it remounts)', () => {
+    const options = {
+      cellSize: 10,
+      noCols: 50,
+      noRows: 100,
+      previousDimensions: {
+        scrollContentHeight: 1000,
+        scrollContentWidth: 500,
+        scrollLeft: 10,
+        scrollTop: 30,
+      },
+      windowHeight: 530,
+      windowWidth: 400,
+    };
+
+    const expected = {
+      height: {
+        arrowsY: true,
+        heatmap: 320,
+        pageY: 32,
+        rows: 100,
+        scrollContainer: 320,
+        scrollContent: 1000,
+        scrollTop: 30,
+        wrapper: 420,
+      },
+      width: {
+        arrowsX: true,
+        canTranslate: false,
+        columns: 50,
+        heatmap: 230,
+        pageX: 23,
+        scrollContainer: 230,
+        scrollContent: 500,
+        scrollLeft: 10,
+        wrapper: 330,
+      },
+    };
+    expect(defineDimensions(options)).toEqual(expected);
+  });
+
+  it('should adjust scroll top when content height has decreased by one cell', () => {
+    const options = {
+      cellSize: 10,
+      noCols: 50,
+      noRows: 99,
+      previousDimensions: {
+        scrollContentHeight: 1000,
+        scrollContentWidth: 500,
+        scrollLeft: 10,
+        scrollTop: 30,
+      },
+      windowHeight: 530,
+      windowWidth: 400,
+    };
+
+    const expected = {
+      height: {
+        arrowsY: true,
+        heatmap: 320,
+        pageY: 32,
+        rows: 99,
+        scrollContainer: 320,
+        scrollContent: 990,
+        scrollTop: 20,
+        wrapper: 420,
+      },
+      width: {
+        arrowsX: true,
+        canTranslate: false,
+        columns: 50,
+        heatmap: 230,
+        pageX: 23,
+        scrollContainer: 230,
+        scrollContent: 500,
+        scrollLeft: 10,
+        wrapper: 330,
+      },
+    };
+    expect(defineDimensions(options)).toEqual(expected);
+  });
+
+  it('should adjust scroll left when content width has decreased by one cell', () => {
+    const options = {
+      cellSize: 10,
+      noCols: 49,
+      noRows: 100,
+      previousDimensions: {
+        scrollContentHeight: 1000,
+        scrollContentWidth: 500,
+        scrollLeft: 30,
+        scrollTop: 50,
+      },
+      windowHeight: 530,
+      windowWidth: 400,
+    };
+
+    const expected = {
+      height: {
+        arrowsY: true,
+        heatmap: 320,
+        pageY: 32,
+        rows: 100,
+        scrollContainer: 320,
+        scrollContent: 1000,
+        scrollTop: 50,
+        wrapper: 420,
+      },
+      width: {
+        arrowsX: true,
+        canTranslate: false,
+        columns: 49,
+        heatmap: 230,
+        pageX: 23,
+        scrollContainer: 230,
+        scrollContent: 490,
+        scrollLeft: 20,
+        wrapper: 330,
+      },
+    };
+    expect(defineDimensions(options)).toEqual(expected);
   });
 });

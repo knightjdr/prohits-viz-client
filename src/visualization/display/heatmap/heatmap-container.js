@@ -29,11 +29,11 @@ const HeatmapContainer = () => {
 
   const activeSnapshotTab = useSelector((state) => selectStateProperty(state, 'tabs', 'activeSnapshot'));
   const columns = useSelector((state) => selectDataProperty(state, 'columns', 'order'));
+  const dimensions = useSelector((state) => selectData(state, 'dimensions'));
   const panelOpen = useSelector((state) => selectStateProperty(state, 'panel', 'open'));
   const plotFixed = useSelector((state) => selectDataProperty(state, 'display', 'plotFixed'));
   const rowOrder = useSelector((state) => selectDataProperty(state, 'rows', 'order'));
   const settings = useSelector((state) => selectDataProperty(state, 'settings', 'current'));
-  const { scrollLeft, scrollTop, scrollUpdate } = useSelector((state) => selectData(state, 'dimensions'));
 
   const windowDimensions = useWindowDimension(50);
   useShortCuts();
@@ -60,37 +60,37 @@ const HeatmapContainer = () => {
     [dispatch],
   );
 
-  const dimensions = useMemo(
-    () => defineDimensions(
+  const newDimensions = useMemo(
+    () => defineDimensions({
       cellSize,
-      noRows,
       noCols,
-      windowDimensions.height,
-      windowDimensions.width,
-      activeSnapshotTab,
-    ),
+      noRows,
+      previousDimensions: dimensions,
+      windowHeight: windowDimensions.height,
+      windowWidth: windowDimensions.width,
+    }),
     [activeSnapshotTab, cellSize, noRows, noCols, windowDimensions.height, windowDimensions.width],
   );
 
   const translation = useMemo(
     () => defineTranslation(
-      dimensions.width.canTranslate,
+      newDimensions.width.canTranslate,
       plotFixed,
       panelOpen,
       windowDimensions.width,
-      dimensions.width.wrapper,
+      newDimensions.width.wrapper,
     ),
     [
-      dimensions.width.canTranslate,
+      newDimensions.width.canTranslate,
       plotFixed,
       panelOpen,
       windowDimensions.width,
-      dimensions.width.wrapper,
+      newDimensions.width.wrapper,
     ],
   );
 
   useEffect(() => {
-    const { height, width } = dimensions;
+    const { height, width } = newDimensions;
     batch(() => {
       dispatch(setDimensions(
         {
@@ -114,7 +114,7 @@ const HeatmapContainer = () => {
       ));
       dispatch(updatePosition(0, 0));
     });
-  }, [dimensions, dispatch]);
+  }, [newDimensions, dispatch]);
 
   const handleScroll = (e) => {
     const el = e.currentTarget;
@@ -122,36 +122,37 @@ const HeatmapContainer = () => {
   };
 
   useEffect(() => {
+    const { scrollLeft, scrollTop, scrollUpdate } = dimensions;
     if (scrollRef.current && scrollUpdate) {
       scrollRef.current.scrollLeft = scrollLeft;
       scrollRef.current.scrollTop = scrollTop;
       dispatch(updateDimension('scrollUpdate', false));
     }
-  }, [scrollUpdate]);
+  }, [dimensions.scrollLeft, dimensions.scrollTop, dimensions.scrollUpdate]);
 
   return (
     <Heatmap
       handleScroll={handleScroll}
       page={{
-        height: dimensions.height.heatmap,
-        width: dimensions.width.heatmap,
+        height: newDimensions.height.heatmap,
+        width: newDimensions.width.heatmap,
       }}
       ref={{
         pageRef,
         scrollRef,
       }}
-      showHorizontalArrows={dimensions.width.arrowsX}
-      showVerticalArrows={dimensions.height.arrowsY}
+      showHorizontalArrows={newDimensions.width.arrowsX}
+      showVerticalArrows={newDimensions.height.arrowsY}
       scroll={{
-        containerHeight: dimensions.height.scrollContainer,
-        containerWidth: dimensions.width.scrollContainer,
-        contentHeight: dimensions.height.scrollContent,
-        contentWidth: dimensions.width.scrollContent,
+        containerHeight: newDimensions.height.scrollContainer,
+        containerWidth: newDimensions.width.scrollContainer,
+        contentHeight: newDimensions.height.scrollContent,
+        contentWidth: newDimensions.width.scrollContent,
       }}
       translation={translation}
       wrapper={{
-        height: dimensions.height.wrapper,
-        width: dimensions.width.wrapper,
+        height: newDimensions.height.wrapper,
+        width: newDimensions.width.wrapper,
       }}
     />
   );

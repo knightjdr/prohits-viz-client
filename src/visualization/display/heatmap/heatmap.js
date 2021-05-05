@@ -48,6 +48,8 @@ const Heatmap = forwardRef((
         ref={ref.scrollRef}
         style={{
           height: scroll.containerHeight,
+          overflowX: scroll.containerWidth < scroll.contentWidth ? 'auto' : 'unset',
+          overflowY: scroll.containerHeight < scroll.contentHeight ? 'auto' : 'unset',
           width: scroll.containerWidth,
         }}
       >

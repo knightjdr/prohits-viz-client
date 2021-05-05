@@ -17,7 +17,6 @@
 }
 
 .heatmap__scroll {
-  overflow: auto;
   scrollbar-color: var(--colorPrimary3) transparent;
   transform: translate(100px, 100px);
 }
@@ -31,7 +30,6 @@
 .heatmap__scroll::-webkit-scrollbar-thumb {
   background-color: var(--colorPrimary3);
   border-radius: 10px;
-
   border: 2px solid rgba(0, 0, 0, 0);
   height: 12px;
   width: 12px;
