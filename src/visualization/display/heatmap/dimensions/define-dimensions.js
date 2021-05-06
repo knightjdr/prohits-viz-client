@@ -7,8 +7,10 @@ const HORIZONTAL_PADDING = 70;
 const NAVBAR_HEIGHT = 40;
 const PADDING = 2;
 const ROW_MARGIN = 100;
-const SCROLLBAR_SIZE = getScrollbarWidth();
 const VERT_PADDING = 20;
+
+const scrollbarWidth = getScrollbarWidth();
+const SCROLLBAR_SIZE = scrollbarWidth > 0 ? scrollbarWidth : 15;
 
 export const calculateHeight = (cellSize, noRows, windowHeight, removePadding) => {
   let wrapper = windowHeight - NAVBAR_HEIGHT - VERT_PADDING;

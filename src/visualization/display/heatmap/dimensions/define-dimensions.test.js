@@ -1,5 +1,10 @@
 import defineDimensions, { calculateHeight, calculateWidth } from './define-dimensions';
 
+import getScrollbarWidth from '../../../../utils/define-scrollbar-width';
+
+jest.mock('../../../../utils/define-scrollbar-width');
+getScrollbarWidth.mockReturnValue(15);
+
 describe('calculate height', () => {
   it('should return height values when all rows fit within page', () => {
     const cellSize = 10;
@@ -144,10 +149,10 @@ describe('Define heat map dimensions', () => {
         heatmap: 320,
         pageY: 32,
         rows: 100,
-        scrollContainer: 320,
+        scrollContainer: 335,
         scrollContent: 1000,
         scrollTop: 0,
-        wrapper: 420,
+        wrapper: 435,
       },
       width: {
         arrowsX: true,
@@ -155,10 +160,10 @@ describe('Define heat map dimensions', () => {
         columns: 50,
         heatmap: 230,
         pageX: 23,
-        scrollContainer: 230,
+        scrollContainer: 245,
         scrollContent: 500,
         scrollLeft: 0,
-        wrapper: 330,
+        wrapper: 345,
       },
     };
     expect(defineDimensions(options)).toEqual(expected);
@@ -185,10 +190,10 @@ describe('Define heat map dimensions', () => {
         heatmap: 320,
         pageY: 32,
         rows: 100,
-        scrollContainer: 320,
+        scrollContainer: 335,
         scrollContent: 1000,
         scrollTop: 30,
-        wrapper: 420,
+        wrapper: 435,
       },
       width: {
         arrowsX: true,
@@ -196,10 +201,10 @@ describe('Define heat map dimensions', () => {
         columns: 50,
         heatmap: 230,
         pageX: 23,
-        scrollContainer: 230,
+        scrollContainer: 245,
         scrollContent: 500,
         scrollLeft: 10,
-        wrapper: 330,
+        wrapper: 345,
       },
     };
     expect(defineDimensions(options)).toEqual(expected);
@@ -226,10 +231,10 @@ describe('Define heat map dimensions', () => {
         heatmap: 320,
         pageY: 32,
         rows: 99,
-        scrollContainer: 320,
+        scrollContainer: 335,
         scrollContent: 990,
         scrollTop: 20,
-        wrapper: 420,
+        wrapper: 435,
       },
       width: {
         arrowsX: true,
@@ -237,10 +242,10 @@ describe('Define heat map dimensions', () => {
         columns: 50,
         heatmap: 230,
         pageX: 23,
-        scrollContainer: 230,
+        scrollContainer: 245,
         scrollContent: 500,
         scrollLeft: 10,
-        wrapper: 330,
+        wrapper: 345,
       },
     };
     expect(defineDimensions(options)).toEqual(expected);
@@ -267,10 +272,10 @@ describe('Define heat map dimensions', () => {
         heatmap: 320,
         pageY: 32,
         rows: 100,
-        scrollContainer: 320,
+        scrollContainer: 335,
         scrollContent: 1000,
         scrollTop: 50,
-        wrapper: 420,
+        wrapper: 435,
       },
       width: {
         arrowsX: true,
@@ -278,10 +283,10 @@ describe('Define heat map dimensions', () => {
         columns: 49,
         heatmap: 230,
         pageX: 23,
-        scrollContainer: 230,
+        scrollContainer: 245,
         scrollContent: 490,
         scrollLeft: 20,
-        wrapper: 330,
+        wrapper: 345,
       },
     };
     expect(defineDimensions(options)).toEqual(expected);
