@@ -3,10 +3,10 @@ import React from 'react';
 
 import Annotation from './annotation-container';
 
+import './annotations.css';
+
 const Annotations = ({
   cellSize,
-  clipPath,
-  clipPathID,
   fontSize,
   handleAnnotationDeletion,
   imageDimensions,
@@ -15,11 +15,7 @@ const Annotations = ({
   translation,
 }) => (
   <>
-    {clipPath}
-    <g
-      clipPath={`url(#${clipPathID})`}
-      transform={translation}
-    >
+    <g transform={translation}>
       {
         Object.entries(list).map(([id, annotation]) => (
           <Annotation
@@ -41,8 +37,6 @@ const Annotations = ({
 
 Annotations.propTypes = {
   cellSize: PropTypes.number.isRequired,
-  clipPath: PropTypes.node.isRequired,
-  clipPathID: PropTypes.string.isRequired,
   fontSize: PropTypes.number.isRequired,
   handleAnnotationDeletion: PropTypes.func.isRequired,
   imageDimensions: PropTypes.shape({

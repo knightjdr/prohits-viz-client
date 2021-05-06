@@ -3,7 +3,7 @@ import React, {
   useMemo,
   useRef,
 } from 'react';
-import { useDispatch, useSelector } from 'react-redux';
+import { batch, useDispatch, useSelector } from 'react-redux';
 
 import Canvas from './canvas';
 
@@ -14,6 +14,7 @@ import heatmapConfig from '../config';
 import initializeColorGradient from '../../../../utils/color/initialize-color-gradient';
 import partialEdgeRange from './set-edge-range-partial';
 import partialSetRange from '../../../../utils/set-range-partial';
+import { resetScroll } from '../../../../state/visualization/settings/dimension-actions';
 import { selectData, selectDataProperty } from '../../../../state/selector/visualization/data-selector';
 import { selectState, selectStateProperty } from '../../../../state/selector/general';
 import { updatePosition } from '../../../../state/visualization/settings/position-actions';
@@ -95,7 +96,10 @@ const CanvasContainer = () => {
 
   useEffect(() => {
     if (pageDimensions.resetPosition) {
-      dispatch(updatePosition(0, 0));
+      batch(() => {
+        dispatch(resetScroll());
+        dispatch(updatePosition(0, 0));
+      });
     }
   }, [dispatch, pageDimensions]);
 

@@ -3,8 +3,6 @@ import React from 'react';
 
 import DeleteMarkup from '../markup/delete-markup';
 
-import './annotation.css';
-
 const defineTextClassName = (isMouseDown) => (
   isMouseDown ? 'heatmap__annotation heatmap__annotation_moving' : 'heatmap__annotation'
 );

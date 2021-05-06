@@ -3,8 +3,6 @@ import React from 'react';
 
 import DeleteMarkup from '../markup/delete-markup';
 
-import './marker.css';
-
 const Marker = ({
   color,
   dimensions,
@@ -13,10 +11,15 @@ const Marker = ({
 }) => (
   <g className="heatmap__marker">
     <rect
-      fillOpacity={0}
+      className="heatmap__marker-hover-border"
+      height={dimensions.height}
+      width={dimensions.width}
+      x={dimensions.x}
+      y={dimensions.y}
+    />
+    <rect
       height={dimensions.height}
       stroke={color}
-      strokeWidth={2}
       width={dimensions.width}
       x={dimensions.x}
       y={dimensions.y}

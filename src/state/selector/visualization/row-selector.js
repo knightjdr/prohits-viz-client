@@ -12,7 +12,7 @@ const getOrderedRowNames = (state) => {
   return order.map((index) => rowDB[index].name);
 };
 
-const getVisisbleRowNames = (state) => {
+const getVisibleRowNames = (state) => {
   const { rowDB } = state;
   const { activeSnapshot } = state.tabs;
   const { order } = state.rows[activeSnapshot];
@@ -37,7 +37,7 @@ export const selectOrderedRowNames = createSelector(
 );
 
 export const selectVisibleRowNames = createSelector(
-  [getVisisbleRowNames],
+  [getVisibleRowNames],
   (state) => (
     state
   ),

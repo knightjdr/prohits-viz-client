@@ -1,6 +1,8 @@
 import PropTypes from 'prop-types';
 import React from 'react';
 
+import './search-match.css';
+
 const defineDimensions = (direction, position, cellSize) => (
   direction === 'column'
     ? {
@@ -30,14 +32,16 @@ const SearchMatch = ({
   }
   const dimensions = defineDimensions(direction, position, cellSize);
   return (
-    <rect
+    <div
+      className="heatmap__row-search-match"
       data-name={name}
-      fill="#4caf50"
-      height={dimensions.height}
+      style={{
+        height: dimensions.height,
+        left: dimensions.x,
+        top: dimensions.y,
+        width: dimensions.width,
+      }}
       onContextMenu={openContextMenu}
-      width={dimensions.width}
-      x={dimensions.x}
-      y={dimensions.y}
     />
   );
 };

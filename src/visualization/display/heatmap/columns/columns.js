@@ -6,9 +6,12 @@ import SearchMatch from '../search/search-match';
 import SortMatch from './sort-match';
 import Tooltip from '../../../../components/tooltip/tooltip-container';
 
+import './columns.css';
+
 const Columns = ({
   cellSize,
   contextMenu,
+  dimensions,
   fontSize,
   handleClick,
   hideTooltip,
@@ -21,23 +24,24 @@ const Columns = ({
   sortDirection,
   sortingNotification,
   tooltip,
-}) => {
-  const textOffset = Math.round((cellSize / 2) - (fontSize / 3));
-  return (
-    <>
-      {contextMenu}
-      {sortingNotification}
-      <Tooltip
-        isOpen={tooltip.open}
-        name="column-tooltip"
-        placement={tooltip.placement}
-      >
-        {tooltip.text}
-      </Tooltip>
-      <g transform="translate(100 0)">
-        {
+}) => (
+  <>
+    {contextMenu}
+    {sortingNotification}
+    <Tooltip
+      isOpen={tooltip.open}
+      name="column-tooltip"
+      placement={tooltip.placement}
+    >
+      {tooltip.text}
+    </Tooltip>
+    <div
+      className="heatmap__columns-container"
+      style={{ width: dimensions.scrollContainerWidth }}
+    >
+      {
           names.map((name, i) => {
-            const x = (i * cellSize) + textOffset;
+            const x = i * cellSize;
             return (
               <Fragment key={`column-${name.original}`}>
                 <SearchMatch
@@ -63,29 +67,33 @@ const Columns = ({
                   sortBy={sortBy}
                   sortDirection={sortDirection}
                 />
-                <text
+                <div
+                  className="heatmap__column"
                   data-name={name.original}
                   data-trimmed={name.trimmed}
-                  fontSize={fontSize}
+                  key={name.original}
                   onClick={handleClick}
                   onContextMenu={openContextMenu}
+                  onKeyPress={showTooltip}
                   onMouseEnter={showTooltip}
                   onMouseLeave={hideTooltip}
-                  textAnchor="end"
-                  transform={`rotate(90, ${x}, 98)`}
-                  x={x}
-                  y="98"
+                  role="button"
+                  style={{
+                    fontSize,
+                    width: cellSize,
+                    left: x,
+                  }}
+                  tabIndex={0}
                 >
                   {name.text}
-                </text>
+                </div>
               </Fragment>
             );
           })
         }
-      </g>
-    </>
-  );
-};
+    </div>
+  </>
+);
 
 Columns.defaultProps = {
   reference: null,
@@ -97,6 +105,9 @@ Columns.defaultProps = {
 Columns.propTypes = {
   cellSize: PropTypes.number.isRequired,
   contextMenu: PropTypes.node.isRequired,
+  dimensions: PropTypes.shape({
+    scrollContainerWidth: PropTypes.number,
+  }).isRequired,
   fontSize: PropTypes.number.isRequired,
   handleClick: PropTypes.func.isRequired,
   hideTooltip: PropTypes.func.isRequired,

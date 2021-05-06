@@ -3,9 +3,9 @@ import React from 'react';
 
 import Marker from './marker-container';
 
+import './markers.css';
+
 const Markers = ({
-  clipPath,
-  clipPathID,
   color,
   handleMarkerDeletion,
   list,
@@ -13,11 +13,7 @@ const Markers = ({
   translation,
 }) => (
   <>
-    {clipPath}
-    <g
-      clipPath={`url(#${clipPathID})`}
-      transform={translation}
-    >
+    <g transform={translation}>
       {
         Object.entries(list).map(([id, marker]) => (
           <Marker
@@ -35,8 +31,6 @@ const Markers = ({
 );
 
 Markers.propTypes = {
-  clipPath: PropTypes.node.isRequired,
-  clipPathID: PropTypes.string.isRequired,
   color: PropTypes.string.isRequired,
   handleMarkerDeletion: PropTypes.func.isRequired,
   list: PropTypes.shape({

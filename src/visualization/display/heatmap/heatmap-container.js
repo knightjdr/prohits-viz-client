@@ -1,68 +1,96 @@
-import React, { useEffect, useMemo, useRef } from 'react';
+import React, {
+  useCallback,
+  useEffect,
+  useMemo,
+  useRef,
+} from 'react';
 import { batch, useDispatch, useSelector } from 'react-redux';
 
 import Heatmap from './heatmap';
 
+import debounce from '../../../utils/debounce';
 import defineDimensions from './dimensions/define-dimensions';
 import defineTranslation from '../common/dimensions/define-translation';
-import usePlotScroll from './dimensions/use-plot-scroll';
 import useShortCuts from './hooks/use-shortcuts';
 import useWindowDimension from '../../../hooks/window-size/use-window-dimension';
-import { setDimensions } from '../../../state/visualization/settings/dimension-actions';
-import { selectDataProperty } from '../../../state/selector/visualization/data-selector';
+import {
+  setDimensions,
+  updateDimension,
+  updateDimensions,
+} from '../../../state/visualization/settings/dimension-actions';
+import { selectData, selectDataProperty } from '../../../state/selector/visualization/data-selector';
 import { selectStateProperty } from '../../../state/selector/general';
 import { updatePosition } from '../../../state/visualization/settings/position-actions';
 
 const HeatmapContainer = () => {
   const dispatch = useDispatch();
-  const ref = useRef();
+  const pageRef = useRef();
+  const scrollRef = useRef();
 
   const activeSnapshotTab = useSelector((state) => selectStateProperty(state, 'tabs', 'activeSnapshot'));
   const columns = useSelector((state) => selectDataProperty(state, 'columns', 'order'));
+  const dimensions = useSelector((state) => selectData(state, 'dimensions'));
   const panelOpen = useSelector((state) => selectStateProperty(state, 'panel', 'open'));
   const plotFixed = useSelector((state) => selectDataProperty(state, 'display', 'plotFixed'));
   const rowOrder = useSelector((state) => selectDataProperty(state, 'rows', 'order'));
   const settings = useSelector((state) => selectDataProperty(state, 'settings', 'current'));
 
   const windowDimensions = useWindowDimension(50);
-  usePlotScroll(ref, 50);
   useShortCuts();
 
   const { cellSize } = settings;
-  const cellHeight = rowOrder.length;
-  const cellWidth = columns.length;
+  const noCols = columns.length;
+  const noRows = rowOrder.length;
 
-  const dimensions = useMemo(
-    () => defineDimensions(
+  const updateScroll = useCallback(
+    (newScrollLeft, newScrollTop) => {
+      const newX = Math.round(newScrollLeft / cellSize);
+      const newY = Math.round(newScrollTop / cellSize);
+      debounce(
+        batch(() => {
+          dispatch(updateDimensions({
+            scrollLeft: newScrollLeft,
+            scrollTop: newScrollTop,
+          }));
+          dispatch(updatePosition(newX, newY));
+        }),
+        20,
+      );
+    },
+    [dispatch],
+  );
+
+  const newDimensions = useMemo(
+    () => defineDimensions({
       cellSize,
-      cellHeight,
-      cellWidth,
-      windowDimensions.height,
-      windowDimensions.width,
-      activeSnapshotTab,
-    ),
-    [activeSnapshotTab, cellSize, cellHeight, cellWidth, windowDimensions.height, windowDimensions.width],
+      noCols,
+      noRows,
+      previousDimensions: dimensions,
+      windowHeight: windowDimensions.height,
+      windowWidth: windowDimensions.width,
+    }),
+    [activeSnapshotTab, cellSize, noRows, noCols, windowDimensions.height, windowDimensions.width],
   );
 
   const translation = useMemo(
     () => defineTranslation(
-      dimensions.width.canTranslate,
+      newDimensions.width.canTranslate,
       plotFixed,
       panelOpen,
       windowDimensions.width,
-      dimensions.width.wrapper,
+      newDimensions.width.wrapper,
     ),
     [
-      dimensions.width.canTranslate,
+      newDimensions.width.canTranslate,
       plotFixed,
       panelOpen,
       windowDimensions.width,
-      dimensions.width.wrapper,
+      newDimensions.width.wrapper,
     ],
   );
 
   useEffect(() => {
-    const { height, width } = dimensions;
+    const { height, width } = newDimensions;
     batch(() => {
       dispatch(setDimensions(
         {
@@ -73,22 +101,59 @@ const HeatmapContainer = () => {
           pageY: height.pageY,
           rows: height.rows,
           width: width.heatmap,
-          wrapperHeight: dimensions.height.wrapper,
-          wrapperWidth: dimensions.width.wrapper,
+          scrollContainerHeight: height.scrollContainer,
+          scrollContainerWidth: width.scrollContainer,
+          scrollContentHeight: height.scrollContent,
+          scrollContentWidth: width.scrollContent,
+          scrollLeft: width.scrollLeft,
+          scrollTop: height.scrollTop,
+          scrollUpdate: 'true',
+          wrapperHeight: height.wrapper,
+          wrapperWidth: width.wrapper,
         },
       ));
       dispatch(updatePosition(0, 0));
     });
-  }, [dimensions, dispatch]);
+  }, [newDimensions, dispatch]);
+
+  const handleScroll = (e) => {
+    const el = e.currentTarget;
+    updateScroll(el.scrollLeft, el.scrollTop);
+  };
+
+  useEffect(() => {
+    const { scrollLeft, scrollTop, scrollUpdate } = dimensions;
+    if (scrollRef.current && scrollUpdate) {
+      scrollRef.current.scrollLeft = scrollLeft;
+      scrollRef.current.scrollTop = scrollTop;
+      dispatch(updateDimension('scrollUpdate', false));
+    }
+  }, [dimensions.scrollLeft, dimensions.scrollTop, dimensions.scrollUpdate]);
 
   return (
     <Heatmap
-      ref={ref}
-      showHorizontalArrows={dimensions.width.arrowsX}
-      showVerticalArrows={dimensions.height.arrowsY}
+      handleScroll={handleScroll}
+      page={{
+        height: newDimensions.height.heatmap,
+        width: newDimensions.width.heatmap,
+      }}
+      ref={{
+        pageRef,
+        scrollRef,
+      }}
+      showHorizontalArrows={newDimensions.width.arrowsX}
+      showVerticalArrows={newDimensions.height.arrowsY}
+      scroll={{
+        containerHeight: newDimensions.height.scrollContainer,
+        containerWidth: newDimensions.width.scrollContainer,
+        contentHeight: newDimensions.height.scrollContent,
+        contentWidth: newDimensions.width.scrollContent,
+      }}
       translation={translation}
-      wrapperHeight={dimensions.height.wrapper}
-      wrapperWidth={dimensions.width.wrapper}
+      wrapper={{
+        height: newDimensions.height.wrapper,
+        width: newDimensions.width.wrapper,
+      }}
     />
   );
 };

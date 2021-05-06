@@ -15,36 +15,65 @@ import './heatmap.css';
 
 const Heatmap = forwardRef((
   {
+    handleScroll,
+    page,
     showHorizontalArrows,
     showVerticalArrows,
+    scroll,
     translation,
-    wrapperHeight,
-    wrapperWidth,
+    wrapper,
   },
   ref,
 ) => (
   <div
     className="heatmap"
-    ref={ref}
+    ref={ref.pageRef}
     style={{
       transform: `translate(${translation}px)`,
     }}
   >
-    <svg
-      id="svg-main"
-      height={wrapperHeight}
-      width={wrapperWidth}
-      xmlns="http://www.w3.org/2000/svg"
+    <div
+      className="heatmap__scroll-container"
+      style={{
+        height: wrapper.height,
+        width: wrapper.width,
+      }}
     >
-      <Canvas />
       <Columns />
       <Rows />
-      <Overlay />
-      <Markers />
-      <Annotations />
-    </svg>
-    <Deletion heatmapRef={ref} />
-    <Reorder heatmapRef={ref} />
+      <Canvas />
+      <div
+        className="heatmap__scroll"
+        onScroll={handleScroll}
+        ref={ref.scrollRef}
+        style={{
+          height: scroll.containerHeight,
+          overflowX: scroll.containerWidth < scroll.contentWidth ? 'auto' : 'unset',
+          overflowY: scroll.containerHeight < scroll.contentHeight ? 'auto' : 'unset',
+          width: scroll.containerWidth,
+        }}
+      >
+        <div
+          style={{
+            height: scroll.contentHeight,
+            width: scroll.contentWidth,
+          }}
+        >
+          <svg
+            className="heatmap__page"
+            height={page.height}
+            width={page.width}
+            xmlns="http://www.w3.org/2000/svg"
+          >
+            <Overlay />
+            <Markers />
+            <Annotations />
+          </svg>
+        </div>
+      </div>
+    </div>
+    <Deletion heatmapRef={ref.pageRef} />
+    <Reorder heatmapRef={ref.pageRef} />
     <NavControls
       direction="vertical"
       offsetVertical={showHorizontalArrows}
@@ -58,11 +87,24 @@ const Heatmap = forwardRef((
 ));
 
 Heatmap.propTypes = {
+  handleScroll: PropTypes.func.isRequired,
+  page: PropTypes.shape({
+    height: PropTypes.number,
+    width: PropTypes.number,
+  }).isRequired,
   showHorizontalArrows: PropTypes.bool.isRequired,
   showVerticalArrows: PropTypes.bool.isRequired,
+  scroll: PropTypes.shape({
+    containerHeight: PropTypes.number,
+    containerWidth: PropTypes.number,
+    contentHeight: PropTypes.number,
+    contentWidth: PropTypes.number,
+  }).isRequired,
   translation: PropTypes.number.isRequired,
-  wrapperHeight: PropTypes.number.isRequired,
-  wrapperWidth: PropTypes.number.isRequired,
+  wrapper: PropTypes.shape({
+    height: PropTypes.number,
+    width: PropTypes.number,
+  }).isRequired,
 };
 
 export default Heatmap;

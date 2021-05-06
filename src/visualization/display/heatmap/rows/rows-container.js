@@ -1,11 +1,12 @@
 import React, { useMemo, useState } from 'react';
 import { useSelector } from 'react-redux';
 
-import Columns from './rows';
+import Rows from './rows';
+
 import formatNames from '../names/format-names';
 import setFontSize from '../font-size/font-size';
 import useContextMenu from '../context-menu/use-context-menu';
-import { selectDataProperty } from '../../../../state/selector/visualization/data-selector';
+import { selectData, selectDataProperty } from '../../../../state/selector/visualization/data-selector';
 import { selectVisibleRowNames } from '../../../../state/selector/visualization/row-selector';
 
 const RowsContainer = () => {
@@ -20,6 +21,7 @@ const RowsContainer = () => {
     text: '',
   });
 
+  const dimensions = useSelector((state) => selectData(state, 'dimensions'));
   const names = useSelector((state) => selectVisibleRowNames(state));
   const rowSearchMatches = useSelector((state) => selectDataProperty(state, 'searchStatus', 'rows'));
   const settings = useSelector((state) => selectDataProperty(state, 'settings', 'current'));
@@ -68,9 +70,10 @@ const RowsContainer = () => {
   };
 
   return (
-    <Columns
+    <Rows
       cellSize={cellSize}
       contextMenu={contextMenu.Component}
+      dimensions={dimensions}
       fontSize={fontSize}
       handleClick={handleClick}
       hideTooltip={hideTooltip}

@@ -1,0 +1,27 @@
+.heatmap__columns-container {
+  display: flex;
+  height: 100px;
+  left: 100px;
+  overflow: hidden;
+  position: absolute;
+  top: 0;
+}
+
+.heatmap__column {
+  align-items: center;
+  bottom: 2px;
+  display: flex;
+  position: absolute;
+  writing-mode: tb-rl;
+}
+
+.heatmap__column-reference {
+  background-color: #ffee58;
+  bottom: 0;
+  height: 100px;
+  position: absolute;
+}
+
+.heatmap__sort-polygon {
+  position: absolute;
+}

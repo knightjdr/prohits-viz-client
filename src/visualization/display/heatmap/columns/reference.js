@@ -10,14 +10,14 @@ const Reference = ({
 }) => (
   reference === name
   && (
-    <rect
+    <div
+      className="heatmap__column-reference"
       data-name={name}
-      fill="#ffee58"
-      height="100"
       onContextMenu={openContextMenu}
-      width={cellSize}
-      x={xPosition * cellSize}
-      y="0"
+      style={{
+        left: xPosition * cellSize,
+        width: cellSize,
+      }}
     />
   )
 );

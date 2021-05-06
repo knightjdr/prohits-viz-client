@@ -1,9 +1,10 @@
 import React, { useState } from 'react';
-import { useDispatch, useSelector } from 'react-redux';
+import { batch, useDispatch, useSelector } from 'react-redux';
 
 import ActionNotification from '../../../utils/action-notification';
 
 import rowSort from './row-sort';
+import { resetScroll } from '../../../../state/visualization/settings/dimension-actions';
 import { selectData } from '../../../../state/selector/visualization/data-selector';
 import { selectState } from '../../../../state/selector/general';
 import { sortRows } from '../../../../state/visualization/heatmap/rows-actions';
@@ -43,7 +44,10 @@ const useSortRows = () => {
 
     const newOrder = rowSort(rowDB, order, requestedSortIndex, sortDirection, refIndex);
 
-    dispatch(sortRows(sortDirection, newOrder, requestedSortBy));
+    batch(() => {
+      dispatch(resetScroll());
+      dispatch(sortRows(sortDirection, newOrder, requestedSortBy));
+    });
 
     setSorting(false);
   };

@@ -1,6 +1,6 @@
 import PropTypes from 'prop-types';
 import React, { useEffect, useMemo, useState } from 'react';
-import { useDispatch, useSelector } from 'react-redux';
+import { batch, useDispatch, useSelector } from 'react-redux';
 
 import NavControls from './nav-controls';
 
@@ -8,7 +8,8 @@ import calculateElementPosition from './calculate-element-position';
 import calculatePlotPosition from './calculate-plot-position';
 import debounce from '../../../../utils/debounce';
 import shouldDisable from './should-disable';
-import { selectData } from '../../../../state/selector/visualization/data-selector';
+import { selectData, selectDataProperty } from '../../../../state/selector/visualization/data-selector';
+import { updateDimensions } from '../../../../state/visualization/settings/dimension-actions';
 import { updatePosition } from '../../../../state/visualization/settings/position-actions';
 
 const NavControlsContainer = ({
@@ -19,33 +20,41 @@ const NavControlsContainer = ({
 }) => {
   const dispatch = useDispatch();
   const position = useSelector((state) => selectData(state, 'position'));
+  const { cellSize } = useSelector((state) => selectDataProperty(state, 'settings', 'current'));
 
   const length = direction === 'horizontal' ? dimensions.columns : dimensions.rows;
   const pageType = direction === 'horizontal' ? 'pageX' : 'pageY';
   const vertex = direction === 'horizontal' ? 'x' : 'y';
 
-  const calculateNewPostion = (increment) => {
+  const calculateNewPosition = (increment) => {
     const newPosition = calculatePlotPosition(position, vertex, length, dimensions[pageType], increment);
-    dispatch(updatePosition(newPosition.x, newPosition.y));
+    batch(() => {
+      dispatch(updateDimensions({
+        scrollLeft: newPosition.x * cellSize,
+        scrollTop: newPosition.y * cellSize,
+        scrollUpdate: true,
+      }));
+      dispatch(updatePosition(newPosition.x, newPosition.y));
+    });
   };
 
   const handlePageDown = () => {
-    calculateNewPostion(dimensions[pageType]);
+    calculateNewPosition(dimensions[pageType]);
   };
   const handlePageEnd = () => {
-    calculateNewPostion(length);
+    calculateNewPosition(length);
   };
   const handlePageStart = () => {
-    calculateNewPostion(-length);
+    calculateNewPosition(-length);
   };
   const handlePageUp = () => {
-    calculateNewPostion(-dimensions[pageType]);
+    calculateNewPosition(-dimensions[pageType]);
   };
   const handleRowDown = () => {
-    calculateNewPostion(1);
+    calculateNewPosition(1);
   };
   const handleRowUp = () => {
-    calculateNewPostion(-1);
+    calculateNewPosition(-1);
   };
 
   const disabled = useMemo(() => (
@@ -100,16 +109,16 @@ const ShowNavControls = ({
   show,
   ...props
 }) => {
-  const [isResizing, setIsRisizing] = useState(true);
+  const [isResizing, setIsResizing] = useState(true);
 
   const dimensions = useSelector((state) => selectData(state, 'dimensions'));
 
   useEffect(() => {
     const makeVisible = debounce(() => {
-      setIsRisizing(true);
+      setIsResizing(true);
     }, 800);
     const onResize = () => {
-      setIsRisizing(false);
+      setIsResizing(false);
       makeVisible();
     };
     window.addEventListener('resize', onResize);

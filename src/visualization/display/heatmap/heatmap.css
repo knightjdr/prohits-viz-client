@@ -3,10 +3,42 @@
   display: flex;
   height: 100%;
   justify-content: center;
+  overflow: hidden;
   padding-right: 30px;
   position: relative;
   width: 100%;
   transition-duration: 0.3s;
   transition-property: transform;
   transition-timing-function: var(--timingFunction);
+}
+
+.heatmap__scroll-container {
+  position: relative;
+}
+
+.heatmap__scroll {
+  scrollbar-color: var(--colorPrimary3) transparent;
+  transform: translate(100px, 100px);
+}
+.heatmap__scroll::-webkit-scrollbar {
+  height: auto;
+  width: auto;
+}
+.heatmap__scroll::-webkit-scrollbar-track {
+  background: transparent;
+}
+.heatmap__scroll::-webkit-scrollbar-thumb {
+  background-color: var(--colorPrimary3);
+  border-radius: 10px;
+  border: 2px solid rgba(0, 0, 0, 0);
+  height: 12px;
+  width: 12px;
+  background-clip: padding-box;
+}
+
+.heatmap__page {
+  overflow: hidden;
+  left: 0;
+  position: sticky;
+  top: 0;
 }
