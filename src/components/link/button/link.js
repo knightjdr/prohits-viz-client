@@ -1,7 +1,7 @@
 import React from 'react';
 import styled from 'styled-components';
-import { Link as A } from 'react-router-dom';
 
+import A from '../text/a';
 import Button from '../../buttons/rectangular/button';
 
 const Link = styled(Button).attrs(() => ({
