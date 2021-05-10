@@ -28,7 +28,7 @@ const Landing = ({
       </h2>
       <LinkButton
         className="landing__button-demo"
-        to="https://www.youtube.com/watch?v=4IVTrixfWpw"
+        to="https://youtu.be/znU_BXSeWrc"
         kind="primary"
         rel="noopener noreferrer"
         shadow
