@@ -9,6 +9,7 @@ import {
   faToggleOn,
 } from '@fortawesome/pro-duotone-svg-icons';
 import { faPlus, faTimesCircle } from '@fortawesome/pro-solid-svg-icons';
+import { faYoutube } from '@fortawesome/free-brands-svg-icons';
 
 import Link from '../../../components/link/text/link';
 import Image from '../../../components/dynamic-image/image-container';
@@ -24,8 +25,14 @@ const Heatmap = () => (
     <h2>Heat map/dot plot</h2>
     <p>
       The interactive viewer for heat maps and dot plots allows you to navigate, search, sort, reorganize,
-      customize and annotate images, as well as perform basic analysis. In depth video tutorials will be
-      available soon to accompany this documentation.
+      customize and annotate images, as well as perform basic analysis. Video tutorials demonstrating this viewer
+      can be found on our
+      {' '}
+      <Link to="https://www.youtube.com/playlist?list=PLKltYtdDTyzdnSRVUvA6WkjzQZNWSoFDa">
+        YouTube
+      </Link>
+      {' '}
+      channel.
     </p>
     <figure className="help__image-screenshot">
       <Image
@@ -150,6 +157,25 @@ const Heatmap = () => (
         image as a whole while still having easy access to the minimap for navigation.
       </figcaption>
     </figure>
+    <h4>
+      Relevant videos
+      <FontAwesomeIcon
+        className="help__inner-h-icon"
+        icon={faYoutube}
+      />
+    </h4>
+    <ul>
+      <li>
+        <Link to="https://www.youtube.com/watch?v=dkQ5jtczDEA">
+          Navigating and exploring interactive dot plots and heat maps
+        </Link>
+      </li>
+      <li>
+        <Link to="https://www.youtube.com/watch?v=qFcWNJMkd5Q">
+          Sorting and filtering interactive dot plots and heat maps
+        </Link>
+      </li>
+    </ul>
     <h3>Settings</h3>
     <p>
       The settings tab allows customization of the image appearance and provides inputs for

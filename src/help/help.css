@@ -12,6 +12,7 @@
   flex-direction: column;
   flex-grow: 1;
   max-height: 100%;
+  overflow-x: hidden;
   overflow-y: auto;
   padding: 1rem 1.5rem;
 }
@@ -101,20 +102,16 @@
   line-height: 1.8rem;
 }
 .help__inner-table-container {
+  overflow-x: auto;
   width: 100%;
 }
 .help__inner-table {
-  margin-left: 0;
-  margin-right: 0;
-  margin-top: 0;
-  padding-bottom: 0;
-  padding-left: 0;
-  padding-right: 0;
-  padding-top: 0;
-  margin-bottom: 1.45rem;
+  border-collapse: collapse;
   font-size: 1rem;
   line-height: 1.45rem;
-  border-collapse: collapse;
+  margin: 0 0 1.45rem 0;
+  min-width: 500px;
+  padding: 0;
   width: 100%;
 }
 .help__inner-table tbody {
@@ -184,6 +181,10 @@
 
 .help__inner_bold {
   font-weight: bold;
+}
+
+.help__inner-h-icon {
+  margin-left: 0.5rem;
 }
 
 .help__inner-key-shortcut {
