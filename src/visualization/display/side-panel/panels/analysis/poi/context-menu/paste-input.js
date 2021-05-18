@@ -33,7 +33,7 @@ const PasteInput = ({
     <div className="selection__paste-input">
       <p>
         <FontAwesomeIcon icon={faInfoCircle} />
-        Genes can be pasted as a comma-, space- or newline-separated list.
+        Names can be pasted as a comma-, space- or newline-separated list.
       </p>
       <TextArea
         onChange={handleChange}
