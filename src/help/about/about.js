@@ -9,7 +9,7 @@ const About = () => (
     <p>
       ProHits-viz is developed by the laboratory of
       {' '}
-      <Link to="https://gingraslab.lunenfeld.ca">
+      <Link to="https://gingraslab.org">
         Dr Anne-Claude Gingras
       </Link>
       {' '}

@@ -20,7 +20,7 @@ const Footer = () => (
       <span className="footer__year">
         {new Date().getFullYear()}
       </span>
-      <Link to="http://gingraslab.lunenfeld.ca">
+      <Link to="https://gingraslab.org">
         Gingras lab
       </Link>
     </small>
