@@ -5,10 +5,14 @@ import {
   faEdit,
   faEyeSlash,
   faLink,
+  faList,
   faSync,
   faToggleOn,
 } from '@fortawesome/pro-duotone-svg-icons';
-import { faPlus, faTimesCircle } from '@fortawesome/pro-solid-svg-icons';
+import {
+  faPlus,
+  faTimesCircle,
+} from '@fortawesome/pro-solid-svg-icons';
 import { faYoutube } from '@fortawesome/free-brands-svg-icons';
 
 import Link from '../../../components/link/text/link';
@@ -49,6 +53,56 @@ const Heatmap = () => (
         side panel displays information about the parameters used for analysis and the legend.
       </figcaption>
     </figure>
+    <h4>
+      Available videos
+      <FontAwesomeIcon
+        className="help__inner-h-icon"
+        icon={faYoutube}
+      />
+    </h4>
+    <div className="help__inner-playlist">
+      <FontAwesomeIcon icon={faList} />
+      <Link to="https://www.youtube.com/playlist?list=PLKltYtdDTyzdnSRVUvA6WkjzQZNWSoFDa">
+        Playlist
+      </Link>
+    </div>
+    <ol>
+      <li>
+        <Link to="https://www.youtube.com/watch?v=dkQ5jtczDEA">
+          Navigating and exploring interactive dot plots and heat maps
+        </Link>
+      </li>
+      <li>
+        <Link to="https://www.youtube.com/watch?v=qFcWNJMkd5Q">
+          Sorting and filtering interactive dot plots and heat maps
+        </Link>
+      </li>
+      <li>
+        <Link to="https://www.youtube.com/watch?v=XelLCaJ4KCM">
+          Making selections on interactive dot plots and heat maps
+        </Link>
+      </li>
+      <li>
+        <Link to="https://www.youtube.com/watch?v=uHXOdkpvTJA">
+          Performing functional enrichment analysis on interactive dot plots and heat maps
+        </Link>
+      </li>
+      <li>
+        <Link to="https://www.youtube.com/watch?v=GS03-BeKpio">
+          Searching and marking up interactive dot plots and heat maps
+        </Link>
+      </li>
+      <li>
+        <Link to="https://www.youtube.com/watch?v=_uY8sQzRifw">
+          The settings tab on interactive dot plots and heat maps
+        </Link>
+      </li>
+      <li>
+        <Link to="https://www.youtube.com/watch?v=sryDHIXzv5E">
+          Saving images of interactive dot plots and heat maps
+        </Link>
+      </li>
+    </ol>
     <h3 id="navigation">Navigation</h3>
     <p>
       The viewer is designed to display images at a size large enough to make it easy to see details
@@ -157,25 +211,6 @@ const Heatmap = () => (
         image as a whole while still having easy access to the minimap for navigation.
       </figcaption>
     </figure>
-    <h4>
-      Relevant videos
-      <FontAwesomeIcon
-        className="help__inner-h-icon"
-        icon={faYoutube}
-      />
-    </h4>
-    <ul>
-      <li>
-        <Link to="https://www.youtube.com/watch?v=dkQ5jtczDEA">
-          Navigating and exploring interactive dot plots and heat maps
-        </Link>
-      </li>
-      <li>
-        <Link to="https://www.youtube.com/watch?v=qFcWNJMkd5Q">
-          Sorting and filtering interactive dot plots and heat maps
-        </Link>
-      </li>
-    </ul>
     <h3>Settings</h3>
     <p>
       The settings tab allows customization of the image appearance and provides inputs for

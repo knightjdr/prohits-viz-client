@@ -175,6 +175,9 @@
   font-weight: bold;
 }
 
+.help__inner-icon_accent {
+  color: var(--accentPrimary1);
+}
 .help__inner-icon_red {
   color: var(--warning);
 }
@@ -194,6 +197,13 @@
   box-sizing: border-box;
   display: inline-block;
   padding: 0 0.5rem;
+}
+
+.help__inner-playlist {
+  margin-top: 1rem;
+}
+.help__inner-playlist > svg {
+  margin: 0 0.5rem 0 1rem;
 }
 
 @media (max-width: 799px) {
