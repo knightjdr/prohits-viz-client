@@ -36,7 +36,7 @@ const ArchiveModal = ({
     title="Archive"
   >
     <p style={{ marginTop: 0 }}>
-      Your session has been archived to the url below and will be available for three months:
+      Your session has been archived to the URL below and will be available for three months:
     </p>
     <div>
       <Link

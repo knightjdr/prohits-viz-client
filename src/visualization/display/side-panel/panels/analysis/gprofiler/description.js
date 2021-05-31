@@ -9,7 +9,7 @@ const Description = () => (
     <FontAwesomeIcon icon={faInfoCircle} />
     {' '}
     <span>
-      Gene Ontology (GO) analysis is performed using
+      Functional enrichment analysis is performed using
       {' '}
       <Link
         to="https://biit.cs.ut.ee/gprofiler"
