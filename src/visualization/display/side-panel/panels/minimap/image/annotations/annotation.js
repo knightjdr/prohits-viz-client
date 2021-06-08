@@ -4,6 +4,7 @@ import React from 'react';
 import './annotation.css';
 
 const Annotation = ({
+  color,
   position,
   text,
 }) => (
@@ -12,6 +13,7 @@ const Annotation = ({
     data-tooltip={text}
     data-tooltip-position="top"
     style={{
+      backgroundColor: color,
       left: `calc(${position.x * 100}% - 5px)`,
       top: `calc(${position.y * 100}% - 5px)`,
     }}
@@ -19,6 +21,7 @@ const Annotation = ({
 );
 
 Annotation.propTypes = {
+  color: PropTypes.string.isRequired,
   position: PropTypes.shape({
     x: PropTypes.number,
     y: PropTypes.number,

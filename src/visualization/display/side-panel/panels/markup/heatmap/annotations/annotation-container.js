@@ -16,7 +16,7 @@ const AnnotationContainer = () => {
   const annotations = useSelector((state) => selectData(state, 'annotations'));
   const addAnnotation = useAnnotation();
 
-  const { fontSize, show } = annotations;
+  const { color, fontSize, show } = annotations;
 
   const handleAddAnnotation = (e, elementID, value) => {
     addAnnotation(value);
@@ -24,6 +24,10 @@ const AnnotationContainer = () => {
 
   const handleClearAll = () => {
     dispatch(clearAllAnnotations());
+  };
+
+  const handleColorChange = (newColor) => {
+    dispatch(changeAnnotationSetting('color', newColor));
   };
 
   const handleFontSizeChange = (e, id, value) => {
@@ -36,9 +40,11 @@ const AnnotationContainer = () => {
 
   return (
     <Annotation
+      color={color}
       fontSize={fontSize}
       handleAddAnnotation={handleAddAnnotation}
       handleClearAll={handleClearAll}
+      handleColorChange={handleColorChange}
       handleFontSizeChange={handleFontSizeChange}
       handleToggleAnnotations={handleToggleAnnotations}
       show={show}

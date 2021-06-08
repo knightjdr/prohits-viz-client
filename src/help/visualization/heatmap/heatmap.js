@@ -449,8 +449,8 @@ const Heatmap = () => (
       {' '}
       area. Type in the annotation
       and it will be added to the center of the image&apos;s visible area. You can then click and drag the
-      annotation to change its position. Annotations will appear as red dots on the minimap and can be
-      deleted individually by clicking on the
+      annotation to change its position. Annotations will appear as red dots on the minimap. The color of the dots
+      be adjusted from the panel. Annotations can be deleted individually by clicking on the
       {' '}
       <FontAwesomeIcon className="help__inner-icon_red" icon={faTimesCircle} />
       {' '}

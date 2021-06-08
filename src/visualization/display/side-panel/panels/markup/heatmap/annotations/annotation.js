@@ -3,6 +3,7 @@ import React from 'react';
 import { faTrash } from '@fortawesome/pro-duotone-svg-icons';
 import { faPlus } from '@fortawesome/pro-solid-svg-icons';
 
+import ColorPicker from '../../../../../../../components/color-picker/color-picker-container';
 import IconButton from '../../../../../../../components/buttons/icon/button';
 import Input from '../../../../../../../components/input/text/input-text-container';
 import InputWithButton from '../../../../../../../components/input/with-button/input-with-button-container';
@@ -10,9 +11,11 @@ import Section from '../../../section/section';
 import Switch from '../../../../../../../components/input/switch/switch-container';
 
 const Annotation = ({
+  color,
   fontSize,
   handleAddAnnotation,
   handleClearAll,
+  handleColorChange,
   handleFontSizeChange,
   handleToggleAnnotations,
   show,
@@ -42,6 +45,14 @@ const Annotation = ({
         type="number"
         value={fontSize}
       />
+      <span className="panel-markup__label">
+        Color:
+      </span>
+      <ColorPicker
+        color={color}
+        onChange={handleColorChange}
+        placement={['right', 'center']}
+      />
       <Switch
         checked={show}
         id="showAnnotations"
@@ -62,9 +73,11 @@ const Annotation = ({
 );
 
 Annotation.propTypes = {
+  color: PropTypes.string.isRequired,
   fontSize: PropTypes.number.isRequired,
   handleAddAnnotation: PropTypes.func.isRequired,
   handleClearAll: PropTypes.func.isRequired,
+  handleColorChange: PropTypes.func.isRequired,
   handleFontSizeChange: PropTypes.func.isRequired,
   handleToggleAnnotations: PropTypes.func.isRequired,
   show: PropTypes.bool.isRequired,

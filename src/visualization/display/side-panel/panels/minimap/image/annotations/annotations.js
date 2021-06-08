@@ -12,6 +12,7 @@ const Annotations = ({
         ? (
           Object.entries(annotations.list).map(([id, annotation]) => (
             <Annotation
+              color={annotations.color}
               position={annotation.position}
               key={id}
               text={annotation.text}
