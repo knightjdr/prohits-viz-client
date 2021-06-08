@@ -371,9 +371,9 @@ const SCV = () => (
       </li>
       <li>
         <span>other folder:</span>
-        this folder includes the numerical data used in the images in a tabular format, and files containing
-        the identifiers the condition and readout names were mapped to when retrieving data from external sources.
-        The identifiers in these files are the
+        this folder includes the numerical data used in the images in a tabular format, the database versions
+        used for external sources and files containing the identifiers the condition and readout names were
+        mapped to when retrieving data from external sources. The identifiers in these files refer to the
         {' '}
         <Link to="https://www.genenames.org/">
           HGNC
