@@ -75,7 +75,8 @@ export const Label = styled(Button).attrs({
   display: inline-block;
 
   svg {
-    margin-right: 8px;
+    margin-right: 0.5rem;
+    margin-top: 3px;
   }
 `;
 

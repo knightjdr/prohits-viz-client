@@ -10,6 +10,7 @@ const Analyze = lazy(() => import('../analysis/analysis-container'));
 const Help = lazy(() => import('../help/help-container'));
 const News = lazy(() => import('../news/news-container'));
 const Tasks = lazy(() => import('../tasks/tasks-router'));
+const Utilities = lazy(() => import('../utilities/utilities-container'));
 const Visualization = lazy(() => import('../visualization/visualization-container'));
 
 const Routing = () => {
@@ -26,6 +27,7 @@ const Routing = () => {
             <Route path="/help" component={Help} />
             <Route path="/news" component={News} />
             <Route path="/tasks" component={Tasks} />
+            <Route path="/utilities" component={Utilities} />
             <Route path="/visualization" component={Visualization} />
             <Route path="*" exact component={NotFoundPage} />
           </Switch>

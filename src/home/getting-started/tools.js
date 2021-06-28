@@ -5,6 +5,7 @@ import {
   faFileSpreadsheet,
   faNewspaper,
   faQuestion,
+  faTools,
 } from '@fortawesome/pro-duotone-svg-icons';
 import { faYoutube } from '@fortawesome/free-brands-svg-icons';
 
@@ -22,6 +23,13 @@ const tools = [
     text: `Use our visualization tools if you have already
       generated an interactive file with ProHits-viz.`,
     title: 'Visualization',
+  },
+  {
+    image: <FontAwesomeIcon icon={faTools} size="xs" />,
+    link: '/utilities',
+    text: `Miscellaneous tools for non-visualization-based analysis and processing
+      of files.`,
+    title: 'Utilities',
   },
   {
     image: <FontAwesomeIcon icon={faNewspaper} size="xs" />,

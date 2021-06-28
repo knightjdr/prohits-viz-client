@@ -29,7 +29,7 @@ const InputFile = ({
       type="button"
     >
       <FontAwesomeIcon icon={faFileUpload} />
-      Select file
+      <span>Select file</span>
     </Label>
     <Warning warning={warning} />
     {

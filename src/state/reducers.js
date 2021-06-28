@@ -34,6 +34,7 @@ import session from './session/session-reducer';
 import settings from './visualization/settings/settings-reducer';
 import tabs from './visualization/settings/tabs-reducer';
 import tasks from './task/task-reducer';
+import utilities from './utilities/utilities-reducer';
 
 const reducers = combineReducers({
   analysis,
@@ -70,6 +71,7 @@ const reducers = combineReducers({
   settings,
   tabs,
   tasks,
+  utilities,
 });
 
 export default reducers;
