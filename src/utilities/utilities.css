@@ -30,5 +30,11 @@
   padding: 1rem;
 }
 .utility__submit {
+  align-items: center;
+  display: flex;
   margin-top: 2rem;
+  width: 100%;
+}
+.utility__submit-progress > svg {
+  margin: 0 0.5rem 0 1rem;
 }

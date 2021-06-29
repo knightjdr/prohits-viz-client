@@ -10,7 +10,7 @@ const Warning = ({
 }) => (
   warning
   && (
-    <StyledWarning>
+    <StyledWarning className="input__warning">
       <div>
         <FontAwesomeIcon icon={faExclamationTriangle} />
         {warning}

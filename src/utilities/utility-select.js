@@ -16,6 +16,8 @@ const UtilitySelect = ({
       options={[
         { label: 'Process interactive file', optGroup: true },
         { label: 'Convert interactive file from ProHits version 1', value: 'pvconvert' },
+        { label: 'SAINT file', optGroup: true },
+        { label: 'Calculate interaction statistics', value: 'saintstats' },
       ]}
       placeholder="Select Utility..."
       value={utility}

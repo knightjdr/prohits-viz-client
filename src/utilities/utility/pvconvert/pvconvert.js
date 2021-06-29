@@ -1,9 +1,10 @@
 import PropTypes from 'prop-types';
 import React from 'react';
 
-import SelectContainer from '../../../components/select/select-container';
+import Select from '../../../components/select/select-container';
 
 const PVConvert = ({
+  error,
   handleUtilityField,
   imageType,
 }) => (
@@ -12,7 +13,7 @@ const PVConvert = ({
       Convert an interactive file in .txt or .tsv format from ProHits-viz version 1 (prohits-viz.lunenfeld.ca)
       to a format compatible with this version of ProHits-viz.
     </p>
-    <SelectContainer
+    <Select
       label="Image type"
       id="imageType"
       onChange={handleUtilityField}
@@ -23,15 +24,18 @@ const PVConvert = ({
       ]}
       placeholder="Select image type..."
       value={imageType}
+      warning={error}
     />
   </>
 );
 
 PVConvert.defaultProps = {
+  error: '',
   imageType: '',
 };
 
 PVConvert.propTypes = {
+  error: PropTypes.string,
   handleUtilityField: PropTypes.func.isRequired,
   imageType: PropTypes.string,
 };

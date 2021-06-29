@@ -43,6 +43,10 @@ const Span = styled.span`
     padding-right: 8px;
   }
 
+  & .input__warning {
+    grid-column: 2 / 3;
+  }
+
   ${(props) => (props.vertical
     && css`& {
       display: flex;

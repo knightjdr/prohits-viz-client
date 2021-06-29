@@ -14,6 +14,6 @@ export const setUtilityFile = (file) => ({
 });
 
 export const setUtilityType = (utility) => ({
-  type: SET_UTILITY_FILE,
+  type: SET_UTILITY_TYPE,
   utility,
 });

@@ -2,26 +2,31 @@ import PropTypes from 'prop-types';
 import React from 'react';
 
 import PVConvert from './utility/pvconvert/pvconvert-container';
+import SaintStats from './utility/saint-stats/saint-stats-container';
 
-const loadUtilityComponent = (utility) => {
+const loadUtilityComponent = (utility, errors) => {
   if (utility === 'pvconvert') {
-    return <PVConvert />;
+    return <PVConvert errors={errors} />;
+  } if (utility === 'saintstats') {
+    return <SaintStats errors={errors} />;
   }
   return null;
 };
 
 const LoadUtility = ({
+  errors,
   utility,
 }) => (
   utility
   && (
     <div className="utility">
-      {loadUtilityComponent(utility)}
+      {loadUtilityComponent(utility, errors)}
     </div>
   )
 );
 
 LoadUtility.propTypes = {
+  errors: PropTypes.shape({}).isRequired,
   utility: PropTypes.string.isRequired,
 };
 

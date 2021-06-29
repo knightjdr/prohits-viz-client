@@ -5,6 +5,7 @@ import Divider from '../components/divider/divider';
 import InputFile from '../components/input/file/input-file-container';
 
 const UtilitiesFile = ({
+  error,
   handleInputFile,
 }) => (
   <div className="utilities__file">
@@ -16,11 +17,17 @@ const UtilitiesFile = ({
     <InputFile
       id="file_input_utilities"
       onChange={handleInputFile}
+      warning={error}
     />
   </div>
 );
 
+UtilitiesFile.defaultProps = {
+  error: '',
+};
+
 UtilitiesFile.propTypes = {
+  error: PropTypes.string,
   handleInputFile: PropTypes.func.isRequired,
 };
 
