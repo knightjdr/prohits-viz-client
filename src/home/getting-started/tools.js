@@ -21,14 +21,14 @@ const tools = [
     image: <FontAwesomeIcon icon={faChartScatter} size="xs" />,
     link: '/visualization',
     text: `Use our visualization tools if you have already
-      generated an interactive file with ProHits-viz.`,
+      run an analysis and generated an interactive image file.`,
     title: 'Visualization',
   },
   {
     image: <FontAwesomeIcon icon={faTools} size="xs" />,
     link: '/utilities',
-    text: `Miscellaneous tools for non-visualization-based analysis and processing
-      of files.`,
+    text: `Miscellaneous tools for analysis and file processing that generate
+      static image outputs or text files.`,
     title: 'Utilities',
   },
   {

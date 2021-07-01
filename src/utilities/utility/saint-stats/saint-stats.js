@@ -12,7 +12,7 @@ const SaintStats = ({
     <p className="utility__description">
       Generate interaction statistics from a SAINT .txt file, the number of preys,
       the number of unique preys, the number of interactions and the
-      number of unique interactions.
+      number of unique interactions. Specify the FDR for significant preys.
     </p>
     <Input
       label="FDR"

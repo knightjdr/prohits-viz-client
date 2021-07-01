@@ -12,6 +12,7 @@ import { setUtilityField, setUtilityFile, setUtilityType } from '../state/utilit
 const UtilitiesContainer = () => {
   const dispatch = useDispatch();
   const [errors, setErrors] = useState({});
+  const [taskID, setTaskID] = useState('');
   const fields = useSelector((state) => selectState(state, 'utilities'));
 
   const fetch = useFetch();
@@ -19,6 +20,10 @@ const UtilitiesContainer = () => {
   const handleInputFile = (e, id, selectedFiles) => {
     const file = selectedFiles[0];
     dispatch(setUtilityFile(file));
+  };
+
+  const handleModalClose = () => {
+    setTaskID('');
   };
 
   const handleUtilityType = (e, id, value) => {
@@ -44,7 +49,7 @@ const UtilitiesContainer = () => {
         setErrors(response.data.errors);
       } else {
         dispatch(createTask(response.data.id));
-        // setTaskID(response.data.id);
+        setTaskID(response.data.id);
       }
     }
   };
@@ -54,8 +59,10 @@ const UtilitiesContainer = () => {
       errors={errors}
       file={fields.file}
       handleInputFile={handleInputFile}
+      handleModalClose={handleModalClose}
       handleSubmit={handleSubmit}
       handleUtilityType={handleUtilityType}
+      taskID={taskID}
       uploadProgress={fields.uploadProgress}
       utility={fields.utility}
     />

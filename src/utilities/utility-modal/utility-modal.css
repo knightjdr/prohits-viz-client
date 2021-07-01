@@ -1,0 +1,21 @@
+.utility__modal-complete-container {
+  margin: 15px 0;
+}
+
+.utility__modal-footer {
+  display: flex;
+}
+.utility__modal-footer-close {
+  margin-left: auto;
+}
+.utility__modal-footer-download svg {
+  margin-right: 5px;
+}
+
+.utility__modal-status-icon,
+.utility__modal-status_green {
+  margin-right: 5px;
+}
+.utility__modal-status_green {
+  color: var(--success);
+}

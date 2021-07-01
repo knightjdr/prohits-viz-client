@@ -5,6 +5,7 @@ import File from './utilities-file';
 import LoadUtility from './load-utility';
 import Select from './utility-select';
 import Submit from './utilities-submit';
+import TaskModal from './utility-modal/utility-modal-container';
 
 import './utilities.css';
 
@@ -12,8 +13,10 @@ const Utilities = ({
   file,
   errors,
   handleInputFile,
+  handleModalClose,
   handleSubmit,
   handleUtilityType,
+  taskID,
   uploadProgress,
   utility,
 }) => (
@@ -53,6 +56,10 @@ const Utilities = ({
         uploadProgress={uploadProgress}
         utility={utility}
       />
+      <TaskModal
+        handleClose={handleModalClose}
+        taskID={taskID}
+      />
     </div>
   </div>
 );
@@ -69,8 +76,10 @@ Utilities.propTypes = {
     file: PropTypes.string,
   }).isRequired,
   handleInputFile: PropTypes.func.isRequired,
+  handleModalClose: PropTypes.func.isRequired,
   handleSubmit: PropTypes.func.isRequired,
   handleUtilityType: PropTypes.func.isRequired,
+  taskID: PropTypes.string.isRequired,
   uploadProgress: PropTypes.number,
   utility: PropTypes.string,
 };
