@@ -13,10 +13,10 @@
   "dependencies": {
     "@fortawesome/fontawesome-svg-core": "^1.2.34",
     "@fortawesome/free-brands-svg-icons": "^5.15.2",
-    "@fortawesome/pro-duotone-svg-icons": "file:~/code/third-party/fontawesome/fortawesome-pro-duotone-svg-icons.tgz",
-    "@fortawesome/pro-light-svg-icons": "file:~/code/third-party/fontawesome/fortawesome-pro-light-svg-icons.tgz",
-    "@fortawesome/pro-regular-svg-icons": "file:~/code/third-party/fontawesome/fortawesome-pro-regular-svg-icons.tgz",
-    "@fortawesome/pro-solid-svg-icons": "file:~/code/third-party/fontawesome/fortawesome-pro-solid-svg-icons.tgz",
+    "@fortawesome/pro-duotone-svg-icons": "file:../../third-party/fontawesome/fortawesome-pro-duotone-svg-icons.tgz",
+    "@fortawesome/pro-light-svg-icons": "file:../../third-party/fontawesome/fortawesome-pro-light-svg-icons.tgz",
+    "@fortawesome/pro-regular-svg-icons": "file:../../third-party/fontawesome/fortawesome-pro-regular-svg-icons.tgz",
+    "@fortawesome/pro-solid-svg-icons": "file:../../third-party/fontawesome/fortawesome-pro-solid-svg-icons.tgz",
     "@fortawesome/react-fontawesome": "^0.1.14",
     "axios": "^0.21.1",
     "history": "^5.0.0",
@@ -41,6 +41,7 @@
     "styled-components": "^5.2.1"
   },
   "scripts": {
+    "preinstall": "npm install --save ~/code/third-party/fontawesome/fortawesome-pro-duotone-svg-icons.tgz ~/code/third-party/fontawesome/fortawesome-pro-light-svg-icons.tgz ~/code/third-party/fontawesome/fortawesome-pro-regular-svg-icons.tgz ~/code/third-party/fontawesome/fortawesome-pro-solid-svg-icons.tgz",
     "build": "react-scripts build",
     "start": "react-scripts start",
     "lint": "node_modules/.bin/eslint -c .eslintrc.js './src/**/*.js'",
