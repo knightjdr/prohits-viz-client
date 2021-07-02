@@ -5,7 +5,7 @@ import File from './utilities-file';
 import LoadUtility from './load-utility';
 import Select from './utility-select';
 import Submit from './utilities-submit';
-import TaskModal from './utility-modal/utility-modal-container';
+import UtilityModal from './utility-modal/utility-modal-container';
 
 import './utilities.css';
 
@@ -56,7 +56,7 @@ const Utilities = ({
         uploadProgress={uploadProgress}
         utility={utility}
       />
-      <TaskModal
+      <UtilityModal
         handleClose={handleModalClose}
         taskID={taskID}
       />

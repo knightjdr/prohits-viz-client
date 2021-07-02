@@ -1,7 +1,7 @@
 import PropTypes from 'prop-types';
 import React from 'react';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faCheck, faSpinner } from '@fortawesome/pro-duotone-svg-icons';
+import { faCheck, faExclamationTriangle, faSpinner } from '@fortawesome/pro-duotone-svg-icons';
 
 import Link from '../../components/link/text/link';
 
@@ -13,7 +13,24 @@ const getModalElements = {
     link: true,
     description: (
       <p className="utility__modal-complete-container">
-        The task is complete. Use the button below to download the results.
+        Use the button below to download the results.
+      </p>
+    ),
+  }),
+  error: () => ({
+    alertMessage: 'There was an error running the utility.',
+    icon: faExclamationTriangle,
+    iconClass: 'task__modal-status-icon_red',
+    link: true,
+    description: (
+      <p>
+        Please email
+        {' '}
+        <Link to="mailto:contact@prohits-viz.org?Subject=ProHits-viz%20utility%20support">
+          contact@prohits-viz.org
+        </Link>
+        {' '}
+        for support.
       </p>
     ),
   }),

@@ -13,9 +13,13 @@
 }
 
 .utility__modal-status-icon,
-.utility__modal-status_green {
+.utility__modal-status_green,
+.task__modal-status-icon_red {
   margin-right: 5px;
 }
 .utility__modal-status_green {
   color: var(--success);
+}
+.task__modal-status-icon_red {
+  color: var(--warning);
 }

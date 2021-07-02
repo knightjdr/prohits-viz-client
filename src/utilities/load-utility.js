@@ -2,11 +2,14 @@ import PropTypes from 'prop-types';
 import React from 'react';
 
 import PVConvert from './utility/pvconvert/pvconvert-container';
+import SaintFEA from './utility/saint-fea/saint-fea-container';
 import SaintStats from './utility/saint-stats/saint-stats-container';
 
 const loadUtilityComponent = (utility, errors) => {
   if (utility === 'pvconvert') {
     return <PVConvert errors={errors} />;
+  } if (utility === 'saintfea') {
+    return <SaintFEA errors={errors} />;
   } if (utility === 'saintstats') {
     return <SaintStats errors={errors} />;
   }

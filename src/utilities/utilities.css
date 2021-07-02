@@ -29,6 +29,16 @@
   border-radius: 3px;
   padding: 1rem;
 }
+.utility__inputs {
+  display: flex;
+  flex-wrap: wrap;
+  margin: -1rem;
+  margin-top: 1rem;
+}
+.utility__inputs > * {
+  margin: 1rem;
+  max-width: 250px;
+}
 .utility__submit {
   align-items: center;
   display: flex;
