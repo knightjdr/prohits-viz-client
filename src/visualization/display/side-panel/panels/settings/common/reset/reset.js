@@ -32,7 +32,7 @@ const Reset = ({
           handleTransformationReset
           && (
             <>
-              <span>Reset scale and zoom:</span>
+              <span>Reset position and zoom:</span>
               <Button
                 icon={faExpandAlt}
                 kind="warning"

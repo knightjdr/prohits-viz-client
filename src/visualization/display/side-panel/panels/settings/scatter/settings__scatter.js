@@ -16,7 +16,7 @@ const Settings = ({
       handleReset={handleReset}
       handleTransformationReset={handleTransformationReset}
       helpLink="/help/visualization/scatterplot#settings-reset"
-      resetText="Reset settings, scale and zoom"
+      resetText="Reset settings, position and zoom"
     />
   </div>
 );
