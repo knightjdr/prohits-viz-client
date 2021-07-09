@@ -68,37 +68,37 @@ const Heatmap = () => (
     </div>
     <ol>
       <li>
-        <Link to="https://www.youtube.com/watch?v=dkQ5jtczDEA">
+        <Link to="https://youtu.be/dkQ5jtczDEA">
           Navigating and exploring interactive dot plots and heat maps
         </Link>
       </li>
       <li>
-        <Link to="https://www.youtube.com/watch?v=qFcWNJMkd5Q">
+        <Link to="https://youtu.be/qFcWNJMkd5Q">
           Sorting and filtering interactive dot plots and heat maps
         </Link>
       </li>
       <li>
-        <Link to="https://www.youtube.com/watch?v=XelLCaJ4KCM">
+        <Link to="https://youtu.be/XelLCaJ4KCM">
           Making selections on interactive dot plots and heat maps
         </Link>
       </li>
       <li>
-        <Link to="https://www.youtube.com/watch?v=uHXOdkpvTJA">
+        <Link to="https://youtu.be/uHXOdkpvTJA">
           Performing functional enrichment analysis on interactive dot plots and heat maps
         </Link>
       </li>
       <li>
-        <Link to="https://www.youtube.com/watch?v=GS03-BeKpio">
+        <Link to="https://youtu.be/GS03-BeKpio">
           Searching and marking up interactive dot plots and heat maps
         </Link>
       </li>
       <li>
-        <Link to="https://www.youtube.com/watch?v=_uY8sQzRifw">
+        <Link to="https://youtu.be/_uY8sQzRifw">
           The settings tab on interactive dot plots and heat maps
         </Link>
       </li>
       <li>
-        <Link to="https://www.youtube.com/watch?v=sryDHIXzv5E">
+        <Link to="https://youtu.be/sryDHIXzv5E">
           Saving images of interactive dot plots and heat maps
         </Link>
       </li>

@@ -1,7 +1,8 @@
 import React from 'react';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faEdit } from '@fortawesome/pro-duotone-svg-icons';
+import { faEdit, faList } from '@fortawesome/pro-duotone-svg-icons';
 import { faMinus, faPlus, faTimes } from '@fortawesome/pro-solid-svg-icons';
+import { faYoutube } from '@fortawesome/free-brands-svg-icons';
 
 import Image from '../../../components/dynamic-image/image-container';
 import Link from '../../../components/link/text/link';
@@ -67,6 +68,56 @@ const Scatter = () => (
     <p>
       The plot can be zoomed using the mouse wheel or repositioned by dragging the cursor.
     </p>
+    <h4>
+      Available videos
+      <FontAwesomeIcon
+        className="help__inner-h-icon"
+        icon={faYoutube}
+      />
+    </h4>
+    <div className="help__inner-playlist">
+      <FontAwesomeIcon icon={faList} />
+      <Link to="https://www.youtube.com/playlist?list=PLKltYtdDTyzfptaI1T6OYodTZYqFjIGVp">
+        Playlist
+      </Link>
+    </div>
+    <ol>
+      <li>
+        <Link to="https://youtu.be/AOg-kIZXuLo">
+          Exploring interactive scatter plots
+        </Link>
+      </li>
+      <li>
+        <Link to="https://youtu.be/mWleId6kcvA">
+          The settings tab on interactive scatter plots
+        </Link>
+      </li>
+      <li>
+        <Link to="https://youtu.be/77jKMljAovA">
+          Searching and marking up interactive scatter plots
+        </Link>
+      </li>
+      <li>
+        <Link to="https://youtu.be/YDK2Np6Yp54">
+          Making selections on interactive scatter plots
+        </Link>
+      </li>
+      <li>
+        <Link to="https://youtu.be/DitMlZ2QaCM">
+          Performing analysis on interactive scatter plots
+        </Link>
+      </li>
+      <li>
+        <Link to="https://youtu.be/g17ZpBjoXGw">
+          Customizing points on interactive scatter plots
+        </Link>
+      </li>
+      <li>
+        <Link to="https://youtu.be/mOCgwYkpKvE">
+          Saving images of interactive scatter plots
+        </Link>
+      </li>
+    </ol>
     <h3>Settings</h3>
     <p>
       The settings tab allows axes customization and basic filtering of the image.
