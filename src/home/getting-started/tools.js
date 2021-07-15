@@ -39,7 +39,7 @@ const tools = [
   },
   {
     image: <FontAwesomeIcon icon={faYoutube} size="xs" />,
-    link: 'https://www.youtube.com/channel/UCGR-0ixL4z526JUVQU8P4xQ',
+    link: 'https://www.youtube.com/channel/UCGR-0ixL4z526JUVQU8P4xQ/playlists',
     text: 'Watch demonstration videos on the latest features and tutorials on using our tools.',
     title: 'Videos',
   },

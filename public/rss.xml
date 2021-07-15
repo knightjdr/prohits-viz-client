@@ -3,7 +3,7 @@
     <title>ProHits-viz</title>
     <description>News and tutorials on visualizing data at ProHits-viz.</description>
     <link>https://prohits-viz.org/news</link>
-    <lastBuildDate>Thu, 25 Feb 2021 10:04:56 -0500</lastBuildDate>
+    <lastBuildDate>Thu, 15 Jul 2021 15:58:50 -0400</lastBuildDate>
     <item>
       <title>2.0 alpha test begins</title>
       <description>Learn about the first stage of testing for the new ProHits-viz interface.</description>
@@ -52,6 +52,16 @@
       <pubDate>Thursday, 25 February 2021 12:00:00 GMT</pubDate>
       <content:encoded>
         &lt;p&gt;There is a new tool for visualizing data on a single condition (for example a bait in a protein-protein interaction data set). It will display significant readouts in a circular heat map format, with the option to display multiple columns from the input file.&lt;/p&gt;&lt;p&gt;The image can be supplemented with either protein or RNA expression data from a range of cell lines and tissues. For protein-protein interaction data, the image can also be sorted between known and novel interactions.&lt;/p&gt;&lt;p&gt;You can try out the new tool with an &lt;a href=&quot;https://prohits-viz.org/visualization/samplefile/circheatmap&quot;&gt;example dataset&lt;/a&gt;.&lt;/p&gt;
+      </content:encoded>
+    </item>
+    <item>
+      <title>A new home</title>
+      <description>ProHits-viz has officially moved from its old home</description>
+      <link>https://prohits-viz.org/news/A-new-home</link>
+      <guid>https://prohits-viz.org/news/A-new-home</guid>
+      <pubDate>Tuesday, 20 July 2021 12:00:00 GMT</pubDate>
+      <content:encoded>
+        &lt;p&gt;July 19, 2021 was the last day of official support for our old ProHits-viz site hosted at prohits-viz.lunenfeld.ca. Over the course of its four years of existence, it performed over 75 000 analysis and visualization tasks. While it is still used extensively by the community, we felt it was in need of a redesign that would allow us to more easily add new tools and interactive features going forward.&lt;/p&gt;&lt;p&gt;&lt;a href=&quot;https://prohits-viz.org&quot;&gt;ProHits-viz.org&lt;/a&gt; is the new redesigned home of ProHits-viz. This new site has an overhauled interface, with extensive online help and video tutorials to aid when you get stuck. It also comes with a &lt;a href=&quot;https://prohits-viz.org/help/analysis/scv&quot;&gt;brand new tool&lt;/a&gt; for visualizing multiple output metrics from a single experimental condition.&lt;/p&gt;&lt;p&gt;There is plenty of online help at &lt;a href=&quot;https://prohits-viz.org/help&quot;&gt;prohits-viz.org/help&lt;/a&gt; and a number of &lt;a href=&quot;https://www.youtube.com/channel/UCGR-0ixL4z526JUVQU8P4xQ/playlists&quot;&gt;videos&lt;/a&gt; that demonstrate how to use the new interactive viewers.&lt;/p&gt;&lt;p&gt;If you have questions that are not covered by the help, you can contact us at &lt;a href=&quot;mailto:contact@prohits-viz.org&quot;&gt;contact@prohits-viz.org&lt;/a&gt;&lt;/p&gt;&lt;p&gt;A final note on the old site: any images that were archived there will still be accessible, but all other links will redirect to the new site.&lt;/p&gt;
       </content:encoded>
     </item>
   </channel>
