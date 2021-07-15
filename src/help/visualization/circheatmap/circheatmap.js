@@ -1,4 +1,7 @@
 import React from 'react';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faList } from '@fortawesome/pro-duotone-svg-icons';
+import { faYoutube } from '@fortawesome/free-brands-svg-icons';
 
 import Image from '../../../components/dynamic-image/image-container';
 import Link from '../../../components/link/text/link';
@@ -52,6 +55,51 @@ const CircHeatmap = () => (
       heat map is produced, switching between them can be done from the selection menu on the first tab
       of the side panel.
     </p>
+    <h4>
+      Available videos
+      <FontAwesomeIcon
+        className="help__inner-h-icon"
+        icon={faYoutube}
+      />
+    </h4>
+    <div className="help__inner-playlist">
+      <FontAwesomeIcon icon={faList} />
+      <Link to="https://www.youtube.com/playlist?list=PLKltYtdDTyzfptaI1T6OYodTZYqFjIGVp">
+        Playlist
+      </Link>
+    </div>
+    <ol>
+      <li>
+        <Link to="https://youtu.be/uRnS7JcgYL0">
+          Introduction to interactive circular heat maps
+        </Link>
+      </li>
+      <li>
+        <Link to="https://youtu.be/cKgATxiQ2Ms">
+          Image settings on interactive circular heat maps
+        </Link>
+      </li>
+      <li>
+        <Link to="https://youtu.be/6Ps07tKkYFY">
+          Searching on interactive circular heat maps
+        </Link>
+      </li>
+      <li>
+        <Link to="https://youtu.be/WuDCRA3Jjwg">
+          Selections and filtering on interactive circular heat maps
+        </Link>
+      </li>
+      <li>
+        <Link to="https://youtu.be/bMhf-3M-4lM">
+          Performing functional enrichment analysis on interactive circular heat maps
+        </Link>
+      </li>
+      <li>
+        <Link to="https://youtu.be/HHrl1X4OMC4">
+          Saving images of interactive circular heat maps
+        </Link>
+      </li>
+    </ol>
     <h3>Settings</h3>
     <p>
       The settings tab allows customization, reorganization and basic filtering of the image.
