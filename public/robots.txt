@@ -1,0 +1,4 @@
+User-agent: *
+Allow: /
+Sitemap: https://prohits-viz.org/sitemap.xml
+Host: https://prohits-viz.org
