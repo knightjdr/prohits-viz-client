@@ -37,7 +37,11 @@
 }
 .utility__inputs > * {
   margin: 1rem;
-  max-width: 250px;
+  max-width: 295px;
+}
+.utility__inputs > .utility__input_medium {
+  flex: 1;
+  max-width: unset;
 }
 .utility__submit {
   align-items: center;

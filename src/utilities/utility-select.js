@@ -17,8 +17,9 @@ const UtilitySelect = ({
         { label: 'Process interactive file', optGroup: true },
         { label: 'Convert interactive file from ProHits version 1', value: 'pvconvert' },
         { label: 'SAINT file', optGroup: true },
-        { label: 'Calculate interaction statistics', value: 'saintstats' },
-        { label: 'Functional enrichment analysis', value: 'saintfea' },
+        { label: 'Calculate interaction statistics', value: 'saint_stats' },
+        { label: 'Domain enrichment analysis', value: 'saint_domain_enrich' },
+        { label: 'Functional enrichment analysis', value: 'saint_fea' },
       ]}
       placeholder="Select Utility..."
       value={utility}

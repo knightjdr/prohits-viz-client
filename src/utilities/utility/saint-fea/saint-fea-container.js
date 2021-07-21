@@ -39,6 +39,7 @@ const SaintFEAContainer = ({
 SaintFEAContainer.propTypes = {
   errors: PropTypes.shape({
     fdr: PropTypes.string,
+    topPreys: PropTypes.string,
   }).isRequired,
 };
 

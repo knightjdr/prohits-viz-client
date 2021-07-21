@@ -12,7 +12,7 @@ describe('Validate utility form', () => {
           'test.txt',
           { type: 'text/plain' },
         ),
-        utility: 'saintstats',
+        utility: 'saint_stats',
       };
       actual = validate(fields);
     });
@@ -29,7 +29,7 @@ describe('Validate utility form', () => {
           'test.txt',
           { type: 'text/plain' },
         ),
-        utility: 'saintstats',
+        utility: 'saint_stats',
       };
       Array.from(actual.form.entries()).forEach(([key, value]) => {
         expect(value).toEqual(expected[key]);
@@ -38,7 +38,7 @@ describe('Validate utility form', () => {
   });
 
   it('should return errors for an invalid form', () => {
-    const fields = { utility: 'saintstats' };
+    const fields = { utility: 'saint_stats' };
     const expected = {
       file: 'Please select a file',
       fdr: 'FDR is not within the bounds of 0 and 1',
