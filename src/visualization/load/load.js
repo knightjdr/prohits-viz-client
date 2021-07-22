@@ -8,7 +8,20 @@ import Loading from '../../components/loading/element/loading';
 import './load.css';
 
 const loadingMessage = (error, errorMessage, isLoading) => {
-  if (error) {
+  if (error && errorMessage === 'Error: Invalid file format') {
+    return (
+      <span>
+        Invalid file format. If you have a .tsv file from version 1 of ProHits-viz,
+        please convert it to the new .json format on the
+        {' '}
+        <Link to="/utilities">
+          utilities
+        </Link>
+        {' '}
+        page.
+      </span>
+    );
+  } if (error) {
     return errorMessage;
   } if (isLoading) {
     return 'loading file...';

@@ -52,7 +52,7 @@ Loading.defaultProps = {
 Loading.propTypes = {
   error: PropTypes.bool,
   isLoading: PropTypes.bool,
-  message: PropTypes.string,
+  message: PropTypes.node,
 };
 
 export default Loading;
