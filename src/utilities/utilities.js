@@ -40,6 +40,7 @@ const Utilities = ({
       </p>
       <File
         error={errors.file}
+        file={file}
         handleInputFile={handleInputFile}
       />
       <Select
@@ -65,7 +66,7 @@ const Utilities = ({
 );
 
 Utilities.defaultProps = {
-  file: {},
+  file: null,
   uploadProgress: 0,
   utility: '',
 };

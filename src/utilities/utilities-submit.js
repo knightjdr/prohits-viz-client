@@ -37,8 +37,12 @@ const UtilitiesSubmit = ({
   )
 );
 
+UtilitiesSubmit.defaultProps = {
+  file: null,
+};
+
 UtilitiesSubmit.propTypes = {
-  file: PropTypes.shape({}).isRequired,
+  file: PropTypes.shape({}),
   handleSubmit: PropTypes.func.isRequired,
   uploadProgress: PropTypes.number.isRequired,
   utility: PropTypes.string.isRequired,

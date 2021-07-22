@@ -6,6 +6,7 @@ import InputFile from '../components/input/file/input-file-container';
 
 const UtilitiesFile = ({
   error,
+  file,
   handleInputFile,
 }) => (
   <div className="utilities__file">
@@ -17,6 +18,7 @@ const UtilitiesFile = ({
     <InputFile
       id="file_input_utilities"
       onChange={handleInputFile}
+      value={file ? [file] : []}
       warning={error}
     />
   </div>
@@ -24,10 +26,12 @@ const UtilitiesFile = ({
 
 UtilitiesFile.defaultProps = {
   error: '',
+  file: null,
 };
 
 UtilitiesFile.propTypes = {
   error: PropTypes.string,
+  file: PropTypes.shape({}),
   handleInputFile: PropTypes.func.isRequired,
 };
 
