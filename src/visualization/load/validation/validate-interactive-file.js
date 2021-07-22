@@ -1,16 +1,21 @@
+import * as Comlink from 'comlink';
+
 import validateParameters from './validate-parameters';
 import validateFields from './validate-fields';
 import readInteractiveFile from '../read-interactive-file';
 
-const validateInteractiveFile = async (file) => {
-  const data = await readInteractiveFile(file);
+const interactiveFile = {
+  data: {},
+  async run(file) {
+    this.data = await readInteractiveFile(file);
 
-  const { parameters } = data;
+    const { parameters } = this.data;
 
-  validateParameters(parameters);
-  validateFields(parameters.imageType, data);
-
-  return data;
+    validateParameters(parameters);
+    validateFields(parameters.imageType, this.data);
+  },
 };
 
-export default validateInteractiveFile;
+export default interactiveFile;
+
+Comlink.expose(interactiveFile);

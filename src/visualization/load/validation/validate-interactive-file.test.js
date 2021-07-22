@@ -1,4 +1,6 @@
-import validateInteractiveFile from './validate-interactive-file';
+import interactiveFile from './validate-interactive-file';
+
+jest.mock('comlink');
 
 describe('Validate interactive file', () => {
   it('should validate dotplot data', async () => {
@@ -9,8 +11,8 @@ describe('Validate interactive file', () => {
     };
     const blob = new Blob([JSON.stringify(data)]);
     const expected = data;
-    const actual = await validateInteractiveFile(blob);
-    expect(actual).toEqual(expected);
+    await interactiveFile.run(blob);
+    expect(interactiveFile.data).toEqual(expected);
   });
 
   it('should valide heatmap data', async () => {
@@ -21,7 +23,7 @@ describe('Validate interactive file', () => {
     };
     const blob = new Blob([JSON.stringify(data)]);
     const expected = data;
-    const actual = await validateInteractiveFile(blob);
-    expect(actual).toEqual(expected);
+    await interactiveFile.run(blob);
+    expect(interactiveFile.data).toEqual(expected);
   });
 });

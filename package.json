@@ -19,6 +19,7 @@
     "@fortawesome/pro-solid-svg-icons": "file:../../third-party/fontawesome/fortawesome-pro-solid-svg-icons.tgz",
     "@fortawesome/react-fontawesome": "^0.1.14",
     "axios": "^0.21.1",
+    "comlink": "^4.3.1",
     "history": "^5.0.0",
     "nanoid": "^3.1.20",
     "normalize-wheel": "^1.0.1",
@@ -73,7 +74,8 @@
     "jest-styled-components": "^7.0.3",
     "md5": "^2.3.0",
     "redux-mock-store": "^1.5.4",
-    "simulant": "^0.2.2"
+    "simulant": "^0.2.2",
+    "worker-loader": "^3.0.8"
   },
   "jest": {
     "resetMocks": false
