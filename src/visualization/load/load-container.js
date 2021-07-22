@@ -3,7 +3,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import { useHistory } from 'react-router-dom';
 
 // eslint-disable-next-line import/no-webpack-loader-syntax, import/no-unresolved
-import Worker from 'worker-loader!./validation/validate-interactive-file';
+import Worker from 'worker-loader?filename=dist.load-interactive-file.worker.js!./validation/validate-interactive-file';
 
 import Load from './load';
 

@@ -11,25 +11,24 @@ const FileParameters = ({
   form,
   conditions,
   options,
-  selectedtool,
+  selectedTool,
   setColumn,
 }) => (
   <>
     <Columns
       errors={errors}
       form={form}
-      multipleAbundance={selectedtool === 'scv'}
+      multipleAbundance={selectedTool === 'scv'}
       options={{
         abundance: options.abundance,
         condition: options.condition,
         readout: options.readout,
         score: options.score,
       }}
-      selectedtool={selectedtool}
       setColumn={setColumn}
     />
     {
-      selectedtool === 'condition-condition'
+      selectedTool === 'condition-condition'
       && (
         <Conditions
           errors={errors}
@@ -99,7 +98,7 @@ FileParameters.propTypes = {
       }),
     ).isRequired,
   }).isRequired,
-  selectedtool: PropTypes.string.isRequired,
+  selectedTool: PropTypes.string.isRequired,
   setColumn: PropTypes.func.isRequired,
 };
 

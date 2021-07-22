@@ -2,11 +2,14 @@ import PropTypes from 'prop-types';
 import React, { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 
+// eslint-disable-next-line import/no-webpack-loader-syntax, import/no-unresolved
+import WorkerReadConditions from 'worker-loader?filename=dist.read-conditions.worker.js!./read-conditions';
+
 import FileParameters from './file-parameters';
 
 import checkColumnValues from './check-column-values';
-import readConditions from './read-conditions';
 import useColumns from './use-columns';
+import useWorker from '../../hooks/worker/use-worker';
 import { selectState, selectStateProperty } from '../../state/selector/general';
 import { setFormField, setFormFields } from '../../state/analysis/form-actions';
 
@@ -16,10 +19,12 @@ const ColumnsContainer = ({
   errors,
 }) => {
   const dispatch = useDispatch();
-  const [conditions, setConditions] = useState({ loading: true, options: [] });
+  const [conditions, setConditions] = useState({ loading: false, options: [] });
   const columns = useColumns(fields);
   const form = useSelector((state) => selectState(state, 'form'));
-  const selectedtool = useSelector((state) => selectStateProperty(state, 'form', 'tool'));
+  const selectedTool = useSelector((state) => selectStateProperty(state, 'form', 'tool'));
+
+  const worker = useWorker(WorkerReadConditions);
 
   const setColumn = (e, id, value) => {
     if (value) {
@@ -36,11 +41,14 @@ const ColumnsContainer = ({
 
   useEffect(() => {
     const getConditions = async () => {
-      const options = await readConditions(selectedtool, form.condition, form.files);
-      setConditions({ loading: false, options });
+      if (selectedTool === 'condition-condition' && form.condition) {
+        setConditions({ ...conditions, loading: true });
+        const options = await worker(form.condition, form.files);
+        setConditions({ loading: false, options });
+      }
     };
     getConditions();
-  }, [form.condition, form.files, selectedtool]);
+  }, [form.condition, form.files, selectedTool]);
 
   return (
     <FileParameters
@@ -53,7 +61,7 @@ const ColumnsContainer = ({
         readout: columns.readout.options,
         score: columns.score.options,
       }}
-      selectedtool={selectedtool}
+      selectedTool={selectedTool}
       setColumn={setColumn}
     />
   );

@@ -4,8 +4,8 @@ const useWorker = (Worker) => {
   const worker = new Worker();
   const workerObj = Comlink.wrap(worker);
 
-  const runWorker = async (file) => {
-    await workerObj.run(file);
+  const runWorker = async (...args) => {
+    await workerObj.run(...args);
     return workerObj.data;
   };
 
