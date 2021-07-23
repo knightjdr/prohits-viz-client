@@ -1,11 +1,13 @@
-import React, { useEffect, useMemo, useState } from 'react';
+import React, { useMemo, useState } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import { useParams } from 'react-router-dom';
 
 import Tasks from './tasks';
 
+import addTaskNames from './add-task-names';
 import fetch from '../utils/fetch';
-import filterTasks from './filter-tasks';
+import filterTasksToDisplay from './filter-tasks-to-display';
+import useOnMount from '../hooks/on-mount/use-on-mount';
 import useTask from '../hooks/tasks/use-task';
 import { selectState } from '../state/selector/general';
 import { updateTasks, updateTaskStatus } from '../state/task/task-actions';
@@ -21,7 +23,7 @@ const TasksContainer = () => {
 
   const taskHandlers = useTask();
 
-  const tasksToDisplay = useMemo(() => filterTasks(id, tasks), [id, tasks]);
+  const tasksToDisplay = useMemo(() => filterTasksToDisplay(id, tasks), [id, tasks]);
 
   const updateStatus = (result) => {
     if (result.error) {
@@ -31,7 +33,8 @@ const TasksContainer = () => {
     } else if (id) {
       dispatch(updateTaskStatus(id, result.data.tasks[id]));
     } else {
-      dispatch(updateTasks(result.data.tasks));
+      const availableTasksWithLocalNames = addTaskNames(tasks, result.data.tasks);
+      dispatch(updateTasks(availableTasksWithLocalNames));
     }
   };
 
@@ -41,18 +44,17 @@ const TasksContainer = () => {
 
     const tasksToUpdate = id ? [id] : Object.keys(tasks);
     if (tasksToUpdate.length > 0) {
-      const result = await fetch(`/status/${tasksToUpdate.join(';')}`);
-      updateStatus(result);
+      const availableTasks = await fetch(`/status/${tasksToUpdate.join(';')}`);
+      updateStatus(availableTasks);
     } else {
       setErrorStatus(2);
     }
     setLoadingState(false);
   };
 
-  useEffect(() => {
+  useOnMount(() => {
     fetchStatus();
-    // eslint-disable-next-line
-  }, []);
+  });
 
   return (
     <Tasks

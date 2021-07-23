@@ -2,6 +2,14 @@ import * as actions from './task-actions';
 
 const defaultState = {};
 
+const reduceAndChangeName = (state, action) => ({
+  ...state,
+  [action.id]: {
+    ...state[action.id],
+    name: action.name,
+  },
+});
+
 const reduceAndCreate = (state, action) => {
   if (!state[action.id]) {
     return {
@@ -26,6 +34,8 @@ const reduceAndUpdateStatus = (state, action) => ({
 
 const reducer = (state = defaultState, action) => {
   switch (action.type) {
+    case actions.CHANGE_TASK_NAME:
+      return reduceAndChangeName(state, action);
     case actions.CREATE_TASK:
       return reduceAndCreate(state, action);
     case actions.UPDATE_TASKS:

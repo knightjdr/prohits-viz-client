@@ -11,10 +11,11 @@ const useTask = () => {
   const history = useHistory();
 
   const download = async (e) => {
-    const { taskid, tool } = e.currentTarget.dataset;
+    const { name, taskid, tool } = e.currentTarget.dataset;
+    const downloadName = name || `${tool}-${taskid}`;
     const options = {
       ext: 'zip',
-      name: `${tool}-${taskid}`,
+      name: downloadName,
     };
     await getFile(`/task/${taskid}`, options);
   };

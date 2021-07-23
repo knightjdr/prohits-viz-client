@@ -18,11 +18,19 @@
 .tasks__table-file-selector > * {
   margin-right: 8px;
 }
-.tasks__table-file-selector > button:first-of-type {
+.tasks__table-file-selector-view-button {
   height: 30px;
 }
 .tasks__table-file-selector .select__container {
   width: 150px;
+}
+
+.tasks__table-id {
+  align-items: center;
+  display: flex;
+}
+.tasks__table-id > button {
+  margin-left: 0.5rem;
 }
 
 .tasks__table-status_complete > svg,

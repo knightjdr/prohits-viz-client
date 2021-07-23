@@ -1,5 +1,7 @@
 import React from 'react';
+
 import FileSelector from './file-selector-container';
+import Id from './id-container';
 
 import convertIsoDate from '../../../utils/convert-iso-date';
 import getStatus from './get-status';
@@ -19,7 +21,12 @@ const formatRows = (tasks, handleChangeFile, viewImage, download) => (
       ),
     },
     id: {
-      content: task.id,
+      content: (
+        <Id
+          id={task.id}
+          name={task.name}
+        />
+      ),
     },
     rowID: task.id,
     status: {

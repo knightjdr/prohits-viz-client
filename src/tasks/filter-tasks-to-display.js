@@ -1,4 +1,4 @@
-const filterTasks = (id, tasks) => {
+const filterTasksToDisplay = (id, tasks) => {
   if (id && tasks[id]) {
     return [
       { id, ...tasks[id] },
@@ -12,4 +12,4 @@ const filterTasks = (id, tasks) => {
   }));
 };
 
-export default filterTasks;
+export default filterTasksToDisplay;

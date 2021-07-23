@@ -1,6 +1,15 @@
 import * as actions from './task-actions';
 
 describe('Task actions', () => {
+  it('should dispatch an action to change the task name', () => {
+    const expectedAction = {
+      id: 'taskID',
+      name: 'customName',
+      type: actions.CHANGE_TASK_NAME,
+    };
+    expect(actions.changeTaskName('taskID', 'customName')).toEqual(expectedAction);
+  });
+
   it('should dispatch an action to create a task', () => {
     const expectedAction = {
       id: 'taskID',

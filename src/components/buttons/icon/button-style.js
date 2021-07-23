@@ -18,20 +18,6 @@ const Button = styled(DefaultButton)`
   width: 34px;
   z-index: 1;
 
-  &::before {
-    border-radius: 50%;
-    content: '';
-    height: 100%;
-    left: 0;
-    position: absolute;
-    top: 0;
-    transition: inherit;
-    transition-property: background-color, border-color, color, opacity, transform;
-    transform: scale(0);
-    transform-origin: center center;
-    width: 100%;
-    z-index: -1;
-  }
   ${(props) => (props.kind === 'transparent'
     && css`& {
       background-color: transparent;
@@ -41,7 +27,19 @@ const Button = styled(DefaultButton)`
 
     &::before {
       background-color: ${props.theme.colorPrimary1};
+      border-radius: 50%;
+      content: '';
+      height: 100%;
+      left: 0;
       opacity: 0;
+      position: absolute;
+      top: 0;
+      transition: inherit;
+      transition-property: background-color, border-color, color, opacity, transform;
+      transform: scale(0);
+      transform-origin: center center;
+      width: 100%;
+      z-index: -1;
     }
 
     &:focus:not([disabled]),

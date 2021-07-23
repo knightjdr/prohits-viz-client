@@ -26,6 +26,7 @@ const FileSelector = ({
             value={task.primaryFile}
           />
           <Button
+            className="tasks__table-file-selector-view-button"
             data-primaryfile={task.primaryFile}
             data-taskid={task.id}
             kind="success"
@@ -41,6 +42,7 @@ const FileSelector = ({
       task.status === 'complete'
       && (
         <IconButton
+          data-name={task.name}
           data-tool={task.tool}
           data-taskid={task.id}
           data-tooltip="Download task folder"
@@ -64,6 +66,7 @@ FileSelector.propTypes = {
   task: PropTypes.shape({
     files: PropTypes.arrayOf(PropTypes.string),
     id: PropTypes.string,
+    name: PropTypes.string,
     primaryFile: PropTypes.string,
     status: PropTypes.string,
     tool: PropTypes.string,

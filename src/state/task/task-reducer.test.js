@@ -2,6 +2,27 @@ import reducer from './task-reducer';
 import * as actions from './task-actions';
 
 describe('Task reducer', () => {
+  it('should handle CHANGE_TASK_NAME action', () => {
+    const currentState = {
+      taskID: {
+        status: 'running',
+      },
+    };
+
+    const action = {
+      id: 'taskID',
+      name: 'customName',
+      type: actions.CHANGE_TASK_NAME,
+    };
+    const expectedState = {
+      taskID: {
+        name: 'customName',
+        status: 'running',
+      },
+    };
+    expect(reducer(currentState, action)).toEqual(expectedState);
+  });
+
   it('should return a default initial state', () => {
     const action = {};
     const expectedState = {};

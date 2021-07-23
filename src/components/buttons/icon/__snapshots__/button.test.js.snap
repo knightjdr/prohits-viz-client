@@ -58,11 +58,19 @@ exports[`Icon button style primary button should match snapshot 1`] = `
   z-index: 1;
 }
 
+.c1 {
+  background-color: transparent;
+  border: none;
+  color: #00f;
+}
+
 .c1::before {
+  background-color: #00f;
   border-radius: 50%;
   content: '';
   height: 100%;
   left: 0;
+  opacity: 0;
   position: absolute;
   top: 0;
   -webkit-transition: inherit;
@@ -78,17 +86,6 @@ exports[`Icon button style primary button should match snapshot 1`] = `
   transform-origin: center center;
   width: 100%;
   z-index: -1;
-}
-
-.c1 {
-  background-color: transparent;
-  border: none;
-  color: #00f;
-}
-
-.c1::before {
-  background-color: #00f;
-  opacity: 0;
 }
 
 .c1:focus:not([disabled]),
@@ -188,11 +185,19 @@ exports[`Icon button style transparent (default) button should match snapshot 1`
   z-index: 1;
 }
 
+.c1 {
+  background-color: transparent;
+  border: none;
+  color: #00f;
+}
+
 .c1::before {
+  background-color: #00f;
   border-radius: 50%;
   content: '';
   height: 100%;
   left: 0;
+  opacity: 0;
   position: absolute;
   top: 0;
   -webkit-transition: inherit;
@@ -208,17 +213,6 @@ exports[`Icon button style transparent (default) button should match snapshot 1`
   transform-origin: center center;
   width: 100%;
   z-index: -1;
-}
-
-.c1 {
-  background-color: transparent;
-  border: none;
-  color: #00f;
-}
-
-.c1::before {
-  background-color: #00f;
-  opacity: 0;
 }
 
 .c1:focus:not([disabled]),
