@@ -2,16 +2,18 @@ import PropTypes from 'prop-types';
 import React, { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 
-// eslint-disable-next-line import/no-webpack-loader-syntax, import/no-unresolved
-import WorkerReadConditions from 'worker-loader?filename=dist.read-conditions.worker.js!./read-conditions';
-
 import FileParameters from './file-parameters';
 
 import checkColumnValues from './check-column-values';
 import useColumns from './use-columns';
-import useWorker from '../../hooks/worker/use-worker';
 import { selectState, selectStateProperty } from '../../state/selector/general';
 import { setFormField, setFormFields } from '../../state/analysis/form-actions';
+
+// eslint-disable-next-line import/no-webpack-loader-syntax, import/no-unresolved, import/order
+import Worker from 'worker-loader?filename=dist.read-conditions.worker.js!./read-conditions';
+import createWorker from '../../utils/create-worker';
+
+const worker = createWorker(Worker);
 
 const fields = ['abundance', 'condition', 'readout', 'score'];
 
@@ -23,8 +25,6 @@ const ColumnsContainer = ({
   const columns = useColumns(fields);
   const form = useSelector((state) => selectState(state, 'form'));
   const selectedTool = useSelector((state) => selectStateProperty(state, 'form', 'tool'));
-
-  const worker = useWorker(WorkerReadConditions);
 
   const setColumn = (e, id, value) => {
     if (value) {

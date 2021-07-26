@@ -11,11 +11,11 @@ describe('Validate interactive file', () => {
     };
     const blob = new Blob([JSON.stringify(data)]);
     const expected = data;
-    await interactiveFile.run(blob);
+    await interactiveFile.run([blob]);
     expect(interactiveFile.data).toEqual(expected);
   });
 
-  it('should valide heatmap data', async () => {
+  it('should validate heatmap data', async () => {
     const data = {
       columnDB: ['a', 'b'],
       parameters: { imageType: 'heatmap' },
@@ -23,7 +23,7 @@ describe('Validate interactive file', () => {
     };
     const blob = new Blob([JSON.stringify(data)]);
     const expected = data;
-    await interactiveFile.run(blob);
+    await interactiveFile.run([blob]);
     expect(interactiveFile.data).toEqual(expected);
   });
 });

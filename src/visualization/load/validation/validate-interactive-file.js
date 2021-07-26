@@ -6,7 +6,8 @@ import readInteractiveFile from '../read-interactive-file';
 
 const interactiveFile = {
   data: {},
-  async run(file) {
+  async run([file]) {
+    this.data = 'done';
     this.data = await readInteractiveFile(file);
 
     const { parameters } = this.data;

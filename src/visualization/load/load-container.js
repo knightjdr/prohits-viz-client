@@ -2,17 +2,19 @@ import React, { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { useHistory } from 'react-router-dom';
 
-// eslint-disable-next-line import/no-webpack-loader-syntax, import/no-unresolved
-import Worker from 'worker-loader?filename=dist.load-interactive-file.worker.js!./validation/validate-interactive-file';
-
 import Load from './load';
 
 import fillInteractiveState from '../defaults/fill-interactive-state';
 import removeFileExtenstion from '../../utils/remove-file-ext';
 import useLoading from '../../hooks/loading/use-loading';
-import useWorker from '../../hooks/worker/use-worker';
 import { loadInteractiveState } from '../../state/visualization/data/interactive-file-actions';
 import { selectState } from '../../state/selector/general';
+
+// eslint-disable-next-line import/no-webpack-loader-syntax, import/no-unresolved, import/order
+import Worker from 'worker-loader?filename=dist.load-interactive-file.worker.js!./validation/validate-interactive-file';
+import createWorker from '../../utils/create-worker';
+
+const worker = createWorker(Worker);
 
 const LoadContainer = () => {
   const dispatch = useDispatch();
@@ -20,7 +22,6 @@ const LoadContainer = () => {
   const parameters = useSelector((state) => selectState(state, 'parameters'));
 
   const status = useLoading();
-  const worker = useWorker(Worker);
 
   const handleChange = async (e, id, selectedFiles) => {
     const file = selectedFiles[0];
