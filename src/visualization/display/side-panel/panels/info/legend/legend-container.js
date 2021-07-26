@@ -5,7 +5,6 @@ import Legend from './legend';
 
 import download from '../../../../../../utils/download';
 import { selectDataProperty } from '../../../../../../state/selector/visualization/data-selector';
-import { selectPlot } from '../../../../../../state/selector/visualization/circheatmap-selector';
 import { selectState } from '../../../../../../state/selector/general';
 
 const LegendContainer = () => {
@@ -13,7 +12,7 @@ const LegendContainer = () => {
   const customizations = useSelector((state) => selectDataProperty(state, 'customization', 'groups'));
   const legend = useSelector((state) => selectState(state, 'legend'));
   const parameters = useSelector((state) => selectState(state, 'parameters'));
-  const plot = useSelector((state) => selectPlot(state));
+  const readouts = useSelector((state) => selectDataProperty(state, 'readouts', 'current'));
   const settings = useSelector((state) => selectDataProperty(state, 'settings', 'current'));
 
   const downloadLegend = () => {
@@ -26,8 +25,8 @@ const LegendContainer = () => {
       customizations={customizations}
       downloadLegend={downloadLegend}
       legend={legend.length > 0 ? legend : circles}
+      numReadouts={readouts?.length}
       parameters={parameters}
-      plot={plot}
       settings={settings}
     />
   );
