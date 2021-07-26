@@ -1,6 +1,7 @@
-const formatMultipleReturnValue = (values) => (
-  Array.isArray(values) ? values : [values]
-);
+const formatMultipleReturnValue = (values) => {
+  const arr = Array.isArray(values) ? values : [values];
+  return arr.filter((value) => value);
+};
 
 const formatSingleReturnValue = (values) => (
   Array.isArray(values) ? values.join(', ') : values

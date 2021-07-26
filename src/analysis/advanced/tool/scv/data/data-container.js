@@ -1,5 +1,5 @@
 import PropTypes from 'prop-types';
-import React, { useEffect, useState } from 'react';
+import React, { useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 
 import Data from './data';
@@ -52,12 +52,12 @@ const DataContainer = ({
     fetchData();
   });
 
-  useEffect(() => {
+  useOnMount(() => {
     const updatedMetric = defineKnownMetric(form.fileType, form.known);
     if (updatedMetric) {
       dispatch(setFormField('known', updatedMetric));
     }
-  }, [form.fileType, form.known]);
+  });
 
   return (
     <Data

@@ -31,5 +31,12 @@ describe('Format select dropdown return value', () => {
       const expected = ['a', 'b'];
       expect(formatReturnValue(multiple, selectedValue)).toEqual(expected);
     });
+
+    it('should return an empty array when passed an empty value (when clearing for example)', () => {
+      const multiple = true;
+      const selectedValue = '';
+      const expected = [];
+      expect(formatReturnValue(multiple, selectedValue)).toEqual(expected);
+    });
   });
 });

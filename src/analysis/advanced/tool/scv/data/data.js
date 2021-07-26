@@ -18,6 +18,7 @@ const Data = ({
       columns to display.
     </p>
     <Select
+      canClear
       helpMessage={help.known}
       helpTitle="Readout knownness"
       id="known"
@@ -30,6 +31,7 @@ const Data = ({
       warning={errors.known}
     />
     <Select
+      canClear
       helpMessage={help.proteinTissues}
       helpTitle="Protein expression"
       id="proteinTissues"
@@ -41,6 +43,7 @@ const Data = ({
       warning={errors.proteinTissues}
     />
     <Select
+      canClear
       helpMessage={help.rnaTissues}
       helpTitle="RNA expression"
       id="rnaTissues"
