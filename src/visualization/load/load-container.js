@@ -12,7 +12,7 @@ import { selectState } from '../../state/selector/general';
 
 // eslint-disable-next-line import/no-webpack-loader-syntax, import/no-unresolved, import/order
 import Worker from 'worker-loader?filename=dist.load-interactive-file.worker.js!./validation/validate-interactive-file';
-import createWorker from '../../utils/create-worker';
+import createWorker from './validation/create-worker';
 
 const worker = createWorker(Worker);
 

@@ -11,7 +11,7 @@ import { setFormField, setFormFields } from '../../state/analysis/form-actions';
 
 // eslint-disable-next-line import/no-webpack-loader-syntax, import/no-unresolved, import/order
 import Worker from 'worker-loader?filename=dist.read-conditions.worker.js!./read-conditions';
-import createWorker from '../../utils/create-worker';
+import createWorker from './create-worker';
 
 const worker = createWorker(Worker);
 

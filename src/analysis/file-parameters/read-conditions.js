@@ -6,7 +6,7 @@ import sort from '../../utils/sort';
 
 const readConditions = {
   data: [],
-  async run([conditionColumn, files]) {
+  async run(conditionColumn, files) {
     const results = await Promise.all([...files.map(async (file) => readCSVColumns(file, conditionColumn))]);
     this.data = removeDuplicates(results.flat());
     this.data.sort(sort.character);

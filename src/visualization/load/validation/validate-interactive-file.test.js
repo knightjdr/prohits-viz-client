@@ -11,7 +11,7 @@ describe('Validate interactive file', () => {
     };
     const blob = new Blob([JSON.stringify(data)]);
     const expected = data;
-    await interactiveFile.run([blob]);
+    await interactiveFile.run(blob);
     expect(interactiveFile.data).toEqual(expected);
   });
 
@@ -23,7 +23,7 @@ describe('Validate interactive file', () => {
     };
     const blob = new Blob([JSON.stringify(data)]);
     const expected = data;
-    await interactiveFile.run([blob]);
+    await interactiveFile.run(blob);
     expect(interactiveFile.data).toEqual(expected);
   });
 });
