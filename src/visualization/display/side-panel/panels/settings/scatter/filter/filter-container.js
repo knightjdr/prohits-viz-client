@@ -3,15 +3,12 @@ import { useDispatch, useSelector } from 'react-redux';
 
 import Filter from './filter';
 
-import defineInputLabels from './define-input-labels';
 import { filterPoints } from '../../../../../../../state/visualization/scatter/points-actions';
 import { selectDataProperty } from '../../../../../../../state/selector/visualization/data-selector';
 import { selectPlot } from '../../../../../../../state/selector/visualization/scatter-selector';
-import { selectState } from '../../../../../../../state/selector/general';
 
 const FilterContainer = () => {
   const dispatch = useDispatch();
-  const { abundanceColumn, analysisType } = useSelector((state) => selectState(state, 'parameters'));
   const { xFilter, yFilter } = useSelector((state) => selectDataProperty(state, 'settings', 'current'));
   const plot = useSelector((state) => selectPlot(state));
 
@@ -19,12 +16,10 @@ const FilterContainer = () => {
     dispatch(filterPoints(name, value));
   };
 
-  const inputLabels = defineInputLabels(analysisType, abundanceColumn, plot.labels);
-
   return (
     <Filter
       handleSettingChange={handleSettingChange}
-      inputLabels={inputLabels}
+      labels={plot.labels}
       xFilter={xFilter}
       yFilter={yFilter}
     />

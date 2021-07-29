@@ -6,7 +6,7 @@ import Section from '../../../section/section';
 
 const Filter = ({
   handleSettingChange,
-  inputLabels,
+  labels,
   xFilter,
   yFilter,
 }) => (
@@ -16,7 +16,7 @@ const Filter = ({
   >
     <Input
       id="xFilter"
-      label={inputLabels.x}
+      label={labels.x}
       onChange={handleSettingChange}
       min="0"
       step="0.01"
@@ -25,7 +25,7 @@ const Filter = ({
     />
     <Input
       id="yFilter"
-      label={inputLabels.y}
+      label={labels.y}
       onChange={handleSettingChange}
       min="0"
       step="0.01"
@@ -37,7 +37,7 @@ const Filter = ({
 
 Filter.propTypes = {
   handleSettingChange: PropTypes.func.isRequired,
-  inputLabels: PropTypes.shape({
+  labels: PropTypes.shape({
     x: PropTypes.string,
     y: PropTypes.string,
   }).isRequired,
