@@ -50,7 +50,6 @@ const Div = styled.div`
     font-size: 1.3em;
     font-weight: 800;
     margin: 0;
-    text-transform: uppercase;
   }
 
   .modal__content {

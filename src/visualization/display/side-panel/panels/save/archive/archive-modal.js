@@ -33,7 +33,7 @@ const ArchiveModal = ({
     )}
     isOpen={isOpen}
     name="archive-modal-status"
-    title="Archive"
+    title="ARCHIVE"
   >
     <p style={{ marginTop: 0 }}>
       Your session has been archived to the URL below and will be available for three months:

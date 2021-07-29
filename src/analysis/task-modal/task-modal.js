@@ -33,7 +33,7 @@ const TaskModal = ({
     )}
     isOpen
     name="task-modal"
-    title={`Task: ${taskID}`}
+    title={`TASK: ${taskID}`}
   >
     <ModalContent
       handleChangeFile={handleChangeFile}

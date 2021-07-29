@@ -28,7 +28,7 @@ const PasteInput = ({
     handleClose={handleClose}
     isOpen={isOpen}
     name="poi-paste-input"
-    title="Paste list"
+    title="PASTE LIST"
   >
     <div className="selection__paste-input">
       <p>

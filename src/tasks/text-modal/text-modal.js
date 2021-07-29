@@ -17,7 +17,7 @@ const TextModal = ({
     handleClose={handleClose}
     isOpen={open}
     name="task-modal"
-    title={`File: ${selectedFile}`}
+    title={`FILE: ${selectedFile}`}
   >
     <code className="tasks__modal-text">
       {text}
