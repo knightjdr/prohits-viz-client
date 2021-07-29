@@ -1,3 +1,4 @@
+/* eslint-disable react/destructuring-assignment */
 import PropTypes from 'prop-types';
 import React from 'react';
 import { Droppable, Draggable } from 'react-beautiful-dnd';
@@ -37,8 +38,9 @@ const ListDraggable = ({
   groupIndex,
   handleDeletePoint,
   point,
+  pointIndex,
 }) => (
-  <Draggable draggableId={point} index={groupIndex}>
+  <Draggable draggableId={point} index={pointIndex}>
     {(provided) => (
       <div
         ref={provided.innerRef}
@@ -59,6 +61,7 @@ ListDraggable.propTypes = {
   groupIndex: PropTypes.number.isRequired,
   handleDeletePoint: PropTypes.func.isRequired,
   point: PropTypes.string.isRequired,
+  pointIndex: PropTypes.number.isRequired,
 };
 
 const List = ({
@@ -71,12 +74,13 @@ const List = ({
     {
       points.length > 0
         ? (
-          points.map((point) => (
+          points.map((point, index) => (
             <ListDraggable
               groupIndex={groupIndex}
               handleDeletePoint={handleDeletePoint}
               key={point}
               point={point}
+              pointIndex={index}
             />
           ))
         )
@@ -96,6 +100,20 @@ List.propTypes = {
   points: PropTypes.arrayOf(PropTypes.string).isRequired,
 };
 
+const getRenderClone = (groupIndex, points, handleDeletePoint) => (provided, snapshot, rubric) => (
+  <div
+    {...provided.draggableProps}
+    {...provided.dragHandleProps}
+    ref={provided.innerRef}
+  >
+    <ListItem
+      groupIndex={groupIndex}
+      handleDeletePoint={handleDeletePoint}
+      point={points[rubric.source.index]}
+    />
+  </div>
+);
+
 const Points = ({
   groupIndex,
   handleDeletePoint,
@@ -106,19 +124,7 @@ const Points = ({
     <Droppable
       droppableId={`${groupIndex}-group-droppable`}
       direction="horizontal"
-      renderClone={(provided, snapshot, rubric) => (
-        <div
-          {...provided.draggableProps}
-          {...provided.dragHandleProps}
-          ref={provided.innerRef}
-        >
-          <ListItem
-            groupIndex={groupIndex}
-            handleDeletePoint={handleDeletePoint}
-            point={points[rubric.source.index]}
-          />
-        </div>
-      )}
+      renderClone={getRenderClone(groupIndex, points, handleDeletePoint)}
     >
       {(provided) => (
         <div ref={provided.innerRef}>
