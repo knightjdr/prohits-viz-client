@@ -1,7 +1,7 @@
 import PropTypes from 'prop-types';
 import React from 'react';
 
-const calculateCooridinate = (x) => (
+const calculateCoordinate = (x) => (
   x ? `calc(${x * 100}% - 5px)` : -5
 );
 
@@ -10,8 +10,8 @@ const SearchResult = ({
   x,
   y,
 }) => {
-  const left = calculateCooridinate(x);
-  const top = calculateCooridinate(y);
+  const left = calculateCoordinate(x);
+  const top = calculateCoordinate(y);
   return (
     <div
       className="panel-map__search-result"
