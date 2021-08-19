@@ -1,3 +1,4 @@
+/* eslint-disable max-len */
 import PropTypes from 'prop-types';
 import React from 'react';
 
@@ -14,6 +15,8 @@ const UtilitySelect = ({
       id="utility_type"
       onChange={handleUtilityType}
       options={[
+        { label: 'CRISPR file', optGroup: true },
+        { label: 'Convert output from a CRISPR analysis tool to a ProHits-viz compatible format', value: 'crispr_convert' },
         { label: 'Process interactive file', optGroup: true },
         { label: 'Convert interactive file from ProHits version 1', value: 'pvconvert' },
         { label: 'SAINT file', optGroup: true },

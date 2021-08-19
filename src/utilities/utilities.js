@@ -10,7 +10,7 @@ import UtilityModal from './utility-modal/utility-modal-container';
 import './utilities.css';
 
 const Utilities = ({
-  file,
+  files,
   errors,
   handleInputFile,
   handleModalClose,
@@ -40,7 +40,7 @@ const Utilities = ({
       </p>
       <File
         error={errors.file}
-        file={file}
+        file={files}
         handleInputFile={handleInputFile}
       />
       <Select
@@ -52,7 +52,7 @@ const Utilities = ({
         utility={utility}
       />
       <Submit
-        file={file}
+        files={files}
         handleSubmit={handleSubmit}
         uploadProgress={uploadProgress}
         utility={utility}
@@ -66,13 +66,13 @@ const Utilities = ({
 );
 
 Utilities.defaultProps = {
-  file: null,
+  files: [],
   uploadProgress: 0,
   utility: '',
 };
 
 Utilities.propTypes = {
-  file: PropTypes.shape({}),
+  files: PropTypes.arrayOf(PropTypes.shape({})),
   errors: PropTypes.shape({
     file: PropTypes.string,
   }).isRequired,

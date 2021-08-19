@@ -6,12 +6,12 @@ import { faSpinner } from '@fortawesome/pro-solid-svg-icons';
 import Button from '../components/buttons/rectangular/button';
 
 const UtilitiesSubmit = ({
-  file,
+  files,
   handleSubmit,
   uploadProgress,
   utility,
 }) => (
-  file instanceof File
+  files.length > 0
   && utility
   && (
     <div className="utility__submit">
@@ -38,11 +38,11 @@ const UtilitiesSubmit = ({
 );
 
 UtilitiesSubmit.defaultProps = {
-  file: null,
+  files: [],
 };
 
 UtilitiesSubmit.propTypes = {
-  file: PropTypes.shape({}),
+  files: PropTypes.arrayOf(PropTypes.shape({})),
   handleSubmit: PropTypes.func.isRequired,
   uploadProgress: PropTypes.number.isRequired,
   utility: PropTypes.string.isRequired,

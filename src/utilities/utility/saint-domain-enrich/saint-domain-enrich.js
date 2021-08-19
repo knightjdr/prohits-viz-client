@@ -56,6 +56,7 @@ const SaintDomainEnrich = ({
         ]}
         placeholder="Select background..."
         value={background}
+        warning={errors.background}
       />
       <div className="utility__input_medium">
         <Select

@@ -8,8 +8,8 @@ export const setUtilityField = (field, value) => ({
   value,
 });
 
-export const setUtilityFile = (file) => ({
-  file,
+export const setUtilityFile = (files) => ({
+  files,
   type: SET_UTILITY_FILE,
 });
 

@@ -11,12 +11,12 @@ const reduceAndSetField = (state, action) => ({
 
 const reduceAndSetFile = (state, action) => ({
   ...state,
-  file: action.file,
+  files: action.files,
 });
 
 const reduceAndSetType = (state, action) => ({
   ...defaultState,
-  file: state.file,
+  files: state.files,
   utility: action.utility,
 });
 

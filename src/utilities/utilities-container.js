@@ -18,8 +18,7 @@ const UtilitiesContainer = () => {
   const fetch = useFetch();
 
   const handleInputFile = (e, id, selectedFiles) => {
-    const file = selectedFiles[0];
-    dispatch(setUtilityFile(file));
+    dispatch(setUtilityFile(selectedFiles));
   };
 
   const handleModalClose = () => {
@@ -57,7 +56,7 @@ const UtilitiesContainer = () => {
   return (
     <Utilities
       errors={errors}
-      file={fields.file}
+      files={fields.files}
       handleInputFile={handleInputFile}
       handleModalClose={handleModalClose}
       handleSubmit={handleSubmit}

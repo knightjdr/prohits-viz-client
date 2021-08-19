@@ -1,3 +1,4 @@
+import validateCrisprConvert from './crispr-convert-validate';
 import validatePVConvert from './pvconvert-validate';
 import validateSaintDomainEnrich from './saint-domain-enrich-validate';
 import validateSaintFEA from './saint-fea-validate';
@@ -6,7 +7,9 @@ import validateSaintStats from './saint-stats-validate';
 const validateUtility = (fields) => {
   const { utility } = fields;
 
-  if (utility === 'pvconvert') {
+  if (utility === 'crispr_convert') {
+    return validateCrisprConvert(fields);
+  } if (utility === 'pvconvert') {
     return validatePVConvert(fields);
   } if (utility === 'saint_domain_enrich') {
     return validateSaintDomainEnrich(fields);
@@ -19,10 +22,14 @@ const validateUtility = (fields) => {
 };
 
 const validate = (fields) => {
-  const { file, utility } = fields;
+  const { files, utility } = fields;
 
   let errors = {};
-  if (!(file || file instanceof File)) {
+  if (
+    !files
+    || files.length === 0
+    || !(files[0] instanceof File)
+  ) {
     errors.file = 'Please select a file';
   }
 
@@ -41,7 +48,9 @@ const validate = (fields) => {
   Object.entries(validation.fields).forEach(([key, value]) => {
     formData.append(key, value);
   });
-  formData.append('file', fields.file);
+  fields.files.forEach((file) => {
+    formData.append('file', file);
+  });
   formData.append('utility', utility);
 
   return {

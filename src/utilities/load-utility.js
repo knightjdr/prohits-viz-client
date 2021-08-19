@@ -1,13 +1,16 @@
 import PropTypes from 'prop-types';
 import React from 'react';
 
+import CrisprConvert from './utility/crispr-convert/crispr-convert-container';
 import PVConvert from './utility/pvconvert/pvconvert-container';
 import SaintDomainEnrich from './utility/saint-domain-enrich/saint-domain-enrich-container';
 import SaintFEA from './utility/saint-fea/saint-fea-container';
 import SaintStats from './utility/saint-stats/saint-stats-container';
 
 const loadUtilityComponent = (utility, errors) => {
-  if (utility === 'pvconvert') {
+  if (utility === 'crispr_convert') {
+    return <CrisprConvert errors={errors} />;
+  } if (utility === 'pvconvert') {
     return <PVConvert errors={errors} />;
   } if (utility === 'saint_domain_enrich') {
     return <SaintDomainEnrich errors={errors} />;

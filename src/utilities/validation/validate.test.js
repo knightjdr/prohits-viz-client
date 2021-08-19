@@ -7,11 +7,13 @@ describe('Validate utility form', () => {
     beforeAll(() => {
       const fields = {
         fdr: 0.01,
-        file: new File(
-          ['test'],
-          'test.txt',
-          { type: 'text/plain' },
-        ),
+        files: [
+          new File(
+            ['test'],
+            'test.txt',
+            { type: 'text/plain' },
+          ),
+        ],
         utility: 'saint_stats',
       };
       actual = validate(fields);
