@@ -1,7 +1,7 @@
 import defineColumns from './define-columns';
 
 describe('Define Columns', () => {
-  it('should define correlation columns', () => {
+  it('should define tool specific columns', () => {
     const form = {
       fileType: 'saint',
       header: ['avgSpec', 'spec', 'bfdr', 'baits', 'columnX'],
@@ -60,7 +60,7 @@ describe('Define Columns', () => {
     expect(defineColumns(form)).toEqual(expected);
   });
 
-  it('should define dotplot columns', () => {
+  it('should define default columns', () => {
     const form = {
       fileType: 'saint',
       header: ['avgSpec', 'bfdr', 'baits', 'columnX'],

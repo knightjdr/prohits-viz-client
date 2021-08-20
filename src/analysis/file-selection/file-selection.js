@@ -46,8 +46,15 @@ const FileSelection = ({
         id="fileType"
         onChange={selectFileType}
         options={[
+          { label: 'CRISPR', optGroup: true },
+          { label: 'BAGEL', value: 'bagel' },
+          { label: 'drugZ', value: 'drugz' },
+          { label: 'MAGeCK', value: 'mageck' },
+          { label: 'RANKS', value: 'ranks' },
+          { label: 'PPI', optGroup: true },
           { label: 'CRAPome', value: 'crapome' },
           { label: 'SAINT', value: 'saint' },
+          { label: 'Other', optGroup: true },
           { label: 'Generic', value: 'other' },
         ]}
         placeholder="File type..."

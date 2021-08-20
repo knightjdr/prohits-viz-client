@@ -7,7 +7,8 @@ const defineColumns = ({ fileType, header, tool }, columns = defaultColumns) => 
   columns.reduce((accum, column) => ({
     ...accum,
     [column]: filterHeader(
-      recommendedColumns[tool][fileType][column],
+      recommendedColumns.toolSpecific[tool]?.[fileType][column]
+      || recommendedColumns.defaults[fileType][column],
       header,
     ),
   }), {})
