@@ -1,6 +1,7 @@
 .analysis__advanced-field-modal-img {
   display: flex;
   justify-content: center;
+  padding: 1rem;
 }
 .analysis__advanced-field-modal-img_padding {
   padding: 20px 0;

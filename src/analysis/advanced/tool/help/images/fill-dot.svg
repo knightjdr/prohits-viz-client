@@ -2,7 +2,7 @@
 <style type="text/css">
 	.st0{fill:#97A7D6;stroke:#354EA1;stroke-width:2.6659;stroke-linecap:round;stroke-linejoin:round;stroke-miterlimit:11.8483;}
 	.st1{fill:none;stroke:#000000;stroke-linecap:round;stroke-linejoin:round;}
-	.st2{font-family:'Lato';font-weight: semi-bold;}
+	.st2{color:#333333;font-family:'Lato;font-weight: semi-bold;}
 	.st3{font-size:18px;}
 </style>
 <polyline class="st0" points="51.2,34.3 51.2,33.1 51.1,31.9 50.9,30.8 50.6,29.6 50.3,28.4 49.9,27.3 49.4,26.3 48.8,25.2 

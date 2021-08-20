@@ -2,10 +2,12 @@ import React from 'react';
 
 import Link from '../../../../components/link/text/link';
 
+import Colours from './images/colours.jpg';
+import MonoColours from './images/mono-colours.jpg';
+
 import EdgeDot from './images/edge-dot.svg';
 import FillDot from './images/fill-dot.svg';
 import Filters from './images/filters.svg';
-import MonoColorScale from './images/mono-color-scales.svg';
 
 import helpCommon from './help-common';
 
@@ -34,9 +36,8 @@ const help = {
       <div className="analysis__advanced-field-modal-img">
         <img
           alt="Fill color scales"
-          height={194}
-          src={MonoColorScale}
-          width={338}
+          height={200}
+          src={MonoColours}
         />
       </div>
     </div>
@@ -57,9 +58,8 @@ const help = {
       <div className="analysis__advanced-field-modal-img">
         <img
           alt="Fill color scales"
-          height={194}
-          src={MonoColorScale}
-          width={338}
+          height={287}
+          src={Colours}
         />
       </div>
     </div>

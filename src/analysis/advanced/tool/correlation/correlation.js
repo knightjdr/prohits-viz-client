@@ -3,6 +3,7 @@ import React from 'react';
 
 import CorrelationOptionsContainer from './corr-option-container';
 import Clustering from './clustering';
+import Display from './display-container';
 import Filtering from './filter-container';
 import Output from './output-container';
 import Transformations from './transformations-container';
@@ -15,6 +16,7 @@ const AdvancedOptions = ({
   <div>
     <Transformations errors={errors} help={help} />
     <Filtering errors={errors} help={help} />
+    <Display errors={errors} help={help} />
     <CorrelationOptionsContainer errors={errors} help={help} />
     <Clustering errors={errors} help={help} />
     <Output help={help} />

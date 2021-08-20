@@ -93,4 +93,47 @@ const defaultFormValues = {
   },
 };
 
+export const customFileTypeValues = {
+  bagel: {
+    dotplot: {
+      abundanceCap: 10,
+      edgeColor: 'greyscale',
+      fillColor: 'blueRed',
+    },
+    scv: {
+      abundanceCap: 10,
+    },
+  },
+  drugz: {
+    dotplot: {
+      abundanceCap: 10,
+      edgeColor: 'greyscale',
+      fillColor: 'blueRed',
+    },
+    scv: {
+      abundanceCap: 10,
+    },
+  },
+  mageck: {
+    dotplot: {
+      abundanceCap: 10,
+      edgeColor: 'greyscale',
+      fillColor: 'blueRed',
+    },
+    scv: {
+      abundanceCap: 10,
+    },
+  },
+  ranks: {
+    dotplot: {
+      abundanceCap: 10,
+      edgeColor: 'greyscale',
+      fillColor: 'blueRed',
+    },
+    scv: {
+      abundanceCap: 10,
+    },
+  },
+};
+
 export default defaultFormValues;

@@ -4,7 +4,7 @@ import { useDispatch, useSelector } from 'react-redux';
 
 import Tool from './tool';
 
-import defaultFormValues from './default-form-values';
+import defaultFormValues, { customFileTypeValues } from './default-form-values';
 import { selectState } from '../../state/selector/general';
 import { setFormFields } from '../../state/analysis/form-actions';
 
@@ -19,6 +19,7 @@ const ToolContainer = ({
     dispatch(
       setFormFields({
         ...defaultFormValues[value],
+        ...customFileTypeValues[form.fileType]?.[value],
         ...form,
         tool: value,
       }),

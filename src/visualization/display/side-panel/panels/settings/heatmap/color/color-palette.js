@@ -13,8 +13,8 @@ const colorOptions = [
   { label: 'red', value: 'red' },
   { label: 'yellow', value: 'yellow' },
   { label: 'dual', optGroup: true },
-  { label: 'blue-yellow', value: 'blueYellow' },
   { label: 'blue-red', value: 'blueRed' },
+  { label: 'blue-yellow', value: 'blueYellow' },
 ];
 
 const ColorPalette = ({

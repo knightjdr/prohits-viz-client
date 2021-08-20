@@ -2,8 +2,10 @@ import React from 'react';
 
 import helpCommon from './help-common';
 
-import './help.css';
+import MonoColorScale from './images/mono-color-scales.svg';
 import Link from '../../../../components/link/text/link';
+
+import './help.css';
 
 const help = {
   ...helpCommon,
@@ -34,6 +36,21 @@ const help = {
         &quot;interaction&quot; pair and will be found in this file, and hence will have a connecting edge in Cytoscape.
         The text files will contain the readout/condition pair and the correlation value.
       </p>
+    </div>
+  ),
+  fillColor: (
+    <div>
+      <p>
+        The fill colour to apply to cells indicating the correlation.
+      </p>
+      <div className="analysis__advanced-field-modal-img">
+        <img
+          alt="Fill color scales"
+          height={194}
+          src={MonoColorScale}
+          width={338}
+        />
+      </div>
     </div>
   ),
   ignoreSourceTargetMatches: (
