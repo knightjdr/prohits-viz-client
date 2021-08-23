@@ -1,4 +1,5 @@
 import criteria from '../../field-validation/criteria';
+import validateFileType from '../../field-validation/file-type';
 import validateLogBase from '../../field-validation/log-base';
 import validateNormalization from '../../field-validation/normalization';
 import validateScoreType from '../../field-validation/score-type';
@@ -32,6 +33,8 @@ const validateCommon = (type, value) => {
       return validateField(criteria.isString, 'missing column name');
     case 'ctrlSub':
       return validateField(criteria.isBoolean, 'should be a boolean');
+    case 'fileType':
+      return validateField(validateFileType, 'invalid file type');
     case 'logBase':
       return validateField(validateLogBase, `invalid base: ${value}`);
     case 'mockConditionAbundance':
