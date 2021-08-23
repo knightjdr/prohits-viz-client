@@ -1,6 +1,7 @@
 import React from 'react';
 
 import Link from '../../../../components/link/text/link';
+
 import Specificity from './images/specificity-fold-enrichment-metric-min.svg';
 
 import helpCommon from './help-common';
@@ -10,10 +11,26 @@ import './help.css';
 const help = {
   ...helpCommon,
   logBase: 'Log-transform axes by base 2, e or base 10.',
-  minAbundance: `In addition to the primary filter requirement, a readout must have an abundance
-    value at or above this minimum to be included in the analysis.
-    As with the primary filter, once a readout passes this threshold for one condition,
-    values for it are returned across both conditions.`,
+  minAbundance: (
+    <div>
+      <p>
+        In addition to the score filter requirement, a readout must have an abundance
+        value that meets this minimum to be included in the analysis.
+        As with the score filter, once a readout passes this threshold for one condition,
+        values for it are returned across both conditions.
+      </p>
+      <p>
+        If the abundance value being visualization is bidirectional, i.e. it
+        takes both positive and negative values, like a log
+        <sub>2</sub>
+        {' '}
+        fold change, this minimum will be checked against the absolute value of the abundance.
+        For example, if a minimum of 1 is set, a readout must have a value &ge; 1 or &le;
+        -1, so anything between -1 and 1 will fail to meet this criterion and be excluded
+        from the image.
+      </p>
+    </div>
+  ),
   primaryFilter: (
     <div>
       <p>

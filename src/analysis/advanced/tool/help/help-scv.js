@@ -1,6 +1,6 @@
 import React from 'react';
 
-import CircHeatmapKnown from './images/circheatmap-known.svg';
+import CircHeatmapKnown from './images/circheatmap-known.jpg';
 
 import helpCommon from './help-common';
 
@@ -8,12 +8,27 @@ import './help.css';
 
 const help = {
   ...helpCommon,
-  abundanceCap: `Any readouts with an abundance value above this cutoff
-    will be capped at this value in the output image. This is to give greater
-    visual dynamic range for lower values when outlier readouts with very high
-    abundance are present. This cutoff will be dependent on the data set and should
-    be selected accordingly. It will initially be applied to all metrics, but can
-    be customized on a metric-by-metric basis from the interactive viewer.`,
+  abundanceCap: (
+    <div>
+      <p>
+        Any readouts with an abundance value above this cutoff
+        will be capped at this value in the output image. This is to give greater
+        visual dynamic range for lower values when outlier readouts with very high
+        abundance are present. This cutoff will be dependent on the data set and should
+        be selected accordingly. It will initially be applied to all metrics, but can
+        be customized on a metric-by-metric basis from the interactive viewer.
+      </p>
+      <p>
+        If the abundance value being visualization is bidirectional, i.e. it
+        takes both positive and negative values, like a log
+        <sub>2</sub>
+        {' '}
+        fold change, this cap will be applied
+        at both the positive and negative ends of the scale. So a cap of 50 will cap positive
+        values at 50, and negative values at -50.
+      </p>
+    </div>
+  ),
   abundanceFilterColumn: `The name of the column to use for filtering by abundance, if desired.
     While filtering by abundance can only be applied to one column initially, it can
     be customized on a metric-by-metric basis from the interactive viewer`,
@@ -45,18 +60,33 @@ const help = {
       <div className="analysis__advanced-field-modal-img">
         <img
           alt="Knownness circle surrounding heat map rings"
-          height={273.4}
+          height={281}
           src={CircHeatmapKnown}
-          width={319.1}
         />
       </div>
     </div>
   ),
-  minAbundance: `In addition to the primary filter requirement, a readout must have an abundance
-    value at or above this minimum to be included in the analysis. This cutoff will be
-    applied to the first abundance column selected (if multiple were chosen), or the column
-    specified in the "Column for abundance filtering" option. It can also be customized on a
-    metric-by-metric basis from the interactive viewer.`,
+  minAbundance: (
+    <div>
+      <p>
+        In addition to the score filter requirement, a readout must have an abundance
+        value that meets this minimum to be included in the analysis. This cutoff will be
+        applied to the first abundance column selected (if multiple were chosen), or the column
+        specified in the &ldquo;Column for abundance filtering&rdquo; option. It can also be customized on a
+        metric-by-metric basis from the interactive viewer.
+      </p>
+      <p>
+        If the abundance value being visualization is bidirectional, i.e. it
+        takes both positive and negative values, like a log
+        <sub>2</sub>
+        {' '}
+        fold change, this minimum will be checked against the absolute value of the abundance.
+        For example, if a minimum of 1 is set, a readout must have a value &ge; 1 or &le;
+        -1, so anything between -1 and 1 will fail to meet this criterion and be excluded
+        from the image.
+      </p>
+    </div>
+  ),
   primaryFilter: 'Readouts must satisfy this score filter to be included in the visualization',
   proteinTissues: 'Select one or more tissues for protein expression data to include.',
   readoutIDType: `Readout names are assumed to be gene symbols by default. The symbol

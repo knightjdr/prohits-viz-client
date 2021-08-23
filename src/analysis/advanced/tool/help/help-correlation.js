@@ -1,19 +1,37 @@
 import React from 'react';
 
-import helpCommon from './help-common';
-
-import MonoColorScale from './images/mono-color-scales.svg';
 import Link from '../../../../components/link/text/link';
+
+import DualColours from './images/dual-colours.jpg';
+
+import helpCommon from './help-common';
 
 import './help.css';
 
 const help = {
   ...helpCommon,
-  conditionAbundanceFilter: `In addition to the score filter requirement, a readout must have an abundance value
-    above this parameter for at least one condition to be included in readout-readout correlation analysis. A high
-    value helps to ensure that a readout is sufficiently abundant to ensure its suitability for analysis. This
-    prevents low abundance readouts from skewing the analysis. This parameter should be set to a lower value for
-    small datasets.`,
+  conditionAbundanceFilter: (
+    <div>
+      <p>
+        In addition to the score filter requirement, a readout must have an abundance
+        value that meets this criterion for at least one condition to be included in the
+        readout-readout correlation analysis. A high value helps to ensure that a readout is
+        sufficiently abundant to ensure its suitability for analysis. This prevents low abundance
+        readouts from skewing the analysis. This parameter should be set to a lower value for
+        small datasets.
+      </p>
+      <p>
+        If the abundance value being visualization is bidirectional, i.e. it
+        takes both positive and negative values, like a log
+        <sub>2</sub>
+        {' '}
+        fold change, this minimum will be checked against the absolute value of the abundance.
+        For example, if a minimum of 1 is set, a readout must have a value &ge; 1 or &le;
+        -1, so anything between -1 and 1 will fail to meet this criterion and be excluded
+        from the analysis.
+      </p>
+    </div>
+  ),
   conditionScoreFilter: `Only readouts that pass this cutoff will be used for the condition-condition correlation
     analysis. If a readout satisfies this cutoff for at least one condition, all quantitative values for this
     readout will be used across all conditions, even those that did not satisfy the cutoff in particular
@@ -46,9 +64,8 @@ const help = {
       <div className="analysis__advanced-field-modal-img">
         <img
           alt="Fill color scales"
-          height={194}
-          src={MonoColorScale}
-          width={338}
+          height={74}
+          src={DualColours}
         />
       </div>
     </div>
@@ -85,11 +102,28 @@ const help = {
     those that did not satisfy the cutoff in particular condition-readout pairs -
     will also be included unless parsimonious readout filtering is enabled. When this
     option is enabled, only quantitative values that explicity pass the filters will be used.`,
-  readoutAbundanceFilter: `In addition to the score filter requirement, a readout must have an abundance value
-    above this parameter for at least one condition to be included in condition-condition correlation analysis. A high
-    value helps to ensure that a readout is sufficiently abundant to ensure its suitability for analysis. This
-    prevents low abundance readouts from skewing the analysis. This parameter should be set to a lower value for
-    small datasets.`,
+  readoutAbundanceFilter: (
+    <div>
+      <p>
+        In addition to the score filter requirement, a readout must have an abundance
+        value that meets this criterion for at least one condition to be included in the
+        condition-condition correlation analysis. A high value helps to ensure that a readout is
+        sufficiently abundant to ensure its suitability for analysis. This prevents low abundance
+        readouts from skewing the analysis. This parameter should be set to a lower value for
+        small datasets.
+      </p>
+      <p>
+        If the abundance value being visualization is bidirectional, i.e. it
+        takes both positive and negative values, like a log
+        <sub>2</sub>
+        {' '}
+        fold change, this minimum will be checked against the absolute value of the abundance.
+        For example, if a minimum of 1 is set, a readout must have a value &ge; 1 or &le;
+        -1, so anything between -1 and 1 will fail to meet this criterion and be excluded
+        from the analysis.
+      </p>
+    </div>
+  ),
   readoutScoreFilter: `Only readouts that pass this cutoff will be used for the readout-readout correlation
     analysis. If a readout satisfies this cutoff for at least one condition, all quantitative values for this
     readout will be used across all conditions, even those that did not satisfy the cutoff in particular

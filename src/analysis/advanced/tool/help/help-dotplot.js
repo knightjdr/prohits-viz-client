@@ -3,11 +3,10 @@ import React from 'react';
 import Link from '../../../../components/link/text/link';
 
 import Colours from './images/colours.jpg';
+import EdgeDot from './images/edge-dot.jpg';
+import FillDot from './images/fill-dot.jpg';
+import Filters from './images/filters.jpg';
 import MonoColours from './images/mono-colours.jpg';
-
-import EdgeDot from './images/edge-dot.svg';
-import FillDot from './images/fill-dot.svg';
-import Filters from './images/filters.svg';
 
 import helpCommon from './help-common';
 
@@ -15,11 +14,26 @@ import './help.css';
 
 const help = {
   ...helpCommon,
-  abundanceCap: `Any readouts with an abundance value above this cutoff
-    will be capped at this value in the output image. This is to give greater
-    visual dynamic range for lower values when outlier readouts with very high
-    abundance are present. This cutoff will be dependent on the data set and should
-    be selected accordingly.`,
+  abundanceCap: (
+    <div>
+      <p>
+        Any readouts with an abundance value above this cutoff
+        will be capped at this value in the output image. This is to give greater
+        visual dynamic range for lower values when outlier readouts with very high
+        abundance are present. This cutoff will be dependent on the data set and should
+        be selected accordingly.
+      </p>
+      <p>
+        If the abundance value being visualization is bidirectional, i.e. it
+        takes both positive and negative values, like a log
+        <sub>2</sub>
+        {' '}
+        fold change, this cap will be applied
+        at both the positive and negative ends of the scale. So a cap of 50 will cap positive
+        values at 50, and negative values at -50.
+      </p>
+    </div>
+  ),
   edgeColor: (
     <div>
       <p>
@@ -28,15 +42,14 @@ const help = {
       <div className="analysis__advanced-field-modal-img">
         <img
           alt="Edge indicating score threshold on dot"
-          height={68}
+          height={43}
           src={EdgeDot}
-          width={129}
         />
       </div>
       <div className="analysis__advanced-field-modal-img">
         <img
           alt="Fill color scales"
-          height={200}
+          height={210}
           src={MonoColours}
         />
       </div>
@@ -50,15 +63,14 @@ const help = {
       <div className="analysis__advanced-field-modal-img">
         <img
           alt="Fill indicating abundance on dot"
-          height={68}
+          height={43}
           src={FillDot}
-          width={114}
         />
       </div>
       <div className="analysis__advanced-field-modal-img">
         <img
           alt="Fill color scales"
-          height={287}
+          height={300}
           src={Colours}
         />
       </div>
@@ -67,11 +79,27 @@ const help = {
   logBase: `Log-transform abundance values by base 2, e or base 10. If you are applying multiple
     transformations to your data, log transformation will always occur last (after control subtraction,
     readout length normalization and condition normalization).`,
-  minAbundance: `In addition to the primary filter requirement, a readout must have an abundance
-    value at or above this minimum to be included in the analysis.
-    As with the primary filter, once a readout passes this threshold for one condition,
-    all the values for it are returned across all conditions and used in the analysis
-    unless parsimonious readout filtering is enabled.`,
+  minAbundance: (
+    <div>
+      <p>
+        In addition to the primary filter requirement, a readout must have an abundance
+        value that meets this minimum to be included in the analysis.
+        As with the primary filter, once a readout passes this threshold for one condition,
+        all the values for it are returned across all conditions and used in the analysis
+        unless parsimonious readout filtering is enabled.
+      </p>
+      <p>
+        If the abundance value being visualization is bidirectional, i.e. it
+        takes both positive and negative values, like a log
+        <sub>2</sub>
+        {' '}
+        fold change, this minimum will be checked against the absolute value of the abundance.
+        For example, if a minimum of 1 is set, a readout must have a value &ge; 1 or &le;
+        -1, so anything between -1 and 1 will fail to meet this criterion and be excluded
+        from the image.
+      </p>
+    </div>
+  ),
   minConditions: `A readout must pass filtering criteria for at least one condition to be
     included in the analysis. You can increase this value to apply additional stringency,
     requiring the readout to satisfy filtering criteria in more than one condition to be
@@ -95,13 +123,18 @@ const help = {
       <div className="analysis__advanced-field-modal-img">
         <img
           alt="Default filter edges"
-          height={205}
+          height={130}
           src={Filters}
-          width={250}
         />
       </div>
     </div>
   ),
+  ratioDimension: `Differences in readout abundance across conditions are transformed to ratios
+    that are displayed as the circle size on dot plots. The conversion of a ratio to circle size
+    can be done using either the diameter or the area of the circle. While it is more typical
+    to use the area, we use the diameter by default as users tend to
+    find the resulting sizes more visually representative of the underlying differences. This
+    option controls the dimension used for converting the ratio to a circle size.`,
   secondaryFilter: `Readouts that do no pass the primary score filter but
     pass this secondary filter will be marked with an intermediate intensity
     edge in the dot plot. Readouts that do not pass either filter will be

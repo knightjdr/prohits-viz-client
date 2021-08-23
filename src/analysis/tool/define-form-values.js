@@ -15,7 +15,7 @@ const commonValues = {
   png: false,
 };
 
-const defaultFormValues = {
+export const defaultFormValues = {
   'condition-condition': {
     ...commonValues,
     conditionX: '',
@@ -26,6 +26,7 @@ const defaultFormValues = {
   },
   correlation: {
     ...commonValues,
+    automaticallySetFill: true,
     clustering: 'hierarchical',
     clusteringMethod: 'complete',
     clusteringOptimize: true,
@@ -45,6 +46,7 @@ const defaultFormValues = {
   dotplot: {
     ...commonValues,
     abundanceCap: 50,
+    automaticallySetFill: true,
     biclusteringApprox: false,
     clustering: 'hierarchical',
     clusteringMethod: 'ward',
@@ -56,6 +58,7 @@ const defaultFormValues = {
     fillColor: 'blue',
     minAbundance: 0,
     minConditions: 1,
+    ratioDimension: 'diameter',
     readoutClustering: 'readouts',
     readoutList: '',
     parsimoniousReadoutFiltering: false,
@@ -136,4 +139,30 @@ export const customFileTypeValues = {
   },
 };
 
-export default defaultFormValues;
+const fieldsToOverrideOnToolChange = {
+  'condition-condition': [],
+  correlation: ['automaticallySetFill', 'fillColor'],
+  dotplot: ['automaticallySetFill', 'fillColor'],
+  scv: [],
+  specificity: [],
+};
+
+const defineFormValues = (form, tool) => {
+  const defaults = {
+    ...defaultFormValues[tool],
+    ...customFileTypeValues[form.fileType]?.[tool],
+  };
+
+  const formValuesToOverrideOnToolChange = fieldsToOverrideOnToolChange[tool].reduce((accum, field) => ({
+    ...accum,
+    [field]: defaults[field],
+  }), {});
+
+  return {
+    ...defaults,
+    ...form,
+    ...formValuesToOverrideOnToolChange,
+  };
+};
+
+export default defineFormValues;

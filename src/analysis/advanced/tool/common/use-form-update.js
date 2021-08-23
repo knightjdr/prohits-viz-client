@@ -10,6 +10,9 @@ const useFormUpdate = () => {
 
   const handleChange = (e, id, value) => {
     dispatch(setFormField(id, value));
+    if (id === 'fillColor') {
+      dispatch(setFormField('automaticallySetFill', false));
+    }
   };
 
   return [form, handleChange];

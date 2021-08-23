@@ -47,6 +47,19 @@ const Display = ({
       value={form.fillColor}
       warning={errors.fillColor}
     />
+    <Select
+      helpMessage={help.ratioDimension}
+      helpTitle="Dimension for converting abundance ratios to dot size"
+      id="ratioDimension"
+      label="Dot ratio dimension"
+      onChange={handleChange}
+      options={[
+        { label: 'area', value: 'area' },
+        { label: 'diameter', value: 'diameter' },
+      ]}
+      value={form.ratioDimension}
+      warning={errors.ratioDimension}
+    />
   </section>
 );
 
@@ -54,15 +67,18 @@ Display.propTypes = {
   errors: PropTypes.shape({
     edgeColor: PropTypes.string,
     fillColor: PropTypes.string,
+    ratioDimension: PropTypes.string,
   }).isRequired,
   form: PropTypes.shape({
     edgeColor: PropTypes.string,
     fillColor: PropTypes.string,
+    ratioDimension: PropTypes.string,
   }).isRequired,
   handleChange: PropTypes.func.isRequired,
   help: PropTypes.shape({
     edgeColor: PropTypes.node,
     fillColor: PropTypes.node,
+    ratioDimension: PropTypes.node,
   }).isRequired,
 };
 
