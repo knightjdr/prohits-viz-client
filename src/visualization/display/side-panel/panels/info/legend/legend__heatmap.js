@@ -2,14 +2,17 @@ import PropTypes from 'prop-types';
 import React from 'react';
 
 import colorGradient from '../../../../../../utils/color/initialize-color-gradient';
+import defineFillLimits from '../../../../../../utils/define-fill-limits';
 
 const HeatmapLegend = ({
   abundanceCap,
   abundanceColumn,
+  abundanceType,
   fillColor,
   invertColor,
   minAbundance,
 }) => {
+  const fillLimits = defineFillLimits(abundanceType, minAbundance, abundanceCap);
   const gradientFill = colorGradient(fillColor, 101, invertColor);
   const numColors = gradientFill.length;
   const halfColorIndex = Math.floor(numColors / 2);
@@ -35,10 +38,10 @@ const HeatmapLegend = ({
         </text>
         <rect x="25" y="30" height="20" width="150" fill="url(#legendGradient)" />
         <text x="25" y="65" textAnchor="middle">
-          {minAbundance}
+          {fillLimits.min}
         </text>
         <text x="175" y="65" textAnchor="middle">
-          {abundanceCap}
+          {fillLimits.max}
         </text>
       </g>
     </svg>
@@ -48,6 +51,7 @@ const HeatmapLegend = ({
 HeatmapLegend.propTypes = {
   abundanceCap: PropTypes.number.isRequired,
   abundanceColumn: PropTypes.string.isRequired,
+  abundanceType: PropTypes.string.isRequired,
   fillColor: PropTypes.string.isRequired,
   invertColor: PropTypes.bool.isRequired,
   minAbundance: PropTypes.number.isRequired,

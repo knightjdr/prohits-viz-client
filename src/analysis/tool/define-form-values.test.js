@@ -15,9 +15,9 @@ describe('Define form values on tool change', () => {
 
   it('should return defaults overridden by previous form values except for explicit exceptions', () => {
     const form = {
-      abundanceCap: 30,
-      automaticallySetFill: false, // should always get reset
-      fillColor: 'green', // should always get reset
+      abundanceCap: 30, // should always reset
+      automaticallySetFill: false, // should always reset
+      fillColor: 'green', // should always reset
       fileType: 'saint',
       minimumAbundance: 5,
       scoreType: 'gte',
@@ -25,7 +25,7 @@ describe('Define form values on tool change', () => {
     const tool = 'dotplot';
     const expected = {
       ...defaultFormValues[tool],
-      abundanceCap: 30,
+      abundanceCap: 50,
       automaticallySetFill: true,
       fillColor: 'blue',
       fileType: 'saint',

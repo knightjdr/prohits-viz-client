@@ -14,6 +14,7 @@ const Settings = ({
   const {
     edgeColor,
     fillColor,
+    imageType,
     invertColor,
   } = settings;
 
@@ -26,6 +27,7 @@ const Settings = ({
         edgeColor={edgeColor}
         fillColor={fillColor}
         handleChange={handleChange}
+        imageType={imageType}
         invertColor={invertColor}
       />
       <Filter />
@@ -43,6 +45,7 @@ Settings.propTypes = {
   settings: PropTypes.shape({
     edgeColor: PropTypes.string.isRequired,
     fillColor: PropTypes.string.isRequired,
+    imageType: PropTypes.string.isRequired,
     invertColor: PropTypes.bool.isRequired,
   }).isRequired,
 };

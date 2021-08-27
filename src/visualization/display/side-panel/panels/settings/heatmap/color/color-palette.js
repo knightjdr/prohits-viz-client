@@ -21,6 +21,7 @@ const ColorPalette = ({
   edgeColor,
   fillColor,
   handleChange,
+  imageType,
   invertColor,
 }) => (
   <>
@@ -28,13 +29,18 @@ const ColorPalette = ({
       helpLink="/help/visualization/heatmap#settings-colour"
       title="Color palette"
     >
-      <Select
-        id="edgeColor"
-        label="Edge color"
-        onChange={handleChange}
-        options={colorOptions}
-        value={edgeColor}
-      />
+      {
+        imageType === 'dotplot'
+        && (
+          <Select
+            id="edgeColor"
+            label="Edge color"
+            onChange={handleChange}
+            options={colorOptions}
+            value={edgeColor}
+          />
+        )
+      }
       <Select
         id="fillColor"
         label="Fill color"
@@ -56,6 +62,7 @@ ColorPalette.propTypes = {
   edgeColor: PropTypes.string.isRequired,
   fillColor: PropTypes.string.isRequired,
   handleChange: PropTypes.func.isRequired,
+  imageType: PropTypes.string.isRequired,
   invertColor: PropTypes.bool.isRequired,
 };
 

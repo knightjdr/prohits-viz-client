@@ -5,7 +5,7 @@ export const filterAndOrderColumns = (rowDB, rowOrder, columnOrder, scoreType, l
   const isPassingScore = defineScoreCriterion(scoreType, primaryFilter);
   return columnOrder.filter((columnIndex) => (
     rowOrder.some((rowIndex) => (
-      rowDB[rowIndex].data[columnIndex].value >= minAbundance
+      Math.abs(rowDB[rowIndex].data[columnIndex].value) >= minAbundance
       && isPassingScore(rowDB[rowIndex].data[columnIndex].score)
     ))
   ));
@@ -17,7 +17,7 @@ export const filterAndOrderRows = (rowData, indices, scoreType, latestValues) =>
   return indices.rows.filter((rowIndex) => (
     indices.columns.some((columnIndex) => {
       const { score, value } = rowData[rowIndex].data[columnIndex];
-      return value >= minAbundance && isPassingScore(score);
+      return Math.abs(value) >= minAbundance && isPassingScore(score);
     })
   ));
 };

@@ -4,6 +4,7 @@ import { validateArray, validateBoolean, validateNumber } from '../../../utils/v
 
 export const defaultState = {
   abundanceCap: 50,
+  abundanceType: 'positive',
   cellSize: 15,
   edgeColor: 'blue',
   fillColor: 'blue',
@@ -16,6 +17,12 @@ export const defaultState = {
   removeFailingRows: true,
   resetRatios: false,
   secondaryFilter: 0.05,
+};
+
+const acceptedAbundanceTypes = {
+  bidirectional: true,
+  negative: true,
+  positive: true,
 };
 
 const acceptedColors = {
@@ -33,6 +40,15 @@ const acceptedImageTypes = {
   heatmap: true,
 };
 
+const validateAbundanceType = (abundanceType, fillColor, defaultAbundanceType) => {
+  if (acceptedAbundanceTypes[abundanceType]) {
+    return abundanceType;
+  } if (fillColor === 'blueRed' || fillColor === 'blueYellow') {
+    return 'bidirectional';
+  }
+  return defaultAbundanceType;
+};
+
 const validateColor = (color, defaultColor) => (
   acceptedColors[color] ? color : defaultColor
 );
@@ -48,6 +64,7 @@ export const validateSettings = (userSettings, defaultImageType = 'heatmap') => 
 
   const {
     abundanceCap,
+    abundanceType,
     cellSize,
     edgeColor,
     fillColor,
@@ -63,12 +80,14 @@ export const validateSettings = (userSettings, defaultImageType = 'heatmap') => 
     ...other
   } = userSettings;
 
+  const validatedFillColor = validateColor(fillColor, defaultState.fillColor);
   const settings = {
     ...other,
     abundanceCap: validateNumber(abundanceCap, defaultState.abundanceCap),
+    abundanceType: validateAbundanceType(abundanceType, validatedFillColor, defaultState.abundanceType),
     cellSize: Number.isInteger(cellSize) && cellSize > 0 ? cellSize : defaultState.cellSize,
     edgeColor: validateColor(edgeColor, defaultState.edgeColor),
-    fillColor: validateColor(fillColor, defaultState.fillColor),
+    fillColor: validatedFillColor,
     filterBy: validateArray(filterBy, defaultState.filterBy),
     imageType: validateImageType(imageType, defaultImageType),
     invertColor: validateBoolean(invertColor, defaultState.invertColor),

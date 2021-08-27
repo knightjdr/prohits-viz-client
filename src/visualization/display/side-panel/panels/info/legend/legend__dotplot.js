@@ -2,11 +2,13 @@ import PropTypes from 'prop-types';
 import React from 'react';
 
 import colorGradient from '../../../../../../utils/color/initialize-color-gradient';
+import defineFillLimits from '../../../../../../utils/define-fill-limits';
 import scoreEntities from './legend__score-entities';
 
 const DotplotLegend = ({
   abundanceCap,
   abundanceColumn,
+  abundanceType,
   edgeColor,
   fillColor,
   invertColor,
@@ -16,6 +18,7 @@ const DotplotLegend = ({
   scoreType,
   secondaryFilter,
 }) => {
+  const fillLimits = defineFillLimits(abundanceType, minAbundance, abundanceCap);
   const gradientEdge = colorGradient(edgeColor, 101, invertColor);
   const gradientFill = colorGradient(fillColor, 101, invertColor);
   const numColors = gradientFill.length;
@@ -43,10 +46,10 @@ const DotplotLegend = ({
         </text>
         <rect x="25" y="30" height="20" width="150" fill="url(#legendGradient)" />
         <text x="25" y="65" textAnchor="middle">
-          {minAbundance}
+          {fillLimits.min}
         </text>
         <text x="175" y="65" textAnchor="middle">
-          {abundanceCap}
+          {fillLimits.max}
         </text>
       </g>
       <g>
@@ -55,7 +58,9 @@ const DotplotLegend = ({
         <line fill="none" stroke="#000000" strokeWidth="1" x1="70" y1="100" x2="119" y2="100" />
         <polygon fill="#000000" points="110,96 112,100 110,104 119,100" />
         <text y="130" x="100" fontSize="12" textAnchor="middle">
-          Relative abundance
+          Relative
+          {' '}
+          {abundanceColumn}
         </text>
       </g>
       <g>
@@ -109,6 +114,7 @@ const DotplotLegend = ({
 DotplotLegend.propTypes = {
   abundanceCap: PropTypes.number.isRequired,
   abundanceColumn: PropTypes.string.isRequired,
+  abundanceType: PropTypes.string.isRequired,
   edgeColor: PropTypes.string.isRequired,
   fillColor: PropTypes.string.isRequired,
   invertColor: PropTypes.bool.isRequired,

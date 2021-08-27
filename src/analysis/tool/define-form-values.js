@@ -142,8 +142,8 @@ export const customFileTypeValues = {
 const fieldsToOverrideOnToolChange = {
   'condition-condition': [],
   correlation: ['automaticallySetFill', 'fillColor'],
-  dotplot: ['automaticallySetFill', 'fillColor'],
-  scv: [],
+  dotplot: ['abundanceCap', 'automaticallySetFill', 'fillColor'],
+  scv: ['abundanceCap'],
   specificity: [],
 };
 

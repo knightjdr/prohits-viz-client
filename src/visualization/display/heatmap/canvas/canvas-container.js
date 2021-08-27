@@ -10,6 +10,7 @@ import Canvas from './canvas';
 import calculatePageDimensions from './calculate-page-dimensions';
 import calculateEdgeWidth from './calculate-edge-width';
 import createCanvas from './create-canvas';
+import defineFillLimits from '../../../../utils/define-fill-limits';
 import heatmapConfig from '../config';
 import initializeColorGradient from '../../../../utils/color/initialize-color-gradient';
 import partialEdgeRange from './set-edge-range-partial';
@@ -33,6 +34,7 @@ const CanvasContainer = () => {
 
   const {
     abundanceCap,
+    abundanceType,
     cellSize,
     edgeColor,
     fillColor,
@@ -51,9 +53,14 @@ const CanvasContainer = () => {
     [numColors, primaryFilter, secondaryFilter, scoreType],
   );
 
+  const fillLimits = useMemo(
+    () => defineFillLimits(abundanceType, minAbundance, abundanceCap),
+    [abundanceCap, abundanceType, minAbundance],
+  );
+
   const convertToFillRange = useMemo(
-    () => partialSetRange(minAbundance, abundanceCap, 0, numColors - 1),
-    [abundanceCap, minAbundance, numColors],
+    () => partialSetRange(fillLimits.min, fillLimits.max, 0, numColors - 1),
+    [fillLimits.max, fillLimits.min, numColors],
   );
 
   const edgeGradient = useMemo(

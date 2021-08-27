@@ -178,7 +178,11 @@ const help = {
         readout profiles, then pools readouts with similar abundances within these clusters to form
         a nested cluster. Note that this clustering approach will take significantly longer than the
         hierarchical clustering option, especially for large data sets. At least three
-        conditions are required to use the biclustering approach.
+        conditions are required to use the biclustering approach. It will also only work on
+        non-negative abundance data, so bidirectional data, like a log
+        <sub>2</sub>
+        {' '}
+        fold change, will not work.
       </p>
     </div>
   ),

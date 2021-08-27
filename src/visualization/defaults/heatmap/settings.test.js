@@ -4,6 +4,7 @@ describe('Validate settings', () => {
   it('should return user-defined settings when valid', () => {
     const userSettings = {
       abundanceCap: 40,
+      abundanceType: 'bidirectional',
       cellSize: 10,
       edgeColor: 'yellow',
       fillColor: 'yellow',
@@ -25,6 +26,7 @@ describe('Validate settings', () => {
   it('should return defaults when user-defined settings invalid', () => {
     const userSettings = {
       abundanceCap: 'string',
+      abundanceType: 'something',
       cellSize: 'string',
       edgeColor: 'pink',
       fillColor: 'pink',
@@ -47,6 +49,7 @@ describe('Fill settings', () => {
   it('should return user-defined settings when valid', () => {
     const settings = {
       abundanceCap: 40,
+      abundanceType: 'bidirectional',
       cellSize: 10,
       edgeColor: 'yellow',
       fillColor: 'yellow',
@@ -74,6 +77,7 @@ describe('Fill settings', () => {
   it('should return set current settings to defaults when current key is missing', () => {
     const settings = {
       abundanceCap: 40,
+      abundanceType: 'bidirectional',
       cellSize: 10,
       edgeColor: 'yellow',
       fillColor: 'yellow',
@@ -105,6 +109,7 @@ describe('Fill settings', () => {
   it('should fill settings when main snapshot is missing', () => {
     const settings = {
       abundanceCap: 40,
+      abundanceType: 'bidirectional',
       cellSize: 10,
       edgeColor: 'yellow',
       fillColor: 'yellow',
