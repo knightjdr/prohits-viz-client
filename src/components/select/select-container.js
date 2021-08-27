@@ -23,7 +23,7 @@ import useClickOutside from '../../hooks/click-outside/use-click-outside';
 import usePortal from '../../hooks/portal/use-portal';
 import * as keyCodes from '../../utils/pressed-key-code';
 
-const letterRE = new RegExp(/^\w{1}$/);
+const letterRE = /^\w{1}$/;
 
 const SelectContainer = ({
   canClear,
