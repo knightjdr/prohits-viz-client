@@ -21,8 +21,11 @@ const UtilitySelect = ({
         { label: 'Convert interactive file from ProHits version 1', value: 'pvconvert' },
         { label: 'SAINT file', optGroup: true },
         { label: 'Calculate interaction statistics', value: 'saint_stats' },
+        { label: 'Create a file for Cytoscape from bait interactions', value: 'saint_biogrid_network' },
         { label: 'Domain enrichment analysis', value: 'saint_domain_enrich' },
         { label: 'Functional enrichment analysis', value: 'saint_fea' },
+        { label: 'Text file', optGroup: true },
+        { label: 'Retrieve interactions from a gene list and format for Cytoscape', value: 'text_biogrid_network' },
       ]}
       placeholder="Select Utility..."
       value={utility}

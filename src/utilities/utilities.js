@@ -35,7 +35,7 @@ const Utilities = ({
       </p>
       <p>
         <strong>
-          The page is a work in progress, and more utilities will be added in the near future.
+          The page is a work in progress, and more utilities will be added in the future.
         </strong>
       </p>
       <File

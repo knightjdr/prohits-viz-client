@@ -10,6 +10,18 @@ describe('Utilities actions', () => {
     expect(actions.setUtilityField('fdr', 0.05)).toEqual(expectedAction);
   });
 
+  it('should dispatch an action to set multiple utility fields', () => {
+    const fields = {
+      fdr: 0.01,
+      topPreys: 10,
+    };
+    const expectedAction = {
+      fields,
+      type: actions.SET_UTILITY_FIELDS,
+    };
+    expect(actions.setUtilityFields(fields)).toEqual(expectedAction);
+  });
+
   it('should dispatch an action to the utility file', () => {
     const expectedAction = {
       files: ['FILE'],

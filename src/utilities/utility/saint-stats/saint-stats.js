@@ -3,6 +3,10 @@ import React from 'react';
 
 import Input from '../../../components/input/text/input-text-container';
 
+export const defaultFieldValues = {
+  fdr: 0.01,
+};
+
 const SaintStats = ({
   error,
   fdr,
@@ -30,7 +34,7 @@ const SaintStats = ({
 
 SaintStats.defaultProps = {
   error: '',
-  fdr: 0,
+  ...defaultFieldValues,
 };
 
 SaintStats.propTypes = {

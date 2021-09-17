@@ -2,10 +2,10 @@ import PropTypes from 'prop-types';
 import React from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 
-import SaintStats from './saint-stats';
+import SaintStats, { defaultFieldValues } from './saint-stats';
 
 import { selectStateProperty } from '../../../state/selector/general';
-import { setUtilityField } from '../../../state/utilities/utilities-actions';
+import { setUtilityField, setUtilityFields } from '../../../state/utilities/utilities-actions';
 import useOnMount from '../../../hooks/on-mount/use-on-mount';
 
 const SaintStatsContainer = ({
@@ -19,9 +19,7 @@ const SaintStatsContainer = ({
   };
 
   useOnMount(() => {
-    if (typeof fdr !== 'number') {
-      dispatch(setUtilityField('fdr', 0.01));
-    }
+    dispatch(setUtilityFields(defaultFieldValues));
   });
 
   return (

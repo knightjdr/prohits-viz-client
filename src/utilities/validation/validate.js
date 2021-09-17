@@ -3,6 +3,7 @@ import validatePVConvert from './pvconvert-validate';
 import validateSaintDomainEnrich from './saint-domain-enrich-validate';
 import validateSaintFEA from './saint-fea-validate';
 import validateSaintStats from './saint-stats-validate';
+import validateTextBiogridNetwork from './text-biogrid-validate';
 
 const validateUtility = (fields) => {
   const { utility } = fields;
@@ -11,12 +12,16 @@ const validateUtility = (fields) => {
     return validateCrisprConvert(fields);
   } if (utility === 'pvconvert') {
     return validatePVConvert(fields);
+  } if (utility === 'saint_biogrid_network') {
+    return validateTextBiogridNetwork(fields);
   } if (utility === 'saint_domain_enrich') {
     return validateSaintDomainEnrich(fields);
   } if (utility === 'saint_fea') {
     return validateSaintFEA(fields);
   } if (utility === 'saint_stats') {
     return validateSaintStats(fields);
+  } if (utility === 'text_biogrid_network') {
+    return validateTextBiogridNetwork(fields);
   }
   return { fields: null, errors: null };
 };
@@ -46,7 +51,11 @@ const validate = (fields) => {
   const formData = new FormData();
 
   Object.entries(validation.fields).forEach(([key, value]) => {
-    formData.append(key, value);
+    if (Array.isArray(value)) {
+      formData.append(key, JSON.stringify(value));
+    } else {
+      formData.append(key, value);
+    }
   });
   fields.files.forEach((file) => {
     formData.append('file', file);

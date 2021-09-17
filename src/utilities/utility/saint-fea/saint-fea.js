@@ -4,6 +4,11 @@ import React from 'react';
 import Input from '../../../components/input/text/input-text-container';
 import Link from '../../../components/link/text/link';
 
+export const defaultFieldValues = {
+  fdr: 0.01,
+  topPreys: 0,
+};
+
 const SaintFEA = ({
   errors,
   fdr,
@@ -51,8 +56,7 @@ const SaintFEA = ({
 
 SaintFEA.defaultProps = {
   errors: {},
-  fdr: 0,
-  topPreys: 0,
+  ...defaultFieldValues,
 };
 
 SaintFEA.propTypes = {

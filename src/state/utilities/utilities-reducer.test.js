@@ -22,6 +22,23 @@ describe('Utilities reducer', () => {
     expect(reducer(currentState, action)).toEqual(expectedState);
   });
 
+  it('should handle SET_UTILITY_FIELDS action', () => {
+    const currentState = {};
+    const action = {
+      fields: {
+        fdr: 0.01,
+        topPreys: 10,
+      },
+      type: actions.SET_UTILITY_FIELDS,
+    };
+    const expectedState = {
+      ...currentState,
+      fdr: 0.01,
+      topPreys: 10,
+    };
+    expect(reducer(currentState, action)).toEqual(expectedState);
+  });
+
   it('should handle SET_UTILITY_FILE action', () => {
     const currentState = {};
     const action = {

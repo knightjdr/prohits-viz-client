@@ -3,6 +3,10 @@ import React from 'react';
 
 import Select from '../../../components/select/select-container';
 
+export const defaultFieldValues = {
+  imageType: 'dotplot',
+};
+
 const PVConvert = ({
   error,
   handleUtilityField,
@@ -31,7 +35,7 @@ const PVConvert = ({
 
 PVConvert.defaultProps = {
   error: '',
-  imageType: '',
+  ...defaultFieldValues,
 };
 
 PVConvert.propTypes = {

@@ -4,6 +4,13 @@ import React from 'react';
 import Input from '../../../components/input/text/input-text-container';
 import Select from '../../../components/select/select-container';
 
+export const defaultFieldValues = {
+  background: 'all',
+  fdr: 0.01,
+  idType: 'refseqp',
+  topPreys: 0,
+};
+
 const SaintDomainEnrich = ({
   background,
   errors,
@@ -81,11 +88,8 @@ const SaintDomainEnrich = ({
 );
 
 SaintDomainEnrich.defaultProps = {
-  background: '',
   errors: {},
-  fdr: 0,
-  idType: '',
-  topPreys: 0,
+  ...defaultFieldValues,
 };
 
 SaintDomainEnrich.propTypes = {

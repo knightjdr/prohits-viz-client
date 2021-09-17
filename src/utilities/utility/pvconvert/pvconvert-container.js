@@ -2,10 +2,10 @@ import PropTypes from 'prop-types';
 import React from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 
-import PVConvert from './pvconvert';
+import PVConvert, { defaultFieldValues } from './pvconvert';
 
 import { selectStateProperty } from '../../../state/selector/general';
-import { setUtilityField } from '../../../state/utilities/utilities-actions';
+import { setUtilityField, setUtilityFields } from '../../../state/utilities/utilities-actions';
 import useOnMount from '../../../hooks/on-mount/use-on-mount';
 
 const PVConvertContainer = ({
@@ -19,9 +19,7 @@ const PVConvertContainer = ({
   };
 
   useOnMount(() => {
-    if (!imageType) {
-      dispatch(setUtilityField('imageType', 'dotplot'));
-    }
+    dispatch(setUtilityFields(defaultFieldValues));
   });
 
   return (

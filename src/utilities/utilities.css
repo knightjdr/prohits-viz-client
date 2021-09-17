@@ -31,17 +31,19 @@
 }
 .utility__inputs {
   display: flex;
-  flex-wrap: wrap;
+  flex-direction: column;
   margin: -1rem;
   margin-top: 1rem;
 }
 .utility__inputs > * {
   margin: 1rem;
   max-width: 295px;
+  min-width: calc((100% - 6rem) / 3);
 }
 .utility__inputs > .utility__input_medium {
   flex: 1;
   max-width: unset;
+  min-width: calc((100% - 4rem) / 2);
 }
 .utility__submit {
   align-items: center;
@@ -51,4 +53,19 @@
 }
 .utility__submit-progress > svg {
   margin: 0 0.5rem 0 1rem;
+}
+
+@media (max-width: 900px) {
+  .utility__inputs > * {
+    min-width: calc((100% - 4rem) / 2);
+  }
+  .utility__inputs > .utility__input_medium {
+    min-width: calc(100% - 2rem);
+  }
+}
+
+@media (max-width: 600px) {
+  .utility__inputs > * {
+    min-width: calc(100% - 2rem);
+  }
 }

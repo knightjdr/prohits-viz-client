@@ -9,6 +9,11 @@ const reduceAndSetField = (state, action) => ({
   [action.field]: action.value,
 });
 
+const reduceAndSetFields = (state, action) => ({
+  ...state,
+  ...action.fields,
+});
+
 const reduceAndSetFile = (state, action) => ({
   ...state,
   files: action.files,
@@ -24,6 +29,8 @@ const reducer = (state = defaultState, action) => {
   switch (action.type) {
     case actions.SET_UTILITY_FIELD:
       return reduceAndSetField(state, action);
+    case actions.SET_UTILITY_FIELDS:
+      return reduceAndSetFields(state, action);
     case actions.SET_UTILITY_FILE:
       return reduceAndSetFile(state, action);
     case actions.SET_UTILITY_TYPE:
