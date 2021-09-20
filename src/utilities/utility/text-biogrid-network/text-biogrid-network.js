@@ -55,7 +55,8 @@ const TextBiogridNetwork = ({
               <Link to="https://cytoscape.org">
                 Cytoscape
               </Link>
-              . By default it will also add novel preys as interactions as well.
+              . By default it will also add novel preys as interactions as well. This utility
+              is currently available for human genes only.
             </span>
           )
           : (
@@ -72,7 +73,7 @@ const TextBiogridNetwork = ({
               <Link to="https://cytoscape.org">
                 Cytoscape
               </Link>
-              .
+              . This utility is currently available for human genes only.
             </span>
           )
       }
