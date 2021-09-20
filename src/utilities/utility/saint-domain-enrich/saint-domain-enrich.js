@@ -27,7 +27,8 @@ const SaintDomainEnrich = ({
       via the &ldquo;Top preys&rdquo; input (set to 0 to use all significant preys). The background
       can either be all annotated proteins (i.e. proteins with at least one known domain), or only
       proteins/genes found in the input file. The identifier type used for the preys must also be
-      specified (the identifier is used for the enrichments rather than the gene name).
+      specified (the identifier is used for the enrichments rather than the gene name). This utility
+      is currently available for human genes only.
     </p>
     <div className="utility__inputs">
       <Input
