@@ -26,6 +26,7 @@ const UtilitySelect = ({
         { label: 'Functional enrichment analysis', value: 'saint_fea' },
         { label: 'Text file', optGroup: true },
         { label: 'Retrieve interactions from a gene list and format for Cytoscape', value: 'text_biogrid_network' },
+        { label: 'Summarize gene symbols corrupted by Excel', value: 'text_symbol_fix' },
       ]}
       placeholder="Select Utility..."
       value={utility}

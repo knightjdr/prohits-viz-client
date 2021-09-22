@@ -8,6 +8,7 @@ import SaintBiogridNetwork from './utility/saint-biogrid-network/saint-biogrid-n
 import SaintFEA from './utility/saint-fea/saint-fea-container';
 import SaintStats from './utility/saint-stats/saint-stats-container';
 import TextBiogridNetwork from './utility/text-biogrid-network/text-biogrid-network-container';
+import TextSymbolFix from './utility/text-symbol-fix/text-symbol-fix-container';
 
 const loadUtilityComponent = (utility, errors) => {
   if (utility === 'crispr_convert') {
@@ -24,6 +25,8 @@ const loadUtilityComponent = (utility, errors) => {
     return <SaintStats errors={errors} />;
   } if (utility === 'text_biogrid_network') {
     return <TextBiogridNetwork errors={errors} />;
+  } if (utility === 'text_symbol_fix') {
+    return <TextSymbolFix errors={errors} />;
   }
   return null;
 };

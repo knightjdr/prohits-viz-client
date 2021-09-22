@@ -4,6 +4,7 @@ import validateSaintDomainEnrich from './saint-domain-enrich-validate';
 import validateSaintFEA from './saint-fea-validate';
 import validateSaintStats from './saint-stats-validate';
 import validateTextBiogridNetwork from './text-biogrid-validate';
+import validateTextSymbolFix from './text-symbol-fix-validate';
 
 const validateUtility = (fields) => {
   const { utility } = fields;
@@ -22,6 +23,8 @@ const validateUtility = (fields) => {
     return validateSaintStats(fields);
   } if (utility === 'text_biogrid_network') {
     return validateTextBiogridNetwork(fields);
+  } if (utility === 'text_symbol_fix') {
+    return validateTextSymbolFix(fields);
   }
   return { fields: null, errors: null };
 };
