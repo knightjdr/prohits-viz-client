@@ -1,10 +1,7 @@
 import defineTicks, {
   calculateLinearTicks,
   calculateLogTicks,
-  getLowerLogTick,
   getScaleFactor,
-  getUpperLinearTick,
-  getUpperLogTick,
 } from './define-ticks';
 
 describe('Define ticks', () => {
@@ -28,126 +25,188 @@ describe('Define ticks', () => {
     });
   });
 
-  describe('upper (max) linear tick', () => {
-    it('should define tick', () => {
-      const tests = [9.2, 62, 157];
-      const expected = [10, 70, 200];
-      tests.forEach((test, index) => {
-        expect(getUpperLinearTick(test)).toBe(expected[index]);
-      });
-    });
-  });
-
   describe('calculate linear ticks', () => {
-    it('should return ticks when max is < 10', () => {
-      const max = 9.2;
-      const scale = 1;
+    describe('non-negative ticks', () => {
+      it('should return ticks when max is 10', () => {
+        const axisBoundaries = {
+          max: 10,
+          min: 0,
+        };
+        const scale = 1;
 
-      const expected = [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10];
-      expect(calculateLinearTicks(max, scale)).toEqual(expected);
-    });
+        const expected = [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10];
+        expect(calculateLinearTicks(axisBoundaries, scale)).toEqual(expected);
+      });
 
-    it('should return ticks when max is > 10 and < 100', () => {
-      const max = 27;
-      const scale = 1;
+      it('should return ticks when max is > 10 and < 100', () => {
+        const axisBoundaries = {
+          max: 30,
+          min: 0,
+        };
+        const scale = 1;
 
-      const expected = [0, 10, 20, 30];
-      expect(calculateLinearTicks(max, scale)).toEqual(expected);
-    });
+        const expected = [0, 10, 20, 30];
+        expect(calculateLinearTicks(axisBoundaries, scale)).toEqual(expected);
+      });
 
-    it('should return ticks when max is > 100 and < 1000', () => {
-      const max = 501;
-      const scale = 1;
+      it('should return ticks when max is > 100 and < 1000', () => {
+        const axisBoundaries = {
+          max: 600,
+          min: 0,
+        };
+        const scale = 1;
 
-      const expected = [0, 100, 200, 300, 400, 500, 600];
-      expect(calculateLinearTicks(max, scale)).toEqual(expected);
-    });
+        const expected = [0, 100, 200, 300, 400, 500, 600];
+        expect(calculateLinearTicks(axisBoundaries, scale)).toEqual(expected);
+      });
 
-    it('should return ticks relative to scale', () => {
-      const max = 27;
-      const scale = 1.5;
+      it('should return ticks relative to scale', () => {
+        const axisBoundaries = {
+          max: 30,
+          min: 0,
+        };
+        const scale = 1.5;
 
-      const expected = [0, 5, 10, 15, 20, 25, 30];
-      expect(calculateLinearTicks(max, scale)).toEqual(expected);
-    });
-  });
-
-  describe('upper (max) log tick', () => {
-    it('should define tick for base 2', () => {
-      const tests = [1.5, 3, 12, 275];
-      const expected = [2, 4, 16, 512];
-      tests.forEach((test, index) => {
-        expect(getUpperLogTick('2', test)).toBe(expected[index]);
+        const expected = [0, 5, 10, 15, 20, 25, 30];
+        expect(calculateLinearTicks(axisBoundaries, scale)).toEqual(expected);
       });
     });
 
-    it('should define tick for base 10', () => {
-      const tests = [1.5, 3, 12, 275];
-      const expected = [10, 10, 100, 1000];
-      tests.forEach((test, index) => {
-        expect(getUpperLogTick('10', test)).toBe(expected[index]);
+    describe('negative ticks', () => {
+      it('should return ticks for only negative values', () => {
+        const axisBoundaries = {
+          max: 0,
+          min: -20,
+        };
+        const scale = 1;
+
+        const expected = [-20, -10, 0];
+        expect(calculateLinearTicks(axisBoundaries, scale)).toEqual(expected);
+      });
+
+      it('should return ticks relative to scale', () => {
+        const axisBoundaries = {
+          max: 0,
+          min: -20,
+        };
+        const scale = 1.5;
+
+        const expected = [-20, -15, -10, -5, 0];
+        expect(calculateLinearTicks(axisBoundaries, scale)).toEqual(expected);
       });
     });
-  });
 
-  describe('lower (min) log tick', () => {
-    it('should define tick for base 2', () => {
-      const tests = [1, 1.25, 3];
-      const expected = [0.125, 0.25, 1];
-      tests.forEach((test, index) => {
-        expect(getLowerLogTick('2', test)).toBe(expected[index]);
+    describe('positive and negative ticks', () => {
+      it('should return ticks when max is positive and min is negative', () => {
+        const axisBoundaries = {
+          max: 30,
+          min: -10,
+        };
+        const scale = 1;
+
+        const expected = [-10, 0, 10, 20, 30];
+        expect(calculateLinearTicks(axisBoundaries, scale)).toEqual(expected);
       });
-    });
 
-    it('should define tick for base 10', () => {
-      const tests = [5, 20, 1];
-      const expected = [0.1, 1, 0.01];
-      tests.forEach((test, index) => {
-        expect(getLowerLogTick('10', test)).toBe(expected[index]);
+      it('should return ticks when absolute value of min is greater than max', () => {
+        const axisBoundaries = {
+          max: 10,
+          min: -20,
+        };
+        const scale = 1;
+
+        const expected = [-20, -10, 0, 10];
+        expect(calculateLinearTicks(axisBoundaries, scale)).toEqual(expected);
+      });
+
+      it('should return ticks relative to scale', () => {
+        const axisBoundaries = {
+          max: 30,
+          min: -10,
+        };
+        const scale = 1.5;
+
+        const expected = [-10, -5, 0, 5, 10, 15, 20, 25, 30];
+        expect(calculateLinearTicks(axisBoundaries, scale)).toEqual(expected);
       });
     });
   });
 
   describe('calculate log ticks', () => {
     describe('base 2', () => {
-      it('should return ticks when max is < 16', () => {
+      it('should return ticks when max is 16', () => {
+        const axisBoundaries = {
+          max: 16,
+          min: 1,
+        };
         const base = '2';
-        const max = 9.2;
-        const min = 1;
         const scale = 1;
 
-        const expected = [0.125, 0.25, 0.5, 1, 2, 4, 8, 16];
-        expect(calculateLogTicks(base, max, min, scale)).toEqual(expected);
-      });
-
-      it('should return ticks when max is > 16 and < 32', () => {
-        const base = '2';
-        const max = 27;
-        const min = 2;
-        const scale = 1;
-
-        const expected = [1, 2, 4, 8, 16, 32];
-        expect(calculateLogTicks(base, max, min, scale)).toEqual(expected);
-      });
-
-      it('should return ticks when max is > 32 and < 512', () => {
-        const base = '2';
-        const max = 501;
-        const min = 2;
-        const scale = 1;
-
-        const expected = [1, 2, 4, 8, 16, 32, 64, 128, 256, 512];
-        expect(calculateLogTicks(base, max, min, scale)).toEqual(expected);
+        const expected = [1, 2, 4, 8, 16];
+        expect(calculateLogTicks(axisBoundaries, base, scale)).toEqual(expected);
       });
 
       it('should return ticks relative to scale', () => {
+        const axisBoundaries = {
+          max: 16,
+          min: 1,
+        };
         const base = '2';
-        const max = 9.2;
-        const min = 2;
         const scale = 2;
 
         const expected = [1, 1.5, 2, 3, 4, 6, 8, 12, 16];
-        expect(calculateLogTicks(base, max, min, scale)).toEqual(expected);
+        expect(calculateLogTicks(axisBoundaries, base, scale)).toEqual(expected);
+      });
+
+      it('should handle only negative ticks', () => {
+        const axisBoundaries = {
+          max: -1,
+          min: -16,
+        };
+        const base = '2';
+        const scale = 1;
+
+        const expected = [-16, -8, -4, -2, -1];
+        expect(calculateLogTicks(axisBoundaries, base, scale)).toEqual(expected);
+      });
+
+      it('should return negative ticks relative to scale', () => {
+        const axisBoundaries = {
+          max: -1,
+          min: -16,
+        };
+        const base = '2';
+        const scale = 2;
+
+        const expected = [-16, -12, -8, -6, -4, -3, -2, -1.5, -1];
+        expect(calculateLogTicks(axisBoundaries, base, scale)).toEqual(expected);
+      });
+
+      it('should handle positive and negative ticks', () => {
+        const axisBoundaries = {
+          max: 16,
+          min: -8,
+        };
+        const base = '2';
+        const scale = 1;
+
+        const expected = [-8, -4, -2, -1, -0.5, 0.5, 1, 2, 4, 8, 16];
+        expect(calculateLogTicks(axisBoundaries, base, scale)).toEqual(expected);
+      });
+
+      it.only('should return positive and negative ticks relative to scale', () => {
+        const axisBoundaries = {
+          max: 16,
+          min: -8,
+        };
+        const base = '2';
+        const scale = 2;
+
+        const expected = [
+          -8, -6, -4, -3, -2, -1.5, -1, -0.75, -0.5,
+          0.5, 0.75, 1, 1.5, 2, 3, 4, 6, 8, 12, 16,
+        ];
+        expect(calculateLogTicks(axisBoundaries, base, scale)).toEqual(expected);
       });
     });
 
@@ -158,7 +217,7 @@ describe('Define ticks', () => {
         const min = 1;
         const scale = 1;
 
-        const expected = [0.01, 0.1, 1, 10];
+        const expected = [0.1, 1, 10];
         expect(calculateLogTicks(base, max, min, scale)).toEqual(expected);
       });
 
@@ -189,6 +248,26 @@ describe('Define ticks', () => {
         const scale = 2;
 
         const expected = [0.1, 0.5, 1, 5, 10];
+        expect(calculateLogTicks(base, max, min, scale)).toEqual(expected);
+      });
+
+      it('should handle positive and negative ticks', () => {
+        const base = '10';
+        const max = 9.2;
+        const min = -5;
+        const scale = 1;
+
+        const expected = [-10, -1, -0.1, 0.1, 1, 10];
+        expect(calculateLogTicks(base, max, min, scale)).toEqual(expected);
+      });
+
+      it('should handle only negative ticks', () => {
+        const base = '10';
+        const max = -1;
+        const min = -9.2;
+        const scale = 1;
+
+        const expected = [-10, -1, -0.1];
         expect(calculateLogTicks(base, max, min, scale)).toEqual(expected);
       });
     });
@@ -242,7 +321,7 @@ describe('Define ticks', () => {
         vertex: 'x',
       };
 
-      const expected = [0.125, 0.25, 0.5, 1, 2, 4, 8, 16, 32];
+      const expected = [0.5, 1, 2, 4, 8, 16, 32];
       expect(defineTicks(data, options)).toEqual(expected);
     });
 
@@ -259,7 +338,7 @@ describe('Define ticks', () => {
         vertex: 'x',
       };
 
-      const expected = [0.01, 0.1, 1, 10, 100];
+      const expected = [0.1, 1, 10, 100];
       expect(defineTicks(data, options)).toEqual(expected);
     });
   });

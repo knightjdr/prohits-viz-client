@@ -1,7 +1,7 @@
-import { defineFcLines, defineMidline } from './define-lines';
+import defineAxisBoundaries from './define-axis-boundaries';
 import defineTicks from './define-ticks';
-import mergeTicks from './merge-ticks';
 import scaleData from './scale-data';
+import { defineFcLines, defineMidline } from './define-lines';
 
 const formatData = (data, options) => {
   const {
@@ -16,32 +16,31 @@ const formatData = (data, options) => {
     showMidline,
   } = options;
 
+  const axisBoundaries = defineAxisBoundaries(
+    data,
+    {
+      equalScaleAxes,
+      logX: logX ? logBase : 'none',
+      logY: logY ? logBase : 'none',
+    },
+  );
+
   const ticks = {
     x: defineTicks(
-      data,
+      axisBoundaries.x,
       {
-        logAxis: logX,
-        logBase,
+        logAxis: logX ? logBase : 'none',
         scale,
-        vertex: 'x',
       },
     ),
     y: defineTicks(
-      data,
+      axisBoundaries.y,
       {
-        logAxis: logY,
-        logBase,
+        logAxis: logY ? logBase : 'none',
         scale,
-        vertex: 'y',
       },
     ),
   };
-
-  if (equalScaleAxes && (logX === logY)) {
-    const tickList = mergeTicks(ticks, logBase);
-    ticks.x = tickList;
-    ticks.y = tickList;
-  }
 
   const lines = {
     fcLines: showFcLines ? defineFcLines(fcLines, ticks) : [],
