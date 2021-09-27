@@ -20,48 +20,56 @@ export const calculateLinearTicks = ({ max, min }, scale) => {
 export const calculateLogTicks = ({ max, min }, logBase, scale) => {
   const scaleFactor = getScaleFactor(scale, 1);
 
-  const ticks = [];
-  if (logBase === '2' && min < 0 && max > 0) {
-    const end = -0.5 / scale;
-    let stepMultipler = 1 / logBase;
-    for (let i = min; i < max; i *= stepMultipler) {
-      ticks.push(i);
-      const nextMajorTick = i * stepMultipler;
-      const tickDiff = nextMajorTick - i;
-      const minorTickIncrement = tickDiff / scaleFactor;
-      for (let j = 1; j < scaleFactor; j += 1) {
-        const tick = i + (j * minorTickIncrement);
-        ticks.push(tick);
-      }
-      if (i >= end && i < 0) {
-        i = -ticks[ticks.length - 1] / 2;
-        stepMultipler = logBase;
-      }
+  const getMinorTickCalculator = () => {
+    if (logBase === '2') {
+      return (nextMajorTick, currentTick) => {
+        const tickDiff = nextMajorTick - currentTick;
+        const minorTickIncrement = tickDiff / scaleFactor;
+        const minorTicks = [];
+        for (let j = 1; j < scaleFactor; j += 1) {
+          const tick = currentTick + (j * minorTickIncrement);
+          minorTicks.push(tick);
+        }
+        return minorTicks;
+      };
     }
-  } else if (logBase === '2') {
-    const stepMultipler = min > 0 ? logBase : 1 / logBase;
-    for (let i = min; i < max; i *= stepMultipler) {
+    return (nextMajorTick, currentTick) => {
+      const minorTickIncrement = currentTick < 0 ? currentTick / scaleFactor : nextMajorTick / scaleFactor;
+      const tickStart = currentTick < 0 ? currentTick : nextMajorTick;
+      const minorTicks = [];
+      for (let j = scaleFactor - 1; j >= 1; j -= 1) {
+        const tick = tickStart - (j * minorTickIncrement);
+        minorTicks.push(tick);
+      }
+      return minorTicks;
+    };
+  };
+
+  const addMinorTicks = getMinorTickCalculator();
+
+  const ticks = [];
+  let stepMultiplier = min > 0 ? logBase : 1 / logBase;
+  if (min < 0 && max > 0) {
+    const end = -1 / logBase / scale;
+    for (let i = min; i < max; i *= stepMultiplier) {
       ticks.push(i);
-      const nextMajorTick = i * stepMultipler;
-      const tickDiff = nextMajorTick - i;
-      const minorTickIncrement = tickDiff / scaleFactor;
-      for (let j = 1; j < scaleFactor; j += 1) {
-        const tick = i + (j * minorTickIncrement);
-        ticks.push(tick);
+      if (
+        ticks[ticks.length - 1] >= end
+        && ticks[ticks.length - 1] < 0
+      ) {
+        i = -ticks[ticks.length - 1] / logBase;
+        stepMultiplier = logBase;
+      } else {
+        const nextMajorTick = i * stepMultiplier;
+        ticks.push(...addMinorTicks(nextMajorTick, i));
       }
     }
   } else {
-    for (let i = 0.1; i < max; i *= logBase) {
-      ticks.push(i);
-      const nextMajorTick = i * logBase;
-      const minorTickIncrement = nextMajorTick / scaleFactor;
-      for (let j = scaleFactor - 1; j >= 1; j -= 1) {
-        const tick = nextMajorTick - (j * minorTickIncrement);
-        ticks.push(tick);
-      }
+    for (let i = min; i < max; i *= stepMultiplier) {
+      const nextMajorTick = i * stepMultiplier;
+      ticks.push(i, ...addMinorTicks(nextMajorTick, i));
     }
   }
-
   ticks.push(max);
 
   return ticks;
