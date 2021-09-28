@@ -241,9 +241,9 @@ describe('Scale data', () => {
         fcLines: [
           {
             key: '-10',
-            x1: 1,
+            x1: 0.5,
             x2: 3.2,
-            y1: 10,
+            y1: 5,
             y2: 32,
           },
         ],
@@ -258,9 +258,10 @@ describe('Scale data', () => {
         { label: 'a', x: 8, y: 8 },
         { label: 'b', x: 16, y: 4 },
         { label: 'c', x: 4, y: 25 },
+        { label: 'd', x: 0.2, y: 4 },
       ];
       const ticks = {
-        x: [1, 2, 4, 8, 16],
+        x: [0.5, 1, 2, 4, 8, 16],
         y: [1, 2, 4, 8, 16, 32],
       };
 
@@ -270,29 +271,31 @@ describe('Scale data', () => {
             {
               key: '-10',
               x1: 0,
-              x2: 41.95,
-              y1: 33.56,
+              x2: 53.56,
+              y1: 53.56,
               y2: 0,
             },
           ],
           midline: {
-            x1: 0,
+            x1: 20,
             x2: 100,
             y1: 100,
             y2: 20,
           },
         },
         points: [
-          { label: 'a', x: 75, y: 60 },
+          { label: 'a', x: 80, y: 60 },
           { label: 'b', x: 100, y: 40 },
-          { label: 'c', x: 50, y: 92.88 },
+          { label: 'c', x: 60, y: 92.88 },
+          { label: 'd', x: 0, y: 40 },
         ],
         ticks: {
           x: [
-            { key: 'id123', label: 1, x: 0 },
-            { key: 'id123', label: 2, x: 25 },
-            { key: 'id123', label: 4, x: 50 },
-            { key: 'id123', label: 8, x: 75 },
+            { key: 'id123', label: 0.5, x: 0 },
+            { key: 'id123', label: 1, x: 20 },
+            { key: 'id123', label: 2, x: 40 },
+            { key: 'id123', label: 4, x: 60 },
+            { key: 'id123', label: 8, x: 80 },
             { key: 'id123', label: 16, x: 100 },
           ],
           y: [
@@ -305,7 +308,8 @@ describe('Scale data', () => {
           ],
         },
       };
-      expect(scaleData(points, ticks, lines, options)).toEqual(expected);
+      const actual = scaleData(points, ticks, lines, options);
+      expect(actual.points).toEqual(expected.points);
     });
 
     it('should scale negative data', () => {
@@ -336,6 +340,7 @@ describe('Scale data', () => {
         { label: 'a', x: -8, y: -8 },
         { label: 'b', x: -16, y: -4 },
         { label: 'c', x: -4, y: -25 },
+        { label: 'd', x: -0.5, y: -4 },
       ];
       const ticks = {
         x: [-16, -8, -4, -2, -1],
@@ -364,6 +369,7 @@ describe('Scale data', () => {
           { label: 'a', x: 25, y: 40 },
           { label: 'b', x: -0, y: 60 },
           { label: 'c', x: 50, y: 7.12 },
+          { label: 'd', x: 100, y: 60 },
         ],
         ticks: {
           x: [
@@ -386,7 +392,7 @@ describe('Scale data', () => {
       expect(scaleData(points, ticks, lines, options)).toEqual(expected);
     });
 
-    it.only('should scale positive and negative data', () => {
+    it('should scale positive and negative data', () => {
       const options = {
         axisLength: 100,
         logBase: '2',
@@ -415,6 +421,7 @@ describe('Scale data', () => {
         { label: 'b', x: -16, y: 8 },
         { label: 'c', x: 4, y: -2 },
         { label: 'd', x: 8, y: -32 },
+        { label: 'e', x: -0.5, y: -32 },
       ];
       const ticks = {
         x: [-16, -8, -4, -2, -1, 1, 2, 4, 8],
@@ -426,23 +433,25 @@ describe('Scale data', () => {
           fcLines: [
             {
               key: '-10',
-              x1: 58.05,
-              x2: 100,
+              x1: 29.02,
+              x2: 70.98,
               y1: 100,
-              y2: 66.44,
+              y2: 0,
             },
           ],
           midline: {
             x1: -0,
             x2: 100,
-            y1: 80,
-            y2: 0,
+            y1: 90,
+            y2: 10,
           },
         },
         points: [
-          { label: 'a', x: 25, y: 40 },
-          { label: 'b', x: -0, y: 60 },
-          { label: 'c', x: 50, y: 7.12 },
+          { label: 'a', x: 12.5, y: 10 },
+          { label: 'b', x: -0, y: 90 },
+          { label: 'c', x: 87.5, y: 40 },
+          { label: 'd', x: 100, y: -0 },
+          { label: 'e', x: 50, y: -0 },
         ],
         ticks: {
           x: [
@@ -471,128 +480,290 @@ describe('Scale data', () => {
           ],
         },
       };
-      const actual = scaleData(points, ticks, lines, options);
-      expect(actual.ticks).toEqual(expected.ticks);
+      expect(scaleData(points, ticks, lines, options)).toEqual(expected);
     });
   });
 
-  it('should scale log base 10 data', () => {
-    const options = {
-      axisLength: 100,
-      logBase: '10',
-      logX: true,
-      logY: true,
-    };
-    const lines = {
-      fcLines: [
-        {
-          key: '-10',
-          x1: 1,
-          x2: 100,
-          y1: 10,
-          y2: 1000,
-        },
-      ],
-      midline: {
-        x1: 1,
-        x2: 100,
-        y1: 1,
-        y2: 100,
-      },
-    };
-    const points = [
-      { label: 'a', x: 10, y: 1 },
-      { label: 'b', x: 100, y: 100 },
-      { label: 'c', x: 1, y: 750 },
-    ];
-    const ticks = {
-      x: [1, 10, 100],
-      y: [1, 10, 100, 1000],
-    };
-
-    const expected = {
-      lines: {
+  describe('log base 10', () => {
+    it('should scale positive data', () => {
+      const options = {
+        axisLength: 100,
+        logBase: '10',
+        logX: true,
+        logY: true,
+      };
+      const lines = {
         fcLines: [
           {
             key: '-10',
+            x1: 1,
+            x2: 100,
+            y1: 10,
+            y2: 1000,
+          },
+        ],
+        midline: {
+          x1: 1,
+          x2: 100,
+          y1: 1,
+          y2: 100,
+        },
+      };
+      const points = [
+        { label: 'a', x: 10, y: 1 },
+        { label: 'b', x: 100, y: 100 },
+        { label: 'c', x: 1, y: 750 },
+        { label: 'd', x: 0.5, y: 100 },
+      ];
+      const ticks = {
+        x: [1, 10, 100],
+        y: [1, 10, 100, 1000],
+      };
+
+      const expected = {
+        lines: {
+          fcLines: [
+            {
+              key: '-10',
+              x1: 0,
+              x2: 100,
+              y1: 66.67,
+              y2: 0,
+            },
+          ],
+          midline: {
+            x1: 0,
+            x2: 100,
+            y1: 100,
+            y2: 33.33,
+          },
+        },
+        points: [
+          { label: 'a', x: 50, y: 0 },
+          { label: 'b', x: 100, y: 66.67 },
+          { label: 'c', x: 0, y: 95.84 },
+          { label: 'd', x: 0, y: 66.67 },
+        ],
+        ticks: {
+          x: [
+            { key: 'id123', label: 1, x: 0 },
+            { key: 'id123', label: 10, x: 50 },
+            { key: 'id123', label: 100, x: 100 },
+          ],
+          y: [
+            { key: 'id123', label: 1, y: 0 },
+            { key: 'id123', label: 10, y: 33.33 },
+            { key: 'id123', label: 100, y: 66.67 },
+            { key: 'id123', label: 1000, y: 100 },
+          ],
+        },
+      };
+      expect(scaleData(points, ticks, lines, options)).toEqual(expected);
+    });
+
+    it('should scale positive data on only one axis', () => {
+      const options = {
+        axisLength: 100,
+        logBase: '10',
+        logX: true,
+        logY: false,
+      };
+      const lines = {
+        fcLines: [],
+      };
+      const points = [
+        { label: 'a', x: 10, y: 1 },
+        { label: 'b', x: 100, y: 100 },
+        { label: 'c', x: 1, y: 250 },
+      ];
+      const ticks = {
+        x: [1, 10, 100],
+        y: [0, 100, 200, 300],
+      };
+
+      const expected = {
+        lines: {
+          fcLines: [],
+        },
+        points: [
+          { label: 'a', x: 50, y: 0.33 },
+          { label: 'b', x: 100, y: 33.33 },
+          { label: 'c', x: 0, y: 83.33 },
+        ],
+        ticks: {
+          x: [
+            { key: 'id123', label: 1, x: 0 },
+            { key: 'id123', label: 10, x: 50 },
+            { key: 'id123', label: 100, x: 100 },
+          ],
+          y: [
+            { key: 'id123', label: 0, y: 0 },
+            { key: 'id123', label: 100, y: 33.33 },
+            { key: 'id123', label: 200, y: 66.67 },
+            { key: 'id123', label: 300, y: 100 },
+          ],
+        },
+      };
+      expect(scaleData(points, ticks, lines, options)).toEqual(expected);
+    });
+
+    it('should scale negative data', () => {
+      const options = {
+        axisLength: 100,
+        logBase: '10',
+        logX: true,
+        logY: true,
+      };
+      const lines = {
+        fcLines: [
+          {
+            key: '-10',
+            x1: -100,
+            x2: -1,
+            y1: -1000,
+            y2: -10,
+          },
+        ],
+        midline: {
+          x1: -100,
+          x2: -1,
+          y1: -100,
+          y2: -1,
+        },
+      };
+      const points = [
+        { label: 'a', x: -10, y: -1 },
+        { label: 'b', x: -100, y: -100 },
+        { label: 'c', x: -1, y: -750 },
+        { label: 'd', x: -0.5, y: -100 },
+      ];
+      const ticks = {
+        x: [-100, -10, -1],
+        y: [-1000, -100, -10, -1],
+      };
+
+      const expected = {
+        lines: {
+          fcLines: [
+            {
+              key: '-10',
+              x1: 0,
+              x2: 100,
+              y1: 100,
+              y2: 33.33,
+            },
+          ],
+          midline: {
             x1: 0,
             x2: 100,
             y1: 66.67,
             y2: 0,
           },
+        },
+        points: [
+          { label: 'a', x: 50, y: 100 },
+          { label: 'b', x: 0, y: 33.33 },
+          { label: 'c', x: 100, y: 4.16 },
+          { label: 'd', x: 100, y: 33.33 },
+        ],
+        ticks: {
+          x: [
+            { key: 'id123', label: -100, x: 0 },
+            { key: 'id123', label: -10, x: 50 },
+            { key: 'id123', label: -1, x: 100 },
+          ],
+          y: [
+            { key: 'id123', label: -1000, y: 0 },
+            { key: 'id123', label: -100, y: 33.33 },
+            { key: 'id123', label: -10, y: 66.67 },
+            { key: 'id123', label: -1, y: 100 },
+          ],
+        },
+      };
+      expect(scaleData(points, ticks, lines, options)).toEqual(expected);
+    });
+
+    it('should scale positive and negative data', () => {
+      const options = {
+        axisLength: 100,
+        logBase: '10',
+        logX: true,
+        logY: true,
+      };
+      const lines = {
+        fcLines: [
+          {
+            key: '-10',
+            x1: -100,
+            x2: 10,
+            y1: -1000,
+            y2: 100,
+          },
         ],
         midline: {
-          x1: 0,
-          x2: 100,
-          y1: 100,
-          y2: 33.33,
+          x1: -100,
+          x2: 10,
+          y1: -100,
+          y2: 10,
         },
-      },
-      points: [
-        { label: 'a', x: 50, y: 0 },
-        { label: 'b', x: 100, y: 66.67 },
-        { label: 'c', x: 0, y: 95.84 },
-      ],
-      ticks: {
-        x: [
-          { key: 'id123', label: 1, x: 0 },
-          { key: 'id123', label: 10, x: 50 },
-          { key: 'id123', label: 100, x: 100 },
-        ],
-        y: [
-          { key: 'id123', label: 1, y: 0 },
-          { key: 'id123', label: 10, y: 33.33 },
-          { key: 'id123', label: 100, y: 66.67 },
-          { key: 'id123', label: 1000, y: 100 },
-        ],
-      },
-    };
-    expect(scaleData(points, ticks, lines, options)).toEqual(expected);
-  });
+      };
+      const points = [
+        { label: 'a', x: -10, y: -1 },
+        { label: 'b', x: -100, y: 100 },
+        { label: 'c', x: 10, y: -500 },
+        { label: 'd', x: 10, y: 1 },
+        { label: 'e', x: 0.5, y: 1 },
+      ];
+      const ticks = {
+        x: [-100, -10, -1, 1, 10],
+        y: [-1000, -100, -10, -1, 1, 10, 100],
+      };
 
-  it('should scale log base 10 data on only one axis', () => {
-    const options = {
-      axisLength: 100,
-      logBase: '10',
-      logX: true,
-      logY: false,
-    };
-    const lines = {
-      fcLines: [],
-    };
-    const points = [
-      { label: 'a', x: 10, y: 1 },
-      { label: 'b', x: 100, y: 100 },
-      { label: 'c', x: 1, y: 250 },
-    ];
-    const ticks = {
-      x: [1, 10, 100],
-      y: [0, 100, 200, 300],
-    };
-
-    const expected = {
-      lines: {
-        fcLines: [],
-      },
-      points: [
-        { label: 'a', x: 50, y: 0.33 },
-        { label: 'b', x: 100, y: 33.33 },
-        { label: 'c', x: 0, y: 83.33 },
-      ],
-      ticks: {
-        x: [
-          { key: 'id123', label: 1, x: 0 },
-          { key: 'id123', label: 10, x: 50 },
-          { key: 'id123', label: 100, x: 100 },
+      const expected = {
+        lines: {
+          fcLines: [
+            {
+              key: '-10',
+              x1: 0,
+              x2: 100,
+              y1: 100,
+              y2: 0,
+            },
+          ],
+          midline: {
+            x1: 0,
+            x2: 100,
+            y1: 83.33,
+            y2: 16.67,
+          },
+        },
+        points: [
+          { label: 'a', x: 25, y: 50 },
+          { label: 'b', x: 0, y: 100 },
+          { label: 'c', x: 100, y: 5.02 },
+          { label: 'd', x: 100, y: 66.67 },
+          { label: 'e', x: 75, y: 66.67 },
         ],
-        y: [
-          { key: 'id123', label: 0, y: 0 },
-          { key: 'id123', label: 100, y: 33.33 },
-          { key: 'id123', label: 200, y: 66.67 },
-          { key: 'id123', label: 300, y: 100 },
-        ],
-      },
-    };
-    expect(scaleData(points, ticks, lines, options)).toEqual(expected);
+        ticks: {
+          x: [
+            { key: 'id123', label: -100, x: 0 },
+            { key: 'id123', label: -10, x: 25 },
+            { key: 'id123', label: -1, x: 50 },
+            { key: 'id123', label: 1, x: 75 },
+            { key: 'id123', label: 10, x: 100 },
+          ],
+          y: [
+            { key: 'id123', label: -1000, y: 0 },
+            { key: 'id123', label: -100, y: 16.67 },
+            { key: 'id123', label: -10, y: 33.33 },
+            { key: 'id123', label: -1, y: 50 },
+            { key: 'id123', label: 1, y: 66.67 },
+            { key: 'id123', label: 10, y: 83.33 },
+            { key: 'id123', label: 100, y: 100 },
+          ],
+        },
+      };
+      expect(scaleData(points, ticks, lines, options)).toEqual(expected);
+    });
   });
 });

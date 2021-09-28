@@ -32,10 +32,10 @@ const Scatter = forwardRef((
     >
       <rect width="100%" height="100%" fill="white" />
       <g transform="translate(0 50)">
-        {/* <Plot
+        <Plot
           lines={lines}
           points={points}
-        /> */}
+        />
         {/* <Axes ticks={ticks} /> */}
       </g>
     </svg>
