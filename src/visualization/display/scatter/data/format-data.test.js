@@ -24,6 +24,20 @@ describe('Format scatter plot data', () => {
     };
     const expected = {
       lines: {
+        axes: {
+          x: {
+            x1: 0,
+            x2: 100,
+            y1: 100,
+            y2: 100,
+          },
+          y: {
+            x1: 0,
+            x2: 0,
+            y1: 100,
+            y2: 0,
+          },
+        },
         fcLines: [
           {
             key: '-10',
@@ -89,6 +103,20 @@ describe('Format scatter plot data', () => {
 
     const expected = {
       lines: {
+        axes: {
+          x: {
+            x1: 0,
+            x2: 100,
+            y1: 100,
+            y2: 100,
+          },
+          y: {
+            x1: 0,
+            x2: 0,
+            y1: 100,
+            y2: 0,
+          },
+        },
         fcLines: [
           {
             key: '-10',

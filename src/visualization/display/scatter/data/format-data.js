@@ -1,7 +1,7 @@
 import defineAxisBoundaries from './define-axis-boundaries';
 import defineTicks from './define-ticks';
 import scaleData from './scale-data';
-import { defineFcLines, defineMidline } from './define-lines';
+import { defineAxes, defineFcLines, defineMidline } from './define-lines';
 
 const formatData = (data, options) => {
   const {
@@ -43,6 +43,7 @@ const formatData = (data, options) => {
   };
 
   const lines = {
+    axes: defineAxes(ticks),
     fcLines: showFcLines ? defineFcLines(fcLines, ticks) : [],
     midline: showMidline ? defineMidline(ticks) : {},
   };

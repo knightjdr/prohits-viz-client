@@ -1,7 +1,7 @@
 import PropTypes from 'prop-types';
 import React, { forwardRef } from 'react';
 
-import Axes from './axes/axes-container';
+import Labels from './labels/labels-container';
 import Plot from './plot/plot-container';
 
 import './scatter.css';
@@ -35,8 +35,9 @@ const Scatter = forwardRef((
         <Plot
           lines={lines}
           points={points}
+          ticks={ticks}
         />
-        {/* <Axes ticks={ticks} /> */}
+        <Labels />
       </g>
     </svg>
   </div>

@@ -12,6 +12,20 @@ describe('Scale data', () => {
         logBase: 'none',
       };
       const lines = {
+        axes: {
+          x: {
+            x1: 0,
+            x2: 20,
+            y1: 0,
+            y2: 0,
+          },
+          y: {
+            x1: 0,
+            x2: 0,
+            y1: 0,
+            y2: 30,
+          },
+        },
         fcLines: [
           {
             key: '-10',
@@ -40,6 +54,20 @@ describe('Scale data', () => {
 
       const expected = {
         lines: {
+          axes: {
+            x: {
+              x1: 0,
+              x2: 100,
+              y1: 100,
+              y2: 100,
+            },
+            y: {
+              x1: 0,
+              x2: 0,
+              y1: 100,
+              y2: 0,
+            },
+          },
           fcLines: [
             {
               key: '-10',
@@ -84,6 +112,20 @@ describe('Scale data', () => {
         logBase: 'none',
       };
       const lines = {
+        axes: {
+          x: {
+            x1: -20,
+            x2: 0,
+            y1: 0,
+            y2: 0,
+          },
+          y: {
+            x1: 0,
+            x2: 0,
+            y1: -30,
+            y2: 0,
+          },
+        },
         fcLines: [
           {
             key: '-10',
@@ -112,6 +154,20 @@ describe('Scale data', () => {
 
       const expected = {
         lines: {
+          axes: {
+            x: {
+              x1: 0,
+              x2: 100,
+              y1: 0,
+              y2: 0,
+            },
+            y: {
+              x1: 100,
+              x2: 100,
+              y1: 100,
+              y2: 0,
+            },
+          },
           fcLines: [
             {
               key: '-10',
@@ -156,6 +212,20 @@ describe('Scale data', () => {
         logBase: 'none',
       };
       const lines = {
+        axes: {
+          x: {
+            x1: -20,
+            x2: 20,
+            y1: 0,
+            y2: 0,
+          },
+          y: {
+            x1: 0,
+            x2: 0,
+            y1: -30,
+            y2: 20,
+          },
+        },
         fcLines: [
           {
             key: '-10',
@@ -185,6 +255,20 @@ describe('Scale data', () => {
 
       const expected = {
         lines: {
+          axes: {
+            x: {
+              x1: 0,
+              x2: 100,
+              y1: 40,
+              y2: 40,
+            },
+            y: {
+              x1: 50,
+              x2: 50,
+              y1: 100,
+              y2: 0,
+            },
+          },
           fcLines: [
             {
               key: '-10',
@@ -238,6 +322,20 @@ describe('Scale data', () => {
         logY: true,
       };
       const lines = {
+        axes: {
+          x: {
+            x1: 0.5,
+            x2: 16,
+            y1: 1,
+            y2: 1,
+          },
+          y: {
+            x1: 0.5,
+            x2: 0.5,
+            y1: 1,
+            y2: 32,
+          },
+        },
         fcLines: [
           {
             key: '-10',
@@ -267,6 +365,20 @@ describe('Scale data', () => {
 
       const expected = {
         lines: {
+          axes: {
+            x: {
+              x1: 0,
+              x2: 100,
+              y1: 100,
+              y2: 100,
+            },
+            y: {
+              x1: 0,
+              x2: 0,
+              y1: 100,
+              y2: 0,
+            },
+          },
           fcLines: [
             {
               key: '-10',
@@ -320,6 +432,20 @@ describe('Scale data', () => {
         logY: true,
       };
       const lines = {
+        axes: {
+          x: {
+            x1: -16,
+            x2: -1,
+            y1: -1,
+            y2: -1,
+          },
+          y: {
+            x1: -1,
+            x2: -1,
+            y1: -32,
+            y2: -1,
+          },
+        },
         fcLines: [
           {
             key: '-10',
@@ -349,6 +475,20 @@ describe('Scale data', () => {
 
       const expected = {
         lines: {
+          axes: {
+            x: {
+              x1: -0,
+              x2: 100,
+              y1: 0,
+              y2: 0,
+            },
+            y: {
+              x1: 100,
+              x2: 100,
+              y1: 100,
+              y2: 0,
+            },
+          },
           fcLines: [
             {
               key: '-10',
@@ -400,6 +540,20 @@ describe('Scale data', () => {
         logY: true,
       };
       const lines = {
+        axes: {
+          x: {
+            x1: -16,
+            x2: 8,
+            y1: 0,
+            y2: 0,
+          },
+          y: {
+            x1: 0,
+            x2: 0,
+            y1: -32,
+            y2: 16,
+          },
+        },
         fcLines: [
           {
             key: '-10',
@@ -430,6 +584,20 @@ describe('Scale data', () => {
 
       const expected = {
         lines: {
+          axes: {
+            x: {
+              x1: -0,
+              x2: 100,
+              y1: 45,
+              y2: 45,
+            },
+            y: {
+              x1: 56.25,
+              x2: 56.25,
+              y1: 100,
+              y2: 0,
+            },
+          },
           fcLines: [
             {
               key: '-10',
@@ -451,7 +619,7 @@ describe('Scale data', () => {
           { label: 'b', x: -0, y: 90 },
           { label: 'c', x: 87.5, y: 40 },
           { label: 'd', x: 100, y: -0 },
-          { label: 'e', x: 50, y: -0 },
+          { label: 'e', x: 53.13, y: -0 },
         ],
         ticks: {
           x: [
@@ -493,6 +661,20 @@ describe('Scale data', () => {
         logY: true,
       };
       const lines = {
+        axes: {
+          x: {
+            x1: 1,
+            x2: 100,
+            y1: 1,
+            y2: 1,
+          },
+          y: {
+            x1: 1,
+            x2: 1,
+            y1: 1,
+            y2: 1000,
+          },
+        },
         fcLines: [
           {
             key: '-10',
@@ -522,6 +704,20 @@ describe('Scale data', () => {
 
       const expected = {
         lines: {
+          axes: {
+            x: {
+              x1: 0,
+              x2: 100,
+              y1: 100,
+              y2: 100,
+            },
+            y: {
+              x1: 0,
+              x2: 0,
+              y1: 100,
+              y2: 0,
+            },
+          },
           fcLines: [
             {
               key: '-10',
@@ -569,6 +765,20 @@ describe('Scale data', () => {
         logY: false,
       };
       const lines = {
+        axes: {
+          x: {
+            x1: 1,
+            x2: 100,
+            y1: 0,
+            y2: 0,
+          },
+          y: {
+            x1: 1,
+            x2: 1,
+            y1: 0,
+            y2: 300,
+          },
+        },
         fcLines: [],
       };
       const points = [
@@ -583,7 +793,22 @@ describe('Scale data', () => {
 
       const expected = {
         lines: {
+          axes: {
+            x: {
+              x1: 0,
+              x2: 100,
+              y1: 100,
+              y2: 100,
+            },
+            y: {
+              x1: 0,
+              x2: 0,
+              y1: 100,
+              y2: 0,
+            },
+          },
           fcLines: [],
+          midline: undefined,
         },
         points: [
           { label: 'a', x: 50, y: 0.33 },
@@ -615,6 +840,20 @@ describe('Scale data', () => {
         logY: true,
       };
       const lines = {
+        axes: {
+          x: {
+            x1: -100,
+            x2: -1,
+            y1: 0,
+            y2: 0,
+          },
+          y: {
+            x1: -1,
+            x2: -1,
+            y1: -1000,
+            y2: -1,
+          },
+        },
         fcLines: [
           {
             key: '-10',
@@ -644,6 +883,20 @@ describe('Scale data', () => {
 
       const expected = {
         lines: {
+          axes: {
+            x: {
+              x1: 0,
+              x2: 100,
+              y1: 0,
+              y2: 0,
+            },
+            y: {
+              x1: 100,
+              x2: 100,
+              y1: 100,
+              y2: 0,
+            },
+          },
           fcLines: [
             {
               key: '-10',
@@ -691,6 +944,20 @@ describe('Scale data', () => {
         logY: true,
       };
       const lines = {
+        axes: {
+          x: {
+            x1: -100,
+            x2: 10,
+            y1: 0,
+            y2: 0,
+          },
+          y: {
+            x1: 0,
+            x2: 0,
+            y1: -1000,
+            y2: 100,
+          },
+        },
         fcLines: [
           {
             key: '-10',
@@ -721,6 +988,20 @@ describe('Scale data', () => {
 
       const expected = {
         lines: {
+          axes: {
+            x: {
+              x1: 0,
+              x2: 100,
+              y1: 41.67,
+              y2: 41.67,
+            },
+            y: {
+              x1: 62.5,
+              x2: 62.5,
+              y1: 100,
+              y2: 0,
+            },
+          },
           fcLines: [
             {
               key: '-10',
@@ -742,7 +1023,7 @@ describe('Scale data', () => {
           { label: 'b', x: 0, y: 100 },
           { label: 'c', x: 100, y: 5.02 },
           { label: 'd', x: 100, y: 66.67 },
-          { label: 'e', x: 75, y: 66.67 },
+          { label: 'e', x: 68.75, y: 66.67 },
         ],
         ticks: {
           x: [

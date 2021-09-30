@@ -1,17 +1,14 @@
-import PropTypes from 'prop-types';
 import React from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 
-import Axes from './axes';
+import Labels from './labels';
 
 import handlers from '../transform/event-handlers';
 import { selectData, selectDataProperty } from '../../../../state/selector/visualization/data-selector';
 import { selectPlot } from '../../../../state/selector/visualization/scatter-selector';
 import { updateDisplaySetting } from '../../../../state/visualization/settings/display-actions';
 
-const AxesContainer = ({
-  ticks,
-}) => {
+const LabelsContainer = () => {
   const dispatch = useDispatch();
 
   const dimensions = useSelector((state) => selectData(state, 'dimensions'));
@@ -61,27 +58,20 @@ const AxesContainer = ({
     handlers.zoom(e, options);
   };
 
+  const labelFontSize = fontSize * (4 / 3);
+
   return (
-    <Axes
-      fontSize={fontSize}
+    <Labels
+      fontSize={labelFontSize}
       handleMouseDownX={handleMouseDownX}
       handleMouseDownY={handleMouseDownY}
       handleWheelX={handleWheelX}
       handleWheelY={handleWheelY}
       height={dimensions.height}
       labels={plot.labels}
-      ticks={ticks}
-      transform={transform}
       width={dimensions.width}
     />
   );
 };
 
-AxesContainer.propTypes = {
-  ticks: PropTypes.shape({
-    x: PropTypes.arrayOf(PropTypes.shape({})),
-    y: PropTypes.arrayOf(PropTypes.shape({})),
-  }).isRequired,
-};
-
-export default AxesContainer;
+export default LabelsContainer;

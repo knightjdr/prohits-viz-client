@@ -1,4 +1,148 @@
-import { defineFcLines, defineMidline } from './define-lines';
+import { defineAxes, defineFcLines, defineMidline } from './define-lines';
+
+describe('Axes', () => {
+  describe('linear', () => {
+    it('should define axes with positive ticks', () => {
+      const ticks = {
+        x: [0, 15, 30],
+        y: [0, 30, 60],
+      };
+
+      const expected = {
+        x: {
+          x1: 0,
+          x2: 30,
+          y1: 0,
+          y2: 0,
+        },
+        y: {
+          x1: 0,
+          x2: 0,
+          y1: 0,
+          y2: 60,
+        },
+      };
+      expect(defineAxes(ticks)).toEqual(expected);
+    });
+
+    it('should define axes with negative ticks', () => {
+      const ticks = {
+        x: [-30, -15, 0],
+        y: [-60, -30, 0],
+      };
+
+      const expected = {
+        x: {
+          x1: -30,
+          x2: 0,
+          y1: 0,
+          y2: 0,
+        },
+        y: {
+          x1: 0,
+          x2: 0,
+          y1: -60,
+          y2: 0,
+        },
+      };
+      expect(defineAxes(ticks)).toEqual(expected);
+    });
+
+    it('should define axes with positive and negative ticks', () => {
+      const ticks = {
+        x: [-30, -15, 0, 15],
+        y: [-60, -30, 0, 30, 60],
+      };
+
+      const expected = {
+        x: {
+          x1: -30,
+          x2: 15,
+          y1: 0,
+          y2: 0,
+        },
+        y: {
+          x1: 0,
+          x2: 0,
+          y1: -60,
+          y2: 60,
+        },
+      };
+      expect(defineAxes(ticks)).toEqual(expected);
+    });
+  });
+
+  describe('log', () => {
+    it('should define axes with positive ticks', () => {
+      const ticks = {
+        x: [1, 2, 4],
+        y: [1, 2, 4, 8],
+      };
+
+      const expected = {
+        x: {
+          x1: 1,
+          x2: 4,
+          y1: 1,
+          y2: 1,
+        },
+        y: {
+          x1: 1,
+          x2: 1,
+          y1: 1,
+          y2: 8,
+        },
+      };
+      expect(defineAxes(ticks)).toEqual(expected);
+    });
+
+    it('should define axes with negative ticks', () => {
+      const ticks = {
+        x: [-4, -2, -1],
+        y: [-8, -4, -2, -1],
+      };
+
+      const expected = {
+        x: {
+          x1: -4,
+          x2: -1,
+          y1: -1,
+          y2: -1,
+        },
+        y: {
+          x1: -1,
+          x2: -1,
+          y1: -8,
+          y2: -1,
+        },
+      };
+      expect(defineAxes(ticks)).toEqual(expected);
+    });
+
+    it('should define axes with positive and negative ticks', () => {
+      const ticks = {
+        x: [-4, -2, -1, 1, 2],
+        y: [-8, -4, -2, -1, 1, 2, 4, 8],
+      };
+
+      const expected = {
+        x: {
+          x1: -4,
+          x2: 2,
+          y1: 0,
+          y2: 0,
+        },
+        y: {
+          x1: 0,
+          x2: 0,
+          y1: -8,
+          y2: 8,
+        },
+      };
+      expect(defineAxes(ticks)).toEqual(expected);
+    });
+  });
+});
 
 describe('Fold change lines', () => {
   it('should define lines with positive ticks', () => {

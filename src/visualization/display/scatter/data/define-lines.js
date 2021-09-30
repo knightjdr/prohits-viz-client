@@ -1,3 +1,30 @@
+export const defineAxes = (ticks) => {
+  const xOrigin = ticks.x[0] === 0
+    || ticks.x[ticks.x.length - 1] === 0
+    || (ticks.x[0] < 0 && ticks.x[ticks.x.length - 1] > 0)
+    ? 0
+    : ticks.x[ticks.x.reduce((iMin, tick, i, arr) => (Math.abs(tick) < Math.abs(arr[iMin]) ? i : iMin), 0)];
+  const yOrigin = ticks.y[0] === 0
+    || ticks.y[ticks.y.length - 1] === 0
+    || (ticks.y[0] < 0 && ticks.y[ticks.y.length - 1] > 0)
+    ? 0
+    : ticks.y[ticks.y.reduce((iMin, tick, i, arr) => (Math.abs(tick) < Math.abs(arr[iMin]) ? i : iMin), 0)];
+  return {
+    x: {
+      x1: ticks.x[0],
+      x2: ticks.x[ticks.x.length - 1],
+      y1: yOrigin,
+      y2: yOrigin,
+    },
+    y: {
+      x1: xOrigin,
+      x2: xOrigin,
+      y1: ticks.y[0],
+      y2: ticks.y[ticks.y.length - 1],
+    },
+  };
+};
+
 export const defineFcLines = (fcLines, ticks) => (
   fcLines.map((fc) => {
     const magnitude = Math.abs(fc);

@@ -2,6 +2,7 @@ import PropTypes from 'prop-types';
 import React from 'react';
 import OverlayContainer from '../overlay/overlay-container';
 
+import Axes from './axes/axes-container';
 import Lines from './lines/lines-container';
 import Points from './points';
 
@@ -16,6 +17,7 @@ const Plot = ({
   lines,
   points,
   searchLabels,
+  ticks,
   transform,
 }) => (
   axisLength > 0
@@ -27,12 +29,20 @@ const Plot = ({
       transform="translate(100 0)"
     >
       <defs>
+        <clipPath id="plot_axis_clip">
+          <rect
+            height={axisLength + 50}
+            width={axisLength + 80}
+            x={-50}
+            y={-10}
+          />
+        </clipPath>
         <clipPath id="plot_points_clip">
           <rect
-            height={axisLength + 20}
-            width={axisLength + 20}
-            x={0}
-            y={-20}
+            height={axisLength + 10}
+            width={axisLength + 10}
+            x={-5}
+            y={-5}
           />
         </clipPath>
       </defs>
@@ -44,6 +54,14 @@ const Plot = ({
           x={0}
           y={0}
         />
+      </g>
+      <g clipPath="url(#plot_axis_clip)">
+        <g transform={transform.matrix.plot}>
+          <Axes
+            axes={lines.axes}
+            ticks={ticks}
+          />
+        </g>
       </g>
       <g clipPath="url(#plot_points_clip)">
         <g transform={transform.matrix.plot}>
@@ -78,6 +96,20 @@ Plot.propTypes = {
   handleWheel: PropTypes.func.isRequired,
   labels: PropTypes.shape({}).isRequired,
   lines: PropTypes.shape({
+    axes: PropTypes.shape({
+      x: PropTypes.shape({
+        x1: PropTypes.number,
+        x2: PropTypes.number,
+        y1: PropTypes.number,
+        y2: PropTypes.number,
+      }),
+      y: PropTypes.shape({
+        x1: PropTypes.number,
+        x2: PropTypes.number,
+        y1: PropTypes.number,
+        y2: PropTypes.number,
+      }),
+    }).isRequired,
     fcLines: PropTypes.arrayOf(
       PropTypes.shape({
         key: PropTypes.string,
@@ -103,6 +135,22 @@ Plot.propTypes = {
     }),
   ).isRequired,
   searchLabels: PropTypes.shape({}).isRequired,
+  ticks: PropTypes.shape({
+    x: PropTypes.arrayOf(
+      PropTypes.shape({
+        key: PropTypes.string,
+        label: PropTypes.number,
+        x: PropTypes.number,
+      }),
+    ),
+    y: PropTypes.arrayOf(
+      PropTypes.shape({
+        key: PropTypes.string,
+        label: PropTypes.number,
+        y: PropTypes.number,
+      }),
+    ),
+  }).isRequired,
   transform: PropTypes.shape({
     matrix: PropTypes.shape({
       plot: PropTypes.string,

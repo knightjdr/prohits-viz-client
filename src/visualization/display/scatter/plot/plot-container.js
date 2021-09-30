@@ -15,6 +15,7 @@ import getCustomPointsFromGroups from './customization/get-custom-points-from-gr
 const PlotContainer = ({
   lines,
   points,
+  ticks,
 }) => {
   const dispatch = useDispatch();
 
@@ -79,6 +80,7 @@ const PlotContainer = ({
       lines={lines}
       points={points}
       searchLabels={searchLabels}
+      ticks={ticks}
       transform={transform}
     />
   );
@@ -86,6 +88,20 @@ const PlotContainer = ({
 
 PlotContainer.propTypes = {
   lines: PropTypes.shape({
+    axes: PropTypes.shape({
+      x: PropTypes.shape({
+        x1: PropTypes.number,
+        x2: PropTypes.number,
+        y1: PropTypes.number,
+        y2: PropTypes.number,
+      }),
+      y: PropTypes.shape({
+        x1: PropTypes.number,
+        x2: PropTypes.number,
+        y1: PropTypes.number,
+        y2: PropTypes.number,
+      }),
+    }).isRequired,
     fcLines: PropTypes.arrayOf(
       PropTypes.shape({
         key: PropTypes.string,
@@ -110,6 +126,22 @@ PlotContainer.propTypes = {
       y: PropTypes.number,
     }),
   ).isRequired,
+  ticks: PropTypes.shape({
+    x: PropTypes.arrayOf(
+      PropTypes.shape({
+        key: PropTypes.string,
+        label: PropTypes.number,
+        x: PropTypes.number,
+      }),
+    ),
+    y: PropTypes.arrayOf(
+      PropTypes.shape({
+        key: PropTypes.string,
+        label: PropTypes.number,
+        y: PropTypes.number,
+      }),
+    ),
+  }).isRequired,
 };
 
 export default PlotContainer;

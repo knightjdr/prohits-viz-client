@@ -28,9 +28,10 @@ const scaleData = (points, ticks, lines, options) => {
        * For negative points, these are treated as positive and then the negative axis length
        * is subtracted to get their real value.
        *
-       * For positive values, the negative axis length and void need to be added to all values.
-       * Also, any values falling in the void area are set to their nearest adjacent tick, as
-       * zero values cannot be transformed on a log scale.
+       * For positive values, the negative axis length and void need to be added to all values
+       * to account for the negative axis region.
+       *
+       * Any values falling in the void area are linear scaled.
        */
       const numPositiveTicks = ticks[vertex].reduce((accum, tick) => (tick > 0 ? accum + 1 : accum), 0);
       const numNegativeTicks = ticks[vertex].length - numPositiveTicks;
@@ -64,13 +65,19 @@ const scaleData = (points, ticks, lines, options) => {
         : 0;
       const cNeg = -1 * kNeg * logFunc(negativeExtremes.min);
       const cPos = -1 * kPos * logFunc(positiveExtremes.min);
+      const scaleLinear = (point) => round(
+        negAxisLength + (((point + negativeExtremes.min) / (positiveExtremes.min + negativeExtremes.min)) * voidSpace),
+        2,
+      );
       return (point) => {
         if (point >= 0) {
-          const value = point < positiveExtremes.min ? positiveExtremes.min : point;
-          return round(kPos * logFunc(value) + cPos + negAxisLength + voidSpace, 2);
+          return point < positiveExtremes.min
+            ? scaleLinear(point)
+            : round(kPos * logFunc(point) + cPos + negAxisLength + voidSpace, 2);
         }
-        const value = point > -negativeExtremes.min ? -negativeExtremes.min : point;
-        return round(negAxisLength - (kNeg * logFunc(Math.abs(value)) + cNeg), 2);
+        return point > -negativeExtremes.min
+          ? scaleLinear(point)
+          : round(negAxisLength - (kNeg * logFunc(Math.abs(point)) + cNeg), 2);
       };
     }
     return (point) => round(((point - first) / (last - first)) * axisLength, 2);
@@ -89,6 +96,10 @@ const scaleData = (points, ticks, lines, options) => {
 
   return {
     lines: {
+      axes: {
+        x: scaleLine(lines.axes.x),
+        y: scaleLine(lines.axes.y),
+      },
       fcLines: lines.fcLines.map((line) => scaleLine(line)),
       midline: lines.midline && scaleLine(lines.midline),
     },
