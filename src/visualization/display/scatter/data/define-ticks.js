@@ -76,7 +76,10 @@ export const calculateLogTicks = ({ max, min }, logBase, scale) => {
 };
 
 const defineTicks = (axisBoundaries, options) => {
-  const { logAxis, scale } = options;
+  const { logAxis, scale, userTicks } = options;
+  if (Array.isArray(userTicks) && userTicks.length > 1) {
+    return userTicks;
+  }
   return logAxis !== 'none'
     ? calculateLogTicks(axisBoundaries, logAxis, scale)
     : calculateLinearTicks(axisBoundaries, scale);

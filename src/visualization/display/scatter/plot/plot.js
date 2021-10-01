@@ -39,10 +39,10 @@ const Plot = ({
         </clipPath>
         <clipPath id="plot_points_clip">
           <rect
-            height={axisLength + 10}
-            width={axisLength + 10}
-            x={-5}
-            y={-5}
+            height={axisLength}
+            width={axisLength}
+            x={0}
+            y={0}
           />
         </clipPath>
       </defs>
@@ -54,14 +54,6 @@ const Plot = ({
           x={0}
           y={0}
         />
-      </g>
-      <g clipPath="url(#plot_axis_clip)">
-        <g transform={transform.matrix.plot}>
-          <Axes
-            axes={lines.axes}
-            ticks={ticks}
-          />
-        </g>
       </g>
       <g clipPath="url(#plot_points_clip)">
         <g transform={transform.matrix.plot}>
@@ -80,6 +72,14 @@ const Plot = ({
             searchLabels={searchLabels}
             points={points}
             scale={transform.scale}
+          />
+        </g>
+      </g>
+      <g clipPath="url(#plot_axis_clip)">
+        <g transform={transform.matrix.plot}>
+          <Axes
+            axes={lines.axes}
+            ticks={ticks}
           />
         </g>
       </g>

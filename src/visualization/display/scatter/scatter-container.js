@@ -26,6 +26,8 @@ const ScatterContainer = () => {
     logBase,
     logX,
     logY,
+    xTicks,
+    yTicks,
   } = settings;
 
   const windowDimensions = useWindowDimension(50);
@@ -68,6 +70,8 @@ const ScatterContainer = () => {
         scale: transform.scale,
         showFcLines,
         showMidline,
+        xTicks,
+        yTicks,
       };
       return formatData(points, options);
     },
@@ -83,6 +87,8 @@ const ScatterContainer = () => {
       showMidline,
       transform.scale,
       windowDimensions,
+      xTicks,
+      yTicks,
     ],
   );
 

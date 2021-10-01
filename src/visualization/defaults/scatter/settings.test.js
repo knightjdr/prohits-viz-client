@@ -1,4 +1,10 @@
-import fillSettings, { defaultState, validateLogAxis, validateSettings } from './settings';
+import fillSettings,
+{
+  defaultState,
+  validateLogAxis,
+  validateSettings,
+  validateTicks,
+} from './settings';
 
 describe('Default settings scatterplot', () => {
   describe('Validate log axis', () => {
@@ -31,6 +37,44 @@ describe('Default settings scatterplot', () => {
     });
   });
 
+  describe('Validate ticks', () => {
+    it('should return default array when tick argument is null', () => {
+      const field = 'xTicks';
+      const settings = {
+        logBase: 'none',
+        logX: false,
+        logY: false,
+        xTicks: null,
+      };
+      const expected = [];
+      expect(validateTicks(field, settings)).toEqual(expected);
+    });
+
+    it('should return input array filtered and sorted for numbers', () => {
+      const field = 'xTicks';
+      const settings = {
+        logBase: 'none',
+        logX: false,
+        logY: false,
+        xTicks: [0, '10', 5, 15],
+      };
+      const expected = [0, 5, 10, 15];
+      expect(validateTicks(field, settings)).toEqual(expected);
+    });
+
+    it('should return input array filtered and sorted for log axis', () => {
+      const field = 'xTicks';
+      const settings = {
+        logBase: '2',
+        logX: true,
+        logY: false,
+        xTicks: [1, -2, 0, 0, 'a', '8', 4],
+      };
+      const expected = [-2, 1, 4, 8];
+      expect(validateTicks(field, settings)).toEqual(expected);
+    });
+  });
+
   describe('Validate settings', () => {
     it('should return user-defined settings when valid', () => {
       const userSettings = {
@@ -42,6 +86,8 @@ describe('Default settings scatterplot', () => {
         xFilter: 1,
         yFilter: 1,
         otherField: 1,
+        xTicks: [1, 2, 4, 8],
+        yTicks: [1, 2, 4],
       };
       const expected = userSettings;
       expect(validateSettings(userSettings)).toEqual(expected);
@@ -56,6 +102,8 @@ describe('Default settings scatterplot', () => {
         logY: 'true',
         xFilter: '1',
         yFilter: '1',
+        xTicks: null,
+        yTicks: null,
       };
       const expected = defaultState;
       expect(validateSettings(userSettings)).toEqual(expected);
@@ -72,6 +120,8 @@ describe('Default settings scatterplot', () => {
         logY: true,
         xFilter: 1,
         yFilter: 1,
+        xTicks: [1, 2, 4, 8],
+        yTicks: [1, 2, 4],
         otherField: 1,
       };
       const userSettings = {
@@ -93,6 +143,8 @@ describe('Default settings scatterplot', () => {
         logY: true,
         xFilter: 1,
         yFilter: 1,
+        xTicks: [1, 2, 4, 8],
+        yTicks: [1, 2, 4],
         otherField: 1,
       };
       const userSettings = {
@@ -118,6 +170,8 @@ describe('Default settings scatterplot', () => {
         logY: true,
         xFilter: 1,
         yFilter: 1,
+        xTicks: [1, 2, 4, 8],
+        yTicks: [1, 2, 4],
         otherField: 1,
       };
       const userSettings = settings;

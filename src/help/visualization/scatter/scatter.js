@@ -125,14 +125,14 @@ const Scatter = () => (
     <figure className="help__image-screenshot">
       <Image
         alt="Interactive scatter plot settings"
-        height={487}
+        height={560}
         images={images}
         name="scatter-settings"
-        width={700}
+        width={733}
       />
       <figcaption>
         <span>Customizable settings</span>
-        . Customize the axes, font size and perform filtering.
+        . Customize the axes, font size, tick marks and perform filtering.
       </figcaption>
     </figure>
     <h4 id="settings-image">Image</h4>
@@ -161,7 +161,17 @@ const Scatter = () => (
       <span className="help__inner_bold">Filters</span>
       {' '}
       area has inputs for filtering the points to display on the image by axis.
-      The filters are inclusive of the value specified.
+      The filters are inclusive of the value specified and compare against the absolute
+      value of points, i.e. both -2 and +2 would pass a filter of 2.
+    </p>
+    <h4 id="settings-ticks">Ticks</h4>
+    <p>
+      The
+      {' '}
+      <span className="help__inner_bold">Ticks</span>
+      {' '}
+      area has inputs for setting custom ticks marks. Ticks can be comma- or whitespace-separated.
+      At least two values must be entered and a zero value is invalid for log-scaled axes.
     </p>
     <h4 id="settings-reset">Reset</h4>
     <p>

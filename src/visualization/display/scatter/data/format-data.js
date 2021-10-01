@@ -14,6 +14,8 @@ const formatData = (data, options) => {
     scale,
     showFcLines,
     showMidline,
+    xTicks,
+    yTicks,
   } = options;
 
   const axisBoundaries = defineAxisBoundaries(
@@ -31,6 +33,7 @@ const formatData = (data, options) => {
       {
         logAxis: logX ? logBase : 'none',
         scale,
+        userTicks: xTicks,
       },
     ),
     y: defineTicks(
@@ -38,6 +41,7 @@ const formatData = (data, options) => {
       {
         logAxis: logY ? logBase : 'none',
         scale,
+        userTicks: yTicks,
       },
     ),
   };

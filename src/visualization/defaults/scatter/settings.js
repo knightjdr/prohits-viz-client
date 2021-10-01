@@ -1,6 +1,7 @@
 import fillSnapshots from '../snapshot';
+import filterTicks from '../../display/side-panel/panels/settings/scatter/ticks/filter-ticks';
 import isObject from '../../../utils/is-object';
-import { validateBoolean, validateNumber } from '../../../utils/validate-type';
+import { validateArray, validateBoolean, validateNumber } from '../../../utils/validate-type';
 
 export const defaultState = {
   equalScaleAxes: false,
@@ -10,6 +11,8 @@ export const defaultState = {
   logY: false,
   xFilter: 0,
   yFilter: 0,
+  xTicks: [],
+  yTicks: [],
 };
 
 const acceptedLogBase = {
@@ -29,6 +32,15 @@ export const validateLogAxis = (base, logAxis, defaultLogAxis) => {
   return validateBoolean(logAxis, defaultLogAxis);
 };
 
+export const validateTicks = (field, settings) => {
+  const defaultTicks = defaultState[field];
+  const ticks = settings[field];
+
+  const arr = validateArray(ticks, defaultTicks);
+
+  return filterTicks(field, arr, settings);
+};
+
 export const validateSettings = (userSettings) => {
   if (!userSettings) {
     return { ...defaultState };
@@ -42,6 +54,8 @@ export const validateSettings = (userSettings) => {
     logY,
     xFilter,
     yFilter,
+    xTicks,
+    yTicks,
     ...other
   } = userSettings;
 
@@ -55,6 +69,8 @@ export const validateSettings = (userSettings) => {
     logY: validateLogAxis(validatedLogBase, logY, defaultState.logY),
     xFilter: validateNumber(xFilter, defaultState.xFilter),
     yFilter: validateNumber(yFilter, defaultState.yFilter),
+    xTicks: validateTicks('xTicks', userSettings),
+    yTicks: validateTicks('yTicks', userSettings),
   };
 
   return settings;

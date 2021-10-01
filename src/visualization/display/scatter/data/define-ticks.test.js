@@ -281,6 +281,21 @@ describe('Define ticks', () => {
   });
 
   describe('define ticks from data', () => {
+    it('should return user input ticks', () => {
+      const axisBoundaries = {
+        max: 30,
+        min: 0,
+      };
+      const options = {
+        logAxis: 'none',
+        scale: 1,
+        userTicks: [0, 15, 30],
+      };
+
+      const expected = [0, 15, 30];
+      expect(defineTicks(axisBoundaries, options)).toEqual(expected);
+    });
+
     it('should define linear ticks when base is "none"', () => {
       const axisBoundaries = {
         max: 30,
