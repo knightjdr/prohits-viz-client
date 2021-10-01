@@ -42,6 +42,14 @@ const Advanced = ({
       />
     </div>
     <div className="gprofiler__advanced-menus">
+      <InputText
+        id="geneSeparator"
+        label="Gene separator"
+        onChange={handleChange}
+        placeholder="Symbol(s) for parsing leading gene symbol"
+        value={settings.geneSeparator}
+        vertical
+      />
       <SelectContainer
         id="domain_scope"
         label="Background"
@@ -114,6 +122,7 @@ Advanced.propTypes = {
     all_results: PropTypes.bool,
     background: PropTypes.string,
     domain_scope: PropTypes.string,
+    geneSeparator: PropTypes.string,
     measure_underrepresentation: PropTypes.bool,
     no_iea: PropTypes.bool,
     numeric_ns: PropTypes.string,

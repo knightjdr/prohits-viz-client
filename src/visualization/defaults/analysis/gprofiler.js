@@ -9,6 +9,7 @@ export const defaultState = {
   numeric_ns: 'ENTREZGENE',
   ordered: false,
   organism: 'hsapiens',
+  geneSeparator: '_.',
   significance_threshold_method: 'g_SCS',
   user_threshold: 0.01,
   CORUM: true,

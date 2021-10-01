@@ -6,7 +6,10 @@ import { selectState } from '../../../../../../state/selector/general';
 
 const useGprofilerAnalysis = () => {
   const dispatch = useDispatch();
-  const gprofiler = useSelector((state) => selectState(state, 'gprofiler'));
+  const {
+    geneSeparator,
+    ...settings
+  } = useSelector((state) => selectState(state, 'gprofiler'));
 
   const fetch = useFetch();
 
@@ -17,11 +20,14 @@ const useGprofilerAnalysis = () => {
     };
     dispatch(addAnalysis(analysisID, analysisName, analysisState));
 
+    const reGeneSeparator = new RegExp(`[${geneSeparator}]`);
+    const query = poi.map((gene) => gene.split(reGeneSeparator)[0]);
+
     const url = '/analysis/viz/go';
     const options = {
       data: {
-        ...gprofiler,
-        query: poi,
+        ...settings,
+        query,
         analysisName,
       },
       method: 'POST',
