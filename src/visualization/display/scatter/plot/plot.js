@@ -16,6 +16,7 @@ const Plot = ({
   labels,
   lines,
   points,
+  radius,
   searchLabels,
   ticks,
   transform,
@@ -77,6 +78,7 @@ const Plot = ({
             fontSize={fontSize}
             handleClickLabel={handleClickLabel}
             labels={labels}
+            radius={radius}
             searchLabels={searchLabels}
             points={points}
             scale={transform.scale}
@@ -134,6 +136,7 @@ Plot.propTypes = {
       y: PropTypes.number,
     }),
   ).isRequired,
+  radius: PropTypes.number.isRequired,
   searchLabels: PropTypes.shape({}).isRequired,
   ticks: PropTypes.shape({
     x: PropTypes.arrayOf(

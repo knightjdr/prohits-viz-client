@@ -18,6 +18,7 @@ const Image = ({
   logBase,
   logX,
   logY,
+  radius,
 }) => (
   <>
     <Section
@@ -54,10 +55,19 @@ const Image = ({
         id="fontSize"
         label="Font size (px)"
         onChange={handleSettingChange}
-        min="0"
+        min="1"
         step="1"
         type="number"
         value={fontSize}
+      />
+      <Input
+        id="radius"
+        label="Point size (px)"
+        onChange={handleSettingChange}
+        min="1"
+        step="1"
+        type="number"
+        value={radius}
       />
       <div className="settings__image-zoom">
         <div className="label">Zoom:</div>
@@ -90,6 +100,7 @@ Image.propTypes = {
   logBase: PropTypes.string.isRequired,
   logX: PropTypes.bool.isRequired,
   logY: PropTypes.bool.isRequired,
+  radius: PropTypes.number.isRequired,
 };
 
 export default Image;

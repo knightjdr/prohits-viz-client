@@ -19,6 +19,7 @@ const ImageContainer = () => {
     logBase,
     logX,
     logY,
+    radius,
   } = settings;
 
   const handleSettingChange = (e, name, value) => {
@@ -53,6 +54,7 @@ const ImageContainer = () => {
       logBase={logBase}
       logX={logX}
       logY={logY}
+      radius={radius}
     />
   );
 };

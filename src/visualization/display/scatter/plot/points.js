@@ -35,9 +35,9 @@ const drawLabel = (labels, searchLabels, point, options) => {
   return null;
 };
 
-const getCustomization = (point, customization, scale) => {
+const getCustomization = (point, customization, scale, defaultRadius) => {
   let color = point.color || '#333333';
-  let radius = point.radius || 4;
+  let radius = point.radius || defaultRadius;
   let textGap = 8;
   if (customization) {
     if (customization.color) {
@@ -63,6 +63,7 @@ const Points = ({
   labels,
   searchLabels,
   points,
+  radius: defaultRadius,
   scale,
 }) => {
   const textProperties = {
@@ -71,7 +72,7 @@ const Points = ({
   return (
     points.map((point, index) => {
       const y = axisLength - point.y;
-      const { color, radius, textGap } = getCustomization(point, customization[point.label], scale);
+      const { color, radius, textGap } = getCustomization(point, customization[point.label], scale, defaultRadius);
       return (
         <Fragment key={point.label}>
           <circle
@@ -121,6 +122,7 @@ Points.propTypes = {
       y: PropTypes.number,
     }),
   ).isRequired,
+  radius: PropTypes.number.isRequired,
   searchLabels: PropTypes.shape({}).isRequired,
   scale: PropTypes.number.isRequired,
 };

@@ -25,7 +25,7 @@ const PlotContainer = ({
   const poi = useSelector((state) => selectData(state, 'poi'));
   const searchLabels = useSelector((state) => selectDataProperty(state, 'searchStatus', 'labels'));
   const transform = useSelector((state) => selectDataProperty(state, 'display', 'transform'));
-  const { fontSize } = useSelector((state) => selectDataProperty(state, 'settings', 'current'));
+  const { fontSize, radius } = useSelector((state) => selectDataProperty(state, 'settings', 'current'));
 
   const customPoints = useMemo(
     () => getCustomPointsFromGroups(groups),
@@ -79,6 +79,7 @@ const PlotContainer = ({
       labels={labels}
       lines={lines}
       points={points}
+      radius={radius}
       searchLabels={searchLabels}
       ticks={ticks}
       transform={transform}
