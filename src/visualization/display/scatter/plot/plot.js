@@ -55,6 +55,14 @@ const Plot = ({
           y={0}
         />
       </g>
+      <g clipPath="url(#plot_axis_clip)">
+        <g transform={transform.matrix.plot}>
+          <Axes
+            axes={lines.axes}
+            ticks={ticks}
+          />
+        </g>
+      </g>
       <g clipPath="url(#plot_points_clip)">
         <g transform={transform.matrix.plot}>
           <OverlayContainer />
@@ -72,14 +80,6 @@ const Plot = ({
             searchLabels={searchLabels}
             points={points}
             scale={transform.scale}
-          />
-        </g>
-      </g>
-      <g clipPath="url(#plot_axis_clip)">
-        <g transform={transform.matrix.plot}>
-          <Axes
-            axes={lines.axes}
-            ticks={ticks}
           />
         </g>
       </g>
