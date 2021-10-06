@@ -357,6 +357,7 @@ describe('Scale data', () => {
         { label: 'b', x: 16, y: 4 },
         { label: 'c', x: 4, y: 25 },
         { label: 'd', x: 0.2, y: 4 },
+        { label: 'e', x: 0, y: 4 },
       ];
       const ticks = {
         x: [0.5, 1, 2, 4, 8, 16],
@@ -400,6 +401,7 @@ describe('Scale data', () => {
           { label: 'b', x: 100, y: 40 },
           { label: 'c', x: 60, y: 92.88 },
           { label: 'd', x: -26.44, y: 40 },
+          { label: 'e', x: 0, y: 40 },
         ],
         ticks: {
           x: [
@@ -420,8 +422,7 @@ describe('Scale data', () => {
           ],
         },
       };
-      const actual = scaleData(points, ticks, lines, options);
-      expect(actual.points).toEqual(expected.points);
+      expect(scaleData(points, ticks, lines, options)).toEqual(expected);
     });
 
     it('should scale negative data', () => {

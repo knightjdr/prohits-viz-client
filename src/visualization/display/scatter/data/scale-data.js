@@ -72,7 +72,10 @@ const scaleData = (points, ticks, lines, options) => {
       );
 
       return (point) => {
-        if (point >= 0) {
+        if (point === 0) {
+          return negAxisLength + (voidSpace / 2);
+        }
+        if (point > 0) {
           return point < positiveExtremes.min && voidSpace > 0
             ? scaleLinear(point)
             : round(kPos * logFunc(point) + cPos + negAxisLength + voidSpace, 2);
