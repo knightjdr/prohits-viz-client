@@ -61,14 +61,12 @@ const Points = ({
   fontSize,
   handleClickLabel,
   labels,
-  searchLabels,
   points,
   radius: defaultRadius,
   scale,
+  searchLabels,
 }) => {
-  const textProperties = {
-    scaledFontSize: fontSize / scale,
-  };
+  const scaledFontSize = fontSize / scale;
   return (
     points.map((point, index) => {
       const y = axisLength - point.y;
@@ -89,19 +87,19 @@ const Points = ({
           >
             <title>{point.label}</title>
           </circle>
-          {
+          {/* {
             drawLabel(
               labels,
               searchLabels,
               point,
               {
-                ...textProperties,
+                scaledFontSize,
                 textGap,
                 x: point.x,
                 y,
               },
             )
-          }
+          } */}
         </Fragment>
       );
     })
@@ -123,8 +121,8 @@ Points.propTypes = {
     }),
   ).isRequired,
   radius: PropTypes.number.isRequired,
-  searchLabels: PropTypes.shape({}).isRequired,
   scale: PropTypes.number.isRequired,
+  searchLabels: PropTypes.shape({}).isRequired,
 };
 
 export default Points;
