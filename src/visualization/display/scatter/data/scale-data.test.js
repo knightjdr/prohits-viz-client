@@ -399,7 +399,7 @@ describe('Scale data', () => {
           { label: 'a', x: 80, y: 60 },
           { label: 'b', x: 100, y: 40 },
           { label: 'c', x: 60, y: 92.88 },
-          { label: 'd', x: 0, y: 40 },
+          { label: 'd', x: -26.44, y: 40 },
         ],
         ticks: {
           x: [
@@ -509,7 +509,7 @@ describe('Scale data', () => {
           { label: 'a', x: 25, y: 40 },
           { label: 'b', x: -0, y: 60 },
           { label: 'c', x: 50, y: 7.12 },
-          { label: 'd', x: 100, y: 60 },
+          { label: 'd', x: 125, y: 60 },
         ],
         ticks: {
           x: [
@@ -738,7 +738,7 @@ describe('Scale data', () => {
           { label: 'a', x: 50, y: 0 },
           { label: 'b', x: 100, y: 66.67 },
           { label: 'c', x: 0, y: 95.84 },
-          { label: 'd', x: 0, y: 66.67 },
+          { label: 'd', x: -15.05, y: 66.67 },
         ],
         ticks: {
           x: [
@@ -844,8 +844,8 @@ describe('Scale data', () => {
           x: {
             x1: -100,
             x2: -1,
-            y1: 0,
-            y2: 0,
+            y1: -1,
+            y2: -1,
           },
           y: {
             x1: -1,
@@ -917,7 +917,7 @@ describe('Scale data', () => {
           { label: 'a', x: 50, y: 100 },
           { label: 'b', x: 0, y: 33.33 },
           { label: 'c', x: 100, y: 4.16 },
-          { label: 'd', x: 100, y: 33.33 },
+          { label: 'd', x: 115.05, y: 33.33 },
         ],
         ticks: {
           x: [

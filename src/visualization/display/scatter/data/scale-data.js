@@ -65,17 +65,19 @@ const scaleData = (points, ticks, lines, options) => {
         : 0;
       const cNeg = -1 * kNeg * logFunc(negativeExtremes.min);
       const cPos = -1 * kPos * logFunc(positiveExtremes.min);
+
       const scaleLinear = (point) => round(
         negAxisLength + (((point + negativeExtremes.min) / (positiveExtremes.min + negativeExtremes.min)) * voidSpace),
         2,
       );
+
       return (point) => {
         if (point >= 0) {
-          return point < positiveExtremes.min
+          return point < positiveExtremes.min && voidSpace > 0
             ? scaleLinear(point)
             : round(kPos * logFunc(point) + cPos + negAxisLength + voidSpace, 2);
         }
-        return point > -negativeExtremes.min
+        return point > -negativeExtremes.min && voidSpace > 0
           ? scaleLinear(point)
           : round(negAxisLength - (kNeg * logFunc(Math.abs(point)) + cNeg), 2);
       };
@@ -105,8 +107,8 @@ const scaleData = (points, ticks, lines, options) => {
     },
     points: points.map((point) => ({
       ...point,
-      x: scaleXValue(Math.max(point.x, ticks.x[0])),
-      y: scaleYValue(Math.max(point.y, ticks.y[0])),
+      x: scaleXValue(point.x),
+      y: scaleYValue(point.y),
     })),
     ticks: {
       x: ticks.x.map((tick) => ({ key: nanoid(10), label: formatTickLabel(tick), x: scaleXValue(tick) })),
