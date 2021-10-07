@@ -23,7 +23,6 @@ const PlotContainer = ({
   const groups = useSelector((state) => selectDataProperty(state, 'customization', 'groups'));
   const labels = useSelector((state) => selectDataProperty(state, 'labels', 'status'));
   const poi = useSelector((state) => selectData(state, 'poi'));
-  const searchLabels = useSelector((state) => selectDataProperty(state, 'searchStatus', 'labels'));
   const transform = useSelector((state) => selectDataProperty(state, 'display', 'transform'));
   const { fontSize, radius } = useSelector((state) => selectDataProperty(state, 'settings', 'current'));
 
@@ -76,11 +75,9 @@ const PlotContainer = ({
       handleClickLabel={handleClickLabel}
       handleMouseDown={handleMouseDown}
       handleWheel={handleWheel}
-      labels={labels}
       lines={lines}
       points={points}
       radius={radius}
-      searchLabels={searchLabels}
       ticks={ticks}
       transform={transform}
     />

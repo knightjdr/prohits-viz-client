@@ -3,8 +3,9 @@ import React from 'react';
 import OverlayContainer from '../overlay/overlay-container';
 
 import Axes from './axes/axes-container';
+import Labels from './labels/labels-container';
 import Lines from './lines/lines-container';
-import Points from './points';
+import Points from './points/points';
 
 const Plot = ({
   axisLength,
@@ -13,81 +14,95 @@ const Plot = ({
   handleClickLabel,
   handleMouseDown,
   handleWheel,
-  labels,
   lines,
   points,
   radius,
-  searchLabels,
   ticks,
   transform,
-}) => (
-  axisLength > 0
-  && (
-    <g
-      className="scatter__plot"
-      onMouseDown={handleMouseDown}
-      onWheel={handleWheel}
-      transform="translate(100 0)"
-    >
-      <defs>
-        <clipPath id="plot_axis_clip">
-          <rect
-            height={axisLength + 50}
-            width={axisLength + 80}
-            x={-50}
-            y={-10}
-          />
-        </clipPath>
-        <clipPath id="plot_points_clip">
+}) => {
+  const scaledFontSize = fontSize / transform.scale;
+  return (
+    axisLength > 0
+    && (
+      <g
+        className="scatter__plot"
+        onMouseDown={handleMouseDown}
+        onWheel={handleWheel}
+        transform="translate(100 0)"
+      >
+        <defs>
+          <clipPath id="plot_axis_clip">
+            <rect
+              height={axisLength + 50}
+              width={axisLength + 80}
+              x={-50}
+              y={-10}
+            />
+          </clipPath>
+          <clipPath id="plot_label_clip">
+            <rect
+              height={axisLength + scaledFontSize}
+              width={axisLength + 40}
+              x={0}
+              y={0}
+            />
+          </clipPath>
+          <clipPath id="plot_points_clip">
+            <rect
+              height={axisLength}
+              width={axisLength}
+              x={0}
+              y={0}
+            />
+          </clipPath>
+        </defs>
+        <g id="plot_points_wheel">
           <rect
             height={axisLength}
+            opacity={0}
             width={axisLength}
             x={0}
             y={0}
           />
-        </clipPath>
-      </defs>
-      <g id="plot_points_wheel">
-        <rect
-          height={axisLength}
-          opacity={0}
-          width={axisLength}
-          x={0}
-          y={0}
-        />
-      </g>
-      <g clipPath="url(#plot_axis_clip)">
-        <g transform={transform.matrix.plot}>
-          <Axes
-            axes={lines.axes}
-            ticks={ticks}
-          />
+        </g>
+        <g clipPath="url(#plot_axis_clip)">
+          <g transform={transform.matrix.plot}>
+            <Axes
+              axes={lines.axes}
+              ticks={ticks}
+            />
+          </g>
+        </g>
+        <g clipPath="url(#plot_points_clip)">
+          <g transform={transform.matrix.plot}>
+            <OverlayContainer />
+            <Lines
+              fcLines={lines.fcLines}
+              midline={lines.midline}
+              scale={transform.scale}
+            />
+            <Points
+              axisLength={axisLength}
+              customization={customization}
+              handleClickLabel={handleClickLabel}
+              radius={radius}
+              points={points}
+              scale={transform.scale}
+            />
+          </g>
+        </g>
+        <g clipPath="url(#plot_label_clip)">
+          <g transform={transform.matrix.plot}>
+            <Labels
+              customization={customization}
+              points={points}
+            />
+          </g>
         </g>
       </g>
-      <g clipPath="url(#plot_points_clip)">
-        <g transform={transform.matrix.plot}>
-          <OverlayContainer />
-          <Lines
-            fcLines={lines.fcLines}
-            midline={lines.midline}
-            scale={transform.scale}
-          />
-          <Points
-            axisLength={axisLength}
-            customization={customization}
-            fontSize={fontSize}
-            handleClickLabel={handleClickLabel}
-            labels={labels}
-            radius={radius}
-            searchLabels={searchLabels}
-            points={points}
-            scale={transform.scale}
-          />
-        </g>
-      </g>
-    </g>
-  )
-);
+    )
+  );
+};
 
 Plot.propTypes = {
   axisLength: PropTypes.number.isRequired,
@@ -96,7 +111,6 @@ Plot.propTypes = {
   handleClickLabel: PropTypes.func.isRequired,
   handleMouseDown: PropTypes.func.isRequired,
   handleWheel: PropTypes.func.isRequired,
-  labels: PropTypes.shape({}).isRequired,
   lines: PropTypes.shape({
     axes: PropTypes.shape({
       x: PropTypes.shape({
@@ -137,7 +151,6 @@ Plot.propTypes = {
     }),
   ).isRequired,
   radius: PropTypes.number.isRequired,
-  searchLabels: PropTypes.shape({}).isRequired,
   ticks: PropTypes.shape({
     x: PropTypes.arrayOf(
       PropTypes.shape({
