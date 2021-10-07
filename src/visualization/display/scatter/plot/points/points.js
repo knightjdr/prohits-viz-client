@@ -1,117 +1,59 @@
 import PropTypes from 'prop-types';
 import React, { Fragment } from 'react';
 
-const drawLabel = (labels, searchLabels, point, options) => {
-  const { scaledFontSize, textGap, y } = options;
-
-  if (searchLabels[point.label]) {
-    return (
-      <text
-        dy={(scaledFontSize * 1.2) / 3}
-        fontSize={scaledFontSize * 1.2}
-        style={{
-          fontWeight: 'bold',
-        }}
-        textAnchor="start"
-        x={point.x + textGap}
-        y={y}
-      >
-        {point.label}
-      </text>
-    );
-  } if (labels[point.label]) {
-    return (
-      <text
-        dy={scaledFontSize / 3}
-        fontSize={scaledFontSize}
-        textAnchor="start"
-        x={point.x + textGap}
-        y={y}
-      >
-        {point.label}
-      </text>
-    );
-  }
-  return null;
-};
-
 const getCustomization = (point, customization, scale, defaultRadius) => {
   let color = point.color || '#333333';
   let radius = point.radius || defaultRadius;
-  let textGap = 8;
   if (customization) {
     if (customization.color) {
       ({ color } = customization);
     }
     if (customization.radius) {
       ({ radius } = customization);
-      textGap = radius + 4;
     }
   }
   return {
     color,
     radius: radius / scale,
-    textGap: textGap / scale,
   };
 };
 
 const Points = ({
   axisLength,
   customization,
-  fontSize,
   handleClickLabel,
-  labels,
   points,
   radius: defaultRadius,
   scale,
-  searchLabels,
-}) => {
-  const scaledFontSize = fontSize / scale;
-  return (
-    points.map((point, index) => {
-      const y = axisLength - point.y;
-      const { color, radius, textGap } = getCustomization(point, customization[point.label], scale, defaultRadius);
-      return (
-        <Fragment key={point.label}>
-          <circle
-            className="scatter-point"
-            cx={point.x}
-            cy={y}
-            data-index={index}
-            data-label={point.label}
-            onClick={handleClickLabel}
-            r={radius}
-            style={{
-              fill: color,
-            }}
-          >
-            <title>{point.label}</title>
-          </circle>
-          {/* {
-            drawLabel(
-              labels,
-              searchLabels,
-              point,
-              {
-                scaledFontSize,
-                textGap,
-                x: point.x,
-                y,
-              },
-            )
-          } */}
-        </Fragment>
-      );
-    })
-  );
-};
+}) => (
+  points.map((point, index) => {
+    const y = axisLength - point.y;
+    const { color, radius } = getCustomization(point, customization[point.label], scale, defaultRadius);
+    return (
+      <Fragment key={point.label}>
+        <circle
+          className="scatter-point"
+          cx={point.x}
+          cy={y}
+          data-index={index}
+          data-label={point.label}
+          onClick={handleClickLabel}
+          r={radius}
+          style={{
+            fill: color,
+          }}
+        >
+          <title>{point.label}</title>
+        </circle>
+      </Fragment>
+    );
+  })
+);
 
 Points.propTypes = {
   axisLength: PropTypes.number.isRequired,
   customization: PropTypes.shape({}).isRequired,
-  fontSize: PropTypes.number.isRequired,
   handleClickLabel: PropTypes.func.isRequired,
-  labels: PropTypes.shape({}).isRequired,
   points: PropTypes.arrayOf(
     PropTypes.shape({
       highlight: PropTypes.bool,
@@ -122,7 +64,6 @@ Points.propTypes = {
   ).isRequired,
   radius: PropTypes.number.isRequired,
   scale: PropTypes.number.isRequired,
-  searchLabels: PropTypes.shape({}).isRequired,
 };
 
 export default Points;

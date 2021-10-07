@@ -14,11 +14,9 @@ const Plot = ({
   handleClickLabel,
   handleMouseDown,
   handleWheel,
-  labels,
   lines,
   points,
   radius,
-  searchLabels,
   ticks,
   transform,
 }) => {
@@ -44,7 +42,7 @@ const Plot = ({
           <clipPath id="plot_label_clip">
             <rect
               height={axisLength + scaledFontSize}
-              width={axisLength + scaledFontSize}
+              width={axisLength + 40}
               x={0}
               y={0}
             />
@@ -86,13 +84,10 @@ const Plot = ({
             <Points
               axisLength={axisLength}
               customization={customization}
-              fontSize={fontSize}
               handleClickLabel={handleClickLabel}
-              labels={labels}
               radius={radius}
               points={points}
               scale={transform.scale}
-              searchLabels={searchLabels}
             />
           </g>
         </g>
@@ -116,7 +111,6 @@ Plot.propTypes = {
   handleClickLabel: PropTypes.func.isRequired,
   handleMouseDown: PropTypes.func.isRequired,
   handleWheel: PropTypes.func.isRequired,
-  labels: PropTypes.shape({}).isRequired,
   lines: PropTypes.shape({
     axes: PropTypes.shape({
       x: PropTypes.shape({
@@ -157,7 +151,6 @@ Plot.propTypes = {
     }),
   ).isRequired,
   radius: PropTypes.number.isRequired,
-  searchLabels: PropTypes.shape({}).isRequired,
   ticks: PropTypes.shape({
     x: PropTypes.arrayOf(
       PropTypes.shape({
