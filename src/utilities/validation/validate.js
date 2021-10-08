@@ -2,6 +2,7 @@ import validateCrisprConvert from './crispr-convert-validate';
 import validatePVConvert from './pvconvert-validate';
 import validateSaintDomainEnrich from './saint-domain-enrich-validate';
 import validateSaintFEA from './saint-fea-validate';
+import validateSaintSpecificity from './saint-specificity-validate';
 import validateSaintStats from './saint-stats-validate';
 import validateTextBiogridNetwork from './text-biogrid-validate';
 import validateTextSymbolFix from './text-symbol-fix-validate';
@@ -19,6 +20,8 @@ const validateUtility = (fields) => {
     return validateSaintDomainEnrich(fields);
   } if (utility === 'saint_fea') {
     return validateSaintFEA(fields);
+  } if (utility === 'saint_specificity') {
+    return validateSaintSpecificity(fields);
   } if (utility === 'saint_stats') {
     return validateSaintStats(fields);
   } if (utility === 'text_biogrid_network') {

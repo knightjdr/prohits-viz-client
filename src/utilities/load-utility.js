@@ -6,6 +6,7 @@ import PVConvert from './utility/pvconvert/pvconvert-container';
 import SaintDomainEnrich from './utility/saint-domain-enrich/saint-domain-enrich-container';
 import SaintBiogridNetwork from './utility/saint-biogrid-network/saint-biogrid-network-container';
 import SaintFEA from './utility/saint-fea/saint-fea-container';
+import SaintSpecificity from './utility/saint-specificity/saint-specificity-container';
 import SaintStats from './utility/saint-stats/saint-stats-container';
 import TextBiogridNetwork from './utility/text-biogrid-network/text-biogrid-network-container';
 import TextSymbolFix from './utility/text-symbol-fix/text-symbol-fix-container';
@@ -21,6 +22,8 @@ const loadUtilityComponent = (utility, errors) => {
     return <SaintDomainEnrich errors={errors} />;
   } if (utility === 'saint_fea') {
     return <SaintFEA errors={errors} />;
+  } if (utility === 'saint_specificity') {
+    return <SaintSpecificity errors={errors} />;
   } if (utility === 'saint_stats') {
     return <SaintStats errors={errors} />;
   } if (utility === 'text_biogrid_network') {

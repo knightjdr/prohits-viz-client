@@ -2,20 +2,20 @@ import PropTypes from 'prop-types';
 import React from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 
-import SaintStats, { defaultFieldValues } from './saint-stats';
+import SaintSpecificity, { defaultFieldValues } from './saint-specificity';
 
 import useOnMount from '../../../hooks/on-mount/use-on-mount';
-import { selectStateProperty } from '../../../state/selector/general';
+import { selectState } from '../../../state/selector/general';
 import { setUtilityField, setUtilityFields } from '../../../state/utilities/utilities-actions';
 
-const SaintStatsContainer = ({
+const SaintSpecificityContainer = ({
   errors,
 }) => {
   const dispatch = useDispatch();
-  const fdr = useSelector((state) => selectStateProperty(state, 'utilities', 'fdr'));
+  const { controlSubtract, metric } = useSelector((state) => selectState(state, 'utilities'));
 
   const handleUtilityField = (e, id, value) => {
-    dispatch(setUtilityField(id, Number(value)));
+    dispatch(setUtilityField(id, value));
   };
 
   useOnMount(() => {
@@ -23,18 +23,20 @@ const SaintStatsContainer = ({
   });
 
   return (
-    <SaintStats
-      error={errors.fdr}
-      fdr={fdr}
+    <SaintSpecificity
+      controlSubtract={controlSubtract}
+      error={errors}
       handleUtilityField={handleUtilityField}
+      metric={metric}
     />
   );
 };
 
-SaintStatsContainer.propTypes = {
+SaintSpecificityContainer.propTypes = {
   errors: PropTypes.shape({
-    fdr: PropTypes.string,
+    controlSubtract: PropTypes.string,
+    metric: PropTypes.string,
   }).isRequired,
 };
 
-export default SaintStatsContainer;
+export default SaintSpecificityContainer;

@@ -99,6 +99,7 @@ const TextBiogridNetwork = ({
               ]}
               placeholder="Select identifier type..."
               value={idType}
+              warning={errors.idType}
             />
           </div>
         )
@@ -142,6 +143,7 @@ const TextBiogridNetwork = ({
           ]}
           placeholder="Select required evidence types..."
           value={evidenceList}
+          warning={errors.evidenceList}
         />
       </div>
       <div className="utility__input_medium">
@@ -155,6 +157,7 @@ const TextBiogridNetwork = ({
           ]}
           placeholder="Include or exclude selected evidence types..."
           value={String(includeEvidence)}
+          warning={errors.includeEvidence}
         />
       </div>
       <Switch
@@ -189,6 +192,7 @@ const TextBiogridNetwork = ({
         ]}
         placeholder="Select throughput type..."
         value={throughputTag}
+        warning={errors.throughputTag}
       />
       <Input
         id="max"
@@ -247,6 +251,7 @@ TextBiogridNetwork.propTypes = {
     evidenceList: PropTypes.string,
     fdr: PropTypes.string,
     idType: PropTypes.string,
+    includeEvidence: PropTypes.string,
     includePrimaryInteractions: PropTypes.string,
     includeSaintInteractions: PropTypes.string,
     includeSecondaryInteractions: PropTypes.string,
