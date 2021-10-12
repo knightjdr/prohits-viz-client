@@ -31,7 +31,8 @@ const Dotplot = () => (
         which measurements are available. For protein-protein interaction data, conditions would
         be baits and readouts would be preys. The colour of each circle represents the measurement
         value (abundance, intensity, etc) and the circle size indicates the relative value
-        of the readout measurement across all conditions.
+        of the readout measurement across all conditions. If the measurement being visualized can
+        take negative values, the circle size is calculated from the absolute value.
       </figcaption>
     </figure>
     <h3>Processing steps</h3>
@@ -68,7 +69,7 @@ const Dotplot = () => (
       <li>
         <span>readout length normalization:</span>
         in the case were measurements are affected by the length of the readout (e.g. gene or protein
-        sequence length), the abundance value can be normalized to length of the readout. The adjusted
+        sequence length), the abundance value can be normalized to the length of the readout. The adjusted
         value of a readout is calculated by dividing the median length of all readouts in the data
         set by the length of the readout in question and then multiplying by the abundance. This will
         cause shorter readouts to have their abundance adjusted up and vice versa.
@@ -101,15 +102,23 @@ const Dotplot = () => (
       and minimum abundance. ProHits-viz assumes an FDR-like score is being used and sets
       a primary filter value of 0.01 to define significant readouts. All readouts passing this filter
       and the minimum abundance (default: 0) for at least one condition will be considered significant
-      and displayed on the image. All values for a readout across conditions will be included on the image,
-      even those that are not significant, provided at least one condition passed the specified filters.
+      and displayed on the image. If the &quot;abundance&quot; metric can take negative values,
+      for example a log
+      <sub>2</sub>
+      {' '}
+      fold change or Z-score, the absolute value is used for comparing against the minimum abundance, i.e.
+      an abundance filter of 1 would filter everything between -1 and 1 but positive and negative values
+      outside that range will pass the filter. All values for a readout across conditions will be included on
+      the image, even those that are not significant, provided at least one condition passed the specified filters.
       These settings, including the type of score (i.e. are smaller or larger scores better), can be
       adjusted in the &quot;Filtering&quot; section under advanced options.
     </p>
     <p>
       The &quot;Abundance cap&quot; and &quot;Secondary filter&quot; are not used for filtering data.
-      The abundance cap sets the upper limit for the fill colour scale and the secondary filter
-      defines the intermediate intensity edge. Readouts that do not pass either the primary or
+      The abundance cap sets the limits for the fill colour scale. For an &quot;abundance&quot; metric taking only
+      positive values, the cap defines the upper limit, while a metric that can take negative values
+      will use the negative value of the cap for the lower limit. The secondary filter defines the intermediate
+      intensity edge. Readouts that do not pass either the primary or
       secondary filter will be marked with a low intensity edge. The secondary filter can be adjusted
       depending on the dataset to allow a greater or lesser number of readouts into this
       &quot;medium&quot; confidence range.

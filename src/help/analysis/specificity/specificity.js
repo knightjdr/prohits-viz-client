@@ -23,7 +23,7 @@ const Specificity = () => (
       />
       <figcaption>
         <span>An example specificity visualization</span>
-        . The significant interactors (readouts) for the bait (condition) STK4 are plotted
+        . The significant interactors (readouts) for the bait STK4 (condition) are plotted
         with their spectral count (abundance) vs the specificity of the readout across all conditions in
         the data set. Readouts with infinite specificity are plotted with the y-value equal to the highest finite
         specificity for the condition in question. Data is from a protein-protein interaction dataset that
@@ -74,7 +74,7 @@ const Specificity = () => (
       <li>
         <span>readout length normalization:</span>
         in the case were measurements are affected by the length of the readout (e.g. gene or protein
-        sequence length), the abundance value can be normalized to length of the readout. The adjusted
+        sequence length), the abundance value can be normalized to the length of the readout. The adjusted
         value of a readout is calculated by dividing the median length of all readouts in the data
         set by the length of the readout in question and then multiplying by the abundance. This will
         cause shorter readouts to have their abundance adjusted up and vice versa.
@@ -106,7 +106,13 @@ const Specificity = () => (
       The readouts to include in the analysis are determined from the primary filter and minimum abundance. ProHits-viz
       assumes an FDR-like score is being used and sets a primary filter value of 0.01. All readouts passing
       this filter and the minimum abundance (default: 0) for at least one of the conditions will be considered
-      significant and included in the analysis. These settings, including the type of score (i.e. are smaller or
+      significant and included in the analysis. If the &quot;abundance&quot; metric can take negative values,
+      for example a log
+      <sub>2</sub>
+      {' '}
+      fold change or Z-score, the absolute value is used for comparing against the minimum abundance, i.e.
+      an abundance filter of 1 would filter everything between -1 and 1 but positive and negative values
+      outside that range will pass the filter. These settings, including the type of score (i.e. are smaller or
       larger scores better), can be adjusted in the &quot;Filtering&quot; section under advanced options.
     </p>
     <h3>Specificity</h3>
@@ -152,6 +158,12 @@ const Specificity = () => (
         CompPASS tutorial
       </Link>
       ).
+    </p>
+    <p>
+      With the exception of the Z-Score metric, all other metrics use the absolute value of the
+      &quot;abundance&quot; column for calculations as negative values are generally nonsensical
+      as input to a specificity metric. In that regard, we generally only recommend the Z-score
+      when abundance values can be negative.
     </p>
     <h3 id="output">Output</h3>
     <p>

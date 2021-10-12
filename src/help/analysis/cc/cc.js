@@ -62,7 +62,7 @@ const CC = () => (
       <li>
         <span>readout length normalization:</span>
         in the case were measurements are affected by the length of the readout (e.g. gene or protein
-        sequence length), the abundance value can be normalized to length of the readout. The adjusted
+        sequence length), the abundance value can be normalized to the length of the readout. The adjusted
         value of a readout is calculated by dividing the median length of all readouts in the data
         set by the length of the readout in question and then multiplying by the abundance. This will
         cause shorter readouts to have their abundance adjusted up and vice versa.
@@ -94,7 +94,13 @@ const CC = () => (
       The readouts to display are determined from the secondary filter and minimum abundance. ProHits-viz
       assumes an FDR-like score is being used and sets a secondary filter value of 0.05. All readouts passing
       this filter and the minimum abundance (default: 0) for at least one of the conditions will be considered
-      significant and displayed on the image. These settings, including the type of score (i.e. are smaller or
+      significant and displayed on the image. If the &quot;abundance&quot; metric can take negative values,
+      for example a log
+      <sub>2</sub>
+      {' '}
+      fold change or Z-score, the absolute value is used for comparing against the minimum abundance, i.e.
+      an abundance filter of 1 would filter everything between -1 and 1 but positive and negative values
+      outside that range will pass the filter. These settings, including the type of score (i.e. are smaller or
       larger scores better), can be adjusted in the &quot;Filtering&quot; section under advanced options.
     </p>
     <p>

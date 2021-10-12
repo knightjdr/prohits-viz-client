@@ -93,7 +93,11 @@ const InputFile = () => (
         <span>abundance:</span>
         <span>
           this is the quantitative measurement of interest. For mass spectrometry data it would likely
-          be a spectral count or intensity value. For gene expression data it might be a TPM value.
+          be a spectral count or intensity value. For gene expression data it might be a TPM value. For
+          CRISPR screen analysis a log
+          <sub>2</sub>
+          {' '}
+          fold change or Z-score.
         </span>
       </li>
       <li>
@@ -119,13 +123,35 @@ const InputFile = () => (
     <p>
       Several tools generate output files that are explicitly supported by ProHits-viz. When a file
       from one of these tools is input, recommended columns and associated parameters will be automatically
-      selected. Tools/websites currently supported include:
+      selected. Tools/websites currently supported for protein interaction data include:
     </p>
     <ul>
       <li><Link to="http://prohitsms.com">ProHits</Link></li>
       <li><Link to="http://saint-apms.sourceforge.net">SAINT</Link></li>
       <li><Link to="https://reprint-apms.org">CRAPome/REPRINT</Link></li>
       <li><Link to="http://galaxyp.org/">GalaxyP</Link></li>
+    </ul>
+    <p>
+      The output from several CRISPR screen analysis tools are also supported although they do require a
+      preprocessing step. These tools do not produce output directly comparable with our
+      input format and are thus not immediately compatible with submission on our
+      {' '}
+      <Link to="/analysis">
+        analysis
+      </Link>
+      {' '}
+      page. We offer a utility to convert these files into a compatible format for you that can
+      be found on our
+      {' '}
+      <Link to="/utilities">utilities</Link>
+      {' '}
+      page. Currently, output files from these tools can be converted into a compatible format:
+    </p>
+    <ul>
+      <li><Link to="https://bmcbioinformatics.biomedcentral.com/articles/10.1186/s12859-016-1015-8">BAGEL</Link></li>
+      <li><Link to="https://genomemedicine.biomedcentral.com/articles/10.1186/s13073-019-0665-3">drugZ</Link></li>
+      <li><Link to="https://genomebiology.biomedcentral.com/articles/10.1186/s13059-014-0554-4">MAGeCK</Link></li>
+      <li><Link to="https://journals.asm.org/doi/10.1128/MCB.00302-17">RANKS</Link></li>
     </ul>
     <h3 id="sample-files">Sample files</h3>
     <p>
@@ -138,7 +164,7 @@ const InputFile = () => (
         download
       </Link>
       {' '}
-      and contain BioID published in
+      and contain BioID results published in
       {' '}
       <Link to="http://www.ncbi.nlm.nih.gov/pubmed/24255178">
         PMID:24255178

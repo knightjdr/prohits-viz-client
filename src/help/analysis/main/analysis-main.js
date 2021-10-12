@@ -28,11 +28,10 @@ const Analysis = () => (
       </Link>
       {' '}
       link in the navigation bar (note: this link will only be visible when you have available
-      tasks). A folder with static result files can be downloaded for tasks when complete
+      tasks). A folder with static result files can be downloaded when tasks are complete
       or interactive images can be viewed by selecting the desired image type. Interactive
-      image files will also be generated
-      in the static results&apos; folder to allow users to interactively view their results at a
-      later date without having to rerun the analysis.
+      image files will also be found in the download folder to allow users to interactively
+      view their results at a later date without having to rerun the analysis.
     </p>
     <p>
       To begin your analysis, go to

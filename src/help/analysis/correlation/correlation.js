@@ -12,7 +12,7 @@ const Correlation = () => (
       conditions as columns and their detected readouts as rows, from which similarities and
       differences can be exposed between conditions or in the detection patterns of readouts.
       The correlation tool offers the alternative of correlating conditions and readouts
-      amongst themselves and explicitly quantifying and visualizing their relationships.
+      amongst themselves and explicitly quantifying and visualizing their inter-relationships.
     </p>
     <figure>
       <img
@@ -33,7 +33,7 @@ const Correlation = () => (
       correlating conditions using the abundance measurements for those readouts. Readout correlation
       also begins by defining significant readouts based on specified filtering requirements and then
       performing pairwise correlation between the readouts across all conditions in the dataset. Replicate
-      data can be used and the final correlation values will be the average between the replicates.
+      data can be used and will be treated as additional data points for correlation.
     </p>
     <p>
       In addition to the condition and readout correlation images, a condition-readout heat map
@@ -76,7 +76,7 @@ const Correlation = () => (
       <li>
         <span>readout length normalization:</span>
         in the case were measurements are affected by the length of the readout (e.g. gene or protein
-        sequence length), the abundance value can be normalized to length of the readout. The adjusted
+        sequence length), the abundance value can be normalized to the length of the readout. The adjusted
         value of a readout is calculated by dividing the median length of all readouts in the data
         set by the length of the readout in question and then multiplying by the abundance. This will
         cause shorter readouts to have their abundance adjusted up and vice versa.
@@ -108,7 +108,13 @@ const Correlation = () => (
       The readouts to include in the analysis are determined based on a primary filter and minimum abundance.
       These are set independently for condition-condition and readout-readout correlation. All readouts passing
       the filter and minimum abundance requirements for at least one condition will be considered significant
-      and included in the analysis. All values for a readout across conditions will be included on the image,
+      and included in the analysis. If the &quot;abundance&quot; metric can take negative values,
+      for example a log
+      <sub>2</sub>
+      {' '}
+      fold change or Z-score, the absolute value is used for comparing against the minimum abundance, i.e.
+      an abundance filter of 1 would filter everything between -1 and 1 but positive and negative values
+      outside that range will pass the filter. All values for a readout across conditions will be included on the image,
       even those that are not significant, provided at least one condition passed the specified filters.
       These settings, including the type of score (i.e. are smaller or larger scores better), can be
       adjusted in the &quot;Filtering&quot; section under advanced options.

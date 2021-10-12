@@ -9,15 +9,15 @@ const SCV = () => (
     <h2>Single Condition Visualization (SCV)</h2>
     <p>
       There is often a desire to summarize information about a single condition in a
-      visual manner but conventional heat maps, scatter plots and other image types are
+      visual format. Unfortunately, conventional heat maps, scatter plots and other image types are
       designed more for multi-condition comparisons. The SCV tool was engineered to satisfy
       this need for single condition visualization by creating compact circular heat maps that
-      can display several pieces of information about a condition, extracted from an input file
+      can display several pieces of information about a condition extracted from an input file
       and, if desired, augmented by existing knowledge bases.
     </p>
     <p>
       In the example below, significant interactors for a single bait in a protein-protein interaction
-      data set are visualized, showing information about their detected abundance (spectral counts),
+      data set are visualized, showing information about their detected abundance (spectral count),
       with protein and RNA expression from HEK 293 cells.
     </p>
     <figure>
@@ -28,10 +28,10 @@ const SCV = () => (
       />
       <figcaption>
         <span>An example single condition visualization</span>
-        . The significant interactions (readouts) for the bait (condition) LATS2 are shown as segments
+        . The significant interactions (readouts) for the bait LATS2 (condition) are shown as segments
         on a circular heat map. The segments are sorted first into known and novel interactions,
         indicated by the solid black line around the outside of the image, and then in descending order
-        according to the outermost circle metric, in this case spectral counts. Data is from a protein-protein
+        according to the outermost circle metric, in this case spectral count. Data is from a protein-protein
         interaction dataset that can be found here:
         {' '}
         <Link to="http://www.ncbi.nlm.nih.gov/pubmed/24255178">
@@ -124,7 +124,7 @@ const SCV = () => (
     </div>
     <p>
       In this example, a user may wish to visualize both the abundance and fold change columns.
-      The columns to visualize simply need to be selected from the input form on the
+      The columns to visualize simply need to be selected on the input form from the
       {' '}
       <Link
         to="/analysis"
@@ -176,7 +176,7 @@ const SCV = () => (
       <li>
         <span>readout length normalization:</span>
         in the case were measurements are affected by the length of the readout (e.g. gene or protein
-        sequence length), the primary abundance value can be normalized to length of the readout. The adjusted
+        sequence length), the primary abundance value can be normalized to the length of the readout. The adjusted
         value of a readout is calculated by dividing the median length of all readouts in the data
         set by the length of the readout in question and then multiplying by the abundance. This will
         cause shorter readouts to have their abundance adjusted up and vice versa.
@@ -196,18 +196,26 @@ const SCV = () => (
       and minimum abundance. ProHits-viz assumes an FDR-like score is being used and sets
       a primary filter value of 0.01 to define significant readouts. All readouts passing this filter
       and the minimum abundance (default: 0) for at least one condition will be considered significant
-      and displayed on the image. These settings, including the type of score (i.e. are smaller or larger
+      and displayed on the image. If the &quot;abundance&quot; metric can take negative values,
+      for example a log
+      <sub>2</sub>
+      {' '}
+      fold change or Z-score, the absolute value is used for comparing against the minimum abundance, i.e.
+      an abundance filter of 1 would filter everything between -1 and 1 but positive and negative values
+      outside that range will pass the filter. These settings, including the type of score (i.e. are smaller or larger
       scores better), can be adjusted in the &quot;Filtering&quot; section under advanced options.
     </p>
     <p>
       If an abundance value is chosen for filtering, the column it applies to must also be specified
       (primary abundance column). To keep things simple on this input form, we only allow filtering
-      by one column at the input stage, however, filtering by multiple metrics can be done when
+      by one column at the input stage, however filtering by multiple metrics can be done when
       working with the image in the interactive viewer.
     </p>
     <p>
-      The &quot;Abundance cap&quot; ist not used for filtering data. The abundance cap sets the upper limit
-      for the fill colour scale.
+      The &quot;Abundance cap&quot; is not used for filtering data. The abundance cap sets the limits
+      for the fill colour scale. For an &quot;abundance&quot; metric taking only
+      positive values, the cap defines the upper limit, while a metric that can take negative values
+      will use the negative value of the cap for the lower limit.
     </p>
     <h3>External data</h3>
     <p>
@@ -295,8 +303,7 @@ const SCV = () => (
     </ul>
     <p>
       Currently we only support human sources for external data. Version numbers for the databases
-      will be included in the log file found in the results folder for the analysis if external data
-      is added to the image.
+      are included in the downloadable results folder for the analysis if external data is added to the image.
     </p>
     <h3>Identifier mapping</h3>
     <p>

@@ -24,7 +24,7 @@ const Utilities = ({
     <div className="utilities__inner">
       <h1>Utilities</h1>
       <p>
-        Here you can find additional utilities for working with files from ProHits-viz and various tools for
+        Here you can find additional utilities for formatting files for ProHits-viz and various tools for
         supplemental analysis.
       </p>
       <p>
@@ -32,11 +32,6 @@ const Utilities = ({
         extracting and processing data from protein-protein interaction files (typically SAINT). These utilities may
         output tabular data files or static images. While these utilities do no warrant full interactive support, such
         as the other tools at ProHits-viz, we provide access to them here as they may be of use to others.
-      </p>
-      <p>
-        <strong>
-          The page is a work in progress, and more utilities will be added in the future.
-        </strong>
       </p>
       <File
         error={errors.file}
