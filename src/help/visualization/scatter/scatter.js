@@ -125,14 +125,14 @@ const Scatter = () => (
     <figure className="help__image-screenshot">
       <Image
         alt="Interactive scatter plot settings"
-        height={560}
+        height={587}
         images={images}
         name="scatter-settings"
-        width={733}
+        width={800}
       />
       <figcaption>
         <span>Customizable settings</span>
-        . Customize the axes, font size, tick marks and perform filtering.
+        . Customize the axes, font size, point size, tick marks and perform filtering.
       </figcaption>
     </figure>
     <h4 id="settings-image">Image</h4>
@@ -142,7 +142,8 @@ const Scatter = () => (
       upper and lower limits using the &quot;Equal limit axes&quot; toggle.
     </p>
     <p>
-      The font size of axes ticks and labels can be set with the &quot;Font size&quot; input. The image can be zoomed
+      The font size of axes ticks and labels can be set with the &quot;Font size&quot; input. The default radius
+      for points can be set from the &quot;Point size&quot; input. The image can be zoomed
       in or out by clicking the
       {' '}
       <FontAwesomeIcon icon={faPlus} />
@@ -280,7 +281,7 @@ const Scatter = () => (
       <figcaption>
         <span>Making selections</span>
         . Specific points can be selected from the selection menu on the side panel,
-        clicking on a point, right-clicking and pasting a list into the selection menu, and by
+        by clicking on a point, by right-clicking and pasting a list into the selection menu, and by
         holding the SHIFT key and dragging the cursor around the desired points.
       </figcaption>
     </figure>
@@ -342,7 +343,7 @@ const Scatter = () => (
     <h5>Gene Ontology (GO) enrichment</h5>
     <p>
       GO enrichment analysis of selections can be done provided the labels represent gene names.
-      This analysis is done using the API provided by
+      This analysis is performed using the API provided by
       {' '}
       <Link to="https://biit.cs.ut.ee/gprofiler/gost">
         g:Profiler
@@ -352,7 +353,7 @@ const Scatter = () => (
     </p>
     <p>
       Analysis results will open automatically in a separate tabular view. The image can be returned to from the
-      menu in the upper left.
+      menu button in the upper left.
     </p>
     <figure className="help__image-screenshot">
       <Image

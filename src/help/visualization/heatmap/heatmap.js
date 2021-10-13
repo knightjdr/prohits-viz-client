@@ -4,10 +4,10 @@ import {
   faArrowsAlt,
   faEdit,
   faEyeSlash,
-  faLink,
   faList,
   faSync,
   faToggleOn,
+  faUnlink,
 } from '@fortawesome/pro-duotone-svg-icons';
 import {
   faPlus,
@@ -109,7 +109,7 @@ const Heatmap = () => (
       such as column and row labels. Generally this will result in only a part of the image being displayed
       on the screen. Different areas can be selected for viewing by clicking on the minimap found in the
       second tab of the side panel. The arrows at the side of the image can be used for moving the image in
-      precise increments. The blue scroll bars adjacent to the image can be used to scroll through the image.
+      precise increments. The scroll bars adjacent to the image can be used to scroll through the image.
       The mousewheel can also be used for scrolling when the mouse is hovering over the image. Holding
       the shift key while scrolling with the wheel will cause the image to scroll in the horizontal direction
       if the image is wider than the width of the browser window.
@@ -163,7 +163,7 @@ const Heatmap = () => (
     <p>
       The
       {' '}
-      <FontAwesomeIcon icon={faLink} />
+      <FontAwesomeIcon icon={faUnlink} />
       {' '}
       icon can be used to detach the minimap from the side panel. This allows the minimap to be open at the same
       time as other tabs on the side panel.
@@ -180,7 +180,7 @@ const Heatmap = () => (
         <span>Detached minimap open alongside the information tab</span>
         . The minimap was detached from the side panel using the
         {' '}
-        <FontAwesomeIcon icon={faLink} />
+        <FontAwesomeIcon icon={faUnlink} />
         {' '}
         icon. The new detached minimap has additional icons for moving
         {' '}
@@ -277,12 +277,18 @@ const Heatmap = () => (
     <p>
       The readouts/rows displayed on the image are determined by the &quot;Minimum abundance&quot; filter, and also by
       the &quot;Primary filter&quot; for data coming from the dot plot analysis tool. By default if a readout passes
-      these filters for one condition, it will appear on the image.
+      these filters for one condition, it will appear on the image. If the &quot;abundance&quot; metric can take
+      negative values, for example a log
+      <sub>2</sub>
+      {' '}
+      fold change or Z-score, the absolute value is used for comparing against the minimum abundance, i.e.
+      an abundance filter of 1 would filter everything between -1 and 1 but positive and negative values
+      outside that range will pass the filter.
     </p>
     <p>
       These filters can be adjusted in the corresponding area of the settings tab. However, the range of values they
       can take is limited by the settings used for analysis, to the extent that readouts passing
-      filters less stringent than those initial settings cannot be added back onto the image.
+      filters less stringent than the initial settings cannot be added back onto the image.
       For example, if a minimum abundance filter of 10 was set when the analysis was performed, readouts that did
       not pass this cutoff were excluded from the image. If you were to change this filter
       to 9 on the side panel, readouts passing this less stringent filter would not be added to the image as they
@@ -291,8 +297,10 @@ const Heatmap = () => (
     </p>
     <p>
       The &quot;Abundance cap&quot; and &quot;Secondary filter&quot; are not used for filtering data.
-      The abundance cap sets the upper limit for the fill colour scale and the secondary filter
-      defines the intermediate intensity edge on dot plots. When adjusted, the changes will
+      The abundance cap sets the limits for the fill colour scale. For an &quot;abundance&quot; metric taking only
+      positive values, the cap defines the upper limit, while a metric that can take negative values
+      will use the negative value of the cap for the lower limit. The secondary filter
+      defines the intermediate intensity edge on dot plots. When these filters are adjusted, the changes will
       be reflected in the colouring on the image and on the legend.
     </p>
     <p>
