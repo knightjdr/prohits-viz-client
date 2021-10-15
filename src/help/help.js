@@ -8,6 +8,7 @@ import NotFoundPage from '../routes/not-found';
 
 import About from './about/about';
 import Analysis from './analysis/analysis';
+import API from './api/api';
 import Citation from './citation/citation';
 import Main from './help-main';
 import Privacy from './privacy/privacy';
@@ -31,6 +32,7 @@ const Help = forwardRef((
         <Route exact path="/help" component={Main} />
         <Route path="/help/about" component={About} />
         <Route path="/help/analysis" component={Analysis} />
+        <Route path="/help/api" component={API} />
         <Route path="/help/citation" component={Citation} />
         <Route path="/help/privacy" component={Privacy} />
         <Route path="/help/visualization" component={Visualization} />

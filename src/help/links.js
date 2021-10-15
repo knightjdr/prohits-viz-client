@@ -54,6 +54,7 @@ const links = [
   },
   { route: '/help/privacy', text: 'Privacy' },
   { route: '/help/citation', text: 'Citation' },
+  { route: '/help/api', text: 'API' },
   { route: '/help/about', text: 'About' },
 ];
 
