@@ -12,9 +12,9 @@ const plots = [
 ];
 
 const defaultCircleOrder = [
-  { color: 'blue', max: 50, min: 0, name: 'attribute1' },
-  { color: 'blue', max: 50, min: 0, name: 'attribute2' },
-  { color: 'blue', max: 50, min: 0, name: 'attribute3' },
+  { color: 'blue', filter: 0, max: 50, min: 0, attribute: 'attribute1' },
+  { color: 'blue', filter: 0, max: 50, min: 0, attribute: 'attribute2' },
+  { color: 'blue', filter: 0, max: 50, min: 0, attribute: 'attribute3' },
 ];
 
 describe('Fill circles', () => {
@@ -22,7 +22,7 @@ describe('Fill circles', () => {
     const userCircles = {
       main: {
         defaultOrder: defaultCircleOrder,
-        hidden: [{ color: 'blue', max: 50, min: 0, name: 'attribute4' }],
+        hidden: [{ color: 'blue', filter: 0, max: 50, min: 0, attribute: 'attribute4' }],
         order: defaultCircleOrder,
       },
     };
@@ -35,14 +35,76 @@ describe('Fill circles', () => {
     expect(fillCircles(userCircles, plots)).toEqual(expected);
   });
 
+  it('should return user-defined circles when missing parameters', () => {
+    const userCircles = {
+      main: {
+        defaultOrder: [
+          { color: 'blue', max: 50, min: 0, attribute: 'attribute1' },
+          { color: 'blue', max: 50, min: 0, attribute: 'attribute2' },
+          { color: 'blue', max: 50, min: 0, attribute: 'attribute3' },
+        ],
+        hidden: [{ color: 'blue', filter: 0, max: 50, min: 0, attribute: 'attribute4' }],
+        order: [
+          { color: 'blue', max: 50, min: 0, attribute: 'attribute1' },
+          { color: 'blue', max: 50, min: 0, attribute: 'attribute2' },
+          { color: 'blue', max: 50, min: 0, attribute: 'attribute3' },
+        ],
+      },
+    };
+    const expected = {
+      main: {
+        ...defaultState,
+        defaultOrder: [
+          { color: 'blue', filter: 0, max: 50, min: 0, attribute: 'attribute1' },
+          { color: 'blue', filter: 0, max: 50, min: 0, attribute: 'attribute2' },
+          { color: 'blue', filter: 0, max: 50, min: 0, attribute: 'attribute3' },
+        ],
+        hidden: [{ color: 'blue', filter: 0, max: 50, min: 0, attribute: 'attribute4' }],
+        order: [
+          { color: 'blue', filter: 0, max: 50, min: 0, attribute: 'attribute1' },
+          { color: 'blue', filter: 0, max: 50, min: 0, attribute: 'attribute2' },
+          { color: 'blue', filter: 0, max: 50, min: 0, attribute: 'attribute3' },
+        ],
+      },
+    };
+    expect(fillCircles(userCircles, plots)).toEqual(expected);
+  });
+
   it('should return user-defined circles when valid but without snapshot identifiers', () => {
     const userCircles = {
       defaultOrder: defaultCircleOrder,
-        hidden: [{ color: 'blue', max: 50, min: 0, name: 'attribute4' }],
-        order: defaultCircleOrder,
+      hidden: [{ color: 'blue', filter: 0, max: 50, min: 0, attribute: 'attribute4' }],
+      order: defaultCircleOrder,
     };
     const expected = {
       main: userCircles,
+    };
+    expect(fillCircles(userCircles, plots)).toEqual(expected);
+  });
+
+  it('should return user-defined circles without snapshot identifiers when missing parameters', () => {
+    const userCircles = {
+      order: [
+        { color: 'blue', max: 50, min: 0, attribute: 'attribute1' },
+        { color: 'blue', max: 50, min: 0, attribute: 'attribute2' },
+        { color: 'blue', max: 50, min: 0, attribute: 'attribute3' },
+      ],
+    };
+    const expected = {
+      main: {
+        ...defaultState,
+        defaultOrder: [
+          { color: 'blue', filter: 0, max: 50, min: 0, attribute: 'attribute1' },
+          { color: 'blue', filter: 0, max: 50, min: 0, attribute: 'attribute2' },
+          { color: 'blue', filter: 0, max: 50, min: 0, attribute: 'attribute3' },
+        ],
+        hidden: [],
+        order: [
+          { color: 'blue', filter: 0, max: 50, min: 0, attribute: 'attribute1' },
+          { color: 'blue', filter: 0, max: 50, min: 0, attribute: 'attribute2' },
+          { color: 'blue', filter: 0, max: 50, min: 0, attribute: 'attribute3' },
+        ],
+      },
     };
     expect(fillCircles(userCircles, plots)).toEqual(expected);
   });

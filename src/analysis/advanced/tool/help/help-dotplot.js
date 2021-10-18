@@ -24,7 +24,7 @@ const help = {
         be selected accordingly.
       </p>
       <p>
-        If the abundance value being visualization is bidirectional, i.e. it
+        If the abundance value being visualized is bidirectional, i.e. it
         takes both positive and negative values, like a log
         <sub>2</sub>
         {' '}
@@ -89,7 +89,7 @@ const help = {
         unless parsimonious readout filtering is enabled.
       </p>
       <p>
-        If the abundance value being visualization is bidirectional, i.e. it
+        If the abundance value being visualized is bidirectional, i.e. it
         takes both positive and negative values, like a log
         <sub>2</sub>
         {' '}

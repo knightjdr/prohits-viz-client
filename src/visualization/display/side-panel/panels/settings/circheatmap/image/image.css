@@ -21,7 +21,7 @@
 .settings__image-circle-draggable-content {
   display: grid;
   column-gap: 0.2rem;
-  grid-template-columns: 1fr 1fr 1fr;
+  grid-template-columns: 1fr 1fr 1fr 1fr;
 }
 .panel__settings .settings__image-circle-draggable-content .input__container,
 .panel__settings .settings__image-circle-draggable-content .select__container {
@@ -43,4 +43,12 @@
   margin-bottom: 0;
   margin-left: auto;
   width: 60px;
+}
+.panel__settings .settings__image-circle-draggable-content .input__container input::-webkit-outer-spin-button,
+.panel__settings .settings__image-circle-draggable-content .input__container input::-webkit-inner-spin-button {
+    -webkit-appearance: none;
+    margin: 0;
+}
+.panel__settings .settings__image-circle-draggable-content .input__container input {
+  -moz-appearance: textfield;
 }

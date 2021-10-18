@@ -37,8 +37,18 @@ const CircleContent = ({
     </div>
     <div className="settings__image-circle-draggable-content">
       <Input
+        id={`circle_filter_${index}_${circle.attribute}`}
+        label="Filter"
+        onChange={handleSettingChange}
+        min={0}
+        step="0.01"
+        type="number"
+        value={circle.filter}
+        vertical
+      />
+      <Input
         id={`circle_min_${index}_${circle.attribute}`}
-        label="Min. (filter)"
+        label="Min"
         onChange={handleSettingChange}
         step="0.01"
         type="number"
@@ -47,7 +57,7 @@ const CircleContent = ({
       />
       <Input
         id={`circle_max_${index}_${circle.attribute}`}
-        label="Cap"
+        label="Max"
         onChange={handleSettingChange}
         step="0.01"
         type="number"
@@ -69,6 +79,7 @@ CircleContent.propTypes = {
   circle: PropTypes.shape({
     attribute: PropTypes.string,
     color: PropTypes.string,
+    filter: PropTypes.number,
     max: PropTypes.number,
     min: PropTypes.number,
   }).isRequired,
@@ -108,6 +119,7 @@ CircleDraggable.propTypes = {
   circle: PropTypes.shape({
     attribute: PropTypes.string,
     color: PropTypes.string,
+    filter: PropTypes.number,
     max: PropTypes.number,
     min: PropTypes.number,
   }).isRequired,
@@ -140,6 +152,7 @@ CircleList.propTypes = {
     PropTypes.shape({
       attribute: PropTypes.string,
       color: PropTypes.string,
+      filter: PropTypes.number,
       max: PropTypes.number,
       min: PropTypes.number,
     }),
@@ -236,6 +249,7 @@ CircleDND.propTypes = {
       PropTypes.shape({
         attribute: PropTypes.string,
         color: PropTypes.string,
+        filter: PropTypes.number,
         max: PropTypes.number,
         min: PropTypes.number,
       }),
@@ -244,6 +258,7 @@ CircleDND.propTypes = {
       PropTypes.shape({
         attribute: PropTypes.string,
         color: PropTypes.string,
+        filter: PropTypes.number,
         max: PropTypes.number,
         min: PropTypes.number,
       }),

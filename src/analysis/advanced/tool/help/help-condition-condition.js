@@ -16,7 +16,7 @@ const help = {
         values for it are returned across both conditions.
       </p>
       <p>
-        If the abundance value being visualization is bidirectional, i.e. it
+        If the abundance value being visualized is bidirectional, i.e. it
         takes both positive and negative values, like a log
         <sub>2</sub>
         {' '}

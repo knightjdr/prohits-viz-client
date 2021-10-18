@@ -75,19 +75,19 @@ const ImageContainer = () => {
   const handleSettingChange = (e, id, value) => {
     const [, attribute, indexString] = id.split('_');
     const index = Number(indexString);
-    if (attribute === 'min') {
+    if (attribute === 'filter') {
       const updatedCircles = circles.order.map((circle, circleIndex) => {
         if (circleIndex === index) {
           return {
             ...circle,
-            min: value,
+            filter: value,
           };
         }
         return circle;
       });
       batch(() => {
         dispatch(updateCircleSetting({
-          attribute: 'min',
+          attribute: 'filter',
           index,
           value,
         }));

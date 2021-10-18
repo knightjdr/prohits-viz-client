@@ -1,33 +1,50 @@
 import fillSnapshots from '../snapshot';
 import isObject from '../../../utils/is-object';
 import sort from '../../../utils/sort';
-import { validateArray } from '../../../utils/validate-type';
 
 export const defaultState = {
   hidden: [],
 };
 
+const defaultCircle = {
+  color: 'blue',
+  filter: 0,
+  max: 50,
+  min: 0,
+};
+
 const defineCirclesFromAttributes = (attributes) => {
   attributes.sort(sort.character);
   return attributes.map((attribute) => ({
-    color: 'blue',
-    max: 50,
-    min: 0,
-    name: attribute,
+    ...defaultCircle,
+    attribute,
   }));
 };
 
-export const fillSnapshotCircles = (inputCircles, attributes) => {
+const validateCircles = (order, defaultOrder) => {
+  if (!Array.isArray(order)) {
+    return defaultOrder;
+  }
+  return order.map((circle) => ({
+    attribute: circle.attribute,
+    color: circle.color || defaultCircle.color,
+    filter: circle.filter || defaultCircle.filter,
+    max: circle.max || defaultCircle.max,
+    min: circle.min || defaultCircle.min,
+  }));
+};
+
+export const fillSnapshotCircles = (inputCircles, defaultCircleOrder) => {
   const {
     defaultOrder,
     hidden,
     order,
   } = inputCircles;
 
-  const validatedOrder = validateArray(order, attributes);
+  const validatedOrder = validateCircles(order, defaultCircleOrder);
   return {
-    defaultOrder: validateArray(defaultOrder, validatedOrder),
-    hidden: validateArray(hidden, defaultState.hidden),
+    defaultOrder: validateCircles(defaultOrder, validatedOrder),
+    hidden: validateCircles(hidden, defaultState.hidden),
     order: validatedOrder,
   };
 };
@@ -46,7 +63,7 @@ const fillCircles = (fileCircles, plots) => {
     };
   } if (isObject(circles) && Object.keys(circles).length > 0 && !circles.main) {
     circles = {
-      main: { ...circles },
+      main: fillSnapshotCircles(circles, defaultCircleOrder),
     };
   }
 

@@ -1,10 +1,10 @@
 import { filterReadouts, sortReadouts } from './readouts-helpers';
 
 describe('Filter readouts for circheatmap', () => {
-  it('should filter data by minimum for each attribute', () => {
+  it('should filter data by filter for each attribute', () => {
     const circles = [
-      { attribute: 'a', min: 10 },
-      { attribute: 'b', min: 5 },
+      { attribute: 'a', filter: 10 },
+      { attribute: 'b', filter: 5 },
     ];
     const data = [
       { label: 'readout1', segments: { a: 10, b: 5 } },
@@ -21,10 +21,10 @@ describe('Filter readouts for circheatmap', () => {
     expect(filterReadouts(data, circles)).toEqual(expected);
   });
 
-  it('should filter data by readout order and minimum for each attribute', () => {
+  it('should filter data by readout order and filter for each attribute', () => {
     const circles = [
-      { attribute: 'a', min: 10 },
-      { attribute: 'b', min: 5 },
+      { attribute: 'a', filter: 10 },
+      { attribute: 'b', filter: 5 },
     ];
     const data = [
       { label: 'readout1', segments: { a: 10, b: 5 } },

@@ -59,8 +59,8 @@ describe('Readouts reducer', () => {
     };
     const action = {
       circles: [
-        { attribute: 'circle1', min: 10 },
-        { attribute: 'circle2', min: 5 },
+        { attribute: 'circle1', filter: 10 },
+        { attribute: 'circle2', filter: 5 },
       ],
       readouts: [
         { known: true, label: 'a', segments: { circle1: 10, circle2: 5 } },
@@ -133,8 +133,8 @@ describe('Readouts reducer', () => {
       };
       const action = {
         circles: [
-          { attribute: 'circle1', min: 10 },
-          { attribute: 'circle2', min: 5 },
+          { attribute: 'circle1', filter: 10 },
+          { attribute: 'circle2', filter: 5 },
         ],
         maxReadouts: 3,
         readoutIDs: [],
@@ -188,8 +188,8 @@ describe('Readouts reducer', () => {
       };
       const action = {
         circles: [
-          { attribute: 'circle1', min: 0 },
-          { attribute: 'circle2', min: 0 },
+          { attribute: 'circle1', filter: 0 },
+          { attribute: 'circle2', filter: 0 },
         ],
         maxReadouts: Infinity,
         readoutIDs: ['c', 'b', 'a'],
@@ -225,8 +225,8 @@ describe('Readouts reducer', () => {
         circles: {
           main: {
             order: [
-              { attribute: 'circle1', min: 10 },
-              { attribute: 'circle2', min: 5 },
+              { attribute: 'circle1', filter: 10 },
+              { attribute: 'circle2', filter: 5 },
             ],
           },
         },
@@ -350,8 +350,8 @@ describe('Readouts reducer', () => {
     const action = {
       snapshotID: 'main',
       circles: [
-        { attribute: 'circle1', min: 0 },
-        { attribute: 'circle2', min: 0 },
+        { attribute: 'circle1', filter: 0 },
+        { attribute: 'circle2', filter: 0 },
       ],
       maxReadouts: Infinity,
       readoutIDs: [],

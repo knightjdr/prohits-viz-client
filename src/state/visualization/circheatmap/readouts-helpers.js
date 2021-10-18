@@ -4,7 +4,7 @@ export const filterReadouts = (readouts, circles, readoutIDs = []) => {
     : readouts;
 
   return filtered.filter((readout) => (
-    circles.every((circle) => readout.segments[circle.attribute] >= circle.min)
+    circles.every((circle) => Math.abs(readout.segments[circle.attribute]) >= Math.abs(circle.filter))
   ));
 };
 
