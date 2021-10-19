@@ -545,8 +545,8 @@ const Heatmap = () => (
       <figcaption>
         <span>Making selections</span>
         . Specific columns and rows can be selected from the selection menus on the side panel,
-        right-clicking on a column or row label, clicking and dragging the mouse over an area of the
-        image, and by right-clicking and pasting a list into the selection menu.
+        by right-clicking on a column or row label, by clicking and dragging the mouse over an area of the
+        image or by right-clicking and pasting a list into the selection menu.
       </figcaption>
     </figure>
     <h4 id="selections-snapshot">Manual filtering and snapshots</h4>

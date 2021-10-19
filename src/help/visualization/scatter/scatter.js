@@ -281,7 +281,7 @@ const Scatter = () => (
       <figcaption>
         <span>Making selections</span>
         . Specific points can be selected from the selection menu on the side panel,
-        by clicking on a point, by right-clicking and pasting a list into the selection menu, and by
+        by clicking on a point, by right-clicking and pasting a list into the selection menu or by
         holding the SHIFT key and dragging the cursor around the desired points.
       </figcaption>
     </figure>

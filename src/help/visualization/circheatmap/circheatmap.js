@@ -140,10 +140,11 @@ const CircHeatmap = () => (
       {' '}
       drag-and-drop area.
       In this area there is a card for each metric visualized on the image. Clicking and dragging a card allows
-      reordering of the circles on the image. The minimum value for each metric acts as an inclusive filter. Only
-      readouts equal to or above that value will be displayed on the image. The cap is a visual cap on the colour
-      scale, with any values at or above being given the highest intensity colour. The visibility of circles
-      can be controlled using the &quot;hide&quot; checkbox.
+      reordering of the circles on the image. Only readouts with an absolute value equal to or above the
+      &quot;Filter&quot; will be displayed on the image. The &quot;Min&quot; and &quot;Max&quot; are visual caps
+      for the colour scale, with any value below the minimum being given the lowest intensity colour and any value
+      above the maximum being given the highest intensity colour. The visibility of circles can be controlled using the
+      &quot;hide&quot; checkbox.
     </p>
     <h4 id="settings-filtering">Filtering</h4>
     <p>
@@ -223,7 +224,7 @@ const CircHeatmap = () => (
       <figcaption>
         <span>Making selections</span>
         . Specific readouts can be selected from the selection menu on the side panel,
-        clicking on a segment, and by right-clicking and pasting a list into the selection menu.
+        by clicking on a segment or by right-clicking and pasting a list into the selection menu.
       </figcaption>
     </figure>
     <h4 id="selections-snapshot">Manual filtering</h4>
@@ -293,7 +294,7 @@ const CircHeatmap = () => (
     </p>
     <p>
       Analysis results will open automatically in a separate tabular view. The image can be returned to from the
-      menu in the upper left.
+      menu button in the upper left.
     </p>
     <figure className="help__image-screenshot">
       <Image
