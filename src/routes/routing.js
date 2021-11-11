@@ -13,6 +13,11 @@ const Tasks = lazy(() => import('../tasks/tasks-router'));
 const Utilities = lazy(() => import('../utilities/utilities-container'));
 const Visualization = lazy(() => import('../visualization/visualization-container'));
 
+const Videos = () => {
+  window.location.replace('https://www.youtube.com/channel/UCGR-0ixL4z526JUVQU8P4xQ');
+  return null;
+};
+
 const Routing = () => {
   useLayoutEffect(() => window.scrollTo(0, 0));
 
@@ -28,6 +33,7 @@ const Routing = () => {
             <Route path="/news" component={News} />
             <Route path="/tasks" component={Tasks} />
             <Route path="/utilities" component={Utilities} />
+            <Route path="/videos" component={Videos} />
             <Route path="/visualization" component={Visualization} />
             <Route path="*" exact component={NotFoundPage} />
           </Switch>
