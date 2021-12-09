@@ -1,3 +1,4 @@
+/* eslint-disable react/jsx-key */
 import React from 'react';
 
 import convertToExponent from './convert-to-exponent';
@@ -29,7 +30,7 @@ describe('Convert to exponent', () => {
       const tests = [113.237, 0.001378];
       const expected = [
         (
-          <tspan key="node1">
+          <tspan>
             {1.13}
             ×
             {10}
@@ -43,7 +44,7 @@ describe('Convert to exponent', () => {
           </tspan>
         ),
         (
-          <tspan key="node2">
+          <tspan>
             {1.38}
             ×
             {10}
