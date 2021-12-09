@@ -37,6 +37,21 @@ describe('Fill minimap', () => {
     expect(fillMap(userMinimap)).toEqual(expected);
   });
 
+  it('should return syncing is needed when an image is missing', () => {
+    validateUri.mockReturnValue(false);
+    const userMinimap = {
+      main: {
+        image: null,
+        needSyncing: false,
+        syncedImage: null,
+      },
+    };
+    const expected = {
+      main: defaultState,
+    };
+    expect(fillMap(userMinimap)).toEqual(expected);
+  });
+
   it('should return defaults when no selections are defined', () => {
     const userMinimap = {};
     const expected = {
