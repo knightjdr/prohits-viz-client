@@ -1,6 +1,6 @@
 import PropTypes from 'prop-types';
 import React, { forwardRef } from 'react';
-import { Switch, Route } from 'react-router-dom';
+import { Routes, Route } from 'react-router-dom';
 
 import Footer from './footer/footer';
 import Menu from './menu/menu-container';
@@ -28,16 +28,16 @@ const Help = forwardRef((
       className="help__inner"
       ref={ref}
     >
-      <Switch>
-        <Route exact path="/help" component={Main} />
-        <Route path="/help/about" component={About} />
-        <Route path="/help/analysis" component={Analysis} />
-        <Route path="/help/api" component={API} />
-        <Route path="/help/citation" component={Citation} />
-        <Route path="/help/privacy" component={Privacy} />
-        <Route path="/help/visualization" component={Visualization} />
-        <Route path="*" component={NotFoundPage} />
-      </Switch>
+      <Routes>
+        <Route path="/" element={<Main />} />
+        <Route path="about" element={<About />} />
+        <Route path="analysis/*" element={<Analysis />} />
+        <Route path="api" element={<API />} />
+        <Route path="citation" element={<Citation />} />
+        <Route path="privacy" element={<Privacy />} />
+        <Route path="visualization/*" element={<Visualization />} />
+        <Route path="*" element={<NotFoundPage />} />
+      </Routes>
       <Footer navLinks={footerNavLinks} />
     </div>
   </div>

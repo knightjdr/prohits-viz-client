@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { useSelector } from 'react-redux';
-import { useHistory } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
 
 import Archive from './archive';
 
@@ -11,7 +11,7 @@ import useSessionData from '../session/use-session-data';
 import { selectStateProperty } from '../../../../../../state/selector/general';
 
 const ArchiveContainer = () => {
-  const history = useHistory();
+  const navigate = useNavigate();
   const [archiveStatus, setArchiveStatus] = useState({
     archiving: false,
     error: false,
@@ -59,7 +59,7 @@ const ArchiveContainer = () => {
 
   const handleClose = () => {
     setIsArchiveModelOpen(false);
-    history.replace(archiveStatus.route);
+    navigate(archiveStatus.route, { replace: true });
   };
 
   const handleCopy = () => {

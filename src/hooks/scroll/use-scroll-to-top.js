@@ -1,20 +1,15 @@
 import { useEffect } from 'react';
-import { useHistory } from 'react-router-dom';
+import { useLocation } from 'react-router-dom';
 
 function useScrollToTop(ref) {
-  const history = useHistory();
+  const location = useLocation();
 
   useEffect(() => {
-    const unlisten = history.listen(() => {
-      if (ref?.current) {
-        // eslint-disable-next-line no-param-reassign
-        ref.current.scrollTop = 0;
-      }
-    });
-    return () => {
-      unlisten();
-    };
-  }, []);
+    if (ref?.current) {
+      // eslint-disable-next-line no-param-reassign
+      ref.current.scrollTop = 0;
+    }
+  }, [location]);
 
   return null;
 }

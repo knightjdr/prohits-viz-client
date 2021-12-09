@@ -1,5 +1,5 @@
 import React from 'react';
-import { Switch, Route } from 'react-router-dom';
+import { Routes, Route } from 'react-router-dom';
 
 import CircHeatmap from './circheatmap/circheatmap';
 import Heatmap from './heatmap/heatmap';
@@ -11,14 +11,14 @@ import Scatter from './scatter/scatter';
 const Visualization = () => (
   <div>
     <h1>Visualization</h1>
-    <Switch>
-      <Route exact path="/help/visualization" component={Main} />
-      <Route path="/help/visualization/circular-heatmap" component={CircHeatmap} />
-      <Route path="/help/visualization/heatmap" component={Heatmap} />
-      <Route path="/help/visualization/input-file" component={InputFile} />
-      <Route path="/help/visualization/scatterplot" component={Scatter} />
-      <Route path="*" component={NotFoundPage} />
-    </Switch>
+    <Routes>
+      <Route path="/" element={<Main />} />
+      <Route path="circular-heatmap" element={<CircHeatmap />} />
+      <Route path="heatmap" element={<Heatmap />} />
+      <Route path="input-file" element={<InputFile />} />
+      <Route path="scatterplot" element={<Scatter />} />
+      <Route path="*" element={<NotFoundPage />} />
+    </Routes>
   </div>
 );
 

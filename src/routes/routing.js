@@ -1,5 +1,5 @@
 import React, { lazy, Suspense, useLayoutEffect } from 'react';
-import { BrowserRouter as Router, Switch, Route } from 'react-router-dom';
+import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 
 import Home from '../home/home-container';
 import Loading from './loading';
@@ -26,17 +26,17 @@ const Routing = () => {
       <Suspense fallback={<Loading />}>
         <Navbar />
         <main className="app">
-          <Switch>
-            <Route exact path="/" component={Home} />
-            <Route path="/analysis" component={Analyze} />
-            <Route path="/help" component={Help} />
-            <Route path="/news" component={News} />
-            <Route path="/tasks" component={Tasks} />
-            <Route path="/utilities" component={Utilities} />
-            <Route path="/videos" component={Videos} />
-            <Route path="/visualization" component={Visualization} />
-            <Route path="*" exact component={NotFoundPage} />
-          </Switch>
+          <Routes>
+            <Route path="/" element={<Home />} />
+            <Route path="/analysis" element={<Analyze />} />
+            <Route path="/help/*" element={<Help />} />
+            <Route path="/news/*" element={<News />} />
+            <Route path="/tasks/*" element={<Tasks />} />
+            <Route path="/utilities" element={<Utilities />} />
+            <Route path="/videos" element={<Videos />} />
+            <Route path="/visualization/*" element={<Visualization />} />
+            <Route path="*" element={<NotFoundPage />} />
+          </Routes>
         </main>
       </Suspense>
     </Router>

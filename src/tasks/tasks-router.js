@@ -1,15 +1,15 @@
 import React from 'react';
-import { Switch, Route } from 'react-router-dom';
+import { Routes, Route } from 'react-router-dom';
 
 import NotFoundPage from '../routes/not-found';
 import Tasks from './tasks-container';
 
 const TasksRouter = () => (
-  <Switch>
-    <Route exact path="/tasks" component={Tasks} />
-    <Route path="/tasks/:id" component={Tasks} />
-    <Route path="*" component={NotFoundPage} />
-  </Switch>
+  <Routes>
+    <Route path="/" element={<Tasks />} />
+    <Route path="/:id" element={<Tasks />} />
+    <Route path="*" element={<NotFoundPage />} />
+  </Routes>
 );
 
 export default TasksRouter;

@@ -1,6 +1,6 @@
 import React, { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { useHistory } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
 
 import Load from './load';
 
@@ -18,7 +18,7 @@ const worker = createWorker(Worker);
 
 const LoadContainer = () => {
   const dispatch = useDispatch();
-  const history = useHistory();
+  const navigate = useNavigate();
   const parameters = useSelector((state) => selectState(state, 'parameters'));
 
   const status = useLoading();
@@ -32,7 +32,7 @@ const LoadContainer = () => {
       const filename = removeFileExtenstion(file.name);
       const interactiveData = fillInteractiveState(fileData, filename, 'userfile');
       dispatch(loadInteractiveState(interactiveData));
-      history.replace(`/visualization/userfile/${filename}`);
+      navigate(`/visualization/userfile/${filename}`, { replace: true });
     } catch (err) {
       status.setError(true);
       status.setErrorMessage(err.toString());
@@ -44,7 +44,7 @@ const LoadContainer = () => {
 
   useEffect(() => {
     if (filename && taskID) {
-      history.replace(`/visualization/${taskID}/${filename}`);
+      navigate(`/visualization/${taskID}/${filename}`, { replace: true });
       status.setLoading(false);
     }
   }, [filename, status, taskID]);

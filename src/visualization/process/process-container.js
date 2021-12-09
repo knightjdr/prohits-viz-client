@@ -1,6 +1,6 @@
 import React, { useEffect, useRef } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { useHistory, useParams } from 'react-router-dom';
+import { useNavigate, useParams } from 'react-router-dom';
 
 import fetch from '../../utils/fetch';
 import fillInteractiveState from '../defaults/fill-interactive-state';
@@ -11,7 +11,7 @@ import { selectState } from '../../state/selector/general';
 
 const ProcessContainer = () => {
   const { id, filename } = useParams();
-  const history = useHistory();
+  const navigate = useNavigate();
   const attemptRef = useRef(0);
   const parameters = useSelector((state) => selectState(state, 'parameters'));
   const dispatch = useDispatch();
@@ -21,7 +21,7 @@ const ProcessContainer = () => {
     // If a users loads an image from a file and hits refresh in the browser,
     // this will catch that and redirect to the upload page.
     if (id === 'userfile' && !parameters.taskID) {
-      history.replace('/visualization');
+      navigate('/visualization', { replace: true });
     }
     // Load files from the server. It will make five attempts, and if the image cannot be
     // found it will display the error message.

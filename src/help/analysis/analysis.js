@@ -1,5 +1,5 @@
 import React from 'react';
-import { Switch, Route } from 'react-router-dom';
+import { Routes, Route } from 'react-router-dom';
 
 import CC from './cc/cc';
 import Correlation from './correlation/correlation';
@@ -13,16 +13,16 @@ import Specificity from './specificity/specificity';
 const Analysis = () => (
   <div>
     <h1>Analysis</h1>
-    <Switch>
-      <Route exact path="/help/analysis" component={Main} />
-      <Route path="/help/analysis/condition-condition" component={CC} />
-      <Route path="/help/analysis/correlation" component={Correlation} />
-      <Route path="/help/analysis/dotplot" component={Dotplot} />
-      <Route path="/help/analysis/input-file" component={InputFile} />
-      <Route path="/help/analysis/scv" component={SCV} />
-      <Route path="/help/analysis/specificity" component={Specificity} />
-      <Route path="*" component={NotFoundPage} />
-    </Switch>
+    <Routes>
+      <Route path="/" element={<Main />} />
+      <Route path="condition-condition" element={<CC />} />
+      <Route path="correlation" element={<Correlation />} />
+      <Route path="dotplot" element={<Dotplot />} />
+      <Route path="input-file" element={<InputFile />} />
+      <Route path="scv" element={<SCV />} />
+      <Route path="specificity" element={<Specificity />} />
+      <Route path="*" element={<NotFoundPage />} />
+    </Routes>
   </div>
 );
 
