@@ -75,7 +75,7 @@ const sortedArrays = {
 };
 
 describe('Sort array of objects by key', () => {
-  /* it('should return original value when not an array', () => {
+  it('should return original value when not an array', () => {
     expect(arrSortByKey()).toBeUndefined();
     expect(arrSortByKey('')).toBe('');
     expect(arrSortByKey(1)).toBe(1);
@@ -84,15 +84,15 @@ describe('Sort array of objects by key', () => {
 
   it('should return original value when key is missing', () => {
     expect(arrSortByKey(testArrays.stringsOnly)).toEqual(testArrays.stringsOnly);
-  }); */
+  });
 
   it('should return sorted array where key is character', () => {
     expect(arrSortByKey(testArrays.stringsOnly, 'a')).toEqual(sortedArrays.stringsOnly.asc);
-    // expect(arrSortByKey(testArrays.stringsOnly, 'a', 'asc')).toEqual(sortedArrays.stringsOnly.asc);
-    // expect(arrSortByKey(testArrays.stringsOnly, 'a', 'des')).toEqual(sortedArrays.stringsOnly.des);
+    expect(arrSortByKey(testArrays.stringsOnly, 'a', 'asc')).toEqual(sortedArrays.stringsOnly.asc);
+    expect(arrSortByKey(testArrays.stringsOnly, 'a', 'des')).toEqual(sortedArrays.stringsOnly.des);
   });
 
-  /* it('should return original when trying to sort strings as numbers', () => {
+  it('should return original when trying to sort strings as numbers', () => {
     expect(arrSortByKey(testArrays.stringsOnly, 'a', 'asc', 'numeric')).toEqual(testArrays.stringsOnly);
   });
 
@@ -101,7 +101,7 @@ describe('Sort array of objects by key', () => {
     expect(arrSortByKey(testArrays.numbersOnly, 'a', 'des', 'numeric')).toEqual(sortedArrays.numbersOnly.des);
   });
 
-  it('should sort numebers numerically when sorted as strings', () => {
+  it('should sort numbers numerically when sorted as strings', () => {
     expect(arrSortByKey(testArrays.numbersOnly, 'a', 'asc', 'string')).toEqual(sortedArrays.numbersAsCharacters.asc);
   });
 
@@ -110,5 +110,5 @@ describe('Sort array of objects by key', () => {
     expect(arrSortByKey(testArrays.mixed, 'a', 'des')).toEqual(sortedArrays.mixedAsStrings.des);
     expect(arrSortByKey(testArrays.mixed, 'a', 'asc', 'numeric')).toEqual(sortedArrays.mixedAsNumbers.asc);
     expect(arrSortByKey(testArrays.mixed, 'a', 'des', 'numeric')).toEqual(sortedArrays.mixedAsNumbers.des);
-  }); */
+  });
 });
