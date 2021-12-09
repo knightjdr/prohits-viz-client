@@ -11,7 +11,7 @@ const TableBodyContainer = forwardRef((
   const [tooltip, setTooltip] = useState({ show: false });
 
   const handleMouseOut = () => {
-    setTooltip({ show: false });
+    // setTooltip({ show: false });
   };
 
   const handleMouseOver = (e) => {

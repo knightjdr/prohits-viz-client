@@ -18,7 +18,7 @@ const Span = styled.span`
   opacity: 0;
   overflow-wrap: anywhere;
   padding: ${(props) => (props.padding ? '5px' : 0)};
-  pointer-events: none;
+  pointer-events: ${(props) => (props.isTransparent ? 'none' : 'auto')};
   position: fixed;
   z-index: 2147483647;
 
@@ -60,11 +60,13 @@ const Span = styled.span`
 `;
 
 Span.defaultProps = {
+  isTransparent: true,
   padding: true,
   shadow: true,
 };
 
 Span.propTypes = {
+  isTransparent: PropTypes.bool,
   padding: PropTypes.bool,
   shadow: PropTypes.bool,
 };

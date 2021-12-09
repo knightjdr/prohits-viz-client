@@ -18,6 +18,7 @@ const TableTooltip = ({
       x: tooltip.x,
       y: tooltip.y,
     }}
+    isTransparent={false}
   >
     <StyledTableBodyTooltip style={{ minHeight }}>
       {tooltip.content}
