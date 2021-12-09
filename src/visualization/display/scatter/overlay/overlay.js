@@ -35,6 +35,7 @@ const Overlay = forwardRef((
   </>
 ));
 
+Overlay.displayName = 'Overlay';
 Overlay.propTypes = {
   axisLength: PropTypes.number.isRequired,
   coordinates: PropTypes.shape({

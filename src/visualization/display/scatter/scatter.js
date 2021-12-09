@@ -43,6 +43,7 @@ const Scatter = forwardRef((
   </div>
 ));
 
+Scatter.displayName = 'Scatter';
 Scatter.propTypes = {
   lines: PropTypes.shape({
     fcLines: PropTypes.arrayOf(

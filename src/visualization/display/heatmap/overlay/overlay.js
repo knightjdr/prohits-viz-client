@@ -31,6 +31,7 @@ const Overlay = forwardRef((
   </>
 ));
 
+Overlay.displayName = 'Overlay';
 Overlay.propTypes = {
   height: PropTypes.number.isRequired,
   showTooltips: PropTypes.bool.isRequired,

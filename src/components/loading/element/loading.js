@@ -38,7 +38,7 @@ const Loading = ({
         <StyledLoading {...props}>
           {content}
         </StyledLoading>
-      )
+        )
       : null
   );
 };

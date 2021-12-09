@@ -35,7 +35,7 @@ const Minimap = ({
             <Attached>
               {image}
             </Attached>
-          )
+            )
           : (
             <Detached
               minimap={minimap.syncedImage || minimap.image}
@@ -43,7 +43,7 @@ const Minimap = ({
             >
               {image}
             </Detached>
-          )
+            )
       }
     </div>
   );

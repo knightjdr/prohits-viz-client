@@ -44,6 +44,7 @@ const ModalButton = forwardRef((
   </ModalButtonWrapper>
 ));
 
+ModalButton.displayName = 'ModalButton';
 ModalButton.propTypes = {
   button: PropTypes.node.isRequired,
   children: PropTypes.node.isRequired,

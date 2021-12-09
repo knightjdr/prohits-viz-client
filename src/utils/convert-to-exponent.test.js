@@ -29,7 +29,7 @@ describe('Convert to exponent', () => {
       const tests = [113.237, 0.001378];
       const expected = [
         (
-          <tspan>
+          <tspan key="node1">
             {1.13}
             ×
             {10}
@@ -43,7 +43,7 @@ describe('Convert to exponent', () => {
           </tspan>
         ),
         (
-          <tspan>
+          <tspan key="node2">
             {1.38}
             ×
             {10}

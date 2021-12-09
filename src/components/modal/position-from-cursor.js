@@ -4,28 +4,32 @@ const calculateBottom = (elementHeight, y) => {
   const { innerHeight } = window;
   const bottom = innerHeight - y;
   return bottom + elementHeight < innerHeight
-    ? `${bottom}px` : `${innerHeight - elementHeight - VIEWPORT_PADDING}px`;
+    ? `${bottom}px`
+    : `${innerHeight - elementHeight - VIEWPORT_PADDING}px`;
 };
 
 const calculateLeft = (elementWidth, x) => {
   const { innerWidth } = window;
   const left = x;
   return left + elementWidth < innerWidth
-    ? `${left}px` : `${innerWidth - elementWidth - VIEWPORT_PADDING}px`;
+    ? `${left}px`
+    : `${innerWidth - elementWidth - VIEWPORT_PADDING}px`;
 };
 
 const calculateRight = (elementWidth, x) => {
   const { innerWidth } = window;
   const right = innerWidth - x;
   return right + elementWidth < innerWidth
-    ? `${right}px` : `${innerWidth - elementWidth - VIEWPORT_PADDING}px`;
+    ? `${right}px`
+    : `${innerWidth - elementWidth - VIEWPORT_PADDING}px`;
 };
 
 const calculateTop = (elementHeight, y) => {
   const { innerHeight } = window;
   const top = y;
   return top + elementHeight < innerHeight
-    ? `${top}px` : `${innerHeight - elementHeight - VIEWPORT_PADDING}px`;
+    ? `${top}px`
+    : `${innerHeight - elementHeight - VIEWPORT_PADDING}px`;
 };
 
 const calculateVerticalCenter = (elementHeight, y) => {
@@ -33,7 +37,8 @@ const calculateVerticalCenter = (elementHeight, y) => {
   const halfHeight = (elementHeight / 2);
   const top = y - halfHeight;
   return top + elementHeight < innerHeight
-    ? `${top}px` : `${innerHeight - elementHeight - VIEWPORT_PADDING}px`;
+    ? `${top}px`
+    : `${innerHeight - elementHeight - VIEWPORT_PADDING}px`;
 };
 
 const calculateBottomLeft = (elementDimensions, x, y) => ({

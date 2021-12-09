@@ -65,6 +65,7 @@ const TableBody = forwardRef((
   </>
 ));
 
+TableBody.displayName = 'TableBody';
 TableBody.propTypes = {
   fieldOrder: PropTypes.arrayOf(PropTypes.string).isRequired,
   gridTemplateColumns: PropTypes.string.isRequired,

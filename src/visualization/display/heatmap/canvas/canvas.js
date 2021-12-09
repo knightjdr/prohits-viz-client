@@ -21,6 +21,7 @@ const Canvas = forwardRef((
   />
 ));
 
+Canvas.displayName = 'Canvas';
 Canvas.propTypes = {
   pageDimensions: PropTypes.shape({
     canvasHeight: PropTypes.number,

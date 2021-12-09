@@ -20,7 +20,7 @@ const Process = ({
             isLoading={isLoading}
             message={errorMessage}
           />
-        )
+          )
         : <Display />
     }
   </>

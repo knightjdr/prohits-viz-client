@@ -23,6 +23,7 @@ const Tooltip = forwardRef((
   portal,
 ));
 
+Tooltip.displayName = 'Tooltip';
 Tooltip.defaultProps = {
   children: null,
   className: undefined,

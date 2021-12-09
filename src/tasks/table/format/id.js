@@ -24,7 +24,7 @@ const Id = ({
             type="text"
             value={name}
           />
-        )
+          )
         : <span>{id}</span>
     }
     <IconButton

@@ -6,17 +6,17 @@ import './search-match.css';
 const defineDimensions = (direction, position, cellSize) => (
   direction === 'column'
     ? {
-      height: 100,
-      width: cellSize,
-      x: position * cellSize,
-      y: 0,
-    }
+        height: 100,
+        width: cellSize,
+        x: position * cellSize,
+        y: 0,
+      }
     : {
-      height: cellSize,
-      width: 100,
-      x: 0,
-      y: position * cellSize,
-    }
+        height: cellSize,
+        width: 100,
+        x: 0,
+        y: position * cellSize,
+      }
 );
 
 const SearchMatch = ({

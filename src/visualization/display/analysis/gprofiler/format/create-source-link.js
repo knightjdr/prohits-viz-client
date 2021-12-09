@@ -13,7 +13,7 @@ const createSourceLink = (id, url) => (
       >
         { id }
       </Link>
-    )
+      )
     : id
 );
 

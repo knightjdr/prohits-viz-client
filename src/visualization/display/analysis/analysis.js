@@ -16,7 +16,7 @@ const Analysis = ({
         isLoading={analysis.isProcessing}
         message={analysis.message}
       />
-    )
+      )
     : getAnalysisView(analysisName, analysis)
 );
 

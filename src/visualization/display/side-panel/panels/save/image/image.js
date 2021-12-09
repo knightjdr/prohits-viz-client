@@ -45,7 +45,7 @@ const Image = ({
                 onClick={handleSave}
               />
             </>
-          )
+            )
           : (
             <ButtonRectangular
               onClick={handleSave}
@@ -53,7 +53,7 @@ const Image = ({
             >
               Save
             </ButtonRectangular>
-          )
+            )
       }
 
     </div>

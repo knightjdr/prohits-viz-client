@@ -22,17 +22,17 @@ const GprofilerContainer = () => {
   const handleGoCheckboxChange = (e, id, value) => {
     const newSettings = value
       ? {
-        GO: true,
-        'GO:BP': true,
-        'GO:CC': true,
-        'GO:MF': true,
-      }
+          GO: true,
+          'GO:BP': true,
+          'GO:CC': true,
+          'GO:MF': true,
+        }
       : {
-        GO: false,
-        'GO:BP': false,
-        'GO:CC': false,
-        'GO:MF': false,
-      };
+          GO: false,
+          'GO:BP': false,
+          'GO:CC': false,
+          'GO:MF': false,
+        };
     dispatch(changeGprofilerSettings(newSettings));
   };
 

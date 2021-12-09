@@ -91,6 +91,7 @@ const SidePanel = forwardRef((
   );
 });
 
+SidePanel.displayName = 'SidePanel';
 SidePanel.propTypes = {
   imageType: PropTypes.string.isRequired,
   isOpen: PropTypes.bool.isRequired,

@@ -11,7 +11,7 @@ const filterPointsFromThunk = (values) => ({
   ...values,
 });
 
-export const filterPoints = (filter, value) => (
+export const filterPoints = (filter, value) =>
   (dispatch, getState) => {
     const { xFilter, yFilter } = getDataProperty(getState(), 'settings', 'current');
 
@@ -24,4 +24,4 @@ export const filterPoints = (filter, value) => (
       dispatch(updateSetting(filter, value));
     });
   }
-);
+;

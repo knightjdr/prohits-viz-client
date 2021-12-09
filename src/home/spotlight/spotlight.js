@@ -51,7 +51,7 @@ const Spotlight = ({
           }
         </Carousel>
       </section>
-    )
+      )
     : null
 );
 

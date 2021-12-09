@@ -39,7 +39,7 @@ const Columns = ({
               Set as reference
             </button>
           </li>
-        )
+          )
         : (
           <li>
             <button
@@ -49,7 +49,7 @@ const Columns = ({
               Unset as reference
             </button>
           </li>
-        )
+          )
     }
   </>
 );

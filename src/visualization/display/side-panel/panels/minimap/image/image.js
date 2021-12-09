@@ -25,7 +25,7 @@ const Image = ({
         syncError={minimap.syncError}
         syncMinimap={syncMinimap}
       />
-    )
+      )
     : (
       <div
         className="minimap__image"
@@ -50,7 +50,7 @@ const Image = ({
           style={pageOutline}
         />
       </div>
-    )
+      )
 );
 
 Image.propTypes = {

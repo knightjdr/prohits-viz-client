@@ -29,7 +29,7 @@ const PointList = ({
             <p>
               Use the selection box above to choose points for customization.
             </p>
-          )
+            )
           : (
             <Groups
               groups={groups}
@@ -43,7 +43,7 @@ const PointList = ({
               handleRadiusChange={handleRadiusChange}
               isDragging={isDragging}
             />
-          )
+            )
       }
     </div>
   </Section>

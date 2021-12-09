@@ -74,7 +74,7 @@ const List = ({
     {
       points.length > 0
         ? (
-          points.map((point, index) => (
+            points.map((point, index) => (
             <ListDraggable
               groupIndex={groupIndex}
               handleDeletePoint={handleDeletePoint}
@@ -82,8 +82,8 @@ const List = ({
               point={point}
               pointIndex={index}
             />
-          ))
-        )
+            ))
+          )
         : <div className="customization__group-list_empty">Group currently empty</div>
     }
     {
@@ -100,6 +100,7 @@ List.propTypes = {
   points: PropTypes.arrayOf(PropTypes.string).isRequired,
 };
 
+// eslint-disable-next-line react/display-name
 const getRenderClone = (groupIndex, points, handleDeletePoint) => (provided, snapshot, rubric) => (
   <div
     {...provided.draggableProps}

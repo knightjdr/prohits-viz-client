@@ -57,7 +57,7 @@ export const updateGroupSetting = (groupIndex, setting, value) => ({
   value,
 });
 
-const addGroup = (newGroup) => (
+const addGroup = (newGroup) =>
   (dispatch, getState) => {
     const state = getState();
     const customizations = getData(state, 'customization');
@@ -82,9 +82,9 @@ const addGroup = (newGroup) => (
     const nextGroupID = groupLabel ? groupID : groupID + 1;
     dispatch(addGroupFromThunk(updatedGroups, nextGroupID, labels.length));
   }
-);
+;
 
-export const addGroupFromList = (list, label = '') => (
+export const addGroupFromList = (list, label = '') =>
   (dispatch, getState) => {
     const state = getState();
     const customizations = getData(state, 'customization');
@@ -105,9 +105,9 @@ export const addGroupFromList = (list, label = '') => (
       dispatch(addGroup(newGroup));
     }
   }
-);
+;
 
-export const addGroupFromPOI = () => (
+export const addGroupFromPOI = () =>
   (dispatch, getState) => {
     const state = getState();
     const customizations = getData(state, 'customization');
@@ -131,4 +131,4 @@ export const addGroupFromPOI = () => (
       dispatch(addGroup(newGroup));
     }
   }
-);
+;

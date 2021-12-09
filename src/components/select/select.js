@@ -66,6 +66,7 @@ const CustomSelect = forwardRef((
   </SelectContainer>
 ));
 
+CustomSelect.displayName = 'CustomSelect';
 CustomSelect.defaultProps = {
   label: '',
   placeholder: 'Select...',

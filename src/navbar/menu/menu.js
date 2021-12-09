@@ -48,6 +48,7 @@ const Menu = forwardRef((
   </Div>
 ));
 
+Menu.displayName = 'Menu';
 Menu.defaultProps = {
   links: [],
   open: false,

@@ -92,7 +92,7 @@ const CirclesContainer = () => {
             labels={labels}
           />
         </>
-      )
+        )
       : null
   );
 };

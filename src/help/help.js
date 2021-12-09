@@ -43,6 +43,7 @@ const Help = forwardRef((
   </div>
 ));
 
+Help.displayName = 'Help';
 Help.defaultProps = {
   footerNavLinks: {
     next: {},

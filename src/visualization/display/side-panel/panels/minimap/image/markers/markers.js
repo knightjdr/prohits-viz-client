@@ -10,14 +10,14 @@ const Markers = ({
     {
       markers.show
         ? (
-          Object.entries(markers.list).map(([id, marker]) => (
+            Object.entries(markers.list).map(([id, marker]) => (
             <Marker
               color={markers.color}
               dimensions={marker}
               key={id}
             />
-          ))
-        )
+            ))
+          )
         : null
     }
   </>

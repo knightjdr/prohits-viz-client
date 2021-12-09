@@ -67,6 +67,7 @@ describe('ReadFileLines', () => {
 
   it('should return one line when decoder reads more than one', () => {
     // eslint-disable-next-line import/no-named-as-default-member
+    // eslint-disable-next-line no-import-assign
     Encoding.TextDecoder = jest.fn().mockImplementation(() => (
       {
         decode: () => ('col1\tcol2\na\tb\n1\t2'),
@@ -81,7 +82,7 @@ describe('ReadFileLines', () => {
   it('should reject when FileReader errors', () => {
     window.FileReader = jest.fn().mockImplementation(() => (
       {
-        readAsArrayBuffer: function RAAB() { this.onerror(new Error('FileReader error')); },
+        readAsArrayBuffer: function RAAB () { this.onerror(new Error('FileReader error')); },
       }
     ));
     const file = new File(['col1\tcol2\na\tb\n'], 'filename.txt', { type: 'text/plain' });

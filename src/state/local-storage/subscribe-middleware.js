@@ -1,7 +1,7 @@
 import { saveActions, saveActionKey } from './save-actions';
 import { setLocalStorage } from '../../components/local-storage/local-storage';
 
-const subscribeMiddleware = ({ getState }) => (
+const subscribeMiddleware = ({ getState }) =>
   (next) => (action) => {
     const result = next(action);
     if (saveActions.includes(result.type)) {
@@ -11,6 +11,6 @@ const subscribeMiddleware = ({ getState }) => (
     }
     return result;
   }
-);
+;
 
 export default subscribeMiddleware;

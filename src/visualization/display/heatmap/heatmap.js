@@ -86,6 +86,7 @@ const Heatmap = forwardRef((
   </div>
 ));
 
+Heatmap.displayName = 'Heatmap';
 Heatmap.propTypes = {
   handleScroll: PropTypes.func.isRequired,
   page: PropTypes.shape({

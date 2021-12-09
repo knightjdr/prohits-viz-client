@@ -36,6 +36,7 @@ const Select = forwardRef((
   </div>
 ));
 
+Select.displayName = 'Select';
 Select.propTypes = {
   handleContextMenu: PropTypes.func.isRequired,
   options: PropTypes.arrayOf(

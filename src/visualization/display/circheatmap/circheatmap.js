@@ -46,6 +46,7 @@ const CircHeatmap = forwardRef((
   </div>
 ));
 
+CircHeatmap.displayName = 'CircHeatmap';
 CircHeatmap.propTypes = {
   dimensions: PropTypes.shape({
     center: PropTypes.shape({

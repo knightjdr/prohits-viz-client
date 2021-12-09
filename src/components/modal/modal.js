@@ -32,6 +32,7 @@ const Modal = forwardRef((
   portal,
 ));
 
+Modal.displayName = 'Modal';
 Modal.defaultProps = {
   children: null,
   className: undefined,

@@ -59,7 +59,7 @@ export const updateDisplaySetting = (setting, value) => ({
   value,
 });
 
-export const changeCircHeatmapPlot = (index) => (
+export const changeCircHeatmapPlot = (index) =>
   (dispatch, getState) => {
     const state = getState();
     const selectedPlot = getDataProperty(state, 'display', 'selectedPlot');
@@ -82,9 +82,9 @@ export const changeCircHeatmapPlot = (index) => (
       });
     }
   }
-);
+;
 
-export const changeScatterPlot = (index) => (
+export const changeScatterPlot = (index) =>
   (dispatch, getState) => {
     const state = getState();
     const selectedPlot = getDataProperty(state, 'display', 'selectedPlot');
@@ -96,9 +96,9 @@ export const changeScatterPlot = (index) => (
       dispatch(changeScatterFromThunk(index, plots[index].points, filters));
     }
   }
-);
+;
 
-export const resetCircheatmap = () => (
+export const resetCircheatmap = () =>
   (dispatch, getState) => {
     const state = getState();
     const circles = getDataProperty(state, 'circles', 'defaultOrder');
@@ -115,4 +115,4 @@ export const resetCircheatmap = () => (
       sortByKnown,
     }));
   }
-);
+;

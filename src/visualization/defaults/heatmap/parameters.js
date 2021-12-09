@@ -9,7 +9,8 @@ export const defaultState = {
 export const validateScoreType = (scoreType) => {
   const validTypes = ['lte', 'gte'];
   return scoreType && validTypes.includes(scoreType)
-    ? scoreType : defaultState.scoreType;
+    ? scoreType
+    : defaultState.scoreType;
 };
 
 const fillParameters = (userParams, filename, taskID) => {

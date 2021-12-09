@@ -9,9 +9,9 @@ const LandingContainer = () => {
 
   const article = news && news[0]
     ? {
-      headline: news[0].headline,
-      link: news[0].headline.replace(/\s/g, '-'),
-    }
+        headline: news[0].headline,
+        link: news[0].headline.replace(/\s/g, '-'),
+      }
     : {};
 
   return (

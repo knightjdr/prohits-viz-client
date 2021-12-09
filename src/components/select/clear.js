@@ -20,7 +20,7 @@ const Clear = ({
           type="button"
         />
       </span>
-    )
+      )
     : null
 );
 

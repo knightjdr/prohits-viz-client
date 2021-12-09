@@ -13,7 +13,7 @@ const A = ({
       <Link to={to} {...props}>
         {children}
       </Link>
-    )
+      )
     : (
       <a
         href={to}
@@ -22,7 +22,7 @@ const A = ({
       >
         {children}
       </a>
-    )
+      )
 );
 
 A.defaultProps = {

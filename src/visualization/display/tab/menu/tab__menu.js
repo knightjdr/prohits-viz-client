@@ -66,6 +66,7 @@ const TabMenu = forwardRef((
   </span>
 ));
 
+TabMenu.displayName = 'TabMenu';
 TabMenu.propTypes = {
   activeTab: PropTypes.string.isRequired,
   analyses: PropTypes.arrayOf(PropTypes.string).isRequired,

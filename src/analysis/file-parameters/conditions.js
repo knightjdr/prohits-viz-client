@@ -23,7 +23,7 @@ const Conditions = ({
               message="Reading conditions from file..."
             />
           </div>
-        )
+          )
         : (
           <>
             <p>
@@ -50,7 +50,7 @@ const Conditions = ({
               />
             </div>
           </>
-        )
+          )
     }
   </div>
 );

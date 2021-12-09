@@ -6,9 +6,9 @@ import SortArrow from './sort-arrow';
 const addTooltip = (cell) => (
   cell.tooltip
     ? {
-      'data-tooltip': cell.tooltip,
-      'data-tooltip-position': 'bottom',
-    }
+        'data-tooltip': cell.tooltip,
+        'data-tooltip-position': 'bottom',
+      }
     : {}
 );
 

@@ -37,7 +37,7 @@ const ErrorBoundary = ({
           </p>
         </div>
       </div>
-    )
+      )
     : children
 );
 

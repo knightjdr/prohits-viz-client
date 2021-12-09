@@ -31,7 +31,7 @@ const LinesContainer = ({
           showMidline={showMidline}
           strokeWidth={strokeWidth}
         />
-      )
+        )
       : null
   );
 };

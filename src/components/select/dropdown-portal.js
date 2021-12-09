@@ -56,7 +56,7 @@ const DropdownPortal = forwardRef((
               key={option.label}
               label={option.label}
             />
-          )
+            )
           : (
             <Option
               id={`${inputID}-${option.value}`}
@@ -66,13 +66,14 @@ const DropdownPortal = forwardRef((
               value={option.value}
               visible={isDropdownVisible}
             />
-          )
+            )
       ))
     }
   </Dropdown>,
   portal,
 ));
 
+DropdownPortal.displayName = 'DropdownPortal';
 DropdownPortal.defaultProps = {
   focusedOption: '',
   label: '',

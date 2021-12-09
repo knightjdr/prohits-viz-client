@@ -87,6 +87,7 @@ const Poi = forwardRef((
   </>
 ));
 
+Poi.displayName = 'Poi';
 Poi.propTypes = {
   closeContextMenu: PropTypes.func.isRequired,
   columns: PropTypes.shape({

@@ -7,16 +7,16 @@ import ErrorBoundary from './error-boundary';
 import fetch from '../../utils/fetch';
 
 class ErrorBoundaryContainer extends React.Component {
-  constructor(props) {
+  constructor (props) {
     super(props);
     this.state = { hasError: false };
   }
 
-  static getDerivedStateFromError() {
+  static getDerivedStateFromError () {
     return { hasError: true };
   }
 
-  componentDidCatch(error, info) {
+  componentDidCatch (error, info) {
     const { session } = this.props;
     const options = {
       data: {
@@ -29,7 +29,7 @@ class ErrorBoundaryContainer extends React.Component {
     fetch('/error', options);
   }
 
-  render() {
+  render () {
     const { children } = this.props;
     const { hasError } = this.state;
     return (

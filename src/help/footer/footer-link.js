@@ -23,7 +23,7 @@ const FooterLink = ({
         {text}
         { !isPrevious && <FontAwesomeIcon icon={faArrowAltCircleRight} /> }
       </Link>
-    )
+      )
     : null
 );
 

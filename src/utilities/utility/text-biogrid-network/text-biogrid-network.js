@@ -58,7 +58,7 @@ const TextBiogridNetwork = ({
               . By default it will also add novel preys as interactions as well. This utility
               is currently available for human genes only.
             </span>
-          )
+            )
           : (
             <span>
               Retrieve known interactions for gene symbols or identifiers in a text file
@@ -75,7 +75,7 @@ const TextBiogridNetwork = ({
               </Link>
               . This utility is currently available for human genes only.
             </span>
-          )
+            )
       }
     </p>
     <div className="utility__inputs">

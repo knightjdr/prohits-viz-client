@@ -16,7 +16,7 @@ const formatRows = (results, action) => (
               icon={faPlus}
               onClick={action(term)}
             />
-          )
+            )
           : null
       ),
     },

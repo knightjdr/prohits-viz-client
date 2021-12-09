@@ -24,7 +24,7 @@ const KnownContainer = () => {
           radius={radius}
           sortByKnown={sortByKnown}
         />
-      )
+        )
       : null
   );
 };

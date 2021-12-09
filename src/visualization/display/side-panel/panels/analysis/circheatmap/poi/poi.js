@@ -62,6 +62,7 @@ const Poi = forwardRef((
   </>
 ));
 
+Poi.displayName = 'Poi';
 Poi.propTypes = {
   closeContextMenu: PropTypes.func.isRequired,
   contextMenuState: PropTypes.shape({}).isRequired,

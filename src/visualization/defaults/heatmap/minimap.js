@@ -23,7 +23,8 @@ export const fillSnapshotMinimap = (inputMinimap) => {
     ...defaultState,
     image: image && validateUri(image) ? image : defaultState.image,
     syncedImage: syncedImage && validateUri(syncedImage)
-      ? syncedImage : defaultState.syncedImage,
+      ? syncedImage
+      : defaultState.syncedImage,
     needSyncing: validateBoolean(needSyncing, defaultState.needSyncing),
   };
 };

@@ -1,3 +1,4 @@
+/* eslint-disable no-import-assign */
 import simulant from 'simulant';
 
 import handlers from './event-handlers';

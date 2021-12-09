@@ -30,9 +30,9 @@ const reduceAndUpdateSetting = (state, action) => ({
     order: state[action.snapshotID].order.map((circle, index) => (
       index === action.index
         ? {
-          ...circle,
-          [action.attribute]: action.value,
-        }
+            ...circle,
+            [action.attribute]: action.value,
+          }
         : circle
     )),
   },

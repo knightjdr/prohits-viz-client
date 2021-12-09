@@ -65,7 +65,7 @@ const useFilter = () => {
           isOpen={isFiltering}
           text="filtering"
         />
-      )
+        )
       : null,
   };
 };

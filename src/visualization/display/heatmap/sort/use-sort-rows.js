@@ -61,7 +61,7 @@ const useSortRows = () => {
           isOpen={isSorting}
           text="sorting"
         />
-      )
+        )
       : null,
   };
 };

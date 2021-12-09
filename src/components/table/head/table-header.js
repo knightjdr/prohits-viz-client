@@ -36,6 +36,7 @@ const TableHeader = forwardRef((
   </StyledTableHeader>
 ));
 
+TableHeader.displayName = 'TableHeader';
 TableHeader.propTypes = {
   gridTemplateColumns: PropTypes.string.isRequired,
   handleSortRows: PropTypes.func.isRequired,

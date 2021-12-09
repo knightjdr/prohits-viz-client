@@ -1,5 +1,6 @@
 {
   "env": {
+    "browser": true,
     "es2021": true,
     "jest/globals": true
   },
@@ -19,5 +20,10 @@
     "comma-dangle": [2, "always-multiline"],
     "operator-linebreak": [2, "before"],
     "semi": [2, "always"]
+  },
+  "settings": {
+    "react": {
+      "version": "detect"
+    }
   }
 }

@@ -40,6 +40,7 @@ const Table = forwardRef((
   </StyledTable>
 ));
 
+Table.displayName = 'Table';
 Table.propTypes = {
   fieldOrder: PropTypes.arrayOf(PropTypes.string).isRequired,
   gridTemplateColumns: PropTypes.string.isRequired,

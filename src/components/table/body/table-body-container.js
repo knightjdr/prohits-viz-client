@@ -41,4 +41,6 @@ const TableBodyContainer = forwardRef((
   );
 });
 
+TableBodyContainer.displayName = 'TableBodyContainer';
+
 export default TableBodyContainer;

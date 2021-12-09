@@ -2,6 +2,7 @@ import * as moduleToMock from 'redux';
 
 import { addDevTools } from './store';
 
+// eslint-disable-next-line no-import-assign
 moduleToMock.createStore = () => ({});
 jest.setMock('redux', moduleToMock);
 
