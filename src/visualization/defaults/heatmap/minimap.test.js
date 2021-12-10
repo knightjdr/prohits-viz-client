@@ -9,7 +9,7 @@ describe('Fill minimap', () => {
     const userMinimap = {
       main: {
         image: 'image',
-        needSyncing: true,
+        needSyncing: false,
         syncedImage: 'image',
       },
     };
@@ -47,7 +47,10 @@ describe('Fill minimap', () => {
       },
     };
     const expected = {
-      main: defaultState,
+      main: {
+        ...defaultState,
+        needSyncing: true,
+      },
     };
     expect(fillMap(userMinimap)).toEqual(expected);
   });
