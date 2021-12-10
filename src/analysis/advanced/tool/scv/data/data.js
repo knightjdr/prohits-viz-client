@@ -1,6 +1,7 @@
 import PropTypes from 'prop-types';
 import React from 'react';
 
+import File from '../../fields/file';
 import Select from '../../fields/select';
 import Switch from '../../fields/switch';
 
@@ -10,6 +11,7 @@ const Data = ({
   form,
   handleChange,
   help,
+  selectFile,
 }) => (
   <section>
     <h2>Data</h2>
@@ -25,11 +27,26 @@ const Data = ({
       label="Metric for evaluating readout knownness"
       onChange={handleChange}
       options={[
+        { label: 'Custom list', value: 'custom' },
         { label: 'Interaction', value: 'interaction' },
       ]}
       value={form.known}
       warning={errors.known}
     />
+    {
+      form.known === 'custom'
+      && (
+        <File
+          helpMessage={help.knownFile}
+          helpTitle="Knownness file"
+          id="knownFile"
+          label="Knownness file"
+          onChange={selectFile}
+          value={form.knownFile}
+          warning={errors.knownFile}
+        />
+      )
+    }
     <Select
       canClear
       helpMessage={help.proteinTissues}
@@ -79,12 +96,14 @@ Data.propTypes = {
   }).isRequired,
   errors: PropTypes.shape({
     known: PropTypes.string,
+    knownFile: PropTypes.string,
     proteinTissues: PropTypes.string,
     rnaTissues: PropTypes.string,
     scoreType: PropTypes.string,
   }).isRequired,
   form: PropTypes.shape({
     known: PropTypes.string,
+    knownFile: PropTypes.arrayOf(PropTypes.shape({})),
     proteinTissues: PropTypes.arrayOf(PropTypes.string),
     rnaTissues: PropTypes.arrayOf(PropTypes.string),
     specificity: PropTypes.bool,
@@ -92,10 +111,12 @@ Data.propTypes = {
   handleChange: PropTypes.func.isRequired,
   help: PropTypes.shape({
     known: PropTypes.node,
+    knownFile: PropTypes.node,
     proteinTissues: PropTypes.node,
     rnaTissues: PropTypes.node,
     specificity: PropTypes.node,
   }).isRequired,
+  selectFile: PropTypes.func.isRequired,
 };
 
 export default Data;

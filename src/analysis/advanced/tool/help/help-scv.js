@@ -54,8 +54,9 @@ const help = {
         Knowledge of expected readouts can be displayed as a partial circle around the
         heat map rings. An expected readout could be a protein known to interact with a bait, for example.
         Select a metric to use for &quot;knownness&quot; from those currently supported. To accurately quantify
-        &quot;knownness&quot;, you can supply condition and readout maps for mapping the names in the input file
-        to official identifiers.
+        &quot;knownness&quot;, you can supply condition and readout maps in the next section of the form for
+        mapping the names in the input file to official identifiers. Alternatively, you can supply a file
+        containing known condition-readout pairs satisfying whatever criteria you want.
       </p>
       <div className="analysis__advanced-field-modal-img">
         <img
@@ -66,6 +67,10 @@ const help = {
       </div>
     </div>
   ),
+  knownFile: `A two-column tab-delimited file containing conditions names in the first column and
+    readouts names in the second. Every row in the file represents a known readout for the condition
+    in question. The condition and readout names must match the names in the condition and readout
+    columns in the input file exactly.`,
   minAbundance: (
     <div>
       <p>

@@ -27,6 +27,10 @@ const DataContainer = ({
     dispatch(setFormField(id, value));
   };
 
+  const selectFile = (e, id, selectedFiles) => {
+    dispatch(setFormField(id, selectedFiles));
+  };
+
   useOnMount(() => {
     const fetchData = async () => {
       const result = await Promise.all([
@@ -66,6 +70,7 @@ const DataContainer = ({
       form={form}
       handleChange={handleChange}
       help={help}
+      selectFile={selectFile}
     />
   );
 };

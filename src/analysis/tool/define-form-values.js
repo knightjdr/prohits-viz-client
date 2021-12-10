@@ -75,6 +75,7 @@ export const defaultFormValues = {
     conditionMapColumn: '',
     conditionMapFile: [],
     known: '',
+    knownFile: [],
     minAbundance: 0,
     otherAbundance: [],
     primaryFilter: 0.01,
