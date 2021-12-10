@@ -231,10 +231,10 @@ const SCV = () => (
       <li>
         <span>knownness:</span>
         readouts can be sorted by &quot;knownness&quot; if desired, i.e. is the readout expected
-        for the condition being visualized. Currently we only support the ability to classify readouts
-        as known interactors. We intend on adding more options, as well as the ability to upload
-        user-defined lists of &quot;known&quot; data in the future. Protein interaction data is merged
-        from
+        for the condition being visualized. Currently we only explicitly support the ability to classify
+        readouts as known interactors, however custom lists containing known condition-readout pairs can
+        be uploaded as well. We intend on explicitly supporting more options in the future. Protein
+        interaction data is merged from
         {' '}
         <Link to="https://thebiogrid.org">
           BioGRID
