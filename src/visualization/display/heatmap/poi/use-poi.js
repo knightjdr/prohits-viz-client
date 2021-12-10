@@ -1,9 +1,9 @@
 import { useDispatch, useSelector } from 'react-redux';
 
 import removeDuplicates from '../../../../utils/remove-duplicates';
-import { selectOrderedColumnNames } from '../../../../state/selector/visualization/column-selector';
-import selectRows from '../../../../state/selector/visualization/row-selector';
+import { selectColumnNames } from '../../../../state/selector/visualization/column-selector';
 import { selectData } from '../../../../state/selector/visualization/data-selector';
+import { selectRowNames } from '../../../../state/selector/visualization/row-selector';
 import { updatePOI } from '../../../../state/visualization/analysis/poi-actions';
 
 const findIndex = (item, arr) => (
@@ -24,9 +24,9 @@ const findIndices = (items, arr) => {
 
 const usePOI = (poiType) => {
   const dispatch = useDispatch();
-  const columnNames = useSelector((state) => selectOrderedColumnNames(state));
+  const columnNames = useSelector((state) => selectColumnNames(state));
   const poi = useSelector((state) => selectData(state, 'poi'));
-  const rowNames = useSelector((state) => selectRows(state));
+  const rowNames = useSelector((state) => selectRowNames(state));
 
   const names = {
     columns: columnNames,
