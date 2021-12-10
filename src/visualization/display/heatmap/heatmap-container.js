@@ -57,7 +57,7 @@ const HeatmapContainer = () => {
         20,
       );
     },
-    [dispatch],
+    [cellSize, dispatch],
   );
 
   const newDimensions = useMemo(
