@@ -8,6 +8,7 @@ const Lines = ({
   dashLength,
   fcLines,
   isDashed,
+  handleFCLineClick,
   midline,
   showFcLines,
   showMidline,
@@ -30,6 +31,7 @@ const Lines = ({
       && (
         <FcLines
           dashLength={dashLength}
+          handleFCLineClick={handleFCLineClick}
           isDashed={isDashed}
           lines={fcLines}
           strokeWidth={strokeWidth}
@@ -50,6 +52,7 @@ Lines.propTypes = {
       y2: PropTypes.number,
     }),
   ).isRequired,
+  handleFCLineClick: PropTypes.func.isRequired,
   isDashed: PropTypes.bool.isRequired,
   midline: PropTypes.shape({
     x1: PropTypes.number,

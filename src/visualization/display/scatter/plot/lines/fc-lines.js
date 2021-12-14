@@ -3,6 +3,7 @@ import React from 'react';
 
 const Lines = ({
   dashLength,
+  handleFCLineClick,
   isDashed,
   lines,
   strokeWidth,
@@ -10,17 +11,33 @@ const Lines = ({
   <>
     {
       lines.map((line) => (
-        <line
-          className="scatterplot__fc-line"
+        <g
+          data-fc={line.key}
+          onClick={handleFCLineClick}
           key={line.key}
-          stroke="black"
-          strokeDasharray={isDashed ? `${dashLength} ${dashLength}` : null}
-          strokeWidth={strokeWidth}
-          x1={line.x1}
-          x2={line.x2}
-          y1={line.y1}
-          y2={line.y2}
-        />
+        >
+          <line
+            className="scatterplot__fc-line-background"
+            stroke="green"
+            strokeOpacity={0}
+            strokeWidth={5}
+            x1={line.x1}
+            x2={line.x2}
+            y1={line.y1}
+            y2={line.y2}
+          />
+          <line
+            className="scatterplot__fc-line"
+            data-fc={line.key}
+            stroke="black"
+            strokeDasharray={isDashed ? `${dashLength} ${dashLength}` : null}
+            strokeWidth={strokeWidth}
+            x1={line.x1}
+            x2={line.x2}
+            y1={line.y1}
+            y2={line.y2}
+          />
+        </g>
       ))
     }
   </>
@@ -28,6 +45,7 @@ const Lines = ({
 
 Lines.propTypes = {
   dashLength: PropTypes.number.isRequired,
+  handleFCLineClick: PropTypes.func.isRequired,
   isDashed: PropTypes.bool.isRequired,
   lines: PropTypes.arrayOf(
     PropTypes.shape({
