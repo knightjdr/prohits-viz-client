@@ -11,3 +11,13 @@
   transition-property: transform;
   transition-timing-function: var(--timingFunction);
 }
+.scatter__display-warning {
+  align-items: center;
+  display: flex;
+  justify-content: center;
+  height: 100%;
+}
+.scatter__display-warning svg { 
+  margin-right: 5px;
+  color: var(--warning);
+}

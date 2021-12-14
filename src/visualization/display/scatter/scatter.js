@@ -1,5 +1,7 @@
 import PropTypes from 'prop-types';
 import React, { forwardRef } from 'react';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faExclamationTriangle } from '@fortawesome/pro-duotone-svg-icons';
 
 import Labels from './labels/labels-container';
 import Plot from './plot/plot-container';
@@ -17,30 +19,39 @@ const Scatter = forwardRef((
   },
   ref,
 ) => (
-  <div
-    className="scatter"
-    ref={ref}
-    style={{
-      transform: `translate(${translation}px)`,
-    }}
-  >
-    <svg
-      id="svg-main"
-      height={wrapperHeight}
-      width={wrapperWidth}
-      xmlns="http://www.w3.org/2000/svg"
-    >
-      <rect width="100%" height="100%" fill="white" />
-      <g transform="translate(0 50)">
-        <Plot
-          lines={lines}
-          points={points}
-          ticks={ticks}
-        />
-        <Labels />
-      </g>
-    </svg>
-  </div>
+  points.length > 0
+    ? (
+      <div
+        className="scatter"
+        ref={ref}
+        style={{
+          transform: `translate(${translation}px)`,
+        }}
+      >
+        <svg
+          id="svg-main"
+          height={wrapperHeight}
+          width={wrapperWidth}
+          xmlns="http://www.w3.org/2000/svg"
+        >
+          <rect width="100%" height="100%" fill="white" />
+          <g transform="translate(0 50)">
+            <Plot
+              lines={lines}
+              points={points}
+              ticks={ticks}
+            />
+            <Labels />
+          </g>
+        </svg>
+      </div>
+      )
+    : (
+      <div className="scatter__display-warning">
+        <FontAwesomeIcon icon={faExclamationTriangle} />
+        No data to display
+      </div>
+      )
 ));
 
 Scatter.displayName = 'Scatter';
