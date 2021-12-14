@@ -17,7 +17,7 @@ const LineContainer = () => {
 
   const handleSetFcLines = (e, id, value) => {
     const elements = splitStringByCommaAndWhiteSpace(value);
-    const validElements = elements.filter((element) => isNumber(element));
+    const validElements = elements.filter((element) => isNumber(element) && element !== '0');
     const numbers = validElements.map((element) => Number(element));
     numbers.sort(sort.numeric);
     dispatch(updateLineSetting('fcLines', numbers));
