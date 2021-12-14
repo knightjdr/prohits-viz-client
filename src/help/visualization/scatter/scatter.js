@@ -254,7 +254,7 @@ const Scatter = () => (
       area on the fourth and fifth tabs of the side panel.
     </p>
     <p>
-      There are four ways to select points:
+      There are five ways to select points:
     </p>
     <ol>
       <li>Items can be selected/deselected using the menus in the selection area</li>
@@ -269,6 +269,11 @@ const Scatter = () => (
       <li>
         Holding the SHIFT key and dragging the cursor will create a selection box that captures the points inside it
       </li>
+      <li>
+        If you have added fold-change lines to the plot, clicking on a line will select everything passing that cutoff,
+        i.e. clicking a positive fold-change line will select everything at or above that value and clicking a
+        negative fold-change line will select everything at or below that value.
+      </li>
     </ol>
     <figure className="help__image-screenshot">
       <Image
@@ -281,8 +286,9 @@ const Scatter = () => (
       <figcaption>
         <span>Making selections</span>
         . Specific points can be selected from the selection menu on the side panel,
-        by clicking on a point, by right-clicking and pasting a list into the selection menu or by
-        holding the SHIFT key and dragging the cursor around the desired points.
+        by clicking on a point, by right-clicking and pasting a list into the selection menu, by
+        holding the SHIFT key and dragging the cursor around the desired points, or by clicking
+        on a fold-change line when present.
       </figcaption>
     </figure>
     <h4 id="selections-customization">Customization</h4>
