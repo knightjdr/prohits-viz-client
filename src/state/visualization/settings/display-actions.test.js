@@ -20,7 +20,7 @@ describe('Display actions', () => {
         ],
         settings: {
           main: {
-            current: { xFilter: 0, yFilter: 10 },
+            current: { strictAxisFiltering: true, xFilter: 0, yFilter: 10 },
           },
         },
         tabs: { activeSnapshot: 'main' },
@@ -29,7 +29,11 @@ describe('Display actions', () => {
 
       const expectedActions = [{
         AUGMENT_WITH_ACTIVE_SNAPSHOT: true,
-        filters: { x: 0, y: 10 },
+        filters: {
+          strictAxisFiltering: true,
+          x: 0,
+          y: 10,
+        },
         points: [4, 5, 6],
         setting: 'selectedPlot',
         type: actions.CHANGE_SCATTER_PLOT,

@@ -119,7 +119,11 @@ describe('Points reducer', () => {
       },
     };
     const action = {
-      filters: { x: 0, y: 5 },
+      filters: {
+        strictAxisFiltering: true,
+        x: 0,
+        y: 5,
+      },
       points: [
         { label: 'e', x: 0, y: 5 },
         { label: 'f', x: 0, y: 4 },
@@ -175,6 +179,7 @@ describe('Points reducer', () => {
     const action = {
       snapshotID: 'main',
       type: actions.FILTER_POINTS,
+      strictAxisFiltering: true,
       x: 10,
       y: 5,
     };

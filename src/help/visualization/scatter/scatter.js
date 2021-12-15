@@ -125,7 +125,7 @@ const Scatter = () => (
     <figure className="help__image-screenshot">
       <Image
         alt="Interactive scatter plot settings"
-        height={587}
+        height={607}
         images={images}
         name="scatter-settings"
         width={800}
@@ -163,7 +163,9 @@ const Scatter = () => (
       {' '}
       area has inputs for filtering the points to display on the image by axis.
       The filters are inclusive of the value specified and compare against the absolute
-      value of points, i.e. both -2 and +2 would pass a filter of 2.
+      value of points, i.e. both -2 and +2 would pass a filter of 2. The default requires
+      a point to pass both filters in order to be displayed, but toggling off the &quot;Strict axis
+      filtering&quot; option will require a point to pass only one of the filters.
     </p>
     <h4 id="settings-ticks">Ticks</h4>
     <p>

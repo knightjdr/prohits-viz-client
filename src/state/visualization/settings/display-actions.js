@@ -91,8 +91,12 @@ export const changeScatterPlot = (index) =>
 
     if (index !== selectedPlot) {
       const { plots } = state;
-      const { xFilter, yFilter } = getDataProperty(state, 'settings', 'current');
-      const filters = { x: xFilter, y: yFilter };
+      const { strictAxisFiltering, xFilter, yFilter } = getDataProperty(state, 'settings', 'current');
+      const filters = {
+        strictAxisFiltering,
+        x: xFilter,
+        y: yFilter,
+      };
       dispatch(changeScatterFromThunk(index, plots[index].points, filters));
     }
   }

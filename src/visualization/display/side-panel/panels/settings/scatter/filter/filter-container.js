@@ -9,7 +9,7 @@ import { selectPlot } from '../../../../../../../state/selector/visualization/sc
 
 const FilterContainer = () => {
   const dispatch = useDispatch();
-  const { xFilter, yFilter } = useSelector((state) => selectDataProperty(state, 'settings', 'current'));
+  const { strictAxisFiltering, xFilter, yFilter } = useSelector((state) => selectDataProperty(state, 'settings', 'current'));
   const { labels } = useSelector((state) => selectPlot(state));
 
   const handleSettingChange = (e, name, value) => {
@@ -20,6 +20,7 @@ const FilterContainer = () => {
     <Filter
       handleSettingChange={handleSettingChange}
       labels={labels}
+      strictAxisFiltering={strictAxisFiltering}
       xFilter={xFilter}
       yFilter={yFilter}
     />

@@ -11,17 +11,25 @@ const filterPointsFromThunk = (values) => ({
   ...values,
 });
 
-export const filterPoints = (filter, value) =>
+export const filterPoints = (setting, value) =>
   (dispatch, getState) => {
-    const { xFilter, yFilter } = getDataProperty(getState(), 'settings', 'current');
+    const { strictAxisFiltering, xFilter, yFilter } = getDataProperty(getState(), 'settings', 'current');
 
     batch(() => {
-      dispatch(filterPointsFromThunk({
+      const newState = {
+        strictAxisFiltering,
         x: xFilter,
         y: yFilter,
-        [filter === 'xFilter' ? 'x' : 'y']: value,
-      }));
-      dispatch(updateSetting(filter, value));
+      };
+      if (setting === 'xFilter') {
+        newState.x = value;
+      } if (setting === 'yFilter') {
+        newState.y = value;
+      } if (setting === 'strictAxisFiltering') {
+        newState.strictAxisFiltering = value;
+      }
+      dispatch(filterPointsFromThunk(newState));
+      dispatch(updateSetting(setting, value));
     });
   }
 ;
