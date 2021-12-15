@@ -32,7 +32,6 @@
     "react-ga": "^3.3.0",
     "react-redux": "^7.2.6",
     "react-router-dom": "^6.0.2",
-    "react-router-hash-link": "^2.4.3",
     "react-scripts": "^4.0.3",
     "redux": "^4.1.2",
     "redux-socket.io": "^1.4.0",

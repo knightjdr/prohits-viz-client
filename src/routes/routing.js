@@ -1,10 +1,12 @@
-import React, { lazy, Suspense, useLayoutEffect } from 'react';
+import React, { lazy, Suspense } from 'react';
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 
 import Home from '../home/home-container';
 import Loading from './loading';
 import Navbar from '../navbar/navbar-container';
 import NotFoundPage from './not-found';
+
+import useHashScroll from '../hooks/scroll/use-hash-scroll';
 
 const Analyze = lazy(() => import('../analysis/analysis-container'));
 const Help = lazy(() => import('../help/help-container'));
@@ -18,29 +20,33 @@ const Videos = () => {
   return null;
 };
 
-const Routing = () => {
-  useLayoutEffect(() => window.scrollTo(0, 0));
+const HashScrollRouting = () => {
+  useHashScroll();
 
   return (
-    <Router>
-      <Suspense fallback={<Loading />}>
-        <Navbar />
-        <main className="app">
-          <Routes>
-            <Route path="/" element={<Home />} />
-            <Route path="/analysis" element={<Analyze />} />
-            <Route path="/help/*" element={<Help />} />
-            <Route path="/news/*" element={<News />} />
-            <Route path="/tasks/*" element={<Tasks />} />
-            <Route path="/utilities" element={<Utilities />} />
-            <Route path="/videos" element={<Videos />} />
-            <Route path="/visualization/*" element={<Visualization />} />
-            <Route path="*" element={<NotFoundPage />} />
-          </Routes>
-        </main>
-      </Suspense>
-    </Router>
+    <Suspense fallback={<Loading />}>
+      <Navbar />
+      <main className="app">
+        <Routes>
+          <Route path="/" element={<Home />} />
+          <Route path="/analysis" element={<Analyze />} />
+          <Route path="/help/*" element={<Help />} />
+          <Route path="/news/*" element={<News />} />
+          <Route path="/tasks/*" element={<Tasks />} />
+          <Route path="/utilities" element={<Utilities />} />
+          <Route path="/videos" element={<Videos />} />
+          <Route path="/visualization/*" element={<Visualization />} />
+          <Route path="*" element={<NotFoundPage />} />
+        </Routes>
+      </main>
+    </Suspense>
   );
 };
+
+const Routing = () => (
+  <Router>
+    <HashScrollRouting />
+  </Router>
+);
 
 export default Routing;
