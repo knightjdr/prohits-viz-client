@@ -3,8 +3,8 @@ import { render } from '@testing-library/react';
 
 import Link from './link';
 
-jest.mock('react-router-hash-link', () => ({
-  HashLink: (props) => <div {...props} />,
+jest.mock('react-router-dom', () => ({
+  Link: (props) => <div {...props} />,
 }));
 
 const renderElement = (props) => render(<Link {...props} />);
