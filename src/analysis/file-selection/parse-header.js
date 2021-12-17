@@ -1,11 +1,11 @@
-import ReadFileLines from '../../utils/read-file-lines';
-import ParseString from '../../utils/parse-string';
+import readFileLines from '../../utils/read-file-lines';
+import parseString from '../../utils/parse-string';
 
 const ParseHeader = async (file) => {
   try {
     const { type } = file;
-    const headerString = await ReadFileLines(file);
-    return ParseString(headerString, type);
+    const headerString = await readFileLines(file);
+    return parseString(headerString, type);
   } catch (error) {
     return [];
   }

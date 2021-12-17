@@ -1,13 +1,8 @@
-const ParseString = (string, type) => {
-  switch (type) {
-    case 'text/plain':
-      return string.split('\t');
-    case 'text/tab-separated-values':
-      return string.split('\t');
-    case 'text/csv':
-      return string.split(',');
-    default:
-      return string;
+const parseString = (string, type) => {
+  if (type === 'text/csv') {
+    return string.split(',');
   }
+  return string.split('\t');
 };
-export default ParseString;
+
+export default parseString;
