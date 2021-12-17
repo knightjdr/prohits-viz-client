@@ -23,16 +23,16 @@ const ErrorBoundary = ({
           />
           <p>
             It was (probably) not your fault. The error has been logged and hopefully
-            will be fixed soon. Unfortunately your session cannot be recovered. Hit refresh
-            of head
+            will be fixed soon, but any details you can provide would be helpful. Please
+            send a message to
             {' '}
-            <Link
-              to="/"
-              visited={false}
-            >
-              home
+            <Link to="mailto:contact@prohits-viz.org?Subject=ProHits-viz%20help">
+              contact@prohits-viz.org
             </Link>
-            {' '}
+            .
+          </p>
+          <p>
+            Unfortunately your session cannot be recovered. Hit refresh
             to start over.
           </p>
         </div>

@@ -12,11 +12,8 @@ class ErrorBoundaryContainer extends React.Component {
     this.state = { hasError: false };
   }
 
-  static getDerivedStateFromError () {
-    return { hasError: true };
-  }
-
   componentDidCatch (error, info) {
+    this.setState({ hasError: true });
     const { session } = this.props;
     const options = {
       data: {

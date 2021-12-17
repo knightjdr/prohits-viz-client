@@ -1,6 +1,7 @@
 import React, { lazy, Suspense } from 'react';
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 
+import ErrorBoundary from '../components/error-boundary/error-boundary-container';
 import Home from '../home/home-container';
 import Loading from './loading';
 import Navbar from '../navbar/navbar-container';
@@ -45,7 +46,9 @@ const HashScrollRouting = () => {
 
 const Routing = () => (
   <Router>
-    <HashScrollRouting />
+    <ErrorBoundary>
+      <HashScrollRouting />
+    </ErrorBoundary>
   </Router>
 );
 

@@ -14,3 +14,7 @@
   flex-direction: column;
   max-width: 800px;
 }
+
+.error-boundary p {
+  width: 100%;
+}
