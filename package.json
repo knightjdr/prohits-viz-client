@@ -21,7 +21,7 @@
     "axios": "^0.24.0",
     "comlink": "^4.3.1",
     "history": "^5.1.0",
-    "nanoid": "^3.1.30",
+    "nanoid": "^3.1.31",
     "normalize-wheel": "^1.0.1",
     "papaparse": "^5.3.1",
     "prop-types": "^15.7.2",
