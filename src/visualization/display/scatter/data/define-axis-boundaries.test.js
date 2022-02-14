@@ -163,6 +163,27 @@ describe('Define axis boundaries', () => {
         expect(defineAxisBoundaries(data, options)).toEqual(expected);
       });
 
+      it('should define suitable min/max for small data values', () => {
+        const data = [
+          { x: 5, y: 17 },
+          { x: 45, y: 127 },
+          { x: 0, y: 0.6 },
+          { x: 10, y: 0 },
+          { x: 0.13, y: 10 },
+        ];
+        const options = {
+          equalScaleAxes: false,
+          logX: '2',
+          logY: '10',
+        };
+
+        const expected = {
+          x: { min: 0.125, max: 64 },
+          y: { min: 0.1, max: 1000 },
+        };
+        expect(defineAxisBoundaries(data, options)).toEqual(expected);
+      });
+
       it('should define suitable min/max for equal scale axes', () => {
         const data = [
           { x: 5, y: 17 },
@@ -198,6 +219,27 @@ describe('Define axis boundaries', () => {
 
         const expected = {
           x: { min: -64, max: -0.5 },
+          y: { min: -1000, max: -0.1 },
+        };
+        expect(defineAxisBoundaries(data, options)).toEqual(expected);
+      });
+
+      it('should define suitable min/max for small data values', () => {
+        const data = [
+          { x: -5, y: -17 },
+          { x: -45, y: -127 },
+          { x: 0, y: -0.6 },
+          { x: -10, y: 0 },
+          { x: -0.13, y: -10 },
+        ];
+        const options = {
+          equalScaleAxes: false,
+          logX: '2',
+          logY: '10',
+        };
+
+        const expected = {
+          x: { min: -64, max: -0.125 },
           y: { min: -1000, max: -0.1 },
         };
         expect(defineAxisBoundaries(data, options)).toEqual(expected);
