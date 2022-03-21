@@ -193,7 +193,7 @@ exports[`Navbar small screen size should match snapshot 1`] = `
       >
         <svg
           aria-hidden="true"
-          class="svg-inline--fa fa-bars fa-w-14 fa-lg nav__menu"
+          class="svg-inline--fa fa-bars fa-lg nav__menu"
           data-icon="bars"
           data-prefix="fas"
           focusable="false"
