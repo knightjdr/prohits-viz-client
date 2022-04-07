@@ -177,6 +177,7 @@ const CircleDND = ({
           <div
             {...provided.draggableProps}
             {...provided.dragHandleProps}
+            className="settings__image-circle-placeholder"
             ref={provided.innerRef}
           >
             <CircleContent
@@ -212,6 +213,7 @@ const CircleDND = ({
                 <div
                   {...provided.draggableProps}
                   {...provided.dragHandleProps}
+                  className="settings__image-circle-placeholder"
                   ref={provided.innerRef}
                 >
                   <CircleContent
